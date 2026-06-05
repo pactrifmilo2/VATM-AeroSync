@@ -1,0 +1,56 @@
+spring:
+  config:
+    import: optional:file:${AEROSYNC_CONFIG_DIR:${user.dir}}/.env[.properties]
+  application:
+    name: aerosync-worker
+
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: vatm_user
+    password: vatm_password
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      maximum-pool-size: 10
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  amqp:
+    deserialization:
+      trust:
+        all: true
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 120000
+          multiplier: 2.0
+          max-interval: 480000
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  file-paths:
+    incoming: C:/vatm-storage/incoming
+    processed: C:/vatm-storage/processed
+    error: C:/vatm-storage/error
+    quarantine: C:/vatm-storage/quarantine
+  worker:
+    max-file-size-bytes: 10485760
+    processed-retention-days: 60
+    error-retention-days: 90
+    lock-ttl-seconds: 600
+  rabbit:
+    file-ingested-exchange: file.ingested
+    file-processing-routing-key: file.processing
+    file-processing-queue: file.processing.queue
+    sync-result-exchange: sync.result

@@ -1,0 +1,53 @@
+spring:
+  config:
+    import: optional:file:${AEROSYNC_CONFIG_DIR:${user.dir}}/.env[.properties]
+  application:
+    name: aerosync-ingest
+
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: vatm_user
+    password: vatm_password
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  amqp:
+    deserialization:
+      trust:
+        all: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  file-paths:
+    incoming: C:/vatm-storage/incoming
+    processed: C:/vatm-storage/processed
+    error: C:/vatm-storage/error
+    quarantine: C:/vatm-storage/quarantine
+  ingest:
+    max-files-per-cycle: 100
+    scheduler-fixed-delay-ms: 300000
+  email:
+    host: localhost
+    port: 993
+    username:
+    password:
+    protocol: imaps
+    folder: INBOX
+    whitelist-senders: []
+    connection-timeout-ms: 10000
+  rabbit:
+    file-ingested-exchange: file.ingested
+    file-processing-routing-key: file.processing
+    file-processing-queue: file.processing.queue

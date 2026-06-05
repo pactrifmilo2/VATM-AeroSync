@@ -1,0 +1,8 @@
+<flights>
+  <flight>
+    <callsign>VN123</callsign>
+    <from>HAN</from>
+    <to>SGN</to>
+    <dateFlight>2026-06-01</dateFlight>
+  </flight>
+</flights>

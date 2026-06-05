@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:worker;MODE=Oracle;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+  file-paths:
+    incoming: ${java.io.tmpdir}/aerosync-worker-test-incoming
+    processed: ${java.io.tmpdir}/aerosync-worker-test-processed
+    error: ${java.io.tmpdir}/aerosync-worker-test-error
+    quarantine: ${java.io.tmpdir}/aerosync-worker-test-quarantine
+  worker:
+    max-file-size-bytes: 1048576
+    processed-retention-days: 60
+    error-retention-days: 90
+  rabbit:
+    file-processing-queue: file.processing.queue
+    sync-result-exchange: sync.result

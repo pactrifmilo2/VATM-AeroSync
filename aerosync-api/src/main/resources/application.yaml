@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import: optional:file:${AEROSYNC_CONFIG_DIR:${user.dir}}/.env[.properties]
+  application:
+    name: aerosync-api
+
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: vatm_user
+    password: vatm_password
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  amqp:
+    deserialization:
+      trust:
+        all: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+app:
+  api:
+    defaults:
+      scheduler-fixed-delay-ms: 300000
+      max-files-per-cycle: 100
+      whitelist-senders:
+        - ops@vatm.local
+  rabbit:
+    sync-result-exchange: sync.result
+    dashboard-alerts-queue: dashboard.alerts.queue
+    file-ingested-exchange: file.ingested
+    file-processing-routing-key: file.processing

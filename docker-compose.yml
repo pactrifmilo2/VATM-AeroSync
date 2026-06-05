@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # 1. Cache & Distributed Lock
+  redis:
+    image: redis:7-alpine
+    container_name: aerosync-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+
+  # 2. Message Queue
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: aerosync-rabbitmq
+    ports:
+      - "5672:5672"   # AMQP protocol
+      - "15672:15672" # Management Dashboard
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  # 3. Oracle DB (Express Edition for local development)
+  oracle-db:
+    image: gvenzl/oracle-xe:21-slim-faststart
+    container_name: aerosync-oracle
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: YourSecurePassword123
+      APP_USER: vatm_user
+      APP_USER_PASSWORD: vatm_password
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    healthcheck:
+      test: ["CMD", "/opt/oracle/healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+volumes:
+  oracle-data:
