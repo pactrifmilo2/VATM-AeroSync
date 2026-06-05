@@ -11,6 +11,7 @@ import vatm.aerosync.worker.model.ProcessingContext;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class BusinessRuleValidatorStepTest {
@@ -55,6 +56,26 @@ class BusinessRuleValidatorStepTest {
         assertThatThrownBy(() -> validator.validate(context))
                 .isInstanceOf(BusinessRuleException.class)
                 .hasMessageContaining("BR-DATEFLIGHT");
+    }
+
+    @Test
+    void validate_collectsAllRowErrorsBeforeThrowing() {
+        ProcessingContext context = contextWith(
+                new FlightRow("!", "HAN", "HAN", LocalDate.now().plusYears(2)));
+
+        Throwable thrown = catchThrowable(() -> validator.validate(context));
+
+        org.assertj.core.api.Assertions.assertThat(thrown)
+                .isInstanceOf(BusinessRuleException.class);
+        BusinessRuleException exception = (BusinessRuleException) thrown;
+        org.assertj.core.api.Assertions.assertThat(exception.getRowErrors())
+                .extracting("rowNumber", "field", "code")
+                .containsExactly(
+                        org.assertj.core.groups.Tuple.tuple(1, "callsign", "BR-CALLSIGN"),
+                        org.assertj.core.groups.Tuple.tuple(1, "dateFlight", "BR-DATEFLIGHT"),
+                        org.assertj.core.groups.Tuple.tuple(1, "route", "BR-FROM-TO"));
+        org.assertj.core.api.Assertions.assertThat(context.getRowValidationErrors())
+                .hasSameSizeAs(exception.getRowErrors());
     }
 
     private ProcessingContext contextWith(FlightRow row) {

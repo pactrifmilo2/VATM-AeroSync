@@ -19,6 +19,19 @@ public class ApiProperties {
         private long schedulerFixedDelayMs = 300_000L;
         private int maxFilesPerCycle = 100;
         private List<String> whitelistSenders = new ArrayList<>(List.of("ops@vatm.local"));
+        private String incomingDir = "C:/vatm-storage/incoming";
+        private String processedDir = "C:/vatm-storage/processed";
+        private String errorDir = "C:/vatm-storage/error";
+        private String emailHost = "mail.vatm.vn";
+        private int emailPort = 993;
+        private String emailProtocol = "IMAP SSL/TLS";
+        private String emailUser = "system_slb@vatm.vn";
+        private String emailPassword = "";
+        private String retryMode = "Exponential";
+        private int maxSizePerFileMb = 10;
+        private boolean autoQuarantine = true;
+        private boolean skipDuplicateIdempotency = true;
+        private boolean sendZaloAlert = false;
 
         public long getSchedulerFixedDelayMs() {
             return schedulerFixedDelayMs;
@@ -42,6 +55,110 @@ public class ApiProperties {
 
         public void setWhitelistSenders(List<String> whitelistSenders) {
             this.whitelistSenders = whitelistSenders;
+        }
+
+        public String getIncomingDir() {
+            return incomingDir;
+        }
+
+        public void setIncomingDir(String incomingDir) {
+            this.incomingDir = incomingDir;
+        }
+
+        public String getProcessedDir() {
+            return processedDir;
+        }
+
+        public void setProcessedDir(String processedDir) {
+            this.processedDir = processedDir;
+        }
+
+        public String getErrorDir() {
+            return errorDir;
+        }
+
+        public void setErrorDir(String errorDir) {
+            this.errorDir = errorDir;
+        }
+
+        public String getEmailHost() {
+            return emailHost;
+        }
+
+        public void setEmailHost(String emailHost) {
+            this.emailHost = emailHost;
+        }
+
+        public int getEmailPort() {
+            return emailPort;
+        }
+
+        public void setEmailPort(int emailPort) {
+            this.emailPort = emailPort;
+        }
+
+        public String getEmailProtocol() {
+            return emailProtocol;
+        }
+
+        public void setEmailProtocol(String emailProtocol) {
+            this.emailProtocol = emailProtocol;
+        }
+
+        public String getEmailUser() {
+            return emailUser;
+        }
+
+        public void setEmailUser(String emailUser) {
+            this.emailUser = emailUser;
+        }
+
+        public String getEmailPassword() {
+            return emailPassword;
+        }
+
+        public void setEmailPassword(String emailPassword) {
+            this.emailPassword = emailPassword;
+        }
+
+        public String getRetryMode() {
+            return retryMode;
+        }
+
+        public void setRetryMode(String retryMode) {
+            this.retryMode = retryMode;
+        }
+
+        public int getMaxSizePerFileMb() {
+            return maxSizePerFileMb;
+        }
+
+        public void setMaxSizePerFileMb(int maxSizePerFileMb) {
+            this.maxSizePerFileMb = maxSizePerFileMb;
+        }
+
+        public boolean isAutoQuarantine() {
+            return autoQuarantine;
+        }
+
+        public void setAutoQuarantine(boolean autoQuarantine) {
+            this.autoQuarantine = autoQuarantine;
+        }
+
+        public boolean isSkipDuplicateIdempotency() {
+            return skipDuplicateIdempotency;
+        }
+
+        public void setSkipDuplicateIdempotency(boolean skipDuplicateIdempotency) {
+            this.skipDuplicateIdempotency = skipDuplicateIdempotency;
+        }
+
+        public boolean isSendZaloAlert() {
+            return sendZaloAlert;
+        }
+
+        public void setSendZaloAlert(boolean sendZaloAlert) {
+            this.sendZaloAlert = sendZaloAlert;
         }
     }
 }

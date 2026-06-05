@@ -1,0 +1,105 @@
+<Page
+    x:Class="AeroSync.UI.Views.ConfigPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Padding="24" Spacing="14">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="HTSLB ADMIN › CẤU HÌNH ĐỒNG BỘ DỮ LIỆU" FontSize="26" FontWeight="Bold" Foreground="#123A70" />
+                    <TextBlock Text="{Binding StatusMessage}" Foreground="#64748B" />
+                </StackPanel>
+            </Grid>
+
+            <TabView>
+                <TabViewItem Header="Email &amp; Thư mục" IsClosable="False">
+                    <StackPanel Padding="4,16,4,4" Spacing="12">
+                        <Grid ColumnSpacing="14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="16">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="CẤU HÌNH THƯ MỤC" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                                    <TextBox Header="Thư mục gốc (Incoming)" Text="{Binding Config.IncomingDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Header="Thư mục xử lý (Processed)" Text="{Binding Config.ProcessedDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Header="Thư mục lỗi (Error)" Text="{Binding Config.ErrorDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1" BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="16">
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="CẤU HÌNH EMAIL SERVER" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                                    <TextBox Header="Host" Text="{Binding Config.EmailHost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <NumberBox Header="Port" Value="{Binding Config.EmailPort, Mode=TwoWay}" Minimum="1" Maximum="65535" />
+                                    <TextBox Header="Protocol" Text="{Binding Config.EmailProtocol, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBox Header="User" Text="{Binding Config.EmailUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <PasswordBox x:Name="EmailPasswordBox" Header="Pass" PasswordChanged="EmailPasswordBox_PasswordChanged" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="16">
+                            <StackPanel Spacing="10">
+                                <TextBlock Text="WHITELIST SENDERS (IP/EMAIL)" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                                <Grid ColumnSpacing="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" PlaceholderText="finance@airline.com" Text="{Binding NewSender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <Button Grid.Column="1" Content="+ Thêm mới" Command="{Binding AddSenderCommand}" />
+                                </Grid>
+                                <ListView ItemsSource="{Binding WhitelistSenders}" MaxHeight="140" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </TabViewItem>
+
+                <TabViewItem Header="Mapping Rule" IsClosable="False">
+                    <TextBlock Margin="16" Text="Mapping rules will be added when the backend exposes mapping endpoints." />
+                </TabViewItem>
+                <TabViewItem Header="Retention" IsClosable="False">
+                    <TextBlock Margin="16" Text="Retention settings are reserved for the retention module." />
+                </TabViewItem>
+                <TabViewItem Header="Bảo mật" IsClosable="False">
+                    <TextBlock Margin="16" Text="Security settings are reserved for authentication and authorization." />
+                </TabViewItem>
+            </TabView>
+
+            <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="THAM SỐ VẬN HÀNH" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                    <Grid ColumnSpacing="16" RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <NumberBox Grid.Column="0" Header="Tần suất quét (ms)" Value="{Binding Config.SchedulerFixedDelayMs, Mode=TwoWay}" Minimum="60000" />
+                        <NumberBox Grid.Column="1" Header="Giới hạn file/cycle" Value="{Binding Config.MaxFilesPerCycle, Mode=TwoWay}" Minimum="1" Maximum="100" />
+                        <TextBox Grid.Column="2" Header="Chế độ Retry" Text="{Binding Config.RetryMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <NumberBox Grid.Column="3" Header="Max Size/file (MB)" Value="{Binding Config.MaxSizePerFileMb, Mode=TwoWay}" Minimum="1" />
+                    </Grid>
+                    <CheckBox Content="Tự động chuyển sang /quarantine/ nếu lỗi nghiệp vụ" IsChecked="{Binding Config.AutoQuarantine, Mode=TwoWay}" />
+                    <CheckBox Content="Bỏ qua file trùng lặp (Idempotency Check)" IsChecked="{Binding Config.SkipDuplicateIdempotency, Mode=TwoWay}" />
+                    <CheckBox Content="Gửi cảnh báo qua Zalo nếu lỗi Critical" IsChecked="{Binding Config.SendZaloAlert, Mode=TwoWay}" />
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnSpacing="18">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" HorizontalAlignment="Stretch" Content="Lưu Cấu hình" Command="{Binding SaveCommand}" />
+                <Button Grid.Column="1" HorizontalAlignment="Stretch" Content="Test Kết Nối" Command="{Binding LoadCommand}" />
+                <Button Grid.Column="2" HorizontalAlignment="Stretch" Content="Khôi phục Mặc định" Command="{Binding ResetDefaultsCommand}" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

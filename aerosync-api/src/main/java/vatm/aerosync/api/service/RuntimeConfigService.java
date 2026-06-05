@@ -31,6 +31,19 @@ public class RuntimeConfigService {
         entity.setSchedulerFixedDelayMs(defaults.getSchedulerFixedDelayMs());
         entity.setMaxFilesPerCycle(defaults.getMaxFilesPerCycle());
         entity.setWhitelistSenders(defaults.getWhitelistSenders());
+        entity.setIncomingDir(defaults.getIncomingDir());
+        entity.setProcessedDir(defaults.getProcessedDir());
+        entity.setErrorDir(defaults.getErrorDir());
+        entity.setEmailHost(defaults.getEmailHost());
+        entity.setEmailPort(defaults.getEmailPort());
+        entity.setEmailProtocol(defaults.getEmailProtocol());
+        entity.setEmailUser(defaults.getEmailUser());
+        entity.setEmailPassword(defaults.getEmailPassword());
+        entity.setRetryMode(defaults.getRetryMode());
+        entity.setMaxSizePerFileMb(defaults.getMaxSizePerFileMb());
+        entity.setAutoQuarantine(defaults.isAutoQuarantine());
+        entity.setSkipDuplicateIdempotency(defaults.isSkipDuplicateIdempotency());
+        entity.setSendZaloAlert(defaults.isSendZaloAlert());
         runtimeConfigRepository.save(entity);
     }
 
@@ -45,6 +58,19 @@ public class RuntimeConfigService {
         entity.setSchedulerFixedDelayMs(dto.schedulerFixedDelayMs());
         entity.setMaxFilesPerCycle(dto.maxFilesPerCycle());
         entity.setWhitelistSenders(dto.whitelistSenders());
+        entity.setIncomingDir(dto.incomingDir());
+        entity.setProcessedDir(dto.processedDir());
+        entity.setErrorDir(dto.errorDir());
+        entity.setEmailHost(dto.emailHost());
+        entity.setEmailPort(dto.emailPort());
+        entity.setEmailProtocol(dto.emailProtocol());
+        entity.setEmailUser(dto.emailUser());
+        entity.setEmailPassword(dto.emailPassword());
+        entity.setRetryMode(dto.retryMode());
+        entity.setMaxSizePerFileMb(dto.maxSizePerFileMb());
+        entity.setAutoQuarantine(dto.autoQuarantine());
+        entity.setSkipDuplicateIdempotency(dto.skipDuplicateIdempotency());
+        entity.setSendZaloAlert(dto.sendZaloAlert());
         runtimeConfigRepository.save(entity);
         return toDto(entity);
     }
@@ -58,6 +84,19 @@ public class RuntimeConfigService {
         return new RuntimeConfigDto(
                 entity.getSchedulerFixedDelayMs(),
                 entity.getMaxFilesPerCycle(),
-                entity.getWhitelistSenders());
+                entity.getWhitelistSenders(),
+                entity.getIncomingDir(),
+                entity.getProcessedDir(),
+                entity.getErrorDir(),
+                entity.getEmailHost(),
+                entity.getEmailPort(),
+                entity.getEmailProtocol(),
+                entity.getEmailUser(),
+                entity.getEmailPassword(),
+                entity.getRetryMode(),
+                entity.getMaxSizePerFileMb(),
+                entity.isAutoQuarantine(),
+                entity.isSkipDuplicateIdempotency(),
+                entity.isSendZaloAlert());
     }
 }

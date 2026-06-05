@@ -1,6 +1,7 @@
 package vatm.aerosync.worker.model;
 
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.enums.FileType;
 
 import java.nio.file.Path;
@@ -14,6 +15,7 @@ public class ProcessingContext {
     private String originalFileName;
     private FileType fileType;
     private final List<FlightRow> rows = new ArrayList<>();
+    private final List<RowValidationError> rowValidationErrors = new ArrayList<>();
     private long startedAtMillis = System.currentTimeMillis();
 
     public ProcessingContext(FileIngestedEvent event) {
@@ -47,6 +49,10 @@ public class ProcessingContext {
 
     public List<FlightRow> getRows() {
         return rows;
+    }
+
+    public List<RowValidationError> getRowValidationErrors() {
+        return rowValidationErrors;
     }
 
     public long getStartedAtMillis() {

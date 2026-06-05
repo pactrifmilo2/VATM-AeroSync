@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public record SyncJobSummaryResponse(
         Long id,
         String fileHash,
+        String originalFileName,
         SyncStatus status,
         LocalDateTime createdAt,
         LocalDateTime updatedAt

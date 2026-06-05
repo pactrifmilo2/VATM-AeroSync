@@ -11,6 +11,7 @@ import vatm.aerosync.api.dto.SyncJobDetailResponse;
 import vatm.aerosync.api.dto.SyncJobSummaryResponse;
 import vatm.aerosync.api.service.SyncJobService;
 import vatm.aerosync.api.web.ApiExceptionHandler;
+import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.enums.SyncStatus;
 
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ class SyncJobControllerTest {
     @Test
     void listJobs_returnsSummaries() throws Exception {
         SyncJobSummaryResponse summary = new SyncJobSummaryResponse(
-                1L, "abc123", SyncStatus.FAILED, LocalDateTime.now(), LocalDateTime.now());
+                1L, "abc123", "valid-flights.csv", SyncStatus.FAILED, LocalDateTime.now(), LocalDateTime.now());
         when(syncJobService.listJobs(null)).thenReturn(List.of(summary));
 
         mockMvc.perform(get("/api/jobs"))
@@ -48,13 +49,22 @@ class SyncJobControllerTest {
     @Test
     void getJob_returnsDetail() throws Exception {
         SyncJobDetailResponse detail = new SyncJobDetailResponse(
-                5L, "hash-5", SyncStatus.PENDING, LocalDateTime.now(), LocalDateTime.now(), List.of());
+                5L,
+                "hash-5",
+                SyncStatus.PENDING,
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                List.of(),
+                List.of(new RowValidationError(1, "callsign", "BR-CALLSIGN", "Invalid callsign", "!")),
+                "BR-CALLSIGN: Row 1: Invalid callsign");
         when(syncJobService.getJob(5L)).thenReturn(detail);
 
         mockMvc.perform(get("/api/jobs/5"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(5))
-                .andExpect(jsonPath("$.fileHash").value("hash-5"));
+                .andExpect(jsonPath("$.fileHash").value("hash-5"))
+                .andExpect(jsonPath("$.rowErrors[0].code").value("BR-CALLSIGN"))
+                .andExpect(jsonPath("$.latestLogMessage").value("BR-CALLSIGN: Row 1: Invalid callsign"));
     }
 
     @Test

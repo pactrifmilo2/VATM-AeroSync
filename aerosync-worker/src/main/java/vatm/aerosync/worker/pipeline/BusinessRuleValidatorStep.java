@@ -1,11 +1,15 @@
 package vatm.aerosync.worker.pipeline;
 
 import org.springframework.stereotype.Component;
+import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.worker.model.FlightRow;
 import vatm.aerosync.worker.model.ProcessingContext;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 @Component
@@ -17,50 +21,65 @@ public class BusinessRuleValidatorStep {
     private final LocalDate minDate = LocalDate.of(2000, 1, 1);
 
     public void validate(ProcessingContext context) {
+        List<RowValidationError> errors = new ArrayList<>();
         int rowNum = 0;
         for (FlightRow row : context.getRows()) {
             rowNum++;
-            validateCallsign(row.getCallsign(), rowNum);
-            validateAirport(row.getFrom(), "FROM", rowNum);
-            validateAirport(row.getTo(), "TO", rowNum);
-            validateDateFlight(row.getDateFlight(), rowNum);
-            if (row.getFrom().equals(row.getTo())) {
-                throw new BusinessRuleException("BR-FROM-TO",
-                        "Row %d: departure and arrival airports must differ".formatted(rowNum));
+            validateCallsign(row.getCallsign(), rowNum, errors);
+            validateAirport(row.getFrom(), "from", "FROM", rowNum, errors);
+            validateAirport(row.getTo(), "to", "TO", rowNum, errors);
+            validateDateFlight(row.getDateFlight(), rowNum, errors);
+            if (Objects.equals(row.getFrom(), row.getTo())) {
+                errors.add(error(rowNum, "route", "BR-FROM-TO",
+                        "Departure and arrival airports must differ", row.getFrom() + " -> " + row.getTo()));
             }
         }
+        if (!errors.isEmpty()) {
+            context.getRowValidationErrors().addAll(errors);
+            RowValidationError first = errors.getFirst();
+            throw new BusinessRuleException(first.code(),
+                    "Row %d: %s (%d total validation errors)"
+                            .formatted(first.rowNumber(), first.message(), errors.size()),
+                    errors);
+        }
     }
 
-    private void validateCallsign(String callsign, int rowNum) {
+    private void validateCallsign(String callsign, int rowNum, List<RowValidationError> errors) {
         if (callsign == null || callsign.isBlank()) {
-            throw new BusinessRuleException("BR-CALLSIGN",
-                    "Row %d: callsign is required".formatted(rowNum));
+            errors.add(error(rowNum, "callsign", "BR-CALLSIGN", "Callsign is required", callsign));
+            return;
         }
         if (!CALLSIGN_PATTERN.matcher(callsign).matches()) {
-            throw new BusinessRuleException("BR-CALLSIGN",
-                    "Row %d: invalid callsign '%s'".formatted(rowNum, callsign));
+            errors.add(error(rowNum, "callsign", "BR-CALLSIGN", "Invalid callsign", callsign));
         }
     }
 
-    private void validateAirport(String airport, String field, int rowNum) {
+    private void validateAirport(String airport,
+                                 String responseField,
+                                 String ruleField,
+                                 int rowNum,
+                                 List<RowValidationError> errors) {
         if (airport == null || !AIRPORT_PATTERN.matcher(airport).matches()) {
-            throw new BusinessRuleException("BR-" + field,
-                    "Row %d: invalid %s airport '%s'".formatted(rowNum, field, airport));
+            errors.add(error(rowNum, responseField, "BR-" + ruleField, "Invalid " + ruleField + " airport", airport));
         }
     }
 
-    private void validateDateFlight(LocalDate dateFlight, int rowNum) {
+    private void validateDateFlight(LocalDate dateFlight, int rowNum, List<RowValidationError> errors) {
         if (dateFlight == null) {
-            throw new BusinessRuleException("BR-DATEFLIGHT",
-                    "Row %d: dateFlight is required".formatted(rowNum));
+            errors.add(error(rowNum, "dateFlight", "BR-DATEFLIGHT", "dateFlight is required", null));
+            return;
         }
         if (dateFlight.isBefore(minDate)) {
-            throw new BusinessRuleException("BR-DATEFLIGHT",
-                    "Row %d: dateFlight is too far in the past".formatted(rowNum));
+            errors.add(error(rowNum, "dateFlight", "BR-DATEFLIGHT", "dateFlight is too far in the past",
+                    dateFlight.toString()));
         }
         if (dateFlight.isAfter(LocalDate.now().plusYears(1))) {
-            throw new BusinessRuleException("BR-DATEFLIGHT",
-                    "Row %d: dateFlight is too far in the future".formatted(rowNum));
+            errors.add(error(rowNum, "dateFlight", "BR-DATEFLIGHT", "dateFlight is too far in the future",
+                    dateFlight.toString()));
         }
+    }
+
+    private RowValidationError error(int rowNum, String field, String code, String message, String value) {
+        return new RowValidationError(rowNum, field, code, message, value);
     }
 }

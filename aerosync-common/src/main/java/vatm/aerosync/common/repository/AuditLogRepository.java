@@ -14,4 +14,6 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long> {
     List<AuditLog> findByTimestampBetween(LocalDateTime from, LocalDateTime to);
 
     List<AuditLog> findByResultStatus(SyncStatus status);
+
+    List<AuditLog> findBySyncJobIdOrderByTimestampDesc(Long syncJobId);
 }

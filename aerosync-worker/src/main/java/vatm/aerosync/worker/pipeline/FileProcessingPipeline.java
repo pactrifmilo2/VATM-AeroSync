@@ -1,5 +1,7 @@
 package vatm.aerosync.worker.pipeline;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vatm.aerosync.common.debug.DebugSessionLog;
@@ -28,6 +30,7 @@ public class FileProcessingPipeline {
     private final FileArchiverStep fileArchiverStep;
     private final AuditLogService auditLogService;
     private final SyncResultPublisher syncResultPublisher;
+    private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public FileProcessingPipeline(SyncJobRepository syncJobRepository,
                                   FormatValidatorStep formatValidatorStep,
@@ -115,7 +118,7 @@ public class FileProcessingPipeline {
                 event.getSyncJobId(),
                 "SYNC_QUARANTINE",
                 summaryInput(context),
-                e.getRuleCode() + ": " + e.getMessage(),
+                businessRuleOutput(e),
                 SyncStatus.QUARANTINED,
                 context.elapsedMillis());
         syncResultPublisher.publish(
@@ -133,6 +136,14 @@ public class FileProcessingPipeline {
         return "file=" + context.getOriginalFileName() + ",type=" + context.getFileType();
     }
 
+    private String businessRuleOutput(BusinessRuleException e) {
+        try {
+            return objectMapper.writeValueAsString(new BusinessRuleOutput(e.getMessage(), e.getRowErrors()));
+        } catch (JsonProcessingException jsonException) {
+            return e.getRuleCode() + ": " + e.getMessage();
+        }
+    }
+
     private Path archiveSafely(ArchiveAction action) {
         try {
             return action.run();
@@ -146,5 +157,8 @@ public class FileProcessingPipeline {
     @FunctionalInterface
     private interface ArchiveAction {
         Path run() throws Exception;
+    }
+
+    private record BusinessRuleOutput(String message, Object rowErrors) {
     }
 }
