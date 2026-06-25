@@ -44,6 +44,8 @@ public sealed class FileRecordResponse
     public string OriginalFileName { get; set; } = "";
     public string StoredPath { get; set; } = "";
     public DateTime CreatedAt { get; set; }
+    public string? Sender { get; set; }
+    public string? Subject { get; set; }
 }
 
 public sealed class RowValidationError
@@ -71,7 +73,7 @@ public sealed class RuntimeConfigModel : ObservableObject
 {
     private long schedulerFixedDelayMs = 300_000;
     private int maxFilesPerCycle = 100;
-    private List<string> whitelistSenders = [];
+    private List<string> blacklistSenders = [];
     private string incomingDir = "";
     private string processedDir = "";
     private string errorDir = "";
@@ -98,10 +100,10 @@ public sealed class RuntimeConfigModel : ObservableObject
         set => SetProperty(ref maxFilesPerCycle, value);
     }
 
-    public List<string> WhitelistSenders
+    public List<string> BlacklistSenders
     {
-        get => whitelistSenders;
-        set => SetProperty(ref whitelistSenders, value);
+        get => blacklistSenders;
+        set => SetProperty(ref blacklistSenders, value);
     }
 
     public string IncomingDir

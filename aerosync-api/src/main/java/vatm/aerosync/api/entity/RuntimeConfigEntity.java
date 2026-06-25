@@ -67,9 +67,9 @@ public class RuntimeConfigEntity {
     private boolean sendZaloAlert;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "runtime_config_whitelist", joinColumns = @JoinColumn(name = "config_id"))
+    @CollectionTable(name = "runtime_config_blacklist", joinColumns = @JoinColumn(name = "config_id"))
     @Column(name = "sender")
-    private List<String> whitelistSenders = new ArrayList<>();
+    private List<String> blacklistSenders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -95,12 +95,12 @@ public class RuntimeConfigEntity {
         this.maxFilesPerCycle = maxFilesPerCycle;
     }
 
-    public List<String> getWhitelistSenders() {
-        return whitelistSenders;
+    public List<String> getBlacklistSenders() {
+        return blacklistSenders;
     }
 
-    public void setWhitelistSenders(List<String> whitelistSenders) {
-        this.whitelistSenders = new ArrayList<>(whitelistSenders);
+    public void setBlacklistSenders(List<String> blacklistSenders) {
+        this.blacklistSenders = new ArrayList<>(blacklistSenders);
     }
 
     public String getIncomingDir() {

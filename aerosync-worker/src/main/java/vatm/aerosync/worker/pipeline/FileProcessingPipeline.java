@@ -11,6 +11,8 @@ import vatm.aerosync.common.enums.AlertLevel;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.common.exception.FormatValidationException;
+import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.service.AuditLogService;
@@ -22,6 +24,8 @@ import java.nio.file.Path;
 public class FileProcessingPipeline {
 
     private final SyncJobRepository syncJobRepository;
+    private final EmailMetadataRepository emailMetadataRepository;
+    private final FileRecordRepository fileRecordRepository;
     private final FormatValidatorStep formatValidatorStep;
     private final ParserStep parserStep;
     private final NormalizerStep normalizerStep;
@@ -33,6 +37,8 @@ public class FileProcessingPipeline {
     private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public FileProcessingPipeline(SyncJobRepository syncJobRepository,
+                                  EmailMetadataRepository emailMetadataRepository,
+                                  FileRecordRepository fileRecordRepository,
                                   FormatValidatorStep formatValidatorStep,
                                   ParserStep parserStep,
                                   NormalizerStep normalizerStep,
@@ -42,6 +48,8 @@ public class FileProcessingPipeline {
                                   AuditLogService auditLogService,
                                   SyncResultPublisher syncResultPublisher) {
         this.syncJobRepository = syncJobRepository;
+        this.emailMetadataRepository = emailMetadataRepository;
+        this.fileRecordRepository = fileRecordRepository;
         this.formatValidatorStep = formatValidatorStep;
         this.parserStep = parserStep;
         this.normalizerStep = normalizerStep;
@@ -56,6 +64,8 @@ public class FileProcessingPipeline {
         ProcessingContext context = new ProcessingContext(event);
         context.setFilePath(Path.of(event.getTempFilePath()));
 
+        lookupSender(event.getSyncJobId(), context);
+
         markInProgress(event.getSyncJobId());
         DebugSessionLog.log("E", "FileProcessingPipeline.java:process", "processing started",
                 DebugSessionLog.map("syncJobId", event.getSyncJobId(), "path", event.getTempFilePath()));
@@ -66,7 +76,11 @@ public class FileProcessingPipeline {
             normalizerStep.normalize(context);
             businessRuleValidatorStep.validate(context);
             databaseWriterStep.write(context);
-            Path archived = archiveSafely(() -> fileArchiverStep.archiveProcessed(context.getFilePath(), event.getSourceType()));
+            Path archived = archiveSafely(() ->
+                    fileArchiverStep.archiveProcessed(context.getFilePath(), event.getSourceType(), context.getSender()));
+            if (archived != null) {
+                updateFileRecordStoredPath(event.getSyncJobId(), archived.toString());
+            }
             DebugSessionLog.log("E", "FileProcessingPipeline.java:process", "archive attempted",
                     DebugSessionLog.map("syncJobId", event.getSyncJobId(), "archivedPath",
                             archived != null ? archived.toString() : null));
@@ -88,6 +102,18 @@ public class FileProcessingPipeline {
         }
     }
 
+    private void lookupSender(Long syncJobId, ProcessingContext context) {
+        emailMetadataRepository.findBySyncJobId(syncJobId)
+                .ifPresent(metadata -> context.setSender(metadata.getSender()));
+    }
+
+    private void updateFileRecordStoredPath(Long syncJobId, String storedPath) {
+        fileRecordRepository.findBySyncJobId(syncJobId).forEach(record -> {
+            record.setStoredPath(storedPath);
+            fileRecordRepository.save(record);
+        });
+    }
+
     private void markInProgress(Long syncJobId) {
         syncJobRepository.findById(syncJobId).ifPresent(job -> {
             job.setStatus(SyncStatus.IN_PROGRESS);
@@ -97,8 +123,11 @@ public class FileProcessingPipeline {
 
     private void handleFormatError(ProcessingContext context, FileIngestedEvent event, FormatValidationException e) {
         updateJobStatus(event.getSyncJobId(), SyncStatus.FAILED);
-        archiveSafely(() -> fileArchiverStep.archiveError(
-                context.getFilePath(), event.getSourceType(), e.getErrorDetail()));
+        Path archived = archiveSafely(() -> fileArchiverStep.archiveError(
+                context.getFilePath(), event.getSourceType(), e.getErrorDetail(), context.getSender()));
+        if (archived != null) {
+            updateFileRecordStoredPath(event.getSyncJobId(), archived.toString());
+        }
         auditLogService.record(
                 event.getSyncJobId(),
                 "SYNC_FORMAT_ERROR",
@@ -113,7 +142,11 @@ public class FileProcessingPipeline {
     @Transactional
     void handleBusinessRuleError(ProcessingContext context, FileIngestedEvent event, BusinessRuleException e) {
         updateJobStatus(event.getSyncJobId(), SyncStatus.QUARANTINED);
-        archiveSafely(() -> fileArchiverStep.archiveQuarantine(context.getFilePath(), event.getSourceType()));
+        Path archived = archiveSafely(() ->
+                fileArchiverStep.archiveQuarantine(context.getFilePath(), event.getSourceType(), context.getSender()));
+        if (archived != null) {
+            updateFileRecordStoredPath(event.getSyncJobId(), archived.toString());
+        }
         auditLogService.record(
                 event.getSyncJobId(),
                 "SYNC_QUARANTINE",
@@ -133,7 +166,10 @@ public class FileProcessingPipeline {
     }
 
     private String summaryInput(ProcessingContext context) {
-        return "file=" + context.getOriginalFileName() + ",type=" + context.getFileType();
+        String sender = context.getSender();
+        return "file=" + context.getOriginalFileName()
+                + ",type=" + context.getFileType()
+                + (sender != null ? ",sender=" + sender : "");
     }
 
     private String businessRuleOutput(BusinessRuleException e) {

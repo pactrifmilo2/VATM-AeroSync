@@ -7,6 +7,7 @@ import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.AuditLogRepository;
+import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
@@ -21,11 +22,13 @@ class SyncJobServiceTest {
 
     private final SyncJobRepository syncJobRepository = mock(SyncJobRepository.class);
     private final FileRecordRepository fileRecordRepository = mock(FileRecordRepository.class);
+    private final EmailMetadataRepository emailMetadataRepository = mock(EmailMetadataRepository.class);
     private final AuditLogRepository auditLogRepository = mock(AuditLogRepository.class);
     private final JobRetryPublisher jobRetryPublisher = mock(JobRetryPublisher.class);
     private final SyncJobService service = new SyncJobService(
             syncJobRepository,
             fileRecordRepository,
+            emailMetadataRepository,
             jobRetryPublisher,
             auditLogRepository);
 

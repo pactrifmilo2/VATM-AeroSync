@@ -13,6 +13,7 @@ public class ProcessingContext {
     private final FileIngestedEvent event;
     private Path filePath;
     private String originalFileName;
+    private String sender;
     private FileType fileType;
     private final List<FlightRow> rows = new ArrayList<>();
     private final List<RowValidationError> rowValidationErrors = new ArrayList<>();
@@ -37,6 +38,14 @@ public class ProcessingContext {
 
     public String getOriginalFileName() {
         return originalFileName;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public FileType getFileType() {

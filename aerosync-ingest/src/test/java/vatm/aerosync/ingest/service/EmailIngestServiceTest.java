@@ -66,7 +66,7 @@ class EmailIngestServiceTest {
 
     @BeforeEach
     void setUp() {
-        when(emailProperties.getWhitelistSenders()).thenReturn(List.of("ops@vatm.local"));
+        when(emailProperties.getBlacklistSenders()).thenReturn(List.of("blocked@spam.com"));
         when(emailProperties.getStagingDir()).thenReturn(Path.of(System.getProperty("java.io.tmpdir"), "aerosync-email-test"));
         emailIngestService = new EmailIngestService(
                 emailClient,
@@ -80,9 +80,9 @@ class EmailIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_skipsNonWhitelistedSender() {
+    void ingestUpTo_skipsBlacklistedSender() {
         EmailMessage message = new EmailMessage(
-                "msg-1", "unknown@evil.com", "Data", LocalDateTime.now(),
+                "msg-1", "blocked@spam.com", "Data", LocalDateTime.now(),
                 List.of(new EmailAttachment("flight.csv", "x".getBytes())), false);
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
@@ -107,7 +107,7 @@ class EmailIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_persistsMetadataAndPublishesForWhitelistedAttachment() {
+    void ingestUpTo_persistsMetadataAndPublishesForNonBlacklistedAttachment() {
         byte[] content = "callsign,from,to".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-3", "ops@vatm.local", "URGENT flight data", LocalDateTime.now(),

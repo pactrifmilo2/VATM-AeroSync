@@ -67,7 +67,7 @@ public class EmailIngestService {
                 if (ingested >= limit) {
                     break;
                 }
-                if (!isWhitelisted(message.sender())) {
+                if (isBlockedByBlacklist(message.sender())) {
                     continue;
                 }
                 if (message.attachments().isEmpty()) {
@@ -91,9 +91,9 @@ public class EmailIngestService {
         }
     }
 
-    private boolean isWhitelisted(String sender) {
-        return emailProperties.getWhitelistSenders().stream()
-                .anyMatch(allowed -> allowed.equalsIgnoreCase(sender));
+    private boolean isBlockedByBlacklist(String sender) {
+        return emailProperties.getBlacklistSenders().stream()
+                .anyMatch(blocked -> blocked.equalsIgnoreCase(sender));
     }
 
     private boolean ingestAttachment(EmailMessage message, EmailAttachment attachment) {

@@ -1,7 +1,8 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-  One-shot local startup for VATM AeroSync (Docker + build + worker + ingest + api).
+  One-shot local startup for VATM AeroSync (build + worker + ingest + api).
+  Requires PostgreSQL, RabbitMQ, and Redis running locally.
 
 .EXAMPLE
   .\scripts\run-aerosync.ps1
@@ -11,7 +12,6 @@
 #>
 param(
     [switch] $SkipBuild,
-    [switch] $SkipDocker,
     [switch] $Stop
 )
 
@@ -20,7 +20,7 @@ $root = Split-Path -Parent $PSScriptRoot
 $envFile = Join-Path $root ".env"
 $example = Join-Path $root ".env.example"
 $mvnw = Join-Path $root "aerosync-worker\mvnw.cmd"
-$composeFile = Join-Path $root "docker-compose.yml"
+
 
 function Write-Step {
     param([string] $Message)
@@ -75,17 +75,17 @@ function Wait-TcpPort {
     return $false
 }
 
-function Wait-OracleJdbc {
+function Wait-PostgresJdbc {
     param([int] $TimeoutSeconds)
+    $env:PGPASSWORD = Read-DotEnvValue -Name "SPRING_DATASOURCE_PASSWORD"
+    if (-not $env:PGPASSWORD) { $env:PGPASSWORD = "vatm_password" }
     $user = Read-DotEnvValue -Name "SPRING_DATASOURCE_USERNAME"
-    $pass = Read-DotEnvValue -Name "SPRING_DATASOURCE_PASSWORD"
     if (-not $user) { $user = "vatm_user" }
-    if (-not $pass) { $pass = "vatm_password" }
+    $db = "aerosync"
 
-    $connect = "${user}/${pass}@//localhost:1521/XEPDB1"
     $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
     while ((Get-Date) -lt $deadline) {
-        $output = docker exec aerosync-oracle bash -c "echo 'SELECT 1 FROM DUAL;' | sqlplus -s -L $connect" 2>&1
+        $output = psql -h localhost -p 5432 -U $user -d $db -c "SELECT 1" 2>&1
         if ($LASTEXITCODE -eq 0 -and $output -match "1") {
             return $true
         }
@@ -134,10 +134,8 @@ function Stop-AerosyncApps {
 Set-Location $root
 
 if ($Stop) {
-    Write-Step -Message "Stopping Docker infrastructure"
-    if (Test-Path $composeFile) {
-        & docker compose -f $composeFile down
-    }
+    Write-Step -Message "Stopping AeroSync Java apps"
+    Stop-AerosyncApps
     Write-Host "Close the worker / ingest / api PowerShell windows manually if still open."
     exit 0
 }
@@ -164,31 +162,23 @@ if ($emailHost -and -not $emailPassword) {
 Write-Step -Message "Creating file storage folders"
 Ensure-StorageDirs
 
-if (-not $SkipDocker) {
-    Write-Step -Message 'Starting Docker: Oracle, RabbitMQ, Redis'
-    if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
-        throw "Docker not found. Install Docker Desktop or use -SkipDocker."
-    }
-    & docker compose -f $composeFile up -d --wait
-
-    Write-Host "Waiting for RabbitMQ on port 5672..."
-    if (-not (Wait-TcpPort -TargetHost "localhost" -Port 5672 -TimeoutSeconds 120)) {
-        throw "RabbitMQ did not become ready on port 5672"
-    }
-    Write-Host "Waiting for Redis on port 6379..."
-    if (-not (Wait-TcpPort -TargetHost "localhost" -Port 6379 -TimeoutSeconds 60)) {
-        throw "Redis did not become ready on port 6379"
-    }
-
-    Write-Host "Waiting for Oracle listener on port 1521..."
-    if (-not (Wait-TcpPort -TargetHost "localhost" -Port 1521 -TimeoutSeconds 600)) {
-        throw "Oracle listener did not open port 1521. Check: docker compose logs oracle-db"
-    }
-    Write-Host "Waiting for Oracle service XEPDB1 (first start may take several minutes)..."
-    if (-not (Wait-OracleJdbc -TimeoutSeconds 600)) {
-        throw "Oracle XEPDB1 is not accepting connections. Check: docker compose logs oracle-db"
-    }
+Write-Step -Message "Checking local services"
+if (-not (Wait-TcpPort -TargetHost "localhost" -Port 5672 -TimeoutSeconds 10)) {
+    throw "RabbitMQ is not running on port 5672. Start it and retry."
 }
+Write-Host "RabbitMQ OK"
+if (-not (Wait-TcpPort -TargetHost "localhost" -Port 6379 -TimeoutSeconds 10)) {
+    throw "Redis is not running on port 6379. Install and start Redis, then retry."
+}
+Write-Host "Redis OK"
+if (-not (Wait-TcpPort -TargetHost "localhost" -Port 5432 -TimeoutSeconds 10)) {
+    throw "PostgreSQL is not running on port 5432. Start it and retry."
+}
+Write-Host "Waiting for PostgreSQL aerosync database..."
+if (-not (Wait-PostgresJdbc -TimeoutSeconds 30)) {
+    throw "PostgreSQL aerosync database is not accepting connections."
+}
+Write-Host "PostgreSQL OK"
 
 if ((-not $SkipBuild) -or (-not (Test-JarsPresent))) {
     Write-Step -Message "Stopping running AeroSync apps before build"

@@ -15,7 +15,7 @@ public sealed partial class ConfigViewModel : ObservableObject
     private string newSender = "";
     private bool isBusy;
 
-    public ObservableCollection<string> WhitelistSenders { get; } = [];
+    public ObservableCollection<string> BlacklistSenders { get; } = [];
 
     public ConfigViewModel(AeroSyncApiClient apiClient)
     {
@@ -53,7 +53,7 @@ public sealed partial class ConfigViewModel : ObservableObject
         {
             IsBusy = true;
             Config = await apiClient.GetConfigAsync();
-            ReplaceSenders(Config.WhitelistSenders);
+            ReplaceSenders(Config.BlacklistSenders);
             StatusMessage = "Configuration loaded.";
         }
         catch (Exception ex)
@@ -72,9 +72,9 @@ public sealed partial class ConfigViewModel : ObservableObject
         try
         {
             IsBusy = true;
-            Config.WhitelistSenders = WhitelistSenders.ToList();
+            Config.BlacklistSenders = BlacklistSenders.ToList();
             Config = await apiClient.SaveConfigAsync(Config);
-            ReplaceSenders(Config.WhitelistSenders);
+            ReplaceSenders(Config.BlacklistSenders);
             StatusMessage = "Configuration saved.";
         }
         catch (Exception ex)
@@ -95,14 +95,14 @@ public sealed partial class ConfigViewModel : ObservableObject
             return;
         }
 
-        WhitelistSenders.Add(NewSender.Trim());
+        BlacklistSenders.Add(NewSender.Trim());
         NewSender = "";
     }
 
     [RelayCommand]
     public void RemoveSender(string sender)
     {
-        WhitelistSenders.Remove(sender);
+        BlacklistSenders.Remove(sender);
     }
 
     [RelayCommand]
@@ -130,10 +130,10 @@ public sealed partial class ConfigViewModel : ObservableObject
 
     private void ReplaceSenders(IEnumerable<string> senders)
     {
-        WhitelistSenders.Clear();
+        BlacklistSenders.Clear();
         foreach (var sender in senders)
         {
-            WhitelistSenders.Add(sender);
+            BlacklistSenders.Add(sender);
         }
     }
 }

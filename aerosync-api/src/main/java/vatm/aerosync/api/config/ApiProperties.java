@@ -18,7 +18,7 @@ public class ApiProperties {
 
         private long schedulerFixedDelayMs = 300_000L;
         private int maxFilesPerCycle = 100;
-        private List<String> whitelistSenders = new ArrayList<>(List.of("ops@vatm.local"));
+        private List<String> blacklistSenders = new ArrayList<>(List.of("ops@vatm.local"));
         private String incomingDir = "C:/vatm-storage/incoming";
         private String processedDir = "C:/vatm-storage/processed";
         private String errorDir = "C:/vatm-storage/error";
@@ -49,12 +49,12 @@ public class ApiProperties {
             this.maxFilesPerCycle = maxFilesPerCycle;
         }
 
-        public List<String> getWhitelistSenders() {
-            return whitelistSenders;
+        public List<String> getBlacklistSenders() {
+            return blacklistSenders;
         }
 
-        public void setWhitelistSenders(List<String> whitelistSenders) {
-            this.whitelistSenders = whitelistSenders;
+        public void setBlacklistSenders(List<String> blacklistSenders) {
+            this.blacklistSenders = blacklistSenders;
         }
 
         public String getIncomingDir() {

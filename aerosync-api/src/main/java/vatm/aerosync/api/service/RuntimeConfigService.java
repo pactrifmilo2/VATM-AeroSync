@@ -30,7 +30,7 @@ public class RuntimeConfigService {
         entity.setId(RuntimeConfigEntity.SINGLETON_ID);
         entity.setSchedulerFixedDelayMs(defaults.getSchedulerFixedDelayMs());
         entity.setMaxFilesPerCycle(defaults.getMaxFilesPerCycle());
-        entity.setWhitelistSenders(defaults.getWhitelistSenders());
+        entity.setBlacklistSenders(defaults.getBlacklistSenders());
         entity.setIncomingDir(defaults.getIncomingDir());
         entity.setProcessedDir(defaults.getProcessedDir());
         entity.setErrorDir(defaults.getErrorDir());
@@ -57,7 +57,7 @@ public class RuntimeConfigService {
         RuntimeConfigEntity entity = loadConfig();
         entity.setSchedulerFixedDelayMs(dto.schedulerFixedDelayMs());
         entity.setMaxFilesPerCycle(dto.maxFilesPerCycle());
-        entity.setWhitelistSenders(dto.whitelistSenders());
+        entity.setBlacklistSenders(dto.blacklistSenders());
         entity.setIncomingDir(dto.incomingDir());
         entity.setProcessedDir(dto.processedDir());
         entity.setErrorDir(dto.errorDir());
@@ -84,7 +84,7 @@ public class RuntimeConfigService {
         return new RuntimeConfigDto(
                 entity.getSchedulerFixedDelayMs(),
                 entity.getMaxFilesPerCycle(),
-                entity.getWhitelistSenders(),
+                entity.getBlacklistSenders(),
                 entity.getIncomingDir(),
                 entity.getProcessedDir(),
                 entity.getErrorDir(),

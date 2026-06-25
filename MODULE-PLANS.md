@@ -1,6 +1,6 @@
 # VATM AeroSync — Module Plans (UC1)
 
-Automated data sync from email and file storage into Oracle DB, with a dashboard REST API for admin monitoring. All modules follow **TDD** (Red → Green → Refactor) for non-trivial components.
+Automated data sync from email and file storage into PostgreSQL, with a dashboard REST API for admin monitoring. All modules follow **TDD** (Red → Green → Refactor) for non-trivial components.
 
 ---
 
@@ -23,7 +23,7 @@ aerosync-parent/              ← root pom.xml (BOM, no code)
 | Area | Detail |
 |------|--------|
 | **Actors** | Scheduler, Email Server (IMAP/SSL), File System, Admin, Operator |
-| **Main flow** | Scan email + `/data/incoming/` → validate → parse → business rules → Oracle → archive → audit log → dashboard notification |
+| **Main flow** | Scan email + `/data/incoming/` → validate → parse → business rules → PostgreSQL → archive → audit log → dashboard notification |
 | **Alternate flows** | ALT-01 format error → `/error/`; ALT-02 business rule → `/quarantine/` + rollback; ALT-03 duplicate hash → skip; ALT-04 DB retry 2→4→8 min; ALT-05 email unavailable; ALT-06 no attachment |
 | **Business rules** | BR-01 idempotency (SHA-256); BR-02 atomic batch; BR-03 retention (60/90 days); BR-04 security; BR-05 URGENT/VIP priority; BR-06 max 100 files/cycle; BR-07 100% audit |
 
@@ -66,10 +66,10 @@ flowchart LR
   Dedup -->|"file.ingested queue"| FormatValidator
   FormatValidator --> Parser --> Normalizer --> BizRules --> DBWriter --> Archiver
   Archiver -->|"sync.result exchange"| AdminAPI
-  DBWriter --> Oracle[(Oracle DB)]
+  DBWriter --> PostgreSQL[(PostgreSQL)]
   Dedup --> Redis[(Redis)]
   Archiver --> Redis
-  AdminAPI --> Oracle
+  AdminAPI --> PostgreSQL
 ```
 
 ---
@@ -101,7 +101,7 @@ Worker retry (ALT-04): exponential backoff 2 → 4 → 8 minutes (configured in 
 ### Dependencies
 
 - `spring-boot-starter-data-jpa`
-- `ojdbc11` (runtime)
+- `postgresql` (runtime)
 - `jackson-databind`, `jackson-datatype-jsr310`
 - `spring-boot-starter-test`, `spring-boot-starter-data-jpa-test`, `h2` (test)
 
@@ -147,7 +147,7 @@ Worker retry (ALT-04): exponential backoff 2 → 4 → 8 minutes (configured in 
 | Component | Description |
 |-----------|-------------|
 | `IngestScheduler` | `@Scheduled(fixedDelay = 300_000)` (5 min); triggers scanners; max **100 files/cycle** (BR-06) |
-| `EmailIngestService` | IMAP/SSL (JavaMail); whitelist sender; download attachments; ALT-06 no attachment |
+| `EmailIngestService` | IMAP/SSL (JavaMail); blacklist sender; download attachments; ALT-06 no attachment |
 | `FileSystemIngestService` | Watch `app.file-paths.incoming` (e.g. `/data/incoming/`) |
 | `DeduplicationService` | SHA-256; Redis lookup; ALT-03 / BR-01 → `SKIPPED_DUPLICATE` |
 | `IngestPublisher` | Publish `FileIngestedEvent` to `file.ingested`; priority for URGENT/VIP (BR-05) |
@@ -203,7 +203,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 | `ParserStep` | Strategy: CSV / XLSX / XML / JSON |
 | `NormalizerStep` | Trim, uppercase, timezone |
 | `BusinessRuleValidatorStep` | Callsign, From, To, DateFlight → ALT-02 `/quarantine/` + rollback |
-| `DatabaseWriterStep` | `@Transactional` Oracle; BR-02 full rollback on failure |
+| `DatabaseWriterStep` | `@Transactional` PostgreSQL; BR-02 full rollback on failure |
 | `FileArchiverStep` | Move to `/processed/` as `SLB_YYYYMMDD_HHMMSS_<source>_<name>.ext` |
 | `AuditLogService` | BR-07 write-once audit (who/when/what/result/duration) |
 | `RetentionCleanupJob` | BR-03: processed 60d; error & quarantine 90d |
@@ -216,7 +216,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - `spring-boot-starter-data-redis`
 - Apache POI (XLSX)
 - Jackson (JSON/CSV)
-- Existing: JPA, Oracle, Web (optional for health)
+- Existing: JPA, PostgreSQL, Web (optional for health)
 
 ### TDD Build Order
 
@@ -226,11 +226,11 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 | `ParserStepTest` | Sample files per `FileType` |
 | `NormalizerStepTest` | Trim, uppercase, timezone |
 | `BusinessRuleValidatorStepTest` | Each field rule; quarantine path |
-| `DatabaseWriterStepTest` | Success + rollback (`@DataJpaTest` or Testcontainers Oracle) |
+| `DatabaseWriterStepTest` | Success + rollback (`@DataJpaTest` or Testcontainers PostgreSQL) |
 | `FileArchiverStepTest` | Naming convention; `/error/`, `/quarantine/`, `/processed/` |
 | `AuditLogServiceTest` | Required fields persisted |
 | `FileProcessingConsumerTest` | End-to-end message handling (mock steps) |
-| Integration | Testcontainers: Oracle, RabbitMQ, Redis |
+| Integration | Testcontainers: PostgreSQL, RabbitMQ, Redis |
 
 ### Definition of Done
 
@@ -258,7 +258,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 | `DashboardController` | `GET /api/dashboard/stats` — counts by status, cycle stats |
 | `SyncJobController` | `GET /api/jobs`, `GET /api/jobs/{id}`, `POST /api/jobs/{id}/retry` |
 | `AuditLogController` | `GET /api/audit-logs` — filter by date, status, source |
-| `ConfigController` | `GET/PUT /api/config` — scheduler interval, whitelist, rate limit |
+| `ConfigController` | `GET/PUT /api/config` — scheduler interval, blacklist, rate limit |
 | `AlertService` | Consume `sync.result` → expose/store ALT-04/ALT-05 alerts |
 
 ### Dependencies
@@ -283,7 +283,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 
 - [x] Module in root parent `pom.xml`
 - [ ] REST API documented (OpenAPI optional)
-- [x] Reads Oracle via common repositories
+- [x] Reads PostgreSQL via common repositories
 - [x] Consumes `dashboard.alerts.queue`
 - [x] All tests green
 
@@ -303,11 +303,11 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 
 ## Infrastructure (local)
 
-From `docker-compose.yml`:
+Run these services locally on Windows:
 
 | Service | Port | Use |
 |---------|------|-----|
-| Oracle XE | 1521 | Central DB |
+| PostgreSQL | 5432 | Central DB |
 | RabbitMQ | 5672 / 15672 | Messaging |
 | Redis | 6379 | Dedup, locks, email failure counter |
 
