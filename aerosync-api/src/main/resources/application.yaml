@@ -8,10 +8,10 @@ spring:
     name: aerosync-api
 
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    url: jdbc:postgresql://localhost:5432/aerosync
     username: vatm_user
     password: vatm_password
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: org.postgresql.Driver
 
   rabbitmq:
     host: localhost
@@ -32,7 +32,7 @@ app:
     defaults:
       scheduler-fixed-delay-ms: 300000
       max-files-per-cycle: 100
-      whitelist-senders:
+      blacklist-senders:
         - ops@vatm.local
   rabbit:
     sync-result-exchange: sync.result

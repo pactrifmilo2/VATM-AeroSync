@@ -42,7 +42,7 @@ class ConfigControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.schedulerFixedDelayMs").value(300000))
                 .andExpect(jsonPath("$.maxFilesPerCycle").value(100))
-                .andExpect(jsonPath("$.whitelistSenders[0]").value("ops@vatm.local"))
+                .andExpect(jsonPath("$.blacklistSenders[0]").value("ops@vatm.local"))
                 .andExpect(jsonPath("$.incomingDir").value("/data/incoming/"))
                 .andExpect(jsonPath("$.processedDir").value("/data/processed/"))
                 .andExpect(jsonPath("$.errorDir").value("/data/error/"))

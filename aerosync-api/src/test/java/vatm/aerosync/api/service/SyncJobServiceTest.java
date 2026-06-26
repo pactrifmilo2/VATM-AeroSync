@@ -7,6 +7,7 @@ import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.AuditLogRepository;
+import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
@@ -21,16 +22,18 @@ class SyncJobServiceTest {
 
     private final SyncJobRepository syncJobRepository = mock(SyncJobRepository.class);
     private final FileRecordRepository fileRecordRepository = mock(FileRecordRepository.class);
+    private final EmailMetadataRepository emailMetadataRepository = mock(EmailMetadataRepository.class);
     private final AuditLogRepository auditLogRepository = mock(AuditLogRepository.class);
     private final JobRetryPublisher jobRetryPublisher = mock(JobRetryPublisher.class);
     private final SyncJobService service = new SyncJobService(
             syncJobRepository,
             fileRecordRepository,
+            emailMetadataRepository,
             jobRetryPublisher,
             auditLogRepository);
 
     @Test
-    void listJobs_includesOriginalFileNameFromLatestFileRecord() {
+    void listJobs_includesOriginalFileNameAndSenderFromLatestFileRecord() {
         SyncJob job = mock(SyncJob.class);
         when(job.getId()).thenReturn(12L);
         when(job.getFileHash()).thenReturn("hash-12");
@@ -40,11 +43,15 @@ class SyncJobServiceTest {
         record.setSourceType(FileSourceType.EMAIL);
         when(syncJobRepository.findAll()).thenReturn(List.of(job));
         when(fileRecordRepository.findBySyncJobId(12L)).thenReturn(List.of(record));
+        // No EmailMetadata — sender and emailReceivedAt should be null
+        when(emailMetadataRepository.findBySyncJobId(12L)).thenReturn(java.util.Optional.empty());
 
         List<SyncJobSummaryResponse> summaries = service.listJobs(null);
 
         assertThat(summaries).hasSize(1);
         assertThat(summaries.getFirst().originalFileName()).isEqualTo("data.csv");
+        assertThat(summaries.getFirst().sender()).isNull();
+        assertThat(summaries.getFirst().emailReceivedAt()).isNull();
     }
 
     @Test

@@ -66,7 +66,7 @@ class EmailIngestServiceTest {
 
     @BeforeEach
     void setUp() {
-        when(emailProperties.getWhitelistSenders()).thenReturn(List.of("ops@vatm.local"));
+        when(emailProperties.getBlacklistSenders()).thenReturn(List.of("blocked@spam.com"));
         when(emailProperties.getStagingDir()).thenReturn(Path.of(System.getProperty("java.io.tmpdir"), "aerosync-email-test"));
         emailIngestService = new EmailIngestService(
                 emailClient,
@@ -80,10 +80,10 @@ class EmailIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_skipsNonWhitelistedSender() {
+    void ingestUpTo_skipsBlacklistedSender() {
         EmailMessage message = new EmailMessage(
-                "msg-1", "unknown@evil.com", "Data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", "x".getBytes())), false);
+                "msg-1", "blocked@spam.com", "Data", LocalDateTime.now(),
+                List.of(new EmailAttachment("flight.csv", "x".getBytes())), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
         int ingested = emailIngestService.ingestUpTo(10);
@@ -96,7 +96,7 @@ class EmailIngestServiceTest {
     @Test
     void ingestUpTo_skipsMessageWithNoAttachment_alt06() {
         EmailMessage message = new EmailMessage(
-                "msg-2", "ops@vatm.local", "No files", LocalDateTime.now(), List.of(), false);
+                "msg-2", "ops@vatm.local", "No files", LocalDateTime.now(), List.of(), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
         int ingested = emailIngestService.ingestUpTo(10);
@@ -107,11 +107,11 @@ class EmailIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_persistsMetadataAndPublishesForWhitelistedAttachment() {
+    void ingestUpTo_persistsMetadataAndPublishesForNonBlacklistedAttachment() {
         byte[] content = "callsign,from,to".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-3", "ops@vatm.local", "URGENT flight data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", content)), true);
+                List.of(new EmailAttachment("flight.csv", content)), true, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
         when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
@@ -136,7 +136,7 @@ class EmailIngestServiceTest {
         byte[] content = "retry-me".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-retry", "ops@vatm.local", "Retry flight data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", content)), false);
+                List.of(new EmailAttachment("flight.csv", content)), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
         SyncJob failedJob = org.mockito.Mockito.mock(SyncJob.class);
@@ -166,7 +166,7 @@ class EmailIngestServiceTest {
         byte[] content = "already-processed".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-dup", "ops@vatm.local", "Duplicate flight data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", content)), false);
+                List.of(new EmailAttachment("flight.csv", content)), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
         when(deduplicationService.findRetryableJob(anyString())).thenReturn(Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(true);

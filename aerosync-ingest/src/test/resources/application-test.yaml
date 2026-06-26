@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:ingest;MODE=Oracle;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:ingest;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -18,5 +18,5 @@ app:
     max-files-per-cycle: 100
     scheduler-fixed-delay-ms: 300000
   email:
-    whitelist-senders:
+    blacklist-senders:
       - ops@vatm.local

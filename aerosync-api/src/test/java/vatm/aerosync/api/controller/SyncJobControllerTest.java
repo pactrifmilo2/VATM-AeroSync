@@ -37,7 +37,8 @@ class SyncJobControllerTest {
     @Test
     void listJobs_returnsSummaries() throws Exception {
         SyncJobSummaryResponse summary = new SyncJobSummaryResponse(
-                1L, "abc123", "valid-flights.csv", SyncStatus.FAILED, LocalDateTime.now(), LocalDateTime.now());
+                1L, "abc123", "valid-flights.csv", SyncStatus.FAILED, LocalDateTime.now(), LocalDateTime.now(),
+                null, null, null);
         when(syncJobService.listJobs(null)).thenReturn(List.of(summary));
 
         mockMvc.perform(get("/api/jobs"))
@@ -56,7 +57,9 @@ class SyncJobControllerTest {
                 LocalDateTime.now(),
                 List.of(),
                 List.of(new RowValidationError(1, "callsign", "BR-CALLSIGN", "Invalid callsign", "!")),
-                "BR-CALLSIGN: Row 1: Invalid callsign");
+                "BR-CALLSIGN: Row 1: Invalid callsign",
+                null,
+                null);
         when(syncJobService.getJob(5L)).thenReturn(detail);
 
         mockMvc.perform(get("/api/jobs/5"))

@@ -9,6 +9,8 @@ public record FileRecordResponse(
         FileSourceType sourceType,
         String originalFileName,
         String storedPath,
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+        String sender,
+        String subject
 ) {
 }

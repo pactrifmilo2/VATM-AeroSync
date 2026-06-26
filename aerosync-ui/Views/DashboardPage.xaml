@@ -95,11 +95,12 @@
                         HeadersVisibility="Column"
                         IsReadOnly="True"
                         ItemsSource="{Binding Jobs}"
-                        SelectionChanged="JobsGrid_SelectionChanged">
+                        SelectionChanged="JobsGrid_SelectionChanged"
+                        RightTapped="JobsGrid_RightTapped">
                         <controls:DataGrid.Columns>
-                            <controls:DataGridTextColumn Header="FILE" Binding="{Binding FileName}" Width="*" />
+                            <controls:DataGridTextColumn Header="NGƯỜI GỬI / FILE" Binding="{Binding DisplayLabel}" Width="*" />
                             <controls:DataGridTextColumn Header="TRẠNG THÁI" Binding="{Binding Status}" Width="180" />
-                            <controls:DataGridTextColumn Header="THỜI GIAN" Binding="{Binding TimeLabel}" Width="140" />
+                            <controls:DataGridTextColumn Header="THỜI GIAN" Binding="{Binding TimeLabel}" Width="180" />
                         </controls:DataGrid.Columns>
                     </controls:DataGrid>
                 </StackPanel>

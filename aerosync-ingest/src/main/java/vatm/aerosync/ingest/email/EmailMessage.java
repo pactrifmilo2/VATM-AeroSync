@@ -9,6 +9,7 @@ public record EmailMessage(
         String subject,
         LocalDateTime receivedAt,
         List<EmailAttachment> attachments,
-        boolean priority
+        boolean priority,
+        String body
 ) {
 }

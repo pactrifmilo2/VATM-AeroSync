@@ -40,40 +40,71 @@ class FileArchiverStepTest {
     }
 
     @Test
-    void archiveProcessed_usesSlbNamingConvention() throws Exception {
+    void archiveProcessed_usesSenderBasedNamingForFilesystem() throws Exception {
         Path source = tempDir.resolve("incoming").resolve("flight.csv");
         Files.createDirectories(source.getParent());
         Files.writeString(source, "data");
 
-        Path archived = fileArchiverStep.archiveProcessed(source, FileSourceType.FILESYSTEM);
+        Path archived = fileArchiverStep.archiveProcessed(source, FileSourceType.FILESYSTEM, null);
 
         assertThat(Files.exists(archived)).isTrue();
+        // No sender => "local" prefix
         assertThat(archived.getFileName().toString())
-                .startsWith("SLB_20260604_101530_fs_flight.csv");
+                .startsWith("local_20260604_101530_fs_flight.csv");
         assertThat(Files.exists(source)).isFalse();
     }
 
     @Test
-    void archiveError_movesFileAndWritesLog() throws Exception {
+    void archiveProcessed_usesSenderPrefixForEmail() throws Exception {
+        Path source = tempDir.resolve("incoming").resolve("flight.csv");
+        Files.createDirectories(source.getParent());
+        Files.writeString(source, "data");
+
+        Path archived = fileArchiverStep.archiveProcessed(source, FileSourceType.EMAIL,
+                "haibdhe140272@fpt.edu.vn");
+
+        assertThat(Files.exists(archived)).isTrue();
+        assertThat(archived.getFileName().toString())
+                .startsWith("haibdhe140272_20260604_101530_email_flight.csv");
+    }
+
+    @Test
+    void archiveProcessed_sanitizesSenderWithDots() throws Exception {
+        Path source = tempDir.resolve("incoming").resolve("data.csv");
+        Files.createDirectories(source.getParent());
+        Files.writeString(source, "data");
+
+        Path archived = fileArchiverStep.archiveProcessed(source, FileSourceType.EMAIL,
+                "first.last@example.com");
+
+        assertThat(archived.getFileName().toString())
+                .startsWith("firstlast_20260604_101530_email_data.csv");
+    }
+
+    @Test
+    void archiveError_movesFileAndWritesLogWithSender() throws Exception {
         Path source = tempDir.resolve("bad.csv");
         Files.writeString(source, "bad");
 
-        Path archived = fileArchiverStep.archiveError(source, FileSourceType.EMAIL, "Invalid encoding");
+        Path archived = fileArchiverStep.archiveError(source, FileSourceType.EMAIL,
+                "Invalid encoding", "ops@vatm.local");
 
         assertThat(Files.exists(archived)).isTrue();
+        assertThat(archived.getFileName().toString()).startsWith("ops_");
         assertThat(archived.getFileName().toString()).contains("_email_");
         Path log = archived.resolveSibling(archived.getFileName() + ".log");
         assertThat(Files.readString(log)).contains("Invalid encoding");
     }
 
     @Test
-    void archiveQuarantine_movesToQuarantineDirectory() throws Exception {
+    void archiveQuarantine_movesToQuarantineDirectoryWithSender() throws Exception {
         Path source = tempDir.resolve("rule.csv");
         Files.writeString(source, "data");
 
-        Path archived = fileArchiverStep.archiveQuarantine(source, FileSourceType.FILESYSTEM);
+        Path archived = fileArchiverStep.archiveQuarantine(source, FileSourceType.FILESYSTEM, null);
 
         assertThat(archived.startsWith(quarantineDir)).isTrue();
         assertThat(archived.getFileName().toString()).contains("quarantine");
+        assertThat(archived.getFileName().toString()).startsWith("local_");
     }
 }

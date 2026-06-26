@@ -5,10 +5,10 @@ spring:
     name: aerosync-worker
 
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    url: jdbc:postgresql://localhost:5432/aerosync
     username: vatm_user
     password: vatm_password
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
 

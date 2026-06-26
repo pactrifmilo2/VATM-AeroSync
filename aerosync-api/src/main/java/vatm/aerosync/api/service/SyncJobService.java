@@ -15,9 +15,11 @@ import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.AuditLogRepository;
+import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -28,16 +30,19 @@ public class SyncJobService {
 
     private final SyncJobRepository syncJobRepository;
     private final FileRecordRepository fileRecordRepository;
+    private final EmailMetadataRepository emailMetadataRepository;
     private final JobRetryPublisher jobRetryPublisher;
     private final AuditLogRepository auditLogRepository;
     private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public SyncJobService(SyncJobRepository syncJobRepository,
                           FileRecordRepository fileRecordRepository,
+                          EmailMetadataRepository emailMetadataRepository,
                           JobRetryPublisher jobRetryPublisher,
                           AuditLogRepository auditLogRepository) {
         this.syncJobRepository = syncJobRepository;
         this.fileRecordRepository = fileRecordRepository;
+        this.emailMetadataRepository = emailMetadataRepository;
         this.jobRetryPublisher = jobRetryPublisher;
         this.auditLogRepository = auditLogRepository;
     }
@@ -61,6 +66,15 @@ public class SyncJobService {
                 .map(this::toFileRecordResponse)
                 .toList();
         JobDetailLog latestLog = latestDetailLog(id);
+
+        String emailSubject = null;
+        String emailBody = null;
+        var emailMetadata = emailMetadataRepository.findBySyncJobId(id);
+        if (emailMetadata != null && emailMetadata.isPresent()) {
+            emailSubject = emailMetadata.get().getSubject();
+            emailBody = emailMetadata.get().getBody();
+        }
+
         return new SyncJobDetailResponse(
                 job.getId(),
                 job.getFileHash(),
@@ -69,7 +83,9 @@ public class SyncJobService {
                 job.getUpdatedAt(),
                 records,
                 latestLog.rowErrors(),
-                latestLog.message());
+                latestLog.message(),
+                emailSubject,
+                emailBody);
     }
 
     @Transactional
@@ -96,26 +112,51 @@ public class SyncJobService {
     }
 
     private SyncJobSummaryResponse toSummary(SyncJob job) {
-        String originalFileName = fileRecordRepository.findBySyncJobId(job.getId()).stream()
+        List<FileRecord> records = fileRecordRepository.findBySyncJobId(job.getId());
+        FileRecord latest = records.stream()
                 .max(Comparator.comparing(FileRecord::getCreatedAt))
-                .map(FileRecord::getOriginalFileName)
                 .orElse(null);
+        String originalFileName = latest != null ? latest.getOriginalFileName() : null;
+
+        String sender = null;
+        LocalDateTime emailReceivedAt = null;
+        if (latest != null && latest.getSourceType() == FileSourceType.EMAIL) {
+            var metadata = emailMetadataRepository.findBySyncJobId(job.getId());
+            if (metadata.isPresent()) {
+                sender = metadata.get().getSender();
+                emailReceivedAt = metadata.get().getReceivedAt();
+            }
+        }
         return new SyncJobSummaryResponse(
                 job.getId(),
                 job.getFileHash(),
                 originalFileName,
                 job.getStatus(),
                 job.getCreatedAt(),
-                job.getUpdatedAt());
+                job.getUpdatedAt(),
+                sender,
+                emailReceivedAt,
+                latest != null ? latest.getStoredPath() : null);
     }
 
     private FileRecordResponse toFileRecordResponse(FileRecord record) {
+        String sender = null;
+        String subject = null;
+        if (record.getSourceType() == FileSourceType.EMAIL && record.getSyncJob() != null) {
+            var metadata = emailMetadataRepository.findBySyncJobId(record.getSyncJob().getId());
+            if (metadata.isPresent()) {
+                sender = metadata.get().getSender();
+                subject = metadata.get().getSubject();
+            }
+        }
         return new FileRecordResponse(
                 record.getId(),
                 record.getSourceType(),
                 record.getOriginalFileName(),
                 record.getStoredPath(),
-                record.getCreatedAt());
+                record.getCreatedAt(),
+                sender,
+                subject);
     }
 
     private JobDetailLog latestDetailLog(Long syncJobId) {

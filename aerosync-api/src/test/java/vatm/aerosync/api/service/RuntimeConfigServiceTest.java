@@ -41,7 +41,7 @@ class RuntimeConfigServiceTest {
                         && entity.isAutoQuarantine()
                         && entity.isSkipDuplicateIdempotency()
                         && !entity.isSendZaloAlert()
-                        && entity.getWhitelistSenders().equals(List.of("ops@vatm.local"))));
+                        && entity.getBlacklistSenders().equals(List.of("ops@vatm.local"))));
     }
 
     @Test
@@ -70,7 +70,7 @@ class RuntimeConfigServiceTest {
 
         assertThat(updated).isEqualTo(dto);
         verify(repository).save(entity);
-        assertThat(entity.getWhitelistSenders()).containsExactly("finance@airline.com", "slot@caa.gov.vn");
+        assertThat(entity.getBlacklistSenders()).containsExactly("finance@airline.com", "slot@caa.gov.vn");
         assertThat(entity.getIncomingDir()).isEqualTo("/data/incoming/");
         assertThat(entity.getEmailHost()).isEqualTo("mail.vatm.vn");
     }

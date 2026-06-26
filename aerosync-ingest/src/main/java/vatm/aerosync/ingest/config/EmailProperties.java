@@ -15,7 +15,7 @@ public class EmailProperties {
     private String password;
     private String protocol = "imaps";
     private String folder = "INBOX";
-    private List<String> whitelistSenders = new ArrayList<>();
+    private List<String> blacklistSenders = new ArrayList<>();
     private int connectionTimeoutMs = 10_000;
     private Path stagingDir = Path.of(System.getProperty("java.io.tmpdir"), "aerosync-email-staging");
 
@@ -67,12 +67,12 @@ public class EmailProperties {
         this.folder = folder;
     }
 
-    public List<String> getWhitelistSenders() {
-        return whitelistSenders;
+    public List<String> getBlacklistSenders() {
+        return blacklistSenders;
     }
 
-    public void setWhitelistSenders(List<String> whitelistSenders) {
-        this.whitelistSenders = whitelistSenders;
+    public void setBlacklistSenders(List<String> blacklistSenders) {
+        this.blacklistSenders = blacklistSenders;
     }
 
     public int getConnectionTimeoutMs() {

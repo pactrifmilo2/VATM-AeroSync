@@ -2,6 +2,9 @@ using AeroSync.UI.Models;
 using AeroSync.UI.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml;
+using System.Diagnostics;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace AeroSync.UI.ViewModels;
 
@@ -22,7 +25,14 @@ public sealed partial class JobDetailsViewModel : ObservableObject
     public SyncJobDetailResponse? Job
     {
         get => job;
-        set => SetProperty(ref job, value);
+        set
+        {
+            SetProperty(ref job, value);
+            OnPropertyChanged(nameof(FileRecords));
+            OnPropertyChanged(nameof(EmailSectionVisibility));
+            OnPropertyChanged(nameof(EmailSubject));
+            OnPropertyChanged(nameof(EmailBody));
+        }
     }
 
     public string StatusMessage
@@ -30,6 +40,14 @@ public sealed partial class JobDetailsViewModel : ObservableObject
         get => statusMessage;
         set => SetProperty(ref statusMessage, value);
     }
+
+    public List<FileRecordResponse> FileRecords => Job?.FileRecords ?? [];
+
+    public Visibility EmailSectionVisibility =>
+        Job?.HasEmailContent == true ? Visibility.Visible : Visibility.Collapsed;
+
+    public string EmailSubject => Job?.EmailSubject ?? "";
+    public string EmailBody => Job?.EmailBody ?? "";
 
     [RelayCommand]
     public async Task LoadAsync()
@@ -56,6 +74,26 @@ public sealed partial class JobDetailsViewModel : ObservableObject
         catch (Exception ex)
         {
             StatusMessage = $"Retry failed: {ex.Message}";
+        }
+    }
+
+    [RelayCommand]
+    public void OpenFolder(string storedPath)
+    {
+        if (!string.IsNullOrWhiteSpace(storedPath) && System.IO.File.Exists(storedPath))
+        {
+            Process.Start("explorer.exe", $"/select, \"{storedPath}\"");
+        }
+    }
+
+    [RelayCommand]
+    public void CopyPath(string storedPath)
+    {
+        if (!string.IsNullOrWhiteSpace(storedPath))
+        {
+            var package = new DataPackage();
+            package.SetText(storedPath);
+            Clipboard.SetContent(package);
         }
     }
 }
