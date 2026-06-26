@@ -137,6 +137,7 @@ public class EmailIngestService {
             metadata.setSubject(message.subject());
             metadata.setReceivedAt(message.receivedAt());
             metadata.setAttachmentCount(message.attachments().size());
+            metadata.setBody(message.body());
             emailMetadataRepository.save(metadata);
 
             deduplicationService.registerHash(hash);

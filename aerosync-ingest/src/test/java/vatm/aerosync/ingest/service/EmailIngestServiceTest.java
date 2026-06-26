@@ -83,7 +83,7 @@ class EmailIngestServiceTest {
     void ingestUpTo_skipsBlacklistedSender() {
         EmailMessage message = new EmailMessage(
                 "msg-1", "blocked@spam.com", "Data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", "x".getBytes())), false);
+                List.of(new EmailAttachment("flight.csv", "x".getBytes())), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
         int ingested = emailIngestService.ingestUpTo(10);
@@ -96,7 +96,7 @@ class EmailIngestServiceTest {
     @Test
     void ingestUpTo_skipsMessageWithNoAttachment_alt06() {
         EmailMessage message = new EmailMessage(
-                "msg-2", "ops@vatm.local", "No files", LocalDateTime.now(), List.of(), false);
+                "msg-2", "ops@vatm.local", "No files", LocalDateTime.now(), List.of(), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
         int ingested = emailIngestService.ingestUpTo(10);
@@ -111,7 +111,7 @@ class EmailIngestServiceTest {
         byte[] content = "callsign,from,to".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-3", "ops@vatm.local", "URGENT flight data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", content)), true);
+                List.of(new EmailAttachment("flight.csv", content)), true, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
         when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
@@ -136,7 +136,7 @@ class EmailIngestServiceTest {
         byte[] content = "retry-me".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-retry", "ops@vatm.local", "Retry flight data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", content)), false);
+                List.of(new EmailAttachment("flight.csv", content)), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
 
         SyncJob failedJob = org.mockito.Mockito.mock(SyncJob.class);
@@ -166,7 +166,7 @@ class EmailIngestServiceTest {
         byte[] content = "already-processed".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-dup", "ops@vatm.local", "Duplicate flight data", LocalDateTime.now(),
-                List.of(new EmailAttachment("flight.csv", content)), false);
+                List.of(new EmailAttachment("flight.csv", content)), false, "");
         when(emailClient.fetchMessages(10)).thenReturn(List.of(message));
         when(deduplicationService.findRetryableJob(anyString())).thenReturn(Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(true);

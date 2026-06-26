@@ -14,6 +14,8 @@ public record SyncJobDetailResponse(
         LocalDateTime updatedAt,
         List<FileRecordResponse> fileRecords,
         List<RowValidationError> rowErrors,
-        String latestLogMessage
+        String latestLogMessage,
+        String emailSubject,
+        String emailBody
 ) {
 }

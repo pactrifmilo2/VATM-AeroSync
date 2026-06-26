@@ -19,10 +19,23 @@ public sealed class SyncJobSummaryResponse
     public string Status { get; set; } = "";
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-    public string FileName => !string.IsNullOrWhiteSpace(OriginalFileName)
-        ? OriginalFileName
+    public string? Sender { get; set; }
+    public DateTime? EmailReceivedAt { get; set; }
+    public string? StoredPath { get; set; }
+
+    /// <summary>
+    /// Shows sender for email jobs, otherwise falls back to truncated file hash.
+    /// </summary>
+    public string DisplayLabel => !string.IsNullOrWhiteSpace(Sender)
+        ? Sender
         : FileHash.Length > 12 ? $"{FileHash[..12]}..." : FileHash;
-    public string TimeLabel => UpdatedAt.ToString("HH:mm:ss");
+
+    /// <summary>
+    /// Shows email received date+time for email jobs, otherwise the job's arrival time (CreatedAt).
+    /// </summary>
+    public string TimeLabel => EmailReceivedAt.HasValue
+        ? EmailReceivedAt.Value.ToString("yyyy-MM-dd HH:mm:ss")
+        : CreatedAt.ToString("yyyy-MM-dd HH:mm:ss");
 }
 
 public sealed class SyncJobDetailResponse
@@ -35,6 +48,14 @@ public sealed class SyncJobDetailResponse
     public List<FileRecordResponse> FileRecords { get; set; } = [];
     public List<RowValidationError> RowErrors { get; set; } = [];
     public string? LatestLogMessage { get; set; }
+    public string? EmailSubject { get; set; }
+    public string? EmailBody { get; set; }
+
+    /// <summary>
+    /// True when email metadata (subject or body) is present.
+    /// </summary>
+    public bool HasEmailContent => !string.IsNullOrWhiteSpace(EmailSubject)
+                                   || !string.IsNullOrWhiteSpace(EmailBody);
 }
 
 public sealed class FileRecordResponse

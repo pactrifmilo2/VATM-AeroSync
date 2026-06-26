@@ -48,6 +48,24 @@
             </controls:DataGrid>
         </StackPanel>
 
+        <!-- EMAIL CONTENT (only visible for email-sourced jobs) -->
+        <StackPanel Spacing="6" Visibility="{Binding EmailSectionVisibility}">
+            <TextBlock Text="NỘI DUNG EMAIL:" Foreground="#0B4EA2" FontWeight="Bold" />
+            <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="12">
+                <StackPanel Spacing="8">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <TextBlock Text="Chủ đề:" Foreground="#64748B" />
+                        <TextBlock Text="{Binding EmailSubject}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding EmailBody}"
+                               FontFamily="Consolas"
+                               TextWrapping="Wrap"
+                               MaxHeight="200"
+                               Foreground="#334155" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
         <StackPanel Spacing="6">
             <TextBlock Text="LOG CHI TIẾT:" Foreground="#DC2626" FontWeight="Bold" />
             <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="12" MinHeight="120">

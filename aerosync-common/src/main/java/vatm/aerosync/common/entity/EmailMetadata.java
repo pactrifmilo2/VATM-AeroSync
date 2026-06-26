@@ -43,6 +43,9 @@ public class EmailMetadata {
     @Column(name = "attachment_count")
     private int attachmentCount;
 
+    @Column(columnDefinition = "TEXT")
+    private String body;
+
     public Long getId() {
         return id;
     }
@@ -93,5 +96,13 @@ public class EmailMetadata {
 
     public void setAttachmentCount(int attachmentCount) {
         this.attachmentCount = attachmentCount;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

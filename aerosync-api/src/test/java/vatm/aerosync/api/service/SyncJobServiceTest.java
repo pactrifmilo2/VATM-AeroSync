@@ -33,7 +33,7 @@ class SyncJobServiceTest {
             auditLogRepository);
 
     @Test
-    void listJobs_includesOriginalFileNameFromLatestFileRecord() {
+    void listJobs_includesOriginalFileNameAndSenderFromLatestFileRecord() {
         SyncJob job = mock(SyncJob.class);
         when(job.getId()).thenReturn(12L);
         when(job.getFileHash()).thenReturn("hash-12");
@@ -43,11 +43,15 @@ class SyncJobServiceTest {
         record.setSourceType(FileSourceType.EMAIL);
         when(syncJobRepository.findAll()).thenReturn(List.of(job));
         when(fileRecordRepository.findBySyncJobId(12L)).thenReturn(List.of(record));
+        // No EmailMetadata — sender and emailReceivedAt should be null
+        when(emailMetadataRepository.findBySyncJobId(12L)).thenReturn(java.util.Optional.empty());
 
         List<SyncJobSummaryResponse> summaries = service.listJobs(null);
 
         assertThat(summaries).hasSize(1);
         assertThat(summaries.getFirst().originalFileName()).isEqualTo("data.csv");
+        assertThat(summaries.getFirst().sender()).isNull();
+        assertThat(summaries.getFirst().emailReceivedAt()).isNull();
     }
 
     @Test

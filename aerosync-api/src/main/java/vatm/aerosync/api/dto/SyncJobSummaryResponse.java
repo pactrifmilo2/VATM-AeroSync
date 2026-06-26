@@ -10,6 +10,9 @@ public record SyncJobSummaryResponse(
         String originalFileName,
         SyncStatus status,
         LocalDateTime createdAt,
-        LocalDateTime updatedAt
+        LocalDateTime updatedAt,
+        String sender,
+        LocalDateTime emailReceivedAt,
+        String storedPath
 ) {
 }

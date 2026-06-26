@@ -125,8 +125,9 @@ public class JavaMailEmailClient implements EmailClient {
         String subject = safeSubject(message);
         LocalDateTime receivedAt = safeReceivedAt(message);
         List<EmailAttachment> attachments = extractAttachments(message);
+        String body = extractBody(message);
         boolean priority = PriorityDetector.isPriority(null, subject);
-        return new EmailMessage(messageId, sender, subject, receivedAt, attachments, priority);
+        return new EmailMessage(messageId, sender, subject, receivedAt, attachments, priority, body);
     }
 
     private String safeMessageId(Message message) throws MessagingException {
@@ -186,6 +187,65 @@ public class JavaMailEmailClient implements EmailClient {
             }
         }
         return attachments;
+    }
+
+    private String extractBody(Part part) throws MessagingException {
+        try {
+            Object content = part.getContent();
+            if (part.isMimeType("text/plain")) {
+                return content.toString();
+            }
+            if (part.isMimeType("text/html")) {
+                return stripHtml(content.toString());
+            }
+            if (content instanceof Multipart multipart) {
+                // Prefer text/plain, fall back to text/html then first text/*
+                String htmlFallback = null;
+                for (int i = 0; i < multipart.getCount(); i++) {
+                    BodyPart bodyPart = multipart.getBodyPart(i);
+                    if (bodyPart.isMimeType("text/plain")) {
+                        return bodyPart.getContent().toString();
+                    }
+                    if (bodyPart.isMimeType("text/html") && htmlFallback == null) {
+                        htmlFallback = stripHtml(bodyPart.getContent().toString());
+                    }
+                }
+                if (htmlFallback != null) {
+                    return htmlFallback;
+                }
+            }
+        } catch (IOException e) {
+            log.warn("Failed to extract email body: {}", e.getMessage());
+        }
+        return "";
+    }
+
+    private String stripHtml(String html) {
+        if (html == null || html.isBlank()) {
+            return "";
+        }
+        // Remove <style> and <script> blocks with their content
+        String stripped = html.replaceAll("(?is)<style[^>]*>.*?</style>", "")
+                .replaceAll("(?is)<script[^>]*>.*?</script>", "");
+        // Replace <br> and <p> with newlines before removing tags
+        stripped = stripped.replaceAll("(?i)<br\\s*/?>", "\n")
+                .replaceAll("(?i)</p>", "\n")
+                .replaceAll("(?i)<p[^>]*>", "");
+        // Remove all remaining HTML tags
+        stripped = stripped.replaceAll("<[^>]+>", "");
+        // Decode common HTML entities
+        stripped = stripped.replace("&amp;", "&")
+                .replace("&lt;", "<")
+                .replace("&gt;", ">")
+                .replace("&quot;", "\"")
+                .replace("&#39;", "'")
+                .replace("&nbsp;", " ");
+        // Collapse whitespace but preserve paragraph breaks
+        stripped = stripped.replaceAll("[ \\t]+", " ")
+                .replaceAll("\\n{3,}", "\n\n")
+                .replaceAll("(?m)^[ \\t]+", "")
+                .replaceAll("(?m)[ \\t]+$", "");
+        return stripped.trim();
     }
 
     private void collectAttachment(BodyPart bodyPart, List<EmailAttachment> attachments) throws MessagingException {
