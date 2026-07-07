@@ -12,7 +12,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.stream.Stream;
 
 @Component
@@ -40,21 +44,55 @@ public class RetentionCleanupJob {
         if (!Files.isDirectory(directory)) {
             return;
         }
-        Instant cutoff = Instant.now().minus(retentionDays, ChronoUnit.DAYS);
-        try (Stream<Path> paths = Files.list(directory)) {
-            paths.filter(Files::isRegularFile).forEach(path -> {
+        Instant cutoffInstant = Instant.now().minus(retentionDays, ChronoUnit.DAYS);
+        LocalDate cutoffDate = LocalDate.now().minusDays(retentionDays);
+        try (Stream<Path> entries = Files.list(directory)) {
+            entries.forEach(entry -> {
                 try {
-                    FileTime modified = Files.getLastModifiedTime(path);
-                    if (modified.toInstant().isBefore(cutoff)) {
-                        Files.delete(path);
-                        log.info("Deleted expired file: {}", path);
+                    if (Files.isDirectory(entry)) {
+                        tryDeleteDateDir(entry, cutoffDate);
+                    } else if (Files.isRegularFile(entry)) {
+                        tryDeleteLegacyFile(entry, cutoffInstant);
                     }
                 } catch (IOException e) {
-                    log.warn("Failed to delete {}: {}", path, e.getMessage());
+                    log.warn("Failed to process {}: {}", entry, e.getMessage());
                 }
             });
         } catch (IOException e) {
             log.warn("Failed to scan {}: {}", directory, e.getMessage());
+        }
+    }
+
+    private void tryDeleteDateDir(Path dir, LocalDate cutoffDate) throws IOException {
+        try {
+            LocalDate dirDate = LocalDate.parse(dir.getFileName().toString(), DateTimeFormatter.ISO_LOCAL_DATE);
+            if (dirDate.isBefore(cutoffDate)) {
+                deleteRecursively(dir);
+                log.info("Deleted expired day directory: {}", dir);
+            }
+        } catch (DateTimeParseException e) {
+            log.debug("Skipping non-date directory: {}", dir);
+        }
+    }
+
+    private void tryDeleteLegacyFile(Path file, Instant cutoff) throws IOException {
+        FileTime modified = Files.getLastModifiedTime(file);
+        if (modified.toInstant().isBefore(cutoff)) {
+            Files.delete(file);
+            log.info("Deleted expired file: {}", file);
+        }
+    }
+
+    private void deleteRecursively(Path dir) throws IOException {
+        try (Stream<Path> walk = Files.walk(dir)) {
+            walk.sorted(Comparator.reverseOrder())
+                    .forEach(path -> {
+                        try {
+                            Files.delete(path);
+                        } catch (IOException e) {
+                            log.warn("Failed to delete {}: {}", path, e.getMessage());
+                        }
+                    });
         }
     }
 }

@@ -36,7 +36,7 @@ class RetentionCleanupJobTest {
     }
 
     @Test
-    void deleteOlderThan_removesExpiredFiles() throws Exception {
+    void deleteOlderThan_removesExpiredLegacyFiles() throws Exception {
         Path processed = tempDir.resolve("processed");
         Files.createDirectories(processed);
         Path oldFile = processed.resolve("old.csv");
@@ -50,5 +50,43 @@ class RetentionCleanupJobTest {
 
         assertThat(Files.exists(oldFile)).isFalse();
         assertThat(Files.exists(recentFile)).isTrue();
+    }
+
+    @Test
+    void deleteOlderThan_removesExpiredDayDirectories() throws Exception {
+        Path processed = tempDir.resolve("processed");
+        Files.createDirectories(processed);
+
+        // Create an old day directory
+        Path oldDay = processed.resolve("2026-04-01");
+        Files.createDirectories(oldDay);
+        Files.writeString(oldDay.resolve("flight.csv"), "old-data");
+
+        // Create a recent day directory
+        Path recentDay = processed.resolve("2026-07-06");
+        Files.createDirectories(recentDay);
+        Files.writeString(recentDay.resolve("flight.csv"), "recent-data");
+
+        job.deleteOlderThan(processed, 60);
+
+        // Old day dir (April 2026, ~90 days ago from July 2026) should be gone
+        assertThat(Files.exists(oldDay)).isFalse();
+        // Recent day dir should remain
+        assertThat(Files.exists(recentDay)).isTrue();
+    }
+
+    @Test
+    void deleteOlderThan_ignoresNonDateDirectories() throws Exception {
+        Path processed = tempDir.resolve("processed");
+        Files.createDirectories(processed);
+
+        Path nonDateDir = processed.resolve("some-custom-folder");
+        Files.createDirectories(nonDateDir);
+        Files.writeString(nonDateDir.resolve("data.csv"), "data");
+
+        job.deleteOlderThan(processed, 1);
+
+        // Non-date directory should be left alone
+        assertThat(Files.exists(nonDateDir)).isTrue();
     }
 }

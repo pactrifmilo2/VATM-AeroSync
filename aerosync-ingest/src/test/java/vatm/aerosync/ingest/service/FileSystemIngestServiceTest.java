@@ -6,6 +6,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import vatm.aerosync.common.config.FilePathProperties;
@@ -20,11 +21,14 @@ import vatm.aerosync.ingest.support.Hashing;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -60,8 +64,7 @@ class FileSystemIngestServiceTest {
     void setUp() {
         filePathProperties = new FilePathProperties();
         filePathProperties.setIncoming(tempDir.toString());
-        when(redisTemplate.opsForValue()).thenReturn(valueOperations);
-        when(valueOperations.get(anyString())).thenReturn(null);
+        lenient().when(redisTemplate.opsForValue()).thenReturn(valueOperations);
         fileSystemIngestService = new FileSystemIngestService(
                 filePathProperties,
                 deduplicationService,
@@ -74,6 +77,8 @@ class FileSystemIngestServiceTest {
     @Test
     void ingestUpTo_usesIncomingPathFromFilePathProperties() throws Exception {
         Files.writeString(tempDir.resolve("flight.csv"), "callsign,from,to\nVN123,HAN,SGN");
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(Collections.singletonList(null));
         when(deduplicationService.findRetryableJob(anyString())).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
         when(syncJobRepository.save(any())).thenAnswer(inv -> {
@@ -92,6 +97,8 @@ class FileSystemIngestServiceTest {
     void ingestUpTo_skipsDuplicateHash() throws Exception {
         Files.writeString(tempDir.resolve("dup.csv"), "duplicate-content");
         String hash = Hashing.sha256Hex(tempDir.resolve("dup.csv"));
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(Collections.singletonList(null));
         when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(hash)).thenReturn(true);
 
@@ -107,6 +114,8 @@ class FileSystemIngestServiceTest {
         Path file = tempDir.resolve("retry.csv");
         Files.writeString(file, "callsign,from,to,dateflight\nVN123,HAN,SGN,2026-01-01");
         String hash = Hashing.sha256Hex(file);
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(Collections.singletonList(null));
         SyncJob pending = new SyncJob();
         pending.setFileHash(hash);
         pending.setStatus(vatm.aerosync.common.enums.SyncStatus.PENDING);
@@ -131,9 +140,9 @@ class FileSystemIngestServiceTest {
     void ingestUpTo_skipsAlreadySeenPath() throws Exception {
         Path file = tempDir.resolve("seen.csv");
         Files.writeString(file, "already-processed");
-        String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
         String hash = Hashing.sha256Hex(file);
-        when(valueOperations.get(pathKey)).thenReturn("1");
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(List.of("1"));
         when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.empty());
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
@@ -146,8 +155,9 @@ class FileSystemIngestServiceTest {
     void ingestUpTo_republishesSeenPathWhenJobIsRetryable() throws Exception {
         Path file = tempDir.resolve("seen-retry.csv");
         Files.writeString(file, "callsign,from,to,dateflight\nVN123,HAN,SGN,2026-01-01");
-        String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
         String hash = Hashing.sha256Hex(file);
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(List.of("1"));
         SyncJob pending = new SyncJob();
         pending.setFileHash(hash);
         pending.setStatus(vatm.aerosync.common.enums.SyncStatus.PENDING);
@@ -157,7 +167,6 @@ class FileSystemIngestServiceTest {
         record.setStoredPath(file.toString());
         record.setOriginalFileName("seen-retry.csv");
         record.setSourceType(FileSourceType.FILESYSTEM);
-        when(valueOperations.get(pathKey)).thenReturn("1");
         when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.of(pending));
         when(fileRecordRepository.findBySyncJobId(11L)).thenReturn(java.util.List.of(record));
 
@@ -171,6 +180,8 @@ class FileSystemIngestServiceTest {
     void ingestUpTo_respectsLimit() throws Exception {
         Files.writeString(tempDir.resolve("a.csv"), "a");
         Files.writeString(tempDir.resolve("b.csv"), "b");
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(Arrays.asList(null, null));
         when(deduplicationService.findRetryableJob(anyString())).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
         when(syncJobRepository.save(any())).thenAnswer(inv -> {
@@ -188,6 +199,8 @@ class FileSystemIngestServiceTest {
     @Test
     void ingestUpTo_publishesFilesystemSourceType() throws Exception {
         Files.writeString(tempDir.resolve("data.json"), "{}");
+        when(redisTemplate.executePipelined(any(RedisCallback.class)))
+                .thenReturn(Collections.singletonList(null));
         when(deduplicationService.findRetryableJob(anyString())).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
         when(syncJobRepository.save(any())).thenAnswer(inv -> {

@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.Clock;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class FileArchiverStep {
 
     static final DateTimeFormatter ARCHIVE_TIMESTAMP = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+    private static final DateTimeFormatter DAILY_DIR = DateTimeFormatter.ISO_LOCAL_DATE;
 
     private final FilePathProperties filePathProperties;
     private final Clock clock;
@@ -42,7 +44,8 @@ public class FileArchiverStep {
 
     private Path moveTo(Path sourceFile, Path targetDir, FileSourceType sourceType, String prefix)
             throws IOException {
-        Files.createDirectories(targetDir);
+        Path dayDir = targetDir.resolve(LocalDate.now(clock).format(DAILY_DIR));
+        Files.createDirectories(dayDir);
         String sourceLabel = sourceType == FileSourceType.EMAIL ? "email" : "fs";
         String timestamp = LocalDateTime.now(clock).format(ARCHIVE_TIMESTAMP);
         String originalName = sourceFile.getFileName().toString();
@@ -56,7 +59,7 @@ public class FileArchiverStep {
         }
         name.append('_').append(base).append(ext);
 
-        Path target = targetDir.resolve(name.toString());
+        Path target = dayDir.resolve(name.toString());
         return Files.move(sourceFile, target, StandardCopyOption.REPLACE_EXISTING);
     }
 }

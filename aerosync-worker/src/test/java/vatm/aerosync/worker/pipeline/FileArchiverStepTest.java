@@ -50,6 +50,8 @@ class FileArchiverStepTest {
         assertThat(Files.exists(archived)).isTrue();
         assertThat(archived.getFileName().toString())
                 .startsWith("SLB_20260604_101530_fs_flight.csv");
+        assertThat(archived.getParent().getFileName().toString()).isEqualTo("2026-06-04");
+        assertThat(archived.getParent().getParent()).isEqualTo(processedDir);
         assertThat(Files.exists(source)).isFalse();
     }
 
@@ -62,6 +64,8 @@ class FileArchiverStepTest {
 
         assertThat(Files.exists(archived)).isTrue();
         assertThat(archived.getFileName().toString()).contains("_email_");
+        assertThat(archived.getParent().getFileName().toString()).isEqualTo("2026-06-04");
+        assertThat(archived.getParent().getParent()).isEqualTo(errorDir);
         Path log = archived.resolveSibling(archived.getFileName() + ".log");
         assertThat(Files.readString(log)).contains("Invalid encoding");
     }
@@ -73,7 +77,8 @@ class FileArchiverStepTest {
 
         Path archived = fileArchiverStep.archiveQuarantine(source, FileSourceType.FILESYSTEM);
 
-        assertThat(archived.startsWith(quarantineDir)).isTrue();
+        assertThat(archived.getParent().getFileName().toString()).isEqualTo("2026-06-04");
+        assertThat(archived.getParent().getParent()).isEqualTo(quarantineDir);
         assertThat(archived.getFileName().toString()).contains("quarantine");
     }
 }
