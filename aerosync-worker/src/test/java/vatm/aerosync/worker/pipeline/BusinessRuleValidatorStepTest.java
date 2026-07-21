@@ -90,6 +90,23 @@ class BusinessRuleValidatorStepTest {
     }
 
     @Test
+    void validate_acceptsLandingRevisionPermitWithIataAirports() {
+        ProcessingContext context = new ProcessingContext(
+                new FileIngestedEvent(1L, "/tmp/permit.doc", "h", FileSourceType.EMAIL, false));
+        ScheduleFlight flight = new ScheduleFlight(
+                "CAR", 4046L, new BigDecimal("185"), "FX606D", null, "0004000",
+                "SIN", "SGN", "2215", "0030", "M753",
+                LocalDate.of(2026, 7, 16), LocalDate.of(2026, 7, 16), "CAR 767F");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-06/A/S/2026", "LD-06/A/S/2026", "06",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 7, 16),
+                "FDX", "LD-06/A/S/2026VN/REV7", 24,
+                "Memphis", "SC", "raw", List.of(flight)));
+
+        assertDoesNotThrow(() -> validator.validate(context));
+    }
+
+    @Test
     void validate_rejectsScheduleWithoutOperatingDateInRange() {
         ProcessingContext context = scheduleContext("0200000", LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20));
 

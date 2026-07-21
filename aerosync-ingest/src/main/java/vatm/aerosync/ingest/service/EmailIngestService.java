@@ -35,7 +35,7 @@ public class EmailIngestService {
 
     private static final Logger log = LoggerFactory.getLogger(EmailIngestService.class);
     private static final List<String> SUPPORTED_EXTENSIONS = List.of(
-            ".csv", ".xlsx", ".docx", ".xml", ".json");
+            ".csv", ".xlsx", ".doc", ".docx", ".xml", ".json");
 
     private final EmailClient emailClient;
     private final EmailProperties emailProperties;

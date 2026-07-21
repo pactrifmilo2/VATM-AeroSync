@@ -153,6 +153,23 @@ class EmailIngestServiceTest {
     }
 
     @Test
+    void ingestUpTo_acceptsLegacyDocPermitAttachment() {
+        byte[] content = new byte[] {(byte) 0xD0, (byte) 0xCF, 0x11, (byte) 0xE0};
+        EmailMessage message = new EmailMessage(
+                "msg-doc", "ops@vatm.local", "Landing permit revision", LocalDateTime.now(),
+                List.of(new EmailAttachment("LD-06.A.S.2026VN.REV8.doc", content)), false, "");
+        when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
+        when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
+        when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
+
+        int ingested = emailIngestService.ingestUpTo(10);
+
+        assertThat(ingested).isEqualTo(1);
+        verify(ingestPublisher).publish(org.mockito.ArgumentMatchers.argThat(event ->
+                event.getTempFilePath().endsWith("LD-06.A.S.2026VN.REV8.doc")));
+    }
+
+    @Test
     void ingestUpTo_recordsUnsupportedAttachmentsAsSkippedWithoutPublishingJobs() {
         EmailMessage message = new EmailMessage(
                 "msg-unsupported", "ops@vatm.local", "Permit documents", LocalDateTime.now(),

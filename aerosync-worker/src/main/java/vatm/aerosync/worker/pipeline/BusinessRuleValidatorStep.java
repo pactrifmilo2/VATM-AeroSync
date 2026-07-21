@@ -56,7 +56,8 @@ public class BusinessRuleValidatorStep {
         SchedulePermit permit = context.getSchedulePermit();
         List<RowValidationError> errors = new ArrayList<>();
         if (permit.normalizedPermitId() == null
-                || !permit.normalizedPermitId().matches("^O/F [A-Z0-9]{5}/S/CHK/20\\d{2}$")) {
+                || !(permit.normalizedPermitId().matches("^O/F [A-Z0-9]{5}/S/CHK/20\\d{2}$")
+                || permit.normalizedPermitId().matches("^LD-\\d{1,5}/[A-Z]/S/20\\d{2}$"))) {
             errors.add(error(0, "permitNumber", "BR-PERMIT-ID",
                     "Invalid normalized scheduled permit number", permit.normalizedPermitId()));
         }
@@ -66,16 +67,21 @@ public class BusinessRuleValidatorStep {
         if (permit.operatorId() == null || !permit.operatorId().matches("^[A-Z0-9]{3}$")) {
             errors.add(error(0, "operator", "BR-OPERATOR", "Invalid operator ICAO code", permit.operatorId()));
         }
-        if (!"O/F".equals(permit.permitType()) || !"SC".equals(permit.flightType())) {
+        if (!("O/F".equals(permit.permitType()) || "LD".equals(permit.permitType()))
+                || !"SC".equals(permit.flightType())) {
             errors.add(error(0, "permitType", "BR-SCHEDULE-TYPE",
-                    "Only scheduled overflight permits are supported",
+                    "Only scheduled overflight or landing permits are supported",
                     permit.permitType() + "/" + permit.flightType()));
         }
         if (permit.flights().isEmpty()) {
             errors.add(error(0, "flights", "BR-SCHEDULE-EMPTY", "At least one schedule row is required", null));
         }
         for (int index = 0; index < permit.flights().size(); index++) {
-            validateScheduleFlight(permit.flights().get(index), index + 1, errors);
+            validateScheduleFlight(
+                    permit.flights().get(index),
+                    index + 1,
+                    "LD".equals(permit.permitType()),
+                    errors);
         }
         if (!errors.isEmpty()) {
             context.getRowValidationErrors().addAll(errors);
@@ -89,13 +95,14 @@ public class BusinessRuleValidatorStep {
 
     private void validateScheduleFlight(ScheduleFlight flight,
                                         int rowNumber,
+                                        boolean allowIataAirport,
                                         List<RowValidationError> errors) {
         if (flight.flightNumber() == null || !flight.flightNumber().matches("^[A-Z0-9]{2,20}$")) {
             errors.add(error(rowNumber, "flightNumber", "BR-FLIGHT-NUMBER",
                     "Invalid flight number", flight.flightNumber()));
         }
-        validateIcaoAirport(flight.fromAirport(), "fromAirport", rowNumber, errors);
-        validateIcaoAirport(flight.toAirport(), "toAirport", rowNumber, errors);
+        validateScheduleAirport(flight.fromAirport(), "fromAirport", rowNumber, allowIataAirport, errors);
+        validateScheduleAirport(flight.toAirport(), "toAirport", rowNumber, allowIataAirport, errors);
         if (Objects.equals(flight.fromAirport(), flight.toAirport())) {
             errors.add(error(rowNumber, "route", "BR-FROM-TO",
                     "Departure and arrival airports must differ",
@@ -127,6 +134,18 @@ public class BusinessRuleValidatorStep {
         if (flight.craftId() <= 0) {
             errors.add(error(rowNumber, "craftId", "BR-CRAFT", "Aircraft mapping is required",
                     Long.toString(flight.craftId())));
+        }
+    }
+
+    private void validateScheduleAirport(String airport,
+                                         String field,
+                                         int rowNumber,
+                                         boolean allowIataAirport,
+                                         List<RowValidationError> errors) {
+        if (airport == null
+                || !((allowIataAirport && AIRPORT_PATTERN.matcher(airport).matches())
+                || ICAO_AIRPORT_PATTERN.matcher(airport).matches())) {
+            errors.add(error(rowNumber, field, "BR-SCHEDULE-AIRPORT", "Invalid schedule airport", airport));
         }
     }
 

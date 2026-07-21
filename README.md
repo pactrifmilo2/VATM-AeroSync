@@ -171,9 +171,9 @@ To ingest attachments from a real mailbox:
 
 Email envelopes are checked newest-first before attachment bodies are downloaded. The ingest service combines an IMAP received-today search with a bounded recent window (500 messages by default) and a small old-backlog window, so a large mailbox does not delay current mail. Completed IMAP UIDs and Message-IDs are skipped in Oracle, five slots per cycle are reserved for old backlog by default, and unsupported attachment types are recorded as skipped without creating worker jobs. Automatic moves to `AeroSync/Processed` or `AeroSync/Error` are disabled by default; enable them only after testing with `APP_EMAIL_ACKNOWLEDGEMENT_ENABLED=true`. Run `scripts/migrate-phase4-oracle.sql` once when upgrading an existing database.
 
-### Scheduled permit DOCX import
+### Scheduled permit Word import
 
-The worker recognizes CAAV scheduled overflight permits in `.docx` attachments. It parses the permit header and schedule tables, validates the mapped ATFM values, and writes one master row to `T_PERMMASTER_SC` followed by all schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID` in a single target transaction.
+The worker recognizes CAAV scheduled overflight permits in `.docx` attachments and the legacy landing-permit revision format in `.doc` attachments. For a legacy revision such as `LD-06/A/S/2026VN/REV8`, it uses only the `2.2. New schedule(s)` table and stores the normalized permit identity as `LD-06/A/S/2026`. It validates the mapped ATFM values, then writes one master row to `T_PERMMASTER_SC` followed by all schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID` in a single target transaction.
 
 Configure the legacy target separately from AeroSync's own tracking database:
 
