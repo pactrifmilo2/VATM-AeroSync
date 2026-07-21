@@ -25,7 +25,7 @@ dotnet build aerosync-ui\AeroSync.UI.csproj -p:Platform=x64
 
 ## Architecture Overview
 
-VATM AeroSync is a multi-module **flight data synchronization platform** for the Vietnam Air Traffic Management organization. It ingests flight data files (CSV, XLSX, XML, JSON) from file-system drops and email attachments, processes them through a 6-step pipeline, stores normalized data in PostgreSQL, and surfaces status via a REST API consumed by a WinUI 3 desktop dashboard.
+VATM AeroSync is a multi-module **flight data synchronization platform** for the Vietnam Air Traffic Management organization. It ingests flight data files (CSV, XLSX, XML, JSON) from file-system drops and email attachments, processes them through a 6-step pipeline, stores normalized data in Oracle Database, and surfaces status via a REST API consumed by a WinUI 3 desktop dashboard.
 
 **Four Maven modules** (`aerosync-common`, `aerosync-ingest`, `aerosync-worker`, `aerosync-api`) plus a separate .NET WinUI 3 project (`aerosync-ui`). All Java modules share the root parent POM (`vatm:aerosync-parent`), which extends `spring-boot-starter-parent:4.0.6` on **Java 21**.
 
@@ -45,7 +45,7 @@ VATM AeroSync is a multi-module **flight data synchronization platform** for the
 
 ```
 FileSystem / Email → IngestService → DedupService(Redis) → RabbitMQ(file.ingested)
-  → Worker consumer → ProcessingPipeline(6 steps) → PostgreSQL + FileArchive
+  → Worker consumer → ProcessingPipeline(6 steps) → Oracle Database + FileArchive
   → RabbitMQ(sync.result) → API AlertService → WinUI dashboard
 ```
 
@@ -67,7 +67,7 @@ FileSystem / Email → IngestService → DedupService(Redis) → RabbitMQ(file.i
 
 ### Database
 
-PostgreSQL 16+ with 6 tables: `sync_jobs`, `file_records`, `audit_logs`, `email_metadata`, `flight_data`, `runtime_config`. JPA `ddl-auto: update` in all environments. Tests use H2 in PostgreSQL compatibility mode (`jdbc:h2:mem:<name>;MODE=PostgreSQL;DB_CLOSE_DELAY=-1`).
+Oracle Database XE 21c, using the `XEPDB1` pluggable database, with tables including `sync_jobs`, `file_records`, `audit_logs`, `email_metadata`, `flight_data`, and `runtime_config`. JPA `ddl-auto: update` is used in all environments. Test application profiles use H2 in Oracle compatibility mode (`jdbc:h2:mem:<name>;MODE=Oracle;DB_CLOSE_DELAY=-1`); JPA slice tests use Spring Boot's embedded H2 replacement.
 
 ### Configuration Loading
 
@@ -89,7 +89,7 @@ The `.env` file is gitignored; `.env.example` is the committed template. Startup
 ### Test Approach
 
 - **Common**: `@DataJpaTest` with H2 for repositories, Jackson round-trip tests for DTOs.
-- **Ingest/Worker/API**: `@SpringBootTest` with mocked external deps (RabbitMQ, Redis) for unit tests; Testcontainers (RabbitMQ, PostgreSQL) for integration tests (`*IntegrationTest`).
+- **Ingest/Worker/API**: `@SpringBootTest` with mocked external deps (RabbitMQ, Redis) for unit tests; Testcontainers for infrastructure integration tests (`*IntegrationTest`).
 - **Worker pipeline steps**: Each step has its own test class (e.g., `FormatValidatorStepTest`, `ParserStepTest`).
 - **API controllers**: Tested with `MockMvc`.
 - **Sample test data**: `aerosync-worker/src/test/resources/samples/` (valid-flights.csv, .json, .xml, temp.xlsx).

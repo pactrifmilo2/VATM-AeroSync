@@ -51,7 +51,8 @@ public class FormatValidatorStep {
             throw new FormatValidationException(fileName, e.getMessage());
         }
 
-        if (context.getFileType() != vatm.aerosync.common.enums.FileType.XLSX) {
+        if (context.getFileType() != vatm.aerosync.common.enums.FileType.XLSX
+                && context.getFileType() != vatm.aerosync.common.enums.FileType.DOCX) {
             validateUtf8(file, fileName);
         }
 

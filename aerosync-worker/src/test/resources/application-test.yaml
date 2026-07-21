@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:worker;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:worker;MODE=Oracle;DB_CLOSE_DELAY=-1
     username: sa
     password:
     driver-class-name: org.h2.Driver
@@ -9,6 +9,8 @@ spring:
       ddl-auto: create-drop
 
 app:
+  atfm:
+    write-enabled: false
   file-paths:
     incoming: ${java.io.tmpdir}/aerosync-worker-test-incoming
     processed: ${java.io.tmpdir}/aerosync-worker-test-processed

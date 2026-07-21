@@ -1,11 +1,11 @@
 # VATM AeroSync
 
-Multi-module data sync platform: ingest files from email or a folder, process them through a pipeline, store flight data in PostgreSQL, and monitor via a REST API and Windows desktop UI.
+Multi-module data sync platform: ingest files from email or a folder, process them through a pipeline, store flight data in Oracle Database, and monitor via a REST API and Windows desktop UI.
 
 | Module | Role |
 |--------|------|
 | `aerosync-ingest` | Watches incoming folder + IMAP email, publishes jobs to RabbitMQ |
-| `aerosync-worker` | Processes files, validates data, writes to PostgreSQL |
+| `aerosync-worker` | Processes files, validates data, writes to Oracle Database |
 | `aerosync-api` | Dashboard REST API (stats, jobs, config, audit logs) |
 | `aerosync-ui` | WinUI operator dashboard |
 | `aerosync-common` | Shared entities, DTOs, repositories |
@@ -26,11 +26,11 @@ Install the following before you start:
 | **Git** | Latest | Clone the repository |
 | **Java JDK** | **21** | Backend services (Maven wrapper included) |
 | **.NET SDK** | **8** | Desktop UI only (optional) |
-| **PostgreSQL** | 16+ | Database |
+| **Oracle Database XE** | 21c | Database |
 | **RabbitMQ** | 4.x | Message queue (requires Erlang OTP) |
 | **Redis** | 7.x | Dedup, caching, distributed locks |
 
-Make sure PostgreSQL, RabbitMQ, and Redis are running as Windows services before launching AeroSync.
+Make sure Oracle Database XE, RabbitMQ, and Redis are running as Windows services before launching AeroSync.
 
 ### 2. Clone the repository
 
@@ -43,12 +43,15 @@ You can also copy the project folder directly if Git is not used on that machine
 
 ### 3. Create the database
 
-Create a PostgreSQL database and user for AeroSync:
+Oracle XE creates the `XEPDB1` pluggable database during installation. Create the AeroSync schema user by connecting as SYSDBA and running the supplied setup script:
 
 ```powershell
-psql -U postgres -c "CREATE USER vatm_user WITH PASSWORD 'vatm_password';"
-psql -U postgres -c "CREATE DATABASE aerosync OWNER vatm_user;"
+cd <oracle-home>\bin
+.\sqlplus.exe / as sysdba
+@D:\path\to\VATM-AeroSync\scripts\setup-oracle.sql
 ```
+
+The script prompts for the `VATM_USER` password. Put that same password in `.env`.
 
 ### 4. Create environment config
 
@@ -60,7 +63,7 @@ Edit `.env` with a text editor. For a basic local setup, the defaults point to l
 
 | Setting | Default | Notes |
 |---------|---------|-------|
-| `SPRING_DATASOURCE_*` | `localhost:5432/aerosync` | PostgreSQL connection |
+| `SPRING_DATASOURCE_*` | `localhost:1521/XEPDB1` | Oracle XE connection |
 | `SPRING_RABBITMQ_*` | `localhost:5672` | guest / guest |
 | `SPRING_DATA_REDIS_*` | `localhost:6379` | |
 | `APP_FILE_PATHS_*` | `C:/vatm-storage/...` | Created automatically on first run |
@@ -81,8 +84,8 @@ On first run, if `.env` does not exist, the script copies `.env.example` and exi
 
 The script will:
 
-1. Create file storage folders (`incoming`, `processed`, `error`, `quarantine`)
-2. Verify PostgreSQL, RabbitMQ, and Redis are running
+1. Create file storage folders (`incoming`, `processed`, `error`, `quarantine`). Archived files are automatically partitioned below the last three as `yyyy/MM/dd`.
+2. Verify Oracle XE, RabbitMQ, and Redis are running
 3. Build Java apps with Maven
 4. Open three PowerShell windows: **worker**, **ingest**, **api**
 
@@ -130,13 +133,14 @@ Wait for the next ingest cycle (or set `APP_INGEST_SCHEDULER_FIXED_DELAY_MS=3000
 - http://localhost:8080/api/dashboard/stats — `SUCCESS` count should increase
 - UI dashboard — job appears in the sync list
 
-### 8. Confirm data in PostgreSQL (optional)
+### 8. Confirm data in Oracle Database (optional)
 
 ```powershell
-psql -U vatm_user -d aerosync -c "SELECT COUNT(*) FROM flight_data;"
+sqlplus vatm_user@localhost:1521/XEPDB1
+SELECT COUNT(*) FROM flight_data;
 ```
 
-Or use any PostgreSQL client connected to `localhost:5432/aerosync` as `vatm_user`.
+Or use an Oracle client connected to the `XEPDB1` service on `localhost:1521` as `VATM_USER`.
 
 ---
 
@@ -150,6 +154,10 @@ To ingest attachments from a real mailbox:
    APP_EMAIL_HOST=imap.gmail.com
    APP_EMAIL_USERNAME=you@gmail.com
    APP_EMAIL_PASSWORD=your-app-password
+   APP_EMAIL_FOLDER=INBOX
+   APP_EMAIL_PROCESSED_FOLDER=AeroSync/Processed
+   APP_EMAIL_ERROR_FOLDER=AeroSync/Error
+   APP_EMAIL_OLDEST_MESSAGES_PER_CYCLE=5
    APP_EMAIL_BLACKLIST_SENDERS_0=you@gmail.com
    ```
 
@@ -161,6 +169,25 @@ To ingest attachments from a real mailbox:
 
 3. Restart ingest (close its PowerShell window and run `.\scripts\start-ingest.ps1`, or restart `.\run-aerosync.bat`).
 
+Email envelopes are checked newest-first before attachment bodies are downloaded. The ingest service combines an IMAP received-today search with a bounded recent window (500 messages by default) and a small old-backlog window, so a large mailbox does not delay current mail. Completed IMAP UIDs and Message-IDs are skipped in Oracle, five slots per cycle are reserved for old backlog by default, and unsupported attachment types are recorded as skipped without creating worker jobs. Automatic moves to `AeroSync/Processed` or `AeroSync/Error` are disabled by default; enable them only after testing with `APP_EMAIL_ACKNOWLEDGEMENT_ENABLED=true`. Run `scripts/migrate-phase4-oracle.sql` once when upgrading an existing database.
+
+### Scheduled permit DOCX import
+
+The worker recognizes CAAV scheduled overflight permits in `.docx` attachments. It parses the permit header and schedule tables, validates the mapped ATFM values, and writes one master row to `T_PERMMASTER_SC` followed by all schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID` in a single target transaction.
+
+Configure the legacy target separately from AeroSync's own tracking database:
+
+```env
+APP_ATFM_DATASOURCE_URL=jdbc:oracle:thin:@//172.29.187.90:1521/PDBORCL
+APP_ATFM_DATASOURCE_USERNAME=atfm
+APP_ATFM_DATASOURCE_PASSWORD=your-password
+APP_ATFM_WRITE_ENABLED=false
+```
+
+Writes are disabled by default. With the flag disabled, a valid permit is recorded as `DRY_RUN` and quarantined so it cannot be mistaken for a successful target insert. Run `scripts/migrate-phase5-oracle.sql` against the AeroSync tracking schema before enabling imports. After review, set `APP_ATFM_WRITE_ENABLED=true` and restart only the worker.
+
+Duplicate handling uses both the original SHA-256 file hash and a semantic schedule hash. The same normalized permit with the same schedule is skipped successfully; changed schedule data for the same permit is quarantined for manual review.
+
 For Gmail, use an [App Password](https://support.google.com/accounts/answer/185833), not your normal login password.
 
 ---
@@ -170,7 +197,7 @@ For Gmail, use an [App Password](https://support.google.com/accounts/answer/1858
 If you prefer to run services yourself instead of `run-aerosync.bat`:
 
 ```powershell
-# 1. Ensure PostgreSQL, RabbitMQ, Redis are running locally
+# 1. Ensure Oracle XE, RabbitMQ, Redis are running locally
 
 # 2. Build (from repo root)
 .\aerosync-worker\mvnw.cmd -f pom.xml clean package -Dmaven.test.skip=true -pl aerosync-ingest,aerosync-worker,aerosync-api -am
@@ -189,7 +216,8 @@ Ensure these ports are free on the dev machine:
 
 | Port | Service |
 |------|---------|
-| 5432 | PostgreSQL |
+| 1521 | Oracle Database listener |
+| 5500 | Oracle EM Express (optional) |
 | 5672 | RabbitMQ (AMQP) |
 | 6379 | Redis |
 | 8080 | AeroSync API |
@@ -201,7 +229,9 @@ Ensure these ports are free on the dev machine:
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
-| PostgreSQL not running | Service stopped | Start `postgresql-x64-18` in Services |
+| Oracle listener unavailable | Oracle XE installation/service is incomplete or stopped | Start the Oracle XE database and `OracleOraDB21Home*TNSListener` services |
+| `ORA-01017` | Incorrect AeroSync username/password | Run `scripts\setup-oracle.sql` and copy the same password to `.env` |
+| `ORA-12514` | Wrong or unavailable service | Use `XEPDB1` and verify it appears in `lsnrctl status` |
 | RabbitMQ not running | Service stopped | Start `RabbitMQ` in Services |
 | Redis not running | Not installed or service stopped | Install Redis for Windows and start the service |
 | Maven build fails | Wrong Java version | Install **Java 21** (`java -version`) |
@@ -209,8 +239,10 @@ Ensure these ports are free on the dev machine:
 | UI build fails | Missing .NET / Windows SDK | Install .NET 8 SDK |
 | Email not ingesting | Missing password or sender blacklisted | Fill `APP_EMAIL_*` in `.env`; run `.\scripts\test-imap.ps1` |
 | File copied but no new job | Same file content (hash dedup) | Change file content or use a different file |
+| Valid DOCX is quarantined with `ATFM-WRITE-DISABLED` | Target safety gate is active | Review the dry-run, enable `APP_ATFM_WRITE_ENABLED`, then retry |
+| Permit is quarantined with `PERMIT-REVISION-REVIEW` | Same permit number has different schedule data | Compare the documents and resolve manually; AeroSync will not overwrite the ATFM permit |
 | SUCCESS stays at 1 | Duplicate content re-ingested | Expected — only unique file hashes create new jobs |
-| `FATAL: database "aerosync" does not exist` | DB not created | Run `CREATE DATABASE aerosync OWNER vatm_user;` |
+| `ORA-01918: user VATM_USER does not exist` | Schema user was not created in XEPDB1 | Run `scripts\setup-oracle.sql` as SYSDBA |
 
 ---
 
@@ -234,12 +266,12 @@ VATM-AeroSync/
 
 | | Development | Production (customer) |
 |---|-------------|----------------------|
-| **Database** | Local PostgreSQL | Customer's PostgreSQL instance |
+| **Database** | Local Oracle Database XE 21c | Customer's Oracle Database instance |
 | **RabbitMQ / Redis** | Installed locally | Installed or managed servers |
 | **Apps** | JARs via `run-aerosync.bat` | JARs as Windows/Linux services |
 | **UI** | `dotnet build` + run EXE | Installed desktop app |
 
-For customer deployment, connect to actual PostgreSQL, RabbitMQ, and Redis, then configure `.env` with production hostnames and credentials.
+For customer deployment, connect to the target Oracle Database, RabbitMQ, and Redis, then configure `.env` with production service names and credentials.
 
 ---
 

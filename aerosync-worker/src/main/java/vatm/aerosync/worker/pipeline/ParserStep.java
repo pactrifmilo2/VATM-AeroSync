@@ -34,17 +34,25 @@ import java.util.Map;
 public class ParserStep {
 
     private final ObjectMapper objectMapper;
+    private final DocxSchedulePermitParser docxSchedulePermitParser;
 
-    public ParserStep(ObjectMapper objectMapper) {
+    public ParserStep(ObjectMapper objectMapper, DocxSchedulePermitParser docxSchedulePermitParser) {
         this.objectMapper = objectMapper;
+        this.docxSchedulePermitParser = docxSchedulePermitParser;
     }
 
     public void parse(ProcessingContext context) {
+        if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOCX) {
+            context.setSchedulePermit(docxSchedulePermitParser.parse(
+                    context.getFilePath(), context.getOriginalFileName()));
+            return;
+        }
         List<FlightRow> rows = switch (context.getFileType()) {
             case CSV -> parseCsv(context.getFilePath(), context.getOriginalFileName());
             case JSON -> parseJson(context.getFilePath(), context.getOriginalFileName());
             case XML -> parseXml(context.getFilePath(), context.getOriginalFileName());
             case XLSX -> parseXlsx(context.getFilePath(), context.getOriginalFileName());
+            case DOCX -> throw new IllegalStateException("DOCX parser dispatch failed");
         };
         if (rows.isEmpty()) {
             throw new FormatValidationException(context.getOriginalFileName(), "No data rows found");

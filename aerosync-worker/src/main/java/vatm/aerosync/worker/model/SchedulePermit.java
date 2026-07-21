@@ -1,0 +1,26 @@
+package vatm.aerosync.worker.model;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public record SchedulePermit(
+        String sourcePermitNumber,
+        String normalizedPermitId,
+        String permitNumber,
+        String authorId,
+        String permitType,
+        String version,
+        String season,
+        LocalDate permitDate,
+        String operatorId,
+        String reference,
+        int validHours,
+        String billingAddress,
+        String flightType,
+        String rawContent,
+        List<ScheduleFlight> flights
+) {
+    public SchedulePermit {
+        flights = List.copyOf(flights);
+    }
+}

@@ -11,6 +11,8 @@ import org.springframework.data.redis.core.ValueOperations;
 import vatm.aerosync.common.config.FilePathProperties;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.common.enums.FileArchiveStatus;
+import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.repository.FileRecordRepository;
@@ -201,6 +203,11 @@ class FileSystemIngestServiceTest {
         verify(ingestPublisher).publish(org.mockito.ArgumentMatchers.argThat(event ->
                 event.getSourceType() == FileSourceType.FILESYSTEM));
         verify(fileRecordRepository).save(org.mockito.ArgumentMatchers.argThat(record ->
-                record.getSourceType() == FileSourceType.FILESYSTEM));
+                record.getSourceType() == FileSourceType.FILESYSTEM
+                        && record.getProcessingStatus() == FileProcessingStatus.DOWNLOADED
+                        && record.getArchiveStatus() == FileArchiveStatus.PENDING
+                        && record.getDownloadedAt() != null
+                        && record.getFileSize() == 2L
+                        && record.getChecksum().length() == 64));
     }
 }

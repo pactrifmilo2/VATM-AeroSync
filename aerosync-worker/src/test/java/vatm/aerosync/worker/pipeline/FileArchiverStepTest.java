@@ -48,6 +48,7 @@ class FileArchiverStepTest {
         Path archived = fileArchiverStep.archiveProcessed(source, FileSourceType.FILESYSTEM, null);
 
         assertThat(Files.exists(archived)).isTrue();
+        assertThat(archived.getParent()).isEqualTo(processedDir.resolve("2026").resolve("06").resolve("04"));
         // No sender => "local" prefix
         assertThat(archived.getFileName().toString())
                 .startsWith("local_20260604_101530_fs_flight.csv");
@@ -64,6 +65,7 @@ class FileArchiverStepTest {
                 "haibdhe140272@fpt.edu.vn");
 
         assertThat(Files.exists(archived)).isTrue();
+        assertThat(archived.getParent()).isEqualTo(processedDir.resolve("2026").resolve("06").resolve("04"));
         assertThat(archived.getFileName().toString())
                 .startsWith("haibdhe140272_20260604_101530_email_flight.csv");
     }
@@ -90,9 +92,11 @@ class FileArchiverStepTest {
                 "Invalid encoding", "ops@vatm.local");
 
         assertThat(Files.exists(archived)).isTrue();
+        assertThat(archived.getParent()).isEqualTo(errorDir.resolve("2026").resolve("06").resolve("04"));
         assertThat(archived.getFileName().toString()).startsWith("ops_");
         assertThat(archived.getFileName().toString()).contains("_email_");
         Path log = archived.resolveSibling(archived.getFileName() + ".log");
+        assertThat(log.getParent()).isEqualTo(archived.getParent());
         assertThat(Files.readString(log)).contains("Invalid encoding");
     }
 
@@ -104,6 +108,7 @@ class FileArchiverStepTest {
         Path archived = fileArchiverStep.archiveQuarantine(source, FileSourceType.FILESYSTEM, null);
 
         assertThat(archived.startsWith(quarantineDir)).isTrue();
+        assertThat(archived.getParent()).isEqualTo(quarantineDir.resolve("2026").resolve("06").resolve("04"));
         assertThat(archived.getFileName().toString()).contains("quarantine");
         assertThat(archived.getFileName().toString()).startsWith("local_");
     }

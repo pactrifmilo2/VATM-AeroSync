@@ -6,6 +6,8 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jpa.test.autoconfigure.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 import vatm.aerosync.common.testsupport.JpaTestConfiguration;
+import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
+import vatm.aerosync.common.enums.EmailProcessingStatus;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +30,12 @@ class EmailMetadataEntityTest {
         metadata.setSubject("Flight update");
         metadata.setReceivedAt(receivedAt);
         metadata.setAttachmentCount(2);
+        metadata.setMailboxFolder("INBOX");
+        metadata.setUidValidity(101L);
+        metadata.setMessageUid(5001L);
+        metadata.setAttachmentIndex(0);
+        metadata.setAttachmentName("flight.csv");
+        metadata.setProcessingStatus(EmailProcessingStatus.DOWNLOADED);
 
         EmailMetadata persisted = entityManager.persistFlushFind(metadata);
 
@@ -37,18 +45,31 @@ class EmailMetadataEntityTest {
         assertThat(persisted.getSubject()).isEqualTo("Flight update");
         assertThat(persisted.getReceivedAt()).isEqualTo(receivedAt);
         assertThat(persisted.getAttachmentCount()).isEqualTo(2);
+        assertThat(persisted.getMailboxFolder()).isEqualTo("INBOX");
+        assertThat(persisted.getMessageUid()).isEqualTo(5001L);
+        assertThat(persisted.getAttachmentName()).isEqualTo("flight.csv");
+        assertThat(persisted.getProcessingStatus()).isEqualTo(EmailProcessingStatus.DOWNLOADED);
+        assertThat(persisted.getAcknowledgementStatus()).isEqualTo(EmailAcknowledgementStatus.PENDING);
     }
 
     @Test
-    void messageIdMustBeUnique() {
+    void mailboxUidAndAttachmentIndexMustBeUnique() {
         EmailMetadata first = new EmailMetadata();
-        first.setMessageId("message-duplicate");
+        setMailboxIdentity(first, "message-first");
         entityManager.persistAndFlush(first);
 
         EmailMetadata duplicate = new EmailMetadata();
-        duplicate.setMessageId("message-duplicate");
+        setMailboxIdentity(duplicate, "message-second");
 
         assertThatThrownBy(() -> entityManager.persistAndFlush(duplicate))
                 .isInstanceOf(RuntimeException.class);
+    }
+
+    private void setMailboxIdentity(EmailMetadata metadata, String messageId) {
+        metadata.setMessageId(messageId);
+        metadata.setMailboxFolder("INBOX");
+        metadata.setUidValidity(101L);
+        metadata.setMessageUid(5001L);
+        metadata.setAttachmentIndex(0);
     }
 }

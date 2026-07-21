@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import vatm.aerosync.ingest.config.IngestProperties;
 import vatm.aerosync.ingest.service.EmailIngestService;
+import vatm.aerosync.ingest.service.EmailAcknowledgementService;
 import vatm.aerosync.ingest.service.FileSystemIngestService;
 
 import static org.mockito.Mockito.inOrder;
@@ -23,6 +24,9 @@ class IngestSchedulerTest {
     @Mock
     private EmailIngestService emailIngestService;
 
+    @Mock
+    private EmailAcknowledgementService emailAcknowledgementService;
+
     private IngestScheduler ingestScheduler;
 
     @BeforeEach
@@ -30,7 +34,7 @@ class IngestSchedulerTest {
         IngestProperties ingestProperties = new IngestProperties();
         ingestProperties.setMaxFilesPerCycle(100);
         ingestScheduler = new IngestScheduler(
-                ingestProperties, fileSystemIngestService, emailIngestService);
+                ingestProperties, fileSystemIngestService, emailIngestService, emailAcknowledgementService);
     }
 
     @Test
@@ -40,6 +44,7 @@ class IngestSchedulerTest {
 
         ingestScheduler.runCycle();
 
+        verify(emailAcknowledgementService).retryPendingAcknowledgements();
         InOrder order = inOrder(fileSystemIngestService, emailIngestService);
         order.verify(fileSystemIngestService).ingestUpTo(100);
         order.verify(emailIngestService).ingestUpTo(60);

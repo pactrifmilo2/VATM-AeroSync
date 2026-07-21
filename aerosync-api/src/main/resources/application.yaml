@@ -8,10 +8,10 @@ spring:
     name: aerosync-api
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/aerosync
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
     username: vatm_user
     password: vatm_password
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: oracle.jdbc.OracleDriver
 
   rabbitmq:
     host: localhost

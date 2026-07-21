@@ -7,7 +7,8 @@ import vatm.aerosync.common.debug.DebugSessionLog;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
-import java.util.Optional;
+import vatm.aerosync.common.enums.FileArchiveStatus;
+import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.FileRecordRepository;
@@ -18,7 +19,9 @@ import vatm.aerosync.ingest.support.PriorityDetector;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -113,6 +116,7 @@ public class FileSystemIngestService {
         record.setSourceType(FileSourceType.FILESYSTEM);
         record.setOriginalFileName(file.getFileName().toString());
         record.setStoredPath(file.toAbsolutePath().normalize().toString());
+        markDownloaded(record, file, hash);
         saved.addFileRecord(record);
         fileRecordRepository.save(record);
 
@@ -136,6 +140,13 @@ public class FileSystemIngestService {
         FileRecord record = fileRecordRepository.findBySyncJobId(job.getId()).stream()
                 .max(Comparator.comparing(FileRecord::getCreatedAt))
                 .orElseThrow(() -> new IllegalStateException("No file records for job: " + job.getId()));
+        record.setStoredPath(file.toAbsolutePath().normalize().toString());
+        markDownloaded(record, file, hash);
+        fileRecordRepository.save(record);
+
+        job.setStatus(SyncStatus.PENDING);
+        syncJobRepository.save(job);
+
         boolean priority = PriorityDetector.isPriority(record.getOriginalFileName(), null);
         FileIngestedEvent event = new FileIngestedEvent(
                 job.getId(),
@@ -148,5 +159,25 @@ public class FileSystemIngestService {
         DebugSessionLog.log("D", "FileSystemIngestService.java:republishExistingJob", "republished stuck job",
                 DebugSessionLog.map("syncJobId", job.getId(), "status", job.getStatus().name(),
                         "path", record.getStoredPath()));
+    }
+
+    private void markDownloaded(FileRecord record, Path file, String checksum) {
+        record.setProcessingStatus(FileProcessingStatus.DOWNLOADED);
+        record.setDownloadedAt(LocalDateTime.now());
+        record.setRowsSaved(null);
+        record.setDatabaseSavedAt(null);
+        record.setArchiveStatus(FileArchiveStatus.PENDING);
+        record.setArchivedAt(null);
+        record.setErrorMessage(null);
+        record.setFileSize(fileSize(file));
+        record.setChecksum(checksum);
+    }
+
+    private long fileSize(Path file) {
+        try {
+            return Files.size(file);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to read file size: " + file, e);
+        }
     }
 }

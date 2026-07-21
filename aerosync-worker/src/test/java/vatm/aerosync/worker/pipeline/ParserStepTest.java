@@ -29,7 +29,7 @@ class ParserStepTest {
     void setUp() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
-        parserStep = new ParserStep(mapper);
+        parserStep = new ParserStep(mapper, new DocxSchedulePermitParser());
     }
 
     @Test

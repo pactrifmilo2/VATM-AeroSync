@@ -15,6 +15,7 @@ public class ProcessingContext {
     private String originalFileName;
     private String sender;
     private FileType fileType;
+    private SchedulePermit schedulePermit;
     private final List<FlightRow> rows = new ArrayList<>();
     private final List<RowValidationError> rowValidationErrors = new ArrayList<>();
     private long startedAtMillis = System.currentTimeMillis();
@@ -54,6 +55,14 @@ public class ProcessingContext {
 
     public void setFileType(FileType fileType) {
         this.fileType = fileType;
+    }
+
+    public SchedulePermit getSchedulePermit() {
+        return schedulePermit;
+    }
+
+    public void setSchedulePermit(SchedulePermit schedulePermit) {
+        this.schedulePermit = schedulePermit;
     }
 
     public List<FlightRow> getRows() {

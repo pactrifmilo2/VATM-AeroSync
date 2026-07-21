@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.stream.Stream;
 
 @Component
@@ -41,7 +42,7 @@ public class RetentionCleanupJob {
             return;
         }
         Instant cutoff = Instant.now().minus(retentionDays, ChronoUnit.DAYS);
-        try (Stream<Path> paths = Files.list(directory)) {
+        try (Stream<Path> paths = Files.walk(directory)) {
             paths.filter(Files::isRegularFile).forEach(path -> {
                 try {
                     FileTime modified = Files.getLastModifiedTime(path);
@@ -55,6 +56,29 @@ public class RetentionCleanupJob {
             });
         } catch (IOException e) {
             log.warn("Failed to scan {}: {}", directory, e.getMessage());
+        }
+        deleteEmptyDirectories(directory);
+    }
+
+    private void deleteEmptyDirectories(Path rootDirectory) {
+        try (Stream<Path> paths = Files.walk(rootDirectory)) {
+            paths.filter(Files::isDirectory)
+                    .filter(path -> !path.equals(rootDirectory))
+                    .sorted(Comparator.reverseOrder())
+                    .forEach(this::deleteIfEmpty);
+        } catch (IOException e) {
+            log.warn("Failed to clean empty directories under {}: {}", rootDirectory, e.getMessage());
+        }
+    }
+
+    private void deleteIfEmpty(Path directory) {
+        try (Stream<Path> children = Files.list(directory)) {
+            if (children.findAny().isEmpty()) {
+                Files.delete(directory);
+                log.info("Deleted empty archive directory: {}", directory);
+            }
+        } catch (IOException e) {
+            log.warn("Failed to delete empty directory {}: {}", directory, e.getMessage());
         }
     }
 }

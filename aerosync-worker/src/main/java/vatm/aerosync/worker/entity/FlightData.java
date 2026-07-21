@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
@@ -16,7 +17,12 @@ import java.time.LocalDateTime;
 public class FlightData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "flight_data_sequence_generator",
+            sequenceName = "flight_data_seq",
+            allocationSize = 50
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flight_data_sequence_generator")
     private Long id;
 
     @Column(name = "sync_job_id", nullable = false)
