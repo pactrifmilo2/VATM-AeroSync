@@ -9,6 +9,16 @@ also have a report record.
 All timestamps are ISO-8601 local date-time values, for example
 `2026-07-24T09:15:00`.
 
+## Interactive documentation
+
+After starting `aerosync-api`, open:
+
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+
+Swagger UI can execute requests against the locally running API. The OpenAPI JSON
+can be imported into Postman or used to generate a frontend API client.
+
 ## List report records
 
 ```http

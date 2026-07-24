@@ -210,6 +210,18 @@ If you prefer to run services yourself instead of `run-aerosync.bat`:
 
 ---
 
+## API documentation
+
+With `aerosync-api` running locally:
+
+- Swagger UI: `http://localhost:8080/swagger-ui.html`
+- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
+
+Swagger UI provides interactive documentation for the dashboard, job, configuration,
+audit-log, alert, and email-report endpoints.
+
+---
+
 ## Ports
 
 Ensure these ports are free on the dev machine:
