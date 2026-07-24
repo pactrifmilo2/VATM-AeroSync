@@ -17,10 +17,36 @@ public record SchedulePermit(
         int validHours,
         String billingAddress,
         String flightType,
+        boolean iataAirportsAllowed,
+        boolean emptyAirwaysAllowed,
         String rawContent,
         List<ScheduleFlight> flights
 ) {
     public SchedulePermit {
         flights = List.copyOf(flights);
+    }
+
+    /**
+     * Compatibility constructor for existing programmatic callers. Word profile
+     * parsing always supplies the validation policy explicitly.
+     */
+    public SchedulePermit(String sourcePermitNumber,
+                          String normalizedPermitId,
+                          String permitNumber,
+                          String authorId,
+                          String permitType,
+                          String version,
+                          String season,
+                          LocalDate permitDate,
+                          String operatorId,
+                          String reference,
+                          int validHours,
+                          String billingAddress,
+                          String flightType,
+                          String rawContent,
+                          List<ScheduleFlight> flights) {
+        this(sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
+                version, season, permitDate, operatorId, reference, validHours, billingAddress,
+                flightType, "LD".equals(permitType), "LD".equals(permitType), rawContent, flights);
     }
 }

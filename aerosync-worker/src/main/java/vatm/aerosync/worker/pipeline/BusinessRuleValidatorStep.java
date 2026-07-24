@@ -56,8 +56,9 @@ public class BusinessRuleValidatorStep {
         SchedulePermit permit = context.getSchedulePermit();
         List<RowValidationError> errors = new ArrayList<>();
         if (permit.normalizedPermitId() == null
-                || !(permit.normalizedPermitId().matches("^O/F [A-Z0-9]{5}/S/CHK/20\\d{2}$")
-                || permit.normalizedPermitId().matches("^LD-\\d{1,5}/[A-Z]/S/20\\d{2}$"))) {
+                || permit.normalizedPermitId().isBlank()
+                || permit.normalizedPermitId().length() > 100
+                || !permit.normalizedPermitId().matches("^[A-Z0-9][A-Z0-9 /-]+$")) {
             errors.add(error(0, "permitNumber", "BR-PERMIT-ID",
                     "Invalid normalized scheduled permit number", permit.normalizedPermitId()));
         }
@@ -67,10 +68,10 @@ public class BusinessRuleValidatorStep {
         if (permit.operatorId() == null || !permit.operatorId().matches("^[A-Z0-9]{3}$")) {
             errors.add(error(0, "operator", "BR-OPERATOR", "Invalid operator ICAO code", permit.operatorId()));
         }
-        if (!("O/F".equals(permit.permitType()) || "LD".equals(permit.permitType()))
-                || !"SC".equals(permit.flightType())) {
+        if (permit.permitType() == null || permit.permitType().isBlank()
+                || permit.flightType() == null || permit.flightType().isBlank()) {
             errors.add(error(0, "permitType", "BR-SCHEDULE-TYPE",
-                    "Only scheduled overflight or landing permits are supported",
+                    "Permit type and flight type are required",
                     permit.permitType() + "/" + permit.flightType()));
         }
         if (permit.flights().isEmpty()) {
@@ -80,7 +81,8 @@ public class BusinessRuleValidatorStep {
             validateScheduleFlight(
                     permit.flights().get(index),
                     index + 1,
-                    "LD".equals(permit.permitType()),
+                    permit.iataAirportsAllowed(),
+                    permit.emptyAirwaysAllowed(),
                     errors);
         }
         if (!errors.isEmpty()) {
@@ -96,6 +98,7 @@ public class BusinessRuleValidatorStep {
     private void validateScheduleFlight(ScheduleFlight flight,
                                         int rowNumber,
                                         boolean allowIataAirport,
+                                        boolean allowMissingAirways,
                                         List<RowValidationError> errors) {
         if (flight.flightNumber() == null || !flight.flightNumber().matches("^[A-Z0-9]{2,20}$")) {
             errors.add(error(rowNumber, "flightNumber", "BR-FLIGHT-NUMBER",
@@ -128,7 +131,7 @@ public class BusinessRuleValidatorStep {
             errors.add(error(rowNumber, "serviceDays", "BR-SERVICE-DAYS-RANGE",
                     "No selected operating day falls in the effective date range", flight.serviceDays()));
         }
-        if (flight.via() == null || flight.via().isBlank()) {
+        if (!allowMissingAirways && (flight.via() == null || flight.via().isBlank())) {
             errors.add(error(rowNumber, "via", "BR-AIRWAYS", "Airways are required", flight.via()));
         }
         if (flight.craftId() <= 0) {

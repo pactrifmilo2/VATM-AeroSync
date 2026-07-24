@@ -1,0 +1,81 @@
+id: caav-english-landing-revision
+detectionPatterns:
+  - '(?iu)REVISION\s+OF\s+LANDING/OVERFLIGHT\s+PERMIT'
+  - '(?iu)2\.2\.\s*NEW\s+SCHEDULE\(S\)'
+permit:
+  pattern: '(?iu)\bLD-(?<number>\d{1,5})/(?<version>[A-Z])/(?<season>S)/(?<year>20\d{2})VN(?:/REV(?<revision>\d+))?\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}'
+  normalizedTemplate: 'LD-{number}/{version}/{season}/{year}'
+  zeroPadGroups: {}
+permitDate:
+  source: RAW
+  pattern: '(?iu)HANOI\s*,\s*(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: en
+operator:
+  source: RAW
+  pattern: '(?iu)ICAO\s*CODE:\s*(?<value>[A-Z0-9]{3})'
+  group: value
+  required: true
+billingAddress:
+  source: RAW
+  pattern: '(?iu)POSTAL\s+ADDRESS:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+referenceColumn: originalPermit
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: S
+  validHours: 24
+  flightType: SC
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival Airport]
+    eta: [ETA]
+    aircraftType: [Aircraft Type]
+    originalPermit: [Original permit]
+  requiredColumns:
+    - flightNumber
+    - effectiveFrom
+    - effectiveTo
+    - serviceDays
+    - fromAirport
+    - etd
+    - toAirport
+    - eta
+    - aircraftType
+  excludeColumns: [originalPermit]
+  dateFormats: [dMMMyy, d-MMM-yy]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: CAR
+  includeEta: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: true
+  allowEmpty: false
+  fallbackToFirst: false
+aircraft:
+  scheduleColumn: aircraftType
+  mappings:
+    - aliases: ['767F']
+      craftId: 4046
+      mtow: 185
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: CAR
+validation:
+  allowIataAirports: true
