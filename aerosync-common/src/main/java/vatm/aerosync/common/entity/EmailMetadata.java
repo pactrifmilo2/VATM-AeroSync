@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Table(
         name = "email_metadata",
         uniqueConstraints = @UniqueConstraint(
-                name = "uk_email_metadata_mailbox_attachment",
+                name = "uk_email_mailbox_attachment",
                 columnNames = {"mailbox_folder", "uid_validity", "message_uid", "attachment_index"})
 )
 public class EmailMetadata {

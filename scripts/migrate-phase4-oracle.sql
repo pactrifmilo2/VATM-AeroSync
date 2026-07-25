@@ -46,10 +46,13 @@ BEGIN
     SELECT COUNT(*)
       INTO constraint_count
       FROM user_constraints
-     WHERE constraint_name = 'UK_EMAIL_METADATA_MAILBOX_ATTACHMENT';
+     WHERE constraint_name IN (
+           'UK_EMAIL_MAILBOX_ATTACHMENT',
+           'UK_EMAIL_METADATA_MAILBOX_ATTACHMENT'
+     );
     IF constraint_count = 0 THEN
         EXECUTE IMMEDIATE
-            'ALTER TABLE email_metadata ADD CONSTRAINT uk_email_metadata_mailbox_attachment ' ||
+            'ALTER TABLE email_metadata ADD CONSTRAINT uk_email_mailbox_attachment ' ||
             'UNIQUE (mailbox_folder, uid_validity, message_uid, attachment_index)';
     END IF;
 END;
