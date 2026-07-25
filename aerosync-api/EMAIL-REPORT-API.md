@@ -53,6 +53,7 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
     {
       "id": 102,
       "syncJobId": 481,
+      "permitNumber": "O/F 05199/S/CHK/2026",
       "messageId": "mail-102",
       "sender": "operator@vatm.vn",
       "subject": "Flight permit update",
@@ -77,6 +78,8 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
 ```
 
 The list response intentionally excludes the email body and acknowledgement error.
+`permitNumber` contains the normalized permit identity from the associated permit
+import, or `null` when the email is not a recognized permit.
 
 ## Get report detail
 
@@ -85,8 +88,10 @@ GET /api/reports/emails/{id}
 ```
 
 The detail response adds the mailbox folder, UID values, email body, and
-acknowledgement error. `syncJobId` and `jobStatus` are `null` for records which did
-not create a processing job, such as blocked or unsupported emails.
+acknowledgement error. `syncJobId`, `permitNumber`, and `jobStatus` are `null` for
+records which did not create a processing job, such as blocked or unsupported
+emails. Records with a processing job still have a `null` `permitNumber` until a
+permit has been parsed and its import record created.
 
 The frontend must render `body` as untrusted text unless it applies HTML
 sanitization.

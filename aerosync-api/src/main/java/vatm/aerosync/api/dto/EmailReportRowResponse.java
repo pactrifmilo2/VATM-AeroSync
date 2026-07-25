@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public record EmailReportRowResponse(
         Long id,
         Long syncJobId,
+        String permitNumber,
         String messageId,
         String sender,
         String subject,
