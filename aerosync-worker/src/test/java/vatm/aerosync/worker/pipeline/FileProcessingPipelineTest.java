@@ -1,0 +1,129 @@
+package vatm.aerosync.worker.pipeline;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.entity.FileRecord;
+import vatm.aerosync.common.enums.FileArchiveStatus;
+import vatm.aerosync.common.enums.FileProcessingStatus;
+import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.FileRecordRepository;
+import vatm.aerosync.common.repository.SyncJobRepository;
+import vatm.aerosync.worker.service.AuditLogService;
+import vatm.aerosync.worker.service.SyncResultPublisher;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class FileProcessingPipelineTest {
+
+    @Mock
+    private SyncJobRepository syncJobRepository;
+    @Mock
+    private EmailMetadataRepository emailMetadataRepository;
+    @Mock
+    private FileRecordRepository fileRecordRepository;
+    @Mock
+    private FormatValidatorStep formatValidatorStep;
+    @Mock
+    private ParserStep parserStep;
+    @Mock
+    private NormalizerStep normalizerStep;
+    @Mock
+    private BusinessRuleValidatorStep businessRuleValidatorStep;
+    @Mock
+    private DatabaseWriterStep databaseWriterStep;
+    @Mock
+    private FileArchiverStep fileArchiverStep;
+    @Mock
+    private AuditLogService auditLogService;
+    @Mock
+    private SyncResultPublisher syncResultPublisher;
+
+    private FileProcessingPipeline pipeline;
+    private FileRecord record;
+    private FileIngestedEvent event;
+
+    @BeforeEach
+    void setUp() {
+        pipeline = new FileProcessingPipeline(
+                syncJobRepository,
+                emailMetadataRepository,
+                fileRecordRepository,
+                formatValidatorStep,
+                parserStep,
+                normalizerStep,
+                businessRuleValidatorStep,
+                databaseWriterStep,
+                fileArchiverStep,
+                auditLogService,
+                syncResultPublisher);
+
+        record = new FileRecord();
+        record.setSourceType(FileSourceType.EMAIL);
+        record.setOriginalFileName("flights.csv");
+        record.setStoredPath("C:/staging/flights.csv");
+        record.setProcessingStatus(FileProcessingStatus.DOWNLOADED);
+        record.setArchiveStatus(FileArchiveStatus.PENDING);
+
+        event = new FileIngestedEvent(
+                7L,
+                "C:/staging/flights.csv",
+                "a".repeat(64),
+                FileSourceType.EMAIL,
+                false);
+
+        when(emailMetadataRepository.findBySyncJobId(7L)).thenReturn(Optional.empty());
+        when(syncJobRepository.findById(7L)).thenReturn(Optional.empty());
+        when(fileRecordRepository.findBySyncJobId(7L)).thenReturn(List.of(record));
+        when(fileRecordRepository.save(any(FileRecord.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        when(databaseWriterStep.write(any())).thenAnswer(invocation -> {
+            record.setProcessingStatus(FileProcessingStatus.SAVED);
+            record.setRowsSaved(0);
+            record.setDatabaseSavedAt(LocalDateTime.now());
+            return DatabaseWriteResult.success(0);
+        });
+    }
+
+    @Test
+    void process_tracksDatabaseAndArchiveSuccessSeparately() throws Exception {
+        Path archived = Path.of("C:/archive/processed.csv");
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);
+
+        pipeline.process(event);
+
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SAVED);
+        assertThat(record.getRowsSaved()).isZero();
+        assertThat(record.getDatabaseSavedAt()).isNotNull();
+        assertThat(record.getArchiveStatus()).isEqualTo(FileArchiveStatus.ARCHIVED);
+        assertThat(record.getArchivedAt()).isNotNull();
+        assertThat(record.getStoredPath()).isEqualTo(archived.toString());
+    }
+
+    @Test
+    void process_preservesDatabaseSuccessWhenArchiveFails() throws Exception {
+        when(fileArchiverStep.archiveProcessed(any(), any(), any()))
+                .thenThrow(new IOException("archive unavailable"));
+
+        pipeline.process(event);
+
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SAVED);
+        assertThat(record.getDatabaseSavedAt()).isNotNull();
+        assertThat(record.getArchiveStatus()).isEqualTo(FileArchiveStatus.FAILED);
+        assertThat(record.getArchivedAt()).isNull();
+        assertThat(record.getErrorMessage()).contains("archive unavailable");
+    }
+}

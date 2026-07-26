@@ -20,9 +20,18 @@ class EmailMetadataRepositoryTest {
     void checksExistenceByMessageId() {
         EmailMetadata metadata = new EmailMetadata();
         metadata.setMessageId("repo-message-001");
+        metadata.setMailboxFolder("INBOX");
+        metadata.setUidValidity(1L);
+        metadata.setMessageUid(10L);
+        metadata.setAttachmentIndex(0);
+        metadata.setIngestComplete(true);
         repository.saveAndFlush(metadata);
 
         assertThat(repository.existsByMessageId("repo-message-001")).isTrue();
         assertThat(repository.existsByMessageId("missing-message")).isFalse();
+        assertThat(repository.existsByMailboxFolderAndUidValidityAndMessageUidAndIngestCompleteTrue(
+                "INBOX", 1L, 10L)).isTrue();
+        assertThat(repository.findByMailboxFolderAndUidValidityAndMessageUid(
+                "INBOX", 1L, 10L)).containsExactly(metadata);
     }
 }

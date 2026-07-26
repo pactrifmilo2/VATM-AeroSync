@@ -10,7 +10,7 @@ import vatm.aerosync.common.config.FilePathProperties;
 import java.time.Clock;
 
 @Configuration
-@EnableConfigurationProperties({FilePathProperties.class, WorkerProperties.class})
+@EnableConfigurationProperties({FilePathProperties.class, WorkerProperties.class, AtfmDatabaseProperties.class})
 public class WorkerConfig {
 
     @Bean

@@ -5,10 +5,10 @@ spring:
     name: aerosync-ingest
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/aerosync
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
     username: vatm_user
     password: vatm_password
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: oracle.jdbc.OracleDriver
 
   rabbitmq:
     host: localhost
@@ -27,7 +27,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
 
 app:
   file-paths:
@@ -45,9 +45,16 @@ app:
     password:
     protocol: imaps
     folder: INBOX
+    processed-folder: AeroSync/Processed
+    error-folder: AeroSync/Error
+    oldest-messages-per-cycle: 5
+    mailbox-scan-window-size: 500
+    acknowledgement-enabled: ${APP_EMAIL_ACKNOWLEDGEMENT_ENABLED:false}
     blacklist-senders: []
     connection-timeout-ms: 10000
   rabbit:
     file-ingested-exchange: file.ingested
     file-processing-routing-key: file.processing
     file-processing-queue: file.processing.queue
+    sync-result-exchange: sync.result
+    email-acknowledgement-queue: email.acknowledgement.queue

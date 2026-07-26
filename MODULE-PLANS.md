@@ -1,6 +1,6 @@
 # VATM AeroSync — Module Plans (UC1)
 
-Automated data sync from email and file storage into PostgreSQL, with a dashboard REST API for admin monitoring. All modules follow **TDD** (Red → Green → Refactor) for non-trivial components.
+Automated data sync from email and file storage into Oracle Database, with a dashboard REST API for admin monitoring. All modules follow **TDD** (Red → Green → Refactor) for non-trivial components.
 
 ---
 
@@ -23,7 +23,7 @@ aerosync-parent/              ← root pom.xml (BOM, no code)
 | Area | Detail |
 |------|--------|
 | **Actors** | Scheduler, Email Server (IMAP/SSL), File System, Admin, Operator |
-| **Main flow** | Scan email + `/data/incoming/` → validate → parse → business rules → PostgreSQL → archive → audit log → dashboard notification |
+| **Main flow** | Scan email + `/data/incoming/` → validate → parse → business rules → Oracle Database → archive → audit log → dashboard notification |
 | **Alternate flows** | ALT-01 format error → `/error/`; ALT-02 business rule → `/quarantine/` + rollback; ALT-03 duplicate hash → skip; ALT-04 DB retry 2→4→8 min; ALT-05 email unavailable; ALT-06 no attachment |
 | **Business rules** | BR-01 idempotency (SHA-256); BR-02 atomic batch; BR-03 retention (60/90 days); BR-04 security; BR-05 URGENT/VIP priority; BR-06 max 100 files/cycle; BR-07 100% audit |
 
@@ -66,10 +66,10 @@ flowchart LR
   Dedup -->|"file.ingested queue"| FormatValidator
   FormatValidator --> Parser --> Normalizer --> BizRules --> DBWriter --> Archiver
   Archiver -->|"sync.result exchange"| AdminAPI
-  DBWriter --> PostgreSQL[(PostgreSQL)]
+  DBWriter --> Oracle[(Oracle Database)]
   Dedup --> Redis[(Redis)]
   Archiver --> Redis
-  AdminAPI --> PostgreSQL
+  AdminAPI --> Oracle
 ```
 
 ---
@@ -101,7 +101,7 @@ Worker retry (ALT-04): exponential backoff 2 → 4 → 8 minutes (configured in 
 ### Dependencies
 
 - `spring-boot-starter-data-jpa`
-- `postgresql` (runtime)
+- `ojdbc11` (runtime)
 - `jackson-databind`, `jackson-datatype-jsr310`
 - `spring-boot-starter-test`, `spring-boot-starter-data-jpa-test`, `h2` (test)
 
@@ -147,11 +147,12 @@ Worker retry (ALT-04): exponential backoff 2 → 4 → 8 minutes (configured in 
 | Component | Description |
 |-----------|-------------|
 | `IngestScheduler` | `@Scheduled(fixedDelay = 300_000)` (5 min); triggers scanners; max **100 files/cycle** (BR-06) |
-| `EmailIngestService` | IMAP/SSL (JavaMail); blacklist sender; download attachments; ALT-06 no attachment |
+| `EmailIngestService` | IMAP/SSL; UID checkpoint before body download; URGENT/newest-first with backlog slots; ALT-06 no attachment |
+| `EmailAcknowledgementService` | Consume terminal worker results; move complete mail to `AeroSync/Processed` or `AeroSync/Error`; retry failed acknowledgements |
 | `FileSystemIngestService` | Watch `app.file-paths.incoming` (e.g. `/data/incoming/`) |
 | `DeduplicationService` | SHA-256; Redis lookup; ALT-03 / BR-01 → `SKIPPED_DUPLICATE` |
 | `IngestPublisher` | Publish `FileIngestedEvent` to `file.ingested`; priority for URGENT/VIP (BR-05) |
-| Email metadata | Persist via `EmailMetadataRepository` (from common) |
+| Email metadata | Persist folder, UIDVALIDITY, UID, attachment index, lifecycle, and mailbox acknowledgement state |
 
 ### Dependencies
 
@@ -172,6 +173,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 | `IngestSchedulerTest` | Rate limit 100 files/cycle; triggers both scanners |
 | `FileSystemIngestServiceTest` | New files only; paths from `FilePathProperties` |
 | `EmailIngestServiceTest` | Whitelist; attachments; NO_ATTACHMENT (ALT-06) |
+| `EmailAcknowledgementServiceTest` | UID checkpoint; all-attachment completion; processed/error mailbox disposition |
 | `DeduplicationServiceTest` | SHA-256; Redis mock; duplicate → skip |
 | `IngestPublisherTest` | JSON event; exchange/routing; priority flag |
 | Integration | `@SpringBootTest` + Testcontainers RabbitMQ/Redis |
@@ -200,13 +202,15 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 |-----------|-------------|
 | `FileProcessingConsumer` | `@RabbitListener` on `file.processing.queue`; ALT-04 retry (2→4→8 min) |
 | `FormatValidatorStep` | Extension, UTF-8, schema, size → ALT-01 `/error/` |
-| `ParserStep` | Strategy: CSV / XLSX / XML / JSON |
+| `ParserStep` | Strategy: CSV / XLSX / XML / JSON plus scheduled permit DOCX |
 | `NormalizerStep` | Trim, uppercase, timezone |
 | `BusinessRuleValidatorStep` | Callsign, From, To, DateFlight → ALT-02 `/quarantine/` + rollback |
-| `DatabaseWriterStep` | `@Transactional` PostgreSQL; BR-02 full rollback on failure |
-| `FileArchiverStep` | Move to `/processed/` as `SLB_YYYYMMDD_HHMMSS_<source>_<name>.ext` |
+| `DatabaseWriterStep` | `@Transactional` Oracle Database write; BR-02 full rollback on failure |
+| `PermitImportCoordinator` | Semantic duplicate/revision protection; guarded legacy ATFM import |
+| `JdbcAtfmScheduleGateway` | Insert `T_PERMMASTER_SC`, return trigger-generated keys, then insert `T_PERMDETAIL_SC` atomically |
+| `FileArchiverStep` | Move to `/processed/yyyy/MM/dd/`, `/error/yyyy/MM/dd/`, or `/quarantine/yyyy/MM/dd/`; error `.log` stays beside its file |
 | `AuditLogService` | BR-07 write-once audit (who/when/what/result/duration) |
-| `RetentionCleanupJob` | BR-03: processed 60d; error & quarantine 90d |
+| `RetentionCleanupJob` | BR-03: recursive cleanup; processed 60d; error & quarantine 90d; remove empty date folders |
 | Redis | Distributed lock per file (multi-instance safety) |
 
 ### Dependencies
@@ -216,7 +220,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - `spring-boot-starter-data-redis`
 - Apache POI (XLSX)
 - Jackson (JSON/CSV)
-- Existing: JPA, PostgreSQL, Web (optional for health)
+- Existing: JPA, Oracle JDBC, Web (optional for health)
 
 ### TDD Build Order
 
@@ -226,11 +230,11 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 | `ParserStepTest` | Sample files per `FileType` |
 | `NormalizerStepTest` | Trim, uppercase, timezone |
 | `BusinessRuleValidatorStepTest` | Each field rule; quarantine path |
-| `DatabaseWriterStepTest` | Success + rollback (`@DataJpaTest` or Testcontainers PostgreSQL) |
+| `DatabaseWriterStepTest` | Success + rollback (`@DataJpaTest` using embedded H2) |
 | `FileArchiverStepTest` | Naming convention; `/error/`, `/quarantine/`, `/processed/` |
 | `AuditLogServiceTest` | Required fields persisted |
 | `FileProcessingConsumerTest` | End-to-end message handling (mock steps) |
-| Integration | Testcontainers: PostgreSQL, RabbitMQ, Redis |
+| Integration | Testcontainers: RabbitMQ, Redis; Oracle integration requires an XE-compatible test environment |
 
 ### Definition of Done
 
@@ -240,6 +244,17 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Publishes `SyncResultEvent` to `sync.result`
 - [x] Retention job scheduled
 - [x] All tests green
+
+### Phase 5 — Scheduled permit import
+
+- [x] Detect and parse scheduled permit `.docx` attachments with Apache POI
+- [x] Normalize external scheduled permits to the ATFM identifier format
+- [x] Validate ICAO airports, UTC time, operating days, effective dates, and target lookup codes
+- [x] Keep AeroSync tracking and legacy ATFM connections separate
+- [x] Gate target writes with `APP_ATFM_WRITE_ENABLED=false` by default
+- [x] Insert master/detail rows in one target transaction using trigger-generated `ID` and `PERM_ID`
+- [x] Track semantic duplicates, revisions, dry-runs, target IDs, and failures
+- [x] Expose permit import state in job detail API responses
 
 ---
 
@@ -283,7 +298,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 
 - [x] Module in root parent `pom.xml`
 - [ ] REST API documented (OpenAPI optional)
-- [x] Reads PostgreSQL via common repositories
+- [x] Reads Oracle Database via common repositories
 - [x] Consumes `dashboard.alerts.queue`
 - [x] All tests green
 
@@ -307,7 +322,7 @@ Run these services locally on Windows:
 
 | Service | Port | Use |
 |---------|------|-----|
-| PostgreSQL | 5432 | Central DB |
+| Oracle Database XE | 1521 / XEPDB1 | Central DB |
 | RabbitMQ | 5672 / 15672 | Messaging |
 | Redis | 6379 | Dedup, locks, email failure counter |
 

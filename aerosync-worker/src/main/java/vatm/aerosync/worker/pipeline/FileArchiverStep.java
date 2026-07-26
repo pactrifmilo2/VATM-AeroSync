@@ -17,6 +17,9 @@ public class FileArchiverStep {
 
     static final DateTimeFormatter ARCHIVE_DATE = DateTimeFormatter.ofPattern("yyyyMMdd");
     static final DateTimeFormatter ARCHIVE_TIME = DateTimeFormatter.ofPattern("HHmmss");
+    static final DateTimeFormatter ARCHIVE_YEAR = DateTimeFormatter.ofPattern("yyyy");
+    static final DateTimeFormatter ARCHIVE_MONTH = DateTimeFormatter.ofPattern("MM");
+    static final DateTimeFormatter ARCHIVE_DAY = DateTimeFormatter.ofPattern("dd");
 
     private final FilePathProperties filePathProperties;
     private final Clock clock;
@@ -44,10 +47,14 @@ public class FileArchiverStep {
 
     private Path moveTo(Path sourceFile, Path targetDir, FileSourceType sourceType, String prefix, String sender)
             throws IOException {
-        Files.createDirectories(targetDir);
         String sourceLabel = sourceType == FileSourceType.EMAIL ? "email" : "fs";
         String senderLocal = sanitizeSender(sender);
         LocalDateTime now = LocalDateTime.now(clock);
+        Path datedTargetDir = targetDir
+                .resolve(now.format(ARCHIVE_YEAR))
+                .resolve(now.format(ARCHIVE_MONTH))
+                .resolve(now.format(ARCHIVE_DAY));
+        Files.createDirectories(datedTargetDir);
         String date = now.format(ARCHIVE_DATE);
         String time = now.format(ARCHIVE_TIME);
         String originalName = sourceFile.getFileName().toString();
@@ -64,7 +71,7 @@ public class FileArchiverStep {
         }
         name.append('_').append(base).append(ext);
 
-        Path target = targetDir.resolve(name.toString());
+        Path target = datedTargetDir.resolve(name.toString());
         return Files.move(sourceFile, target, StandardCopyOption.REPLACE_EXISTING);
     }
 

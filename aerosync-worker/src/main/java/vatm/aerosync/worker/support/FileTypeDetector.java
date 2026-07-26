@@ -17,6 +17,12 @@ public final class FileTypeDetector {
         if (name.endsWith(".xlsx")) {
             return FileType.XLSX;
         }
+        if (name.endsWith(".docx")) {
+            return FileType.DOCX;
+        }
+        if (name.endsWith(".doc")) {
+            return FileType.DOC;
+        }
         if (name.endsWith(".xml")) {
             return FileType.XML;
         }

@@ -32,4 +32,11 @@ public class ApiExceptionHandler {
         detail.setTitle("Conflict");
         return detail;
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ProblemDetail handleIllegalArgument(IllegalArgumentException ex) {
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
+        detail.setTitle("Bad Request");
+        return detail;
+    }
 }

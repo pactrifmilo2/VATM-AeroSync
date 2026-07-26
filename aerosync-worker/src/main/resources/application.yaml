@@ -5,10 +5,10 @@ spring:
     name: aerosync-worker
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/aerosync
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
     username: vatm_user
     password: vatm_password
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: oracle.jdbc.OracleDriver
     hikari:
       maximum-pool-size: 10
 
@@ -36,9 +36,21 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
 
 app:
+  atfm:
+    url: ${APP_ATFM_DATASOURCE_URL:}
+    username: ${APP_ATFM_DATASOURCE_USERNAME:}
+    password: ${APP_ATFM_DATASOURCE_PASSWORD:}
+    write-enabled: ${APP_ATFM_WRITE_ENABLED:false}
+    permit-lock-seconds: ${APP_ATFM_PERMIT_LOCK_SECONDS:600}
   file-paths:
     incoming: C:/vatm-storage/incoming
     processed: C:/vatm-storage/processed

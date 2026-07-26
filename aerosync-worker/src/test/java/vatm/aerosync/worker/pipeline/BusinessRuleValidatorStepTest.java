@@ -7,8 +7,12 @@ import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.worker.model.FlightRow;
 import vatm.aerosync.worker.model.ProcessingContext;
+import vatm.aerosync.worker.model.ScheduleFlight;
+import vatm.aerosync.worker.model.SchedulePermit;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.catchThrowable;
@@ -78,10 +82,57 @@ class BusinessRuleValidatorStepTest {
                 .hasSameSizeAs(exception.getRowErrors());
     }
 
+    @Test
+    void validate_acceptsMappedScheduledPermit() {
+        ProcessingContext context = scheduleContext("1000000", LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 27));
+
+        assertDoesNotThrow(() -> validator.validate(context));
+    }
+
+    @Test
+    void validate_acceptsLandingRevisionPermitWithIataAirports() {
+        ProcessingContext context = new ProcessingContext(
+                new FileIngestedEvent(1L, "/tmp/permit.doc", "h", FileSourceType.EMAIL, false));
+        ScheduleFlight flight = new ScheduleFlight(
+                "CAR", 4046L, new BigDecimal("185"), "FX606D", null, "0004000",
+                "SIN", "SGN", "2215", "0030", "M753",
+                LocalDate.of(2026, 7, 16), LocalDate.of(2026, 7, 16), "CAR 767F");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-06/A/S/2026", "LD-06/A/S/2026", "06",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 7, 16),
+                "FDX", "LD-06/A/S/2026VN/REV7", 24,
+                "Memphis", "SC", "raw", List.of(flight)));
+
+        assertDoesNotThrow(() -> validator.validate(context));
+    }
+
+    @Test
+    void validate_rejectsScheduleWithoutOperatingDateInRange() {
+        ProcessingContext context = scheduleContext("0200000", LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20));
+
+        assertThatThrownBy(() -> validator.validate(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("BR-SERVICE-DAYS-RANGE");
+    }
+
     private ProcessingContext contextWith(FlightRow row) {
         ProcessingContext context = new ProcessingContext(
                 new FileIngestedEvent(1L, "/tmp/f.csv", "h", FileSourceType.FILESYSTEM, false));
         context.getRows().add(row);
+        return context;
+    }
+
+    private ProcessingContext scheduleContext(String days, LocalDate begin, LocalDate end) {
+        ProcessingContext context = new ProcessingContext(
+                new FileIngestedEvent(1L, "/tmp/permit.docx", "h", FileSourceType.EMAIL, false));
+        ScheduleFlight flight = new ScheduleFlight(
+                "CAR", 1935L, BigDecimal.ZERO, "RMY685", null, days,
+                "WMKK", "VHHH", "1140", null, "M765/M771",
+                begin, end, "CAR 76X/32X");
+        context.setSchedulePermit(new SchedulePermit(
+                "OF-5199/7/2026VN", "O/F 05199/S/CHK/2026", "5199",
+                "CHK", "O/F", "A", "S", LocalDate.of(2026, 7, 17),
+                "RMY", "G17.44", 72, "Cyberjaya", "SC", "raw", List.of(flight)));
         return context;
     }
 }

@@ -1,0 +1,33 @@
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+SET ECHO OFF
+SET FEEDBACK ON
+SET VERIFY OFF
+
+DEFINE app_user = VATM_USER
+ACCEPT app_password CHAR PROMPT 'Password for VATM_USER: ' HIDE
+
+ALTER SESSION SET CONTAINER = XEPDB1;
+
+DECLARE
+    user_already_exists EXCEPTION;
+    PRAGMA EXCEPTION_INIT(user_already_exists, -1920);
+BEGIN
+    EXECUTE IMMEDIATE
+        'CREATE USER &app_user IDENTIFIED BY "' ||
+        REPLACE('&app_password', '"', '""') || '"';
+EXCEPTION
+    WHEN user_already_exists THEN
+        NULL;
+END;
+/
+
+ALTER USER &app_user IDENTIFIED BY "&app_password" ACCOUNT UNLOCK;
+GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE TRIGGER TO &app_user;
+ALTER USER &app_user QUOTA UNLIMITED ON USERS;
+
+PROMPT
+PROMPT VATM_USER is ready in XEPDB1.
+PROMPT JDBC URL: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+
+UNDEFINE app_password
+EXIT SUCCESS

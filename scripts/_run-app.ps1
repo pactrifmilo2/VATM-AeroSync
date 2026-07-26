@@ -20,14 +20,22 @@ if (-not (Test-Path $jar)) {
 
 function Import-DotEnv {
     param([string] $Path)
+    $values = @{}
     foreach ($line in Get-Content $Path) {
         if ($line -match "^\s*#") { continue }
         if ($line -match "^\s*$") { continue }
         if ($line -match "^\s*([^=]+?)\s*=\s*(.*)\s*$") {
             $name = $Matches[1].Trim()
             $value = $Matches[2].Trim().Trim('"').Trim("'")
-            Set-Item -Path "Env:$name" -Value $value
+            $values[$name] = $value
         }
+    }
+    foreach ($name in $values.Keys) {
+        $value = $values[$name]
+        if ($value -match '^\$\{([A-Z][A-Z0-9_]*)\}$' -and $values.ContainsKey($Matches[1])) {
+            $value = $values[$Matches[1]]
+        }
+        Set-Item -Path "Env:$name" -Value $value
     }
 }
 

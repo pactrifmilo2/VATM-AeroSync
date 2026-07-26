@@ -12,11 +12,14 @@ import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.entity.AuditLog;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
+import vatm.aerosync.common.enums.FileArchiveStatus;
+import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.AuditLogRepository;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
+import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
 import java.time.LocalDateTime;
@@ -33,18 +36,21 @@ public class SyncJobService {
     private final EmailMetadataRepository emailMetadataRepository;
     private final JobRetryPublisher jobRetryPublisher;
     private final AuditLogRepository auditLogRepository;
+    private final PermitImportRepository permitImportRepository;
     private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public SyncJobService(SyncJobRepository syncJobRepository,
                           FileRecordRepository fileRecordRepository,
                           EmailMetadataRepository emailMetadataRepository,
                           JobRetryPublisher jobRetryPublisher,
-                          AuditLogRepository auditLogRepository) {
+                          AuditLogRepository auditLogRepository,
+                          PermitImportRepository permitImportRepository) {
         this.syncJobRepository = syncJobRepository;
         this.fileRecordRepository = fileRecordRepository;
         this.emailMetadataRepository = emailMetadataRepository;
         this.jobRetryPublisher = jobRetryPublisher;
         this.auditLogRepository = auditLogRepository;
+        this.permitImportRepository = permitImportRepository;
     }
 
     @Transactional(readOnly = true)
@@ -69,11 +75,25 @@ public class SyncJobService {
 
         String emailSubject = null;
         String emailBody = null;
+        vatm.aerosync.common.enums.EmailProcessingStatus emailProcessingStatus = null;
+        vatm.aerosync.common.enums.EmailAcknowledgementStatus emailAcknowledgementStatus = null;
+        LocalDateTime emailAcknowledgedAt = null;
+        String emailAcknowledgementError = null;
+        String mailboxFolder = null;
+        Long messageUid = null;
         var emailMetadata = emailMetadataRepository.findBySyncJobId(id);
         if (emailMetadata != null && emailMetadata.isPresent()) {
             emailSubject = emailMetadata.get().getSubject();
             emailBody = emailMetadata.get().getBody();
+            emailProcessingStatus = emailMetadata.get().getProcessingStatus();
+            emailAcknowledgementStatus = emailMetadata.get().getAcknowledgementStatus();
+            emailAcknowledgedAt = emailMetadata.get().getAcknowledgedAt();
+            emailAcknowledgementError = emailMetadata.get().getAcknowledgementError();
+            mailboxFolder = emailMetadata.get().getMailboxFolder();
+            messageUid = emailMetadata.get().getMessageUid();
         }
+
+        var permitImport = permitImportRepository.findBySyncJobId(id).orElse(null);
 
         return new SyncJobDetailResponse(
                 job.getId(),
@@ -85,7 +105,19 @@ public class SyncJobService {
                 latestLog.rowErrors(),
                 latestLog.message(),
                 emailSubject,
-                emailBody);
+                emailBody,
+                emailProcessingStatus,
+                emailAcknowledgementStatus,
+                emailAcknowledgedAt,
+                emailAcknowledgementError,
+                mailboxFolder,
+                messageUid,
+                permitImport != null ? permitImport.getStatus() : null,
+                permitImport != null ? permitImport.getNormalizedPermitId() : null,
+                permitImport != null ? permitImport.getTargetMasterId() : null,
+                permitImport != null ? permitImport.getTargetPermId() : null,
+                permitImport != null ? permitImport.getDetailCount() : null,
+                permitImport != null ? permitImport.getErrorMessage() : null);
     }
 
     @Transactional
@@ -98,6 +130,14 @@ public class SyncJobService {
 
         job.setStatus(SyncStatus.PENDING);
         syncJobRepository.save(job);
+
+        latest.setProcessingStatus(FileProcessingStatus.DOWNLOADED);
+        latest.setRowsSaved(null);
+        latest.setDatabaseSavedAt(null);
+        latest.setArchiveStatus(FileArchiveStatus.PENDING);
+        latest.setArchivedAt(null);
+        latest.setErrorMessage(null);
+        fileRecordRepository.save(latest);
 
         boolean priority = latest.getSourceType() == FileSourceType.EMAIL
                 && latest.getOriginalFileName() != null
@@ -154,6 +194,15 @@ public class SyncJobService {
                 record.getSourceType(),
                 record.getOriginalFileName(),
                 record.getStoredPath(),
+                record.getProcessingStatus(),
+                record.getRowsSaved(),
+                record.getDownloadedAt(),
+                record.getDatabaseSavedAt(),
+                record.getArchiveStatus(),
+                record.getArchivedAt(),
+                record.getErrorMessage(),
+                record.getFileSize(),
+                record.getChecksum(),
                 record.getCreatedAt(),
                 sender,
                 subject);

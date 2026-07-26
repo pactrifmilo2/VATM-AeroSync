@@ -54,6 +54,28 @@ class FormatValidatorStepTest {
     }
 
     @Test
+    void validate_acceptsBinaryDocxWithoutUtf8Check() throws Exception {
+        Path file = tempDir.resolve("permit.docx");
+        Files.write(file, new byte[] {'P', 'K', 3, 4, (byte) 0xFF});
+        ProcessingContext context = contextFor(file);
+
+        formatValidatorStep.validate(context);
+
+        assertThat(context.getFileType()).isEqualTo(FileType.DOCX);
+    }
+
+    @Test
+    void validate_acceptsBinaryLegacyDocWithoutUtf8Check() throws Exception {
+        Path file = tempDir.resolve("permit.doc");
+        Files.write(file, new byte[] {(byte) 0xD0, (byte) 0xCF, 0x11, (byte) 0xE0, (byte) 0xFF});
+        ProcessingContext context = contextFor(file);
+
+        formatValidatorStep.validate(context);
+
+        assertThat(context.getFileType()).isEqualTo(FileType.DOC);
+    }
+
+    @Test
     void validate_rejectsCsvMissingRequiredColumn() throws Exception {
         Path file = tempDir.resolve("bad.csv");
         Files.writeString(file, "callsign,from,to\nVN123,HAN,SGN");

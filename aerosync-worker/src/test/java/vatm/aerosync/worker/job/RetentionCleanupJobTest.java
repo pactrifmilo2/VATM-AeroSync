@@ -36,19 +36,40 @@ class RetentionCleanupJobTest {
     }
 
     @Test
-    void deleteOlderThan_removesExpiredFiles() throws Exception {
+    void deleteOlderThan_removesExpiredFilesRecursivelyAndEmptyDateFolders() throws Exception {
         Path processed = tempDir.resolve("processed");
-        Files.createDirectories(processed);
-        Path oldFile = processed.resolve("old.csv");
+        Path oldDay = processed.resolve("2025").resolve("01").resolve("01");
+        Files.createDirectories(oldDay);
+        Path oldFile = oldDay.resolve("old.csv");
         Files.writeString(oldFile, "x");
         Files.setLastModifiedTime(oldFile, FileTime.from(Instant.now().minus(70, ChronoUnit.DAYS)));
 
-        Path recentFile = processed.resolve("recent.csv");
+        Path recentDay = processed.resolve("2026").resolve("07").resolve("18");
+        Files.createDirectories(recentDay);
+        Path recentFile = recentDay.resolve("recent.csv");
         Files.writeString(recentFile, "y");
 
         job.deleteOlderThan(processed, 60);
 
         assertThat(Files.exists(oldFile)).isFalse();
+        assertThat(Files.exists(oldDay)).isFalse();
+        assertThat(Files.exists(processed.resolve("2025"))).isFalse();
         assertThat(Files.exists(recentFile)).isTrue();
+        assertThat(Files.exists(recentDay)).isTrue();
+        assertThat(Files.exists(processed)).isTrue();
+    }
+
+    @Test
+    void deleteOlderThan_stillSupportsLegacyFilesAtArchiveRoot() throws Exception {
+        Path error = tempDir.resolve("error");
+        Files.createDirectories(error);
+        Path oldFile = error.resolve("legacy.csv");
+        Files.writeString(oldFile, "x");
+        Files.setLastModifiedTime(oldFile, FileTime.from(Instant.now().minus(100, ChronoUnit.DAYS)));
+
+        job.deleteOlderThan(error, 90);
+
+        assertThat(Files.exists(oldFile)).isFalse();
+        assertThat(Files.exists(error)).isTrue();
     }
 }

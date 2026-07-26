@@ -34,17 +34,35 @@ import java.util.Map;
 public class ParserStep {
 
     private final ObjectMapper objectMapper;
+    private final DocxSchedulePermitParser docxSchedulePermitParser;
+    private final LegacyDocRevisionPermitParser legacyDocRevisionPermitParser;
 
-    public ParserStep(ObjectMapper objectMapper) {
+    public ParserStep(ObjectMapper objectMapper,
+                      DocxSchedulePermitParser docxSchedulePermitParser,
+                      LegacyDocRevisionPermitParser legacyDocRevisionPermitParser) {
         this.objectMapper = objectMapper;
+        this.docxSchedulePermitParser = docxSchedulePermitParser;
+        this.legacyDocRevisionPermitParser = legacyDocRevisionPermitParser;
     }
 
     public void parse(ProcessingContext context) {
+        if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOCX) {
+            context.setSchedulePermit(docxSchedulePermitParser.parse(
+                    context.getFilePath(), context.getOriginalFileName()));
+            return;
+        }
+        if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOC) {
+            context.setSchedulePermit(legacyDocRevisionPermitParser.parse(
+                    context.getFilePath(), context.getOriginalFileName()));
+            return;
+        }
         List<FlightRow> rows = switch (context.getFileType()) {
             case CSV -> parseCsv(context.getFilePath(), context.getOriginalFileName());
             case JSON -> parseJson(context.getFilePath(), context.getOriginalFileName());
             case XML -> parseXml(context.getFilePath(), context.getOriginalFileName());
             case XLSX -> parseXlsx(context.getFilePath(), context.getOriginalFileName());
+            case DOC -> throw new IllegalStateException("DOC parser dispatch failed");
+            case DOCX -> throw new IllegalStateException("DOCX parser dispatch failed");
         };
         if (rows.isEmpty()) {
             throw new FormatValidationException(context.getOriginalFileName(), "No data rows found");

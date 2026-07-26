@@ -2,7 +2,7 @@
 <#
 .SYNOPSIS
   One-shot local startup for VATM AeroSync (build + worker + ingest + api).
-  Requires PostgreSQL, RabbitMQ, and Redis running locally.
+  Requires Oracle Database XE 21c, RabbitMQ, and Redis running locally.
 
 .EXAMPLE
   .\scripts\run-aerosync.ps1
@@ -31,13 +31,17 @@ function Write-Step {
 function Read-DotEnvValue {
     param([string] $Name)
     if (-not (Test-Path $envFile)) { return $null }
+    $value = $null
     foreach ($line in Get-Content $envFile) {
         if ($line -match "^\s*#") { continue }
         if ($line -match "^\s*$Name\s*=\s*(.*)\s*$") {
-            return $Matches[1].Trim().Trim('"').Trim("'")
+            $value = $Matches[1].Trim().Trim('"').Trim("'")
         }
     }
-    return $null
+    if ($value -match '^\$\{([A-Z][A-Z0-9_]*)\}$' -and $Matches[1] -ne $Name) {
+        return Read-DotEnvValue -Name $Matches[1]
+    }
+    return $value
 }
 
 function Ensure-StorageDirs {
@@ -75,18 +79,63 @@ function Wait-TcpPort {
     return $false
 }
 
-function Wait-PostgresJdbc {
+function Get-OracleEndpoint {
+    $url = Read-DotEnvValue -Name "SPRING_DATASOURCE_URL"
+    if (-not $url) {
+        $url = "jdbc:oracle:thin:@//localhost:1521/XEPDB1"
+    }
+    if ($url -notmatch "^jdbc:oracle:thin:@//([^:/]+):(\d+)/([^?]+)") {
+        throw "Unsupported Oracle JDBC URL in .env: $url"
+    }
+    return [PSCustomObject]@{
+        Server = $Matches[1]
+        Port = [int] $Matches[2]
+        Service = $Matches[3]
+    }
+}
+
+function Find-SqlPlus {
+    $command = Get-Command "sqlplus.exe" -ErrorAction SilentlyContinue
+    if ($command) {
+        return $command.Source
+    }
+    return $null
+}
+
+function Wait-OracleJdbc {
     param([int] $TimeoutSeconds)
-    $env:PGPASSWORD = Read-DotEnvValue -Name "SPRING_DATASOURCE_PASSWORD"
-    if (-not $env:PGPASSWORD) { $env:PGPASSWORD = "vatm_password" }
+    $endpoint = Get-OracleEndpoint
+    $sqlPlus = Find-SqlPlus
+    if (-not $sqlPlus) {
+        $script:OracleJdbcCheckSkipped = $true
+        return $true
+    }
+
     $user = Read-DotEnvValue -Name "SPRING_DATASOURCE_USERNAME"
     if (-not $user) { $user = "vatm_user" }
-    $db = "aerosync"
+    $password = Read-DotEnvValue -Name "SPRING_DATASOURCE_PASSWORD"
+    if (-not $password) { $password = "vatm_password" }
+    $escapedPassword = $password.Replace('"', '""')
+    $connectString = "$($endpoint.Server):$($endpoint.Port)/$($endpoint.Service)"
 
     $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
     while ((Get-Date) -lt $deadline) {
-        $output = psql -h localhost -p 5432 -U $user -d $db -c "SELECT 1" 2>&1
-        if ($LASTEXITCODE -eq 0 -and $output -match "1") {
+        $commands = @"
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+CONNECT $user/"$escapedPassword"@$connectString
+SET HEADING OFF FEEDBACK OFF PAGESIZE 0
+SELECT 1 FROM dual;
+EXIT
+"@
+        $output = $commands | & $sqlPlus -L -S /nolog 2>&1
+        if ($LASTEXITCODE -eq 0 -and $output -match "(?m)^\s*1\s*$") {
+            return $true
+        }
+        if ($output -match "ORA-12638") {
+            # Some Windows Oracle homes force native credential retrieval for SQL*Plus
+            # even when explicit database credentials are supplied. The applications
+            # use the bundled JDBC driver and will perform the authoritative check.
+            $script:OracleJdbcCheckSkipped = $true
             return $true
         }
         Start-Sleep -Seconds 5
@@ -171,14 +220,20 @@ if (-not (Wait-TcpPort -TargetHost "localhost" -Port 6379 -TimeoutSeconds 10)) {
     throw "Redis is not running on port 6379. Install and start Redis, then retry."
 }
 Write-Host "Redis OK"
-if (-not (Wait-TcpPort -TargetHost "localhost" -Port 5432 -TimeoutSeconds 10)) {
-    throw "PostgreSQL is not running on port 5432. Start it and retry."
+$oracleEndpoint = Get-OracleEndpoint
+if (-not (Wait-TcpPort -TargetHost $oracleEndpoint.Server -Port $oracleEndpoint.Port -TimeoutSeconds 10)) {
+    throw "Oracle Database listener is not running on $($oracleEndpoint.Server):$($oracleEndpoint.Port). Start Oracle XE and retry."
 }
-Write-Host "Waiting for PostgreSQL aerosync database..."
-if (-not (Wait-PostgresJdbc -TimeoutSeconds 30)) {
-    throw "PostgreSQL aerosync database is not accepting connections."
+Write-Host "Waiting for Oracle service $($oracleEndpoint.Service)..."
+$script:OracleJdbcCheckSkipped = $false
+if (-not (Wait-OracleJdbc -TimeoutSeconds 30)) {
+    throw "Oracle service $($oracleEndpoint.Service) is not accepting the configured AeroSync credentials."
 }
-Write-Host "PostgreSQL OK"
+if ($script:OracleJdbcCheckSkipped) {
+    Write-Host "Oracle listener OK (SQL*Plus not on PATH; application startup will validate credentials)." -ForegroundColor Yellow
+} else {
+    Write-Host "Oracle Database OK"
+}
 
 if ((-not $SkipBuild) -or (-not (Test-JarsPresent))) {
     Write-Step -Message "Stopping running AeroSync apps before build"

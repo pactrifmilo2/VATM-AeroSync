@@ -3,6 +3,7 @@ package vatm.aerosync.ingest.config;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -38,5 +39,21 @@ public class RabbitMqConfig {
         return BindingBuilder.bind(fileProcessingQueue)
                 .to(fileIngestedExchange)
                 .with(properties.getFileProcessingRoutingKey());
+    }
+
+    @Bean
+    FanoutExchange syncResultExchange(RabbitMqProperties properties) {
+        return new FanoutExchange(properties.getSyncResultExchange(), true, false);
+    }
+
+    @Bean
+    Queue emailAcknowledgementQueue(RabbitMqProperties properties) {
+        return QueueBuilder.durable(properties.getEmailAcknowledgementQueue()).build();
+    }
+
+    @Bean
+    Binding emailAcknowledgementBinding(Queue emailAcknowledgementQueue,
+                                        FanoutExchange syncResultExchange) {
+        return BindingBuilder.bind(emailAcknowledgementQueue).to(syncResultExchange);
     }
 }

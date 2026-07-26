@@ -8,6 +8,8 @@ public class RabbitMqProperties {
     private String fileIngestedExchange = "file.ingested";
     private String fileProcessingRoutingKey = "file.processing";
     private String fileProcessingQueue = "file.processing.queue";
+    private String syncResultExchange = "sync.result";
+    private String emailAcknowledgementQueue = "email.acknowledgement.queue";
 
     public String getFileIngestedExchange() {
         return fileIngestedExchange;
@@ -31,5 +33,21 @@ public class RabbitMqProperties {
 
     public void setFileProcessingQueue(String fileProcessingQueue) {
         this.fileProcessingQueue = fileProcessingQueue;
+    }
+
+    public String getSyncResultExchange() {
+        return syncResultExchange;
+    }
+
+    public void setSyncResultExchange(String syncResultExchange) {
+        this.syncResultExchange = syncResultExchange;
+    }
+
+    public String getEmailAcknowledgementQueue() {
+        return emailAcknowledgementQueue;
+    }
+
+    public void setEmailAcknowledgementQueue(String emailAcknowledgementQueue) {
+        this.emailAcknowledgementQueue = emailAcknowledgementQueue;
     }
 }
