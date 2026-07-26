@@ -71,8 +71,13 @@ public class DocxSchedulePermitParser {
         Matcher permitMatcher = require(
                 profile.permit().pattern(), document.rawContent(), fileName,
                 "Permit number not found for profile " + profile.id());
-        String permitNumber = requireGroup(
-                permitMatcher, profile.permit().numberGroup(), fileName, "permit number");
+        String permitNumber = profile.permit().numberTemplate() == null
+                || profile.permit().numberTemplate().isBlank()
+                ? requireGroup(
+                        permitMatcher, profile.permit().numberGroup(), fileName, "permit number")
+                : expandTemplate(
+                        profile.permit().numberTemplate(), permitMatcher,
+                        safeMap(profile.permit().zeroPadGroups()), fileName);
         String normalizedPermitId = expandTemplate(
                 profile.permit().normalizedTemplate(),
                 permitMatcher,
@@ -201,13 +206,20 @@ public class DocxSchedulePermitParser {
         if (route == null) {
             return List.of();
         }
+        List<RouteRow> routes = new ArrayList<>();
+        safeMap(route.staticAirways()).forEach((sector, airways) -> {
+            Matcher matcher = ROUTE_PATTERN.matcher(sector.toUpperCase(Locale.ROOT));
+            if (matcher.matches()) {
+                routes.add(new RouteRow(
+                        matcher.group(1), matcher.group(2), normalizeAirways(airways)));
+            }
+        });
         List<List<String>> table = findTable(
                 tables, List.of(), route.columns(), route.requiredColumns(), List.of(), List.of());
         if (table == null || table.size() < 2) {
-            return List.of();
+            return routes;
         }
         Map<String, Integer> columns = resolveColumns(table.getFirst(), route.columns());
-        List<RouteRow> routes = new ArrayList<>();
         for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
             List<String> row = table.get(rowIndex);
             Matcher matcher = ROUTE_PATTERN.matcher(value(row, columns, "sector").toUpperCase(Locale.ROOT));

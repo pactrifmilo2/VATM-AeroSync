@@ -22,6 +22,7 @@ record DocxPermitFormatProfile(
     record PermitIdentity(
             String pattern,
             String numberGroup,
+            String numberTemplate,
             String sourceTemplate,
             String normalizedTemplate,
             Map<String, Integer> zeroPadGroups
@@ -72,6 +73,7 @@ record DocxPermitFormatProfile(
     record RouteDefinition(
             Map<String, List<String>> columns,
             List<String> requiredColumns,
+            Map<String, String> staticAirways,
             boolean tableRequired,
             boolean allowEmpty,
             boolean fallbackToFirst

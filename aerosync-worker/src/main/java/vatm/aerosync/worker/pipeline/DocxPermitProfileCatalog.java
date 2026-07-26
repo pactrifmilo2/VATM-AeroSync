@@ -100,6 +100,14 @@ class DocxPermitProfileCatalog {
             profile.schedule().tableContextPatterns().forEach(
                     pattern -> validatePattern(profile, pattern, "schedule table context"));
         }
+        if (profile.route() != null && profile.route().staticAirways() != null) {
+            profile.route().staticAirways().forEach((sector, airways) -> {
+                if (blank(sector) || blank(airways)
+                        || !sector.matches("(?i)^[A-Z]{3,4}\\s*[-–—]\\s*[A-Z]{3,4}$")) {
+                    throw invalid(profile, "static airway mappings require ROUTE: AIRWAYS values");
+                }
+            });
+        }
         if (profile.aircraft() == null) {
             throw invalid(profile, "aircraft mapping is required");
         }
