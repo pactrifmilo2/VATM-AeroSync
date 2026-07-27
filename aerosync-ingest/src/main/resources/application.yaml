@@ -26,8 +26,20 @@ spring:
       port: 6379
 
   jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    properties:
+      hibernate:
+        boot:
+          allow_jdbc_metadata_access: false
+        hbm2ddl:
+          jdbc_metadata_extraction_strategy: individually
+      jakarta:
+        persistence:
+          database-product-name: Oracle
+          database-major-version: 21
+          database-minor-version: 3
 
 app:
   file-paths:
