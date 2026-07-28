@@ -27,7 +27,7 @@
                 ItemsSource="{Binding FileRecords}"
                 MaxHeight="140">
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Header="FILE NAME" Binding="{Binding OriginalFileName}" Width="*" />
+                    <controls:DataGridTextColumn Header="FILE NAME" Binding="{Binding StoredFileName}" Width="*" />
                     <controls:DataGridTextColumn Header="SOURCE" Binding="{Binding SourceType}" Width="80" />
                     <controls:DataGridTextColumn Header="SENDER" Binding="{Binding Sender}" Width="160" />
                     <controls:DataGridTemplateColumn Header="ACTIONS" Width="180">

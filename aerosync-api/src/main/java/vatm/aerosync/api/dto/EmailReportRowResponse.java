@@ -17,6 +17,7 @@ public record EmailReportRowResponse(
         int attachmentCount,
         Integer attachmentIndex,
         String attachmentName,
+        String storedFileName,
         EmailProcessingStatus processingStatus,
         EmailAcknowledgementStatus acknowledgementStatus,
         boolean ingestComplete,

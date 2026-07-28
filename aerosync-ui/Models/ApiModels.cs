@@ -16,6 +16,7 @@ public sealed class SyncJobSummaryResponse
     public long Id { get; set; }
     public string FileHash { get; set; } = "";
     public string OriginalFileName { get; set; } = "";
+    public string StoredFileName { get; set; } = "";
     public string Status { get; set; } = "";
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
@@ -63,6 +64,7 @@ public sealed class FileRecordResponse
     public long Id { get; set; }
     public string SourceType { get; set; } = "";
     public string OriginalFileName { get; set; } = "";
+    public string StoredFileName { get; set; } = "";
     public string StoredPath { get; set; } = "";
     public DateTime CreatedAt { get; set; }
     public string? Sender { get; set; }

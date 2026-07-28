@@ -5,12 +5,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import vatm.aerosync.common.entity.EmailMetadata;
+import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
+import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.PermitImportRepository;
 
 import java.time.LocalDateTime;
@@ -27,7 +30,9 @@ class EmailReportServiceTest {
 
     private final EmailMetadataRepository repository = mock(EmailMetadataRepository.class);
     private final PermitImportRepository permitImportRepository = mock(PermitImportRepository.class);
-    private final EmailReportService service = new EmailReportService(repository, permitImportRepository);
+    private final FileRecordRepository fileRecordRepository = mock(FileRecordRepository.class);
+    private final EmailReportService service = new EmailReportService(
+            repository, permitImportRepository, fileRecordRepository);
 
     @Test
     void search_mapsRowsWithoutEmailBodyAndUsesPaginationMetadata() {
@@ -66,14 +71,22 @@ class EmailReportServiceTest {
         when(syncJob.getId()).thenReturn(44L);
         when(syncJob.getStatus()).thenReturn(SyncStatus.FAILED);
         metadata.setSyncJob(syncJob);
+        FileRecord fileRecord = new FileRecord();
+        fileRecord.setSyncJob(syncJob);
+        fileRecord.setSourceType(FileSourceType.EMAIL);
+        fileRecord.setOriginalFileName("permit.docx");
+        fileRecord.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit.docx");
         PermitImport permitImport = mock(PermitImport.class);
         when(permitImport.getNormalizedPermitId()).thenReturn("O/F 05199/S/CHK/2026");
         when(repository.findById(7L)).thenReturn(Optional.of(metadata));
         when(repository.findById(8L)).thenReturn(Optional.empty());
         when(permitImportRepository.findBySyncJobId(44L)).thenReturn(Optional.of(permitImport));
+        when(fileRecordRepository.findBySyncJobId(44L)).thenReturn(List.of(fileRecord));
 
         assertThat(service.get(7L).body()).isEqualTo("Failure details");
         assertThat(service.get(7L).permitNumber()).isEqualTo("O/F 05199/S/CHK/2026");
+        assertThat(service.get(7L).storedFileName())
+                .isEqualTo("operator_20260724_100000_email_permit.docx");
         assertThat(service.get(7L).acknowledgementError()).isEqualTo("Could not move message");
         assertThatThrownBy(() -> service.get(8L))
                 .isInstanceOf(java.util.NoSuchElementException.class)

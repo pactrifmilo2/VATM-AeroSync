@@ -20,6 +20,7 @@ public record EmailReportDetailResponse(
         int attachmentCount,
         Integer attachmentIndex,
         String attachmentName,
+        String storedFileName,
         String body,
         EmailProcessingStatus processingStatus,
         EmailAcknowledgementStatus acknowledgementStatus,

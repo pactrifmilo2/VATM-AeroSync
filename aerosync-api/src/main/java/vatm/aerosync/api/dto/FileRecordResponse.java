@@ -10,6 +10,7 @@ public record FileRecordResponse(
         Long id,
         FileSourceType sourceType,
         String originalFileName,
+        String storedFileName,
         String storedPath,
         FileProcessingStatus processingStatus,
         Integer rowsSaved,

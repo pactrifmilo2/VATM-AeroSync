@@ -8,6 +8,7 @@ public record SyncJobSummaryResponse(
         Long id,
         String fileHash,
         String originalFileName,
+        String storedFileName,
         SyncStatus status,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,

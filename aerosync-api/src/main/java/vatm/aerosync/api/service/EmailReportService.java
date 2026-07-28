@@ -13,16 +13,19 @@ import vatm.aerosync.api.dto.EmailReportRowResponse;
 import vatm.aerosync.api.dto.EmailReportSummaryResponse;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.common.entity.EmailMetadata;
+import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.PermitImportRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -36,11 +39,14 @@ public class EmailReportService {
 
     private final EmailMetadataRepository emailMetadataRepository;
     private final PermitImportRepository permitImportRepository;
+    private final FileRecordRepository fileRecordRepository;
 
     public EmailReportService(EmailMetadataRepository emailMetadataRepository,
-                              PermitImportRepository permitImportRepository) {
+                              PermitImportRepository permitImportRepository,
+                              FileRecordRepository fileRecordRepository) {
         this.emailMetadataRepository = emailMetadataRepository;
         this.permitImportRepository = permitImportRepository;
+        this.fileRecordRepository = fileRecordRepository;
     }
 
     @Transactional(readOnly = true)
@@ -55,8 +61,9 @@ public class EmailReportService {
         Page<EmailMetadata> metadataPage = emailMetadataRepository
                 .findAll(toSpecification(filter), pageRequest);
         Map<Long, String> permitNumbers = permitNumbersFor(metadataPage.getContent());
+        Map<Long, String> storedFileNames = storedFileNamesFor(metadataPage.getContent());
         Page<EmailReportRowResponse> result = metadataPage
-                .map(metadata -> toRowResponse(metadata, permitNumbers));
+                .map(metadata -> toRowResponse(metadata, permitNumbers, storedFileNames));
         return PagedResponse.from(result);
     }
 
@@ -69,6 +76,11 @@ public class EmailReportService {
                 ? null
                 : permitImportRepository.findBySyncJobId(job.getId())
                         .map(PermitImport::getNormalizedPermitId)
+                        .orElse(null);
+        String storedFileName = job == null
+                ? null
+                : latestFileRecord(fileRecordRepository.findBySyncJobId(job.getId()))
+                        .map(StoredFileName::from)
                         .orElse(null);
         return new EmailReportDetailResponse(
                 metadata.getId(),
@@ -84,6 +96,7 @@ public class EmailReportService {
                 metadata.getAttachmentCount(),
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
+                storedFileName,
                 metadata.getBody(),
                 metadata.getProcessingStatus(),
                 metadata.getAcknowledgementStatus(),
@@ -153,7 +166,8 @@ public class EmailReportService {
     }
 
     private EmailReportRowResponse toRowResponse(EmailMetadata metadata,
-                                                 Map<Long, String> permitNumbers) {
+                                                 Map<Long, String> permitNumbers,
+                                                 Map<Long, String> storedFileNames) {
         SyncJob job = metadata.getSyncJob();
         Long syncJobId = job != null ? job.getId() : null;
         return new EmailReportRowResponse(
@@ -167,6 +181,7 @@ public class EmailReportService {
                 metadata.getAttachmentCount(),
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
+                syncJobId != null ? storedFileNames.get(syncJobId) : null,
                 metadata.getProcessingStatus(),
                 metadata.getAcknowledgementStatus(),
                 metadata.isIngestComplete(),
@@ -191,6 +206,46 @@ public class EmailReportService {
                         permitImport.getSyncJob().getId(),
                         permitImport.getNormalizedPermitId()));
         return permitNumbers;
+    }
+
+    private Map<Long, String> storedFileNamesFor(List<EmailMetadata> metadataRows) {
+        List<Long> syncJobIds = metadataRows.stream()
+                .map(EmailMetadata::getSyncJob)
+                .filter(java.util.Objects::nonNull)
+                .map(SyncJob::getId)
+                .distinct()
+                .toList();
+        if (syncJobIds.isEmpty()) {
+            return Map.of();
+        }
+
+        Map<Long, FileRecord> latestRecords = new java.util.HashMap<>();
+        for (FileRecord record : fileRecordRepository.findBySyncJobIdIn(syncJobIds)) {
+            Long syncJobId = record.getSyncJob().getId();
+            latestRecords.merge(syncJobId, record, this::newerRecord);
+        }
+        Map<Long, String> storedFileNames = new java.util.HashMap<>();
+        latestRecords.forEach((syncJobId, record) ->
+                storedFileNames.put(syncJobId, StoredFileName.from(record)));
+        return storedFileNames;
+    }
+
+    private java.util.Optional<FileRecord> latestFileRecord(List<FileRecord> records) {
+        return records.stream().max(this::compareRecords);
+    }
+
+    private FileRecord newerRecord(FileRecord first, FileRecord second) {
+        return compareRecords(first, second) >= 0 ? first : second;
+    }
+
+    private int compareRecords(FileRecord first, FileRecord second) {
+        Comparator<LocalDateTime> timestamps = Comparator.nullsFirst(Comparator.naturalOrder());
+        int timestampResult = timestamps.compare(first.getCreatedAt(), second.getCreatedAt());
+        if (timestampResult != 0) {
+            return timestampResult;
+        }
+        return Comparator.<Long>nullsFirst(Comparator.naturalOrder())
+                .compare(first.getId(), second.getId());
     }
 
     private void validateRange(LocalDateTime from, LocalDateTime to) {

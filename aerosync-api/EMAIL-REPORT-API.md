@@ -61,6 +61,7 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
       "attachmentCount": 1,
       "attachmentIndex": 0,
       "attachmentName": "permit.docx",
+      "storedFileName": "operator_20260724_091600_email_permit.docx",
       "processingStatus": "FAILED",
       "acknowledgementStatus": "MOVED_ERROR",
       "ingestComplete": true,
@@ -76,6 +77,10 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
   "hasPrevious": false
 }
 ```
+
+`attachmentName` is the original name from the email. `storedFileName` is the
+actual archived filename, including the sender and processing timestamp, or
+`null` when no file was stored.
 
 The list response intentionally excludes the email body and acknowledgement error.
 `permitNumber` contains the normalized permit identity from the associated permit

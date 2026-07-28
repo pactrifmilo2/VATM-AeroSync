@@ -10,12 +10,15 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 import vatm.aerosync.common.entity.EmailMetadata;
+import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
+import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
@@ -40,6 +43,9 @@ class EmailReportServiceJpaTest {
     @Autowired
     private PermitImportRepository permitImportRepository;
 
+    @Autowired
+    private FileRecordRepository fileRecordRepository;
+
     @Test
     void searchAppliesAllFiltersAndSortsNewestFirst() {
         LocalDateTime base = LocalDateTime.parse("2026-07-24T08:00:00");
@@ -55,6 +61,10 @@ class EmailReportServiceJpaTest {
                 EmailAcknowledgementStatus.MOVED_ERROR,
                 failedJob,
                 101L);
+        saveFileRecord(
+                failedJob,
+                "permit_update.docx",
+                "C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit_update.docx");
         savePermitImport(failedJob, "O/F 05199/S/CHK/2026");
         saveEmail(
                 "mail-wrong-job",
@@ -91,6 +101,8 @@ class EmailReportServiceJpaTest {
         assertThat(result.totalElements()).isEqualTo(1);
         assertThat(result.content()).extracting("id").containsExactly(expected.getId());
         assertThat(result.content().getFirst().permitNumber()).isEqualTo("O/F 05199/S/CHK/2026");
+        assertThat(result.content().getFirst().storedFileName())
+                .isEqualTo("operator_20260724_100000_email_permit_update.docx");
         assertThat(result.content().getFirst().jobStatus()).isEqualTo(SyncStatus.FAILED);
     }
 
@@ -213,6 +225,15 @@ class EmailReportServiceJpaTest {
         permitImport.setSemanticHash("c".repeat(64));
         permitImport.setSourceFileHash(syncJob.getFileHash());
         permitImportRepository.saveAndFlush(permitImport);
+    }
+
+    private void saveFileRecord(SyncJob syncJob, String originalFileName, String storedPath) {
+        FileRecord record = new FileRecord();
+        record.setSyncJob(syncJob);
+        record.setSourceType(FileSourceType.EMAIL);
+        record.setOriginalFileName(originalFileName);
+        record.setStoredPath(storedPath);
+        fileRecordRepository.saveAndFlush(record);
     }
 
     @SpringBootConfiguration

@@ -37,13 +37,17 @@ class SyncJobControllerTest {
     @Test
     void listJobs_returnsSummaries() throws Exception {
         SyncJobSummaryResponse summary = new SyncJobSummaryResponse(
-                1L, "abc123", "valid-flights.csv", SyncStatus.FAILED, LocalDateTime.now(), LocalDateTime.now(),
+                1L, "abc123", "valid-flights.csv",
+                "operator_20260728_091500_email_valid-flights.csv",
+                SyncStatus.FAILED, LocalDateTime.now(), LocalDateTime.now(),
                 null, null, null);
         when(syncJobService.listJobs(null)).thenReturn(List.of(summary));
 
         mockMvc.perform(get("/api/jobs"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].storedFileName")
+                        .value("operator_20260728_091500_email_valid-flights.csv"))
                 .andExpect(jsonPath("$[0].status").value("FAILED"));
     }
 

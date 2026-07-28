@@ -18,7 +18,9 @@ import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -63,33 +65,38 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             """;
 
     private final AtfmDatabaseProperties properties;
+    private final AtfmAirportCodeResolver airportCodeResolver;
 
-    public JdbcAtfmScheduleGateway(AtfmDatabaseProperties properties) {
+    public JdbcAtfmScheduleGateway(AtfmDatabaseProperties properties,
+                                   AtfmAirportCodeResolver airportCodeResolver) {
         this.properties = properties;
+        this.airportCodeResolver = airportCodeResolver;
     }
 
     @Override
     public Optional<AtfmPermitSnapshot> findExisting(SchedulePermit permit) {
-        try (Connection connection = openConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
-            statement.setString(1, permit.normalizedPermitId());
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (!resultSet.next()) {
-                    return Optional.empty();
-                }
-                long masterId = resultSet.getLong("ID");
-                long permId = resultSet.getLong("PERM_ID");
-                boolean masterMatches = masterMatches(resultSet, permit);
-                List<ExistingFlight> existingFlights = new ArrayList<>();
-                do {
-                    if (resultSet.getString("FLIGHTNBR") != null) {
-                        existingFlights.add(toExistingFlight(resultSet));
+        try (Connection connection = openConnection()) {
+            List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
+            try (PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
+                statement.setString(1, permit.normalizedPermitId());
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (!resultSet.next()) {
+                        return Optional.empty();
                     }
-                } while (resultSet.next());
-                return Optional.of(new AtfmPermitSnapshot(
-                        masterId,
-                        permId,
-                        masterMatches && flightsMatch(existingFlights, permit.flights())));
+                    long masterId = resultSet.getLong("ID");
+                    long permId = resultSet.getLong("PERM_ID");
+                    boolean masterMatches = masterMatches(resultSet, permit);
+                    List<ExistingFlight> existingFlights = new ArrayList<>();
+                    do {
+                        if (resultSet.getString("FLIGHTNBR") != null) {
+                            existingFlights.add(toExistingFlight(resultSet));
+                        }
+                    } while (resultSet.next());
+                    return Optional.of(new AtfmPermitSnapshot(
+                            masterId,
+                            permId,
+                            masterMatches && flightsMatch(existingFlights, resolvedFlights)));
+                }
             }
         } catch (SQLException exception) {
             throw databaseFailure("read existing permit", exception);
@@ -115,6 +122,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     private AtfmWriteResult insertWithinTransaction(Connection connection,
                                                     SchedulePermit permit) throws SQLException {
+        List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
         validateReferenceData(connection, permit);
         ensurePermitNumberIsAvailable(connection, permit.normalizedPermitId());
         long masterId;
@@ -145,7 +153,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
 
         try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
-            for (ScheduleFlight flight : permit.flights()) {
+            for (ScheduleFlight flight : resolvedFlights) {
                 bindDetail(statement, permId, flight);
                 statement.addBatch();
             }
@@ -156,7 +164,45 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 }
             }
         }
-        return new AtfmWriteResult(masterId, permId, permit.flights().size());
+        return new AtfmWriteResult(masterId, permId, resolvedFlights.size());
+    }
+
+    private List<ScheduleFlight> resolveAirportCodes(Connection connection,
+                                                     List<ScheduleFlight> flights) throws SQLException {
+        Map<String, String> resolvedCodes = new HashMap<>();
+        List<ScheduleFlight> resolvedFlights = new ArrayList<>(flights.size());
+        for (ScheduleFlight flight : flights) {
+            String from = resolveAirportCode(connection, resolvedCodes, flight.fromAirport());
+            String to = resolveAirportCode(connection, resolvedCodes, flight.toAirport());
+            resolvedFlights.add(new ScheduleFlight(
+                    flight.purposeId(),
+                    flight.craftId(),
+                    flight.mtow(),
+                    flight.flightNumber(),
+                    flight.registration(),
+                    flight.serviceDays(),
+                    from,
+                    to,
+                    flight.etd(),
+                    flight.eta(),
+                    flight.via(),
+                    flight.beginDate(),
+                    flight.endDate(),
+                    flight.remark()));
+        }
+        return resolvedFlights;
+    }
+
+    private String resolveAirportCode(Connection connection,
+                                      Map<String, String> resolvedCodes,
+                                      String sourceCode) throws SQLException {
+        String cached = resolvedCodes.get(sourceCode);
+        if (cached != null) {
+            return cached;
+        }
+        String resolved = airportCodeResolver.resolve(connection, sourceCode);
+        resolvedCodes.put(sourceCode, resolved);
+        return resolved;
     }
 
     private void validateReferenceData(Connection connection,

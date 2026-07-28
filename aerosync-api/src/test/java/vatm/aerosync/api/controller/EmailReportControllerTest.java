@@ -60,6 +60,7 @@ class EmailReportControllerTest {
                 1,
                 0,
                 "permit.docx",
+                "operator_20260724_091600_email_permit.docx",
                 EmailProcessingStatus.FAILED,
                 EmailAcknowledgementStatus.MOVED_ERROR,
                 true,
@@ -83,6 +84,8 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.content[0].id").value(102))
                 .andExpect(jsonPath("$.content[0].permitNumber").value("O/F 05199/S/CHK/2026"))
                 .andExpect(jsonPath("$.content[0].attachmentName").value("permit.docx"))
+                .andExpect(jsonPath("$.content[0].storedFileName")
+                        .value("operator_20260724_091600_email_permit.docx"))
                 .andExpect(jsonPath("$.content[0].processingStatus").value("FAILED"))
                 .andExpect(jsonPath("$.content[0].jobStatus").value("FAILED"))
                 .andExpect(jsonPath("$.page").value(1))
@@ -107,6 +110,7 @@ class EmailReportControllerTest {
                 LocalDateTime.parse("2026-07-24T09:15:00"),
                 0,
                 0,
+                null,
                 null,
                 "Email body",
                 EmailProcessingStatus.NO_ATTACHMENT,
