@@ -495,10 +495,17 @@ public class DocxSchedulePermitParser {
         if (compact.length() != 7) {
             throw invalid(fileName, "Day-of-service value must contain seven positions: " + raw);
         }
+        boolean[] activeDays = new boolean[7];
+        for (int index = 0; index < compact.length(); index++) {
+            char value = compact.charAt(index);
+            if (value >= '1' && value <= '7') {
+                activeDays[value - '1'] = true;
+            }
+        }
         StringBuilder result = new StringBuilder(7);
         for (int index = 0; index < 7; index++) {
             char expected = (char) ('1' + index);
-            result.append(compact.charAt(index) == expected ? expected : '0');
+            result.append(activeDays[index] ? expected : '0');
         }
         return result.toString();
     }
