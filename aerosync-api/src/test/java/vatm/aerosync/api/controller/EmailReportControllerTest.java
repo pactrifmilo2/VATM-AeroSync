@@ -61,6 +61,7 @@ class EmailReportControllerTest {
                 0,
                 "permit.docx",
                 "operator_20260724_091600_email_permit.docx",
+                "Unsupported Word permit format; no format profile matched",
                 EmailProcessingStatus.FAILED,
                 EmailAcknowledgementStatus.MOVED_ERROR,
                 true,
@@ -86,6 +87,8 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.content[0].attachmentName").value("permit.docx"))
                 .andExpect(jsonPath("$.content[0].storedFileName")
                         .value("operator_20260724_091600_email_permit.docx"))
+                .andExpect(jsonPath("$.content[0].errorMessage")
+                        .value("Unsupported Word permit format; no format profile matched"))
                 .andExpect(jsonPath("$.content[0].processingStatus").value("FAILED"))
                 .andExpect(jsonPath("$.content[0].jobStatus").value("FAILED"))
                 .andExpect(jsonPath("$.page").value(1))
@@ -110,6 +113,7 @@ class EmailReportControllerTest {
                 LocalDateTime.parse("2026-07-24T09:15:00"),
                 0,
                 0,
+                null,
                 null,
                 null,
                 "Email body",

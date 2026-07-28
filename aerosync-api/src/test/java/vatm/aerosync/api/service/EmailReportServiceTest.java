@@ -41,18 +41,34 @@ class EmailReportServiceTest {
                 "operator@vatm.vn",
                 "Permit report",
                 LocalDateTime.parse("2026-07-24T09:15:00"),
-                EmailProcessingStatus.SAVED);
+                EmailProcessingStatus.FAILED);
         metadata.setBody("large email body");
+        SyncJob syncJob = mock(SyncJob.class);
+        when(syncJob.getId()).thenReturn(44L);
+        when(syncJob.getStatus()).thenReturn(SyncStatus.FAILED);
+        metadata.setSyncJob(syncJob);
+        FileRecord fileRecord = new FileRecord();
+        fileRecord.setSyncJob(syncJob);
+        fileRecord.setSourceType(FileSourceType.EMAIL);
+        fileRecord.setOriginalFileName("permit.docx");
+        fileRecord.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_091500_email_permit.docx");
+        fileRecord.setErrorMessage("Unsupported Word permit format; no format profile matched");
         when(repository.findAll(
                 org.mockito.ArgumentMatchers.<Specification<EmailMetadata>>any(),
                 any(Pageable.class)))
                 .thenReturn(new PageImpl<>(List.of(metadata)));
+        when(permitImportRepository.findBySyncJobIdIn(any())).thenReturn(List.of());
+        when(fileRecordRepository.findBySyncJobIdIn(any())).thenReturn(List.of(fileRecord));
 
         var result = service.search(emptyFilter(), 0, 25);
 
         assertThat(result.content()).hasSize(1);
         assertThat(result.content().getFirst().messageId()).isEqualTo("mail-1");
-        assertThat(result.content().getFirst().processingStatus()).isEqualTo(EmailProcessingStatus.SAVED);
+        assertThat(result.content().getFirst().processingStatus()).isEqualTo(EmailProcessingStatus.FAILED);
+        assertThat(result.content().getFirst().storedFileName())
+                .isEqualTo("operator_20260724_091500_email_permit.docx");
+        assertThat(result.content().getFirst().errorMessage())
+                .isEqualTo("Unsupported Word permit format; no format profile matched");
         assertThat(result.totalElements()).isEqualTo(1);
         assertThat(result.page()).isZero();
     }
@@ -76,6 +92,7 @@ class EmailReportServiceTest {
         fileRecord.setSourceType(FileSourceType.EMAIL);
         fileRecord.setOriginalFileName("permit.docx");
         fileRecord.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit.docx");
+        fileRecord.setErrorMessage("Unsupported Word permit format; no format profile matched");
         PermitImport permitImport = mock(PermitImport.class);
         when(permitImport.getNormalizedPermitId()).thenReturn("O/F 05199/S/CHK/2026");
         when(repository.findById(7L)).thenReturn(Optional.of(metadata));
@@ -87,6 +104,8 @@ class EmailReportServiceTest {
         assertThat(service.get(7L).permitNumber()).isEqualTo("O/F 05199/S/CHK/2026");
         assertThat(service.get(7L).storedFileName())
                 .isEqualTo("operator_20260724_100000_email_permit.docx");
+        assertThat(service.get(7L).errorMessage())
+                .isEqualTo("Unsupported Word permit format; no format profile matched");
         assertThat(service.get(7L).acknowledgementError()).isEqualTo("Could not move message");
         assertThatThrownBy(() -> service.get(8L))
                 .isInstanceOf(java.util.NoSuchElementException.class)

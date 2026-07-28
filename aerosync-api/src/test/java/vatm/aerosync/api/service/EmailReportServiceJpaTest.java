@@ -103,6 +103,8 @@ class EmailReportServiceJpaTest {
         assertThat(result.content().getFirst().permitNumber()).isEqualTo("O/F 05199/S/CHK/2026");
         assertThat(result.content().getFirst().storedFileName())
                 .isEqualTo("operator_20260724_100000_email_permit_update.docx");
+        assertThat(result.content().getFirst().errorMessage())
+                .isEqualTo("Unsupported Word permit format; no format profile matched");
         assertThat(result.content().getFirst().jobStatus()).isEqualTo(SyncStatus.FAILED);
     }
 
@@ -233,6 +235,7 @@ class EmailReportServiceJpaTest {
         record.setSourceType(FileSourceType.EMAIL);
         record.setOriginalFileName(originalFileName);
         record.setStoredPath(storedPath);
+        record.setErrorMessage("Unsupported Word permit format; no format profile matched");
         fileRecordRepository.saveAndFlush(record);
     }
 

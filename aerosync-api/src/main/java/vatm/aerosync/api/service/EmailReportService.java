@@ -61,9 +61,9 @@ public class EmailReportService {
         Page<EmailMetadata> metadataPage = emailMetadataRepository
                 .findAll(toSpecification(filter), pageRequest);
         Map<Long, String> permitNumbers = permitNumbersFor(metadataPage.getContent());
-        Map<Long, String> storedFileNames = storedFileNamesFor(metadataPage.getContent());
+        Map<Long, FileRecord> latestFileRecords = latestFileRecordsFor(metadataPage.getContent());
         Page<EmailReportRowResponse> result = metadataPage
-                .map(metadata -> toRowResponse(metadata, permitNumbers, storedFileNames));
+                .map(metadata -> toRowResponse(metadata, permitNumbers, latestFileRecords));
         return PagedResponse.from(result);
     }
 
@@ -77,11 +77,9 @@ public class EmailReportService {
                 : permitImportRepository.findBySyncJobId(job.getId())
                         .map(PermitImport::getNormalizedPermitId)
                         .orElse(null);
-        String storedFileName = job == null
-                ? null
-                : latestFileRecord(fileRecordRepository.findBySyncJobId(job.getId()))
-                        .map(StoredFileName::from)
-                        .orElse(null);
+        java.util.Optional<FileRecord> latestFileRecord = job == null
+                ? java.util.Optional.empty()
+                : latestFileRecord(fileRecordRepository.findBySyncJobId(job.getId()));
         return new EmailReportDetailResponse(
                 metadata.getId(),
                 job != null ? job.getId() : null,
@@ -96,7 +94,8 @@ public class EmailReportService {
                 metadata.getAttachmentCount(),
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
-                storedFileName,
+                latestFileRecord.map(StoredFileName::from).orElse(null),
+                latestFileRecord.map(FileRecord::getErrorMessage).orElse(null),
                 metadata.getBody(),
                 metadata.getProcessingStatus(),
                 metadata.getAcknowledgementStatus(),
@@ -167,9 +166,10 @@ public class EmailReportService {
 
     private EmailReportRowResponse toRowResponse(EmailMetadata metadata,
                                                  Map<Long, String> permitNumbers,
-                                                 Map<Long, String> storedFileNames) {
+                                                 Map<Long, FileRecord> latestFileRecords) {
         SyncJob job = metadata.getSyncJob();
         Long syncJobId = job != null ? job.getId() : null;
+        FileRecord latestFileRecord = syncJobId != null ? latestFileRecords.get(syncJobId) : null;
         return new EmailReportRowResponse(
                 metadata.getId(),
                 syncJobId,
@@ -181,7 +181,8 @@ public class EmailReportService {
                 metadata.getAttachmentCount(),
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
-                syncJobId != null ? storedFileNames.get(syncJobId) : null,
+                StoredFileName.from(latestFileRecord),
+                latestFileRecord != null ? latestFileRecord.getErrorMessage() : null,
                 metadata.getProcessingStatus(),
                 metadata.getAcknowledgementStatus(),
                 metadata.isIngestComplete(),
@@ -208,7 +209,7 @@ public class EmailReportService {
         return permitNumbers;
     }
 
-    private Map<Long, String> storedFileNamesFor(List<EmailMetadata> metadataRows) {
+    private Map<Long, FileRecord> latestFileRecordsFor(List<EmailMetadata> metadataRows) {
         List<Long> syncJobIds = metadataRows.stream()
                 .map(EmailMetadata::getSyncJob)
                 .filter(java.util.Objects::nonNull)
@@ -224,10 +225,7 @@ public class EmailReportService {
             Long syncJobId = record.getSyncJob().getId();
             latestRecords.merge(syncJobId, record, this::newerRecord);
         }
-        Map<Long, String> storedFileNames = new java.util.HashMap<>();
-        latestRecords.forEach((syncJobId, record) ->
-                storedFileNames.put(syncJobId, StoredFileName.from(record)));
-        return storedFileNames;
+        return latestRecords;
     }
 
     private java.util.Optional<FileRecord> latestFileRecord(List<FileRecord> records) {

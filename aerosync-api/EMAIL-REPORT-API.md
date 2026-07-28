@@ -62,6 +62,7 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
       "attachmentIndex": 0,
       "attachmentName": "permit.docx",
       "storedFileName": "operator_20260724_091600_email_permit.docx",
+      "errorMessage": "Unsupported Word permit format; no format profile matched",
       "processingStatus": "FAILED",
       "acknowledgementStatus": "MOVED_ERROR",
       "ingestComplete": true,
@@ -80,7 +81,9 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
 
 `attachmentName` is the original name from the email. `storedFileName` is the
 actual archived filename, including the sender and processing timestamp, or
-`null` when no file was stored.
+`null` when no file was stored. `errorMessage` contains the latest file-processing
+failure reason, such as an unsupported permit format, and is `null` when no
+processing error was recorded.
 
 The list response intentionally excludes the email body and acknowledgement error.
 `permitNumber` contains the normalized permit identity from the associated permit
@@ -93,7 +96,8 @@ GET /api/reports/emails/{id}
 ```
 
 The detail response adds the mailbox folder, UID values, email body, and
-acknowledgement error. `syncJobId`, `permitNumber`, and `jobStatus` are `null` for
+acknowledgement error. It also includes the same `errorMessage` field as the list.
+`syncJobId`, `permitNumber`, and `jobStatus` are `null` for
 records which did not create a processing job, such as blocked or unsupported
 emails. Records with a processing job still have a `null` `permitNumber` until a
 permit has been parsed and its import record created.
