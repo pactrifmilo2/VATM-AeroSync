@@ -31,13 +31,17 @@ function Write-Step {
 function Read-DotEnvValue {
     param([string] $Name)
     if (-not (Test-Path $envFile)) { return $null }
+    $value = $null
     foreach ($line in Get-Content $envFile) {
         if ($line -match "^\s*#") { continue }
         if ($line -match "^\s*$Name\s*=\s*(.*)\s*$") {
-            return $Matches[1].Trim().Trim('"').Trim("'")
+            $value = $Matches[1].Trim().Trim('"').Trim("'")
         }
     }
-    return $null
+    if ($value -match '^\$\{([A-Z][A-Z0-9_]*)\}$' -and $Matches[1] -ne $Name) {
+        return Read-DotEnvValue -Name $Matches[1]
+    }
+    return $value
 }
 
 function Ensure-StorageDirs {
@@ -125,6 +129,13 @@ EXIT
 "@
         $output = $commands | & $sqlPlus -L -S /nolog 2>&1
         if ($LASTEXITCODE -eq 0 -and $output -match "(?m)^\s*1\s*$") {
+            return $true
+        }
+        if ($output -match "ORA-12638") {
+            # Some Windows Oracle homes force native credential retrieval for SQL*Plus
+            # even when explicit database credentials are supplied. The applications
+            # use the bundled JDBC driver and will perform the authoritative check.
+            $script:OracleJdbcCheckSkipped = $true
             return $true
         }
         Start-Sleep -Seconds 5

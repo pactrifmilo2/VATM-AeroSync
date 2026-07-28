@@ -5,9 +5,13 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import vatm.aerosync.common.entity.EmailMetadata;
+import vatm.aerosync.common.entity.PermitImport;
+import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
+import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.PermitImportRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,7 +26,8 @@ import static org.mockito.Mockito.when;
 class EmailReportServiceTest {
 
     private final EmailMetadataRepository repository = mock(EmailMetadataRepository.class);
-    private final EmailReportService service = new EmailReportService(repository);
+    private final PermitImportRepository permitImportRepository = mock(PermitImportRepository.class);
+    private final EmailReportService service = new EmailReportService(repository, permitImportRepository);
 
     @Test
     void search_mapsRowsWithoutEmailBodyAndUsesPaginationMetadata() {
@@ -57,10 +62,18 @@ class EmailReportServiceTest {
                 EmailProcessingStatus.FAILED);
         metadata.setBody("Failure details");
         metadata.setAcknowledgementError("Could not move message");
+        SyncJob syncJob = mock(SyncJob.class);
+        when(syncJob.getId()).thenReturn(44L);
+        when(syncJob.getStatus()).thenReturn(SyncStatus.FAILED);
+        metadata.setSyncJob(syncJob);
+        PermitImport permitImport = mock(PermitImport.class);
+        when(permitImport.getNormalizedPermitId()).thenReturn("O/F 05199/S/CHK/2026");
         when(repository.findById(7L)).thenReturn(Optional.of(metadata));
         when(repository.findById(8L)).thenReturn(Optional.empty());
+        when(permitImportRepository.findBySyncJobId(44L)).thenReturn(Optional.of(permitImport));
 
         assertThat(service.get(7L).body()).isEqualTo("Failure details");
+        assertThat(service.get(7L).permitNumber()).isEqualTo("O/F 05199/S/CHK/2026");
         assertThat(service.get(7L).acknowledgementError()).isEqualTo("Could not move message");
         assertThatThrownBy(() -> service.get(8L))
                 .isInstanceOf(java.util.NoSuchElementException.class)

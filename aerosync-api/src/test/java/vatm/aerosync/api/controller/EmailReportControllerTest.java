@@ -52,6 +52,7 @@ class EmailReportControllerTest {
         EmailReportRowResponse row = new EmailReportRowResponse(
                 102L,
                 481L,
+                "O/F 05199/S/CHK/2026",
                 "mail-102",
                 "operator@vatm.vn",
                 "Flight permit update",
@@ -80,6 +81,7 @@ class EmailReportControllerTest {
                         .param("size", "10"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].id").value(102))
+                .andExpect(jsonPath("$.content[0].permitNumber").value("O/F 05199/S/CHK/2026"))
                 .andExpect(jsonPath("$.content[0].attachmentName").value("permit.docx"))
                 .andExpect(jsonPath("$.content[0].processingStatus").value("FAILED"))
                 .andExpect(jsonPath("$.content[0].jobStatus").value("FAILED"))
@@ -94,6 +96,7 @@ class EmailReportControllerTest {
     void get_returnsFullEmailDetail() throws Exception {
         EmailReportDetailResponse detail = new EmailReportDetailResponse(
                 102L,
+                null,
                 null,
                 "mail-102",
                 "INBOX",

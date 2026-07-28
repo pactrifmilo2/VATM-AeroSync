@@ -13,11 +13,13 @@ import vatm.aerosync.api.dto.EmailReportRowResponse;
 import vatm.aerosync.api.dto.EmailReportSummaryResponse;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.common.entity.EmailMetadata;
+import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.PermitImportRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,9 +35,12 @@ public class EmailReportService {
     static final int MAX_PAGE_SIZE = 100;
 
     private final EmailMetadataRepository emailMetadataRepository;
+    private final PermitImportRepository permitImportRepository;
 
-    public EmailReportService(EmailMetadataRepository emailMetadataRepository) {
+    public EmailReportService(EmailMetadataRepository emailMetadataRepository,
+                              PermitImportRepository permitImportRepository) {
         this.emailMetadataRepository = emailMetadataRepository;
+        this.permitImportRepository = permitImportRepository;
     }
 
     @Transactional(readOnly = true)
@@ -47,9 +52,11 @@ public class EmailReportService {
                 page,
                 size,
                 Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id")));
-        Page<EmailReportRowResponse> result = emailMetadataRepository
-                .findAll(toSpecification(filter), pageRequest)
-                .map(this::toRowResponse);
+        Page<EmailMetadata> metadataPage = emailMetadataRepository
+                .findAll(toSpecification(filter), pageRequest);
+        Map<Long, String> permitNumbers = permitNumbersFor(metadataPage.getContent());
+        Page<EmailReportRowResponse> result = metadataPage
+                .map(metadata -> toRowResponse(metadata, permitNumbers));
         return PagedResponse.from(result);
     }
 
@@ -58,9 +65,15 @@ public class EmailReportService {
         EmailMetadata metadata = emailMetadataRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Email report record not found: " + id));
         SyncJob job = metadata.getSyncJob();
+        String permitNumber = job == null
+                ? null
+                : permitImportRepository.findBySyncJobId(job.getId())
+                        .map(PermitImport::getNormalizedPermitId)
+                        .orElse(null);
         return new EmailReportDetailResponse(
                 metadata.getId(),
                 job != null ? job.getId() : null,
+                permitNumber,
                 metadata.getMessageId(),
                 metadata.getMailboxFolder(),
                 metadata.getUidValidity(),
@@ -139,11 +152,14 @@ public class EmailReportService {
         return criteriaBuilder.like(criteriaBuilder.lower(path), pattern, '\\');
     }
 
-    private EmailReportRowResponse toRowResponse(EmailMetadata metadata) {
+    private EmailReportRowResponse toRowResponse(EmailMetadata metadata,
+                                                 Map<Long, String> permitNumbers) {
         SyncJob job = metadata.getSyncJob();
+        Long syncJobId = job != null ? job.getId() : null;
         return new EmailReportRowResponse(
                 metadata.getId(),
-                job != null ? job.getId() : null,
+                syncJobId,
+                syncJobId != null ? permitNumbers.get(syncJobId) : null,
                 metadata.getMessageId(),
                 metadata.getSender(),
                 metadata.getSubject(),
@@ -156,6 +172,25 @@ public class EmailReportService {
                 metadata.isIngestComplete(),
                 metadata.getAcknowledgedAt(),
                 job != null ? job.getStatus() : null);
+    }
+
+    private Map<Long, String> permitNumbersFor(List<EmailMetadata> metadataRows) {
+        List<Long> syncJobIds = metadataRows.stream()
+                .map(EmailMetadata::getSyncJob)
+                .filter(java.util.Objects::nonNull)
+                .map(SyncJob::getId)
+                .distinct()
+                .toList();
+        if (syncJobIds.isEmpty()) {
+            return Map.of();
+        }
+
+        Map<Long, String> permitNumbers = new java.util.HashMap<>();
+        permitImportRepository.findBySyncJobIdIn(syncJobIds)
+                .forEach(permitImport -> permitNumbers.put(
+                        permitImport.getSyncJob().getId(),
+                        permitImport.getNormalizedPermitId()));
+        return permitNumbers;
     }
 
     private void validateRange(LocalDateTime from, LocalDateTime to) {

@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.ContextConfiguration;
 import vatm.aerosync.common.entity.EmailMetadata;
+import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
+import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
 import java.time.LocalDateTime;
@@ -35,6 +37,9 @@ class EmailReportServiceJpaTest {
     @Autowired
     private SyncJobRepository syncJobRepository;
 
+    @Autowired
+    private PermitImportRepository permitImportRepository;
+
     @Test
     void searchAppliesAllFiltersAndSortsNewestFirst() {
         LocalDateTime base = LocalDateTime.parse("2026-07-24T08:00:00");
@@ -50,6 +55,7 @@ class EmailReportServiceJpaTest {
                 EmailAcknowledgementStatus.MOVED_ERROR,
                 failedJob,
                 101L);
+        savePermitImport(failedJob, "O/F 05199/S/CHK/2026");
         saveEmail(
                 "mail-wrong-job",
                 "operator@vatm.vn",
@@ -84,6 +90,7 @@ class EmailReportServiceJpaTest {
 
         assertThat(result.totalElements()).isEqualTo(1);
         assertThat(result.content()).extracting("id").containsExactly(expected.getId());
+        assertThat(result.content().getFirst().permitNumber()).isEqualTo("O/F 05199/S/CHK/2026");
         assertThat(result.content().getFirst().jobStatus()).isEqualTo(SyncStatus.FAILED);
     }
 
@@ -197,6 +204,15 @@ class EmailReportServiceJpaTest {
         metadata.setAcknowledgementStatus(acknowledgementStatus);
         metadata.setSyncJob(syncJob);
         return emailMetadataRepository.saveAndFlush(metadata);
+    }
+
+    private void savePermitImport(SyncJob syncJob, String normalizedPermitId) {
+        PermitImport permitImport = new PermitImport();
+        permitImport.setSyncJob(syncJob);
+        permitImport.setNormalizedPermitId(normalizedPermitId);
+        permitImport.setSemanticHash("c".repeat(64));
+        permitImport.setSourceFileHash(syncJob.getFileHash());
+        permitImportRepository.saveAndFlush(permitImport);
     }
 
     @SpringBootConfiguration

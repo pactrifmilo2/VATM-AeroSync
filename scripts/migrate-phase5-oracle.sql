@@ -31,7 +31,7 @@ BEGIN
             )
         ]';
         EXECUTE IMMEDIATE
-            'CREATE INDEX ix_permit_imports_permit_status ' ||
+            'CREATE INDEX ix_permit_import_status ' ||
             'ON permit_imports(normalized_permit_id, status)';
     END IF;
 END;

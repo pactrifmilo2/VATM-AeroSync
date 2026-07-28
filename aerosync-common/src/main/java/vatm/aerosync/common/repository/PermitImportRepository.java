@@ -12,6 +12,8 @@ public interface PermitImportRepository extends JpaRepository<PermitImport, Long
 
     Optional<PermitImport> findBySyncJobId(Long syncJobId);
 
+    List<PermitImport> findBySyncJobIdIn(Collection<Long> syncJobIds);
+
     Optional<PermitImport> findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
             String normalizedPermitId,
             Collection<PermitImportStatus> statuses);

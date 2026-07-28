@@ -53,6 +53,42 @@ cd <oracle-home>\bin
 
 The script prompts for the `VATM_USER` password. Put that same password in `.env`.
 
+Initialize the AeroSync tables while connected as that schema user:
+
+```powershell
+.\sqlplus.exe vatm_user@//localhost:1521/XEPDB1 `
+  @D:\path\to\VATM-AeroSync\scripts\init-aerosync-oracle.sql
+```
+
+The initialization script creates only AeroSync-owned tables, indexes, constraints,
+and the `FLIGHT_DATA_SEQ` sequence. It can be run again safely: existing tables and
+indexes are kept. After initialization, set
+`SPRING_JPA_HIBERNATE_DDL_AUTO=validate` so application startup verifies the schema
+without modifying it.
+
+#### Use the existing ATFM schema
+
+To keep AeroSync's tracking data in the existing ATFM schema, connect as the ATFM
+schema user and run the same initialization script:
+
+```powershell
+sqlplus <ATFM_USER>@//172.29.187.90:1521/PDBORCL `
+  @D:\path\to\VATM-AeroSync\scripts\init-aerosync-oracle.sql
+```
+
+Then configure all three services with the ATFM schema as their primary datasource:
+
+```env
+SPRING_DATASOURCE_URL=jdbc:oracle:thin:@//172.29.187.90:1521/PDBORCL
+SPRING_DATASOURCE_USERNAME=<ATFM_USER>
+SPRING_DATASOURCE_PASSWORD=<PASSWORD>
+SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+```
+
+The script does not change `T_PERMMASTER_SC`, `T_PERMDETAIL_SC`, or other existing
+ATFM tables. The connected user needs `CREATE TABLE`, `CREATE SEQUENCE`, and
+tablespace quota for the first run.
+
 ### 4. Create environment config
 
 ```powershell
