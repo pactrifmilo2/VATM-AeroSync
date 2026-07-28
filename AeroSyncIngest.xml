@@ -1,0 +1,27 @@
+<service>
+  <id>AeroSyncIngest</id>
+  <name>VATM AeroSync Ingest</name>
+  <description>Downloads email attachments and publishes processing jobs</description>
+
+  <executable>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</executable>
+  <arguments>-NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "E:\projects\VATM-AeroSync\scripts\start-ingest.ps1"</arguments>
+  <workingdirectory>E:\projects\VATM-AeroSync</workingdirectory>
+
+  <env name="JAVA_HOME" value="D:\Java"/>
+  <env name="PATH" value="D:\Java\bin;%PATH%"/>
+
+  <depend>RabbitMQ</depend>
+  <depend>AeroSyncRedis</depend>
+  <depend>AeroSyncWorker</depend>
+
+  <startmode>Automatic</startmode>
+  <delayedAutoStart>true</delayedAutoStart>
+  <hidewindow>true</hidewindow>
+
+  <logpath>E:\AeroSyncServices\logs\ingest</logpath>
+  <log mode="roll"></log>
+
+  <onfailure action="restart" delay="15 sec"/>
+  <resetfailure>1 hour</resetfailure>
+  <stoptimeout>30 sec</stoptimeout>
+</service>

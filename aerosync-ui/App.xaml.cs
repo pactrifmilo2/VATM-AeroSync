@@ -16,7 +16,7 @@ public partial class App : Application
     {
         var apiClient = new AeroSyncApiClient(new HttpClient
         {
-            BaseAddress = new Uri("http://localhost:8080")
+            BaseAddress = new Uri("http://localhost:8081")
         });
 
         window = new MainWindow(apiClient);
