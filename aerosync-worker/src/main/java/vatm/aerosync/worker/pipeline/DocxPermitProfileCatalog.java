@@ -113,6 +113,10 @@ class DocxPermitProfileCatalog {
             profile.schedule().tableContextPatterns().forEach(
                     pattern -> validatePattern(profile, pattern, "schedule table context"));
         }
+        if (profile.schedule().preferredTableContextPatterns() != null) {
+            profile.schedule().preferredTableContextPatterns().forEach(
+                    pattern -> validatePattern(profile, pattern, "preferred schedule table context"));
+        }
         if (profile.route() != null && profile.route().staticAirways() != null) {
             profile.route().staticAirways().forEach((sector, airways) -> {
                 if (blank(sector) || blank(airways)

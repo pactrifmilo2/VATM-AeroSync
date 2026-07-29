@@ -95,14 +95,27 @@ public class DocxSchedulePermitParser {
         String billingAddress = extractText(profile.billingAddress(), document, fileName, "billing address");
 
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
-        List<List<String>> scheduleTable = findTable(
-                document.tables(),
-                document.tableContexts(),
-                schedule.columns(),
-                schedule.requiredColumns(),
-                schedule.excludeColumns(),
-                schedule.tableContextPatterns(),
-                schedule.lastMatchingTable());
+        List<List<String>> scheduleTable = null;
+        if (!safeList(schedule.preferredTableContextPatterns()).isEmpty()) {
+            scheduleTable = findTable(
+                    document.tables(),
+                    document.tableContexts(),
+                    schedule.columns(),
+                    schedule.requiredColumns(),
+                    schedule.excludeColumns(),
+                    schedule.preferredTableContextPatterns(),
+                    schedule.lastMatchingTable());
+        }
+        if (scheduleTable == null) {
+            scheduleTable = findTable(
+                    document.tables(),
+                    document.tableContexts(),
+                    schedule.columns(),
+                    schedule.requiredColumns(),
+                    schedule.excludeColumns(),
+                    schedule.tableContextPatterns(),
+                    schedule.lastMatchingTable());
+        }
         if (scheduleTable == null || scheduleTable.size() < 2) {
             throw invalid(fileName, "Schedule table not found for profile " + profile.id());
         }

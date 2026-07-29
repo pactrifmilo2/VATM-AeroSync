@@ -73,6 +73,7 @@ record DocxPermitFormatProfile(
             List<String> requiredColumns,
             List<String> excludeColumns,
             List<String> tableContextPatterns,
+            List<String> preferredTableContextPatterns,
             List<String> dateFormats,
             List<String> timeFormats,
             String locale,

@@ -76,6 +76,10 @@ schedule:
     - toAirport
   excludeColumns: []
   tableContextPatterns: []
+  # Prefer the replacement schedule when an issued permit contains both
+  # original and new tables; fall back to the first schedule for ordinary forms.
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\.\s*(?:NEW\s+SCHEDULE|LỊCH\s+BAY\s+MỚI)'
   dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
