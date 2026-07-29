@@ -1,0 +1,124 @@
+entries:
+  - aliases: ['74Y/77F/76Y', '74Y/74N/77F/76Y', '74Y/74N/77F/ 76Y']
+    craftId: 1019
+    mtow: 0
+  - aliases: ['77X/74Y/74N']
+    craftId: 4082
+    mtow: 0
+  - aliases: ['ET 77X']
+    craftId: 6606
+    mtow: 0
+  - aliases: ['321/320']
+    craftId: 4366
+    mtow: 0
+  - aliases: ['73U/738', '73U/ 738']
+    craftId: 249
+    mtow: 0
+  - aliases: ['F2TH/FA8X/GA7C']
+    craftId: 1929
+    mtow: 0
+  - aliases: ['32Q/321/32N/320/319/738/73G']
+    craftId: 6841
+    mtow: 0
+  - aliases: ['B777/B744', 'B773/B744/B777']
+    craftId: 24
+    mtow: 0
+  - aliases: ['B737-800']
+    craftId: 18
+    mtow: 0
+  - aliases: ['B747-400F']
+    craftId: 21
+    mtow: 0
+  - aliases: ['B747-8F']
+    craftId: 20
+    mtow: 0
+  - aliases: ['G650ER']
+    craftId: 1712
+    mtow: 0
+  - aliases: ['CL605']
+    craftId: 1697
+    mtow: 0
+  - aliases: ['BOMBARDIER CRJ-200', 'CRJ-200', 'CRJ200']
+    craftId: 1621
+    mtow: 0
+  - aliases: ['E35L']
+    craftId: 1878
+    mtow: 0
+  - aliases: ['33X', 'A33X']
+    craftId: 6864
+    mtow: 0
+  - aliases: ['GLF6']
+    craftId: 1712
+    mtow: 0
+  - aliases: ['32Q']
+    craftId: 6021
+    mtow: 0
+  - aliases: ['77F']
+    craftId: 24
+    mtow: 0
+  - aliases: ['77X', 'B77X']
+    craftId: 4082
+    mtow: 0
+  - aliases: ['321', 'A321']
+    craftId: 4366
+    mtow: 0
+  - aliases: ['320', 'A320']
+    craftId: 10
+    mtow: 0
+  - aliases: ['738', 'B738']
+    craftId: 249
+    mtow: 0
+  - aliases: ['FA8X']
+    craftId: 1929
+    mtow: 0
+  - aliases: ['F2TH']
+    craftId: 287
+    mtow: 0
+  - aliases: ['C208']
+    craftId: 36
+    mtow: 0
+  - aliases: ['737', 'B737']
+    craftId: 18
+    mtow: 0
+  - aliases: ['A32Q']
+    craftId: 6841
+    mtow: 0
+  - aliases: ['747', 'B747']
+    craftId: 20
+    mtow: 0
+  - aliases: ['B74F']
+    craftId: 21
+    mtow: 0
+  - aliases: ['B744']
+    craftId: 19
+    mtow: 0
+  - aliases: ['B773']
+    craftId: 248
+    mtow: 0
+  - aliases: ['B777']
+    craftId: 24
+    mtow: 0
+  - aliases: ['GL7T']
+    craftId: 3941
+    mtow: 0
+  - aliases: ['CL60']
+    craftId: 45
+    mtow: 0
+  - aliases: ['GLEX']
+    craftId: 231
+    mtow: 0
+  - aliases: ['G500']
+    craftId: 4601
+    mtow: 0
+  - aliases: ['GA7C']
+    craftId: 5061
+    mtow: 0
+  - aliases: ['GL5T']
+    craftId: 1318
+    mtow: 0
+  - aliases: ['A319']
+    craftId: 224
+    mtow: 0
+  - aliases: ['GLF4']
+    craftId: 215
+    mtow: 0

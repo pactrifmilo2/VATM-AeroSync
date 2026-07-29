@@ -47,6 +47,26 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void parse_mapsGenericLandingPermitAndReconcilesSingleDayWeekday() throws Exception {
+        Path file = createGenericLandingPermitDocument();
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02483/S/CHK/2026");
+        assertThat(permit.operatorId()).isEqualTo("VNB");
+        assertThat(permit.reviewOnly()).isFalse();
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("VNB593");
+            assertThat(flight.purposeId()).isEqualTo("FER");
+            assertThat(flight.craftId()).isEqualTo(36L);
+            assertThat(flight.serviceDays()).isEqualTo("0004000");
+            assertThat(flight.fromAirport()).isEqualTo("VVBM");
+            assertThat(flight.toAirport()).isEqualTo("VVCI");
+            assertThat(flight.via()).isEqualTo("W1/DAN/W2");
+        });
+    }
+
+    @Test
     void parse_mapsConfiguredRealPermitDocument() {
         String samplePath = System.getProperty("permit.sample.path");
         Assumptions.assumeTrue(samplePath != null && !samplePath.isBlank(),
@@ -112,6 +132,39 @@ class DocxSchedulePermitParserTest {
             aircraft.getRow(1).getCell(0).setText("76X");
             aircraft.getRow(2).getCell(0).setText("76X");
             aircraft.getRow(3).getCell(0).setText("32X");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private Path createGenericLandingPermitDocument() throws Exception {
+        Path file = tempDir.resolve("LD-2483.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun()
+                    .setText("LANDING PERMIT FOR NON-SCHEDULED FLIGHT");
+            document.createParagraph().createRun().setText("Hanoi, 01/07/2026");
+            document.createParagraph().createRun().setText("Permit No.: LD-2483/07/2026VN");
+            document.createParagraph().createRun().setText("3. Purpose of Flight(s): FERRY");
+
+            XWPFTable schedule = document.createTable(2, 9);
+            String[] headers = {"Flight number", "Effective from", "Effective to",
+                    "Days of services", "Departure Airport", "ETD", "Arrival Airport",
+                    "ETA", "Aircraft Type"};
+            String[] values = {"VN-B593", "02JUL26", "02JUL26", "-2-----",
+                    "BMV", "0000", "HPH", "0400", "C208"};
+            for (int index = 0; index < headers.length; index++) {
+                schedule.getRow(0).getCell(index).setText(headers[index]);
+                schedule.getRow(1).getCell(index).setText(values[index]);
+            }
+
+            XWPFTable route = document.createTable(2, 2);
+            route.getRow(0).getCell(0).setText("Sector");
+            route.getRow(0).getCell(1).setText("Airways");
+            route.getRow(1).getCell(0).setText("BMV-HPH");
+            route.getRow(1).getCell(1).setText("W1 - DAN - W2");
 
             try (OutputStream output = Files.newOutputStream(file)) {
                 document.write(output);

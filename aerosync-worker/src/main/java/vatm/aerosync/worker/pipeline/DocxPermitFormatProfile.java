@@ -13,6 +13,7 @@ record DocxPermitFormatProfile(
         TextField billingAddress,
         TextField reference,
         String referenceColumn,
+        PurposeDefinition purpose,
         MasterDefaults master,
         ScheduleDefinition schedule,
         RouteDefinition route,
@@ -33,7 +34,8 @@ record DocxPermitFormatProfile(
             String pattern,
             String group,
             List<String> formats,
-            String locale
+            String locale,
+            boolean fallbackToDocumentCreatedDate
     ) {
     }
 
@@ -56,6 +58,15 @@ record DocxPermitFormatProfile(
     ) {
     }
 
+    record PurposeDefinition(
+            String defaultId,
+            List<PatternValue> mappings
+    ) {
+    }
+
+    record PatternValue(String pattern, String value) {
+    }
+
     record ScheduleDefinition(
             Map<String, List<String>> columns,
             List<String> requiredColumns,
@@ -65,7 +76,9 @@ record DocxPermitFormatProfile(
             List<String> timeFormats,
             String locale,
             String purposeId,
-            boolean includeEta
+            boolean includeEta,
+            boolean lastMatchingTable,
+            boolean inferIataPrefix
     ) {
     }
 
@@ -74,7 +87,9 @@ record DocxPermitFormatProfile(
             List<String> requiredColumns,
             boolean tableRequired,
             boolean allowEmpty,
-            boolean fallbackToFirst
+            boolean fallbackToFirst,
+            boolean lastMatchingTable,
+            boolean filterSchedule
     ) {
     }
 
@@ -86,13 +101,15 @@ record DocxPermitFormatProfile(
             Map<String, List<String>> auxiliaryColumns,
             List<String> auxiliaryRequiredColumns,
             String auxiliaryTypeColumn,
-            String remarkPrefix
+            String remarkPrefix,
+            String defaultType,
+            boolean lastMatchingTable
     ) {
     }
 
     record AircraftMapping(List<String> aliases, long craftId, BigDecimal mtow) {
     }
 
-    record ValidationRules(boolean allowIataAirports) {
+    record ValidationRules(boolean allowIataAirports, boolean reviewOnly) {
     }
 }

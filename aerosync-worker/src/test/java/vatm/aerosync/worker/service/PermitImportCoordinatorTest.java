@@ -3,6 +3,7 @@ package vatm.aerosync.worker.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -33,7 +34,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -77,8 +80,9 @@ class PermitImportCoordinatorTest {
         when(permitImportRepository.findBySyncJobId(7L)).thenReturn(Optional.empty());
         when(permitImportRepository.save(any(PermitImport.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
-        when(redisTemplate.opsForValue()).thenReturn(valueOperations);
-        when(valueOperations.setIfAbsent(anyString(), eq("7"), any(Duration.class))).thenReturn(true);
+        lenient().when(redisTemplate.opsForValue()).thenReturn(valueOperations);
+        lenient().when(valueOperations.setIfAbsent(anyString(), eq("7"), any(Duration.class)))
+                .thenReturn(true);
         context = context();
     }
 
@@ -124,6 +128,22 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
+    void importPermit_holdsConfiguredRevisionForReviewWithoutCallingAtfm() {
+        context.setSchedulePermit(reviewOnlyPermit());
+
+        assertThatThrownBy(() -> coordinator.importPermit(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("PERMIT-REVISION-REVIEW");
+
+        ArgumentCaptor<PermitImport> saved = ArgumentCaptor.forClass(PermitImport.class);
+        verify(permitImportRepository, times(2)).save(saved.capture());
+        assertThat(saved.getAllValues().getLast().getStatus())
+                .isEqualTo(PermitImportStatus.REVISION_REVIEW);
+        verify(atfmScheduleGateway, never()).findExisting(any());
+        verify(atfmScheduleGateway, never()).insert(any());
+    }
+
+    @Test
     void importPermit_dryRunDoesNotConnectToTarget() {
         properties.setWriteEnabled(false);
         when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
@@ -165,5 +185,15 @@ class PermitImportCoordinatorTest {
                 "OF-5199/7/2026VN", "O/F 05199/S/CHK/2026", "5199",
                 "CHK", "O/F", "A", "S", LocalDate.of(2026, 7, 17),
                 "RMY", "G17.44", 72, "Cyberjaya", "SC", "raw", List.of(flight));
+    }
+
+    private SchedulePermit reviewOnlyPermit() {
+        SchedulePermit permit = permit();
+        return new SchedulePermit(
+                permit.sourcePermitNumber(), permit.normalizedPermitId(), permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
+                permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
+                permit.emptyAirwaysAllowed(), true, permit.rawContent(), permit.flights());
     }
 }

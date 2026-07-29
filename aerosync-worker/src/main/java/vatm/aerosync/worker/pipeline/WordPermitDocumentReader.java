@@ -17,7 +17,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -56,7 +59,13 @@ class WordPermitDocumentReader {
                     pendingContext.clear();
                 }
             });
-            return document(String.join("\n", paragraphs), tables, tableContexts);
+            Date created = document.getProperties()
+                    .getCoreProperties()
+                    .getCreated();
+            LocalDate authoredDate = created == null
+                    ? null
+                    : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate();
+            return document(String.join("\n", paragraphs), tables, tableContexts, authoredDate);
         }
     }
 
@@ -69,15 +78,22 @@ class WordPermitDocumentReader {
             while (iterator.hasNext()) {
                 tables.add(docTableRows(iterator.next()));
             }
+            Date created = document.getSummaryInformation() == null
+                    ? null
+                    : document.getSummaryInformation().getCreateDateTime();
             return document(
                     cleanMultiline(range.text()), tables,
-                    java.util.Collections.nCopies(tables.size(), ""));
+                    java.util.Collections.nCopies(tables.size(), ""),
+                    created == null
+                            ? null
+                            : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate());
         }
     }
 
     private WordPermitDocument document(String paragraphText,
                                         List<List<List<String>>> tables,
-                                        List<String> tableContexts) {
+                                        List<String> tableContexts,
+                                        LocalDate authoredDate) {
         String tableText = tables.stream()
                 .flatMap(List::stream)
                 .flatMap(List::stream)
@@ -86,7 +102,8 @@ class WordPermitDocumentReader {
         String rawContent = paragraphText.isBlank()
                 ? tableText
                 : tableText.isBlank() ? paragraphText : paragraphText + "\n" + tableText;
-        return new WordPermitDocument(paragraphText, tableText, rawContent, tables, tableContexts);
+        return new WordPermitDocument(
+                paragraphText, tableText, rawContent, tables, tableContexts, authoredDate);
     }
 
     private List<List<String>> docxTableRows(XWPFTable table) {

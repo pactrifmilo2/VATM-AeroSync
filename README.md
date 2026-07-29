@@ -173,7 +173,45 @@ Email envelopes are checked newest-first before attachment bodies are downloaded
 
 ### Scheduled permit Word import
 
-The worker recognizes CAAV scheduled overflight permits in `.docx` attachments and the legacy landing-permit revision format in `.doc` attachments. For a legacy revision such as `LD-06/A/S/2026VN/REV8`, it uses only the `2.2. New schedule(s)` table and stores the normalized permit identity as `LD-06/A/S/2026`. It validates the mapped ATFM values, then writes one master row to `T_PERMMASTER_SC` followed by all schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID` in a single target transaction.
+The worker recognizes CAAV landing and overflight permits in both `.doc` and `.docx`
+files. This includes issued and revised forms, English and Vietnamese headers,
+IATA/ICAO airport variants, IATA/ICAO flight-number prefixes, and the recurring
+aircraft and schedule layouts used by CAAV.
+
+You do not need to import files one at a time. Copy a whole folder into the incoming
+directory:
+
+```powershell
+Copy-Item -Path 'C:\source-permits\*.doc*' -Destination 'C:\vatm-storage\incoming'
+```
+
+The ingest service accepts up to 100 files per scan by default, so 50 documents are
+discovered in one cycle and then processed independently. Set
+`APP_INGEST_MAX_FILES_PER_CYCLE` if a larger batch is required. Each permit still
+uses its own target transaction: one master row in `T_PERMMASTER_SC`, followed by
+its schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID`.
+
+Format recognition is profile-based rather than automatic machine-learning
+training. The reusable profiles are stored under
+`aerosync-worker/src/main/resources/permit-formats`, while airport and aircraft
+normalization data is under `permit-reference`. New files with one of the learned
+layouts are handled automatically; a genuinely new layout requires another YAML
+profile or reference mapping.
+
+Revision forms are parsed and validated, but are marked `REVISION_REVIEW` instead
+of being written automatically. This prevents a revision from silently replacing
+an existing ATFM permit. For legacy revisions such as `LD-06/A/S/2026VN/REV8`, the
+worker uses only the new-schedule table and normalizes the permit identity as
+`LD-06/A/S/2026`.
+
+To regression-test a local directory of Word permits without importing anything:
+
+```powershell
+.\aerosync-worker\mvnw.cmd -f pom.xml test -pl aerosync-worker -am `
+  '-Dtest=WordPermitCorpusRegressionTest' `
+  '-Dsurefire.failIfNoSpecifiedTests=false' `
+  '-Dpermit.corpus.dir=C:\source-permits'
+```
 
 Configure the legacy target separately from AeroSync's own tracking database:
 
