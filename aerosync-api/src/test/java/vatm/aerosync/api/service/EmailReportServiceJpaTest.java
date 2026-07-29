@@ -8,6 +8,7 @@ import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.persistence.autoconfigure.EntityScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import vatm.aerosync.common.entity.EmailMetadata;
 import vatm.aerosync.common.entity.FileRecord;
@@ -27,6 +28,7 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
+@ActiveProfiles("test")
 @ContextConfiguration(classes = EmailReportServiceJpaTest.TestConfiguration.class)
 @Import(EmailReportService.class)
 class EmailReportServiceJpaTest {

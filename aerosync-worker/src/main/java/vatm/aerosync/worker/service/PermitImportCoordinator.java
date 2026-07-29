@@ -58,6 +58,13 @@ public class PermitImportCoordinator {
                 || attempt.getStatus() == PermitImportStatus.DUPLICATE) {
             return outcome(attempt);
         }
+        if (permit.reviewOnly()) {
+            markRevision(attempt, "Revision permit requires review before ATFM update");
+            throw new BusinessRuleException(
+                    "PERMIT-REVISION-REVIEW",
+                    "Permit %s is a revision and was not written automatically"
+                            .formatted(permit.normalizedPermitId()));
+        }
 
         String lockKey = LOCK_PREFIX + permit.normalizedPermitId();
         Boolean acquired = redisTemplate.opsForValue().setIfAbsent(

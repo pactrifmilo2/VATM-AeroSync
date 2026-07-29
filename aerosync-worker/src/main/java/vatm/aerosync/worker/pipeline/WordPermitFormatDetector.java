@@ -23,12 +23,19 @@ class WordPermitFormatDetector {
         if (matches.isEmpty()) {
             throw invalid(fileName, "Unsupported Word permit format; no format profile matched");
         }
-        if (matches.size() > 1) {
-            throw invalid(fileName, "Ambiguous Word permit format profiles: " + matches.stream()
+        int highestPriority = matches.stream()
+                .mapToInt(DocxPermitFormatProfile::priority)
+                .max()
+                .orElseThrow();
+        List<DocxPermitFormatProfile> preferredMatches = matches.stream()
+                .filter(profile -> profile.priority() == highestPriority)
+                .toList();
+        if (preferredMatches.size() > 1) {
+            throw invalid(fileName, "Ambiguous Word permit format profiles: " + preferredMatches.stream()
                     .map(DocxPermitFormatProfile::id)
                     .collect(Collectors.joining(", ")));
         }
-        return matches.getFirst();
+        return preferredMatches.getFirst();
     }
 
     private boolean supports(DocxPermitFormatProfile profile, WordPermitDocument document) {

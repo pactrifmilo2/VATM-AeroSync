@@ -2,6 +2,7 @@ id: caav-english-overflight-scheduled
 detectionPatterns:
   - '(?iu)SCHEDULES:\s*UTC\s*TIME'
   - '(?iu)CARGO\s+FLIGHT'
+  - '(?isu)^(?!.*NON[-\s]+SCHEDULED).*$'
 permit:
   pattern: '(?iu)\bOF[-\s]?(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
   numberGroup: number

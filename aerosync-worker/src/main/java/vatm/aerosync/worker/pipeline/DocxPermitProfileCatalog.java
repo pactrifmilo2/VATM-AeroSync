@@ -82,6 +82,19 @@ class DocxPermitProfileCatalog {
         validateTextField(profile, profile.operator(), "operator");
         validateTextField(profile, profile.billingAddress(), "billing address");
         validateTextField(profile, profile.reference(), "reference");
+        if (profile.purpose() != null) {
+            if (blank(profile.purpose().defaultId())) {
+                throw invalid(profile, "purpose default is required");
+            }
+            if (profile.purpose().mappings() != null) {
+                profile.purpose().mappings().forEach(mapping -> {
+                    if (blank(mapping.value())) {
+                        throw invalid(profile, "purpose mapping value is required");
+                    }
+                    validatePattern(profile, mapping.pattern(), "purpose mapping");
+                });
+            }
+        }
         if (profile.master() == null) {
             throw invalid(profile, "master defaults are required");
         }
@@ -112,10 +125,11 @@ class DocxPermitProfileCatalog {
             throw invalid(profile, "aircraft mapping is required");
         }
         boolean hasDefault = profile.aircraft().defaultCraftId() != null;
+        boolean hasDefaultType = !blank(profile.aircraft().defaultType());
         boolean hasMappings = profile.aircraft().mappings() != null
                 && !profile.aircraft().mappings().isEmpty();
-        if (!hasDefault && !hasMappings) {
-            throw invalid(profile, "aircraft must define a default or at least one alias mapping");
+        if (!hasDefault && !hasDefaultType && !hasMappings) {
+            throw invalid(profile, "aircraft must define a default type, default id or alias mapping");
         }
         if (hasMappings && profile.aircraft().mappings().stream()
                 .anyMatch(mapping -> mapping.aliases() == null || mapping.aliases().isEmpty())) {

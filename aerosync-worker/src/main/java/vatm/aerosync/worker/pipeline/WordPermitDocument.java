@@ -1,5 +1,6 @@
 package vatm.aerosync.worker.pipeline;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -11,8 +12,17 @@ record WordPermitDocument(
         String tableText,
         String rawContent,
         List<List<List<String>>> tables,
-        List<String> tableContexts
+        List<String> tableContexts,
+        LocalDate authoredDate
 ) {
+    WordPermitDocument(String paragraphText,
+                       String tableText,
+                       String rawContent,
+                       List<List<List<String>>> tables,
+                       List<String> tableContexts) {
+        this(paragraphText, tableText, rawContent, tables, tableContexts, null);
+    }
+
     WordPermitDocument {
         tables = List.copyOf(tables);
         tableContexts = List.copyOf(tableContexts);
