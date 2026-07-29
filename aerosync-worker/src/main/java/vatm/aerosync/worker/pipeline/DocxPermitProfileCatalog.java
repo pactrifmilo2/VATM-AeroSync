@@ -124,16 +124,13 @@ class DocxPermitProfileCatalog {
         if (profile.aircraft() == null) {
             throw invalid(profile, "aircraft mapping is required");
         }
-        boolean hasDefault = profile.aircraft().defaultCraftId() != null;
         boolean hasDefaultType = !blank(profile.aircraft().defaultType());
-        boolean hasMappings = profile.aircraft().mappings() != null
-                && !profile.aircraft().mappings().isEmpty();
-        if (!hasDefault && !hasDefaultType && !hasMappings) {
-            throw invalid(profile, "aircraft must define a default type, default id or alias mapping");
-        }
-        if (hasMappings && profile.aircraft().mappings().stream()
-                .anyMatch(mapping -> mapping.aliases() == null || mapping.aliases().isEmpty())) {
-            throw invalid(profile, "every aircraft mapping requires at least one alias");
+        boolean hasScheduleType = !blank(profile.aircraft().scheduleColumn());
+        boolean hasAuxiliaryType = !blank(profile.aircraft().auxiliaryTypeColumn())
+                && profile.aircraft().auxiliaryColumns() != null
+                && !profile.aircraft().auxiliaryColumns().isEmpty();
+        if (!hasDefaultType && !hasScheduleType && !hasAuxiliaryType) {
+            throw invalid(profile, "aircraft must define a source column or default type");
         }
     }
 

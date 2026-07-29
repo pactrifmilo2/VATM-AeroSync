@@ -95,7 +95,6 @@ route:
   filterSchedule: true
 aircraft:
   scheduleColumn: aircraftType
-  mappings: []
   auxiliaryColumns:
     aircraftType: [Aircraft Type, Loại tàu bay]
     registrationMarks: [Registration Mark, Registration Marks, Số đăng ký]

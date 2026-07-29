@@ -1,124 +1,122 @@
 entries:
+  # Composite values use the permit's established preferred type.
+  - aliases: ['A330-200F/B777-200F/B747-400F']
+    type: A33X
   - aliases: ['74Y/77F/76Y', '74Y/74N/77F/76Y', '74Y/74N/77F/ 76Y']
-    craftId: 1019
-    mtow: 0
+    type: B74Y
   - aliases: ['77X/74Y/74N']
-    craftId: 4082
-    mtow: 0
+    type: B77X
   - aliases: ['ET 77X']
-    craftId: 6606
-    mtow: 0
+    type: 77X
   - aliases: ['321/320']
-    craftId: 4366
-    mtow: 0
-  - aliases: ['73U/738', '73U/ 738']
-    craftId: 249
-    mtow: 0
+    type: A321
+  - aliases: ['73U/738', '73U/ 738', '738/7M8', '7M8/738']
+    type: B738
   - aliases: ['F2TH/FA8X/GA7C']
-    craftId: 1929
-    mtow: 0
+    type: FA8X
   - aliases: ['32Q/321/32N/320/319/738/73G']
-    craftId: 6841
-    mtow: 0
+    type: A32Q
   - aliases: ['B777/B744', 'B773/B744/B777']
-    craftId: 24
-    mtow: 0
+    type: B777
+  - aliases: ['320/32Q/32N/321', '32Q/32N/321', '320/321/32Q/32N']
+    type: A320
+  - aliases: ['321/32Q/32N']
+    type: 32Q
+  - aliases: ['76X/32X', '76X']
+    type: B76X
+  - aliases: ['BOEING 738 OR SUBS B733F / SUBS B734F']
+    type: B738
+
+  # Manufacturer and marketing names translated to ATFM codes.
   - aliases: ['B737-800']
-    craftId: 18
-    mtow: 0
-  - aliases: ['B747-400F']
-    craftId: 21
-    mtow: 0
+    type: B737
+  - aliases: ['B747-400F', 'BOEING 747-400F']
+    type: B74F
   - aliases: ['B747-8F']
-    craftId: 20
-    mtow: 0
+    type: B747
+  - aliases: ['B767-300F']
+    type: 767F
+  - aliases: ['B787-800']
+    type: B788
+  - aliases: ['B787-900']
+    type: B789
   - aliases: ['G650ER']
-    craftId: 1712
-    mtow: 0
+    type: GLF6
+  - aliases: ['GULFSTREAM G450']
+    type: GLF4
+  - aliases: ['GULFSTREAM GVII-G500']
+    type: G500
   - aliases: ['CL605']
-    craftId: 1697
-    mtow: 0
+    type: CL605
   - aliases: ['BOMBARDIER CRJ-200', 'CRJ-200', 'CRJ200']
-    craftId: 1621
-    mtow: 0
-  - aliases: ['E35L']
-    craftId: 1878
-    mtow: 0
-  - aliases: ['33X', 'A33X']
-    craftId: 6864
-    mtow: 0
-  - aliases: ['GLF6']
-    craftId: 1712
-    mtow: 0
-  - aliases: ['32Q']
-    craftId: 6021
-    mtow: 0
+    type: CRJ200
+  - aliases: ['A319-115/A319-153N']
+    type: A319
+
+  # Ambiguous short source codes redirected to a unique ATFM MA value.
+  - aliases: ['74Y']
+    type: B74Y
+  - aliases: ['734']
+    type: B734
   - aliases: ['77F']
-    craftId: 24
-    mtow: 0
+    type: B777
+  - aliases: ['77W']
+    type: B77W
+  - aliases: ['33X', 'A330-200F']
+    type: A33X
+
+  # Stable direct aliases retained for existing documents.
+  - aliases: ['E35L']
+    type: E35L
+  - aliases: ['GLF6']
+    type: GLF6
+  - aliases: ['32Q']
+    type: 32Q
   - aliases: ['77X', 'B77X']
-    craftId: 4082
-    mtow: 0
+    type: B77X
   - aliases: ['321', 'A321']
-    craftId: 4366
-    mtow: 0
+    type: A321
   - aliases: ['320', 'A320']
-    craftId: 10
-    mtow: 0
+    type: A320
   - aliases: ['738', 'B738']
-    craftId: 249
-    mtow: 0
+    type: B738
   - aliases: ['FA8X']
-    craftId: 1929
-    mtow: 0
+    type: FA8X
   - aliases: ['F2TH']
-    craftId: 287
-    mtow: 0
+    type: F2TH
   - aliases: ['C208']
-    craftId: 36
-    mtow: 0
+    type: C208
   - aliases: ['737', 'B737']
-    craftId: 18
-    mtow: 0
+    type: B737
   - aliases: ['A32Q']
-    craftId: 6841
-    mtow: 0
+    type: A32Q
   - aliases: ['747', 'B747']
-    craftId: 20
-    mtow: 0
+    type: B747
   - aliases: ['B74F']
-    craftId: 21
-    mtow: 0
+    type: B74F
   - aliases: ['B744']
-    craftId: 19
-    mtow: 0
+    type: B744
   - aliases: ['B773']
-    craftId: 248
-    mtow: 0
+    type: B773
   - aliases: ['B777']
-    craftId: 24
-    mtow: 0
+    type: B777
   - aliases: ['GL7T']
-    craftId: 3941
-    mtow: 0
+    type: GL7T
   - aliases: ['CL60']
-    craftId: 45
-    mtow: 0
+    type: CL60
   - aliases: ['GLEX']
-    craftId: 231
-    mtow: 0
+    type: GLEX
   - aliases: ['G500']
-    craftId: 4601
-    mtow: 0
+    type: G500
   - aliases: ['GA7C']
-    craftId: 5061
-    mtow: 0
+    type: GA7C
   - aliases: ['GL5T']
-    craftId: 1318
-    mtow: 0
+    type: GL5T
   - aliases: ['A319']
-    craftId: 224
-    mtow: 0
+    type: A319
   - aliases: ['GLF4']
-    craftId: 215
-    mtow: 0
+    type: GLF4
+  - aliases: ['767F']
+    type: 767F
+  - aliases: ['B76X']
+    type: B76X

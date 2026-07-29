@@ -2,17 +2,14 @@ package vatm.aerosync.worker.pipeline;
 
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
-import vatm.aerosync.common.exception.FormatValidationException;
 import vatm.aerosync.worker.model.SchedulePermit;
 
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LegacyDocRevisionPermitParserTest {
 
@@ -47,8 +44,9 @@ class LegacyDocRevisionPermitParserTest {
             assertThat(flight.etd()).isEqualTo("2215");
             assertThat(flight.eta()).isEqualTo("0030");
             assertThat(flight.via()).isEqualTo("M753");
-            assertThat(flight.craftId()).isEqualTo(4046L);
-            assertThat(flight.mtow()).isEqualByComparingTo(new BigDecimal("185"));
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("767F");
             assertThat(flight.remark()).isEqualTo("CAR 767F");
         });
         assertThat(permit.flights().get(1)).satisfies(flight -> {
@@ -61,10 +59,12 @@ class LegacyDocRevisionPermitParserTest {
     }
 
     @Test
-    void parseContent_rejectsUnknownAircraftMapping() {
-        assertThatThrownBy(() -> parser.parseContent(rawContent(), tables("UNKNOWN"), "revision.doc"))
-                .isInstanceOf(FormatValidationException.class)
-                .hasMessageContaining("Unsupported aircraft type");
+    void parseContent_preservesUnknownAircraftForDatabaseResolution() {
+        SchedulePermit permit = parser.parseContent(rawContent(), tables("UNKNOWN"), "revision.doc");
+
+        assertThat(permit.flights())
+                .extracting(flight -> flight.sourceAircraftType())
+                .containsOnly("UNKNOWN");
     }
 
     @Test

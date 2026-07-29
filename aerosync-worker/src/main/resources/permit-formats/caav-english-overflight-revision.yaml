@@ -71,9 +71,7 @@ route:
   allowEmpty: false
   fallbackToFirst: false
 aircraft:
-  defaultCraftId: 45
-  defaultMtow: 0
-  mappings: []
+  defaultType: CL60
   auxiliaryColumns: {}
   auxiliaryRequiredColumns: []
   remarkPrefix: CHT

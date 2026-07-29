@@ -77,9 +77,7 @@ route:
   allowEmpty: false
   fallbackToFirst: false
 aircraft:
-  defaultCraftId: 4366
-  defaultMtow: 0
-  mappings: []
+  defaultType: A321
   auxiliaryColumns: {}
   auxiliaryRequiredColumns: []
   remarkPrefix: PAX 321/32Q/32N

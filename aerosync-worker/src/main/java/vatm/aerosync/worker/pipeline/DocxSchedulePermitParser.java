@@ -7,7 +7,6 @@ import vatm.aerosync.worker.model.ScheduleFlight;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.text.Normalizer;
 import java.time.LocalDate;
@@ -36,7 +35,6 @@ public class DocxSchedulePermitParser {
     private final WordPermitDocumentReader documentReader;
     private final WordPermitFormatDetector formatDetector;
     private final AirportCodeCatalog airportCodeCatalog;
-    private final AircraftTypeCatalog aircraftTypeCatalog;
 
     /**
      * Retained for callers that constructed the former DOCX-only parser directly.
@@ -44,24 +42,21 @@ public class DocxSchedulePermitParser {
     public DocxSchedulePermitParser() {
         this(new WordPermitDocumentReader(),
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog()),
-                new AirportCodeCatalog(),
-                new AircraftTypeCatalog());
+                new AirportCodeCatalog());
     }
 
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector) {
-        this(documentReader, formatDetector, new AirportCodeCatalog(), new AircraftTypeCatalog());
+        this(documentReader, formatDetector, new AirportCodeCatalog());
     }
 
     @Autowired
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector,
-                                    AirportCodeCatalog airportCodeCatalog,
-                                    AircraftTypeCatalog aircraftTypeCatalog) {
+                                    AirportCodeCatalog airportCodeCatalog) {
         this.documentReader = documentReader;
         this.formatDetector = formatDetector;
         this.airportCodeCatalog = airportCodeCatalog;
-        this.aircraftTypeCatalog = aircraftTypeCatalog;
     }
 
     public SchedulePermit parse(Path file, String fileName) {
@@ -289,9 +284,12 @@ public class DocxSchedulePermitParser {
             String rawTo = value(row, columns, "toAirport").toUpperCase(Locale.ROOT);
             String from = normalizeAirport(rawFrom, normalizeAirportsToIcao);
             String to = normalizeAirport(rawTo, normalizeAirportsToIcao);
-            String aircraftType = aircraftType(profile.aircraft(), row, columns, auxiliaryAircraftTypes);
-            DocxPermitFormatProfile.AircraftMapping aircraft = resolveAircraft(
-                    profile.aircraft(), aircraftType, fileName);
+            AircraftSource aircraftSource = aircraftType(
+                    profile.aircraft(), row, columns, auxiliaryAircraftTypes);
+            String aircraftType = aircraftSource.value();
+            if (aircraftType == null || aircraftType.isBlank()) {
+                throw invalid(fileName, "Aircraft type is required");
+            }
             String purposeId = purposeId(
                     profile, rawContent, rawFrom, rawTo, value(row, columns, "remark"));
             RouteRow matchedRoute = routes.stream()
@@ -325,8 +323,8 @@ public class DocxSchedulePermitParser {
             }
             flights.add(new ScheduleFlight(
                     purposeId,
-                    aircraft.craftId(),
-                    aircraft.mtow(),
+                    0L,
+                    null,
                     flightNumber,
                     null,
                     serviceDays,
@@ -341,7 +339,11 @@ public class DocxSchedulePermitParser {
                     via,
                     beginDate,
                     endDate,
-                    remark(profile.aircraft(), purposeId, aircraftType)));
+                    remark(
+                            profile.aircraft(),
+                            purposeId,
+                            aircraftSource.defaulted() ? null : aircraftType),
+                    aircraftType));
         }
         return flights;
     }
@@ -415,10 +417,10 @@ public class DocxSchedulePermitParser {
         return types.isEmpty() ? null : String.join("/", types);
     }
 
-    private String aircraftType(DocxPermitFormatProfile.AircraftDefinition aircraft,
-                                List<String> row,
-                                Map<String, Integer> columns,
-                                String auxiliaryTypes) {
+    private AircraftSource aircraftType(DocxPermitFormatProfile.AircraftDefinition aircraft,
+                                        List<String> row,
+                                        Map<String, Integer> columns,
+                                        String auxiliaryTypes) {
         if (aircraft != null
                 && aircraft.scheduleColumn() != null
                 && !aircraft.scheduleColumn().isBlank()) {
@@ -436,47 +438,13 @@ public class DocxSchedulePermitParser {
                 }
             }
             if (!rowType.isBlank()) {
-                return rowType;
+                return new AircraftSource(rowType, false);
             }
         }
         if (auxiliaryTypes != null && !auxiliaryTypes.isBlank()) {
-            return auxiliaryTypes;
+            return new AircraftSource(auxiliaryTypes, false);
         }
-        return aircraft == null ? null : aircraft.defaultType();
-    }
-
-    private DocxPermitFormatProfile.AircraftMapping resolveAircraft(
-            DocxPermitFormatProfile.AircraftDefinition definition,
-            String aircraftType,
-            String fileName) {
-        if (definition == null) {
-            throw invalid(fileName, "Aircraft mapping definition is missing");
-        }
-        List<DocxPermitFormatProfile.AircraftMapping> mappings = safeList(definition.mappings());
-        if (aircraftType != null && !aircraftType.isBlank()) {
-            String key = canonical(aircraftType);
-            DocxPermitFormatProfile.AircraftMapping mapped = mappings.stream()
-                    .filter(mapping -> safeList(mapping.aliases()).stream()
-                            .map(this::canonical)
-                            .anyMatch(key::equals))
-                    .findFirst()
-                    .orElse(null);
-            if (mapped == null) {
-                mapped = aircraftTypeCatalog.resolve(aircraftType);
-            }
-            if (mapped != null) {
-                return mapped;
-            }
-            if (definition.defaultCraftId() == null) {
-                throw invalid(fileName, "Unsupported aircraft type: " + aircraftType);
-            }
-        }
-        if (definition.defaultCraftId() == null) {
-            throw invalid(fileName, "Aircraft type is required");
-        }
-        return new DocxPermitFormatProfile.AircraftMapping(
-                List.of(), definition.defaultCraftId(),
-                Objects.requireNonNullElse(definition.defaultMtow(), BigDecimal.ZERO));
+        return new AircraftSource(aircraft == null ? null : aircraft.defaultType(), true);
     }
 
     private String remark(DocxPermitFormatProfile.AircraftDefinition aircraft,
@@ -782,5 +750,8 @@ public class DocxSchedulePermitParser {
         boolean matches(String candidateFrom, String candidateTo) {
             return from.equals(candidateFrom) && to.equals(candidateTo);
         }
+    }
+
+    private record AircraftSource(String value, boolean defaulted) {
     }
 }

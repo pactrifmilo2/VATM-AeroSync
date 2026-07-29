@@ -17,6 +17,34 @@ public record ScheduleFlight(
         String via,
         LocalDate beginDate,
         LocalDate endDate,
-        String remark
+        String remark,
+        String sourceAircraftType
 ) {
+
+    public ScheduleFlight(
+            String purposeId,
+            long craftId,
+            BigDecimal mtow,
+            String flightNumber,
+            String registration,
+            String serviceDays,
+            String fromAirport,
+            String toAirport,
+            String etd,
+            String eta,
+            String via,
+            LocalDate beginDate,
+            LocalDate endDate,
+            String remark
+    ) {
+        this(purposeId, craftId, mtow, flightNumber, registration, serviceDays,
+                fromAirport, toAirport, etd, eta, via, beginDate, endDate, remark, null);
+    }
+
+    public ScheduleFlight withResolvedAircraft(long resolvedCraftId, BigDecimal resolvedMtow) {
+        return new ScheduleFlight(
+                purposeId, resolvedCraftId, resolvedMtow, flightNumber, registration,
+                serviceDays, fromAirport, toAirport, etd, eta, via, beginDate, endDate,
+                remark, sourceAircraftType);
+    }
 }

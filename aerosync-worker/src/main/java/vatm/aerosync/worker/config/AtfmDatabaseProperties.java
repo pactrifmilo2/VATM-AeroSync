@@ -10,6 +10,7 @@ public class AtfmDatabaseProperties {
     private String password = "";
     private boolean writeEnabled;
     private int permitLockSeconds = 600;
+    private int aircraftCacheTtlSeconds = 300;
 
     public String getUrl() {
         return url;
@@ -49,5 +50,13 @@ public class AtfmDatabaseProperties {
 
     public void setPermitLockSeconds(int permitLockSeconds) {
         this.permitLockSeconds = permitLockSeconds;
+    }
+
+    public int getAircraftCacheTtlSeconds() {
+        return aircraftCacheTtlSeconds;
+    }
+
+    public void setAircraftCacheTtlSeconds(int aircraftCacheTtlSeconds) {
+        this.aircraftCacheTtlSeconds = aircraftCacheTtlSeconds;
     }
 }

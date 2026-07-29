@@ -27,6 +27,14 @@ public record SchedulePermit(
         flights = List.copyOf(flights);
     }
 
+    public SchedulePermit withFlights(List<ScheduleFlight> resolvedFlights) {
+        return new SchedulePermit(
+                sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
+                version, season, permitDate, operatorId, reference, validHours, billingAddress,
+                flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
+                resolvedFlights);
+    }
+
     /**
      * Compatibility constructor for existing programmatic callers. Word profile
      * parsing always supplies the validation policy explicitly.

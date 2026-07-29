@@ -77,9 +77,7 @@ route:
   allowEmpty: false
   fallbackToFirst: true
 aircraft:
-  defaultCraftId: 1935
-  defaultMtow: 0
-  mappings: []
+  defaultType: B76X
   auxiliaryColumns:
     aircraftType: [Aircraft type]
     registrationMarks: [Registration marks]

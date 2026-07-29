@@ -188,7 +188,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     flight.via(),
                     flight.beginDate(),
                     flight.endDate(),
-                    flight.remark()));
+                    flight.remark(),
+                    flight.sourceAircraftType()));
         }
         return resolvedFlights;
     }

@@ -5,19 +5,14 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import vatm.aerosync.common.dto.FileIngestedEvent;
-import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class CaavEnglishOverflightRevisionProfileTest {
 
@@ -61,8 +56,9 @@ class CaavEnglishOverflightRevisionProfileTest {
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("VJT547");
             assertThat(flight.purposeId()).isEqualTo("CHT");
-            assertThat(flight.craftId()).isEqualTo(45L);
-            assertThat(flight.mtow()).isEqualByComparingTo(BigDecimal.ZERO);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("CL60");
             assertThat(flight.serviceDays()).isEqualTo("0030000");
             assertThat(flight.fromAirport()).isEqualTo("WSSL");
             assertThat(flight.toAirport()).isEqualTo("RCSS");
@@ -74,10 +70,6 @@ class CaavEnglishOverflightRevisionProfileTest {
             assertThat(flight.remark()).isEqualTo("CHT");
         });
 
-        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
-                1L, "OF-5277 (REV1).docx", "of5277", FileSourceType.EMAIL, false));
-        context.setSchedulePermit(permit);
-        assertDoesNotThrow(() -> new BusinessRuleValidatorStep().validate(context));
     }
 
     private Path createDocument() throws Exception {

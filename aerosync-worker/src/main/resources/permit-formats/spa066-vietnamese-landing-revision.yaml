@@ -79,10 +79,6 @@ route:
   fallbackToFirst: false
 aircraft:
   scheduleColumn: aircraftType
-  mappings:
-    - aliases: ['321', '32Q', '32N', '321/32Q/32N']
-      craftId: 6021
-      mtow: 89
   auxiliaryColumns: {}
   auxiliaryRequiredColumns: []
   remarkPrefix: PAX

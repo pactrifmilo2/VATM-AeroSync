@@ -41,7 +41,9 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.etd()).isEqualTo("1140");
             assertThat(flight.eta()).isNull();
             assertThat(flight.via()).isEqualTo("M765/M771");
-            assertThat(flight.craftId()).isEqualTo(1935L);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("76X/32X");
             assertThat(flight.remark()).isEqualTo("CAR 76X/32X");
         });
     }
@@ -58,7 +60,9 @@ class DocxSchedulePermitParserTest {
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("VNB593");
             assertThat(flight.purposeId()).isEqualTo("FER");
-            assertThat(flight.craftId()).isEqualTo(36L);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("C208");
             assertThat(flight.serviceDays()).isEqualTo("0004000");
             assertThat(flight.fromAirport()).isEqualTo("VVBM");
             assertThat(flight.toAirport()).isEqualTo("VVCI");

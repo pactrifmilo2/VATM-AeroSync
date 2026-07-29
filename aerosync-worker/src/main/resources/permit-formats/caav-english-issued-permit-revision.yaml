@@ -78,10 +78,6 @@ route:
   fallbackToFirst: false
 aircraft:
   scheduleColumn: aircraftType
-  mappings:
-    - aliases: ['738/7M8', '7M8/738', '738', 'B738']
-      craftId: 249
-      mtow: 0
   auxiliaryColumns: {}
   auxiliaryRequiredColumns: []
   remarkPrefix: PAX

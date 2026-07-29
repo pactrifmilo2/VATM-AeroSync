@@ -1,6 +1,5 @@
 package vatm.aerosync.worker.pipeline;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -97,10 +96,7 @@ record DocxPermitFormatProfile(
     }
 
     record AircraftDefinition(
-            Long defaultCraftId,
-            BigDecimal defaultMtow,
             String scheduleColumn,
-            List<AircraftMapping> mappings,
             Map<String, List<String>> auxiliaryColumns,
             List<String> auxiliaryRequiredColumns,
             String auxiliaryTypeColumn,
@@ -108,9 +104,6 @@ record DocxPermitFormatProfile(
             String defaultType,
             boolean lastMatchingTable
     ) {
-    }
-
-    record AircraftMapping(List<String> aliases, long craftId, BigDecimal mtow) {
     }
 
     record ValidationRules(boolean allowIataAirports, boolean reviewOnly) {

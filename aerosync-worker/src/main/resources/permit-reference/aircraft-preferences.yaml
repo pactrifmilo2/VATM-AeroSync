@@ -1,0 +1,20 @@
+# Approved selections retained from the former aircraft catalog.
+# These entries only disambiguate duplicate M_CRAFT_TYPE rows. Aircraft details
+# and MTOW are still read from the selected ATFM database record.
+entries:
+  - code: B77X
+    craftId: 4082
+  - code: 77X
+    craftId: 6606
+  - code: A32Q
+    craftId: 6841
+  - code: 32Q
+    craftId: 6021
+  - code: B74F
+    craftId: 21
+  - code: G500
+    craftId: 4601
+  - code: CL605
+    craftId: 1697
+  - code: GL7T
+    craftId: 3941
