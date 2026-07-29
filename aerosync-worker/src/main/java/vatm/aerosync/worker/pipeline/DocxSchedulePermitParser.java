@@ -127,6 +127,21 @@ public class DocxSchedulePermitParser {
         if (scheduleTable == null || scheduleTable.size() < 2) {
             throw invalid(fileName, "Schedule table not found for profile " + profile.id());
         }
+        List<List<String>> primaryScheduleTable = scheduleTable;
+        List<List<List<String>>> scheduleTables = new ArrayList<>();
+        scheduleTables.add(primaryScheduleTable);
+        if (!safeList(schedule.supplementalTableContextPatterns()).isEmpty()) {
+            findTables(
+                    document.tables(),
+                    document.tableContexts(),
+                    schedule.columns(),
+                    schedule.requiredColumns(),
+                    schedule.excludeColumns(),
+                    schedule.supplementalTableContextPatterns())
+                    .stream()
+                    .filter(table -> table != primaryScheduleTable)
+                    .forEach(scheduleTables::add);
+        }
 
         String operatorId = normalizedOperator(
                 extractText(profile.operator(), document, fileName, "carrier ICAO code"));
@@ -136,6 +151,7 @@ public class DocxSchedulePermitParser {
         if (operatorId == null) {
             operatorId = inferOperator(scheduleTable, schedule.columns(), fileName);
         }
+        String resolvedOperatorId = operatorId;
         String iataPrefix = schedule.inferIataPrefix()
                 ? extractIataPrefix(document.rawContent())
                 : null;
@@ -148,10 +164,12 @@ public class DocxSchedulePermitParser {
         }
 
         String auxiliaryAircraftTypes = auxiliaryAircraftTypes(profile.aircraft(), document.tables());
-        List<ScheduleFlight> flights = scheduleFlights(
-                profile, scheduleTable, routes, auxiliaryAircraftTypes,
-                document.rawContent(), operatorId, iataPrefix,
-                normalizeAirportsToIcao, fileName);
+        List<ScheduleFlight> flights = scheduleTables.stream()
+                .flatMap(table -> scheduleFlights(
+                        profile, table, routes, auxiliaryAircraftTypes,
+                        document.rawContent(), resolvedOperatorId, iataPrefix,
+                        normalizeAirportsToIcao, fileName).stream())
+                .toList();
         if (flights.isEmpty()) {
             throw invalid(fileName, "No schedule rows found for profile " + profile.id());
         }
@@ -181,7 +199,7 @@ public class DocxSchedulePermitParser {
                 master.version(),
                 master.season(),
                 permitDate,
-                operatorId.toUpperCase(Locale.ROOT),
+                resolvedOperatorId.toUpperCase(Locale.ROOT),
                 reference,
                 master.validHours(),
                 billingAddress,
@@ -499,7 +517,21 @@ public class DocxSchedulePermitParser {
                                          List<String> excludedColumns,
                                          List<String> contextPatterns,
                                          boolean lastMatchingTable) {
-        List<List<String>> match = null;
+        List<List<List<String>>> matches = findTables(
+                tables, tableContexts, aliases, requiredColumns, excludedColumns, contextPatterns);
+        if (matches.isEmpty()) {
+            return null;
+        }
+        return lastMatchingTable ? matches.getLast() : matches.getFirst();
+    }
+
+    private List<List<List<String>>> findTables(List<List<List<String>>> tables,
+                                                List<String> tableContexts,
+                                                Map<String, List<String>> aliases,
+                                                List<String> requiredColumns,
+                                                List<String> excludedColumns,
+                                                List<String> contextPatterns) {
+        List<List<List<String>>> matches = new ArrayList<>();
         for (int tableIndex = 0; tableIndex < tables.size(); tableIndex++) {
             List<List<String>> table = tables.get(tableIndex);
             if (table.isEmpty()) {
@@ -518,12 +550,9 @@ public class DocxSchedulePermitParser {
                     continue;
                 }
             }
-            if (!lastMatchingTable) {
-                return table;
-            }
-            match = table;
+            matches.add(table);
         }
-        return match;
+        return matches;
     }
 
     private Map<String, Integer> resolveColumns(List<String> header,
