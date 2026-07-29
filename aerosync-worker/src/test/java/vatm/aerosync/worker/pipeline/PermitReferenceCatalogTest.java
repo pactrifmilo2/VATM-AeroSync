@@ -60,7 +60,7 @@ class PermitReferenceCatalogTest {
     }
 
     @Test
-    void aircraftCatalog_resolvesH25B() {
-        assertThat(aircraft.resolve("H25B").craftId()).isEqualTo(417L);
+    void aircraftCatalog_keepsH25BAsDatabaseCandidate() {
+        assertThat(aircraft.candidates("H25B")).containsExactly("H25B");
     }
 }

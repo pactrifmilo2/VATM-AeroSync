@@ -29,6 +29,14 @@ public class DocxSchedulePermitParser {
     private static final Pattern TEMPLATE_TOKEN = Pattern.compile("\\{([A-Za-z][A-Za-z0-9]*)}");
     private static final Pattern ROUTE_PATTERN = Pattern.compile(
             "^([A-Z]{3,4})\\s*[-\\u2013\\u2014]\\s*([A-Z]{3,4})$");
+    private static final Pattern ICAO_LABEL_PATTERN = Pattern.compile(
+            "(?iu)(?:ICAO\\s*(?:CODE)?|MA\\s*ICAO)(?:\\s*\\([^)]*\\))?"
+                    + "\\s*:\\s*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
+    private static final Pattern IATA_LABEL_PATTERN = Pattern.compile(
+            "(?iu)(?:IATA\\s*(?:CODE)?|MA\\s*IATA)(?:\\s*\\([^)]*\\))?"
+                    + "\\s*:\\s*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
+    private static final Pattern ICAO_FLIGHT_PREFIX_PATTERN = Pattern.compile(
+            "^([A-Z]{3})(?=\\d)");
 
     private static final DateTimeFormatter ORACLE_TIME = DateTimeFormatter.ofPattern("HHmm");
 
@@ -123,6 +131,9 @@ public class DocxSchedulePermitParser {
         String operatorId = normalizedOperator(
                 extractText(profile.operator(), document, fileName, "carrier ICAO code"));
         if (operatorId == null) {
+            operatorId = extractLabeledCode(document.rawContent(), ICAO_LABEL_PATTERN);
+        }
+        if (operatorId == null) {
             operatorId = inferOperator(scheduleTable, schedule.columns(), fileName);
         }
         String iataPrefix = schedule.inferIataPrefix()
@@ -197,17 +208,25 @@ public class DocxSchedulePermitParser {
             String flightNumber = clean(value(scheduleTable.get(rowIndex), columns, "flightNumber"))
                     .replaceAll("[^A-Za-z0-9]", "")
                     .toUpperCase(Locale.ROOT);
-            if (flightNumber.length() >= 3) {
-                return flightNumber.substring(0, 3);
+            Matcher prefix = ICAO_FLIGHT_PREFIX_PATTERN.matcher(flightNumber);
+            if (prefix.find()) {
+                return prefix.group(1);
             }
         }
         throw invalid(fileName, "Carrier ICAO code could not be inferred from the schedule");
     }
 
     private String extractIataPrefix(String rawContent) {
-        Matcher matcher = Pattern.compile(
-                "(?iu)(?:IATA\\s*(?:CODE)?|MÃ\\s*IATA)\\s*:\\s*(?<value>[A-Z0-9]{2})(?![A-Z0-9])")
-                .matcher(rawContent);
+        return extractLabeledCode(rawContent, IATA_LABEL_PATTERN);
+    }
+
+    private String extractLabeledCode(String content, Pattern pattern) {
+        String folded = Normalizer.normalize(
+                        clean(content).replace('Đ', 'D').replace('đ', 'd'),
+                        Normalizer.Form.NFD)
+                .replaceAll("\\p{M}+", "")
+                .toUpperCase(Locale.ROOT);
+        Matcher matcher = pattern.matcher(folded);
         return matcher.find() ? matcher.group("value").toUpperCase(Locale.ROOT) : null;
     }
 

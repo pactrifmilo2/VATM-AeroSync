@@ -204,11 +204,11 @@ class DocxSchedulePermitParserTest {
         try (XWPFDocument document = new XWPFDocument()) {
             document.createParagraph().createRun().setText("HANOI, 03/7/2026");
             document.createParagraph().createRun().setText("LD-1471/7/2026VN");
-            document.createParagraph().createRun().setText("IATA Code: VN");
 
-            XWPFTable operator = document.createTable(1, 2);
+            XWPFTable operator = document.createTable(1, 3);
             operator.getRow(0).getCell(0).setText("Name: VIETNAM AIRLINES");
-            operator.getRow(0).getCell(1).setText("ICAO Code: HVN");
+            operator.getRow(0).getCell(1).setText("Mã IATA (nếu có): VN");
+            operator.getRow(0).getCell(2).setText("Mã ICAO (nếu có): HVN");
 
             document.createParagraph().createRun().setText("2.1. ORIGINAL SCHEDULE");
             scheduleTable(document, new String[][] {

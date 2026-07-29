@@ -19,7 +19,7 @@ permitDate:
   locale: en
 operator:
   source: TABLE
-  pattern: '(?iu)(?:ICAO\s*(?:CODE)?|MÃ\s*ICAO)\s*:\s*(?<value>[A-Z0-9]{3})'
+  pattern: '(?iu)(?:ICAO\s*(?:CODE)?|Mã\s*ICAO)(?:\s*\([^)]*\))?\s*:\s*(?<value>[A-Z0-9]{3})'
   group: value
   required: false
 billingAddress:
