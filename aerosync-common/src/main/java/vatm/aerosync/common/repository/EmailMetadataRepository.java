@@ -22,7 +22,9 @@ public interface EmailMetadataRepository
 
     boolean existsByMessageIdAndIngestCompleteTrue(String messageId);
 
-    Optional<EmailMetadata> findBySyncJobId(Long syncJobId);
+    Optional<EmailMetadata> findFirstBySyncJobIdOrderByIdAsc(Long syncJobId);
+
+    List<EmailMetadata> findBySyncJobIdIn(Collection<Long> syncJobIds);
 
     List<EmailMetadata> findByMailboxFolderAndUidValidityAndMessageUid(
             String mailboxFolder, Long uidValidity, Long messageUid);

@@ -1,6 +1,7 @@
 package vatm.aerosync.ingest.service;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.SyncStatus;
@@ -24,19 +25,25 @@ public class DeduplicationService {
     public boolean isDuplicate(String fileHash) {
         Optional<SyncJob> existing = syncJobRepository.findByFileHash(fileHash);
         if (existing.isPresent()) {
-            SyncStatus status = existing.get().getStatus();
-            return status == SyncStatus.SUCCESS || status == SyncStatus.SKIPPED;
+            return true;
         }
         return Boolean.TRUE.equals(redisTemplate.hasKey(REDIS_KEY_PREFIX + fileHash));
     }
 
-    public Optional<SyncJob> findRetryableJob(String fileHash) {
-        return syncJobRepository.findByFileHash(fileHash)
-                .filter(job -> job.getStatus() == SyncStatus.PENDING || job.getStatus() == SyncStatus.FAILED);
-    }
-
     public void registerHash(String fileHash) {
         redisTemplate.opsForValue().set(REDIS_KEY_PREFIX + fileHash, "1");
+    }
+
+    public JobCreationResult createPendingJob(String fileHash) {
+        SyncJob job = new SyncJob();
+        job.setFileHash(fileHash);
+        job.setStatus(SyncStatus.PENDING);
+        try {
+            return new JobCreationResult(syncJobRepository.saveAndFlush(job), true);
+        } catch (DataIntegrityViolationException exception) {
+            SyncJob existing = syncJobRepository.findByFileHash(fileHash).orElseThrow(() -> exception);
+            return new JobCreationResult(existing, false);
+        }
     }
 
     public SyncJob createSkippedDuplicateJob(String fileHash) {
@@ -45,7 +52,14 @@ public class DeduplicationService {
                     SyncJob job = new SyncJob();
                     job.setFileHash(fileHash);
                     job.setStatus(SyncStatus.SKIPPED);
-                    return syncJobRepository.save(job);
+                    try {
+                        return syncJobRepository.saveAndFlush(job);
+                    } catch (DataIntegrityViolationException exception) {
+                        return syncJobRepository.findByFileHash(fileHash).orElseThrow(() -> exception);
+                    }
                 });
+    }
+
+    public record JobCreationResult(SyncJob job, boolean created) {
     }
 }

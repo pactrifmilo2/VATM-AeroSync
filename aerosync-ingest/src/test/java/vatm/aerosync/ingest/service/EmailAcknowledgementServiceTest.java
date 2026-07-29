@@ -104,7 +104,7 @@ class EmailAcknowledgementServiceTest {
     @Test
     void onSyncResult_movesFailedMessageToErrorMailbox() {
         EmailMetadata metadata = metadata(0, 1, EmailProcessingStatus.PROCESSING);
-        when(emailMetadataRepository.findBySyncJobId(42L)).thenReturn(Optional.of(metadata));
+        when(emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(42L)).thenReturn(Optional.of(metadata));
         when(emailMetadataRepository.findByMailboxFolderAndUidValidityAndMessageUid(
                 "INBOX", 100L, 200L)).thenReturn(List.of(metadata));
         SyncResultEvent event = new SyncResultEvent(

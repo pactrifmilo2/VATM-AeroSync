@@ -10,9 +10,7 @@ import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.FileRecordRepository;
-import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.ingest.support.Hashing;
 import vatm.aerosync.ingest.support.PriorityDetector;
 
@@ -21,7 +19,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -32,20 +29,17 @@ public class FileSystemIngestService {
     private final FilePathProperties filePathProperties;
     private final DeduplicationService deduplicationService;
     private final IngestPublisher ingestPublisher;
-    private final SyncJobRepository syncJobRepository;
     private final FileRecordRepository fileRecordRepository;
     private final StringRedisTemplate redisTemplate;
 
     public FileSystemIngestService(FilePathProperties filePathProperties,
                                  DeduplicationService deduplicationService,
                                  IngestPublisher ingestPublisher,
-                                 SyncJobRepository syncJobRepository,
                                  FileRecordRepository fileRecordRepository,
                                  StringRedisTemplate redisTemplate) {
         this.filePathProperties = filePathProperties;
         this.deduplicationService = deduplicationService;
         this.ingestPublisher = ingestPublisher;
-        this.syncJobRepository = syncJobRepository;
         this.fileRecordRepository = fileRecordRepository;
         this.redisTemplate = redisTemplate;
     }
@@ -81,10 +75,7 @@ public class FileSystemIngestService {
     }
 
     private boolean shouldSkipSeenPath(Path file) {
-        if (!isPathAlreadySeen(file)) {
-            return false;
-        }
-        return deduplicationService.findRetryableJob(Hashing.sha256Hex(file)).isEmpty();
+        return isPathAlreadySeen(file);
     }
 
     private void markPathSeen(Path file) {
@@ -93,11 +84,6 @@ public class FileSystemIngestService {
 
     private boolean ingestFile(Path file) {
         String hash = Hashing.sha256Hex(file);
-        Optional<SyncJob> retryableJob = deduplicationService.findRetryableJob(hash);
-        if (retryableJob.isPresent()) {
-            republishExistingJob(retryableJob.get(), hash, file);
-            return true;
-        }
         if (deduplicationService.isDuplicate(hash)) {
             DebugSessionLog.log("D", "FileSystemIngestService.java:ingestFile", "duplicate hash skipped",
                     DebugSessionLog.map("file", file.getFileName().toString(), "hash", hash));
@@ -106,10 +92,12 @@ public class FileSystemIngestService {
             return false;
         }
 
-        SyncJob job = new SyncJob();
-        job.setFileHash(hash);
-        job.setStatus(SyncStatus.PENDING);
-        SyncJob saved = syncJobRepository.save(job);
+        DeduplicationService.JobCreationResult creation = deduplicationService.createPendingJob(hash);
+        SyncJob saved = creation.job();
+        if (!creation.created()) {
+            markPathSeen(file);
+            return false;
+        }
 
         FileRecord record = new FileRecord();
         record.setSyncJob(saved);
@@ -134,31 +122,6 @@ public class FileSystemIngestService {
         DebugSessionLog.log("B", "FileSystemIngestService.java:ingestFile", "published ingest event",
                 DebugSessionLog.map("syncJobId", saved.getId(), "path", record.getStoredPath()));
         return true;
-    }
-
-    private void republishExistingJob(SyncJob job, String hash, Path file) {
-        FileRecord record = fileRecordRepository.findBySyncJobId(job.getId()).stream()
-                .max(Comparator.comparing(FileRecord::getCreatedAt))
-                .orElseThrow(() -> new IllegalStateException("No file records for job: " + job.getId()));
-        record.setStoredPath(file.toAbsolutePath().normalize().toString());
-        markDownloaded(record, file, hash);
-        fileRecordRepository.save(record);
-
-        job.setStatus(SyncStatus.PENDING);
-        syncJobRepository.save(job);
-
-        boolean priority = PriorityDetector.isPriority(record.getOriginalFileName(), null);
-        FileIngestedEvent event = new FileIngestedEvent(
-                job.getId(),
-                record.getStoredPath(),
-                hash,
-                FileSourceType.FILESYSTEM,
-                priority);
-        ingestPublisher.publish(event);
-        markPathSeen(file);
-        DebugSessionLog.log("D", "FileSystemIngestService.java:republishExistingJob", "republished stuck job",
-                DebugSessionLog.map("syncJobId", job.getId(), "status", job.getStatus().name(),
-                        "path", record.getStoredPath()));
     }
 
     private void markDownloaded(FileRecord record, Path file, String checksum) {

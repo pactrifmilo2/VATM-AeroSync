@@ -8,6 +8,13 @@ public class RabbitMqProperties {
     private String fileIngestedExchange = "file.ingested";
     private String fileProcessingRoutingKey = "file.processing";
     private String fileProcessingQueue = "file.processing.queue";
+    private String fileProcessingFailureExchange = "file.processing.failed";
+    private String fileProcessingFailureRoutingKey = "file.processing.failed";
+    private String fileProcessingFailureQueue = "file.processing.failed.queue";
+    private int maxRetries = 2;
+    private long retryInitialIntervalMs = 5000;
+    private double retryMultiplier = 2.0;
+    private long retryMaxIntervalMs = 30000;
     private String syncResultExchange = "sync.result";
 
     public String getFileIngestedExchange() {
@@ -32,6 +39,62 @@ public class RabbitMqProperties {
 
     public void setFileProcessingQueue(String fileProcessingQueue) {
         this.fileProcessingQueue = fileProcessingQueue;
+    }
+
+    public String getFileProcessingFailureExchange() {
+        return fileProcessingFailureExchange;
+    }
+
+    public void setFileProcessingFailureExchange(String fileProcessingFailureExchange) {
+        this.fileProcessingFailureExchange = fileProcessingFailureExchange;
+    }
+
+    public String getFileProcessingFailureRoutingKey() {
+        return fileProcessingFailureRoutingKey;
+    }
+
+    public void setFileProcessingFailureRoutingKey(String fileProcessingFailureRoutingKey) {
+        this.fileProcessingFailureRoutingKey = fileProcessingFailureRoutingKey;
+    }
+
+    public String getFileProcessingFailureQueue() {
+        return fileProcessingFailureQueue;
+    }
+
+    public void setFileProcessingFailureQueue(String fileProcessingFailureQueue) {
+        this.fileProcessingFailureQueue = fileProcessingFailureQueue;
+    }
+
+    public int getMaxRetries() {
+        return maxRetries;
+    }
+
+    public void setMaxRetries(int maxRetries) {
+        this.maxRetries = maxRetries;
+    }
+
+    public long getRetryInitialIntervalMs() {
+        return retryInitialIntervalMs;
+    }
+
+    public void setRetryInitialIntervalMs(long retryInitialIntervalMs) {
+        this.retryInitialIntervalMs = retryInitialIntervalMs;
+    }
+
+    public double getRetryMultiplier() {
+        return retryMultiplier;
+    }
+
+    public void setRetryMultiplier(double retryMultiplier) {
+        this.retryMultiplier = retryMultiplier;
+    }
+
+    public long getRetryMaxIntervalMs() {
+        return retryMaxIntervalMs;
+    }
+
+    public void setRetryMaxIntervalMs(long retryMaxIntervalMs) {
+        this.retryMaxIntervalMs = retryMaxIntervalMs;
     }
 
     public String getSyncResultExchange() {

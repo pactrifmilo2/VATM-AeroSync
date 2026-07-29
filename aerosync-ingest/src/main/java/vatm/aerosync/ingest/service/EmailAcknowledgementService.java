@@ -65,7 +65,7 @@ public class EmailAcknowledgementService {
 
     @RabbitListener(queues = "${app.rabbit.email-acknowledgement-queue}")
     public void onSyncResult(SyncResultEvent event) {
-        emailMetadataRepository.findBySyncJobId(event.getSyncJobId()).ifPresent(metadata -> {
+        emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(event.getSyncJobId()).ifPresent(metadata -> {
             metadata.setProcessingStatus(toEmailStatus(event.getStatus()));
             emailMetadataRepository.save(metadata);
             acknowledgeIfComplete(toReference(metadata));

@@ -11,10 +11,8 @@ import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
-import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.ingest.config.EmailProperties;
 import vatm.aerosync.ingest.email.EmailAttachment;
 import vatm.aerosync.ingest.email.EmailClient;
@@ -26,7 +24,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +38,6 @@ public class EmailIngestService {
     private final EmailProperties emailProperties;
     private final DeduplicationService deduplicationService;
     private final IngestPublisher ingestPublisher;
-    private final SyncJobRepository syncJobRepository;
     private final FileRecordRepository fileRecordRepository;
     private final EmailMetadataRepository emailMetadataRepository;
     private final EmailFailureTracker emailFailureTracker;
@@ -51,7 +47,6 @@ public class EmailIngestService {
                               EmailProperties emailProperties,
                               DeduplicationService deduplicationService,
                               IngestPublisher ingestPublisher,
-                              SyncJobRepository syncJobRepository,
                               FileRecordRepository fileRecordRepository,
                               EmailMetadataRepository emailMetadataRepository,
                               EmailFailureTracker emailFailureTracker,
@@ -60,7 +55,6 @@ public class EmailIngestService {
         this.emailProperties = emailProperties;
         this.deduplicationService = deduplicationService;
         this.ingestPublisher = ingestPublisher;
-        this.syncJobRepository = syncJobRepository;
         this.fileRecordRepository = fileRecordRepository;
         this.emailMetadataRepository = emailMetadataRepository;
         this.emailFailureTracker = emailFailureTracker;
@@ -142,14 +136,8 @@ public class EmailIngestService {
 
             String hash = Hashing.sha256Hex(attachment.content());
 
-            Optional<SyncJob> retryableJob = deduplicationService.findRetryableJob(hash);
-            if (retryableJob.isPresent()) {
-                republishExistingJob(
-                        retryableJob.get(), message, attachment, attachmentIndex, storedFile, hash);
-                return true;
-            }
             if (deduplicationService.isDuplicate(hash)) {
-                log.info("Skipping duplicate email attachment {} from {} (already completed successfully)",
+                log.info("Skipping duplicate email attachment {} from {} (hash already has a synchronization job)",
                         attachment.fileName(), message.sender());
                 SyncJob skippedJob = deduplicationService.createSkippedDuplicateJob(hash);
                 emailMetadataRepository.save(toMetadata(
@@ -162,10 +150,18 @@ public class EmailIngestService {
                 return false;
             }
 
-            SyncJob job = new SyncJob();
-            job.setFileHash(hash);
-            job.setStatus(SyncStatus.PENDING);
-            SyncJob saved = syncJobRepository.save(job);
+            DeduplicationService.JobCreationResult creation = deduplicationService.createPendingJob(hash);
+            SyncJob saved = creation.job();
+            if (!creation.created()) {
+                emailMetadataRepository.save(toMetadata(
+                        message,
+                        attachment,
+                        attachmentIndex,
+                        saved,
+                        EmailProcessingStatus.SKIPPED));
+                Files.deleteIfExists(storedFile);
+                return false;
+            }
 
             FileRecord record = new FileRecord();
             record.setSyncJob(saved);
@@ -197,42 +193,6 @@ public class EmailIngestService {
         } catch (IOException e) {
             throw new IllegalStateException("Failed to store email attachment", e);
         }
-    }
-
-    private void republishExistingJob(SyncJob job,
-                                      EmailMessage message,
-                                      EmailAttachment attachment,
-                                      int attachmentIndex,
-                                      Path storedFile,
-                                      String hash) {
-        FileRecord record = fileRecordRepository.findBySyncJobId(job.getId()).stream()
-                .max(Comparator.comparing(FileRecord::getCreatedAt))
-                .orElseThrow(() -> new IllegalStateException("No file records for job: " + job.getId()));
-        record.setStoredPath(storedFile.toAbsolutePath().normalize().toString());
-        markDownloaded(record, attachment.content().length, hash);
-        fileRecordRepository.save(record);
-
-        EmailMetadata metadata = emailMetadataRepository.findBySyncJobId(job.getId())
-                .orElseGet(EmailMetadata::new);
-        copyMessageMetadata(metadata, message, attachment, attachmentIndex);
-        metadata.setSyncJob(job);
-        metadata.setProcessingStatus(EmailProcessingStatus.DOWNLOADED);
-        metadata.setIngestComplete(false);
-        emailMetadataRepository.save(metadata);
-
-        job.setStatus(SyncStatus.PENDING);
-        syncJobRepository.save(job);
-
-        boolean priority = message.priority()
-                || PriorityDetector.isPriority(attachment.fileName(), message.subject());
-        ingestPublisher.publish(new FileIngestedEvent(
-                job.getId(),
-                record.getStoredPath(),
-                hash,
-                FileSourceType.EMAIL,
-                priority));
-        log.info("Republishing email attachment {} from {} for retry (job {})",
-                attachment.fileName(), message.sender(), job.getId());
     }
 
     private boolean isSupportedAttachment(String fileName) {
