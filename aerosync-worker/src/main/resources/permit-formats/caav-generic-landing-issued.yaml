@@ -80,6 +80,9 @@ schedule:
   # original and new tables; fall back to the first schedule for ordinary forms.
   preferredTableContextPatterns:
     - '(?iu)2\.2\.\s*(?:NEW\s+SCHEDULE|LỊCH\s+BAY\s+MỚI)'
+  # Import operational transfer flights together with the replacement schedule.
+  supplementalTableContextPatterns:
+    - '(?iu)2\.5\.\s*(?:TRANSFER\s+FLIGHTS|CB\s+CHỞ\s+KHÁCH\s+SANG\s+CHUYẾN\s+SÂN)'
   dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en

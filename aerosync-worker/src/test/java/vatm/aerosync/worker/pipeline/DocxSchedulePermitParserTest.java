@@ -80,10 +80,10 @@ class DocxSchedulePermitParserTest {
         assertThat(permit.operatorId()).isEqualTo("HVN");
         assertThat(permit.flights())
                 .extracting(flight -> flight.flightNumber())
-                .containsExactly("HVN200", "HVN201");
+                .containsExactly("HVN200", "HVN201", "HVN300");
         assertThat(permit.flights())
                 .extracting(flight -> flight.etd())
-                .containsExactly("0905", "1105");
+                .containsExactly("0905", "1105", "1300");
         assertThat(permit.flights())
                 .allSatisfy(flight -> {
                     assertThat(flight.sourceAircraftType()).isEqualTo("321/320");
