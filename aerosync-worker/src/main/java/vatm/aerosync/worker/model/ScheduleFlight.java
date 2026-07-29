@@ -47,4 +47,13 @@ public record ScheduleFlight(
                 serviceDays, fromAirport, toAirport, etd, eta, via, beginDate, endDate,
                 remark, sourceAircraftType);
     }
+
+    public ScheduleFlight withResolvedRoute(String resolvedFromAirport,
+                                            String resolvedToAirport,
+                                            String resolvedVia) {
+        return new ScheduleFlight(
+                purposeId, craftId, mtow, flightNumber, registration,
+                serviceDays, resolvedFromAirport, resolvedToAirport, etd, eta, resolvedVia,
+                beginDate, endDate, remark, sourceAircraftType);
+    }
 }

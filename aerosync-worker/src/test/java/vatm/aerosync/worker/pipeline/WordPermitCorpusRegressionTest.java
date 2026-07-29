@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.worker.atfm.AtfmAircraftTypeResolver;
+import vatm.aerosync.worker.atfm.AtfmAirportCodeResolver;
+import vatm.aerosync.worker.atfm.AtfmViaResolver;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
@@ -37,8 +39,18 @@ class WordPermitCorpusRegressionTest {
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog());
         DocxSchedulePermitParser parser =
                 new DocxSchedulePermitParser(reader, detector);
-        AircraftTypeResolutionStep aircraftTypeResolutionStep =
-                liveAircraftTypeResolutionStep();
+        AtfmDatabaseProperties liveAtfm = liveAtfmProperties();
+        AircraftTypeResolutionStep aircraftTypeResolutionStep = liveAtfm == null
+                ? null
+                : new AircraftTypeResolutionStep(
+                        new AircraftTypeCatalog(),
+                        new AtfmAircraftTypeResolver(liveAtfm));
+        ViaResolutionStep viaResolutionStep = liveAtfm == null
+                ? null
+                : new ViaResolutionStep(
+                        liveAtfm,
+                        new AtfmAirportCodeResolver(),
+                        new AtfmViaResolver());
         BusinessRuleValidatorStep validator = new BusinessRuleValidatorStep();
         Path reportDirectory = reportDirectory();
 
@@ -74,6 +86,7 @@ class WordPermitCorpusRegressionTest {
                                     .toList()));
                 } else {
                     aircraftTypeResolutionStep.resolve(context);
+                    viaResolutionStep.resolve(context);
                 }
                 validator.validate(context);
                 successes.add("%s | %s | %s | %d flight(s) | %s".formatted(
@@ -98,7 +111,7 @@ class WordPermitCorpusRegressionTest {
                 .isEmpty();
     }
 
-    private AircraftTypeResolutionStep liveAircraftTypeResolutionStep() {
+    private AtfmDatabaseProperties liveAtfmProperties() {
         if (!Boolean.getBoolean("permit.corpus.resolve-aircraft")) {
             return null;
         }
@@ -106,9 +119,7 @@ class WordPermitCorpusRegressionTest {
         properties.setUrl(requiredEnvironment("APP_ATFM_DATASOURCE_URL"));
         properties.setUsername(requiredEnvironment("APP_ATFM_DATASOURCE_USERNAME"));
         properties.setPassword(requiredEnvironment("APP_ATFM_DATASOURCE_PASSWORD"));
-        return new AircraftTypeResolutionStep(
-                new AircraftTypeCatalog(),
-                new AtfmAircraftTypeResolver(properties));
+        return properties;
     }
 
     private String requiredEnvironment(String name) {

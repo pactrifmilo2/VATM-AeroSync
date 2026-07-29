@@ -35,6 +35,7 @@ public class FileProcessingPipeline {
     private final ParserStep parserStep;
     private final NormalizerStep normalizerStep;
     private final AircraftTypeResolutionStep aircraftTypeResolutionStep;
+    private final ViaResolutionStep viaResolutionStep;
     private final BusinessRuleValidatorStep businessRuleValidatorStep;
     private final DatabaseWriterStep databaseWriterStep;
     private final FileArchiverStep fileArchiverStep;
@@ -49,6 +50,7 @@ public class FileProcessingPipeline {
                                   ParserStep parserStep,
                                   NormalizerStep normalizerStep,
                                   AircraftTypeResolutionStep aircraftTypeResolutionStep,
+                                  ViaResolutionStep viaResolutionStep,
                                   BusinessRuleValidatorStep businessRuleValidatorStep,
                                   DatabaseWriterStep databaseWriterStep,
                                   FileArchiverStep fileArchiverStep,
@@ -61,6 +63,7 @@ public class FileProcessingPipeline {
         this.parserStep = parserStep;
         this.normalizerStep = normalizerStep;
         this.aircraftTypeResolutionStep = aircraftTypeResolutionStep;
+        this.viaResolutionStep = viaResolutionStep;
         this.businessRuleValidatorStep = businessRuleValidatorStep;
         this.databaseWriterStep = databaseWriterStep;
         this.fileArchiverStep = fileArchiverStep;
@@ -83,6 +86,7 @@ public class FileProcessingPipeline {
             parserStep.parse(context);
             normalizerStep.normalize(context);
             aircraftTypeResolutionStep.resolve(context);
+            viaResolutionStep.resolve(context);
             businessRuleValidatorStep.validate(context);
             DatabaseWriteResult writeResult = databaseWriterStep.write(context);
             Path archived = archiveSafely(event.getSyncJobId(), () ->

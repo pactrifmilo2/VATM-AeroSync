@@ -53,6 +53,8 @@ class FileProcessingPipelineTest {
     @Mock
     private AircraftTypeResolutionStep aircraftTypeResolutionStep;
     @Mock
+    private ViaResolutionStep viaResolutionStep;
+    @Mock
     private BusinessRuleValidatorStep businessRuleValidatorStep;
     @Mock
     private DatabaseWriterStep databaseWriterStep;
@@ -77,6 +79,7 @@ class FileProcessingPipelineTest {
                 parserStep,
                 normalizerStep,
                 aircraftTypeResolutionStep,
+                viaResolutionStep,
                 businessRuleValidatorStep,
                 databaseWriterStep,
                 fileArchiverStep,
@@ -119,10 +122,12 @@ class FileProcessingPipelineTest {
         InOrder processingOrder = inOrder(
                 normalizerStep,
                 aircraftTypeResolutionStep,
+                viaResolutionStep,
                 businessRuleValidatorStep,
                 databaseWriterStep);
         processingOrder.verify(normalizerStep).normalize(any());
         processingOrder.verify(aircraftTypeResolutionStep).resolve(any());
+        processingOrder.verify(viaResolutionStep).resolve(any());
         processingOrder.verify(businessRuleValidatorStep).validate(any());
         processingOrder.verify(databaseWriterStep).write(any());
 
