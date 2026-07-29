@@ -8,14 +8,17 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.entity.FileRecord;
+import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.service.AuditLogService;
 import vatm.aerosync.worker.service.SyncResultPublisher;
+import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -27,6 +30,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -91,11 +97,11 @@ class FileProcessingPipelineTest {
                 FileSourceType.EMAIL,
                 false);
 
-        when(emailMetadataRepository.findBySyncJobId(7L)).thenReturn(Optional.empty());
+        when(emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(7L)).thenReturn(Optional.empty());
         when(syncJobRepository.findById(7L)).thenReturn(Optional.empty());
         when(fileRecordRepository.findBySyncJobId(7L)).thenReturn(List.of(record));
         when(fileRecordRepository.save(any(FileRecord.class))).thenAnswer(invocation -> invocation.getArgument(0));
-        when(databaseWriterStep.write(any())).thenAnswer(invocation -> {
+        lenient().when(databaseWriterStep.write(any())).thenAnswer(invocation -> {
             record.setProcessingStatus(FileProcessingStatus.SAVED);
             record.setRowsSaved(0);
             record.setDatabaseSavedAt(LocalDateTime.now());
@@ -140,5 +146,27 @@ class FileProcessingPipelineTest {
         assertThat(record.getArchiveStatus()).isEqualTo(FileArchiveStatus.FAILED);
         assertThat(record.getArchivedAt()).isNull();
         assertThat(record.getErrorMessage()).contains("archive unavailable");
+    }
+
+    @Test
+    void process_quarantinesPermanentAtfmReferenceFailureWithoutRethrowing() throws Exception {
+        SyncJob job = new SyncJob();
+        job.setFileHash("a".repeat(64));
+        when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
+        when(fileArchiverStep.archiveQuarantine(any(), any(), any()))
+                .thenReturn(Path.of("C:/archive/quarantine.csv"));
+        doThrow(new AtfmReferenceDataException("ATFM lookup not found: M_OPER.OPER_ICAO=POS"))
+                .when(databaseWriterStep).write(any());
+
+        pipeline.process(event);
+
+        assertThat(job.getStatus()).isEqualTo(SyncStatus.QUARANTINED);
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.QUARANTINED);
+        assertThat(record.getErrorMessage()).contains("M_OPER.OPER_ICAO=POS");
+        verify(syncResultPublisher).publish(
+                org.mockito.ArgumentMatchers.eq(7L),
+                org.mockito.ArgumentMatchers.eq(SyncStatus.QUARANTINED),
+                any(),
+                org.mockito.ArgumentMatchers.contains("BR-ATFM-REFERENCE"));
     }
 }

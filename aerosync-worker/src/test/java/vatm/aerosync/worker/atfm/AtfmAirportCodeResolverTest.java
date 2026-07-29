@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -56,7 +55,7 @@ class AtfmAirportCodeResolverTest {
     @Test
     void resolve_rejectsMissingIataMapping() {
         assertThatThrownBy(() -> resolver.resolve(connection, "XXX"))
-                .isInstanceOf(SQLException.class)
+                .isInstanceOf(AtfmReferenceDataException.class)
                 .hasMessageContaining("M_AERO.AE_IATA=XXX");
     }
 
@@ -66,7 +65,7 @@ class AtfmAirportCodeResolverTest {
                 "INSERT INTO M_AERO (AE_IATA, AE_CODE) VALUES ('HAN', 'XXXX')");
 
         assertThatThrownBy(() -> resolver.resolve(connection, "HAN"))
-                .isInstanceOf(SQLException.class)
+                .isInstanceOf(AtfmReferenceDataException.class)
                 .hasMessageContaining("Ambiguous M_AERO airport mapping");
     }
 }

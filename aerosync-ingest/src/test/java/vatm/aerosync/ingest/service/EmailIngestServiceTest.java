@@ -19,7 +19,6 @@ import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
-import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.ingest.config.EmailProperties;
 import vatm.aerosync.ingest.email.EmailClient;
 import vatm.aerosync.ingest.email.EmailMessage;
@@ -55,9 +54,6 @@ class EmailIngestServiceTest {
     private IngestPublisher ingestPublisher;
 
     @Mock
-    private SyncJobRepository syncJobRepository;
-
-    @Mock
     private FileRecordRepository fileRecordRepository;
 
     @Mock
@@ -80,7 +76,6 @@ class EmailIngestServiceTest {
                 emailProperties,
                 deduplicationService,
                 ingestPublisher,
-                syncJobRepository,
                 fileRecordRepository,
                 emailMetadataRepository,
                 emailFailureTracker,
@@ -124,7 +119,7 @@ class EmailIngestServiceTest {
                 List.of(new EmailAttachment("flight.csv", content)), true, "");
         when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
-        when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
+        stubNewPendingJob();
 
         int ingested = emailIngestService.ingestUpTo(10);
 
@@ -160,7 +155,7 @@ class EmailIngestServiceTest {
                 List.of(new EmailAttachment("LD-06.A.S.2026VN.REV8.doc", content)), false, "");
         when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
-        when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
+        stubNewPendingJob();
 
         int ingested = emailIngestService.ingestUpTo(10);
 
@@ -197,7 +192,7 @@ class EmailIngestServiceTest {
                 .containsExactly(
                         org.assertj.core.groups.Tuple.tuple("certificate.pdf", EmailProcessingStatus.SKIPPED),
                         org.assertj.core.groups.Tuple.tuple("signature.png", EmailProcessingStatus.SKIPPED));
-        verify(syncJobRepository, never()).save(any());
+        verify(deduplicationService, never()).createPendingJob(anyString());
         verify(ingestPublisher, never()).publish(any());
         verify(emailAcknowledgementService).markIngestComplete(message.reference());
     }
@@ -219,7 +214,7 @@ class EmailIngestServiceTest {
                 200L);
         when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
-        when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
+        stubNewPendingJob();
 
         int ingested = emailIngestService.ingestUpTo(10);
 
@@ -242,7 +237,7 @@ class EmailIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_republishesFailedAttachmentForRetry() {
+    void ingestUpTo_doesNotRepublishFailedAttachmentAutomatically() {
         byte[] content = "retry-me".getBytes();
         EmailMessage message = new EmailMessage(
                 "msg-retry", "ops@vatm.local", "Retry flight data", LocalDateTime.now(),
@@ -254,21 +249,16 @@ class EmailIngestServiceTest {
         when(failedJob.getFileHash()).thenReturn("failed-hash");
         when(failedJob.getStatus()).thenReturn(SyncStatus.FAILED);
 
-        FileRecord record = new FileRecord();
-        record.setOriginalFileName("flight.csv");
-        record.setStoredPath("/tmp/old-flight.csv");
-
-        when(deduplicationService.findRetryableJob(anyString())).thenReturn(Optional.of(failedJob));
-        when(fileRecordRepository.findBySyncJobId(42L)).thenReturn(List.of(record));
-        when(syncJobRepository.save(any(SyncJob.class))).thenAnswer(inv -> inv.getArgument(0));
-        when(fileRecordRepository.save(any(FileRecord.class))).thenAnswer(inv -> inv.getArgument(0));
+        when(deduplicationService.isDuplicate(anyString())).thenReturn(true);
+        when(deduplicationService.createSkippedDuplicateJob(anyString())).thenReturn(failedJob);
 
         int ingested = emailIngestService.ingestUpTo(10);
 
-        assertThat(ingested).isEqualTo(1);
-        verify(ingestPublisher).publish(org.mockito.ArgumentMatchers.argThat(event ->
-                event.getSyncJobId() == 42L && event.getSourceType() == FileSourceType.EMAIL));
-        verify(deduplicationService, never()).createSkippedDuplicateJob(anyString());
+        assertThat(ingested).isZero();
+        verify(ingestPublisher, never()).publish(any());
+        verify(emailMetadataRepository).save(org.mockito.ArgumentMatchers.argThat(metadata ->
+                metadata.getSyncJob() == failedJob
+                        && metadata.getProcessingStatus() == EmailProcessingStatus.SKIPPED));
     }
 
     @Test
@@ -278,7 +268,6 @@ class EmailIngestServiceTest {
                 "msg-dup", "ops@vatm.local", "Duplicate flight data", LocalDateTime.now(),
                 List.of(new EmailAttachment("flight.csv", content)), false, "");
         when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
-        when(deduplicationService.findRetryableJob(anyString())).thenReturn(Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(true);
         SyncJob existing = new SyncJob();
         existing.setFileHash("existing-hash");
@@ -301,5 +290,14 @@ class EmailIngestServiceTest {
         assertThat(ingested).isEqualTo(0);
         verify(emailFailureTracker).recordFailure();
         verify(ingestPublisher, never()).publish(any());
+    }
+
+    private void stubNewPendingJob() {
+        when(deduplicationService.createPendingJob(anyString())).thenAnswer(invocation -> {
+            SyncJob job = new SyncJob();
+            job.setFileHash(invocation.getArgument(0));
+            job.setStatus(SyncStatus.PENDING);
+            return new DeduplicationService.JobCreationResult(job, true);
+        });
     }
 }

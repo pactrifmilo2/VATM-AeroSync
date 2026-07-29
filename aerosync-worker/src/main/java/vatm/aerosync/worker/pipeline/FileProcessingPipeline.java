@@ -18,6 +18,7 @@ import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.model.ProcessingContext;
+import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 import vatm.aerosync.worker.service.AuditLogService;
 import vatm.aerosync.worker.service.SyncResultPublisher;
 
@@ -112,6 +113,11 @@ public class FileProcessingPipeline {
             handleFormatError(context, event, e);
         } catch (BusinessRuleException e) {
             handleBusinessRuleError(context, event, e);
+        } catch (AtfmReferenceDataException e) {
+            handleBusinessRuleError(
+                    context,
+                    event,
+                    new BusinessRuleException("BR-ATFM-REFERENCE", e.getMessage()));
         } catch (RuntimeException e) {
             updateJobStatus(event.getSyncJobId(), SyncStatus.FAILED);
             updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.FAILED, e.getMessage());
@@ -121,7 +127,7 @@ public class FileProcessingPipeline {
     }
 
     private void lookupSender(Long syncJobId, ProcessingContext context) {
-        emailMetadataRepository.findBySyncJobId(syncJobId)
+        emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(syncJobId)
                 .ifPresent(metadata -> context.setSender(metadata.getSender()));
     }
 
@@ -210,7 +216,7 @@ public class FileProcessingPipeline {
     }
 
     private void updateEmailProcessingStatus(Long syncJobId, EmailProcessingStatus status) {
-        emailMetadataRepository.findBySyncJobId(syncJobId).ifPresent(metadata -> {
+        emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(syncJobId).ifPresent(metadata -> {
             metadata.setProcessingStatus(status);
             emailMetadataRepository.save(metadata);
         });

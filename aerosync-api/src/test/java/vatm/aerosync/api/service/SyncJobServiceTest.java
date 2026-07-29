@@ -19,6 +19,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class SyncJobServiceTest {
@@ -47,10 +49,11 @@ class SyncJobServiceTest {
         record.setOriginalFileName("data.csv");
         record.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\28\\operator_20260728_091500_email_data.csv");
         record.setSourceType(FileSourceType.EMAIL);
+        record.setSyncJob(job);
         when(syncJobRepository.findAll()).thenReturn(List.of(job));
-        when(fileRecordRepository.findBySyncJobId(12L)).thenReturn(List.of(record));
+        when(fileRecordRepository.findBySyncJobIdIn(List.of(12L))).thenReturn(List.of(record));
         // No EmailMetadata — sender and emailReceivedAt should be null
-        when(emailMetadataRepository.findBySyncJobId(12L)).thenReturn(java.util.Optional.empty());
+        when(emailMetadataRepository.findBySyncJobIdIn(List.of(12L))).thenReturn(List.of());
 
         List<SyncJobSummaryResponse> summaries = service.listJobs(null);
 
@@ -60,6 +63,8 @@ class SyncJobServiceTest {
                 .isEqualTo("operator_20260728_091500_email_data.csv");
         assertThat(summaries.getFirst().sender()).isNull();
         assertThat(summaries.getFirst().emailReceivedAt()).isNull();
+        verify(fileRecordRepository, never()).findBySyncJobId(12L);
+        verify(emailMetadataRepository, never()).findFirstBySyncJobIdOrderByIdAsc(12L);
     }
 
     @Test
@@ -76,7 +81,7 @@ class SyncJobServiceTest {
         when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
         when(fileRecordRepository.findBySyncJobId(7L)).thenReturn(List.of());
         when(auditLogRepository.findBySyncJobIdOrderByTimestampDesc(7L)).thenReturn(List.of(auditLog));
-        when(emailMetadataRepository.findBySyncJobId(7L)).thenReturn(Optional.empty());
+        when(emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(7L)).thenReturn(Optional.empty());
         when(permitImportRepository.findBySyncJobId(7L)).thenReturn(Optional.empty());
 
         var response = service.getJob(7L);
@@ -101,7 +106,7 @@ class SyncJobServiceTest {
         when(syncJobRepository.findById(9L)).thenReturn(Optional.of(job));
         when(fileRecordRepository.findBySyncJobId(9L)).thenReturn(List.of());
         when(auditLogRepository.findBySyncJobIdOrderByTimestampDesc(9L)).thenReturn(List.of());
-        when(emailMetadataRepository.findBySyncJobId(9L)).thenReturn(Optional.empty());
+        when(emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(9L)).thenReturn(Optional.empty());
         when(permitImportRepository.findBySyncJobId(9L)).thenReturn(Optional.of(permitImport));
 
         var response = service.getJob(9L);

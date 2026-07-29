@@ -21,13 +21,6 @@ spring:
     deserialization:
       trust:
         all: true
-    listener:
-      simple:
-        retry:
-          enabled: true
-          initial-interval: 120000
-          multiplier: 2.0
-          max-interval: 480000
 
   data:
     redis:
@@ -76,4 +69,11 @@ app:
     file-ingested-exchange: file.ingested
     file-processing-routing-key: file.processing
     file-processing-queue: file.processing.queue
+    file-processing-failure-exchange: file.processing.failed
+    file-processing-failure-routing-key: file.processing.failed
+    file-processing-failure-queue: file.processing.failed.queue
+    max-retries: 2
+    retry-initial-interval-ms: 5000
+    retry-multiplier: 2.0
+    retry-max-interval-ms: 30000
     sync-result-exchange: sync.result

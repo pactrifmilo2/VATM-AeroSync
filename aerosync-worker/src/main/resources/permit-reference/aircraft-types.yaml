@@ -120,3 +120,8 @@ entries:
     type: 767F
   - aliases: ['B76X']
     type: B76X
+    craftId: 215
+    mtow: 0
+  - aliases: ['H25B']
+    craftId: 417
+    mtow: 0

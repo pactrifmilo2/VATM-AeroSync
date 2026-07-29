@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.dao.DataIntegrityViolationException;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.SyncJobRepository;
@@ -54,14 +55,14 @@ class DeduplicationServiceTest {
     }
 
     @Test
-    void isDuplicate_returnsFalseWhenHashExistsInRedisButJobFailed() {
+    void isDuplicate_returnsTrueWhenJobFailed() {
         SyncJob failed = new SyncJob();
         failed.setFileHash(HASH);
         failed.setStatus(SyncStatus.FAILED);
         when(syncJobRepository.findByFileHash(HASH)).thenReturn(Optional.of(failed));
         when(redisTemplate.hasKey("aerosync:dedup:" + HASH)).thenReturn(true);
 
-        assertThat(deduplicationService.isDuplicate(HASH)).isFalse();
+        assertThat(deduplicationService.isDuplicate(HASH)).isTrue();
     }
 
     @Test
@@ -76,24 +77,41 @@ class DeduplicationServiceTest {
     }
 
     @Test
-    void isDuplicate_returnsFalseWhenHashExistsWithPendingStatus() {
+    void isDuplicate_returnsTrueWhenHashExistsWithPendingStatus() {
         when(redisTemplate.hasKey(anyString())).thenReturn(false);
         SyncJob existing = new SyncJob();
         existing.setFileHash(HASH);
         existing.setStatus(SyncStatus.PENDING);
         when(syncJobRepository.findByFileHash(HASH)).thenReturn(Optional.of(existing));
 
-        assertThat(deduplicationService.isDuplicate(HASH)).isFalse();
+        assertThat(deduplicationService.isDuplicate(HASH)).isTrue();
     }
 
     @Test
-    void findRetryableJob_returnsPendingJob() {
-        SyncJob pending = new SyncJob();
-        pending.setFileHash(HASH);
-        pending.setStatus(SyncStatus.PENDING);
-        when(syncJobRepository.findByFileHash(HASH)).thenReturn(Optional.of(pending));
+    void createPendingJob_returnsCreatedJob() {
+        when(syncJobRepository.saveAndFlush(org.mockito.ArgumentMatchers.any(SyncJob.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
 
-        assertThat(deduplicationService.findRetryableJob(HASH)).contains(pending);
+        DeduplicationService.JobCreationResult result = deduplicationService.createPendingJob(HASH);
+
+        assertThat(result.created()).isTrue();
+        assertThat(result.job().getFileHash()).isEqualTo(HASH);
+        assertThat(result.job().getStatus()).isEqualTo(SyncStatus.PENDING);
+    }
+
+    @Test
+    void createPendingJob_returnsConcurrentWinnerAfterUniqueConstraintRace() {
+        SyncJob existing = new SyncJob();
+        existing.setFileHash(HASH);
+        existing.setStatus(SyncStatus.FAILED);
+        when(syncJobRepository.saveAndFlush(org.mockito.ArgumentMatchers.any(SyncJob.class)))
+                .thenThrow(new DataIntegrityViolationException("duplicate"));
+        when(syncJobRepository.findByFileHash(HASH)).thenReturn(Optional.of(existing));
+
+        DeduplicationService.JobCreationResult result = deduplicationService.createPendingJob(HASH);
+
+        assertThat(result.created()).isFalse();
+        assertThat(result.job()).isSameAs(existing);
     }
 
     @Test
@@ -114,7 +132,7 @@ class DeduplicationServiceTest {
     @Test
     void createSkippedDuplicateJob_persistsJobWithSkippedStatus() {
         when(syncJobRepository.findByFileHash(HASH)).thenReturn(Optional.empty());
-        when(syncJobRepository.save(org.mockito.ArgumentMatchers.any(SyncJob.class)))
+        when(syncJobRepository.saveAndFlush(org.mockito.ArgumentMatchers.any(SyncJob.class)))
                 .thenAnswer(invocation -> {
                     SyncJob job = invocation.getArgument(0);
                     return job;
@@ -124,7 +142,7 @@ class DeduplicationServiceTest {
 
         assertThat(job.getFileHash()).isEqualTo(HASH);
         assertThat(job.getStatus()).isEqualTo(SyncStatus.SKIPPED);
-        verify(syncJobRepository).save(job);
+        verify(syncJobRepository).saveAndFlush(job);
     }
 
     @Test
@@ -137,6 +155,6 @@ class DeduplicationServiceTest {
         SyncJob job = deduplicationService.createSkippedDuplicateJob(HASH);
 
         assertThat(job).isSameAs(existing);
-        verify(syncJobRepository, never()).save(org.mockito.ArgumentMatchers.any());
+        verify(syncJobRepository, never()).saveAndFlush(org.mockito.ArgumentMatchers.any());
     }
 }

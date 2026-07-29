@@ -58,4 +58,9 @@ class PermitReferenceCatalogTest {
                 Arguments.of("GULFSTREAM G450", "GLF4"),
                 Arguments.of("GULFSTREAM GVII-G500", "G500"));
     }
+
+    @Test
+    void aircraftCatalog_resolvesH25B() {
+        assertThat(aircraft.resolve("H25B").craftId()).isEqualTo(417L);
+    }
 }
