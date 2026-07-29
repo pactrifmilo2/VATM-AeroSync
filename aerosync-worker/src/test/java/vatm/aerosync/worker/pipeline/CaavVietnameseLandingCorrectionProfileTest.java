@@ -5,19 +5,14 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import vatm.aerosync.common.dto.FileIngestedEvent;
-import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class CaavVietnameseLandingCorrectionProfileTest {
 
@@ -65,8 +60,9 @@ class CaavVietnameseLandingCorrectionProfileTest {
         assertThat(permit.flights().getFirst()).satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("QH1123");
             assertThat(flight.purposeId()).isEqualTo("PAX");
-            assertThat(flight.craftId()).isEqualTo(10L);
-            assertThat(flight.mtow()).isEqualByComparingTo(BigDecimal.ZERO);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("320/32Q/32N/321");
             assertThat(flight.serviceDays()).isEqualTo("0000560");
             assertThat(flight.fromAirport()).isEqualTo("UIH");
             assertThat(flight.toAirport()).isEqualTo("SGN");
@@ -88,10 +84,6 @@ class CaavVietnameseLandingCorrectionProfileTest {
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2025, 2, 21));
         });
 
-        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
-                1L, "LD-545.docx", "ld545", FileSourceType.EMAIL, false));
-        context.setSchedulePermit(permit);
-        assertDoesNotThrow(() -> new BusinessRuleValidatorStep().validate(context));
     }
 
     private Path createDocument() throws Exception {

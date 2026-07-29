@@ -85,7 +85,6 @@ route:
   filterSchedule: true
 aircraft:
   scheduleColumn: aircraftType
-  mappings: []
   auxiliaryColumns:
     aircraftType: [Aircraft Type]
     registrationMarks: [Registration Mark, Registration Marks]

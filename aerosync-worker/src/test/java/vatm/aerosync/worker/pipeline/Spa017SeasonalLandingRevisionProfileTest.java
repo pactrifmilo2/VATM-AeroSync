@@ -5,19 +5,14 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import vatm.aerosync.common.dto.FileIngestedEvent;
-import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class Spa017SeasonalLandingRevisionProfileTest {
 
@@ -62,8 +57,9 @@ class Spa017SeasonalLandingRevisionProfileTest {
         assertThat(permit.flights().get(0)).satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("9G2953");
             assertThat(flight.purposeId()).isEqualTo("PAX");
-            assertThat(flight.craftId()).isEqualTo(4366L);
-            assertThat(flight.mtow()).isEqualByComparingTo(BigDecimal.ZERO);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("A321");
             assertThat(flight.serviceDays()).isEqualTo("0204507");
             assertThat(flight.fromAirport()).isEqualTo("CXR");
             assertThat(flight.toAirport()).isEqualTo("PQC");
@@ -86,10 +82,6 @@ class Spa017SeasonalLandingRevisionProfileTest {
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2026, 7, 27));
         });
 
-        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
-                1L, "SPA017-REV9.docx", "spa017", FileSourceType.EMAIL, false));
-        context.setSchedulePermit(permit);
-        assertDoesNotThrow(() -> new BusinessRuleValidatorStep().validate(context));
     }
 
     private Path createDocument() throws Exception {

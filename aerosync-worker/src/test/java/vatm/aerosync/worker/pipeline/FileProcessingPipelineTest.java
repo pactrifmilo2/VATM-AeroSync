@@ -3,6 +3,7 @@ package vatm.aerosync.worker.pipeline;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import vatm.aerosync.common.dto.FileIngestedEvent;
@@ -28,6 +29,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
@@ -48,6 +50,8 @@ class FileProcessingPipelineTest {
     private ParserStep parserStep;
     @Mock
     private NormalizerStep normalizerStep;
+    @Mock
+    private AircraftTypeResolutionStep aircraftTypeResolutionStep;
     @Mock
     private BusinessRuleValidatorStep businessRuleValidatorStep;
     @Mock
@@ -72,6 +76,7 @@ class FileProcessingPipelineTest {
                 formatValidatorStep,
                 parserStep,
                 normalizerStep,
+                aircraftTypeResolutionStep,
                 businessRuleValidatorStep,
                 databaseWriterStep,
                 fileArchiverStep,
@@ -110,6 +115,16 @@ class FileProcessingPipelineTest {
         when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);
 
         pipeline.process(event);
+
+        InOrder processingOrder = inOrder(
+                normalizerStep,
+                aircraftTypeResolutionStep,
+                businessRuleValidatorStep,
+                databaseWriterStep);
+        processingOrder.verify(normalizerStep).normalize(any());
+        processingOrder.verify(aircraftTypeResolutionStep).resolve(any());
+        processingOrder.verify(businessRuleValidatorStep).validate(any());
+        processingOrder.verify(databaseWriterStep).write(any());
 
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SAVED);
         assertThat(record.getRowsSaved()).isZero();

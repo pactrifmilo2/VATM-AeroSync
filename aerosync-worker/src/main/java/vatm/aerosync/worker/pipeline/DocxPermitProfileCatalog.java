@@ -113,6 +113,10 @@ class DocxPermitProfileCatalog {
             profile.schedule().tableContextPatterns().forEach(
                     pattern -> validatePattern(profile, pattern, "schedule table context"));
         }
+        if (profile.schedule().preferredTableContextPatterns() != null) {
+            profile.schedule().preferredTableContextPatterns().forEach(
+                    pattern -> validatePattern(profile, pattern, "preferred schedule table context"));
+        }
         if (profile.route() != null && profile.route().staticAirways() != null) {
             profile.route().staticAirways().forEach((sector, airways) -> {
                 if (blank(sector) || blank(airways)
@@ -124,16 +128,13 @@ class DocxPermitProfileCatalog {
         if (profile.aircraft() == null) {
             throw invalid(profile, "aircraft mapping is required");
         }
-        boolean hasDefault = profile.aircraft().defaultCraftId() != null;
         boolean hasDefaultType = !blank(profile.aircraft().defaultType());
-        boolean hasMappings = profile.aircraft().mappings() != null
-                && !profile.aircraft().mappings().isEmpty();
-        if (!hasDefault && !hasDefaultType && !hasMappings) {
-            throw invalid(profile, "aircraft must define a default type, default id or alias mapping");
-        }
-        if (hasMappings && profile.aircraft().mappings().stream()
-                .anyMatch(mapping -> mapping.aliases() == null || mapping.aliases().isEmpty())) {
-            throw invalid(profile, "every aircraft mapping requires at least one alias");
+        boolean hasScheduleType = !blank(profile.aircraft().scheduleColumn());
+        boolean hasAuxiliaryType = !blank(profile.aircraft().auxiliaryTypeColumn())
+                && profile.aircraft().auxiliaryColumns() != null
+                && !profile.aircraft().auxiliaryColumns().isEmpty();
+        if (!hasDefaultType && !hasScheduleType && !hasAuxiliaryType) {
+            throw invalid(profile, "aircraft must define a source column or default type");
         }
     }
 

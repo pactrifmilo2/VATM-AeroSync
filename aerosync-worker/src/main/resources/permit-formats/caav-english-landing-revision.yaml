@@ -70,10 +70,6 @@ route:
   fallbackToFirst: false
 aircraft:
   scheduleColumn: aircraftType
-  mappings:
-    - aliases: ['767F']
-      craftId: 4046
-      mtow: 185
   auxiliaryColumns: {}
   auxiliaryRequiredColumns: []
   remarkPrefix: CAR

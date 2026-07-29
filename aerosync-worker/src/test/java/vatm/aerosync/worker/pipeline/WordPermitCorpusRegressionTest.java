@@ -4,12 +4,15 @@ import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.worker.atfm.AtfmAircraftTypeResolver;
+import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
+import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -34,6 +37,8 @@ class WordPermitCorpusRegressionTest {
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog());
         DocxSchedulePermitParser parser =
                 new DocxSchedulePermitParser(reader, detector);
+        AircraftTypeResolutionStep aircraftTypeResolutionStep =
+                liveAircraftTypeResolutionStep();
         BusinessRuleValidatorStep validator = new BusinessRuleValidatorStep();
         Path reportDirectory = reportDirectory();
 
@@ -62,6 +67,14 @@ class WordPermitCorpusRegressionTest {
                 ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
                         1L, file.toString(), "corpus", FileSourceType.FILESYSTEM, false));
                 context.setSchedulePermit(permit);
+                if (aircraftTypeResolutionStep == null) {
+                    context.setSchedulePermit(permit.withFlights(
+                            permit.flights().stream()
+                                    .map(flight -> flight.withResolvedAircraft(1L, BigDecimal.ZERO))
+                                    .toList()));
+                } else {
+                    aircraftTypeResolutionStep.resolve(context);
+                }
                 validator.validate(context);
                 successes.add("%s | %s | %s | %d flight(s) | %s".formatted(
                         file.getFileName(),
@@ -83,6 +96,28 @@ class WordPermitCorpusRegressionTest {
         assertThat(failures)
                 .as("Every configured Word permit should match a profile and parse")
                 .isEmpty();
+    }
+
+    private AircraftTypeResolutionStep liveAircraftTypeResolutionStep() {
+        if (!Boolean.getBoolean("permit.corpus.resolve-aircraft")) {
+            return null;
+        }
+        AtfmDatabaseProperties properties = new AtfmDatabaseProperties();
+        properties.setUrl(requiredEnvironment("APP_ATFM_DATASOURCE_URL"));
+        properties.setUsername(requiredEnvironment("APP_ATFM_DATASOURCE_USERNAME"));
+        properties.setPassword(requiredEnvironment("APP_ATFM_DATASOURCE_PASSWORD"));
+        return new AircraftTypeResolutionStep(
+                new AircraftTypeCatalog(),
+                new AtfmAircraftTypeResolver(properties));
+    }
+
+    private String requiredEnvironment(String name) {
+        String value = System.getenv(name);
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException(
+                    name + " must be set when -Dpermit.corpus.resolve-aircraft=true");
+        }
+        return value;
     }
 
     private boolean isWordDocument(Path path) {

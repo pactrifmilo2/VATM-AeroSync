@@ -7,56 +7,68 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.text.Normalizer;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 @Component
 class AircraftTypeCatalog {
 
     private static final String RESOURCE = "permit-reference/aircraft-types.yaml";
 
-    private final List<Entry> entries;
+    private final Map<String, String> aliases;
 
     AircraftTypeCatalog() {
-        this.entries = load();
+        this.aliases = load();
     }
 
-    DocxPermitFormatProfile.AircraftMapping resolve(String value) {
-        String key = canonical(value);
-        Entry exact = entries.stream()
-                .filter(entry -> entry.aliases().stream()
-                        .map(this::canonical)
-                        .anyMatch(key::equals))
-                .findFirst()
-                .orElse(null);
-        if (exact != null) {
-            return exact.toMapping();
+    List<String> candidates(String value) {
+        if (value == null || value.isBlank()) {
+            return List.of();
         }
-        for (String token : value == null ? new String[0] : value.split("(?iu)\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
-            String tokenKey = canonical(token);
-            Entry match = entries.stream()
-                    .filter(entry -> entry.aliases().stream()
-                            .map(this::canonical)
-                            .anyMatch(tokenKey::equals))
-                    .findFirst()
-                    .orElse(null);
-            if (match != null) {
-                return match.toMapping();
+
+        String exact = aliases.get(canonical(value));
+        if (exact != null) {
+            return List.of(exact);
+        }
+
+        Set<String> candidates = new LinkedHashSet<>();
+        for (String token : value.split("(?iu)\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
+            String clean = token.trim();
+            if (!clean.isBlank()) {
+                candidates.add(aliases.getOrDefault(canonical(clean), clean));
             }
         }
-        return null;
+        return List.copyOf(candidates);
     }
 
-    private List<Entry> load() {
+    private Map<String, String> load() {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory()).findAndRegisterModules();
         try (InputStream input = new ClassPathResource(RESOURCE).getInputStream()) {
             Catalog catalog = mapper.readValue(input, Catalog.class);
             if (catalog.entries() == null || catalog.entries().isEmpty()) {
                 throw new IllegalStateException("Aircraft type catalog is empty");
             }
-            return List.copyOf(catalog.entries());
+            Map<String, String> loaded = new LinkedHashMap<>();
+            for (Entry entry : catalog.entries()) {
+                if (entry.aliases() == null || entry.aliases().isEmpty()
+                        || entry.type() == null || entry.type().isBlank()) {
+                    throw new IllegalStateException(
+                            "Every aircraft alias entry requires aliases and a target type");
+                }
+                for (String alias : entry.aliases()) {
+                    String previous = loaded.putIfAbsent(canonical(alias), entry.type().trim());
+                    if (previous != null && !canonical(previous).equals(canonical(entry.type()))) {
+                        throw new IllegalStateException(
+                                "Conflicting aircraft alias mapping for " + alias);
+                    }
+                }
+            }
+            return Map.copyOf(loaded);
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to load aircraft type catalog " + RESOURCE, exception);
         }
@@ -73,9 +85,6 @@ class AircraftTypeCatalog {
     private record Catalog(List<Entry> entries) {
     }
 
-    private record Entry(List<String> aliases, long craftId, BigDecimal mtow) {
-        private DocxPermitFormatProfile.AircraftMapping toMapping() {
-            return new DocxPermitFormatProfile.AircraftMapping(aliases, craftId, mtow);
-        }
+    private record Entry(List<String> aliases, String type) {
     }
 }

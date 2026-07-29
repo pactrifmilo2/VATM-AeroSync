@@ -1,17 +1,12 @@
 package vatm.aerosync.worker.pipeline;
 
 import org.junit.jupiter.api.Test;
-import vatm.aerosync.common.dto.FileIngestedEvent;
-import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
-import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class Spa066PermitProfileRegressionTest {
 
@@ -41,8 +36,9 @@ class Spa066PermitProfileRegressionTest {
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("9G855");
             assertThat(flight.purposeId()).isEqualTo("PAX");
-            assertThat(flight.craftId()).isEqualTo(6021L);
-            assertThat(flight.mtow()).isEqualByComparingTo(new BigDecimal("89"));
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("321/32Q/32N");
             assertThat(flight.serviceDays()).isEqualTo("0000060");
             assertThat(flight.fromAirport()).isEqualTo("HAN");
             assertThat(flight.toAirport()).isEqualTo("SGN");
@@ -54,9 +50,5 @@ class Spa066PermitProfileRegressionTest {
             assertThat(flight.remark()).isEqualTo("PAX 321/32Q/32N");
         });
 
-        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
-                1L, sample.toString(), "spa066", FileSourceType.EMAIL, false));
-        context.setSchedulePermit(permit);
-        assertDoesNotThrow(() -> new BusinessRuleValidatorStep().validate(context));
     }
 }

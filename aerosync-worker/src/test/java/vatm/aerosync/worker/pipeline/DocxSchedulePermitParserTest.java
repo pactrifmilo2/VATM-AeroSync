@@ -41,7 +41,9 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.etd()).isEqualTo("1140");
             assertThat(flight.eta()).isNull();
             assertThat(flight.via()).isEqualTo("M765/M771");
-            assertThat(flight.craftId()).isEqualTo(1935L);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("76X/32X");
             assertThat(flight.remark()).isEqualTo("CAR 76X/32X");
         });
     }
@@ -58,12 +60,36 @@ class DocxSchedulePermitParserTest {
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("VNB593");
             assertThat(flight.purposeId()).isEqualTo("FER");
-            assertThat(flight.craftId()).isEqualTo(36L);
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+            assertThat(flight.sourceAircraftType()).isEqualTo("C208");
             assertThat(flight.serviceDays()).isEqualTo("0004000");
             assertThat(flight.fromAirport()).isEqualTo("VVBM");
             assertThat(flight.toAirport()).isEqualTo("VVCI");
             assertThat(flight.via()).isEqualTo("W1/DAN/W2");
         });
+    }
+
+    @Test
+    void parse_genericLandingWithOriginalAndNewSchedules_prefersNewSchedule() throws Exception {
+        Path file = createGenericLandingReplacementScheduleDocument();
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 01471/S/CHK/2026");
+        assertThat(permit.operatorId()).isEqualTo("HVN");
+        assertThat(permit.flights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("HVN200", "HVN201");
+        assertThat(permit.flights())
+                .extracting(flight -> flight.etd())
+                .containsExactly("0905", "1105");
+        assertThat(permit.flights())
+                .allSatisfy(flight -> {
+                    assertThat(flight.sourceAircraftType()).isEqualTo("321/320");
+                    assertThat(flight.craftId()).isZero();
+                    assertThat(flight.mtow()).isNull();
+                });
     }
 
     @Test
@@ -171,5 +197,58 @@ class DocxSchedulePermitParserTest {
             }
         }
         return file;
+    }
+
+    private Path createGenericLandingReplacementScheduleDocument() throws Exception {
+        Path file = tempDir.resolve("LD-2517.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("HANOI, 03/7/2026");
+            document.createParagraph().createRun().setText("LD-1471/7/2026VN");
+            document.createParagraph().createRun().setText("IATA Code: VN");
+
+            XWPFTable operator = document.createTable(1, 2);
+            operator.getRow(0).getCell(0).setText("Name: VIETNAM AIRLINES");
+            operator.getRow(0).getCell(1).setText("ICAO Code: HVN");
+
+            document.createParagraph().createRun().setText("2.1. ORIGINAL SCHEDULE");
+            scheduleTable(document, new String[][] {
+                    {"VN100", "04JUL26", "04JUL26", "6", "SGN", "1000",
+                            "VCL", "1125", "321/320"}
+            });
+
+            document.createParagraph().createRun().setText("2.2. NEW SCHEDULE");
+            scheduleTable(document, new String[][] {
+                    {"VN200", "04JUL26", "04JUL26", "6", "SGN", "0905",
+                            "VCL", "1030", "321/320"},
+                    {"VN201", "04JUL26", "04JUL26", "6", "VCL", "1105",
+                            "SGN", "1230", "321/320"}
+            });
+
+            document.createParagraph().createRun().setText("2.5. TRANSFER FLIGHTS");
+            scheduleTable(document, new String[][] {
+                    {"VN300", "04JUL26", "04JUL26", "6", "HAN", "1300",
+                            "DAD", "1425", "321/320"}
+            });
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private void scheduleTable(XWPFDocument document, String[][] rows) {
+        String[] headers = {"Flight number", "Effective from", "Effective to",
+                "Days of services", "Departure Airport", "ETD", "Arrival Airport",
+                "ETA", "Aircraft Type"};
+        XWPFTable schedule = document.createTable(rows.length + 1, headers.length);
+        for (int column = 0; column < headers.length; column++) {
+            schedule.getRow(0).getCell(column).setText(headers[column]);
+        }
+        for (int row = 0; row < rows.length; row++) {
+            for (int column = 0; column < headers.length; column++) {
+                schedule.getRow(row + 1).getCell(column).setText(rows[row][column]);
+            }
+        }
     }
 }
