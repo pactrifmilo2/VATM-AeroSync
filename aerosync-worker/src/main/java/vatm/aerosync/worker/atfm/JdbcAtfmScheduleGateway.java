@@ -227,7 +227,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
                 if (resultSet.getInt(1) != 1) {
-                    throw new SQLException("ATFM lookup not found: " + table + "." + column + "=" + value);
+                    throw new AtfmReferenceDataException(
+                            "ATFM lookup not found: " + table + "." + column + "=" + value);
                 }
             }
         }

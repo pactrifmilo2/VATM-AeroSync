@@ -10,6 +10,7 @@ import vatm.aerosync.api.dto.SyncJobSummaryResponse;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.entity.AuditLog;
+import vatm.aerosync.common.entity.EmailMetadata;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileArchiveStatus;
@@ -25,11 +26,15 @@ import vatm.aerosync.common.repository.SyncJobRepository;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
 public class SyncJobService {
+
+    private static final int ORACLE_IN_QUERY_BATCH_SIZE = 900;
 
     private final SyncJobRepository syncJobRepository;
     private final FileRecordRepository fileRecordRepository;
@@ -58,9 +63,20 @@ public class SyncJobService {
         List<SyncJob> jobs = statusFilter == null
                 ? syncJobRepository.findAll()
                 : syncJobRepository.findByStatus(statusFilter);
+        List<Long> jobIds = jobs.stream().map(SyncJob::getId).toList();
+        Map<Long, FileRecord> latestRecords = findLatestRecords(jobIds);
+        List<Long> emailJobIds = latestRecords.entrySet().stream()
+                .filter(entry -> entry.getValue().getSourceType() == FileSourceType.EMAIL)
+                .map(Map.Entry::getKey)
+                .toList();
+        Map<Long, EmailMetadata> firstEmailMetadata = findFirstEmailMetadata(emailJobIds);
+
         return jobs.stream()
                 .sorted(Comparator.comparing(SyncJob::getCreatedAt).reversed())
-                .map(this::toSummary)
+                .map(job -> toSummary(
+                        job,
+                        latestRecords.get(job.getId()),
+                        firstEmailMetadata.get(job.getId())))
                 .toList();
     }
 
@@ -81,7 +97,7 @@ public class SyncJobService {
         String emailAcknowledgementError = null;
         String mailboxFolder = null;
         Long messageUid = null;
-        var emailMetadata = emailMetadataRepository.findBySyncJobId(id);
+        var emailMetadata = emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(id);
         if (emailMetadata != null && emailMetadata.isPresent()) {
             emailSubject = emailMetadata.get().getSubject();
             emailBody = emailMetadata.get().getBody();
@@ -151,22 +167,13 @@ public class SyncJobService {
         jobRetryPublisher.publish(event);
     }
 
-    private SyncJobSummaryResponse toSummary(SyncJob job) {
-        List<FileRecord> records = fileRecordRepository.findBySyncJobId(job.getId());
-        FileRecord latest = records.stream()
-                .max(Comparator.comparing(FileRecord::getCreatedAt))
-                .orElse(null);
+    private SyncJobSummaryResponse toSummary(SyncJob job,
+                                             FileRecord latest,
+                                             EmailMetadata metadata) {
         String originalFileName = latest != null ? latest.getOriginalFileName() : null;
 
-        String sender = null;
-        LocalDateTime emailReceivedAt = null;
-        if (latest != null && latest.getSourceType() == FileSourceType.EMAIL) {
-            var metadata = emailMetadataRepository.findBySyncJobId(job.getId());
-            if (metadata.isPresent()) {
-                sender = metadata.get().getSender();
-                emailReceivedAt = metadata.get().getReceivedAt();
-            }
-        }
+        String sender = metadata != null ? metadata.getSender() : null;
+        LocalDateTime emailReceivedAt = metadata != null ? metadata.getReceivedAt() : null;
         return new SyncJobSummaryResponse(
                 job.getId(),
                 job.getFileHash(),
@@ -180,11 +187,47 @@ public class SyncJobService {
                 latest != null ? latest.getStoredPath() : null);
     }
 
+    private Map<Long, FileRecord> findLatestRecords(List<Long> jobIds) {
+        Map<Long, FileRecord> latestRecords = new HashMap<>();
+        for (int start = 0; start < jobIds.size(); start += ORACLE_IN_QUERY_BATCH_SIZE) {
+            List<Long> batch = jobIds.subList(
+                    start,
+                    Math.min(start + ORACLE_IN_QUERY_BATCH_SIZE, jobIds.size()));
+            for (FileRecord record : fileRecordRepository.findBySyncJobIdIn(batch)) {
+                latestRecords.merge(
+                        record.getSyncJob().getId(),
+                        record,
+                        (current, candidate) -> candidate.getCreatedAt().isAfter(current.getCreatedAt())
+                                ? candidate
+                                : current);
+            }
+        }
+        return latestRecords;
+    }
+
+    private Map<Long, EmailMetadata> findFirstEmailMetadata(List<Long> jobIds) {
+        Map<Long, EmailMetadata> firstMetadata = new HashMap<>();
+        for (int start = 0; start < jobIds.size(); start += ORACLE_IN_QUERY_BATCH_SIZE) {
+            List<Long> batch = jobIds.subList(
+                    start,
+                    Math.min(start + ORACLE_IN_QUERY_BATCH_SIZE, jobIds.size()));
+            for (EmailMetadata metadata : emailMetadataRepository.findBySyncJobIdIn(batch)) {
+                firstMetadata.merge(
+                        metadata.getSyncJob().getId(),
+                        metadata,
+                        (current, candidate) -> candidate.getId() < current.getId()
+                                ? candidate
+                                : current);
+            }
+        }
+        return firstMetadata;
+    }
+
     private FileRecordResponse toFileRecordResponse(FileRecord record) {
         String sender = null;
         String subject = null;
         if (record.getSourceType() == FileSourceType.EMAIL && record.getSyncJob() != null) {
-            var metadata = emailMetadataRepository.findBySyncJobId(record.getSyncJob().getId());
+            var metadata = emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(record.getSyncJob().getId());
             if (metadata.isPresent()) {
                 sender = metadata.get().getSender();
                 subject = metadata.get().getSubject();

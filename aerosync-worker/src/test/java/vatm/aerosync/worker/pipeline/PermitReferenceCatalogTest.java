@@ -22,4 +22,9 @@ class PermitReferenceCatalogTest {
         assertThat(aircraft.resolve("unknown / GLF6").craftId()).isEqualTo(1712L);
         assertThat(aircraft.resolve("unmapped")).isNull();
     }
+
+    @Test
+    void aircraftCatalog_resolvesH25B() {
+        assertThat(aircraft.resolve("H25B").craftId()).isEqualTo(417L);
+    }
 }

@@ -24,7 +24,7 @@ public class AtfmAirportCodeResolver {
             return normalized;
         }
         if (normalized.length() != 3) {
-            throw new SQLException("Invalid airport code: " + sourceCode);
+            throw new AtfmReferenceDataException("Invalid airport code: " + sourceCode);
         }
 
         String resolved = null;
@@ -34,18 +34,20 @@ public class AtfmAirportCodeResolver {
                 while (rows.next()) {
                     String candidate = normalize(rows.getString("AE_CODE"));
                     if (candidate.length() != 4) {
-                        throw new SQLException(
+                        throw new AtfmReferenceDataException(
                                 "Invalid M_AERO.AE_CODE mapping for AE_IATA=" + normalized + ": " + candidate);
                     }
                     if (resolved != null && !resolved.equals(candidate)) {
-                        throw new SQLException("Ambiguous M_AERO airport mapping for AE_IATA=" + normalized);
+                        throw new AtfmReferenceDataException(
+                                "Ambiguous M_AERO airport mapping for AE_IATA=" + normalized);
                     }
                     resolved = candidate;
                 }
             }
         }
         if (resolved == null) {
-            throw new SQLException("ATFM airport mapping not found: M_AERO.AE_IATA=" + normalized);
+            throw new AtfmReferenceDataException(
+                    "ATFM airport mapping not found: M_AERO.AE_IATA=" + normalized);
         }
         return resolved;
     }

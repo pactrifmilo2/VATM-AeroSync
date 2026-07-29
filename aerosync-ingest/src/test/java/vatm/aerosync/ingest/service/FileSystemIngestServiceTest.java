@@ -16,7 +16,6 @@ import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.repository.FileRecordRepository;
-import vatm.aerosync.common.repository.SyncJobRepository;
 import org.springframework.test.util.ReflectionTestUtils;
 import vatm.aerosync.ingest.support.Hashing;
 
@@ -44,9 +43,6 @@ class FileSystemIngestServiceTest {
     private IngestPublisher ingestPublisher;
 
     @Mock
-    private SyncJobRepository syncJobRepository;
-
-    @Mock
     private FileRecordRepository fileRecordRepository;
 
     @Mock
@@ -68,7 +64,6 @@ class FileSystemIngestServiceTest {
                 filePathProperties,
                 deduplicationService,
                 ingestPublisher,
-                syncJobRepository,
                 fileRecordRepository,
                 redisTemplate);
     }
@@ -76,13 +71,8 @@ class FileSystemIngestServiceTest {
     @Test
     void ingestUpTo_usesIncomingPathFromFilePathProperties() throws Exception {
         Files.writeString(tempDir.resolve("flight.csv"), "callsign,from,to\nVN123,HAN,SGN");
-        when(deduplicationService.findRetryableJob(anyString())).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
-        when(syncJobRepository.save(any())).thenAnswer(inv -> {
-            SyncJob job = inv.getArgument(0);
-            ReflectionTestUtils.setField(job, "id", 1L);
-            return job;
-        });
+        stubNewPendingJob();
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
 
@@ -94,7 +84,6 @@ class FileSystemIngestServiceTest {
     void ingestUpTo_skipsDuplicateHash() throws Exception {
         Files.writeString(tempDir.resolve("dup.csv"), "duplicate-content");
         String hash = Hashing.sha256Hex(tempDir.resolve("dup.csv"));
-        when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(hash)).thenReturn(true);
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
@@ -105,7 +94,7 @@ class FileSystemIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_republishesPendingJob() throws Exception {
+    void ingestUpTo_doesNotRepublishPendingJob() throws Exception {
         Path file = tempDir.resolve("retry.csv");
         Files.writeString(file, "callsign,from,to,dateflight\nVN123,HAN,SGN,2026-01-01");
         String hash = Hashing.sha256Hex(file);
@@ -113,20 +102,14 @@ class FileSystemIngestServiceTest {
         pending.setFileHash(hash);
         pending.setStatus(vatm.aerosync.common.enums.SyncStatus.PENDING);
         ReflectionTestUtils.setField(pending, "id", 9L);
-        FileRecord record = new FileRecord();
-        record.setSyncJob(pending);
-        record.setStoredPath(file.toString());
-        record.setOriginalFileName("retry.csv");
-        record.setSourceType(FileSourceType.FILESYSTEM);
-        when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.of(pending));
-        when(fileRecordRepository.findBySyncJobId(9L)).thenReturn(java.util.List.of(record));
+        when(deduplicationService.isDuplicate(hash)).thenReturn(true);
+        when(deduplicationService.createSkippedDuplicateJob(hash)).thenReturn(pending);
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
 
-        assertThat(ingested).isEqualTo(1);
-        verify(ingestPublisher).publish(org.mockito.ArgumentMatchers.argThat(event ->
-                event.getSyncJobId().equals(9L) && event.getTempFilePath().equals(file.toString())));
-        verify(deduplicationService, never()).createSkippedDuplicateJob(anyString());
+        assertThat(ingested).isZero();
+        verify(ingestPublisher, never()).publish(any());
+        verify(deduplicationService).createSkippedDuplicateJob(hash);
     }
 
     @Test
@@ -134,9 +117,7 @@ class FileSystemIngestServiceTest {
         Path file = tempDir.resolve("seen.csv");
         Files.writeString(file, "already-processed");
         String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
-        String hash = Hashing.sha256Hex(file);
         when(valueOperations.get(pathKey)).thenReturn("1");
-        when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.empty());
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
 
@@ -145,41 +126,24 @@ class FileSystemIngestServiceTest {
     }
 
     @Test
-    void ingestUpTo_republishesSeenPathWhenJobIsRetryable() throws Exception {
+    void ingestUpTo_doesNotRepublishSeenPath() throws Exception {
         Path file = tempDir.resolve("seen-retry.csv");
         Files.writeString(file, "callsign,from,to,dateflight\nVN123,HAN,SGN,2026-01-01");
         String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
-        String hash = Hashing.sha256Hex(file);
-        SyncJob pending = new SyncJob();
-        pending.setFileHash(hash);
-        pending.setStatus(vatm.aerosync.common.enums.SyncStatus.PENDING);
-        ReflectionTestUtils.setField(pending, "id", 11L);
-        FileRecord record = new FileRecord();
-        record.setSyncJob(pending);
-        record.setStoredPath(file.toString());
-        record.setOriginalFileName("seen-retry.csv");
-        record.setSourceType(FileSourceType.FILESYSTEM);
         when(valueOperations.get(pathKey)).thenReturn("1");
-        when(deduplicationService.findRetryableJob(hash)).thenReturn(java.util.Optional.of(pending));
-        when(fileRecordRepository.findBySyncJobId(11L)).thenReturn(java.util.List.of(record));
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
 
-        assertThat(ingested).isEqualTo(1);
-        verify(ingestPublisher).publish(any(FileIngestedEvent.class));
+        assertThat(ingested).isZero();
+        verify(ingestPublisher, never()).publish(any());
     }
 
     @Test
     void ingestUpTo_respectsLimit() throws Exception {
         Files.writeString(tempDir.resolve("a.csv"), "a");
         Files.writeString(tempDir.resolve("b.csv"), "b");
-        when(deduplicationService.findRetryableJob(anyString())).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
-        when(syncJobRepository.save(any())).thenAnswer(inv -> {
-            SyncJob job = inv.getArgument(0);
-            ReflectionTestUtils.setField(job, "id", 1L);
-            return job;
-        });
+        stubNewPendingJob();
 
         int ingested = fileSystemIngestService.ingestUpTo(1);
 
@@ -190,13 +154,8 @@ class FileSystemIngestServiceTest {
     @Test
     void ingestUpTo_publishesFilesystemSourceType() throws Exception {
         Files.writeString(tempDir.resolve("data.json"), "{}");
-        when(deduplicationService.findRetryableJob(anyString())).thenReturn(java.util.Optional.empty());
         when(deduplicationService.isDuplicate(anyString())).thenReturn(false);
-        when(syncJobRepository.save(any())).thenAnswer(inv -> {
-            SyncJob job = inv.getArgument(0);
-            ReflectionTestUtils.setField(job, "id", 1L);
-            return job;
-        });
+        stubNewPendingJob();
 
         fileSystemIngestService.ingestUpTo(5);
 
@@ -209,5 +168,14 @@ class FileSystemIngestServiceTest {
                         && record.getDownloadedAt() != null
                         && record.getFileSize() == 2L
                         && record.getChecksum().length() == 64));
+    }
+
+    private void stubNewPendingJob() {
+        when(deduplicationService.createPendingJob(anyString())).thenAnswer(invocation -> {
+            SyncJob job = new SyncJob();
+            job.setFileHash(invocation.getArgument(0));
+            ReflectionTestUtils.setField(job, "id", 1L);
+            return new DeduplicationService.JobCreationResult(job, true);
+        });
     }
 }
