@@ -1,22 +1,33 @@
 package vatm.aerosync.worker.pipeline;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.worker.model.FlightRow;
 import vatm.aerosync.worker.model.ProcessingContext;
+import vatm.aerosync.worker.model.ScheduleFlight;
+import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.time.ZoneId;
+import java.util.List;
 
 @Component
 public class NormalizerStep {
 
     private final ZoneId zoneId;
+    private final PermitOperatorCatalog permitOperatorCatalog;
 
-    public NormalizerStep() {
-        this(ZoneId.systemDefault());
+    @Autowired
+    public NormalizerStep(PermitOperatorCatalog permitOperatorCatalog) {
+        this(ZoneId.systemDefault(), permitOperatorCatalog);
     }
 
     NormalizerStep(ZoneId zoneId) {
+        this(zoneId, new PermitOperatorCatalog());
+    }
+
+    NormalizerStep(ZoneId zoneId, PermitOperatorCatalog permitOperatorCatalog) {
         this.zoneId = zoneId;
+        this.permitOperatorCatalog = permitOperatorCatalog;
     }
 
     public void normalize(ProcessingContext context) {
@@ -33,6 +44,16 @@ public class NormalizerStep {
             if (row.getDateFlight() != null) {
                 row.setDateFlight(row.getDateFlight().atStartOfDay(zoneId).toLocalDate());
             }
+        }
+
+        SchedulePermit permit = context.getSchedulePermit();
+        if (permit != null) {
+            List<ScheduleFlight> normalizedFlights = permit.flights().stream()
+                    .map(flight -> flight.withFlightNumber(
+                            permitOperatorCatalog.normalizeFlightNumber(
+                                    flight.flightNumber(), permit.operatorId())))
+                    .toList();
+            context.setSchedulePermit(permit.withFlights(normalizedFlights));
         }
     }
 }

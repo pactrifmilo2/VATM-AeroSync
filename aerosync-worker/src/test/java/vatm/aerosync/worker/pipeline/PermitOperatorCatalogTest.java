@@ -1,0 +1,34 @@
+package vatm.aerosync.worker.pipeline;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class PermitOperatorCatalogTest {
+
+    private final PermitOperatorCatalog catalog = new PermitOperatorCatalog();
+
+    @Test
+    void normalizeFlightNumber_mapsVietnamAirlinesIataPrefixToIcao() {
+        assertThat(catalog.normalizeFlightNumber("VN1822", "HVN"))
+                .isEqualTo("HVN1822");
+        assertThat(catalog.normalizeFlightNumber("VN7158", "HVN"))
+                .isEqualTo("HVN7158");
+    }
+
+    @Test
+    void normalizeFlightNumber_usesPermitOperatorToResolveAmbiguousIataCode() {
+        assertThat(catalog.normalizeFlightNumber("3Q123", "KCH"))
+                .isEqualTo("KCH123");
+        assertThat(catalog.normalizeFlightNumber("3Q123", null))
+                .isEqualTo("3Q123");
+    }
+
+    @Test
+    void normalizeFlightNumber_preservesIcaoAndNonFlightValues() {
+        assertThat(catalog.normalizeFlightNumber("HVN1822", "HVN"))
+                .isEqualTo("HVN1822");
+        assertThat(catalog.normalizeFlightNumber("VN-B593", "VNB"))
+                .isEqualTo("VNB593");
+    }
+}

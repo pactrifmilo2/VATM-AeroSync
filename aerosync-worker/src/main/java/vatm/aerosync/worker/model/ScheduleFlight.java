@@ -48,6 +48,13 @@ public record ScheduleFlight(
                 remark, sourceAircraftType);
     }
 
+    public ScheduleFlight withFlightNumber(String normalizedFlightNumber) {
+        return new ScheduleFlight(
+                purposeId, craftId, mtow, normalizedFlightNumber, registration,
+                serviceDays, fromAirport, toAirport, etd, eta, via, beginDate, endDate,
+                remark, sourceAircraftType);
+    }
+
     public ScheduleFlight withResolvedRoute(String resolvedFromAirport,
                                             String resolvedToAirport,
                                             String resolvedVia) {

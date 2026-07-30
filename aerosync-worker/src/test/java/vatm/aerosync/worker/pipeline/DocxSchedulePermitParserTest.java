@@ -5,12 +5,16 @@ import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.io.TempDir;
+import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -113,6 +117,26 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.etd()).isEqualTo("1140");
             assertThat(flight.via()).isEqualTo("M765/M771");
         });
+    }
+
+    @Test
+    void parseAndNormalize_mapsConfiguredHvnPermitDocument() {
+        String samplePath = System.getProperty("permit.hvn.sample.path");
+        Assumptions.assumeTrue(samplePath != null && !samplePath.isBlank(),
+                "Set -Dpermit.hvn.sample.path to validate the HVN permit document");
+        Path file = Path.of(samplePath);
+        Assumptions.assumeTrue(Files.isRegularFile(file), "Configured HVN permit document does not exist");
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
+                1L, file.toString(), "h", FileSourceType.EMAIL, false));
+        context.setSchedulePermit(permit);
+        new NormalizerStep(ZoneId.of("UTC")).normalize(context);
+
+        assertThat(permit.operatorId()).isEqualTo("HVN");
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("HVN1822", "HVN7158", "HVN7056", "HVN7058", "HVN7060");
     }
 
     private Path createPermitDocument() throws Exception {
