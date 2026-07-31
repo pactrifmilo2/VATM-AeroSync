@@ -6,24 +6,34 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import vatm.aerosync.api.AerosyncApiApplication;
 import vatm.aerosync.api.config.ApiDataConfig;
 import vatm.aerosync.api.dto.PagedResponse;
+import vatm.aerosync.api.security.LegacyTUserAccount;
+import vatm.aerosync.api.security.LegacyTUserAccountRepository;
+import vatm.aerosync.api.security.LegacyTUsersPasswordEncoder;
 import vatm.aerosync.api.service.PermitReviewService;
 import vatm.aerosync.api.service.PermitTrainingCandidateService;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(classes = {AerosyncApiApplication.class, ApiDataConfig.class})
+@SpringBootTest(
+        classes = {AerosyncApiApplication.class, ApiDataConfig.class},
+        properties = "app.permit-review-test-ui.enabled=true")
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class PermitReviewControllerTest {
@@ -37,10 +47,53 @@ class PermitReviewControllerTest {
     @MockitoBean
     private PermitTrainingCandidateService trainingCandidateService;
 
+    @MockitoBean
+    private LegacyTUserAccountRepository legacyTUserAccountRepository;
+
     @Test
     void anonymousUserCannotReadReviewQueue() throws Exception {
         mockMvc.perform(get("/api/permit-reviews"))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void anonymousUserCannotOpenReviewTestConsole() throws Exception {
+        mockMvc.perform(get("/permit-review-test"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
+    }
+
+    @Test
+    void administratorSignsInOnceAndReusesServerSession() throws Exception {
+        String passwordHash =
+                new LegacyTUsersPasswordEncoder().encode("test-password");
+        when(legacyTUserAccountRepository.findByUsernameIgnoreCase("admin"))
+                .thenReturn(Optional.of(new LegacyTUserAccount(
+                        1L,
+                        "admin",
+                        passwordHash,
+                        true,
+                        true,
+                        true)));
+
+        MvcResult loginResult = mockMvc.perform(formLogin()
+                        .user("admin")
+                        .password("test-password"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/permit-review-test"))
+                .andReturn();
+        MockHttpSession session =
+                (MockHttpSession) loginResult.getRequest().getSession(false);
+
+        mockMvc.perform(get("/permit-review-test").session(session))
+                .andExpect(status().isOk());
+
+        when(trainingCandidateService.list(null, null, 0, 25))
+                .thenReturn(new PagedResponse<>(
+                        List.of(), 0, 25, 0, 0, false, false));
+        mockMvc.perform(get("/api/permit-training-candidates")
+                        .session(session))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -93,5 +146,28 @@ class PermitReviewControllerTest {
                         .with(user("admin.one").roles("ADMIN")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content").isArray());
+    }
+
+    @Test
+    void adminCanRequestTrainingCorpusValidation() throws Exception {
+        mockMvc.perform(post(
+                        "/api/permit-training-candidates/9/validate")
+                        .with(user("admin.one").roles("ADMIN")))
+                .andExpect(status().isAccepted());
+
+        verify(trainingCandidateService)
+                .requestValidation(9L, "admin.one");
+    }
+
+    @Test
+    void operatorCannotDisableTrainingAlias() throws Exception {
+        mockMvc.perform(post(
+                        "/api/permit-training-candidates/9/disable")
+                        .contentType("application/json")
+                        .content("""
+                                {"comment":"Bad match"}
+                                """)
+                        .with(user("operator.one").roles("OPERATOR")))
+                .andExpect(status().isForbidden());
     }
 }

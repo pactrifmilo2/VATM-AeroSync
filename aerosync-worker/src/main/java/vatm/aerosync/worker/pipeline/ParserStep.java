@@ -2,6 +2,9 @@ package vatm.aerosync.worker.pipeline;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -34,22 +37,41 @@ import java.util.Map;
 @Component
 public class ParserStep {
 
+    private static final Logger LOGGER =
+            LoggerFactory.getLogger(ParserStep.class);
+
     private final ObjectMapper objectMapper;
     private final DocxSchedulePermitParser docxSchedulePermitParser;
     private final LegacyDocRevisionPermitParser legacyDocRevisionPermitParser;
+    private final PermitTrainingUsageService trainingUsageService;
 
     public ParserStep(ObjectMapper objectMapper,
                       DocxSchedulePermitParser docxSchedulePermitParser,
                       LegacyDocRevisionPermitParser legacyDocRevisionPermitParser) {
+        this(
+                objectMapper,
+                docxSchedulePermitParser,
+                legacyDocRevisionPermitParser,
+                null);
+    }
+
+    @Autowired
+    public ParserStep(
+            ObjectMapper objectMapper,
+            DocxSchedulePermitParser docxSchedulePermitParser,
+            LegacyDocRevisionPermitParser legacyDocRevisionPermitParser,
+            PermitTrainingUsageService trainingUsageService) {
         this.objectMapper = objectMapper;
         this.docxSchedulePermitParser = docxSchedulePermitParser;
         this.legacyDocRevisionPermitParser = legacyDocRevisionPermitParser;
+        this.trainingUsageService = trainingUsageService;
     }
 
     public void parse(ProcessingContext context) {
         if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOCX) {
             WordPermitParseResult result = docxSchedulePermitParser.parseWithDiagnostics(
                     context.getFilePath(), context.getOriginalFileName());
+            recordTrainingUsage(result);
             context.setWordPermitParseResult(result);
             context.setSchedulePermit(result.permit());
             return;
@@ -57,6 +79,7 @@ public class ParserStep {
         if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOC) {
             WordPermitParseResult result = legacyDocRevisionPermitParser.parseWithDiagnostics(
                     context.getFilePath(), context.getOriginalFileName());
+            recordTrainingUsage(result);
             context.setWordPermitParseResult(result);
             context.setSchedulePermit(result.permit());
             return;
@@ -73,6 +96,20 @@ public class ParserStep {
             throw new FormatValidationException(context.getOriginalFileName(), "No data rows found");
         }
         context.getRows().addAll(rows);
+    }
+
+    private void recordTrainingUsage(WordPermitParseResult result) {
+        if (trainingUsageService == null) {
+            return;
+        }
+        try {
+            trainingUsageService.record(result);
+        } catch (RuntimeException exception) {
+            LOGGER.warn(
+                    "Could not record permit training usage for profile {}",
+                    result.profileId(),
+                    exception);
+        }
     }
 
     List<FlightRow> parseCsv(java.nio.file.Path file, String fileName) {

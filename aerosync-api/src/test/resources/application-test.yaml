@@ -31,3 +31,6 @@ app:
       max-files-per-cycle: 100
       blacklist-senders:
         - ops@vatm.local
+  permit-training:
+    minimum-evidence: 2
+    require-corpus-validation: true

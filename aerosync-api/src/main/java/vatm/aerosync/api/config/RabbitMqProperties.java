@@ -11,6 +11,10 @@ public class RabbitMqProperties {
     private String fileProcessingRoutingKey = "file.processing";
     private String permitReviewPublishExchange = "permit.review.publish";
     private String permitReviewPublishRoutingKey = "permit.review.publish";
+    private String permitTrainingValidationExchange =
+            "permit.training.validation";
+    private String permitTrainingValidationRoutingKey =
+            "permit.training.validation";
 
     public String getSyncResultExchange() {
         return syncResultExchange;
@@ -58,5 +62,25 @@ public class RabbitMqProperties {
 
     public void setPermitReviewPublishRoutingKey(String permitReviewPublishRoutingKey) {
         this.permitReviewPublishRoutingKey = permitReviewPublishRoutingKey;
+    }
+
+    public String getPermitTrainingValidationExchange() {
+        return permitTrainingValidationExchange;
+    }
+
+    public void setPermitTrainingValidationExchange(
+            String permitTrainingValidationExchange) {
+        this.permitTrainingValidationExchange =
+                permitTrainingValidationExchange;
+    }
+
+    public String getPermitTrainingValidationRoutingKey() {
+        return permitTrainingValidationRoutingKey;
+    }
+
+    public void setPermitTrainingValidationRoutingKey(
+            String permitTrainingValidationRoutingKey) {
+        this.permitTrainingValidationRoutingKey =
+                permitTrainingValidationRoutingKey;
     }
 }

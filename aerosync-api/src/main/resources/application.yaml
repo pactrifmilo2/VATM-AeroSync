@@ -41,6 +41,8 @@ spring:
           database-minor-version: 3
 
 app:
+  file-paths:
+    training: ${APP_FILE_PATHS_TRAINING:C:/vatm-storage/training}
   api:
     defaults:
       scheduler-fixed-delay-ms: 300000
@@ -48,9 +50,14 @@ app:
       blacklist-senders:
         - ops@vatm.local
   security:
-    bootstrap-admin:
-      username: ${APP_BOOTSTRAP_ADMIN_USERNAME:}
-      password: ${APP_BOOTSTRAP_ADMIN_PASSWORD:}
+    legacy-users:
+      admin-username: ${APP_LEGACY_ADMIN_USERNAME:admin}
+      permit-menu-id: ${APP_LEGACY_PERMIT_MENU_ID:403}
+  permit-training:
+    minimum-evidence: ${APP_PERMIT_TRAINING_MINIMUM_EVIDENCE:2}
+    require-corpus-validation: ${APP_PERMIT_TRAINING_REQUIRE_CORPUS_VALIDATION:true}
+  permit-review-test-ui:
+    enabled: ${APP_PERMIT_REVIEW_TEST_UI_ENABLED:false}
   rabbit:
     sync-result-exchange: sync.result
     dashboard-alerts-queue: dashboard.alerts.queue
@@ -58,3 +65,5 @@ app:
     file-processing-routing-key: file.processing
     permit-review-publish-exchange: permit.review.publish
     permit-review-publish-routing-key: permit.review.publish
+    permit-training-validation-exchange: permit.training.validation
+    permit-training-validation-routing-key: permit.training.validation

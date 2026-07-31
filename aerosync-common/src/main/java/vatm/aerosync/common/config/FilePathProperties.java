@@ -9,6 +9,7 @@ public class FilePathProperties {
     private String processed;
     private String error;
     private String quarantine;
+    private String training;
 
     public String getIncoming() {
         return incoming;
@@ -40,5 +41,13 @@ public class FilePathProperties {
 
     public void setQuarantine(String quarantine) {
         this.quarantine = quarantine;
+    }
+
+    public String getTraining() {
+        return training;
+    }
+
+    public void setTraining(String training) {
+        this.training = training;
     }
 }

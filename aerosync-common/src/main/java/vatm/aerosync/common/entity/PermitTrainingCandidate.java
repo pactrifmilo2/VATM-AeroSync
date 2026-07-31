@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
 import vatm.aerosync.common.enums.PermitTrainingStatus;
+import vatm.aerosync.common.enums.PermitTrainingValidationStatus;
 
 import java.time.LocalDateTime;
 
@@ -77,6 +78,38 @@ public class PermitTrainingCandidate {
     @Column(name = "decided_at")
     private LocalDateTime decidedAt;
 
+    @Column(name = "usage_count", nullable = false)
+    private long usageCount;
+
+    @Column(name = "last_used_at")
+    private LocalDateTime lastUsedAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "validation_status", nullable = false, length = 32)
+    private PermitTrainingValidationStatus validationStatus =
+            PermitTrainingValidationStatus.NOT_RUN;
+
+    @Column(name = "validation_requested_by", length = 100)
+    private String validationRequestedBy;
+
+    @Column(name = "validation_requested_at")
+    private LocalDateTime validationRequestedAt;
+
+    @Column(name = "validation_completed_at")
+    private LocalDateTime validationCompletedAt;
+
+    @Column(name = "validation_corpus_size")
+    private Integer validationCorpusSize;
+
+    @Column(name = "validation_passed_count")
+    private Integer validationPassedCount;
+
+    @Column(name = "validation_failed_count")
+    private Integer validationFailedCount;
+
+    @Column(name = "validation_report", length = 4000)
+    private String validationReport;
+
     @Version
     @Column(nullable = false)
     private long version;
@@ -94,6 +127,9 @@ public class PermitTrainingCandidate {
         updatedAt = now;
         if (status == null) {
             status = PermitTrainingStatus.PENDING;
+        }
+        if (validationStatus == null) {
+            validationStatus = PermitTrainingValidationStatus.NOT_RUN;
         }
     }
 
@@ -208,6 +244,87 @@ public class PermitTrainingCandidate {
 
     public void setDecidedAt(LocalDateTime decidedAt) {
         this.decidedAt = decidedAt;
+    }
+
+    public long getUsageCount() {
+        return usageCount;
+    }
+
+    public void setUsageCount(long usageCount) {
+        this.usageCount = usageCount;
+    }
+
+    public LocalDateTime getLastUsedAt() {
+        return lastUsedAt;
+    }
+
+    public void setLastUsedAt(LocalDateTime lastUsedAt) {
+        this.lastUsedAt = lastUsedAt;
+    }
+
+    public PermitTrainingValidationStatus getValidationStatus() {
+        return validationStatus;
+    }
+
+    public void setValidationStatus(
+            PermitTrainingValidationStatus validationStatus) {
+        this.validationStatus = validationStatus;
+    }
+
+    public String getValidationRequestedBy() {
+        return validationRequestedBy;
+    }
+
+    public void setValidationRequestedBy(String validationRequestedBy) {
+        this.validationRequestedBy = validationRequestedBy;
+    }
+
+    public LocalDateTime getValidationRequestedAt() {
+        return validationRequestedAt;
+    }
+
+    public void setValidationRequestedAt(LocalDateTime validationRequestedAt) {
+        this.validationRequestedAt = validationRequestedAt;
+    }
+
+    public LocalDateTime getValidationCompletedAt() {
+        return validationCompletedAt;
+    }
+
+    public void setValidationCompletedAt(LocalDateTime validationCompletedAt) {
+        this.validationCompletedAt = validationCompletedAt;
+    }
+
+    public Integer getValidationCorpusSize() {
+        return validationCorpusSize;
+    }
+
+    public void setValidationCorpusSize(Integer validationCorpusSize) {
+        this.validationCorpusSize = validationCorpusSize;
+    }
+
+    public Integer getValidationPassedCount() {
+        return validationPassedCount;
+    }
+
+    public void setValidationPassedCount(Integer validationPassedCount) {
+        this.validationPassedCount = validationPassedCount;
+    }
+
+    public Integer getValidationFailedCount() {
+        return validationFailedCount;
+    }
+
+    public void setValidationFailedCount(Integer validationFailedCount) {
+        this.validationFailedCount = validationFailedCount;
+    }
+
+    public String getValidationReport() {
+        return validationReport;
+    }
+
+    public void setValidationReport(String validationReport) {
+        this.validationReport = validationReport;
     }
 
     public long getVersion() {

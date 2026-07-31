@@ -3,6 +3,7 @@ package vatm.aerosync.worker.pipeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.common.exception.FormatValidationException;
+import vatm.aerosync.common.entity.PermitTrainingCandidate;
 import vatm.aerosync.worker.model.PermitParseWarning;
 import vatm.aerosync.worker.model.PermitProfileCandidate;
 
@@ -37,9 +38,24 @@ class WordPermitFormatDetector {
     }
 
     WordPermitDetectionResult detectResult(WordPermitDocument document, String fileName) {
+        return detectResult(document, fileName, profileCatalog.activeProfiles());
+    }
+
+    WordPermitDetectionResult detectResult(
+            WordPermitDocument document,
+            String fileName,
+            PermitTrainingCandidate previewCandidate) {
+        return detectResult(
+                document,
+                fileName,
+                profileCatalog.previewProfiles(previewCandidate));
+    }
+
+    private WordPermitDetectionResult detectResult(
+            WordPermitDocument document,
+            String fileName,
+            DocxPermitProfileCatalog.ActiveProfiles activeProfiles) {
         PermitSemanticEvidence semantics = semanticExtractor.extract(document);
-        DocxPermitProfileCatalog.ActiveProfiles activeProfiles =
-                profileCatalog.activeProfiles();
         List<ScoredProfile> scores = activeProfiles.profiles().stream()
                 .map(profile -> score(
                         profile,

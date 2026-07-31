@@ -40,6 +40,30 @@ class OpenApiDocumentationTest {
                 .andExpect(jsonPath("$.paths['/api/permit-training-candidates'].get").exists())
                 .andExpect(jsonPath(
                         "$.paths['/api/permit-training-candidates/{id}/approve'].post")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-candidates/groups'].get")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-candidates/{id}/preflight'].get")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-candidates/{id}/validate'].post")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-candidates/{id}/disable'].post")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-candidates/{id}/history'].get")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-sources'].get")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-sources/{id}'].get")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-sources/{id}/retain'].post")
                         .exists());
     }
 

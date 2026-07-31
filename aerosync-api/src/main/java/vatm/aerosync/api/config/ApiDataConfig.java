@@ -4,6 +4,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.persistence.autoconfigure.EntityScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import vatm.aerosync.common.config.FilePathProperties;
 
 @Configuration
 @EntityScan(basePackages = {
@@ -17,7 +18,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableConfigurationProperties({
         ApiProperties.class,
         RabbitMqProperties.class,
-        AdminBootstrapProperties.class
+        LegacyUserSecurityProperties.class,
+        PermitTrainingProperties.class,
+        FilePathProperties.class
 })
 public class ApiDataConfig {
 }

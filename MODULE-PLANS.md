@@ -263,11 +263,15 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Persist adaptive parse snapshots, profile candidates, field diagnostics, and warnings
 - [x] Expose paginated operator review, correction, approval, and rejection APIs
 - [x] Keep approval separate from admin-only ATFM publication
-- [x] Load `OPERATOR` and `ADMIN` authorization roles from the AeroSync database
+- [x] Authenticate from legacy `T_USERS`; map permit editors to `OPERATOR` and the configured main publisher to `ADMIN`
 - [x] Queue approved publication commands from the API to the worker
 - [x] Revalidate corrected permits in the worker before target publication
 - [x] Generate safe profile-scoped header-alias candidates from approved adaptive evidence
 - [x] Expose admin-only training candidate list, detail, approval, and rejection APIs
+- [x] Group identical alias evidence and require two independent approved reviews
+- [x] Expose preflight readiness and asynchronous retained-document corpus replay
+- [x] Add immediate disable, validated reactivation, and immutable action history
+- [x] Track promoted-alias usage count and last-used time
 - [x] Load approved aliases live while enforcing the source profile version
 
 ---

@@ -266,35 +266,79 @@ parser. The admin UI can use these endpoints:
 
 | Method | Endpoint | Role | Purpose |
 |--------|----------|------|---------|
-| `GET` | `/api/permit-training-candidates` | Admin | List/filter pending, approved, or rejected candidates |
-| `GET` | `/api/permit-training-candidates/{id}` | Admin | Inspect the alias, source review, profile, method, and confidence |
-| `POST` | `/api/permit-training-candidates/{id}/approve` | Admin | Activate the alias for the matching profile/version |
+| `GET` | `/api/permit-training-candidates` | Admin | List/filter pending, approved, rejected, or disabled candidates |
+| `GET` | `/api/permit-training-candidates/groups` | Admin | Group identical evidence from independent approved reviews |
+| `GET` | `/api/permit-training-candidates/{id}` | Admin | Inspect evidence, validation, usage, and the source review |
+| `GET` | `/api/permit-training-candidates/{id}/preflight` | Admin | Check the evidence threshold, conflicts, and replay status |
+| `GET` | `/api/permit-training-candidates/{id}/history` | Admin | Read the immutable decision and validation history |
+| `POST` | `/api/permit-training-candidates/{id}/validate` | Admin | Ask the worker to replay retained source permits |
+| `POST` | `/api/permit-training-candidates/{id}/approve` | Admin | Activate an alias only after preflight passes |
 | `POST` | `/api/permit-training-candidates/{id}/reject` | Admin | Reject the candidate with a reason |
+| `POST` | `/api/permit-training-candidates/{id}/disable` | Admin | Immediately remove an active alias from parsing |
+| `POST` | `/api/permit-training-candidates/{id}/reactivate` | Admin | Restore a disabled alias after a fresh successful replay |
 
 Only shared or fuzzy table-header matches are eligible for automatic candidate
-creation. Approved candidates are profile-scoped, loaded from the AeroSync
-database for each new permit, and treated as trusted exact aliases. They stop
-applying automatically if the YAML profile version changes. Corrections to
-business values such as operator, dates, or flight data remain evidence for
-developers and are never converted into executable rules automatically.
+creation. By default, activation requires the same profile/version, semantic
+field, and canonical alias from at least two independent approved reviews. The
+worker then reparses every retained source document in that evidence group with
+the proposed alias and verifies that the selected profile and extracted permit
+do not change. Configure the threshold with
+`APP_PERMIT_TRAINING_MINIMUM_EVIDENCE`; corpus replay can be disabled only as an
+explicit operational override with
+`APP_PERMIT_TRAINING_REQUIRE_CORPUS_VALIDATION=false`.
 
-Review API users and their `OPERATOR` or `ADMIN` roles are loaded from the
-`app_users` database table. Run the review migration, then configure a one-time
-bootstrap administrator for the first API startup:
+The normal admin flow is: inspect the grouped evidence, read `preflight`, call
+`validate`, poll the candidate until `validationStatus` is `PASSED`, and then
+call `approve`. Approved candidates are profile-scoped, loaded from the
+AeroSync database for each new permit, and treated as trusted exact aliases.
+The API reports `usageCount` and `lastUsedAt` after the worker uses an alias.
+Disabling an alias makes it inactive for the next parse without deleting its
+history; reactivation requires a fresh replay. Aliases also stop applying
+automatically if the YAML profile version changes. Corrections to business
+values such as operator, dates, or flight data remain evidence for developers
+and are never converted into executable rules automatically.
 
-```powershell
-sqlplus vatm_user/vatm_password@localhost:1521/XEPDB1 `
-  '@scripts/migrate-adaptive-permit-review-oracle.sql'
+Before deploying this phase to an existing database, rerun the idempotent
+`scripts/migrate-adaptive-permit-review-oracle.sql` migration. Previously
+approved aliases are left active to avoid a silent production behavior change;
+an administrator can disable, validate, and reactivate them to bring them
+through the new gate.
+
+Review API authentication reuses the legacy `T_USERS` and `T_USERMENU` tables.
+Only active users with edit access to the configured permit menu can review
+permits. The configured main account must also have publish access and is
+mapped to `ADMIN`; other eligible users are mapped to `OPERATOR`. The defaults
+match the current ATFM installation:
+
+```properties
+APP_LEGACY_ADMIN_USERNAME=admin
+APP_LEGACY_PERMIT_MENU_ID=403
 ```
+
+Password verification is compatible with the legacy .NET login: MD5 of the
+UTF-16LE password bytes formatted as uppercase hexadecimal pairs separated by
+hyphens. The test console uses Spring Security's one-time form login and keeps
+the authenticated identity in the server session. Review APIs also retain HTTP
+Basic support for non-browser clients; other existing monitoring endpoints keep
+their current access behavior.
+
+For controlled testing before these workflows are added to the permanent admin
+page, the API includes an optional same-origin browser console. Enable it only
+in a test environment:
 
 ```env
-APP_BOOTSTRAP_ADMIN_USERNAME=aerosync-admin
-APP_BOOTSTRAP_ADMIN_PASSWORD=replace-with-a-long-random-password
+APP_PERMIT_REVIEW_TEST_UI_ENABLED=true
 ```
 
-Remove the bootstrap variables after the account has been created. Review
-endpoints use HTTP Basic authentication; other existing monitoring endpoints
-keep their current access behavior.
+Restart the API and open `http://localhost:8080/permit-review-test` (replace the
+host and port if the API runs elsewhere). The console reuses the browser's
+existing same-origin AeroSync authentication and does not collect or store
+credentials. With the current HTTP Basic setup, the browser may show its native
+login prompt once when opening the protected page. An `OPERATOR` account can
+test review, correction, approval, and rejection; an `ADMIN` account also
+unlocks ATFM publication and alias validation, activation, disabling,
+reactivation, and history. The feature is disabled by default and should remain
+disabled in production.
 
 To regression-test a local directory of Word permits without importing anything:
 

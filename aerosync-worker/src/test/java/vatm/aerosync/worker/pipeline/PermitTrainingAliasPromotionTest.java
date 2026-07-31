@@ -52,6 +52,28 @@ class PermitTrainingAliasPromotionTest {
                 .doesNotContain("Flight identifier");
     }
 
+    @Test
+    void pendingCandidateIsAvailableOnlyInValidationPreview() {
+        PermitTrainingCandidateRepository repository =
+                mock(PermitTrainingCandidateRepository.class);
+        PermitTrainingCandidate pending = candidate(1);
+        pending.setStatus(PermitTrainingStatus.PENDING);
+        when(repository.findAllByStatus(PermitTrainingStatus.APPROVED))
+                .thenReturn(List.of());
+
+        DocxPermitProfileCatalog catalog = new DocxPermitProfileCatalog(
+                new PermitSemanticAliasCatalog(), repository);
+
+        assertThat(catalog.activeProfiles()
+                .declaredProfile("caav-english-overflight-scheduled")
+                .schedule().columns().get("flightNumber"))
+                .doesNotContain("Flight identifier");
+        assertThat(catalog.previewProfiles(pending)
+                .declaredProfile("caav-english-overflight-scheduled")
+                .schedule().columns().get("flightNumber"))
+                .contains("Flight identifier");
+    }
+
     private PermitTrainingCandidate candidate(int profileVersion) {
         PermitTrainingCandidate candidate = new PermitTrainingCandidate();
         candidate.setStatus(PermitTrainingStatus.APPROVED);

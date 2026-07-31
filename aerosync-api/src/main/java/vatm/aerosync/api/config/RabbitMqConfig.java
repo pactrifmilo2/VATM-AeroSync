@@ -38,4 +38,13 @@ public class RabbitMqConfig {
     DirectExchange permitReviewPublishExchange(RabbitMqProperties properties) {
         return new DirectExchange(properties.getPermitReviewPublishExchange(), true, false);
     }
+
+    @Bean
+    DirectExchange permitTrainingValidationExchange(
+            RabbitMqProperties properties) {
+        return new DirectExchange(
+                properties.getPermitTrainingValidationExchange(),
+                true,
+                false);
+    }
 }

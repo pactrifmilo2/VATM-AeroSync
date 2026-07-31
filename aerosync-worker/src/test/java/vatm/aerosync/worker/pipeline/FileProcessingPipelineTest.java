@@ -12,6 +12,7 @@ import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.common.enums.PermitTrainingSourceState;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
@@ -64,6 +65,8 @@ class FileProcessingPipelineTest {
     private AuditLogService auditLogService;
     @Mock
     private SyncResultPublisher syncResultPublisher;
+    @Mock
+    private PermitTrainingSourceCaptureService trainingSourceCaptureService;
 
     private FileProcessingPipeline pipeline;
     private FileRecord record;
@@ -84,7 +87,8 @@ class FileProcessingPipelineTest {
                 databaseWriterStep,
                 fileArchiverStep,
                 auditLogService,
-                syncResultPublisher);
+                syncResultPublisher,
+                trainingSourceCaptureService);
 
         record = new FileRecord();
         record.setSourceType(FileSourceType.EMAIL);
@@ -130,6 +134,16 @@ class FileProcessingPipelineTest {
         processingOrder.verify(viaResolutionStep).resolve(any());
         processingOrder.verify(businessRuleValidatorStep).validate(any());
         processingOrder.verify(databaseWriterStep).write(any());
+        verify(trainingSourceCaptureService).record(
+                any(),
+                org.mockito.ArgumentMatchers.eq(
+                        PermitTrainingSourceState.PROCESSING),
+                org.mockito.ArgumentMatchers.isNull());
+        verify(trainingSourceCaptureService).record(
+                any(),
+                org.mockito.ArgumentMatchers.eq(
+                        PermitTrainingSourceState.PARSED),
+                org.mockito.ArgumentMatchers.isNull());
 
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SAVED);
         assertThat(record.getRowsSaved()).isZero();
@@ -173,5 +187,11 @@ class FileProcessingPipelineTest {
                 org.mockito.ArgumentMatchers.eq(SyncStatus.QUARANTINED),
                 any(),
                 org.mockito.ArgumentMatchers.contains("BR-ATFM-REFERENCE"));
+        verify(trainingSourceCaptureService).record(
+                any(),
+                org.mockito.ArgumentMatchers.eq(
+                        PermitTrainingSourceState.QUARANTINED),
+                org.mockito.ArgumentMatchers.contains(
+                        "M_OPER.OPER_ICAO=POS"));
     }
 }

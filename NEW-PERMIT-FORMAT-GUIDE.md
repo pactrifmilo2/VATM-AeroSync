@@ -88,12 +88,21 @@ make the separate `/publish` request.
 
 Approved adaptive header matches create pending candidates under
 `/api/permit-training-candidates`. A separate administrator decision is required
-to activate a candidate. An approved candidate is added as a trusted exact alias
+to activate a candidate. Before approval, the default safety gate requires two
+independent approved reviews with the same profile/version, semantic field, and
+canonical header. Use the grouped-evidence and preflight endpoints, then request
+`/{id}/validate`. The worker replays all retained source Word documents with the
+candidate in preview mode and requires the extracted snapshots to remain
+unchanged. The preview alias is not active for live mail while validation runs.
+
+After validation passes, an approved candidate is added as a trusted exact alias
 only to the profile and profile version that produced it; the worker loads these
-aliases from the database for later permits without rewriting YAML. If the YAML
-profile version changes, the candidate becomes inactive until it is reviewed
-again. Business-value corrections are retained as evidence but are never turned
-into executable parser rules automatically.
+aliases from the database for later permits without rewriting YAML. Runtime
+usage is counted. An administrator can disable an alias immediately and inspect
+its permanent history; reactivation requires a fresh successful replay. If the
+YAML profile version changes, the candidate becomes inactive until it is
+reviewed again. Business-value corrections are retained as evidence but are
+never turned into executable parser rules automatically.
 
 Make recognition patterns tolerant of harmless punctuation and spacing changes:
 

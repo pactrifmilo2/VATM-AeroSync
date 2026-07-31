@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>AeroSync Permit Review Test Console</title>
+    <link rel="stylesheet" href="/permit-review-test/app.css">
+</head>
+<body>
+<header class="topbar">
+    <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">AS</div>
+        <div>
+            <p class="eyebrow">VATM AEROSYNC</p>
+            <h1>Permit learning test console</h1>
+        </div>
+    </div>
+    <div class="session-block">
+        <span id="environment-pill" class="pill pill-neutral">Test utility</span>
+        <span id="role-pill" class="pill pill-neutral">Checking access</span>
+    </div>
+</header>
+
+<main>
+    <section id="workspace" class="workspace" aria-busy="true">
+        <nav class="tabs" aria-label="Test console sections">
+            <button class="tab is-active" type="button" data-tab="reviews">
+                Operator review
+                <span id="review-count-badge" class="count-badge">0</span>
+            </button>
+            <button id="training-tab" class="tab" type="button" data-tab="training">
+                Alias training
+                <span id="training-count-badge" class="count-badge">0</span>
+            </button>
+        </nav>
+        <p id="connection-message" class="connection-message" role="status">
+            Checking your existing AeroSync access…
+        </p>
+
+        <section id="reviews-panel" class="tab-panel" data-panel="reviews">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">OPERATOR WORKFLOW</p>
+                    <h2>Review extracted permits before publication</h2>
+                    <p>Compare the evidence, correct values, then approve or reject the permit.</p>
+                </div>
+                <div class="toolbar">
+                    <label>
+                        Status
+                        <select id="review-status-filter">
+                            <option value="">All statuses</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="CORRECTED">Corrected</option>
+                            <option value="APPROVED">Approved</option>
+                            <option value="PUBLISHING">Publishing</option>
+                            <option value="PUBLISHED">Published</option>
+                            <option value="REJECTED">Rejected</option>
+                            <option value="PUBLISH_FAILED">Publish failed</option>
+                        </select>
+                    </label>
+                    <button id="refresh-reviews" class="button button-secondary" type="button">
+                        Refresh queue
+                    </button>
+                </div>
+            </div>
+
+            <div class="split-layout">
+                <aside class="queue-panel" aria-label="Permit review queue">
+                    <div class="panel-title-row">
+                        <h3>Review queue</h3>
+                        <span id="review-total" class="muted">0 records</span>
+                    </div>
+                    <div id="review-list" class="record-list"></div>
+                    <div id="review-empty" class="empty-state">
+                        No reviews match this filter.
+                    </div>
+                </aside>
+
+                <article class="detail-panel">
+                    <div id="review-detail-empty" class="empty-state detail-empty">
+                        <span class="empty-number">01</span>
+                        <h3>Select a permit from the queue</h3>
+                        <p>The extracted fields, warnings, and schedule will appear here.</p>
+                    </div>
+
+                    <div id="review-detail" hidden>
+                        <div class="detail-heading">
+                            <div>
+                                <p id="review-kicker" class="eyebrow"></p>
+                                <h3 id="review-title"></h3>
+                                <p id="review-reason" class="supporting-copy"></p>
+                            </div>
+                            <span id="review-status-pill" class="pill"></span>
+                        </div>
+
+                        <div class="metric-grid metric-grid-four">
+                            <div class="metric-card">
+                                <span>Profile</span>
+                                <strong id="review-profile">—</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Confidence</span>
+                                <strong id="review-confidence">—</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Runner-up margin</span>
+                                <strong id="review-margin">—</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Flights</span>
+                                <strong id="review-flight-count">0</strong>
+                            </div>
+                        </div>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">EXTRACTED VALUES</p>
+                                    <h3>Permit details</h3>
+                                </div>
+                                <span class="muted">Required values are marked *</span>
+                            </div>
+                            <div id="permit-fields" class="form-grid"></div>
+                            <div class="flag-row">
+                                <label class="checkbox-label">
+                                    <input id="iata-airports-allowed" type="checkbox">
+                                    IATA airports allowed
+                                </label>
+                                <label class="checkbox-label">
+                                    <input id="empty-airways-allowed" type="checkbox">
+                                    Empty airways allowed
+                                </label>
+                            </div>
+                        </section>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">SCHEDULE</p>
+                                    <h3>Flight rows</h3>
+                                </div>
+                                <button id="add-flight" class="button button-quiet" type="button">
+                                    Add flight row
+                                </button>
+                            </div>
+                            <div class="table-scroll">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Flight</th>
+                                        <th>Registration</th>
+                                        <th>Aircraft ID</th>
+                                        <th>Aircraft type</th>
+                                        <th>Purpose</th>
+                                        <th>MTOW</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>ETD</th>
+                                        <th>ETA</th>
+                                        <th>Days</th>
+                                        <th>Begin</th>
+                                        <th>End</th>
+                                        <th>Via</th>
+                                        <th>Remark</th>
+                                        <th><span class="sr-only">Remove</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="flight-table-body"></tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <div class="evidence-grid">
+                            <section class="subsection">
+                                <p class="eyebrow">WARNINGS</p>
+                                <h3>Items requiring attention</h3>
+                                <div id="warning-list" class="compact-list"></div>
+                            </section>
+                            <section class="subsection">
+                                <p class="eyebrow">FIELD EVIDENCE</p>
+                                <h3>How values were found</h3>
+                                <div id="diagnostic-list" class="compact-list"></div>
+                            </section>
+                        </div>
+
+                        <section class="decision-panel">
+                            <label>
+                                Operator note or rejection reason
+                                <textarea id="review-comment" rows="3" maxlength="2000"
+                                          placeholder="Explain corrections or the reason for this decision"></textarea>
+                            </label>
+                            <div class="action-row">
+                                <button id="save-correction" class="button button-secondary" type="button">
+                                    Save correction
+                                </button>
+                                <button id="approve-review" class="button button-success" type="button">
+                                    Approve review
+                                </button>
+                                <button id="reject-review" class="button button-danger" type="button">
+                                    Reject review
+                                </button>
+                                <button id="publish-review" class="button button-primary" type="button" hidden>
+                                    Publish to ATFM
+                                </button>
+                            </div>
+                            <p id="review-action-message" class="inline-message" role="status"></p>
+                        </section>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="training-panel" class="tab-panel" data-panel="training" hidden>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ADMINISTRATOR WORKFLOW</p>
+                    <h2>Validate evidence before activating an alias</h2>
+                    <p>Independent approvals and corpus replay protect the parser from unsafe rules.</p>
+                </div>
+                <div class="toolbar">
+                    <label>
+                        Status
+                        <select id="training-status-filter">
+                            <option value="">All statuses</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="APPROVED">Active</option>
+                            <option value="REJECTED">Rejected</option>
+                            <option value="DISABLED">Disabled</option>
+                        </select>
+                    </label>
+                    <label>
+                        Profile
+                        <input id="training-profile-filter" placeholder="e.g. hvn-landing">
+                    </label>
+                    <button id="refresh-training" class="button button-secondary" type="button">
+                        Refresh evidence
+                    </button>
+                </div>
+            </div>
+
+            <div class="metric-grid metric-grid-four training-metrics">
+                <div class="metric-card metric-accent">
+                    <span>Pending groups</span>
+                    <strong id="pending-group-count">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span>Active aliases</span>
+                    <strong id="active-group-count">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span>Awaiting replay</span>
+                    <strong id="validation-group-count">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span>Total uses</span>
+                    <strong id="alias-usage-count">0</strong>
+                </div>
+            </div>
+
+            <div class="split-layout">
+                <aside class="queue-panel" aria-label="Grouped alias evidence">
+                    <div class="panel-title-row">
+                        <h3>Evidence groups</h3>
+                        <span id="training-total" class="muted">0 groups</span>
+                    </div>
+                    <div id="training-list" class="record-list"></div>
+                    <div id="training-empty" class="empty-state">
+                        No alias evidence matches this filter.
+                    </div>
+                </aside>
+
+                <article class="detail-panel">
+                    <div id="training-detail-empty" class="empty-state detail-empty">
+                        <span class="empty-number">02</span>
+                        <h3>Select an evidence group</h3>
+                        <p>Preflight readiness, corpus replay, and history will appear here.</p>
+                    </div>
+
+                    <div id="training-detail" hidden>
+                        <div class="detail-heading">
+                            <div>
+                                <p id="training-kicker" class="eyebrow"></p>
+                                <h3 id="training-title"></h3>
+                                <p id="training-subtitle" class="supporting-copy"></p>
+                            </div>
+                            <span id="training-status-pill" class="pill"></span>
+                        </div>
+
+                        <div class="metric-grid metric-grid-four">
+                            <div class="metric-card">
+                                <span>Evidence</span>
+                                <strong id="training-evidence">—</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Confidence</span>
+                                <strong id="training-confidence">—</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Validation</span>
+                                <strong id="training-validation">—</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Usage</span>
+                                <strong id="training-usage">—</strong>
+                            </div>
+                        </div>
+
+                        <div class="evidence-grid">
+                            <section class="subsection">
+                                <div class="panel-title-row">
+                                    <div>
+                                        <p class="eyebrow">PREFLIGHT</p>
+                                        <h3 id="preflight-title">Readiness check</h3>
+                                    </div>
+                                    <span id="preflight-pill" class="pill"></span>
+                                </div>
+                                <div id="preflight-list" class="compact-list"></div>
+                            </section>
+                            <section class="subsection">
+                                <p class="eyebrow">CORPUS REPLAY</p>
+                                <h3>Validation result</h3>
+                                <div id="validation-summary" class="validation-summary"></div>
+                                <pre id="validation-report" class="report-block"></pre>
+                            </section>
+                        </div>
+
+                        <section class="subsection">
+                            <p class="eyebrow">IMMUTABLE HISTORY</p>
+                            <h3>Decisions and validation events</h3>
+                            <div class="table-scroll">
+                                <table class="history-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Action</th>
+                                        <th>Actor</th>
+                                        <th>Comment</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="history-table-body"></tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="decision-panel">
+                            <label>
+                                Administrator decision note
+                                <textarea id="training-comment" rows="3" maxlength="2000"
+                                          placeholder="Required when rejecting or disabling an alias"></textarea>
+                            </label>
+                            <div class="action-row">
+                                <button id="validate-training" class="button button-secondary" type="button">
+                                    Run corpus replay
+                                </button>
+                                <button id="approve-training" class="button button-success" type="button">
+                                    Activate alias
+                                </button>
+                                <button id="reject-training" class="button button-danger" type="button">
+                                    Reject
+                                </button>
+                                <button id="disable-training" class="button button-danger" type="button">
+                                    Disable now
+                                </button>
+                                <button id="reactivate-training" class="button button-primary" type="button">
+                                    Reactivate
+                                </button>
+                            </div>
+                            <p id="training-action-message" class="inline-message" role="status"></p>
+                        </section>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </section>
+</main>
+
+<div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+<script src="/permit-review-test/app.js" defer></script>
+</body>
+</html>

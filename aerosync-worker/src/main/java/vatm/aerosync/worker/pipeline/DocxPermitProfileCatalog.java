@@ -63,11 +63,32 @@ class DocxPermitProfileCatalog {
     }
 
     ActiveProfiles activeProfiles() {
-        if (trainingCandidateRepository == null) {
-            return new ActiveProfiles(profiles, declaredProfiles);
-        }
         List<PermitTrainingCandidate> candidates =
-                trainingCandidateRepository.findAllByStatus(PermitTrainingStatus.APPROVED);
+                trainingCandidateRepository == null
+                        ? List.of()
+                        : trainingCandidateRepository.findAllByStatus(
+                                PermitTrainingStatus.APPROVED);
+        return activeProfiles(candidates);
+    }
+
+    ActiveProfiles previewProfiles(PermitTrainingCandidate candidate) {
+        List<PermitTrainingCandidate> candidates =
+                trainingCandidateRepository == null
+                        ? new java.util.ArrayList<>()
+                        : new java.util.ArrayList<>(
+                                trainingCandidateRepository.findAllByStatus(
+                                        PermitTrainingStatus.APPROVED));
+        boolean alreadyIncluded = candidate.getId() != null
+                && candidates.stream().anyMatch(active ->
+                        candidate.getId().equals(active.getId()));
+        if (!alreadyIncluded) {
+            candidates.add(candidate);
+        }
+        return activeProfiles(candidates);
+    }
+
+    private ActiveProfiles activeProfiles(
+            List<PermitTrainingCandidate> candidates) {
         if (candidates.isEmpty()) {
             return new ActiveProfiles(profiles, declaredProfiles);
         }

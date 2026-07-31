@@ -60,6 +60,7 @@ app:
     processed: C:/vatm-storage/processed
     error: C:/vatm-storage/error
     quarantine: C:/vatm-storage/quarantine
+    training: ${APP_FILE_PATHS_TRAINING:C:/vatm-storage/training}
   worker:
     max-file-size-bytes: 10485760
     processed-retention-days: 60
@@ -80,3 +81,6 @@ app:
     permit-review-publish-exchange: permit.review.publish
     permit-review-publish-routing-key: permit.review.publish
     permit-review-publish-queue: permit.review.publish.queue
+    permit-training-validation-exchange: permit.training.validation
+    permit-training-validation-routing-key: permit.training.validation
+    permit-training-validation-queue: permit.training.validation.queue

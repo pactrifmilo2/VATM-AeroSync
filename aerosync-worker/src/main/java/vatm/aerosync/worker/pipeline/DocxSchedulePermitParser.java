@@ -2,6 +2,7 @@ package vatm.aerosync.worker.pipeline;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import vatm.aerosync.common.entity.PermitTrainingCandidate;
 import vatm.aerosync.common.exception.FormatValidationException;
 import vatm.aerosync.worker.model.PermitFieldDiagnostic;
 import vatm.aerosync.worker.model.PermitParseWarning;
@@ -87,8 +88,34 @@ public class DocxSchedulePermitParser {
         return parseWithDiagnostics(document, fileName).permit();
     }
 
+    public WordPermitParseResult parseWithTrainingCandidate(
+            Path file,
+            String fileName,
+            PermitTrainingCandidate candidate) {
+        try {
+            WordPermitDocument document = documentReader.read(file);
+            WordPermitDetectionResult detection = formatDetector.detectResult(
+                    document, fileName, candidate);
+            return parseWithDiagnostics(document, fileName, detection);
+        } catch (FormatValidationException exception) {
+            throw exception;
+        } catch (IOException | RuntimeException exception) {
+            throw invalid(
+                    fileName,
+                    "Failed to validate training candidate: "
+                            + exception.getMessage());
+        }
+    }
+
     WordPermitParseResult parseWithDiagnostics(WordPermitDocument document, String fileName) {
         WordPermitDetectionResult detection = formatDetector.detectResult(document, fileName);
+        return parseWithDiagnostics(document, fileName, detection);
+    }
+
+    private WordPermitParseResult parseWithDiagnostics(
+            WordPermitDocument document,
+            String fileName,
+            WordPermitDetectionResult detection) {
         ParseDiagnostics diagnostics = new ParseDiagnostics(detection.warnings());
         SchedulePermit permit = parseProfile(
                 detection.profile(),

@@ -19,6 +19,12 @@ public class RabbitMqProperties {
     private String permitReviewPublishExchange = "permit.review.publish";
     private String permitReviewPublishRoutingKey = "permit.review.publish";
     private String permitReviewPublishQueue = "permit.review.publish.queue";
+    private String permitTrainingValidationExchange =
+            "permit.training.validation";
+    private String permitTrainingValidationRoutingKey =
+            "permit.training.validation";
+    private String permitTrainingValidationQueue =
+            "permit.training.validation.queue";
 
     public String getFileIngestedExchange() {
         return fileIngestedExchange;
@@ -130,5 +136,34 @@ public class RabbitMqProperties {
 
     public void setPermitReviewPublishQueue(String permitReviewPublishQueue) {
         this.permitReviewPublishQueue = permitReviewPublishQueue;
+    }
+
+    public String getPermitTrainingValidationExchange() {
+        return permitTrainingValidationExchange;
+    }
+
+    public void setPermitTrainingValidationExchange(
+            String permitTrainingValidationExchange) {
+        this.permitTrainingValidationExchange =
+                permitTrainingValidationExchange;
+    }
+
+    public String getPermitTrainingValidationRoutingKey() {
+        return permitTrainingValidationRoutingKey;
+    }
+
+    public void setPermitTrainingValidationRoutingKey(
+            String permitTrainingValidationRoutingKey) {
+        this.permitTrainingValidationRoutingKey =
+                permitTrainingValidationRoutingKey;
+    }
+
+    public String getPermitTrainingValidationQueue() {
+        return permitTrainingValidationQueue;
+    }
+
+    public void setPermitTrainingValidationQueue(
+            String permitTrainingValidationQueue) {
+        this.permitTrainingValidationQueue = permitTrainingValidationQueue;
     }
 }

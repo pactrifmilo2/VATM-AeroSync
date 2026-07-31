@@ -2,6 +2,8 @@ package vatm.aerosync.worker.pipeline;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vatm.aerosync.common.debug.DebugSessionLog;
@@ -11,6 +13,7 @@ import vatm.aerosync.common.enums.AlertLevel;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
+import vatm.aerosync.common.enums.PermitTrainingSourceState;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.common.exception.FormatValidationException;
@@ -28,6 +31,9 @@ import java.time.LocalDateTime;
 @Service
 public class FileProcessingPipeline {
 
+    private static final Logger LOGGER =
+            LoggerFactory.getLogger(FileProcessingPipeline.class);
+
     private final SyncJobRepository syncJobRepository;
     private final EmailMetadataRepository emailMetadataRepository;
     private final FileRecordRepository fileRecordRepository;
@@ -41,6 +47,7 @@ public class FileProcessingPipeline {
     private final FileArchiverStep fileArchiverStep;
     private final AuditLogService auditLogService;
     private final SyncResultPublisher syncResultPublisher;
+    private final PermitTrainingSourceCaptureService trainingSourceCaptureService;
     private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public FileProcessingPipeline(SyncJobRepository syncJobRepository,
@@ -55,7 +62,9 @@ public class FileProcessingPipeline {
                                   DatabaseWriterStep databaseWriterStep,
                                   FileArchiverStep fileArchiverStep,
                                   AuditLogService auditLogService,
-                                  SyncResultPublisher syncResultPublisher) {
+                                  SyncResultPublisher syncResultPublisher,
+                                  PermitTrainingSourceCaptureService
+                                          trainingSourceCaptureService) {
         this.syncJobRepository = syncJobRepository;
         this.emailMetadataRepository = emailMetadataRepository;
         this.fileRecordRepository = fileRecordRepository;
@@ -69,6 +78,7 @@ public class FileProcessingPipeline {
         this.fileArchiverStep = fileArchiverStep;
         this.auditLogService = auditLogService;
         this.syncResultPublisher = syncResultPublisher;
+        this.trainingSourceCaptureService = trainingSourceCaptureService;
     }
 
     public void process(FileIngestedEvent event) {
@@ -83,12 +93,20 @@ public class FileProcessingPipeline {
 
         try {
             formatValidatorStep.validate(context);
+            recordTrainingSource(
+                    context,
+                    PermitTrainingSourceState.PROCESSING,
+                    null);
             parserStep.parse(context);
             normalizerStep.normalize(context);
             aircraftTypeResolutionStep.resolve(context);
             viaResolutionStep.resolve(context);
             businessRuleValidatorStep.validate(context);
             DatabaseWriteResult writeResult = databaseWriterStep.write(context);
+            recordTrainingSource(
+                    context,
+                    PermitTrainingSourceState.PARSED,
+                    null);
             Path archived = archiveSafely(event.getSyncJobId(), () ->
                     fileArchiverStep.archiveProcessed(context.getFilePath(), event.getSourceType(), context.getSender()));
             if (archived != null) {
@@ -123,6 +141,10 @@ public class FileProcessingPipeline {
                     event,
                     new BusinessRuleException("BR-ATFM-REFERENCE", e.getMessage()));
         } catch (RuntimeException e) {
+            recordTrainingSource(
+                    context,
+                    PermitTrainingSourceState.FAILED,
+                    e.getMessage());
             updateJobStatus(event.getSyncJobId(), SyncStatus.FAILED);
             updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.FAILED, e.getMessage());
             updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.FAILED);
@@ -154,6 +176,10 @@ public class FileProcessingPipeline {
     }
 
     private void handleFormatError(ProcessingContext context, FileIngestedEvent event, FormatValidationException e) {
+        recordTrainingSource(
+                context,
+                PermitTrainingSourceState.FAILED,
+                e.getErrorDetail());
         updateJobStatus(event.getSyncJobId(), SyncStatus.FAILED);
         updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.FAILED, e.getErrorDetail());
         updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.FAILED);
@@ -175,6 +201,11 @@ public class FileProcessingPipeline {
 
     @Transactional
     void handleBusinessRuleError(ProcessingContext context, FileIngestedEvent event, BusinessRuleException e) {
+        PermitTrainingSourceState trainingState =
+                "PERMIT-REVISION-REVIEW".equals(e.getRuleCode())
+                        ? PermitTrainingSourceState.REVIEW_REQUIRED
+                        : PermitTrainingSourceState.QUARANTINED;
+        recordTrainingSource(context, trainingState, e.getMessage());
         updateJobStatus(event.getSyncJobId(), SyncStatus.QUARANTINED);
         updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.QUARANTINED, e.getMessage());
         updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.QUARANTINED);
@@ -245,6 +276,20 @@ public class FileProcessingPipeline {
             return objectMapper.writeValueAsString(new BusinessRuleOutput(e.getMessage(), e.getRowErrors()));
         } catch (JsonProcessingException jsonException) {
             return e.getRuleCode() + ": " + e.getMessage();
+        }
+    }
+
+    private void recordTrainingSource(
+            ProcessingContext context,
+            PermitTrainingSourceState state,
+            String error) {
+        try {
+            trainingSourceCaptureService.record(context, state, error);
+        } catch (RuntimeException exception) {
+            LOGGER.warn(
+                    "Could not record permit training source for sync job {}",
+                    context.getEvent().getSyncJobId(),
+                    exception);
         }
     }
 
