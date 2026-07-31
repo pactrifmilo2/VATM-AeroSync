@@ -64,6 +64,18 @@ class OpenApiDocumentationTest {
                         .exists())
                 .andExpect(jsonPath(
                         "$.paths['/api/permit-training-sources/{id}/retain'].post")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-profiles'].post")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-profiles/{id}/definition'].put")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-profiles/{id}/evidence'].post")
+                        .exists())
+                .andExpect(jsonPath(
+                        "$.paths['/api/permit-training-profiles/{id}/confirm'].post")
                         .exists());
     }
 

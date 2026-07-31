@@ -17,12 +17,15 @@ import vatm.aerosync.api.security.LegacyTUserAccountRepository;
 import vatm.aerosync.api.security.LegacyTUsersPasswordEncoder;
 import vatm.aerosync.api.service.PermitReviewService;
 import vatm.aerosync.api.service.PermitTrainingCandidateService;
+import vatm.aerosync.api.service.PermitTrainingProfileService;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -46,6 +49,9 @@ class PermitReviewControllerTest {
 
     @MockitoBean
     private PermitTrainingCandidateService trainingCandidateService;
+
+    @MockitoBean
+    private PermitTrainingProfileService trainingProfileService;
 
     @MockitoBean
     private LegacyTUserAccountRepository legacyTUserAccountRepository;
@@ -134,6 +140,31 @@ class PermitReviewControllerTest {
     void anonymousUserCannotReadTrainingCandidateQueue() throws Exception {
         mockMvc.perform(get("/api/permit-training-candidates"))
                 .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void anonymousUserCannotReadGuidedTrainingProfiles() throws Exception {
+        mockMvc.perform(get("/api/permit-training-profiles"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void operatorCanCreateGuidedDraftWithoutActivatingIt() throws Exception {
+        mockMvc.perform(post("/api/permit-training-profiles")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                  "profileKey":"guided-qatar-cargo",
+                                  "displayName":"Qatar cargo permit",
+                                  "family":"caav-english",
+                                  "sourceId":11
+                                }
+                                """)
+                        .with(user("operator.one").roles("OPERATOR")))
+                .andExpect(status().isCreated());
+
+        verify(trainingProfileService).create(
+                any(), eq("operator.one"));
     }
 
     @Test

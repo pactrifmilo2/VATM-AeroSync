@@ -1,10 +1,18 @@
 package vatm.aerosync.common.repository;
 
+import jakarta.persistence.LockModeType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import vatm.aerosync.common.entity.PermitTrainingProfileVersion;
+import vatm.aerosync.common.enums.PermitTrainingProfileStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PermitTrainingProfileVersionRepository
@@ -12,4 +20,17 @@ public interface PermitTrainingProfileVersionRepository
 
     List<PermitTrainingProfileVersion>
     findByProfileKeyOrderByProfileVersionDesc(String profileKey);
+
+    Page<PermitTrainingProfileVersion> findByStatus(
+            PermitTrainingProfileStatus status,
+            Pageable pageable);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("""
+            select profile
+              from PermitTrainingProfileVersion profile
+             where profile.id = :id
+            """)
+    Optional<PermitTrainingProfileVersion> findByIdForUpdate(
+            @Param("id") Long id);
 }

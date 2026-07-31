@@ -104,6 +104,32 @@ YAML profile version changes, the candidate becomes inactive until it is
 reviewed again. Business-value corrections are retained as evidence but are
 never turned into executable parser rules automatically.
 
+For a genuinely new family, the guided training API can now collect a profile
+without asking the operator to write YAML or Java. Its Phase 2 flow is:
+
+```text
+retained Word source
+  -> create versioned DRAFT
+  -> label semantic fields and table headers
+  -> attach the corrected expected permit
+  -> confirm as COLLECTING_EVIDENCE
+```
+
+Use `/api/permit-training-sources/{id}` to obtain the structured document and
+its stable cell IDs, then use `/api/permit-training-profiles` to create and edit
+the draft. A label records only a supported semantic name, a cell ID or selected
+text, and an optional confirmed value. It cannot contain a regular expression
+or executable code. Schedule mappings point supported semantic columns to the
+header cell IDs returned by the source API.
+
+Before confirmation, the API requires mappings for the source permit number,
+permit date, operator ICAO, and the essential schedule columns. It also requires
+at least one corrected expected permit and safe business options with
+`reviewOnly=true`. Confirmation locks the mapping and starts evidence collection;
+it does not affect live mail parsing. The existing YAML profiles remain the
+runtime baseline until later compilation, replay, canary, and admin-activation
+phases are implemented.
+
 Make recognition patterns tolerant of harmless punctuation and spacing changes:
 
 ```yaml

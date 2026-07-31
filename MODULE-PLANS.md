@@ -273,6 +273,13 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Add immediate disable, validated reactivation, and immutable action history
 - [x] Track promoted-alias usage count and last-used time
 - [x] Load approved aliases live while enforcing the source profile version
+- [x] Capture retained Word documents as reader-neutral structured training sources
+- [x] Expose guided, versioned draft profile creation and semantic field/table labeling APIs
+- [x] Validate labels against stable source cell IDs without accepting regex or executable code
+- [x] Attach operator-corrected expected permits and record immutable profile events
+- [x] Confirm complete drafts into `COLLECTING_EVIDENCE` without activating them
+- [ ] Compile confirmed definitions into runtime profile overlays
+- [ ] Replay the retained corpus, run canary evaluation, and expose admin-only activation
 
 ---
 

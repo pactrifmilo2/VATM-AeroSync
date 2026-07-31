@@ -298,6 +298,35 @@ automatically if the YAML profile version changes. Corrections to business
 values such as operator, dates, or flight data remain evidence for developers
 and are never converted into executable rules automatically.
 
+Guided profile training is available for permit families that cannot be handled
+by the shared extractor plus the existing YAML overlays. It uses the structured
+document retained during ingest, so an operator labels stable Word cell IDs or
+selected text with semantic names such as `operator.icao` and
+`schedule.flightNumber`. The definition format contains no regular expressions
+or executable code.
+
+| Method | Endpoint | Role | Purpose |
+|--------|----------|------|---------|
+| `GET` | `/api/permit-training-sources` | Operator/Admin | Find retained Word sources that can be labeled |
+| `GET` | `/api/permit-training-sources/{id}` | Operator/Admin | Read the structured text, tables, and stable cell IDs |
+| `POST` | `/api/permit-training-sources/{id}/retain` | Operator/Admin | Extend retention before using a source for training |
+| `GET` | `/api/permit-training-profiles` | Operator/Admin | List draft and evidence-collection profile versions |
+| `GET` | `/api/permit-training-profiles/{id}` | Operator/Admin | Read a definition, evidence, and immutable history |
+| `POST` | `/api/permit-training-profiles` | Operator/Admin | Create the next draft version from a retained source |
+| `PUT` | `/api/permit-training-profiles/{id}/definition` | Operator/Admin | Save validated field and table labels |
+| `POST` | `/api/permit-training-profiles/{id}/evidence` | Operator/Admin | Attach the corrected permit that the source should produce |
+| `DELETE` | `/api/permit-training-profiles/{id}/evidence/{evidenceId}` | Operator/Admin | Remove evidence before the mapping is confirmed |
+| `POST` | `/api/permit-training-profiles/{id}/confirm` | Operator/Admin | Lock the mapping and move it to evidence collection |
+
+The Phase 2 workflow is `DRAFT -> COLLECTING_EVIDENCE`. Confirmation is not
+activation: these APIs cannot create compiled rules, set a profile to `ACTIVE`,
+or affect live mail parsing. Activation requires later compilation, replay,
+canary, and admin-promotion phases. Every mutation uses an `expectedVersion`
+value to prevent one operator from silently overwriting another operator's
+changes. The tables used by this workflow are already created by
+`scripts/migrate-adaptive-permit-review-oracle.sql`; Phase 2 adds no new
+database migration.
+
 Before deploying this phase to an existing database, rerun the idempotent
 `scripts/migrate-adaptive-permit-review-oracle.sql` migration. Previously
 approved aliases are left active to avoid a silent production behavior change;

@@ -30,6 +30,7 @@ public class SecurityConfig {
                                 "/api/permit-reviews/**",
                                 "/api/permit-training-candidates/**",
                                 "/api/permit-training-sources/**",
+                                "/api/permit-training-profiles/**",
                                 "/permit-review-test",
                                 "/permit-review-test/**")
                         .authenticated()
