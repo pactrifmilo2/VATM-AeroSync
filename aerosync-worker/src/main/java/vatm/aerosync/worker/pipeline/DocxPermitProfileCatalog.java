@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Component;
+import vatm.aerosync.common.entity.PermitTrainingCandidate;
+import vatm.aerosync.common.enums.PermitTrainingStatus;
+import vatm.aerosync.common.repository.PermitTrainingCandidateRepository;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +30,15 @@ class DocxPermitProfileCatalog {
 
     private final List<DocxPermitFormatProfile> profiles;
     private final Map<String, DocxPermitFormatProfile> declaredProfiles;
+    private final PermitTrainingCandidateRepository trainingCandidateRepository;
 
     DocxPermitProfileCatalog() {
-        this(new PermitSemanticAliasCatalog());
+        this(new PermitSemanticAliasCatalog(), null);
     }
 
     @Autowired
-    DocxPermitProfileCatalog(PermitSemanticAliasCatalog semanticAliasCatalog) {
+    DocxPermitProfileCatalog(PermitSemanticAliasCatalog semanticAliasCatalog,
+                             PermitTrainingCandidateRepository trainingCandidateRepository) {
         List<DocxPermitFormatProfile> declared = loadProfiles();
         this.declaredProfiles = declared.stream()
                 .collect(java.util.stream.Collectors.toUnmodifiableMap(
@@ -41,18 +47,44 @@ class DocxPermitProfileCatalog {
                 .map(profile -> resolve(profile, semanticAliasCatalog))
                 .peek(this::validateResolvedAliases)
                 .toList();
+        this.trainingCandidateRepository = trainingCandidateRepository;
     }
 
     List<DocxPermitFormatProfile> profiles() {
-        return profiles;
+        return activeProfiles().profiles();
     }
 
     DocxPermitFormatProfile declaredProfile(String id) {
-        DocxPermitFormatProfile profile = declaredProfiles.get(id);
+        DocxPermitFormatProfile profile = activeProfiles().declaredProfiles().get(id);
         if (profile == null) {
             throw new IllegalArgumentException("Unknown Word permit profile: " + id);
         }
         return profile;
+    }
+
+    ActiveProfiles activeProfiles() {
+        if (trainingCandidateRepository == null) {
+            return new ActiveProfiles(profiles, declaredProfiles);
+        }
+        List<PermitTrainingCandidate> candidates =
+                trainingCandidateRepository.findAllByStatus(PermitTrainingStatus.APPROVED);
+        if (candidates.isEmpty()) {
+            return new ActiveProfiles(profiles, declaredProfiles);
+        }
+        Map<String, List<PermitTrainingCandidate>> byProfile = candidates.stream()
+                .collect(java.util.stream.Collectors.groupingBy(
+                        PermitTrainingCandidate::getProfileId));
+        List<DocxPermitFormatProfile> activeResolved = profiles.stream()
+                .map(profile -> applyApprovedAliases(
+                        profile, byProfile.getOrDefault(profile.id(), List.of())))
+                .peek(this::validateResolvedAliases)
+                .toList();
+        Map<String, DocxPermitFormatProfile> activeDeclared = declaredProfiles.values().stream()
+                .map(profile -> applyApprovedAliases(
+                        profile, byProfile.getOrDefault(profile.id(), List.of())))
+                .collect(java.util.stream.Collectors.toUnmodifiableMap(
+                        DocxPermitFormatProfile::id, profile -> profile));
+        return new ActiveProfiles(activeResolved, activeDeclared);
     }
 
     private List<DocxPermitFormatProfile> loadProfiles() {
@@ -240,6 +272,100 @@ class DocxPermitProfileCatalog {
                 profile.validation());
     }
 
+    private DocxPermitFormatProfile applyApprovedAliases(
+            DocxPermitFormatProfile profile,
+            List<PermitTrainingCandidate> candidates) {
+        List<PermitTrainingCandidate> compatible = candidates.stream()
+                .filter(candidate -> candidate.getProfileVersion() == profile.profileVersion())
+                .toList();
+        if (compatible.isEmpty()) {
+            return profile;
+        }
+
+        DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
+        DocxPermitFormatProfile.ScheduleDefinition promotedSchedule =
+                new DocxPermitFormatProfile.ScheduleDefinition(
+                        addAliases(schedule.columns(), compatible, "schedule."),
+                        schedule.requiredColumns(),
+                        schedule.excludeColumns(),
+                        schedule.tableContextPatterns(),
+                        schedule.preferredTableContextPatterns(),
+                        schedule.supplementalTableContextPatterns(),
+                        schedule.dateFormats(),
+                        schedule.timeFormats(),
+                        schedule.locale(),
+                        schedule.purposeId(),
+                        schedule.includeEta(),
+                        schedule.lastMatchingTable(),
+                        schedule.inferIataPrefix());
+
+        DocxPermitFormatProfile.RouteDefinition route = profile.route();
+        DocxPermitFormatProfile.RouteDefinition promotedRoute = route == null
+                ? null
+                : new DocxPermitFormatProfile.RouteDefinition(
+                        addAliases(route.columns(), compatible, "route."),
+                        route.requiredColumns(),
+                        route.staticAirways(),
+                        route.tableRequired(),
+                        route.allowEmpty(),
+                        route.fallbackToFirst(),
+                        route.lastMatchingTable(),
+                        route.filterSchedule());
+
+        DocxPermitFormatProfile.AircraftDefinition aircraft = profile.aircraft();
+        DocxPermitFormatProfile.AircraftDefinition promotedAircraft =
+                new DocxPermitFormatProfile.AircraftDefinition(
+                        aircraft.scheduleColumn(),
+                        addAliases(
+                                aircraft.auxiliaryColumns(), compatible, "aircraft."),
+                        aircraft.auxiliaryRequiredColumns(),
+                        aircraft.auxiliaryTypeColumn(),
+                        aircraft.remarkPrefix(),
+                        aircraft.defaultType(),
+                        aircraft.lastMatchingTable());
+
+        return new DocxPermitFormatProfile(
+                profile.id(),
+                profile.family(),
+                profile.profileVersion(),
+                profile.priority(),
+                profile.detectionPatterns(),
+                profile.permit(),
+                profile.permitDate(),
+                profile.operator(),
+                profile.billingAddress(),
+                profile.reference(),
+                profile.referenceColumn(),
+                profile.purpose(),
+                profile.master(),
+                promotedSchedule,
+                promotedRoute,
+                promotedAircraft,
+                profile.validation());
+    }
+
+    private Map<String, List<String>> addAliases(
+            Map<String, List<String>> configured,
+            List<PermitTrainingCandidate> candidates,
+            String prefix) {
+        Map<String, List<String>> result = new LinkedHashMap<>();
+        safeMap(configured).forEach((semantic, aliases) ->
+                result.put(semantic, List.copyOf(safeList(aliases))));
+        candidates.stream()
+                .filter(candidate -> candidate.getSemanticField().startsWith(prefix))
+                .forEach(candidate -> {
+                    String semantic = candidate.getSemanticField().substring(prefix.length());
+                    if (!result.containsKey(semantic)) {
+                        return;
+                    }
+                    LinkedHashSet<String> aliases =
+                            new LinkedHashSet<>(result.get(semantic));
+                    aliases.add(candidate.getAliasValue());
+                    result.put(semantic, List.copyOf(aliases));
+                });
+        return Map.copyOf(result);
+    }
+
     private void validateResolvedAliases(DocxPermitFormatProfile profile) {
         validateAliasConflicts(profile, "schedule", profile.schedule().columns());
         if (profile.route() != null) {
@@ -314,5 +440,23 @@ class DocxPermitProfileCatalog {
     private IllegalStateException invalid(DocxPermitFormatProfile profile, String detail) {
         String id = profile.id() == null ? "<unknown>" : profile.id();
         return new IllegalStateException("Invalid Word permit profile " + id + ": " + detail);
+    }
+
+    record ActiveProfiles(
+            List<DocxPermitFormatProfile> profiles,
+            Map<String, DocxPermitFormatProfile> declaredProfiles
+    ) {
+        ActiveProfiles {
+            profiles = List.copyOf(profiles);
+            declaredProfiles = Map.copyOf(declaredProfiles);
+        }
+
+        DocxPermitFormatProfile declaredProfile(String id) {
+            DocxPermitFormatProfile profile = declaredProfiles.get(id);
+            if (profile == null) {
+                throw new IllegalArgumentException("Unknown Word permit profile: " + id);
+            }
+            return profile;
+        }
     }
 }

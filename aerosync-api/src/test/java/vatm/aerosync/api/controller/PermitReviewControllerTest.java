@@ -11,6 +11,7 @@ import vatm.aerosync.api.AerosyncApiApplication;
 import vatm.aerosync.api.config.ApiDataConfig;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.api.service.PermitReviewService;
+import vatm.aerosync.api.service.PermitTrainingCandidateService;
 
 import java.util.List;
 
@@ -32,6 +33,9 @@ class PermitReviewControllerTest {
 
     @MockitoBean
     private PermitReviewService permitReviewService;
+
+    @MockitoBean
+    private PermitTrainingCandidateService trainingCandidateService;
 
     @Test
     void anonymousUserCannotReadReviewQueue() throws Exception {
@@ -64,5 +68,30 @@ class PermitReviewControllerTest {
                 .andExpect(status().isAccepted());
 
         verify(permitReviewService).requestPublish(4L, "admin.one");
+    }
+
+    @Test
+    void operatorCannotApproveTrainingCandidate() throws Exception {
+        mockMvc.perform(post("/api/permit-training-candidates/9/approve")
+                        .with(user("operator.one").roles("OPERATOR")))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void anonymousUserCannotReadTrainingCandidateQueue() throws Exception {
+        mockMvc.perform(get("/api/permit-training-candidates"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void adminCanReadTrainingCandidateQueue() throws Exception {
+        when(trainingCandidateService.list(null, null, 0, 25))
+                .thenReturn(new PagedResponse<>(
+                        List.of(), 0, 25, 0, 0, false, false));
+
+        mockMvc.perform(get("/api/permit-training-candidates")
+                        .with(user("admin.one").roles("ADMIN")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isArray());
     }
 }

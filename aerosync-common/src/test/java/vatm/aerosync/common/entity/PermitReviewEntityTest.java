@@ -7,6 +7,7 @@ import org.springframework.boot.jpa.test.autoconfigure.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 import vatm.aerosync.common.enums.PermitImportStatus;
 import vatm.aerosync.common.enums.PermitReviewStatus;
+import vatm.aerosync.common.enums.PermitTrainingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.enums.UserRole;
 import vatm.aerosync.common.testsupport.JpaTestConfiguration;
@@ -45,6 +46,20 @@ class PermitReviewEntityTest {
         review.setApprovedBy("operator.one");
         PermitReview persistedReview = entityManager.persistFlushFind(review);
 
+        PermitTrainingCandidate trainingCandidate = new PermitTrainingCandidate();
+        trainingCandidate.setSourceReview(persistedReview);
+        trainingCandidate.setStatus(PermitTrainingStatus.APPROVED);
+        trainingCandidate.setProfileId("caav-english-overflight-scheduled");
+        trainingCandidate.setProfileVersion(1);
+        trainingCandidate.setSemanticField("schedule.flightNumber");
+        trainingCandidate.setAliasValue("Flight identifier");
+        trainingCandidate.setCanonicalAlias("flightidentifier");
+        trainingCandidate.setMatchMethod("SHARED_ALIAS");
+        trainingCandidate.setConfidence(0.95);
+        trainingCandidate.setProposedBy("operator.one");
+        PermitTrainingCandidate persistedCandidate =
+                entityManager.persistFlushFind(trainingCandidate);
+
         AppUser user = new AppUser();
         user.setUsername("operator.one");
         user.setPasswordHash("$2a$10$example");
@@ -55,6 +70,11 @@ class PermitReviewEntityTest {
         assertThat(persistedReview.getPermitImport().getId()).isEqualTo(permitImport.getId());
         assertThat(persistedReview.getVersion()).isZero();
         assertThat(persistedReview.getCreatedAt()).isNotNull();
+        assertThat(persistedCandidate.getStatus())
+                .isEqualTo(PermitTrainingStatus.APPROVED);
+        assertThat(persistedCandidate.getSourceReview().getId())
+                .isEqualTo(persistedReview.getId());
+        assertThat(persistedCandidate.getVersion()).isZero();
         assertThat(persistedUser.getRole()).isEqualTo(UserRole.OPERATOR);
         assertThat(persistedUser.isEnabled()).isTrue();
     }

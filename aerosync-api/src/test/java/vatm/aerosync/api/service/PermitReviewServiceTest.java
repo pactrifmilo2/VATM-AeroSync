@@ -33,6 +33,7 @@ class PermitReviewServiceTest {
 
     private PermitReviewRepository repository;
     private PermitReviewCommandPublisher publisher;
+    private PermitTrainingCandidateService trainingCandidateService;
     private ObjectMapper objectMapper;
     private PermitReviewService service;
     private PermitReview review;
@@ -41,9 +42,11 @@ class PermitReviewServiceTest {
     void setUp() throws Exception {
         repository = mock(PermitReviewRepository.class);
         publisher = mock(PermitReviewCommandPublisher.class);
+        trainingCandidateService = mock(PermitTrainingCandidateService.class);
         objectMapper = new ObjectMapper().findAndRegisterModules();
         PlatformTransactionManager transactionManager = transactionManager();
-        service = new PermitReviewService(repository, publisher, transactionManager);
+        service = new PermitReviewService(
+                repository, publisher, trainingCandidateService, transactionManager);
 
         SyncJob job = mock(SyncJob.class);
         when(job.getId()).thenReturn(7L);
@@ -73,6 +76,7 @@ class PermitReviewServiceTest {
 
         assertThat(review.getStatus()).isEqualTo(PermitReviewStatus.APPROVED);
         assertThat(review.getApprovedBy()).isEqualTo("operator.two");
+        verify(trainingCandidateService).captureFromApprovedReview(review);
 
         service.requestPublish(4L, "admin.one");
 

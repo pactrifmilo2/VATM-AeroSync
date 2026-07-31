@@ -84,9 +84,16 @@ When adaptive detection requires review, the worker stores the parsed permit,
 profile candidates, field diagnostics, and warnings in `permit_reviews`. An
 operator can correct and approve that snapshot through
 `/api/permit-reviews`. Approval does not write to ATFM; an administrator must
-make the separate `/publish` request. Approved corrections remain immutable
-training evidence for a later profile-promotion phase, so the running parser
-does not silently rewrite its YAML profiles.
+make the separate `/publish` request.
+
+Approved adaptive header matches create pending candidates under
+`/api/permit-training-candidates`. A separate administrator decision is required
+to activate a candidate. An approved candidate is added as a trusted exact alias
+only to the profile and profile version that produced it; the worker loads these
+aliases from the database for later permits without rewriting YAML. If the YAML
+profile version changes, the candidate becomes inactive until it is reviewed
+again. Business-value corrections are retained as evidence but are never turned
+into executable parser rules automatically.
 
 Make recognition patterns tolerant of harmless punctuation and spacing changes:
 

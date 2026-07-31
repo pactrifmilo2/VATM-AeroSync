@@ -35,14 +35,17 @@ public class PermitReviewService {
 
     private final PermitReviewRepository permitReviewRepository;
     private final PermitReviewCommandPublisher commandPublisher;
+    private final PermitTrainingCandidateService trainingCandidateService;
     private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
     private final TransactionTemplate transactionTemplate;
 
     public PermitReviewService(PermitReviewRepository permitReviewRepository,
                                PermitReviewCommandPublisher commandPublisher,
+                               PermitTrainingCandidateService trainingCandidateService,
                                PlatformTransactionManager transactionManager) {
         this.permitReviewRepository = permitReviewRepository;
         this.commandPublisher = commandPublisher;
+        this.trainingCandidateService = trainingCandidateService;
         this.transactionTemplate = new TransactionTemplate(transactionManager);
     }
 
@@ -100,7 +103,9 @@ public class PermitReviewService {
         review.setRejectedBy(null);
         review.setRejectedAt(null);
         review.setPublishError(null);
-        return toDetail(permitReviewRepository.save(review));
+        PermitReview saved = permitReviewRepository.save(review);
+        trainingCandidateService.captureFromApprovedReview(saved);
+        return toDetail(saved);
     }
 
     @Transactional

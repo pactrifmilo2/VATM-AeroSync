@@ -1155,7 +1155,16 @@ public class DocxSchedulePermitParser {
                            double confidence,
                            String source,
                            String method) {
-            fields.add(new PermitFieldDiagnostic(field, confidence, source, method));
+            field(field, confidence, source, method, null);
+        }
+
+        private void field(String field,
+                           double confidence,
+                           String source,
+                           String method,
+                           String observedValue) {
+            fields.add(new PermitFieldDiagnostic(
+                    field, confidence, source, method, observedValue));
         }
 
         private void table(String section, WordPermitTableMatcher.TableMatch table) {
@@ -1163,7 +1172,8 @@ public class DocxSchedulePermitParser {
                     section + "." + semantic,
                     match.confidence(),
                     table.source() + ".COLUMN[" + (match.column() + 1) + "]",
-                    match.kind().name()));
+                    match.kind().name(),
+                    match.header()));
             if (table.headerRows() > 1) {
                 warning(
                         "MULTI_ROW_HEADER",

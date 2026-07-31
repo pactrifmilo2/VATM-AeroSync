@@ -19,7 +19,6 @@ class WordPermitFormatDetector {
     static final double MINIMUM_RUNNER_UP_MARGIN = 0.15;
 
     private final DocxPermitProfileCatalog profileCatalog;
-    private final List<DocxPermitFormatProfile> profiles;
     private final PermitSemanticExtractor semanticExtractor;
 
     WordPermitFormatDetector(DocxPermitProfileCatalog profileCatalog) {
@@ -30,7 +29,6 @@ class WordPermitFormatDetector {
     WordPermitFormatDetector(DocxPermitProfileCatalog profileCatalog,
                              PermitSemanticExtractor semanticExtractor) {
         this.profileCatalog = profileCatalog;
-        this.profiles = profileCatalog.profiles();
         this.semanticExtractor = semanticExtractor;
     }
 
@@ -40,8 +38,14 @@ class WordPermitFormatDetector {
 
     WordPermitDetectionResult detectResult(WordPermitDocument document, String fileName) {
         PermitSemanticEvidence semantics = semanticExtractor.extract(document);
-        List<ScoredProfile> scores = profiles.stream()
-                .map(profile -> score(profile, document, semantics))
+        DocxPermitProfileCatalog.ActiveProfiles activeProfiles =
+                profileCatalog.activeProfiles();
+        List<ScoredProfile> scores = activeProfiles.profiles().stream()
+                .map(profile -> score(
+                        profile,
+                        activeProfiles.declaredProfile(profile.id()),
+                        document,
+                        semantics))
                 .sorted(Comparator
                         .comparingInt((ScoredProfile score) -> score.profile().priority())
                         .reversed()
@@ -113,7 +117,7 @@ class WordPermitFormatDetector {
         boolean reviewRequired = warnings.stream().anyMatch(PermitParseWarning::reviewRequired);
         return new WordPermitDetectionResult(
                 winner.profile(),
-                profileCatalog.declaredProfile(winner.profile().id()),
+                activeProfiles.declaredProfile(winner.profile().id()),
                 winner.confidence(),
                 margin,
                 reviewRequired,
@@ -123,6 +127,7 @@ class WordPermitFormatDetector {
     }
 
     private ScoredProfile score(DocxPermitFormatProfile profile,
+                                DocxPermitFormatProfile declared,
                                 WordPermitDocument document,
                                 PermitSemanticEvidence semantics) {
         int patternCount = profile.detectionPatterns().size();
@@ -134,7 +139,6 @@ class WordPermitFormatDetector {
                 .map(PermitSemanticEvidence.PermitIdentityCandidate::canonicalValue)
                 .anyMatch(candidate -> permitPattern.matcher(candidate).find())
                 || permitPattern.matcher(document.rawContent()).find();
-        DocxPermitFormatProfile declared = profileCatalog.declaredProfile(profile.id());
         WordPermitTableMatcher.TableMatch scheduleMatch = WordPermitTableMatcher.find(
                 document.tables(),
                 document.tableContexts(),

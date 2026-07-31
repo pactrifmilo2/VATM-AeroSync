@@ -4,6 +4,7 @@ public record PermitFieldDiagnosticResponse(
         String field,
         double confidence,
         String source,
-        String method
+        String method,
+        String observedValue
 ) {
 }

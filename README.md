@@ -260,6 +260,24 @@ decision and creates a reusable correction sample; publication is the
 higher-risk ATFM write. Publication remains subject to
 `APP_ATFM_WRITE_ENABLED=true` and worker validation.
 
+Approved reviews can also produce safe table-header training candidates. This is
+a third, separate decision: permit approval does not automatically teach the
+parser. The admin UI can use these endpoints:
+
+| Method | Endpoint | Role | Purpose |
+|--------|----------|------|---------|
+| `GET` | `/api/permit-training-candidates` | Admin | List/filter pending, approved, or rejected candidates |
+| `GET` | `/api/permit-training-candidates/{id}` | Admin | Inspect the alias, source review, profile, method, and confidence |
+| `POST` | `/api/permit-training-candidates/{id}/approve` | Admin | Activate the alias for the matching profile/version |
+| `POST` | `/api/permit-training-candidates/{id}/reject` | Admin | Reject the candidate with a reason |
+
+Only shared or fuzzy table-header matches are eligible for automatic candidate
+creation. Approved candidates are profile-scoped, loaded from the AeroSync
+database for each new permit, and treated as trusted exact aliases. They stop
+applying automatically if the YAML profile version changes. Corrections to
+business values such as operator, dates, or flight data remain evidence for
+developers and are never converted into executable rules automatically.
+
 Review API users and their `OPERATOR` or `ADMIN` roles are loaded from the
 `app_users` database table. Run the review migration, then configure a one-time
 bootstrap administrator for the first API startup:

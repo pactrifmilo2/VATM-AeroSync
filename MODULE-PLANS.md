@@ -266,6 +266,9 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Load `OPERATOR` and `ADMIN` authorization roles from the AeroSync database
 - [x] Queue approved publication commands from the API to the worker
 - [x] Revalidate corrected permits in the worker before target publication
+- [x] Generate safe profile-scoped header-alias candidates from approved adaptive evidence
+- [x] Expose admin-only training candidate list, detail, approval, and rejection APIs
+- [x] Load approved aliases live while enforcing the source profile version
 
 ---
 

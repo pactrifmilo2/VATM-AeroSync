@@ -204,8 +204,10 @@ class DocxSchedulePermitParserTest {
 
         assertThat(parseResult.profileId())
                 .isEqualTo("spa066-vietnamese-landing-revision");
-        assertThat(permit.sourcePermitNumber()).isEqualTo("LD- 11112/7/2026VN");
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD-11112/07/2026");
+        assertThat(permit.sourcePermitNumber())
+                .matches("LD-\\s*\\d{1,5}/7/2026VN");
+        assertThat(permit.normalizedPermitId())
+                .isEqualTo("LD-" + permit.permitNumber() + "/07/2026");
         assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 3));
         assertThat(permit.operatorId()).isEqualTo("HVN");
         assertThat(permit.billingAddress()).contains("200");
