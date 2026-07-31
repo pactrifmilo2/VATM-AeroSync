@@ -1,0 +1,9 @@
+id: sav-sun-air-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)SUN\s+AIR'
+  - '(?iu)\bSAV\d+\b'
+operator:
+  fixedValue: SAV

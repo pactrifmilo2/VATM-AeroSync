@@ -29,6 +29,14 @@ class Ngay0307InventoryTest {
                                     .map(row -> String.join(" | ", row))
                                     .collect(java.util.stream.Collectors.joining(" || "));
                     System.out.printf("DOC|%s|%s%n", file.getFileName(), operatorTable);
+                    if (file.getFileName().toString().equalsIgnoreCase("of 4880 KAL.docx")) {
+                        for (int tableIndex = 0; tableIndex < document.tables().size(); tableIndex++) {
+                            String rows = document.tables().get(tableIndex).stream()
+                                    .map(row -> String.join(" | ", row))
+                                    .collect(java.util.stream.Collectors.joining(" || "));
+                            System.out.printf("TABLE|%d|%s%n", tableIndex + 1, rows);
+                        }
+                    }
                     String profile = detector.detect(document, file.getFileName().toString()).id();
                     SchedulePermit permit = parser.parse(file, file.getFileName().toString());
                     ScheduleFlight first = permit.flights().getFirst();

@@ -1,0 +1,9 @@
+id: vna-vietstar-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)VIETSTAR\s+AIRLINES'
+  - '(?iu)\bVNA\d+\b'
+operator:
+  fixedValue: VNA

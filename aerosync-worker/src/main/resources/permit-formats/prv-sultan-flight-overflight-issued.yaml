@@ -1,0 +1,8 @@
+id: prv-sultan-flight-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)HIS\s+MAJESTY\s+THE\s+SULTAN.{0,3}S\s+FLIGHT'
+operator:
+  fixedValue: PRV

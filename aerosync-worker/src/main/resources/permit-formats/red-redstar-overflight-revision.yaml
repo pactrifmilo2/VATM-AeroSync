@@ -1,0 +1,10 @@
+id: red-redstar-overflight-revision
+extends: caav-generic-overflight-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\b(?:O/F|OF)\s*-\s*\d+'
+  - '(?iu)REDSTAR\s+AVIATION'
+  - '(?iu)ORIGINAL\s+SCHEDULE'
+  - '(?iu)NEW\s+SCHEDULE'
+operator:
+  fixedValue: RED

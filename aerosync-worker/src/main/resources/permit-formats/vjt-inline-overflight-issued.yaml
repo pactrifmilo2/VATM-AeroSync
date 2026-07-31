@@ -1,0 +1,16 @@
+id: vjt-inline-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)VISTAJET\s+LIMITED'
+  - '(?iu)\bVJT\d+\b'
+  - '(?isu)^(?!.*(?:/REV\d+|\bORIGINAL\b.*\bNEW\b)).*$'
+operator:
+  fixedValue: VJT
+route:
+  staticAirways:
+    VHHH-VDPP: BUNTA A1 PAPRA
+  tableRequired: false
+  allowEmpty: false
+  filterSchedule: true

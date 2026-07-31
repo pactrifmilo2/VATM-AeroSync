@@ -1,0 +1,9 @@
+id: prv-sinojet-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)SINO\s+JET\s+MANAGEMENT'
+  - '(?isu)^(?!.*(?:/REV\d+|\bORIGINAL\b.*\bNEW\b)).*$'
+operator:
+  fixedValue: PRV

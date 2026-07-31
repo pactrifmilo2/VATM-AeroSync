@@ -1,0 +1,12 @@
+id: blr-bloomberry-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)BLOOMBERRY\s+RESORTS'
+operator:
+  fixedValue: BLR
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]

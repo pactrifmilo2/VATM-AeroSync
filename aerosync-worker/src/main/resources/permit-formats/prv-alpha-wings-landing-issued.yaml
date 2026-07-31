@@ -1,0 +1,8 @@
+id: prv-alpha-wings-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)ALPHA\s+WINGS'
+operator:
+  fixedValue: PRV

@@ -28,7 +28,7 @@ public class DocxSchedulePermitParser {
 
     private static final Pattern TEMPLATE_TOKEN = Pattern.compile("\\{([A-Za-z][A-Za-z0-9]*)}");
     private static final Pattern ROUTE_PATTERN = Pattern.compile(
-            "^([A-Z]{3,4})\\s*[-\\u2013\\u2014]\\s*([A-Z]{3,4})$");
+            "^([A-Z]{3,4})\\s*[-/\\u2013\\u2014]\\s*([A-Z]{3,4})$");
     private static final Pattern ICAO_LABEL_PATTERN = Pattern.compile(
             "(?iu)(?:ICAO\\s*(?:CODE)?|MA\\s*ICAO)(?:\\s*\\([^)]*\\))?"
                     + "\\s*:\\s*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");

@@ -1,0 +1,9 @@
+id: prv-jet-aviation-landing-revision
+extends: caav-generic-landing-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)JET\s+AVIATION\s+BUSINESS\s+JETS'
+  - '(?iu)(?:OLD\s+SCHEDULE|NEW\s+SCHEDULE)'
+operator:
+  fixedValue: PRV

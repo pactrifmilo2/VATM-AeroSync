@@ -1,0 +1,8 @@
+id: prv-circadian-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)CIRCADIAN\s+AVIATION'
+operator:
+  fixedValue: PRV

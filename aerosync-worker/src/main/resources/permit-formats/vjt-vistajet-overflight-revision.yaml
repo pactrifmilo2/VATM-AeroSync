@@ -1,0 +1,9 @@
+id: vjt-vistajet-overflight-revision
+extends: caav-generic-overflight-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)VISTAJET\s+LIMITED'
+  - '(?iu)(?:/REV\d+|\bORIGINAL\b.*\bNEW\b)'
+operator:
+  fixedValue: VJT

@@ -23,10 +23,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Component
 class WordPermitDocumentReader {
+
+    private static final Pattern HYPHENATED_INLINE_SCHEDULE = Pattern.compile(
+            "(?imu)^\\s*(?<flight>[A-Z0-9]{3,10})\\s*-\\s*"
+                    + "(?<date>\\d{1,2}[A-Z]{3}\\d{2})\\s*-\\s*"
+                    + "(?<from>[A-Z]{4})\\s*-\\s*(?<etd>\\d{4})Z?\\s*-\\s*"
+                    + "(?<to>[A-Z]{4})\\s*-\\s*(?<eta>\\d{4})Z?\\s*-\\s*"
+                    + "(?<aircraft>[A-Z0-9-]+)\\s*$");
+    private static final Pattern SPACED_INLINE_SCHEDULE = Pattern.compile(
+            "(?iu)(?<flight>[A-Z0-9]{3,10})\\s+"
+                    + "(?<date>\\d{1,2}[A-Z]{3}\\d{2})\\s+"
+                    + "(?<days>[1-7-]{1,7})\\s+"
+                    + "(?<from>[A-Z]{4})\\s+(?<etd>\\d{4})Z?\\s+"
+                    + "(?<to>[A-Z]{4})\\s+(?<eta>\\d{4})Z?\\s+"
+                    + "(?<aircraft>[A-Z0-9-]+)");
 
     WordPermitDocument read(Path file) throws IOException {
         String name = file.getFileName().toString().toLowerCase(Locale.ROOT);
@@ -94,7 +110,16 @@ class WordPermitDocumentReader {
                                         List<List<List<String>>> tables,
                                         List<String> tableContexts,
                                         LocalDate authoredDate) {
-        String tableText = tables.stream()
+        List<List<List<String>>> resolvedTables = new ArrayList<>(tables);
+        List<String> resolvedContexts = new ArrayList<>(tableContexts);
+        if (resolvedTables.isEmpty()) {
+            List<List<String>> inlineSchedule = inlineSchedule(paragraphText);
+            if (!inlineSchedule.isEmpty()) {
+                resolvedTables.add(inlineSchedule);
+                resolvedContexts.add(paragraphText);
+            }
+        }
+        String tableText = resolvedTables.stream()
                 .flatMap(List::stream)
                 .flatMap(List::stream)
                 .filter(text -> !text.isBlank())
@@ -103,7 +128,29 @@ class WordPermitDocumentReader {
                 ? tableText
                 : tableText.isBlank() ? paragraphText : paragraphText + "\n" + tableText;
         return new WordPermitDocument(
-                paragraphText, tableText, rawContent, tables, tableContexts, authoredDate);
+                paragraphText, tableText, rawContent,
+                List.copyOf(resolvedTables), List.copyOf(resolvedContexts), authoredDate);
+    }
+
+    private List<List<String>> inlineSchedule(String paragraphText) {
+        Matcher matcher = HYPHENATED_INLINE_SCHEDULE.matcher(paragraphText);
+        String days = "1";
+        if (!matcher.find()) {
+            matcher = SPACED_INLINE_SCHEDULE.matcher(paragraphText);
+            if (!matcher.find()) {
+                return List.of();
+            }
+            days = matcher.group("days");
+        }
+        return List.of(
+                List.of(
+                        "Flight number", "Effective from", "Effective to",
+                        "Days of services", "Departure Airport", "ETD",
+                        "Arrival Airport", "ETA", "Aircraft Type"),
+                List.of(
+                        matcher.group("flight"), matcher.group("date"), matcher.group("date"),
+                        days, matcher.group("from"), matcher.group("etd"),
+                        matcher.group("to"), matcher.group("eta"), matcher.group("aircraft")));
     }
 
     private List<List<String>> docxTableRows(XWPFTable table) {

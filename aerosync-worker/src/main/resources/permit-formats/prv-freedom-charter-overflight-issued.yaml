@@ -1,0 +1,9 @@
+id: prv-freedom-charter-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)FREEDOM\s+CHARTER\s+SERVICES'
+  - '(?isu)^(?!.*GSEC\s+AVIATION).*$'
+operator:
+  fixedValue: PRV

@@ -1,0 +1,15 @@
+id: rcr-inline-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)ROMCARGO\s+AIRLINES'
+  - '(?iu)\bRCR\d+\b'
+operator:
+  fixedValue: RCR
+route:
+  staticAirways:
+    VHHH-OMDW: R474 W21 B214 TEBAK LADON
+  tableRequired: false
+  allowEmpty: false
+  filterSchedule: true

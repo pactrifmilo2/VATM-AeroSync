@@ -1,0 +1,8 @@
+id: asi-asian-corporate-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)ASIAN\s+CORPORATE\s+AVIATION'
+operator:
+  fixedValue: ASI

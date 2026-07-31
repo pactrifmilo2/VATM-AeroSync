@@ -1,0 +1,15 @@
+id: prv-orbital-sky-overflight-revision
+extends: caav-generic-overflight-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)ORBITAL-SKY\s+INTERNATIONAL'
+  - '(?iu)3\.1\.\s*OLD'
+  - '(?iu)3\.2\.\s*NEW'
+operator:
+  fixedValue: PRV
+schedule:
+  tableContextPatterns: []
+  preferredTableContextPatterns:
+    - '(?iu)3\.2\.\s*NEW'
+  lastMatchingTable: true
