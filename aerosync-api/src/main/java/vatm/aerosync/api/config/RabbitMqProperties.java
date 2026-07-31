@@ -15,6 +15,10 @@ public class RabbitMqProperties {
             "permit.training.validation";
     private String permitTrainingValidationRoutingKey =
             "permit.training.validation";
+    private String permitProfileValidationExchange =
+            "permit.profile.validation";
+    private String permitProfileValidationRoutingKey =
+            "permit.profile.validation";
 
     public String getSyncResultExchange() {
         return syncResultExchange;
@@ -82,5 +86,24 @@ public class RabbitMqProperties {
             String permitTrainingValidationRoutingKey) {
         this.permitTrainingValidationRoutingKey =
                 permitTrainingValidationRoutingKey;
+    }
+
+    public String getPermitProfileValidationExchange() {
+        return permitProfileValidationExchange;
+    }
+
+    public void setPermitProfileValidationExchange(
+            String permitProfileValidationExchange) {
+        this.permitProfileValidationExchange = permitProfileValidationExchange;
+    }
+
+    public String getPermitProfileValidationRoutingKey() {
+        return permitProfileValidationRoutingKey;
+    }
+
+    public void setPermitProfileValidationRoutingKey(
+            String permitProfileValidationRoutingKey) {
+        this.permitProfileValidationRoutingKey =
+                permitProfileValidationRoutingKey;
     }
 }

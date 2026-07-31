@@ -24,7 +24,10 @@ import vatm.aerosync.api.dto.PermitTrainingProfileDetailResponse;
 import vatm.aerosync.api.dto.PermitTrainingProfileEvidenceRequest;
 import vatm.aerosync.api.dto.PermitTrainingProfileSummaryResponse;
 import vatm.aerosync.api.dto.PermitTrainingProfileUpdateRequest;
+import vatm.aerosync.api.dto.PermitTrainingProfileValidateRequest;
 import vatm.aerosync.api.service.PermitTrainingProfileService;
+import vatm.aerosync.api.service.PermitTrainingProfileValidationApiService;
+import vatm.aerosync.common.dto.CompiledPermitTrainingProfile;
 import vatm.aerosync.common.enums.PermitTrainingProfileStatus;
 
 @RestController
@@ -37,10 +40,13 @@ import vatm.aerosync.common.enums.PermitTrainingProfileStatus;
 public class PermitTrainingProfileController {
 
     private final PermitTrainingProfileService service;
+    private final PermitTrainingProfileValidationApiService validationService;
 
     public PermitTrainingProfileController(
-            PermitTrainingProfileService service) {
+            PermitTrainingProfileService service,
+            PermitTrainingProfileValidationApiService validationService) {
         this.service = service;
+        this.validationService = validationService;
     }
 
     @GetMapping
@@ -117,5 +123,24 @@ public class PermitTrainingProfileController {
                 id,
                 request.expectedVersion(),
                 authentication.getName());
+    }
+
+    @PostMapping("/{id}/validate")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @Operation(summary = "Compile and replay all corrected training evidence")
+    public PermitTrainingProfileDetailResponse validate(
+            @PathVariable Long id,
+            @Valid @RequestBody PermitTrainingProfileValidateRequest request,
+            Authentication authentication) {
+        return validationService.requestValidation(
+                id,
+                request.expectedVersion(),
+                authentication.getName());
+    }
+
+    @GetMapping("/{id}/compiled")
+    @Operation(summary = "Inspect the non-active compiled profile preview")
+    public CompiledPermitTrainingProfile compiled(@PathVariable Long id) {
+        return validationService.compiled(id);
     }
 }

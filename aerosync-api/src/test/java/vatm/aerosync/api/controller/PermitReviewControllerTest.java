@@ -18,6 +18,7 @@ import vatm.aerosync.api.security.LegacyTUsersPasswordEncoder;
 import vatm.aerosync.api.service.PermitReviewService;
 import vatm.aerosync.api.service.PermitTrainingCandidateService;
 import vatm.aerosync.api.service.PermitTrainingProfileService;
+import vatm.aerosync.api.service.PermitTrainingProfileValidationApiService;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +53,10 @@ class PermitReviewControllerTest {
 
     @MockitoBean
     private PermitTrainingProfileService trainingProfileService;
+
+    @MockitoBean
+    private PermitTrainingProfileValidationApiService
+            trainingProfileValidationService;
 
     @MockitoBean
     private LegacyTUserAccountRepository legacyTUserAccountRepository;
@@ -165,6 +170,18 @@ class PermitReviewControllerTest {
 
         verify(trainingProfileService).create(
                 any(), eq("operator.one"));
+    }
+
+    @Test
+    void operatorCanRequestGuidedProfileValidation() throws Exception {
+        mockMvc.perform(post("/api/permit-training-profiles/7/validate")
+                        .contentType("application/json")
+                        .content("{\"expectedVersion\":3}")
+                        .with(user("operator.one").roles("OPERATOR")))
+                .andExpect(status().isAccepted());
+
+        verify(trainingProfileValidationService)
+                .requestValidation(7L, 3L, "operator.one");
     }
 
     @Test

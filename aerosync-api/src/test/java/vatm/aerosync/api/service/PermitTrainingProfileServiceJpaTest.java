@@ -43,11 +43,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @ActiveProfiles("test")
 @ContextConfiguration(
         classes = PermitTrainingProfileServiceJpaTest.TestConfiguration.class)
-@Import(PermitTrainingProfileService.class)
+@Import({
+        PermitTrainingProfileService.class,
+        PermitTrainingProfileValidationApiService.class
+})
 class PermitTrainingProfileServiceJpaTest {
 
     @Autowired
     private PermitTrainingProfileService service;
+    @Autowired
+    private PermitTrainingProfileValidationApiService validationService;
     @Autowired
     private SyncJobRepository syncJobRepository;
     @Autowired
@@ -134,6 +139,17 @@ class PermitTrainingProfileServiceJpaTest {
                 .isEqualTo(PermitTrainingProfileStatus.COLLECTING_EVIDENCE);
         assertThat(collecting.evidenceCount()).isEqualTo(2);
 
+        var validating = validationService.requestValidation(
+                created.id(),
+                collecting.version(),
+                "operator.two");
+        assertThat(validating.status())
+                .isEqualTo(PermitTrainingProfileStatus.VALIDATING);
+        assertThat(validating.status())
+                .isNotEqualTo(PermitTrainingProfileStatus.ACTIVE);
+        assertThat(validating.history())
+                .extracting(event -> event.action())
+                .contains("VALIDATION_REQUESTED");
         PermitTrainingSource versionSource = saveSource("g");
         var secondVersion = service.create(
                 new PermitTrainingProfileCreateRequest(
@@ -345,7 +361,7 @@ class PermitTrainingProfileServiceJpaTest {
                         "QR8364",
                         null,
                         "-2-----",
-                        "OTBD",
+                        "OTHH",
                         "VVTS",
                         "0100",
                         "0850",

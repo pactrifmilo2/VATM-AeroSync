@@ -67,3 +67,5 @@ app:
     permit-review-publish-routing-key: permit.review.publish
     permit-training-validation-exchange: permit.training.validation
     permit-training-validation-routing-key: permit.training.validation
+    permit-profile-validation-exchange: permit.profile.validation
+    permit-profile-validation-routing-key: permit.profile.validation

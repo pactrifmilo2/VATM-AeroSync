@@ -278,8 +278,12 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Validate labels against stable source cell IDs without accepting regex or executable code
 - [x] Attach operator-corrected expected permits and record immutable profile events
 - [x] Confirm complete drafts into `COLLECTING_EVIDENCE` without activating them
-- [ ] Compile confirmed definitions into runtime profile overlays
-- [ ] Replay the retained corpus, run canary evaluation, and expose admin-only activation
+- [x] Compile confirmed definitions into safe declarative runtime profile overlays
+- [x] Replay every corrected retained source and store per-source pass/fail diagnostics
+- [x] Dispatch worker validation after the API transaction commits and ignore stale commands
+- [x] Expose validation requests and non-active compiled-preview APIs
+- [ ] Evaluate unseen canary permits and require a configured success threshold
+- [ ] Expose admin-only activation, rollback, and learned-profile runtime loading
 
 ---
 

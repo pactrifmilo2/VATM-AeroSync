@@ -112,6 +112,31 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    DirectExchange permitProfileValidationExchange(
+            RabbitMqProperties properties) {
+        return new DirectExchange(
+                properties.getPermitProfileValidationExchange(),
+                true,
+                false);
+    }
+
+    @Bean
+    Queue permitProfileValidationQueue(RabbitMqProperties properties) {
+        return QueueBuilder.durable(
+                properties.getPermitProfileValidationQueue()).build();
+    }
+
+    @Bean
+    Binding permitProfileValidationBinding(
+            Queue permitProfileValidationQueue,
+            DirectExchange permitProfileValidationExchange,
+            RabbitMqProperties properties) {
+        return BindingBuilder.bind(permitProfileValidationQueue)
+                .to(permitProfileValidationExchange)
+                .with(properties.getPermitProfileValidationRoutingKey());
+    }
+
+    @Bean
     StatelessRetryOperationsInterceptor fileProcessingRetryInterceptor(
             RabbitTemplate rabbitTemplate,
             RabbitMqProperties properties) {

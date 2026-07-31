@@ -29,4 +29,22 @@ class RabbitMqConfigTest {
         assertThat(queue.getName()).isEqualTo("file.processing.failed.queue");
         assertThat(binding.getRoutingKey()).isEqualTo("file.processing.failed");
     }
+
+    @Test
+    void declaresDedicatedLearnedProfileValidationTopology() {
+        RabbitMqConfig config = new RabbitMqConfig();
+        RabbitMqProperties properties = new RabbitMqProperties();
+
+        DirectExchange exchange =
+                config.permitProfileValidationExchange(properties);
+        Queue queue = config.permitProfileValidationQueue(properties);
+        Binding binding = config.permitProfileValidationBinding(
+                queue, exchange, properties);
+
+        assertThat(exchange.getName()).isEqualTo("permit.profile.validation");
+        assertThat(queue.getName())
+                .isEqualTo("permit.profile.validation.queue");
+        assertThat(binding.getRoutingKey())
+                .isEqualTo("permit.profile.validation");
+    }
 }

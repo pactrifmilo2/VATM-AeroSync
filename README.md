@@ -317,15 +317,25 @@ or executable code.
 | `POST` | `/api/permit-training-profiles/{id}/evidence` | Operator/Admin | Attach the corrected permit that the source should produce |
 | `DELETE` | `/api/permit-training-profiles/{id}/evidence/{evidenceId}` | Operator/Admin | Remove evidence before the mapping is confirmed |
 | `POST` | `/api/permit-training-profiles/{id}/confirm` | Operator/Admin | Lock the mapping and move it to evidence collection |
+| `POST` | `/api/permit-training-profiles/{id}/validate` | Operator/Admin | Queue safe compilation and replay of all corrected evidence |
+| `GET` | `/api/permit-training-profiles/{id}/compiled` | Operator/Admin | Inspect the non-active compiled profile artifact |
 
-The Phase 2 workflow is `DRAFT -> COLLECTING_EVIDENCE`. Confirmation is not
-activation: these APIs cannot create compiled rules, set a profile to `ACTIVE`,
-or affect live mail parsing. Activation requires later compilation, replay,
-canary, and admin-promotion phases. Every mutation uses an `expectedVersion`
-value to prevent one operator from silently overwriting another operator's
-changes. The tables used by this workflow are already created by
-`scripts/migrate-adaptive-permit-review-oracle.sql`; Phase 2 adds no new
-database migration.
+The guided lifecycle implemented through Phase 3 is
+`DRAFT -> COLLECTING_EVIDENCE -> VALIDATING -> CANARY`. The worker compiles only
+declarative cell coordinates, plain-text anchors, table column indexes, and
+business options. It then replays every corrected retained source and compares
+only the semantic fields that the operator mapped. A mismatch moves the version
+to `NEEDS_REVISION` and records per-source diagnostics; a complete pass moves it
+to `CANARY` with a compiled preview. `CANARY` means ready for the later canary
+phase—it is not active and is not loaded by live mail parsing.
+
+Every mutation uses an `expectedVersion` value to prevent one operator from
+silently overwriting another operator's changes. Validation is dispatched to
+the worker only after the database transaction commits, avoiding a race where
+the worker could see the previous status. The existing migration already
+contains the required profile, evidence, and event columns; Phase 3 adds no new
+database migration. Actual canary evaluation and admin-only activation remain
+future phases.
 
 Before deploying this phase to an existing database, rerun the idempotent
 `scripts/migrate-adaptive-permit-review-oracle.sql` migration. Previously

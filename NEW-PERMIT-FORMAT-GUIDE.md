@@ -104,8 +104,9 @@ YAML profile version changes, the candidate becomes inactive until it is
 reviewed again. Business-value corrections are retained as evidence but are
 never turned into executable parser rules automatically.
 
-For a genuinely new family, the guided training API can now collect a profile
-without asking the operator to write YAML or Java. Its Phase 2 flow is:
+For a genuinely new family, the guided training API can now collect and validate
+a profile without asking the operator to write YAML or Java. Its flow through
+Phase 3 is:
 
 ```text
 retained Word source
@@ -113,6 +114,8 @@ retained Word source
   -> label semantic fields and table headers
   -> attach the corrected expected permit
   -> confirm as COLLECTING_EVIDENCE
+  -> compile and replay as VALIDATING
+  -> CANARY when every retained example passes
 ```
 
 Use `/api/permit-training-sources/{id}` to obtain the structured document and
@@ -126,9 +129,16 @@ Before confirmation, the API requires mappings for the source permit number,
 permit date, operator ICAO, and the essential schedule columns. It also requires
 at least one corrected expected permit and safe business options with
 `reviewOnly=true`. Confirmation locks the mapping and starts evidence collection;
-it does not affect live mail parsing. The existing YAML profiles remain the
-runtime baseline until later compilation, replay, canary, and admin-activation
-phases are implemented.
+it does not affect live mail parsing. Call
+`POST /api/permit-training-profiles/{id}/validate` to ask the worker to compile
+the definition and replay every corrected example. The compiled artifact uses
+only fixed coordinates, plain-text anchors, and column indexes. It is available
+for inspection from `GET /api/permit-training-profiles/{id}/compiled`.
+
+If every mapped value matches its corrected example, the version moves to
+`CANARY`; otherwise it moves to `NEEDS_REVISION` with per-source diagnostics.
+Neither state affects live mail. The existing YAML profiles remain the runtime
+baseline until canary evaluation and separate admin activation are implemented.
 
 Make recognition patterns tolerant of harmless punctuation and spacing changes:
 

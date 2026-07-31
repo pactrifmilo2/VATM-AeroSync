@@ -34,3 +34,4 @@ app:
     file-processing-queue: file.processing.queue
     sync-result-exchange: sync.result
     permit-training-validation-queue: permit.training.validation.queue
+    permit-profile-validation-queue: permit.profile.validation.queue

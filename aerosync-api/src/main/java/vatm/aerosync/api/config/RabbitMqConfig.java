@@ -47,4 +47,13 @@ public class RabbitMqConfig {
                 true,
                 false);
     }
+
+    @Bean
+    DirectExchange permitProfileValidationExchange(
+            RabbitMqProperties properties) {
+        return new DirectExchange(
+                properties.getPermitProfileValidationExchange(),
+                true,
+                false);
+    }
 }

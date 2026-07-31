@@ -84,3 +84,6 @@ app:
     permit-training-validation-exchange: permit.training.validation
     permit-training-validation-routing-key: permit.training.validation
     permit-training-validation-queue: permit.training.validation.queue
+    permit-profile-validation-exchange: permit.profile.validation
+    permit-profile-validation-routing-key: permit.profile.validation
+    permit-profile-validation-queue: permit.profile.validation.queue
