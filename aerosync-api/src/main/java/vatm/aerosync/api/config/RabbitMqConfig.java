@@ -2,6 +2,7 @@ package vatm.aerosync.api.config;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -31,5 +32,10 @@ public class RabbitMqConfig {
     @Bean
     Binding dashboardAlertsBinding(Queue dashboardAlertsQueue, FanoutExchange syncResultExchange) {
         return BindingBuilder.bind(dashboardAlertsQueue).to(syncResultExchange);
+    }
+
+    @Bean
+    DirectExchange permitReviewPublishExchange(RabbitMqProperties properties) {
+        return new DirectExchange(properties.getPermitReviewPublishExchange(), true, false);
     }
 }

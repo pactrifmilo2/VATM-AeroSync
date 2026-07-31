@@ -55,6 +55,8 @@ class PermitImportCoordinatorTest {
     private StringRedisTemplate redisTemplate;
     @Mock
     private ValueOperations<String, String> valueOperations;
+    @Mock
+    private PermitReviewCaptureService permitReviewCaptureService;
 
     private AtfmDatabaseProperties properties;
     private PermitImportCoordinator coordinator;
@@ -72,7 +74,8 @@ class PermitImportCoordinatorTest {
                 semanticHasher,
                 atfmScheduleGateway,
                 properties,
-                redisTemplate);
+                redisTemplate,
+                permitReviewCaptureService);
         job = org.mockito.Mockito.mock(SyncJob.class);
         when(job.getFileHash()).thenReturn("f".repeat(64));
         when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
@@ -141,6 +144,8 @@ class PermitImportCoordinatorTest {
                 .isEqualTo(PermitImportStatus.REVISION_REVIEW);
         verify(atfmScheduleGateway, never()).findExisting(any());
         verify(atfmScheduleGateway, never()).insert(any());
+        verify(permitReviewCaptureService).capture(
+                any(PermitImport.class), eq(context), anyString());
     }
 
     @Test

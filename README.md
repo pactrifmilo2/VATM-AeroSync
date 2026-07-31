@@ -227,18 +227,56 @@ discovered in one cycle and then processed independently. Set
 uses its own target transaction: one master row in `T_PERMMASTER_SC`, followed by
 its schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID`.
 
-Format recognition is profile-based rather than automatic machine-learning
-training. The reusable profiles are stored under
-`aerosync-worker/src/main/resources/permit-formats`, while airport and aircraft
-normalization data is under `permit-reference`. New files with one of the learned
-layouts are handled automatically; a genuinely new layout requires another YAML
-profile or reference mapping.
+Format recognition uses a shared semantic extractor followed by a profile policy;
+it is not automatic machine-learning training. The shared layer ranks the main
+permit header above cited permits, recognizes common dates/operator/address
+labels, adapts table headers, and understands original/replacement/supplemental
+schedule sections. Profiles under
+`aerosync-worker/src/main/resources/permit-formats` provide normalization,
+defaults, validation rules, and special overrides. Ordinary wording and layout
+variants should therefore work without a new profile; only a new permit family
+or business policy needs one.
 
 Revision forms are parsed and validated, but are marked `REVISION_REVIEW` instead
 of being written automatically. This prevents a revision from silently replacing
 an existing ATFM permit. For legacy revisions such as `LD-06/A/S/2026VN/REV8`, the
 worker uses only the new-schedule table and normalizes the permit identity as
 `LD-06/A/S/2026`.
+
+Adaptive matches and revision permits now create a persistent operator-review
+record. The admin UI can use these API endpoints:
+
+| Method | Endpoint | Role | Purpose |
+|--------|----------|------|---------|
+| `GET` | `/api/permit-reviews` | Operator/Admin | List and filter the review queue |
+| `GET` | `/api/permit-reviews/{id}` | Operator/Admin | Read parsed values, diagnostics, and corrections |
+| `PUT` | `/api/permit-reviews/{id}/correction` | Operator/Admin | Save corrected permit data |
+| `POST` | `/api/permit-reviews/{id}/approve` | Operator/Admin | Confirm and freeze the reviewed data |
+| `POST` | `/api/permit-reviews/{id}/reject` | Operator/Admin | Reject the review with a reason |
+| `POST` | `/api/permit-reviews/{id}/publish` | Admin | Queue a separately approved permit for ATFM publication |
+
+Approval and publication are deliberately separate. Approval records the human
+decision and creates a reusable correction sample; publication is the
+higher-risk ATFM write. Publication remains subject to
+`APP_ATFM_WRITE_ENABLED=true` and worker validation.
+
+Review API users and their `OPERATOR` or `ADMIN` roles are loaded from the
+`app_users` database table. Run the review migration, then configure a one-time
+bootstrap administrator for the first API startup:
+
+```powershell
+sqlplus vatm_user/vatm_password@localhost:1521/XEPDB1 `
+  '@scripts/migrate-adaptive-permit-review-oracle.sql'
+```
+
+```env
+APP_BOOTSTRAP_ADMIN_USERNAME=aerosync-admin
+APP_BOOTSTRAP_ADMIN_PASSWORD=replace-with-a-long-random-password
+```
+
+Remove the bootstrap variables after the account has been created. Review
+endpoints use HTTP Basic authentication; other existing monitoring endpoints
+keep their current access behavior.
 
 To regression-test a local directory of Word permits without importing anything:
 

@@ -1,16 +1,49 @@
 # Adding a New Permit Format
 
-This guide explains where to make changes when AeroSync must recognize a new Word permit layout.
+This guide explains where to make changes when AeroSync receives a Word permit
+that looks different from the samples already tested.
 
 ## DOCX formats
 
-For a new `.docx` layout, the main change is normally a new YAML profile. Java registration is not required because `DocxPermitProfileCatalog` automatically loads every file matching:
+Do not create a profile for every wording, spacing, accent, or table-header
+variation. Every `.docx` first goes through the shared semantic extractor, which:
+
+- Ranks permit identities found in the document header above references found in
+  schedule tables.
+- Recognizes common permit-date, ICAO/IATA, and address labels.
+- Classifies section 2.1 as the original schedule, 2.2 as the replacement
+  schedule, and 2.5 as a supplemental schedule.
+- Matches shared table aliases after normalizing case, accents, punctuation, and
+  whitespace, with conservative fuzzy matching for small spelling differences.
+
+The selected profile is then an overlay. It supplies the permit's business rules,
+normalization templates, defaults, validation policy, and any layout-specific
+override. In other words:
+
+```text
+Word document
+  -> shared semantic evidence
+  -> profile policy and trusted overrides
+  -> validation and operator review
+```
+
+The shared implementation lives in:
+
+```text
+aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/PermitSemanticExtractor.java
+aerosync-worker/src/main/resources/permit-reference/permit-semantic-aliases.yaml
+```
+
+Add a new YAML profile only when the document represents a genuinely different
+permit family or needs different business behavior. Java registration is not
+required because `DocxPermitProfileCatalog` automatically loads every file matching:
 
 ```text
 aerosync-worker/src/main/resources/permit-formats/*.yaml
 ```
 
-Start by copying the existing profile that most closely resembles the new document. For example:
+When a new profile is justified, start by copying the existing profile that most
+closely resembles the new document. For example:
 
 ```text
 aerosync-worker/src/main/resources/permit-formats/caav-generic-landing-issued.yaml
@@ -24,10 +57,12 @@ caav-english-charter-overflight.yaml
 
 ## 1. Configure format recognition
 
-The beginning of the profile identifies the format:
+The beginning of a genuinely new profile identifies its permit family:
 
 ```yaml
 id: caav-english-charter-overflight
+family: caav-english
+profileVersion: 1
 priority: 10
 
 detectionPatterns:
@@ -38,10 +73,20 @@ detectionPatterns:
 
 Current detection behavior:
 
-- Every entry in `detectionPatterns` must match the extracted document text.
-- When several profiles match, the profile with the highest `priority` is selected.
-- When several matching profiles have the same highest priority, the document is rejected as ambiguous.
+- Candidate confidence combines permit identity (40%), schedule structure (40%), and detection signals (20%).
+- A candidate must reach `0.90` confidence. Partial detection may parse, but it is marked for operator review.
+- The highest `priority` eligible profile is preferred, preserving specific profiles over generic fallbacks.
+- Equal top candidates with the same priority and confidence are rejected as ambiguous.
 - Generic fallback profiles normally have a low priority, such as `-100`.
+- Increase `profileVersion` whenever a deployed profile changes.
+
+When adaptive detection requires review, the worker stores the parsed permit,
+profile candidates, field diagnostics, and warnings in `permit_reviews`. An
+operator can correct and approve that snapshot through
+`/api/permit-reviews`. Approval does not write to ATFM; an administrator must
+make the separate `/publish` request. Approved corrections remain immutable
+training evidence for a later profile-promotion phase, so the running parser
+does not silently rewrite its YAML profiles.
 
 Make recognition patterns tolerant of harmless punctuation and spacing changes:
 
@@ -90,7 +135,9 @@ permit:
 
 ## 3. Configure extracted fields
 
-The profile can extract the permit date, operator, billing address, and reference from paragraphs, tables, or the full document:
+The shared extractor handles common permit dates, labeled ICAO/IATA codes, and
+addresses. A profile can still define exact extraction rules when its format needs
+a trusted override or when a field has a special meaning:
 
 ```yaml
 permitDate:
@@ -126,6 +173,12 @@ Supported source values are:
 - `TABLE`: table text only
 
 If a field does not always exist, set `required: false`.
+
+When both paths find a value, a successful profile-specific text rule is treated
+as the trusted override. If that rule does not match a harmless layout variant,
+the shared semantic evidence remains available. Permit identities are ranked
+semantically first so that an older permit cited in a table cannot replace the
+main permit number from the document header.
 
 ## 4. Configure master defaults and purpose
 
@@ -196,11 +249,25 @@ schedule:
   inferIataPrefix: true
 ```
 
-Column aliases are matched after removing differences in case, accents, punctuation, whitespace, and trailing footnote numbers.
+Column aliases are matched after removing differences in case, accents, punctuation, whitespace, and trailing footnote numbers. The parser can combine up to three header rows and can conservatively match minor spelling differences; those adaptive matches are always marked for operator review.
+
+Shared aliases live in:
+
+```text
+aerosync-worker/src/main/resources/permit-reference/permit-semantic-aliases.yaml
+```
+
+Alias precedence is profile, then `family`, then global. Add ordinary wording variants to the shared file instead of copying them into every profile. A profile-specific alias remains the trusted exact match; a family/global/fuzzy alias produces diagnostics and requires review until promoted into the profile.
 
 ### Selecting among similar tables
 
-Use `tableContextPatterns` when a schedule table must have a particular preceding heading:
+For the common CAAV revision structure, the shared extractor already understands
+sections 2.1, 2.2, and 2.5. It selects 2.2 as the active replacement schedule,
+excludes 2.1, and appends 2.5. A semantic selection is recorded in diagnostics
+and sent for operator review.
+
+Use `tableContextPatterns` only when the profile needs a layout-specific override
+that the shared roles cannot express:
 
 ```yaml
 tableContextPatterns:
@@ -372,7 +439,18 @@ The report helps identify:
 
 ## When Java changes are required
 
-A new YAML profile is sufficient when the new `.docx` document uses the concepts already represented by `DocxPermitFormatProfile`, including:
+No profile change is normally needed for:
+
+- Extra spaces or punctuation in a permit number.
+- Vietnamese accents, English/Vietnamese label variants, or harmless spelling
+  differences.
+- One to three table-header rows.
+- A familiar section 2.1/2.2/2.5 schedule structure.
+- A header alias that belongs in the shared or family alias catalog.
+
+A new YAML profile is sufficient when the `.docx` document uses the concepts
+already represented by `DocxPermitFormatProfile` but needs a new permit family,
+normalization rule, default, or validation policy, including:
 
 - Permit identity
 - Permit date and text fields
@@ -420,11 +498,13 @@ Therefore, a genuinely new `.doc` layout may require changes to `LegacyDocRevisi
 
 1. Obtain one or more representative real documents.
 2. Run the corpus report to inspect extracted paragraphs, tables, and contexts.
-3. Copy the closest existing YAML profile.
-4. Give the new format unique, tolerant detection patterns.
-5. Configure identity, extraction, schedule, route, aircraft, and validation rules.
-6. Start with `reviewOnly: true`.
-7. Add a synthetic regression test.
-8. Test the real documents.
+3. Test the document with the shared extractor and the closest existing profile.
+4. If only a common header label is missing, add it to the shared or family alias
+   catalog rather than creating a profile.
+5. Create a profile only for a new permit family or different business policy.
+6. Change Java only for a structure or rule the semantic/profile model cannot
+   represent.
+7. Start genuinely new profiles with `reviewOnly: true`.
+8. Add a synthetic regression test and a real-document regression test.
 9. Run the full worker test suite to detect profile collisions.
 10. Enable normal processing only after reviewing the parsed output.

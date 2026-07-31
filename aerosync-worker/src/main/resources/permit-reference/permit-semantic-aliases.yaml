@@ -1,0 +1,81 @@
+global:
+  flightNumber:
+    - Flight No
+    - Flight No.
+    - Flt No
+    - Call sign
+    - Callsign
+    - Số hiệu chuyến bay
+  effectiveFrom:
+    - Valid from
+    - Start date
+    - Hiệu lực từ
+  effectiveTo:
+    - Valid to
+    - End date
+    - Hiệu lực đến
+  serviceDays:
+    - Operating days
+    - Days of operation
+    - Ngày khai thác
+    - Ngày trong tuần
+  fromAirport:
+    - Departure
+    - Departure aerodrome
+    - Airport of departure
+    - Sân bay đi
+    - Sân bay cất cánh
+  etd:
+    - Departure time
+    - Estimated departure
+    - Giờ dự kiến đi
+    - Giờ dự kiến cất cánh
+  toAirport:
+    - Arrival
+    - Arrival aerodrome
+    - Airport of arrival
+    - Sân bay đến
+    - Sân bay hạ cánh
+  eta:
+    - Arrival time
+    - Estimated arrival
+    - Giờ dự kiến đến
+    - Giờ dự kiến hạ cánh
+  aircraftType:
+    - Type of aircraft
+    - A/C type
+    - Loại tàu bay
+  originalPermit:
+    - Previous permit
+    - Related permit
+    - Phép bay liên quan
+  remark:
+    - Remarks
+    - Ghi chú
+  sector:
+    - Route sector
+    - City pair
+    - Chặng bay
+  airways:
+    - Route
+    - ATS route
+    - Đường hàng không
+  registrationMarks:
+    - Aircraft registration
+    - Registration
+    - Reg. marks
+    - Số đăng ký
+
+families:
+  caav-english:
+    flightNumber: [Flight identifier]
+    serviceDays: [Day(s) of operation]
+  caav-generic:
+    flightNumber: [Flight identifier]
+    originalPermit: [Original flight permit]
+  caav-vietnamese:
+    flightNumber: [Số hiệu CB]
+    serviceDays: [Ngày bay]
+  spa-vietnamese:
+    flightNumber: [Số chuyến bay]
+    serviceDays: [Các ngày khai thác]

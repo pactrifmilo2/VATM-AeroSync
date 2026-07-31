@@ -1,4 +1,6 @@
 id: caav-english-issued-permit-revision
+family: caav-english
+profileVersion: 1
 detectionPatterns:
   - '(?iu)REFER\s+TO\s+THE\s+ISSUED\s+PERMIT:\s*LD\s*-\s*\d{1,4}/A/S/20\d{2}VN'
   - '(?iu)2\.2\.\s*NEW\s+SCHEDULE'

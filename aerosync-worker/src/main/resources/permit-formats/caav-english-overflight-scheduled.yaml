@@ -1,4 +1,6 @@
 id: caav-english-overflight-scheduled
+family: caav-english
+profileVersion: 1
 detectionPatterns:
   - '(?iu)SCHEDULES:\s*UTC\s*TIME'
   - '(?iu)CARGO\s+FLIGHT'

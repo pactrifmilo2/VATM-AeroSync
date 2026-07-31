@@ -77,3 +77,6 @@ app:
     retry-multiplier: 2.0
     retry-max-interval-ms: 30000
     sync-result-exchange: sync.result
+    permit-review-publish-exchange: permit.review.publish
+    permit-review-publish-routing-key: permit.review.publish
+    permit-review-publish-queue: permit.review.publish.queue

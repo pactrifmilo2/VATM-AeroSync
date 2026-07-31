@@ -68,6 +68,25 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    DirectExchange permitReviewPublishExchange(RabbitMqProperties properties) {
+        return new DirectExchange(properties.getPermitReviewPublishExchange(), true, false);
+    }
+
+    @Bean
+    Queue permitReviewPublishQueue(RabbitMqProperties properties) {
+        return QueueBuilder.durable(properties.getPermitReviewPublishQueue()).build();
+    }
+
+    @Bean
+    Binding permitReviewPublishBinding(Queue permitReviewPublishQueue,
+                                       DirectExchange permitReviewPublishExchange,
+                                       RabbitMqProperties properties) {
+        return BindingBuilder.bind(permitReviewPublishQueue)
+                .to(permitReviewPublishExchange)
+                .with(properties.getPermitReviewPublishRoutingKey());
+    }
+
+    @Bean
     StatelessRetryOperationsInterceptor fileProcessingRetryInterceptor(
             RabbitTemplate rabbitTemplate,
             RabbitMqProperties properties) {

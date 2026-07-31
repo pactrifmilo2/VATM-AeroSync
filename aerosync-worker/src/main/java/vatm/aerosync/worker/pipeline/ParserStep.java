@@ -18,6 +18,7 @@ import vatm.aerosync.common.enums.FileType;
 import vatm.aerosync.common.exception.FormatValidationException;
 import vatm.aerosync.worker.model.FlightRow;
 import vatm.aerosync.worker.model.ProcessingContext;
+import vatm.aerosync.worker.model.WordPermitParseResult;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
@@ -47,13 +48,17 @@ public class ParserStep {
 
     public void parse(ProcessingContext context) {
         if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOCX) {
-            context.setSchedulePermit(docxSchedulePermitParser.parse(
-                    context.getFilePath(), context.getOriginalFileName()));
+            WordPermitParseResult result = docxSchedulePermitParser.parseWithDiagnostics(
+                    context.getFilePath(), context.getOriginalFileName());
+            context.setWordPermitParseResult(result);
+            context.setSchedulePermit(result.permit());
             return;
         }
         if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOC) {
-            context.setSchedulePermit(legacyDocRevisionPermitParser.parse(
-                    context.getFilePath(), context.getOriginalFileName()));
+            WordPermitParseResult result = legacyDocRevisionPermitParser.parseWithDiagnostics(
+                    context.getFilePath(), context.getOriginalFileName());
+            context.setWordPermitParseResult(result);
+            context.setSchedulePermit(result.permit());
             return;
         }
         List<FlightRow> rows = switch (context.getFileType()) {

@@ -1,4 +1,6 @@
 id: caav-english-overflight-revision
+family: caav-english
+profileVersion: 1
 detectionPatterns:
   - '(?iu)PERMIT\s+NUMBER:\s*OF-'
   - '(?iu)3\.1\.\s*OLD'

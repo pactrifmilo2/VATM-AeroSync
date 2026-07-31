@@ -3,8 +3,11 @@ package vatm.aerosync.worker.pipeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.common.exception.FormatValidationException;
+import vatm.aerosync.worker.model.PermitFieldDiagnostic;
+import vatm.aerosync.worker.model.PermitParseWarning;
 import vatm.aerosync.worker.model.ScheduleFlight;
 import vatm.aerosync.worker.model.SchedulePermit;
+import vatm.aerosync.worker.model.WordPermitParseResult;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,7 +17,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -68,8 +70,12 @@ public class DocxSchedulePermitParser {
     }
 
     public SchedulePermit parse(Path file, String fileName) {
+        return parseWithDiagnostics(file, fileName).permit();
+    }
+
+    public WordPermitParseResult parseWithDiagnostics(Path file, String fileName) {
         try {
-            return parse(documentReader.read(file), fileName);
+            return parseWithDiagnostics(documentReader.read(file), fileName);
         } catch (FormatValidationException exception) {
             throw exception;
         } catch (IOException | RuntimeException exception) {
@@ -78,15 +84,41 @@ public class DocxSchedulePermitParser {
     }
 
     SchedulePermit parse(WordPermitDocument document, String fileName) {
-        return parseProfile(formatDetector.detect(document, fileName), document, fileName);
+        return parseWithDiagnostics(document, fileName).permit();
+    }
+
+    WordPermitParseResult parseWithDiagnostics(WordPermitDocument document, String fileName) {
+        WordPermitDetectionResult detection = formatDetector.detectResult(document, fileName);
+        ParseDiagnostics diagnostics = new ParseDiagnostics(detection.warnings());
+        SchedulePermit permit = parseProfile(
+                detection.profile(),
+                detection.declaredProfile(),
+                detection.reviewRequired(),
+                detection.semantics(),
+                document,
+                fileName,
+                diagnostics);
+        return new WordPermitParseResult(
+                permit,
+                detection.profile().id(),
+                detection.profile().profileVersion(),
+                detection.confidence(),
+                detection.runnerUpMargin(),
+                permit.reviewOnly() || diagnostics.reviewRequired(),
+                detection.candidates(),
+                diagnostics.fields(),
+                diagnostics.warnings());
     }
 
     private SchedulePermit parseProfile(DocxPermitFormatProfile profile,
+                                        DocxPermitFormatProfile declaredProfile,
+                                        boolean detectionRequiresReview,
+                                        PermitSemanticEvidence semantics,
                                         WordPermitDocument document,
-                                        String fileName) {
-        Matcher permitMatcher = require(
-                profile.permit().pattern(), document.rawContent(), fileName,
-                "Permit number not found for profile " + profile.id());
+                                        String fileName,
+                                        ParseDiagnostics diagnostics) {
+        PermitMatch permitMatch = permitMatch(profile, semantics, document, fileName);
+        Matcher permitMatcher = permitMatch.matcher();
         String permitNumber = profile.permit().numberTemplate() == null
                 || profile.permit().numberTemplate().isBlank()
                 ? requireGroup(
@@ -99,71 +131,182 @@ public class DocxSchedulePermitParser {
                 permitMatcher,
                 safeMap(profile.permit().zeroPadGroups()),
                 fileName);
-        LocalDate permitDate = extractDate(profile.permitDate(), document, fileName, "permit date");
-        String billingAddress = extractText(profile.billingAddress(), document, fileName, "billing address");
+        diagnostics.field(
+                "permitNumber",
+                permitMatch.confidence(),
+                permitMatch.source(),
+                permitMatch.semantic() ? "SEMANTIC_HEADER" : "PROFILE_REGEX");
+        if (permitMatch.semantic() && permitMatch.confidence() < 0.95) {
+            diagnostics.warning(
+                    "PERMIT_IDENTITY_LOW_CONTEXT",
+                    "Permit identity was selected from " + permitMatch.source(),
+                    true);
+        }
+        DateResolution dateResolution = resolvePermitDate(
+                profile.permitDate(), semantics, document, fileName);
+        LocalDate permitDate = dateResolution.value();
+        diagnostics.field(
+                "permitDate",
+                dateResolution.confidence(),
+                dateResolution.source(),
+                dateResolution.method());
+        if (dateResolution.confidence() < 0.90) {
+            diagnostics.warning(
+                    "PERMIT_DATE_LOW_CONFIDENCE",
+                    "Permit date used " + dateResolution.method(),
+                    true);
+        }
+        TextResolution billingResolution = resolveBillingAddress(
+                profile.billingAddress(), semantics, document, fileName);
+        String billingAddress = billingResolution == null ? null : billingResolution.value();
+        if (billingResolution != null) {
+            diagnostics.field(
+                    "billingAddress",
+                    billingResolution.confidence(),
+                    billingResolution.source(),
+                    billingResolution.method());
+        }
 
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
-        List<List<String>> scheduleTable = null;
+        DocxPermitFormatProfile.ScheduleDefinition declaredSchedule = declaredProfile.schedule();
+        List<WordPermitTableMatcher.TableMatch> structuralScheduleTables = findTables(
+                document.tables(),
+                document.tableContexts(),
+                schedule.columns(),
+                declaredSchedule.columns(),
+                schedule.requiredColumns(),
+                schedule.excludeColumns(),
+                List.of());
+        WordPermitTableMatcher.TableMatch scheduleTable = null;
         if (!safeList(schedule.preferredTableContextPatterns()).isEmpty()) {
             scheduleTable = findTable(
                     document.tables(),
                     document.tableContexts(),
                     schedule.columns(),
+                    declaredSchedule.columns(),
                     schedule.requiredColumns(),
                     schedule.excludeColumns(),
                     schedule.preferredTableContextPatterns(),
                     schedule.lastMatchingTable());
         }
-        if (scheduleTable == null) {
+        if (scheduleTable == null && !safeList(schedule.tableContextPatterns()).isEmpty()) {
             scheduleTable = findTable(
                     document.tables(),
                     document.tableContexts(),
                     schedule.columns(),
+                    declaredSchedule.columns(),
                     schedule.requiredColumns(),
                     schedule.excludeColumns(),
                     schedule.tableContextPatterns(),
                     schedule.lastMatchingTable());
         }
-        if (scheduleTable == null || scheduleTable.size() < 2) {
+        if (scheduleTable == null) {
+            scheduleTable = selectSemanticScheduleTable(
+                    structuralScheduleTables,
+                    semantics,
+                    PermitSemanticEvidence.TableRole.REPLACEMENT,
+                    schedule.lastMatchingTable());
+            if (scheduleTable != null) {
+                recordSemanticTableRole(
+                        diagnostics,
+                        "schedule",
+                        scheduleTable,
+                        semantics,
+                        true);
+            }
+        }
+        if (scheduleTable == null && !structuralScheduleTables.isEmpty()) {
+            scheduleTable = schedule.lastMatchingTable()
+                    ? structuralScheduleTables.getLast()
+                    : structuralScheduleTables.getFirst();
+        }
+        if (scheduleTable == null || scheduleTable.dataRows().isEmpty()) {
             throw invalid(fileName, "Schedule table not found for profile " + profile.id());
         }
-        List<List<String>> primaryScheduleTable = scheduleTable;
-        List<List<List<String>>> scheduleTables = new ArrayList<>();
+        diagnostics.table("schedule", scheduleTable);
+        WordPermitTableMatcher.TableMatch primaryScheduleTable = scheduleTable;
+        List<WordPermitTableMatcher.TableMatch> scheduleTables = new ArrayList<>();
         scheduleTables.add(primaryScheduleTable);
+        selectSemanticScheduleTables(
+                structuralScheduleTables,
+                semantics,
+                PermitSemanticEvidence.TableRole.SUPPLEMENTAL)
+                .stream()
+                .filter(table -> table.tableIndex() != primaryScheduleTable.tableIndex())
+                .forEach(table -> {
+                    recordSemanticTableRole(
+                            diagnostics,
+                            "schedule",
+                            table,
+                            semantics,
+                            true);
+                    scheduleTables.add(table);
+                });
         if (!safeList(schedule.supplementalTableContextPatterns()).isEmpty()) {
             findTables(
                     document.tables(),
                     document.tableContexts(),
                     schedule.columns(),
+                    declaredSchedule.columns(),
                     schedule.requiredColumns(),
                     schedule.excludeColumns(),
                     schedule.supplementalTableContextPatterns())
                     .stream()
-                    .filter(table -> table != primaryScheduleTable)
-                    .forEach(scheduleTables::add);
+                    .filter(table -> scheduleTables.stream().noneMatch(
+                            existing -> existing.tableIndex() == table.tableIndex()))
+                    .forEach(table -> {
+                        diagnostics.table("schedule", table);
+                        scheduleTables.add(table);
+                    });
         }
 
-        String operatorId = normalizedOperator(
-                extractText(profile.operator(), document, fileName, "carrier ICAO code"));
-        if (operatorId == null) {
-            operatorId = extractLabeledCode(document.rawContent(), ICAO_LABEL_PATTERN);
+        TextResolution operatorResolution = resolveOperator(
+                profile.operator(), semantics, document, fileName);
+        String configuredOperator = normalizedOperator(
+                operatorResolution == null ? null : operatorResolution.value());
+        String operatorId = configuredOperator;
+        if (operatorId != null) {
+            diagnostics.field(
+                    "operator",
+                    operatorResolution.confidence(),
+                    operatorResolution.source(),
+                    operatorResolution.method());
         }
         if (operatorId == null) {
-            operatorId = inferOperator(scheduleTable, schedule.columns(), fileName);
+            operatorId = inferOperator(scheduleTable, fileName);
+            diagnostics.field(
+                    "operator",
+                    Math.min(0.90, scheduleTable.minimumConfidence()),
+                    scheduleTable.source(),
+                    "SCHEDULE_INFERENCE");
+            diagnostics.warning(
+                    "OPERATOR_INFERRED",
+                    "Carrier ICAO code was inferred from a flight number",
+                    false);
         }
         String resolvedOperatorId = operatorId;
         String iataPrefix = schedule.inferIataPrefix()
-                ? extractIataPrefix(document.rawContent())
+                ? semantics.operatorIata() == null
+                        ? extractIataPrefix(document.rawContent())
+                        : semantics.operatorIata().value()
                 : null;
         boolean normalizeAirportsToIcao = profile.validation() == null
                 || !profile.validation().allowIataAirports();
         List<RouteRow> routes = routeRows(
-                profile.route(), document.tables(), normalizeAirportsToIcao);
+                profile.route(),
+                declaredProfile.route(),
+                document.tables(),
+                normalizeAirportsToIcao,
+                diagnostics);
         if (profile.route() != null && profile.route().tableRequired() && routes.isEmpty()) {
             throw invalid(fileName, "Airways table not found for profile " + profile.id());
         }
 
-        String auxiliaryAircraftTypes = auxiliaryAircraftTypes(profile.aircraft(), document.tables());
+        String auxiliaryAircraftTypes = auxiliaryAircraftTypes(
+                profile.aircraft(),
+                declaredProfile.aircraft(),
+                document.tables(),
+                diagnostics);
         List<ScheduleFlight> flights = scheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
                         profile, table, routes, auxiliaryAircraftTypes,
@@ -179,13 +322,16 @@ public class DocxSchedulePermitParser {
                 && profile.referenceColumn() != null
                 && !profile.referenceColumn().isBlank()) {
             reference = joinedColumnValues(
-                    document.tables(), profile.schedule().columns(), profile.referenceColumn());
+                    document.tables(),
+                    profile.schedule().columns(),
+                    declaredProfile.schedule().columns(),
+                    profile.referenceColumn());
         }
 
         DocxPermitFormatProfile.MasterDefaults master = profile.master();
         String sourcePermitNumber = profile.permit().sourceTemplate() == null
                 || profile.permit().sourceTemplate().isBlank()
-                ? permitMatcher.group().toUpperCase(Locale.ROOT)
+                ? permitMatch.sourcePermitNumber()
                 : expandTemplate(
                         profile.permit().sourceTemplate(), permitMatcher,
                         safeMap(profile.permit().zeroPadGroups()), fileName);
@@ -206,9 +352,195 @@ public class DocxSchedulePermitParser {
                 master.flightType(),
                 validation != null && validation.allowIataAirports(),
                 profile.route() != null && profile.route().allowEmpty(),
-                validation != null && validation.reviewOnly(),
+                detectionRequiresReview
+                        || diagnostics.reviewRequired()
+                        || validation != null && validation.reviewOnly(),
                 document.rawContent(),
                 flights);
+    }
+
+    private PermitMatch permitMatch(DocxPermitFormatProfile profile,
+                                    PermitSemanticEvidence semantics,
+                                    WordPermitDocument document,
+                                    String fileName) {
+        Pattern pattern = Pattern.compile(profile.permit().pattern());
+        for (PermitSemanticEvidence.PermitIdentityCandidate candidate
+                : semantics.permitIdentities()) {
+            Matcher matcher = pattern.matcher(candidate.canonicalValue());
+            if (matcher.find()) {
+                return new PermitMatch(
+                        matcher,
+                        candidate.rawValue().toUpperCase(Locale.ROOT),
+                        candidate.source(),
+                        candidate.confidence(),
+                        true);
+            }
+        }
+        Matcher matcher = require(
+                profile.permit().pattern(),
+                document.rawContent(),
+                fileName,
+                "Permit number not found for profile " + profile.id());
+        return new PermitMatch(
+                matcher,
+                matcher.group().toUpperCase(Locale.ROOT),
+                "RAW",
+                1.0,
+                false);
+    }
+
+    private DateResolution resolvePermitDate(DocxPermitFormatProfile.DateField field,
+                                             PermitSemanticEvidence semantics,
+                                             WordPermitDocument document,
+                                             String fileName) {
+        PermitSemanticEvidence.SemanticValue<LocalDate> semanticDate =
+                semantics.permitDate();
+        if (semanticDate != null
+                && semanticDate.confidence() >= 0.90
+                && !"DOCUMENT_CREATED_DATE".equals(semanticDate.method())) {
+            return new DateResolution(
+                    semanticDate.value(),
+                    semanticDate.source(),
+                    semanticDate.confidence(),
+                    semanticDate.method());
+        }
+        try {
+            LocalDate configured = extractDate(field, document, fileName, "permit date");
+            return new DateResolution(
+                    configured,
+                    field.source() == null ? "RAW" : field.source(),
+                    1.0,
+                    "PROFILE_REGEX_OR_METADATA");
+        } catch (FormatValidationException exception) {
+            if (semanticDate == null
+                    || "DOCUMENT_CREATED_DATE".equals(semanticDate.method())
+                    && !field.fallbackToDocumentCreatedDate()) {
+                throw exception;
+            }
+            return new DateResolution(
+                    semanticDate.value(),
+                    semanticDate.source(),
+                    semanticDate.confidence(),
+                    semanticDate.method());
+        }
+    }
+
+    private TextResolution resolveOperator(DocxPermitFormatProfile.TextField field,
+                                           PermitSemanticEvidence semantics,
+                                           WordPermitDocument document,
+                                           String fileName) {
+        String configured = extractTextIfPresent(
+                field, document, fileName, "carrier ICAO code");
+        if (configured != null) {
+            return new TextResolution(
+                    configured,
+                    field.source() == null ? "RAW" : field.source(),
+                    1.0,
+                    "PROFILE_OVERRIDE");
+        }
+        PermitSemanticEvidence.SemanticValue<String> semanticOperator =
+                semantics.operatorIcao();
+        if (semanticOperator != null) {
+            return new TextResolution(
+                    applyValueMapping(field, semanticOperator.value()),
+                    semanticOperator.source(),
+                    semanticOperator.confidence(),
+                    semanticOperator.method());
+        }
+        extractText(field, document, fileName, "carrier ICAO code");
+        String shared = extractLabeledCode(document.rawContent(), ICAO_LABEL_PATTERN);
+        return shared == null
+                ? null
+                : new TextResolution(shared, "RAW", 0.95, "SHARED_LABEL");
+    }
+
+    private TextResolution resolveBillingAddress(DocxPermitFormatProfile.TextField field,
+                                                 PermitSemanticEvidence semantics,
+                                                 WordPermitDocument document,
+                                                 String fileName) {
+        String configured = extractTextIfPresent(
+                field, document, fileName, "billing address");
+        if (configured != null) {
+            return new TextResolution(
+                    configured,
+                    field.source() == null ? "RAW" : field.source(),
+                    1.0,
+                    "PROFILE_OVERRIDE");
+        }
+        PermitSemanticEvidence.SemanticValue<String> semanticAddress =
+                semantics.billingAddress();
+        if (semanticAddress != null) {
+            return new TextResolution(
+                    applyValueMapping(field, semanticAddress.value()),
+                    semanticAddress.source(),
+                    semanticAddress.confidence(),
+                    semanticAddress.method());
+        }
+        extractText(field, document, fileName, "billing address");
+        return null;
+    }
+
+    private String applyValueMapping(DocxPermitFormatProfile.TextField field,
+                                     String value) {
+        if (field == null) {
+            return value;
+        }
+        return safeMap(field.valueMappings()).entrySet().stream()
+                .filter(entry -> canonical(entry.getKey()).equals(canonical(value)))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(value);
+    }
+
+    private WordPermitTableMatcher.TableMatch selectSemanticScheduleTable(
+            List<WordPermitTableMatcher.TableMatch> tables,
+            PermitSemanticEvidence semantics,
+            PermitSemanticEvidence.TableRole role,
+            boolean lastMatchingTable) {
+        List<WordPermitTableMatcher.TableMatch> matches =
+                selectSemanticScheduleTables(tables, semantics, role);
+        if (matches.isEmpty()) {
+            return null;
+        }
+        return lastMatchingTable ? matches.getLast() : matches.getFirst();
+    }
+
+    private List<WordPermitTableMatcher.TableMatch> selectSemanticScheduleTables(
+            List<WordPermitTableMatcher.TableMatch> tables,
+            PermitSemanticEvidence semantics,
+            PermitSemanticEvidence.TableRole role) {
+        return tables.stream()
+                .filter(table -> {
+                    PermitSemanticEvidence.TableRoleEvidence evidence =
+                            semantics.tableRole(table.tableIndex());
+                    return evidence != null && evidence.role() == role;
+                })
+                .toList();
+    }
+
+    private void recordSemanticTableRole(
+            ParseDiagnostics diagnostics,
+            String section,
+            WordPermitTableMatcher.TableMatch table,
+            PermitSemanticEvidence semantics,
+            boolean reviewRequired) {
+        PermitSemanticEvidence.TableRoleEvidence evidence =
+                semantics.tableRole(table.tableIndex());
+        if (evidence == null) {
+            return;
+        }
+        diagnostics.field(
+                section + ".tableRole",
+                evidence.confidence(),
+                evidence.source(),
+                "SEMANTIC_" + evidence.role().name());
+        diagnostics.warning(
+                "SEMANTIC_TABLE_ROLE",
+                "%s table %d was classified as %s".formatted(
+                        section,
+                        table.tableIndex() + 1,
+                        evidence.role()),
+                reviewRequired);
     }
 
     private String normalizedOperator(String value) {
@@ -218,12 +550,11 @@ public class DocxSchedulePermitParser {
         return normalized.matches("[A-Z0-9]{3}") ? normalized : null;
     }
 
-    private String inferOperator(List<List<String>> scheduleTable,
-                                 Map<String, List<String>> aliases,
+    private String inferOperator(WordPermitTableMatcher.TableMatch scheduleTable,
                                  String fileName) {
-        Map<String, Integer> columns = resolveColumns(scheduleTable.getFirst(), aliases);
-        for (int rowIndex = 1; rowIndex < scheduleTable.size(); rowIndex++) {
-            String flightNumber = clean(value(scheduleTable.get(rowIndex), columns, "flightNumber"))
+        Map<String, Integer> columns = scheduleTable.columns();
+        for (List<String> row : scheduleTable.dataRows()) {
+            String flightNumber = clean(value(row, columns, "flightNumber"))
                     .replaceAll("[^A-Za-z0-9]", "")
                     .toUpperCase(Locale.ROOT);
             Matcher prefix = ICAO_FLIGHT_PREFIX_PATTERN.matcher(flightNumber);
@@ -312,7 +643,7 @@ public class DocxSchedulePermitParser {
     }
 
     private List<ScheduleFlight> scheduleFlights(DocxPermitFormatProfile profile,
-                                                 List<List<String>> table,
+                                                 WordPermitTableMatcher.TableMatch table,
                                                  List<RouteRow> routes,
                                                  String auxiliaryAircraftTypes,
                                                  String rawContent,
@@ -321,10 +652,9 @@ public class DocxSchedulePermitParser {
                                                  boolean normalizeAirportsToIcao,
                                                  String fileName) {
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
-        Map<String, Integer> columns = resolveColumns(table.getFirst(), schedule.columns());
+        Map<String, Integer> columns = table.columns();
         List<ScheduleFlight> flights = new ArrayList<>();
-        for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
-            List<String> row = table.get(rowIndex);
+        for (List<String> row : table.dataRows()) {
             String flightNumber = normalizeFlightNumber(
                     value(row, columns, "flightNumber"), operatorId, iataPrefix);
             if (flightNumber.isBlank()) {
@@ -399,8 +729,10 @@ public class DocxSchedulePermitParser {
     }
 
     private List<RouteRow> routeRows(DocxPermitFormatProfile.RouteDefinition route,
+                                     DocxPermitFormatProfile.RouteDefinition declaredRoute,
                                      List<List<List<String>>> tables,
-                                     boolean normalizeAirportsToIcao) {
+                                     boolean normalizeAirportsToIcao,
+                                     ParseDiagnostics diagnostics) {
         if (route == null) {
             return List.of();
         }
@@ -412,15 +744,21 @@ public class DocxSchedulePermitParser {
                         matcher.group(1), matcher.group(2), normalizeAirways(airways)));
             }
         });
-        List<List<String>> table = findTable(
-                tables, List.of(), route.columns(), route.requiredColumns(), List.of(), List.of(),
+        WordPermitTableMatcher.TableMatch table = findTable(
+                tables,
+                List.of(),
+                route.columns(),
+                declaredRoute == null ? route.columns() : declaredRoute.columns(),
+                route.requiredColumns(),
+                List.of(),
+                List.of(),
                 route.lastMatchingTable());
-        if (table == null || table.size() < 2) {
+        if (table == null || table.dataRows().isEmpty()) {
             return routes;
         }
-        Map<String, Integer> columns = resolveColumns(table.getFirst(), route.columns());
-        for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
-            List<String> row = table.get(rowIndex);
+        diagnostics.table("route", table);
+        Map<String, Integer> columns = table.columns();
+        for (List<String> row : table.dataRows()) {
             Matcher matcher = ROUTE_PATTERN.matcher(value(row, columns, "sector").toUpperCase(Locale.ROOT));
             String airways = normalizeAirways(value(row, columns, "airways"));
             if (matcher.matches() && (!airways.isBlank() || route.allowEmpty())) {
@@ -439,26 +777,33 @@ public class DocxSchedulePermitParser {
                 : airportCodeCatalog.canonicalize(value);
     }
 
-    private String auxiliaryAircraftTypes(DocxPermitFormatProfile.AircraftDefinition aircraft,
-                                           List<List<List<String>>> tables) {
+    private String auxiliaryAircraftTypes(
+            DocxPermitFormatProfile.AircraftDefinition aircraft,
+            DocxPermitFormatProfile.AircraftDefinition declaredAircraft,
+            List<List<List<String>>> tables,
+            ParseDiagnostics diagnostics) {
         if (aircraft == null || safeMap(aircraft.auxiliaryColumns()).isEmpty()) {
             return null;
         }
-        List<List<String>> table = findTable(
+        WordPermitTableMatcher.TableMatch table = findTable(
                 tables,
                 List.of(),
                 aircraft.auxiliaryColumns(),
+                declaredAircraft == null
+                        ? aircraft.auxiliaryColumns()
+                        : declaredAircraft.auxiliaryColumns(),
                 aircraft.auxiliaryRequiredColumns(),
                 List.of(),
                 List.of(),
                 aircraft.lastMatchingTable());
-        if (table == null || table.size() < 2) {
+        if (table == null || table.dataRows().isEmpty()) {
             return null;
         }
-        Map<String, Integer> columns = resolveColumns(table.getFirst(), aircraft.auxiliaryColumns());
+        diagnostics.table("aircraft", table);
+        Map<String, Integer> columns = table.columns();
         LinkedHashSet<String> types = new LinkedHashSet<>();
-        for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
-            String type = value(table.get(rowIndex), columns, aircraft.auxiliaryTypeColumn())
+        for (List<String> row : table.dataRows()) {
+            String type = value(row, columns, aircraft.auxiliaryTypeColumn())
                     .toUpperCase(Locale.ROOT);
             if (!type.isBlank()) {
                 types.add(type);
@@ -510,83 +855,60 @@ public class DocxSchedulePermitParser {
         return (prefix + " " + type).trim();
     }
 
-    private List<List<String>> findTable(List<List<List<String>>> tables,
-                                         List<String> tableContexts,
-                                         Map<String, List<String>> aliases,
-                                         List<String> requiredColumns,
-                                         List<String> excludedColumns,
-                                         List<String> contextPatterns,
-                                         boolean lastMatchingTable) {
-        List<List<List<String>>> matches = findTables(
-                tables, tableContexts, aliases, requiredColumns, excludedColumns, contextPatterns);
-        if (matches.isEmpty()) {
-            return null;
-        }
-        return lastMatchingTable ? matches.getLast() : matches.getFirst();
+    private WordPermitTableMatcher.TableMatch findTable(
+            List<List<List<String>>> tables,
+            List<String> tableContexts,
+            Map<String, List<String>> aliases,
+            Map<String, List<String>> declaredAliases,
+            List<String> requiredColumns,
+            List<String> excludedColumns,
+            List<String> contextPatterns,
+            boolean lastMatchingTable) {
+        return WordPermitTableMatcher.find(
+                tables,
+                tableContexts,
+                aliases,
+                declaredAliases,
+                requiredColumns,
+                excludedColumns,
+                contextPatterns,
+                lastMatchingTable);
     }
 
-    private List<List<List<String>>> findTables(List<List<List<String>>> tables,
-                                                List<String> tableContexts,
-                                                Map<String, List<String>> aliases,
-                                                List<String> requiredColumns,
-                                                List<String> excludedColumns,
-                                                List<String> contextPatterns) {
-        List<List<List<String>>> matches = new ArrayList<>();
-        for (int tableIndex = 0; tableIndex < tables.size(); tableIndex++) {
-            List<List<String>> table = tables.get(tableIndex);
-            if (table.isEmpty()) {
-                continue;
-            }
-            Map<String, Integer> columns = resolveColumns(table.getFirst(), aliases);
-            if (!columns.keySet().containsAll(safeList(requiredColumns))
-                    || safeList(excludedColumns).stream().anyMatch(columns::containsKey)) {
-                continue;
-            }
-            if (!safeList(contextPatterns).isEmpty()) {
-                String context = tableIndex < tableContexts.size() ? tableContexts.get(tableIndex) : "";
-                boolean contextMatches = safeList(contextPatterns).stream()
-                        .allMatch(pattern -> Pattern.compile(pattern).matcher(context).find());
-                if (!contextMatches) {
-                    continue;
-                }
-            }
-            matches.add(table);
-        }
-        return matches;
-    }
-
-    private Map<String, Integer> resolveColumns(List<String> header,
-                                                Map<String, List<String>> aliases) {
-        Map<String, Integer> result = new LinkedHashMap<>();
-        Map<String, List<String>> safeAliases = safeMap(aliases);
-        for (int index = 0; index < header.size(); index++) {
-            String actual = canonicalHeader(header.get(index));
-            for (Map.Entry<String, List<String>> entry : safeAliases.entrySet()) {
-                boolean matches = safeList(entry.getValue()).stream()
-                        .map(this::canonicalHeader)
-                        .anyMatch(actual::equals);
-                if (matches) {
-                    result.putIfAbsent(entry.getKey(), index);
-                }
-            }
-        }
-        return result;
+    private List<WordPermitTableMatcher.TableMatch> findTables(
+            List<List<List<String>>> tables,
+            List<String> tableContexts,
+            Map<String, List<String>> aliases,
+            Map<String, List<String>> declaredAliases,
+            List<String> requiredColumns,
+            List<String> excludedColumns,
+            List<String> contextPatterns) {
+        return WordPermitTableMatcher.findAll(
+                tables,
+                tableContexts,
+                aliases,
+                declaredAliases,
+                requiredColumns,
+                excludedColumns,
+                contextPatterns);
     }
 
     private String joinedColumnValues(List<List<List<String>>> tables,
                                       Map<String, List<String>> aliases,
+                                      Map<String, List<String>> declaredAliases,
                                       String semanticColumn) {
         LinkedHashSet<String> values = new LinkedHashSet<>();
-        for (List<List<String>> table : tables) {
-            if (table.isEmpty()) {
-                continue;
-            }
-            Map<String, Integer> columns = resolveColumns(table.getFirst(), aliases);
-            if (!columns.containsKey(semanticColumn)) {
-                continue;
-            }
-            for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
-                String candidate = value(table.get(rowIndex), columns, semanticColumn);
+        List<WordPermitTableMatcher.TableMatch> matches = findTables(
+                tables,
+                List.of(),
+                aliases,
+                declaredAliases,
+                List.of(semanticColumn),
+                List.of(),
+                List.of());
+        for (WordPermitTableMatcher.TableMatch table : matches) {
+            for (List<String> row : table.dataRows()) {
+                String candidate = value(row, table.columns(), semanticColumn);
                 if (!candidate.isBlank()) {
                     values.add(candidate);
                 }
@@ -619,12 +941,27 @@ public class DocxSchedulePermitParser {
                                WordPermitDocument document,
                                String fileName,
                                String description) {
+        return extractText(field, document, fileName, description, true);
+    }
+
+    private String extractTextIfPresent(DocxPermitFormatProfile.TextField field,
+                                        WordPermitDocument document,
+                                        String fileName,
+                                        String description) {
+        return extractText(field, document, fileName, description, false);
+    }
+
+    private String extractText(DocxPermitFormatProfile.TextField field,
+                               WordPermitDocument document,
+                               String fileName,
+                               String description,
+                               boolean enforceRequired) {
         if (field == null || field.pattern() == null || field.pattern().isBlank()) {
             return null;
         }
         Matcher matcher = Pattern.compile(field.pattern()).matcher(sourceText(field.source(), document));
         if (!matcher.find()) {
-            if (field.required()) {
+            if (enforceRequired && field.required()) {
                 throw invalid(fileName, description + " not found");
             }
             return null;
@@ -787,12 +1124,8 @@ public class DocxSchedulePermitParser {
         return folded.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
     }
 
-    private String canonicalHeader(String value) {
-        return canonical(value).replaceFirst("\\d+$", "");
-    }
-
     private String clean(String value) {
-        return value == null ? "" : value.replace('\u00a0', ' ').replaceAll("\\s+", " ").trim();
+        return PermitTextNormalizer.clean(value);
     }
 
     private <T> List<T> safeList(List<T> values) {
@@ -807,6 +1140,74 @@ public class DocxSchedulePermitParser {
         return new FormatValidationException(fileName, detail);
     }
 
+    private static final class ParseDiagnostics {
+
+        private final List<PermitFieldDiagnostic> fields = new ArrayList<>();
+        private final List<PermitParseWarning> warnings = new ArrayList<>();
+        private final LinkedHashSet<String> warningKeys = new LinkedHashSet<>();
+
+        private ParseDiagnostics(List<PermitParseWarning> initialWarnings) {
+            initialWarnings.forEach(warning ->
+                    warning(warning.code(), warning.message(), warning.reviewRequired()));
+        }
+
+        private void field(String field,
+                           double confidence,
+                           String source,
+                           String method) {
+            fields.add(new PermitFieldDiagnostic(field, confidence, source, method));
+        }
+
+        private void table(String section, WordPermitTableMatcher.TableMatch table) {
+            table.columnMatches().forEach((semantic, match) -> field(
+                    section + "." + semantic,
+                    match.confidence(),
+                    table.source() + ".COLUMN[" + (match.column() + 1) + "]",
+                    match.kind().name()));
+            if (table.headerRows() > 1) {
+                warning(
+                        "MULTI_ROW_HEADER",
+                        "%s table %d used %d header rows".formatted(
+                                section, table.tableIndex() + 1, table.headerRows()),
+                        true);
+            }
+            table.columnMatches().forEach((semantic, match) -> {
+                if (match.kind() == WordPermitTableMatcher.MatchKind.SHARED_ALIAS) {
+                    warning(
+                            "SHARED_ALIAS_USED",
+                            "%s.%s matched shared alias '%s'".formatted(
+                                    section, semantic, match.header()),
+                            true);
+                } else if (match.kind() == WordPermitTableMatcher.MatchKind.FUZZY_ALIAS) {
+                    warning(
+                            "FUZZY_ALIAS_USED",
+                            "%s.%s fuzzily matched header '%s'".formatted(
+                                    section, semantic, match.header()),
+                            true);
+                }
+            });
+        }
+
+        private void warning(String code, String message, boolean reviewRequired) {
+            String key = code + "|" + message;
+            if (warningKeys.add(key)) {
+                warnings.add(new PermitParseWarning(code, message, reviewRequired));
+            }
+        }
+
+        private boolean reviewRequired() {
+            return warnings.stream().anyMatch(PermitParseWarning::reviewRequired);
+        }
+
+        private List<PermitFieldDiagnostic> fields() {
+            return List.copyOf(fields);
+        }
+
+        private List<PermitParseWarning> warnings() {
+            return List.copyOf(warnings);
+        }
+    }
+
     private record RouteRow(String from, String to, String airways) {
         boolean matches(String candidateFrom, String candidateTo) {
             return from.equals(candidateFrom) && to.equals(candidateTo);
@@ -814,5 +1215,30 @@ public class DocxSchedulePermitParser {
     }
 
     private record AircraftSource(String value, boolean defaulted) {
+    }
+
+    private record PermitMatch(
+            Matcher matcher,
+            String sourcePermitNumber,
+            String source,
+            double confidence,
+            boolean semantic
+    ) {
+    }
+
+    private record DateResolution(
+            LocalDate value,
+            String source,
+            double confidence,
+            String method
+    ) {
+    }
+
+    private record TextResolution(
+            String value,
+            String source,
+            double confidence,
+            String method
+    ) {
     }
 }

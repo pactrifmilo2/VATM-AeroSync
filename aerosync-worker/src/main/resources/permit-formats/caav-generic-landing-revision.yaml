@@ -1,4 +1,6 @@
 id: caav-generic-landing-revision
+family: caav-generic
+profileVersion: 1
 priority: -100
 detectionPatterns:
   - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'

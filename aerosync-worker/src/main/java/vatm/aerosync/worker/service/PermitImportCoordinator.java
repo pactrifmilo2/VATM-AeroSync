@@ -30,19 +30,22 @@ public class PermitImportCoordinator {
     private final AtfmScheduleGateway atfmScheduleGateway;
     private final AtfmDatabaseProperties properties;
     private final StringRedisTemplate redisTemplate;
+    private final PermitReviewCaptureService permitReviewCaptureService;
 
     public PermitImportCoordinator(PermitImportRepository permitImportRepository,
                                    SyncJobRepository syncJobRepository,
                                    PermitSemanticHasher semanticHasher,
                                    AtfmScheduleGateway atfmScheduleGateway,
                                    AtfmDatabaseProperties properties,
-                                   StringRedisTemplate redisTemplate) {
+                                   StringRedisTemplate redisTemplate,
+                                   PermitReviewCaptureService permitReviewCaptureService) {
         this.permitImportRepository = permitImportRepository;
         this.syncJobRepository = syncJobRepository;
         this.semanticHasher = semanticHasher;
         this.atfmScheduleGateway = atfmScheduleGateway;
         this.properties = properties;
         this.redisTemplate = redisTemplate;
+        this.permitReviewCaptureService = permitReviewCaptureService;
     }
 
     public PermitImportOutcome importPermit(ProcessingContext context) {
@@ -59,13 +62,34 @@ public class PermitImportCoordinator {
             return outcome(attempt);
         }
         if (permit.reviewOnly()) {
-            markRevision(attempt, "Revision permit requires review before ATFM update");
+            markRevision(attempt, context, "Permit requires operator review before ATFM update");
             throw new BusinessRuleException(
                     "PERMIT-REVISION-REVIEW",
-                    "Permit %s is a revision and was not written automatically"
+                    "Permit %s requires operator review and was not written automatically"
                             .formatted(permit.normalizedPermitId()));
         }
 
+        return importReadyPermit(attempt, permit, syncJobId, context);
+    }
+
+    public PermitImportOutcome publishApproved(PermitImport attempt, SchedulePermit permit) {
+        if (attempt.getStatus() == PermitImportStatus.SAVED
+                || attempt.getStatus() == PermitImportStatus.DUPLICATE) {
+            return outcome(attempt);
+        }
+        Long syncJobId = attempt.getSyncJob().getId();
+        attempt.setNormalizedPermitId(permit.normalizedPermitId());
+        attempt.setSemanticHash(semanticHasher.hash(permit));
+        attempt.setDetailCount(permit.flights().size());
+        permitImportRepository.save(attempt);
+        return importReadyPermit(attempt, permit, syncJobId, null);
+    }
+
+    private PermitImportOutcome importReadyPermit(PermitImport attempt,
+                                                  SchedulePermit permit,
+                                                  Long syncJobId,
+                                                  ProcessingContext reviewContext) {
+        String semanticHash = semanticHasher.hash(permit);
         String lockKey = LOCK_PREFIX + permit.normalizedPermitId();
         Boolean acquired = redisTemplate.opsForValue().setIfAbsent(
                 lockKey, Long.toString(syncJobId), Duration.ofSeconds(properties.getPermitLockSeconds()));
@@ -84,7 +108,7 @@ public class PermitImportCoordinator {
                     markDuplicate(attempt, original.getTargetMasterId(), original.getTargetPermId(), permit.flights().size());
                     return outcome(attempt);
                 }
-                markRevision(attempt, "Permit already exists with different schedule data");
+                markRevision(attempt, reviewContext, "Permit already exists with different schedule data");
                 throw revisionException(permit);
             }
 
@@ -105,7 +129,7 @@ public class PermitImportCoordinator {
                     markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
                     return outcome(attempt);
                 }
-                markRevision(attempt, "Target ATFM permit exists with different schedule data");
+                markRevision(attempt, reviewContext, "Target ATFM permit exists with different schedule data");
                 throw revisionException(permit);
             }
 
@@ -152,10 +176,15 @@ public class PermitImportCoordinator {
         permitImportRepository.save(attempt);
     }
 
-    private void markRevision(PermitImport attempt, String message) {
+    private void markRevision(PermitImport attempt,
+                              ProcessingContext context,
+                              String message) {
         attempt.setStatus(PermitImportStatus.REVISION_REVIEW);
         attempt.setErrorMessage(message);
         permitImportRepository.save(attempt);
+        if (context != null) {
+            permitReviewCaptureService.capture(attempt, context, message);
+        }
     }
 
     private BusinessRuleException revisionException(SchedulePermit permit) {

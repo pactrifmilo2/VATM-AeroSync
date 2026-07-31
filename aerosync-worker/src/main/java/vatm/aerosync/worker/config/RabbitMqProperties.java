@@ -16,6 +16,9 @@ public class RabbitMqProperties {
     private double retryMultiplier = 2.0;
     private long retryMaxIntervalMs = 30000;
     private String syncResultExchange = "sync.result";
+    private String permitReviewPublishExchange = "permit.review.publish";
+    private String permitReviewPublishRoutingKey = "permit.review.publish";
+    private String permitReviewPublishQueue = "permit.review.publish.queue";
 
     public String getFileIngestedExchange() {
         return fileIngestedExchange;
@@ -103,5 +106,29 @@ public class RabbitMqProperties {
 
     public void setSyncResultExchange(String syncResultExchange) {
         this.syncResultExchange = syncResultExchange;
+    }
+
+    public String getPermitReviewPublishExchange() {
+        return permitReviewPublishExchange;
+    }
+
+    public void setPermitReviewPublishExchange(String permitReviewPublishExchange) {
+        this.permitReviewPublishExchange = permitReviewPublishExchange;
+    }
+
+    public String getPermitReviewPublishRoutingKey() {
+        return permitReviewPublishRoutingKey;
+    }
+
+    public void setPermitReviewPublishRoutingKey(String permitReviewPublishRoutingKey) {
+        this.permitReviewPublishRoutingKey = permitReviewPublishRoutingKey;
+    }
+
+    public String getPermitReviewPublishQueue() {
+        return permitReviewPublishQueue;
+    }
+
+    public void setPermitReviewPublishQueue(String permitReviewPublishQueue) {
+        this.permitReviewPublishQueue = permitReviewPublishQueue;
     }
 }

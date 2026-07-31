@@ -1,4 +1,6 @@
 id: spa017-vietnamese-seasonal-landing-revision
+family: spa-vietnamese
+profileVersion: 1
 detectionPatterns:
   - '(?iu)PHÉP\s+BAY\s+SỬA\s+ĐỔI'
   - '(?iu)THAM\s+CHIẾU\s+PHÉP\s+BAY\s+SỐ'

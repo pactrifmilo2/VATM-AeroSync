@@ -256,6 +256,17 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Track semantic duplicates, revisions, dry-runs, target IDs, and failures
 - [x] Expose permit import state in job detail API responses
 
+### Adaptive permit review
+
+- [x] Extract shared permit identity, date, operator, address, and schedule-role evidence before profile policy
+- [x] Use profiles as normalization/validation overlays while routing adaptive evidence to operator review
+- [x] Persist adaptive parse snapshots, profile candidates, field diagnostics, and warnings
+- [x] Expose paginated operator review, correction, approval, and rejection APIs
+- [x] Keep approval separate from admin-only ATFM publication
+- [x] Load `OPERATOR` and `ADMIN` authorization roles from the AeroSync database
+- [x] Queue approved publication commands from the API to the worker
+- [x] Revalidate corrected permits in the worker before target publication
+
 ---
 
 # Module 4: `aerosync-api`

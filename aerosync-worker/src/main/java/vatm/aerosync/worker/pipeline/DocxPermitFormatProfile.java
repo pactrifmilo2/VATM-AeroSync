@@ -5,6 +5,8 @@ import java.util.Map;
 
 record DocxPermitFormatProfile(
         String id,
+        String family,
+        int profileVersion,
         int priority,
         List<String> detectionPatterns,
         PermitIdentity permit,

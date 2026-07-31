@@ -9,6 +9,7 @@ import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
+import vatm.aerosync.worker.model.WordPermitParseResult;
 
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -29,7 +30,9 @@ class DocxSchedulePermitParserTest {
     void parse_mapsScheduledOverflightPermit() throws Exception {
         Path file = createPermitDocument();
 
-        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+        WordPermitParseResult parseResult =
+                parser.parseWithDiagnostics(file, file.getFileName().toString());
+        SchedulePermit permit = parseResult.permit();
 
         assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05199/S/CHK/2026");
         assertThat(permit.permitNumber()).isEqualTo("5199");
@@ -56,11 +59,15 @@ class DocxSchedulePermitParserTest {
     void parse_mapsGenericLandingPermitAndReconcilesSingleDayWeekday() throws Exception {
         Path file = createGenericLandingPermitDocument();
 
-        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+        WordPermitParseResult genericParseResult =
+                parser.parseWithDiagnostics(file, file.getFileName().toString());
+        SchedulePermit permit = genericParseResult.permit();
 
         assertThat(permit.normalizedPermitId()).isEqualTo("LD 02483/S/CHK/2026");
         assertThat(permit.operatorId()).isEqualTo("VNB");
-        assertThat(permit.reviewOnly()).isFalse();
+        assertThat(permit.reviewOnly())
+                .as(genericParseResult.warnings().toString())
+                .isFalse();
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("VNB593");
             assertThat(flight.purposeId()).isEqualTo("FER");
@@ -94,6 +101,49 @@ class DocxSchedulePermitParserTest {
                     assertThat(flight.craftId()).isZero();
                     assertThat(flight.mtow()).isNull();
                 });
+    }
+
+    @Test
+    void parse_sharedSemanticsHandleVietnameseVariantWithoutNewProfile() throws Exception {
+        Path file = createVietnameseSemanticVariantDocument();
+
+        WordPermitParseResult parseResult =
+                parser.parseWithDiagnostics(file, file.getFileName().toString());
+        SchedulePermit permit = parseResult.permit();
+
+        assertThat(parseResult.profileId())
+                .isEqualTo("spa066-vietnamese-landing-revision");
+        assertThat(permit.sourcePermitNumber()).isEqualTo("LD- 11112/7/2026VN");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD-11112/07/2026");
+        assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 3));
+        assertThat(permit.operatorId()).isEqualTo("HVN");
+        assertThat(permit.billingAddress()).isEqualTo("200 Nguyen Son, Ha Noi");
+        assertThat(permit.flights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("VN1466", "VN7180");
+        assertThat(permit.flights())
+                .extracting(flight -> flight.etd())
+                .containsExactly("0905", "1715");
+        assertThat(permit.reviewOnly()).isTrue();
+        assertThat(parseResult.fields())
+                .anySatisfy(field -> {
+                    assertThat(field.field()).isEqualTo("permitNumber");
+                    assertThat(field.method()).isEqualTo("SEMANTIC_HEADER");
+                })
+                .anySatisfy(field -> {
+                    assertThat(field.field()).isEqualTo("permitDate");
+                    assertThat(field.method()).isEqualTo("DATE_NEAR_LABEL");
+                })
+                .anySatisfy(field -> {
+                    assertThat(field.field()).isEqualTo("schedule.tableRole");
+                    assertThat(field.method()).isEqualTo("SEMANTIC_REPLACEMENT");
+                })
+                .anySatisfy(field -> {
+                    assertThat(field.field()).isEqualTo("schedule.tableRole");
+                    assertThat(field.method()).isEqualTo("SEMANTIC_SUPPLEMENTAL");
+                });
+        assertThat(parseResult.warnings())
+                .anyMatch(warning -> warning.code().equals("SEMANTIC_TABLE_ROLE"));
     }
 
     @Test
@@ -137,6 +187,32 @@ class DocxSchedulePermitParserTest {
         assertThat(context.getSchedulePermit().flights())
                 .extracting(flight -> flight.flightNumber())
                 .containsExactly("HVN1822", "HVN7158", "HVN7056", "HVN7058", "HVN7060");
+    }
+
+    @Test
+    void parse_mapsConfiguredSemanticVariantDocument() {
+        String samplePath = System.getProperty("permit.semantic.sample.path");
+        Assumptions.assumeTrue(samplePath != null && !samplePath.isBlank(),
+                "Set -Dpermit.semantic.sample.path to validate a shared-semantic permit");
+        Path file = Path.of(samplePath);
+        Assumptions.assumeTrue(Files.isRegularFile(file),
+                "Configured shared-semantic permit document does not exist");
+
+        WordPermitParseResult parseResult =
+                parser.parseWithDiagnostics(file, file.getFileName().toString());
+        SchedulePermit permit = parseResult.permit();
+
+        assertThat(parseResult.profileId())
+                .isEqualTo("spa066-vietnamese-landing-revision");
+        assertThat(permit.sourcePermitNumber()).isEqualTo("LD- 11112/7/2026VN");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD-11112/07/2026");
+        assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 3));
+        assertThat(permit.operatorId()).isEqualTo("HVN");
+        assertThat(permit.billingAddress()).contains("200");
+        assertThat(permit.flights()).hasSize(17);
+        assertThat(permit.flights())
+                .extracting(flight -> flight.flightNumber())
+                .allSatisfy(flightNumber -> assertThat(flightNumber).startsWith("VN"));
     }
 
     private Path createPermitDocument() throws Exception {
@@ -252,6 +328,51 @@ class DocxSchedulePermitParserTest {
             scheduleTable(document, new String[][] {
                     {"VN300", "04JUL26", "04JUL26", "6", "HAN", "1300",
                             "DAD", "1425", "321/320"}
+            });
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private Path createVietnameseSemanticVariantDocument() throws Exception {
+        Path file = tempDir.resolve("LD-semantic-variant.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun()
+                    .setText("H\u00c0 N\u1ed8I, NG\u00c0Y 03/7/2026");
+            document.createParagraph().createRun().setText("LD- 11112/7/2026VN");
+
+            XWPFTable operator = document.createTable(2, 2);
+            operator.getRow(0).getCell(0).setText("Name: VIETNAM AIRLINES");
+            operator.getRow(0).getCell(1)
+                    .setText("M\u00e3 IATA (n\u1ebfu c\u00f3): VN");
+            operator.getRow(1).getCell(0)
+                    .setText("\u0110\u1ecba ch\u1ec9 b\u01b0u \u0111i\u1ec7n: "
+                            + "200 Nguyen Son, Ha Noi");
+            operator.getRow(1).getCell(1)
+                    .setText("M\u00e3 ICAO (n\u1ebfu c\u00f3): HVN");
+
+            document.createParagraph().createRun()
+                    .setText("2.1. L\u1ecaCH BAY G\u1ed0C");
+            scheduleTable(document, new String[][] {
+                    {"VN100", "04JUL26", "04JUL26", "6", "SGN", "1000",
+                            "VCL", "1125", "321/320"}
+            });
+
+            document.createParagraph().createRun()
+                    .setText("2.2. L\u1ecaCH BAY M\u1edaI");
+            scheduleTable(document, new String[][] {
+                    {"VN1466", "04JUL26", "04JUL26", "6", "SGN", "0905",
+                            "VCL", "1030", "321/320"}
+            });
+
+            document.createParagraph().createRun()
+                    .setText("2.5. CHUY\u1ebeN B\u1ed4 SUNG");
+            scheduleTable(document, new String[][] {
+                    {"VN7180", "04JUL26", "04JUL26", "6", "HAN", "1715",
+                            "DAD", "1840", "321/320"}
             });
 
             try (OutputStream output = Files.newOutputStream(file)) {

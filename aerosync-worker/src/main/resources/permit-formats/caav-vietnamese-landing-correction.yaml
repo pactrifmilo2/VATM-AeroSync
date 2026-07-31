@@ -1,4 +1,6 @@
 id: caav-vietnamese-landing-correction
+family: caav-vietnamese
+profileVersion: 1
 detectionPatterns:
   - '(?iu)CỤC\s+HKVN\s+CẤP\s+PHÉP\s+BAY\s+LD-'
   - '(?iu)CAAV\s+XÁC\s+NHẬN\s+SỬA\s+ĐỔI\s+NHƯ\s+SAU'

@@ -16,6 +16,7 @@ public class ProcessingContext {
     private String sender;
     private FileType fileType;
     private SchedulePermit schedulePermit;
+    private WordPermitParseResult wordPermitParseResult;
     private final List<FlightRow> rows = new ArrayList<>();
     private final List<RowValidationError> rowValidationErrors = new ArrayList<>();
     private long startedAtMillis = System.currentTimeMillis();
@@ -63,6 +64,14 @@ public class ProcessingContext {
 
     public void setSchedulePermit(SchedulePermit schedulePermit) {
         this.schedulePermit = schedulePermit;
+    }
+
+    public WordPermitParseResult getWordPermitParseResult() {
+        return wordPermitParseResult;
+    }
+
+    public void setWordPermitParseResult(WordPermitParseResult wordPermitParseResult) {
+        this.wordPermitParseResult = wordPermitParseResult;
     }
 
     public List<FlightRow> getRows() {

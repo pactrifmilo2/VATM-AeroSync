@@ -9,6 +9,8 @@ public class RabbitMqProperties {
     private String dashboardAlertsQueue = "dashboard.alerts.queue";
     private String fileIngestedExchange = "file.ingested";
     private String fileProcessingRoutingKey = "file.processing";
+    private String permitReviewPublishExchange = "permit.review.publish";
+    private String permitReviewPublishRoutingKey = "permit.review.publish";
 
     public String getSyncResultExchange() {
         return syncResultExchange;
@@ -40,5 +42,21 @@ public class RabbitMqProperties {
 
     public void setFileProcessingRoutingKey(String fileProcessingRoutingKey) {
         this.fileProcessingRoutingKey = fileProcessingRoutingKey;
+    }
+
+    public String getPermitReviewPublishExchange() {
+        return permitReviewPublishExchange;
+    }
+
+    public void setPermitReviewPublishExchange(String permitReviewPublishExchange) {
+        this.permitReviewPublishExchange = permitReviewPublishExchange;
+    }
+
+    public String getPermitReviewPublishRoutingKey() {
+        return permitReviewPublishRoutingKey;
+    }
+
+    public void setPermitReviewPublishRoutingKey(String permitReviewPublishRoutingKey) {
+        this.permitReviewPublishRoutingKey = permitReviewPublishRoutingKey;
     }
 }

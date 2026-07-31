@@ -2,6 +2,7 @@ package vatm.aerosync.worker.pipeline;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Component;
@@ -10,8 +11,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -22,13 +25,34 @@ class DocxPermitProfileCatalog {
     private static final String PROFILE_PATTERN = "classpath*:permit-formats/*.yaml";
 
     private final List<DocxPermitFormatProfile> profiles;
+    private final Map<String, DocxPermitFormatProfile> declaredProfiles;
 
     DocxPermitProfileCatalog() {
-        this.profiles = List.copyOf(loadProfiles());
+        this(new PermitSemanticAliasCatalog());
+    }
+
+    @Autowired
+    DocxPermitProfileCatalog(PermitSemanticAliasCatalog semanticAliasCatalog) {
+        List<DocxPermitFormatProfile> declared = loadProfiles();
+        this.declaredProfiles = declared.stream()
+                .collect(java.util.stream.Collectors.toUnmodifiableMap(
+                        DocxPermitFormatProfile::id, profile -> profile));
+        this.profiles = declared.stream()
+                .map(profile -> resolve(profile, semanticAliasCatalog))
+                .peek(this::validateResolvedAliases)
+                .toList();
     }
 
     List<DocxPermitFormatProfile> profiles() {
         return profiles;
+    }
+
+    DocxPermitFormatProfile declaredProfile(String id) {
+        DocxPermitFormatProfile profile = declaredProfiles.get(id);
+        if (profile == null) {
+            throw new IllegalArgumentException("Unknown Word permit profile: " + id);
+        }
+        return profile;
     }
 
     private List<DocxPermitFormatProfile> loadProfiles() {
@@ -66,6 +90,12 @@ class DocxPermitProfileCatalog {
     private void validate(DocxPermitFormatProfile profile) {
         if (profile.id() == null || profile.id().isBlank()) {
             throw new IllegalStateException("Word permit profile id is required");
+        }
+        if (profile.family() == null || profile.family().isBlank()) {
+            throw invalid(profile, "family is required");
+        }
+        if (profile.profileVersion() < 1) {
+            throw invalid(profile, "profileVersion must be at least 1");
         }
         if (profile.detectionPatterns() == null || profile.detectionPatterns().isEmpty()) {
             throw invalid(profile, "at least one detection pattern is required");
@@ -109,6 +139,9 @@ class DocxPermitProfileCatalog {
                 || blank(profile.schedule().purposeId())) {
             throw invalid(profile, "schedule aliases, selection, date/time formats and purpose are required");
         }
+        if (!profile.schedule().columns().keySet().containsAll(profile.schedule().requiredColumns())) {
+            throw invalid(profile, "every required schedule column must define aliases");
+        }
         if (profile.schedule().tableContextPatterns() != null) {
             profile.schedule().tableContextPatterns().forEach(
                     pattern -> validatePattern(profile, pattern, "schedule table context"));
@@ -140,6 +173,97 @@ class DocxPermitProfileCatalog {
         if (!hasDefaultType && !hasScheduleType && !hasAuxiliaryType) {
             throw invalid(profile, "aircraft must define a source column or default type");
         }
+    }
+
+    private DocxPermitFormatProfile resolve(DocxPermitFormatProfile profile,
+                                            PermitSemanticAliasCatalog semanticAliasCatalog) {
+        DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
+        DocxPermitFormatProfile.ScheduleDefinition resolvedSchedule =
+                new DocxPermitFormatProfile.ScheduleDefinition(
+                        semanticAliasCatalog.resolve(profile.family(), schedule.columns()),
+                        schedule.requiredColumns(),
+                        schedule.excludeColumns(),
+                        schedule.tableContextPatterns(),
+                        schedule.preferredTableContextPatterns(),
+                        schedule.supplementalTableContextPatterns(),
+                        schedule.dateFormats(),
+                        schedule.timeFormats(),
+                        schedule.locale(),
+                        schedule.purposeId(),
+                        schedule.includeEta(),
+                        schedule.lastMatchingTable(),
+                        schedule.inferIataPrefix());
+
+        DocxPermitFormatProfile.RouteDefinition route = profile.route();
+        DocxPermitFormatProfile.RouteDefinition resolvedRoute = route == null
+                ? null
+                : new DocxPermitFormatProfile.RouteDefinition(
+                        semanticAliasCatalog.resolve(
+                                profile.family(), safeMap(route.columns())),
+                        route.requiredColumns(),
+                        route.staticAirways(),
+                        route.tableRequired(),
+                        route.allowEmpty(),
+                        route.fallbackToFirst(),
+                        route.lastMatchingTable(),
+                        route.filterSchedule());
+
+        DocxPermitFormatProfile.AircraftDefinition aircraft = profile.aircraft();
+        DocxPermitFormatProfile.AircraftDefinition resolvedAircraft =
+                new DocxPermitFormatProfile.AircraftDefinition(
+                        aircraft.scheduleColumn(),
+                        semanticAliasCatalog.resolve(
+                                profile.family(), safeMap(aircraft.auxiliaryColumns())),
+                        aircraft.auxiliaryRequiredColumns(),
+                        aircraft.auxiliaryTypeColumn(),
+                        aircraft.remarkPrefix(),
+                        aircraft.defaultType(),
+                        aircraft.lastMatchingTable());
+
+        return new DocxPermitFormatProfile(
+                profile.id(),
+                profile.family(),
+                profile.profileVersion(),
+                profile.priority(),
+                profile.detectionPatterns(),
+                profile.permit(),
+                profile.permitDate(),
+                profile.operator(),
+                profile.billingAddress(),
+                profile.reference(),
+                profile.referenceColumn(),
+                profile.purpose(),
+                profile.master(),
+                resolvedSchedule,
+                resolvedRoute,
+                resolvedAircraft,
+                profile.validation());
+    }
+
+    private void validateResolvedAliases(DocxPermitFormatProfile profile) {
+        validateAliasConflicts(profile, "schedule", profile.schedule().columns());
+        if (profile.route() != null) {
+            validateAliasConflicts(profile, "route", profile.route().columns());
+        }
+        validateAliasConflicts(profile, "aircraft", profile.aircraft().auxiliaryColumns());
+    }
+
+    private void validateAliasConflicts(DocxPermitFormatProfile profile,
+                                        String section,
+                                        Map<String, List<String>> aliases) {
+        Map<String, String> owners = new LinkedHashMap<>();
+        safeMap(aliases).forEach((semantic, values) -> safeList(values).forEach(alias -> {
+            String canonical = PermitTextNormalizer.canonicalHeader(alias);
+            if (canonical.isBlank()) {
+                throw invalid(profile, section + " alias cannot be blank");
+            }
+            String previous = owners.putIfAbsent(canonical, semantic);
+            if (previous != null && !previous.equals(semantic)) {
+                throw invalid(profile,
+                        section + " alias '" + alias + "' conflicts between "
+                                + previous + " and " + semantic);
+            }
+        }));
     }
 
     private void validateDateField(DocxPermitFormatProfile profile,
@@ -177,6 +301,14 @@ class DocxPermitProfileCatalog {
 
     private boolean blank(String value) {
         return value == null || value.isBlank();
+    }
+
+    private <T> List<T> safeList(List<T> values) {
+        return values == null ? List.of() : values;
+    }
+
+    private <K, V> Map<K, V> safeMap(Map<K, V> values) {
+        return values == null ? Map.of() : values;
     }
 
     private IllegalStateException invalid(DocxPermitFormatProfile profile, String detail) {

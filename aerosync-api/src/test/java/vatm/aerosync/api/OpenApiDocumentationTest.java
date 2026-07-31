@@ -29,9 +29,14 @@ class OpenApiDocumentationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.info.title").value("VATM AeroSync API"))
                 .andExpect(jsonPath("$.info.version").value("1.0.0"))
+                .andExpect(jsonPath("$.components.securitySchemes.basicAuth.scheme").value("basic"))
                 .andExpect(jsonPath("$.paths['/api/reports/emails'].get").exists())
                 .andExpect(jsonPath("$.paths['/api/reports/emails/{id}'].get").exists())
-                .andExpect(jsonPath("$.paths['/api/reports/emails/summary'].get").exists());
+                .andExpect(jsonPath("$.paths['/api/reports/emails/summary'].get").exists())
+                .andExpect(jsonPath("$.paths['/api/permit-reviews'].get").exists())
+                .andExpect(jsonPath("$.paths['/api/permit-reviews/{id}/correction'].put").exists())
+                .andExpect(jsonPath("$.paths['/api/permit-reviews/{id}/approve'].post").exists())
+                .andExpect(jsonPath("$.paths['/api/permit-reviews/{id}/publish'].post").exists());
     }
 
     @Test

@@ -47,8 +47,14 @@ app:
       max-files-per-cycle: 100
       blacklist-senders:
         - ops@vatm.local
+  security:
+    bootstrap-admin:
+      username: ${APP_BOOTSTRAP_ADMIN_USERNAME:}
+      password: ${APP_BOOTSTRAP_ADMIN_PASSWORD:}
   rabbit:
     sync-result-exchange: sync.result
     dashboard-alerts-queue: dashboard.alerts.queue
     file-ingested-exchange: file.ingested
     file-processing-routing-key: file.processing
+    permit-review-publish-exchange: permit.review.publish
+    permit-review-publish-routing-key: permit.review.publish
