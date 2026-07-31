@@ -125,7 +125,7 @@ public class DocxSchedulePermitParser {
                     schedule.lastMatchingTable());
         }
         if (scheduleTable == null || scheduleTable.size() < 2) {
-            throw invalid(fileName, "Schedule table not found for profile " + profile.id());
+            throw invalid(fileName, missingScheduleFields(profile, document));
         }
         List<List<String>> primaryScheduleTable = scheduleTable;
         List<List<List<String>>> scheduleTables = new ArrayList<>();
@@ -573,6 +573,38 @@ public class DocxSchedulePermitParser {
         return result;
     }
 
+    private String missingScheduleFields(DocxPermitFormatProfile profile,
+                                         WordPermitDocument document) {
+        DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
+        List<String> closestMissing = null;
+        for (List<List<String>> table : document.tables()) {
+            if (table.isEmpty()) {
+                continue;
+            }
+            Map<String, Integer> columns = resolveColumns(table.getFirst(), schedule.columns());
+            List<String> missing = safeList(schedule.requiredColumns()).stream()
+                    .filter(required -> !columns.containsKey(required))
+                    .toList();
+            if (closestMissing == null || missing.size() < closestMissing.size()) {
+                closestMissing = missing;
+            }
+        }
+        if (closestMissing == null) {
+            return "Schedule table not found for profile " + profile.id()
+                    + "; missing required fields: " + String.join(", ", schedule.requiredColumns());
+        }
+        if (closestMissing.isEmpty()) {
+            return "Schedule table columns matched profile " + profile.id()
+                    + ", but the required table section/context was not found";
+        }
+        String details = closestMissing.stream()
+                .map(field -> field + " (accepted headers: "
+                        + String.join(" | ", safeList(schedule.columns().get(field))) + ")")
+                .collect(java.util.stream.Collectors.joining("; "));
+        return "Schedule table not found for profile " + profile.id()
+                + "; missing required fields: " + details;
+    }
+
     private String joinedColumnValues(List<List<List<String>>> tables,
                                       Map<String, List<String>> aliases,
                                       String semanticColumn) {
@@ -619,6 +651,9 @@ public class DocxSchedulePermitParser {
                                WordPermitDocument document,
                                String fileName,
                                String description) {
+        if (field != null && field.fixedValue() != null && !field.fixedValue().isBlank()) {
+            return clean(field.fixedValue());
+        }
         if (field == null || field.pattern() == null || field.pattern().isBlank()) {
             return null;
         }

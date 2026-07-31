@@ -45,7 +45,8 @@ record DocxPermitFormatProfile(
             String pattern,
             String group,
             boolean required,
-            Map<String, String> valueMappings
+            Map<String, String> valueMappings,
+            String fixedValue
     ) {
     }
 

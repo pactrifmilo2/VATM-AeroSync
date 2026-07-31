@@ -1,0 +1,83 @@
+id: vjc-vietnamese-landing-issued
+priority: 300
+detectionPatterns:
+  - '(?iu)MÃ\s*IATA\s*:\s*VJ\b'
+  - '(?iu)MÃ\s*ICAO\s*:\s*VJC\b'
+  - '(?iu)\bLD-\d{1,5}/\d{1,2}/20\d{2}VN\b'
+  - '(?iu)SỐ\s+HIỆU\s+CHUYẾN\s+BAY'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b|SỬA\s+ĐỔI|LỊCH\s+BAY\s+THAY\s+ĐỔI).*$'
+permit:
+  pattern: '(?iu)\bLD-(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{month}/{year}VN'
+  normalizedTemplate: 'LD {number}/S/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: vi
+operator:
+  source: TABLE
+  pattern: '(?iu)MÃ\s*ICAO\s*:\s*(?<value>VJC)\b'
+  group: value
+  required: true
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)ĐỊA\s+CHỈ\s+BƯU\s+ĐIỆN[ \t]*:[ \t]*(?<value>[^\n]+)'
+  group: value
+  required: true
+purpose:
+  defaultId: PAX
+  mappings:
+    - pattern: '(?iu)HÀNG\s+H[ÓOÒ]A'
+      value: CAR
+    - pattern: '(?iu)CHỞ\s+KHÁCH'
+      value: PAX
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: S
+  validHours: 24
+  flightType: NO
+schedule:
+  columns:
+    flightNumber: [Số hiệu chuyến bay]
+    effectiveFrom: [Hiệu lực từ]
+    effectiveTo: [Hiệu lực đến]
+    serviceDays: [Ngày trong tuần]
+    fromAirport: [Sân bay cất cánh]
+    etd: [Giờ khởi hành dự kiến]
+    toAirport: [Sân bay hạ cánh]
+    eta: [Giờ hạ cánh dự kiến, Giờ dự kiến hạ cánh]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta]
+  excludeColumns: []
+  tableContextPatterns: []
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Chặng bay]
+    airways: [Đường hàng không]
+  requiredColumns: [sector, airways]
+  tableRequired: true
+  allowEmpty: false
+  fallbackToFirst: false
+  filterSchedule: true
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Loại tàu bay]
+    registrationMarks: [Số đăng ký]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
+  remarkPrefix: ''
+validation:
+  allowIataAirports: false
+  reviewOnly: false

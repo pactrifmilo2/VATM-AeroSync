@@ -1,6 +1,8 @@
 package vatm.aerosync.worker.pipeline;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -10,8 +12,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -38,9 +43,22 @@ class DocxPermitProfileCatalog {
                 throw new IllegalStateException("No DOCX permit format profiles found at " + PROFILE_PATTERN);
             }
             ObjectMapper mapper = new ObjectMapper(new YAMLFactory()).findAndRegisterModules();
-            List<DocxPermitFormatProfile> loaded = Arrays.stream(resources)
+            List<ProfileSource> sources = Arrays.stream(resources)
                     .sorted(Comparator.comparing(resource -> String.valueOf(resource.getFilename())))
-                    .map(resource -> readProfile(mapper, resource))
+                    .map(resource -> readSource(mapper, resource))
+                    .toList();
+            Map<String, ProfileSource> sourcesById = new LinkedHashMap<>();
+            for (ProfileSource source : sources) {
+                ProfileSource previous = sourcesById.putIfAbsent(source.id(), source);
+                if (previous != null) {
+                    throw new IllegalStateException("Duplicate Word permit profile id: " + source.id());
+                }
+            }
+            Map<String, JsonNode> resolved = new HashMap<>();
+            List<DocxPermitFormatProfile> loaded = sources.stream()
+                    .map(source -> mapper.convertValue(
+                            resolveProfile(source.id(), sourcesById, resolved, new HashSet<>()),
+                            DocxPermitFormatProfile.class))
                     .toList();
             Set<String> ids = new HashSet<>();
             for (DocxPermitFormatProfile profile : loaded) {
@@ -55,12 +73,64 @@ class DocxPermitProfileCatalog {
         }
     }
 
-    private DocxPermitFormatProfile readProfile(ObjectMapper mapper, Resource resource) {
+    private ProfileSource readSource(ObjectMapper mapper, Resource resource) {
         try (InputStream input = resource.getInputStream()) {
-            return mapper.readValue(input, DocxPermitFormatProfile.class);
+            JsonNode node = mapper.readTree(input);
+            if (node == null || !node.isObject()) {
+                throw new IllegalStateException(
+                        "Word permit profile must be a YAML object: " + resource.getFilename());
+            }
+            String id = node.path("id").asText("");
+            if (id.isBlank()) {
+                throw new IllegalStateException(
+                        "Word permit profile id is required in " + resource.getFilename());
+            }
+            return new ProfileSource(id, node);
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to load Word permit profile " + resource.getFilename(), exception);
         }
+    }
+
+    private JsonNode resolveProfile(String id,
+                                    Map<String, ProfileSource> sources,
+                                    Map<String, JsonNode> resolved,
+                                    Set<String> resolving) {
+        JsonNode cached = resolved.get(id);
+        if (cached != null) {
+            return cached;
+        }
+        ProfileSource source = sources.get(id);
+        if (source == null) {
+            throw new IllegalStateException("Unknown parent Word permit profile: " + id);
+        }
+        if (!resolving.add(id)) {
+            throw new IllegalStateException("Cyclic Word permit profile inheritance involving " + id);
+        }
+
+        String parentId = source.node().path("extends").asText("");
+        ObjectNode merged;
+        if (parentId.isBlank()) {
+            merged = source.node().deepCopy();
+        } else {
+            merged = resolveProfile(parentId, sources, resolved, resolving).deepCopy();
+            deepMerge(merged, source.node());
+        }
+        merged.remove("extends");
+        resolving.remove(id);
+        resolved.put(id, merged);
+        return merged;
+    }
+
+    private void deepMerge(ObjectNode target, JsonNode override) {
+        override.properties().forEach(entry -> {
+            JsonNode existing = target.get(entry.getKey());
+            JsonNode value = entry.getValue();
+            if (existing != null && existing.isObject() && value.isObject()) {
+                deepMerge((ObjectNode) existing, value);
+            } else {
+                target.set(entry.getKey(), value.deepCopy());
+            }
+        });
     }
 
     private void validate(DocxPermitFormatProfile profile) {
@@ -182,5 +252,8 @@ class DocxPermitProfileCatalog {
     private IllegalStateException invalid(DocxPermitFormatProfile profile, String detail) {
         String id = profile.id() == null ? "<unknown>" : profile.id();
         return new IllegalStateException("Invalid Word permit profile " + id + ": " + detail);
+    }
+
+    private record ProfileSource(String id, JsonNode node) {
     }
 }
