@@ -1,0 +1,10 @@
+id: azg-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)IATA\s*(?:CODE)?\s*:[ \t]*7L\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*AZG\b'
+  - '(?iu)\bREV(?:ISION)?\s*1\b|/REV1\b'
+operator:
+  fixedValue: AZG

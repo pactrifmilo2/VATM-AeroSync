@@ -1,0 +1,9 @@
+id: kye-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*KYE\b'
+  - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b)).*$'
+operator:
+  fixedValue: KYE

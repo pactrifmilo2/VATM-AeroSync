@@ -1,0 +1,9 @@
+id: hkc-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)IATA\s*(?:CODE)?\s*:[ \t]*RH\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*HKC\b'
+operator:
+  fixedValue: HKC

@@ -1,0 +1,9 @@
+id: sin-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)IATA\s*(?:CODE)?\s*:[ \t]*9A\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*SIN\b'
+operator:
+  fixedValue: SIN

@@ -1,0 +1,9 @@
+id: kye-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*KYE\b'
+  - '(?iu)\bREV(?:ISION)?\s*1\b|/REV1\b'
+operator:
+  fixedValue: KYE

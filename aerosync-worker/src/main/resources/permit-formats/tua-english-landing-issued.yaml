@@ -1,0 +1,12 @@
+id: tua-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)IATA\s*(?:CODE)?\s*:[ \t]*T5\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*TUA\b'
+operator:
+  fixedValue: TUA
+schedule:
+  columns:
+    serviceDays: [Days of services, Day(s) of services, Day(s) of service]

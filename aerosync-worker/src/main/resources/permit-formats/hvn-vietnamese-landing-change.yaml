@@ -1,0 +1,14 @@
+id: hvn-vietnamese-landing-change
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)(?:IATA\s*(?:CODE)?|MÃ\s*IATA)(?:\s*\([^)]*\))?\s*:[ \t]*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|MÃ\s*ICAO)(?:\s*\([^)]*\))?\s*:[ \t]*HVN\b'
+operator:
+  fixedValue: HVN
+schedule:
+  tableContextPatterns: []
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\.\s*LỊCH\s+BAY\s+MỚI'
+  supplementalTableContextPatterns: []

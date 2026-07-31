@@ -1,0 +1,28 @@
+id: mas-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)IATA\s*(?:CODE)?\s*:[ \t]*MH\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*MAS\b'
+operator:
+  fixedValue: MAS
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight number(1)]
+    effectiveFrom: [Effective from, Effective from(2)]
+    effectiveTo: [Effective to, Effective to(3)]
+    serviceDays: [Days of services, Days of services(4)]
+    fromAirport: [Departure Airport, Departure Airport(5)]
+    etd: [ETD, ETD(6)]
+    toAirport: [Arrival Airport, Arrival Airport(7)]
+    eta: [ETA, ETA(8)]
+  dateFormats: [dMMMyy, dMMMMyy, d-MMM-yy, d/M/uuuu]
+route:
+  columns:
+    sector: [Sector, Sector(14)]
+    airways: [Airways, Airways(15)]
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (9)]
+    registrationMarks: [Registration Mark, Registration Mark (10)]

@@ -1,0 +1,8 @@
+id: fdx-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*FDX\b'
+operator:
+  fixedValue: FDX

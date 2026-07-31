@@ -1,0 +1,9 @@
+id: hai-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)\bREV(?:ISION)?\s*2\b|/REV2\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:[ \t]*HAI\b'
+operator:
+  fixedValue: HAI

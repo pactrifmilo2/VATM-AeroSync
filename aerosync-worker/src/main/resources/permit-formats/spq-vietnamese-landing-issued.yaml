@@ -1,0 +1,9 @@
+id: spq-vietnamese-landing-issued
+extends: caav-generic-landing-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)(?:IATA\s*(?:CODE)?|MÃ\s*IATA)\s*:[ \t]*9G\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|MÃ\s*ICAO)\s*:[ \t]*SPQ\b'
+operator:
+  fixedValue: SPQ
