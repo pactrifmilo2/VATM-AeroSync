@@ -460,7 +460,7 @@ public class DocxSchedulePermitParser {
         for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
             String type = value(table.get(rowIndex), columns, aircraft.auxiliaryTypeColumn())
                     .toUpperCase(Locale.ROOT);
-            if (!type.isBlank()) {
+            if (!type.isBlank() && type.matches(".*[A-Z0-9].*")) {
                 types.add(type);
             }
         }

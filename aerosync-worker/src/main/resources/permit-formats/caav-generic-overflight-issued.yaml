@@ -53,7 +53,7 @@ master:
   version: A
   season: S
   validHours: 72
-  flightType: NO
+  flightType: 'NO'
 schedule:
   columns:
     flightNumber: [Flight number, Flt number]

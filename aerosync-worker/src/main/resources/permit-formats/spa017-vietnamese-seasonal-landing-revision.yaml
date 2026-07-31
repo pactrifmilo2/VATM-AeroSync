@@ -1,4 +1,5 @@
 id: spa017-vietnamese-seasonal-landing-revision
+priority: 75
 detectionPatterns:
   - '(?iu)PHÉP\s+BAY\s+SỬA\s+ĐỔI'
   - '(?iu)THAM\s+CHIẾU\s+PHÉP\s+BAY\s+SỐ'

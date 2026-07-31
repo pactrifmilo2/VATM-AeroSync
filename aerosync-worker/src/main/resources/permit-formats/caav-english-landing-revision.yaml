@@ -1,4 +1,5 @@
 id: caav-english-landing-revision
+priority: 100
 detectionPatterns:
   - '(?iu)REVISION\s+OF\s+LANDING/OVERFLIGHT\s+PERMIT'
   - '(?iu)2\.2\.\s*NEW\s+SCHEDULE\(S\)'

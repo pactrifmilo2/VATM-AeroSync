@@ -1,4 +1,5 @@
 id: spa066-vietnamese-landing-revision
+priority: 100
 detectionPatterns:
   - '(?iu)PHÉP\s+BAY\s+KHÔNG\s+THƯỜNG\s+LỆ\s+ĐI/ĐẾN\s+VIỆT\s+NAM'
   - '(?iu)2\.2\.\s*LỊCH\s+BAY\s+MỚI'

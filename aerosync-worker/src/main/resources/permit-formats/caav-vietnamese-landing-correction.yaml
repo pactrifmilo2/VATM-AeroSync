@@ -1,4 +1,5 @@
 id: caav-vietnamese-landing-correction
+priority: 100
 detectionPatterns:
   - '(?iu)CỤC\s+HKVN\s+CẤP\s+PHÉP\s+BAY\s+LD-'
   - '(?iu)CAAV\s+XÁC\s+NHẬN\s+SỬA\s+ĐỔI\s+NHƯ\s+SAU'
@@ -35,7 +36,7 @@ master:
   version: A
   season: W
   validHours: 24
-  flightType: NO
+  flightType: 'NO'
 schedule:
   columns:
     flightNumber: [Số hiệu chuyến bay]

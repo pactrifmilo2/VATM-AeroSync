@@ -37,7 +37,7 @@ master:
   version: A
   season: S
   validHours: 24
-  flightType: NO
+  flightType: 'NO'
 schedule:
   columns:
     flightNumber: [Số hiệu chuyến bay]

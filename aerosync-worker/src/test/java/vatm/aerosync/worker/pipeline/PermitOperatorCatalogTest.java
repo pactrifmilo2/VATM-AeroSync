@@ -25,6 +25,17 @@ class PermitOperatorCatalogTest {
     }
 
     @Test
+    void normalizeFlightNumber_mapsInvalidDatabaseIcaoCodesToPrivateOperator() {
+        assertThat(catalog.normalizeFlightNumber("2G123", "PRV")).isEqualTo("PRV123");
+        assertThat(catalog.normalizeFlightNumber("3K123", "PRV")).isEqualTo("PRV123");
+        assertThat(catalog.normalizeFlightNumber("MG123", "PRV")).isEqualTo("PRV123");
+        assertThat(catalog.normalizeFlightNumber("VF123", "PRV")).isEqualTo("PRV123");
+
+        assertThat(catalog.normalizeFlightNumber("2G123", "CRG")).isEqualTo("CRG123");
+        assertThat(catalog.normalizeFlightNumber("3K123", "JSA")).isEqualTo("JSA123");
+    }
+
+    @Test
     void normalizeFlightNumber_preservesIcaoAndNonFlightValues() {
         assertThat(catalog.normalizeFlightNumber("HVN1822", "HVN"))
                 .isEqualTo("HVN1822");

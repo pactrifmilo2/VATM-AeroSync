@@ -1,8 +1,169 @@
 id: prv-circadian-landing-issued
-extends: caav-generic-landing-issued
-priority: 250
+priority: 50
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d+'
-  - '(?iu)CIRCADIAN\s+AVIATION'
+- (?iu)\bLD\s*-\s*\d+
+- (?iu)CIRCADIAN\s+AVIATION
+permit:
+  pattern: (?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b
+  numberGroup: number
+  sourceTemplate: LD-{number}/{month}/{year}VN
+  normalizedTemplate: LD {number}/S/CHK/{year}
+  zeroPadGroups:
+    number: 5
+permitDate:
+  source: PARAGRAPH
+  pattern: (?iu)(?<date>(?<!\d)\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}[A-Z]{3}20\d{2})
+  group: date
+  formats:
+  - d/M/uuuu
+  - d-MMM-uu
+  - d-MMM-uuuu
+  - d MMM uuuu
+  - dMMMuuuu
+  locale: en
 operator:
+  source: TABLE
+  pattern: (?iu)(?:ICAO\s*(?:CODE)?|Mã\s*ICAO)(?:\s*\([^)]*\))?\s*:\s*(?<value>[A-Z0-9]{3})
+  group: value
+  required: false
   fixedValue: PRV
+billingAddress:
+  source: TABLE
+  pattern: (?iu)(?:POSTAL\s+ADDRESS|ĐỊA\s+CHỈ\s+BƯU\s+ĐIỆN)\s*:\s*(?<value>[^\n]+)
+  group: value
+  required: false
+reference:
+  source: RAW
+  pattern: (?iu)\(REF\.\s*(?<value>[^)]+)\)
+  group: value
+  required: false
+referenceColumn: originalPermit
+purpose:
+  defaultId: PAX
+  mappings:
+  - pattern: (?iu)\bFERR?Y\b|TIẾP\s+NHẬN\s+TÀU\s+BAY|ĐI\s+SƠN\s+TÀU
+    value: FER
+  - pattern: (?iu)\bCARGO\b|\bFREIGHTER\b|HÀNG\s+H[ÓOÒ]A
+    value: CAR
+  - pattern: (?iu)\bTECH(?:NICAL)?\s*STOP\b|\bREFUEL
+    value: OTH
+  - pattern: (?iu)\bBUSINESS\b
+    value: BUS
+  - pattern: (?iu)\bPASSENGER\b|\bPAX\b|\bPRIVATE\b
+    value: PAX
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: S
+  validHours: 24
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber:
+    - Flight number
+    - Flt number
+    - Số hiệu chuyến bay
+    effectiveFrom:
+    - Effective from
+    - Eff from
+    - Hiệu lực từ
+    effectiveTo:
+    - Effective to
+    - Eff to
+    - Hiệu lực đến
+    serviceDays:
+    - Days of services
+    - Day(s) of services
+    - Ngày trong tuần
+    - Ngày khai thác
+    fromAirport:
+    - Departure Airport
+    - Dep airport
+    - Sân bay cất cánh
+    etd:
+    - ETD
+    - Giờ khởi hành dự kiến
+    - Giờ dự kiến cất cánh
+    toAirport:
+    - Arrival Airport
+    - Arr airport
+    - Sân bay hạ cánh
+    eta:
+    - ETA
+    - Giờ dự kiến hạ cánh
+    aircraftType:
+    - Aircraft Type
+    - Loại tàu bay
+    - Tàu bay
+    originalPermit:
+    - Original permit
+    - Số phép bay đã cấp
+    - Phép bay liên quan
+    remark:
+    - Notes
+    - Note
+    - Ghi chú
+  requiredColumns:
+  - flightNumber
+  - effectiveFrom
+  - effectiveTo
+  - serviceDays
+  - fromAirport
+  - etd
+  - toAirport
+  excludeColumns: []
+  tableContextPatterns: []
+  preferredTableContextPatterns:
+  - (?iu)2\.2\.\s*(?:NEW\s+SCHEDULE|LỊCH\s+BAY\s+MỚI)
+  supplementalTableContextPatterns:
+  - (?iu)2\.5\.\s*(?:TRANSFER\s+FLIGHTS|CB\s+CHỞ\s+KHÁCH\s+SANG\s+CHUYẾN\s+SÂN)
+  dateFormats:
+  - dMMMyy
+  - d-MMM-yy
+  - d/M/uuuu
+  timeFormats:
+  - HHmm
+  - H:mm
+  - HH:mm
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  lastMatchingTable: false
+  inferIataPrefix: true
+route:
+  columns:
+    sector:
+    - Sector
+    - Chặng bay
+    airways:
+    - Airways
+    - Đường hàng không
+  requiredColumns:
+  - sector
+  - airways
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  lastMatchingTable: false
+  filterSchedule: true
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType:
+    - Aircraft Type
+    - Loại tàu bay
+    registrationMarks:
+    - Registration Mark
+    - Registration Marks
+    - Số đăng ký
+  auxiliaryRequiredColumns:
+  - aircraftType
+  - registrationMarks
+  auxiliaryTypeColumn: aircraftType
+  remarkPrefix: ''
+  defaultType: A320
+  lastMatchingTable: false
+validation:
+  allowIataAirports: false
+  reviewOnly: false
