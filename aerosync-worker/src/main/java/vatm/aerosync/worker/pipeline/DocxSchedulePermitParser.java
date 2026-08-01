@@ -37,7 +37,8 @@ public class DocxSchedulePermitParser {
             "(?iu)(?:IATA\\s*(?:CODE)?|MA\\s*IATA)(?:\\s*\\([^)]*\\))?"
                     + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
     private static final Pattern CARRIER_NAME_PATTERN = Pattern.compile(
-            "(?iu)(?:^|\\n)(?:NAME|TÊN(?:\\s*/\\s*NAME)?|(?:CARRIER|OPERATOR)\\s+NAME)"
+            "(?iu)(?:^|\\n)\\s*(?:\\d+(?:\\.\\d+)*\\.?\\s*)?"
+                    + "(?:NAME|TÊN(?:\\s*/\\s*NAME)?|(?:CARRIER|OPERATOR)(?:\\s+NAME)?)"
                     + "\\s*:\\s*(?<value>.+?)"
                     + "(?=\\s+(?:IATA|ICAO|POSTAL|ADDRESS|ĐỊA\\s+CHỈ|TEL|PHONE|EMAIL)\\b|\\n|$)");
     private static final Pattern ICAO_FLIGHT_PREFIX_PATTERN = Pattern.compile(

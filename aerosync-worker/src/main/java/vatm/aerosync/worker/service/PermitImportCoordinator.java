@@ -51,12 +51,15 @@ public class PermitImportCoordinator {
         SyncJob job = syncJobRepository.findById(syncJobId)
                 .orElseThrow(() -> new IllegalStateException("Sync job not found: " + syncJobId));
         String semanticHash = semanticHasher.hash(permit);
-        PermitImport attempt = permitImportRepository.findBySyncJobId(syncJobId)
-                .orElseGet(() -> reserve(job, permit, semanticHash));
+        Optional<PermitImport> existingAttempt = permitImportRepository.findBySyncJobId(syncJobId);
+        PermitImport attempt = existingAttempt.orElseGet(() -> reserve(job, permit, semanticHash));
 
         if (attempt.getStatus() == PermitImportStatus.SAVED
                 || attempt.getStatus() == PermitImportStatus.DUPLICATE) {
             return outcome(attempt);
+        }
+        if (existingAttempt.isPresent()) {
+            refreshAttempt(attempt, job, permit, semanticHash);
         }
         if (permit.reviewOnly()) {
             markRevision(attempt, "Revision permit requires review before ATFM update");
@@ -138,6 +141,18 @@ public class PermitImportCoordinator {
         attempt.setStatus(PermitImportStatus.RESERVED);
         attempt.setDetailCount(permit.flights().size());
         return permitImportRepository.save(attempt);
+    }
+
+    private void refreshAttempt(PermitImport attempt,
+                                SyncJob job,
+                                SchedulePermit permit,
+                                String semanticHash) {
+        attempt.setNormalizedPermitId(permit.normalizedPermitId());
+        attempt.setSemanticHash(semanticHash);
+        attempt.setSourceFileHash(job.getFileHash());
+        attempt.setDetailCount(permit.flights().size());
+        attempt.setErrorMessage(null);
+        permitImportRepository.save(attempt);
     }
 
     private void markDuplicate(PermitImport attempt,

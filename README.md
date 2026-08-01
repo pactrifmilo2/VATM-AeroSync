@@ -262,6 +262,28 @@ Writes are disabled by default. With the flag disabled, a valid permit is record
 
 Duplicate handling uses both the original SHA-256 file hash and a semantic schedule hash. The same normalized permit with the same schedule is skipped successfully; changed schedule data for the same permit is quarantined for manual review.
 
+### Replay a permit during local testing
+
+The API can replay the exact archived email attachment without editing its permit number or sending the email again. This helper deletes the recorded ATFM master/detail rows first, but only when the master row still has `LASTUSER=AEROSYNC` and its IDs and normalized permit ID all match the tracking record.
+
+Enable it only in a disposable test environment, with ATFM writes enabled:
+
+```env
+APP_ATFM_WRITE_ENABLED=true
+APP_TEST_REPLAY_ENABLED=true
+```
+
+Then copy the job's `normalizedPermitId` from `GET /api/jobs/{id}` and use it as the explicit confirmation:
+
+```powershell
+Invoke-RestMethod -Method Post `
+  -Uri http://localhost:8080/api/testing/jobs/123/replay `
+  -ContentType application/json `
+  -Body '{"confirmPermitId":"LD-06/A/S/2026"}'
+```
+
+The endpoint refuses active jobs, non-email jobs, duplicate jobs that do not own the target row, missing archived files, mismatched confirmations, and target rows not written by AeroSync. Keep `APP_TEST_REPLAY_ENABLED=false` everywhere except the intended test system.
+
 For Gmail, use an [App Password](https://support.google.com/accounts/answer/185833), not your normal login password.
 
 ---
