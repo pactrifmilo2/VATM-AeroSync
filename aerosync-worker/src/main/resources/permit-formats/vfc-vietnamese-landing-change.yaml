@@ -50,7 +50,7 @@ schedule:
     eta: [Giờ dự kiến hạ cánh, Giờ hạ cánh dự kiến]
     aircraftType: [Loại tàu bay]
     originalPermit: [Số Phép bay]
-  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta, aircraftType]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta]
   excludeColumns: []
   # Nếu có cả lịch bay gốc và lịch bay thay đổi, luôn ưu tiên bảng thay đổi.
   # Nếu không tìm thấy bảng thay đổi, parser sẽ dùng bảng lịch bay phù hợp duy nhất.
@@ -74,8 +74,11 @@ route:
   filterSchedule: true
 aircraft:
   scheduleColumn: aircraftType
-  auxiliaryColumns: {}
-  auxiliaryRequiredColumns: []
+  auxiliaryColumns:
+    aircraftType: [Loại tàu bay]
+    registrationMarks: [Số đăng ký, Số đăng ký tàu bay]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
   remarkPrefix: ''
 validation:
   allowIataAirports: false

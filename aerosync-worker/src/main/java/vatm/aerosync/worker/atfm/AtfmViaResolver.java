@@ -29,7 +29,10 @@ public class AtfmViaResolver {
         String from = normalize(fromAirport);
         String to = normalize(toAirport);
         String operator = normalize(operatorId);
-        String existing = normalize(documentVia);
+        String existing = normalizeRoute(documentVia);
+        if (!existing.isBlank()) {
+            return existing;
+        }
         Set<String> operatorRoutes = new LinkedHashSet<>();
         Set<String> genericRoutes = new LinkedHashSet<>();
         Set<String> allRoutes = new LinkedHashSet<>();
@@ -39,7 +42,7 @@ public class AtfmViaResolver {
             statement.setString(2, to);
             try (ResultSet rows = statement.executeQuery()) {
                 while (rows.next()) {
-                    String route = normalize(rows.getString("VIA"));
+                    String route = normalizeRoute(rows.getString("VIA"));
                     if (route.isBlank()) {
                         continue;
                     }
@@ -62,9 +65,6 @@ public class AtfmViaResolver {
         }
         if (!allRoutes.isEmpty()) {
             return selectUnique(from, to, operator, existing, allRoutes);
-        }
-        if (!existing.isBlank()) {
-            return existing;
         }
         throw new AtfmReferenceDataException(
                 "ATFM route not found: M_VIA.FROM_AIRP=" + from
@@ -90,5 +90,11 @@ public class AtfmViaResolver {
 
     private String normalize(String value) {
         return value == null ? "" : value.trim().toUpperCase(Locale.ROOT);
+    }
+
+    private String normalizeRoute(String value) {
+        return normalize(value)
+                .replaceAll("\\s*/\\s*", "/")
+                .replaceAll("/+$", "");
     }
 }

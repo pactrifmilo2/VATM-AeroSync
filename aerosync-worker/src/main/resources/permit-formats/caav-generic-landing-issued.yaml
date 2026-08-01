@@ -2,7 +2,7 @@ id: caav-generic-landing-issued
 priority: -100
 detectionPatterns:
   - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
-  - '(?iu)(?:FL(?:IGH)?T\s+NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
   - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b|SỬA\s+ĐỔI)).*$'
 permit:
   pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'

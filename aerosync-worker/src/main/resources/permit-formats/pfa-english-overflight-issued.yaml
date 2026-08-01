@@ -1,0 +1,9 @@
+id: pfa-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*PFA\b|PACIFIC\s+FLIGHT\s+SERVICES)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: PFA

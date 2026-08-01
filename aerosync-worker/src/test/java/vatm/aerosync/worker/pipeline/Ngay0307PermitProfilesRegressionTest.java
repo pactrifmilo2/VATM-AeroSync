@@ -126,6 +126,10 @@ class Ngay0307PermitProfilesRegressionTest {
     }
 
     private Path sampleDirectory() {
+        String configuredDirectory = System.getProperty("permit.sample.directory");
+        if (configuredDirectory != null && !configuredDirectory.isBlank()) {
+            return Path.of(configuredDirectory).toAbsolutePath().normalize();
+        }
         return Path.of("..", "ngay0307").toAbsolutePath().normalize();
     }
 

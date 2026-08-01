@@ -2,6 +2,7 @@ package vatm.aerosync.worker.pipeline;
 
 import org.springframework.stereotype.Component;
 import vatm.aerosync.worker.atfm.AtfmAirportCodeResolver;
+import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 import vatm.aerosync.worker.atfm.AtfmViaResolver;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
@@ -49,10 +50,11 @@ public class ViaResolutionStep {
                 String from = resolveAirport(connection, airports, flight.fromAirport());
                 String to = resolveAirport(connection, airports, flight.toAirport());
                 RouteKey routeKey = new RouteKey(from, to, permit.operatorId(), flight.via());
-                String via = routes.get(routeKey);
-                if (via == null) {
-                    via = viaResolver.resolve(
-                            connection, from, to, permit.operatorId(), flight.via());
+                String via;
+                if (routes.containsKey(routeKey)) {
+                    via = routes.get(routeKey);
+                } else {
+                    via = resolveVia(connection, permit, flight, from, to);
                     routes.put(routeKey, via);
                 }
                 resolvedFlights.add(flight.withResolvedRoute(from, to, via));
@@ -75,6 +77,22 @@ public class ViaResolutionStep {
         String resolved = airportCodeResolver.resolve(connection, sourceCode);
         airports.put(sourceCode, resolved);
         return resolved;
+    }
+
+    private String resolveVia(Connection connection,
+                              SchedulePermit permit,
+                              ScheduleFlight flight,
+                              String from,
+                              String to) throws SQLException {
+        try {
+            return viaResolver.resolve(
+                    connection, from, to, permit.operatorId(), flight.via());
+        } catch (AtfmReferenceDataException exception) {
+            if (permit.emptyAirwaysAllowed()) {
+                return null;
+            }
+            throw exception;
+        }
     }
 
     private record RouteKey(String from, String to, String operator, String documentVia) {

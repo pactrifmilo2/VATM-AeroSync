@@ -74,7 +74,23 @@ class ViaResolutionStepTest {
         assertThat(flight.via()).isEqualTo("Q2/Q7/Q1/W11/W1");
     }
 
+    @Test
+    void resolve_allowsAnEmptyRouteWhenTheProfileExplicitlyAllowsIt() {
+        ProcessingContext context = context("XXX", true);
+
+        step.resolve(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.fromAirport()).isEqualTo("VVTS");
+        assertThat(flight.toAirport()).isEqualTo("VVCA");
+        assertThat(flight.via()).isNull();
+    }
+
     private ProcessingContext context() {
+        return context("HVN", true);
+    }
+
+    private ProcessingContext context(String operatorId, boolean emptyAirwaysAllowed) {
         ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
                 1L, "LD 2517 HVN.docx", "h", FileSourceType.EMAIL, false));
         ScheduleFlight flight = new ScheduleFlight(
@@ -85,8 +101,8 @@ class ViaResolutionStepTest {
         context.setSchedulePermit(new SchedulePermit(
                 "LD-11111/7/2026VN", "LD 11111/S/CHK/2026", "11111",
                 "CHK", "LD", "A", "S", LocalDate.of(2026, 7, 1),
-                "HVN", null, 24, "200 Phố Nguyễn Sơn", "NO",
-                true, true, false, "raw", List.of(flight)));
+                operatorId, null, 24, "200 Phố Nguyễn Sơn", "NO",
+                true, emptyAirwaysAllowed, false, "raw", List.of(flight)));
         return context;
     }
 }

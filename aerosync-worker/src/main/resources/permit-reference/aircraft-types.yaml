@@ -26,6 +26,14 @@ entries:
     type: B76X
   - aliases: ['BOEING 738 OR SUBS B733F / SUBS B734F']
     type: B738
+  - aliases: ['A319-115 OR SUB']
+    type: A319
+  - aliases: ['B747F OR SUB']
+    type: B74F
+  - aliases: ['BOMBARDIER CHALLENGER 604']
+    type: CL60
+  - aliases: ['75W/76W']
+    type: 75W
 
   # Manufacturer and marketing names translated to ATFM codes.
   - aliases: ['B737-800']
@@ -52,6 +60,16 @@ entries:
     type: CRJ200
   - aliases: ['A319-115/A319-153N']
     type: A319
+  - aliases: ['32X']
+    type: A32X
+  - aliases: ['73Y/73P/73K']
+    type: 73Y
+  - aliases: ['B747-400']
+    type: B744
+  - aliases: ['73W']
+    type: B737
+  - aliases: ['747-400F/747-8F/777-200F']
+    type: B74Y
 
   # Ambiguous short source codes redirected to a unique ATFM MA value.
   - aliases: ['74Y']

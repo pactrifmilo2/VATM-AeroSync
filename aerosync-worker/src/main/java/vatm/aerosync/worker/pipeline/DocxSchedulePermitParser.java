@@ -9,6 +9,7 @@ import vatm.aerosync.worker.model.SchedulePermit;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.text.Normalizer;
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -31,18 +32,51 @@ public class DocxSchedulePermitParser {
             "^([A-Z]{3,4})\\s*[-/\\u2013\\u2014]\\s*([A-Z]{3,4})$");
     private static final Pattern ICAO_LABEL_PATTERN = Pattern.compile(
             "(?iu)(?:ICAO\\s*(?:CODE)?|MA\\s*ICAO)(?:\\s*\\([^)]*\\))?"
-                    + "\\s*:\\s*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
+                    + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
     private static final Pattern IATA_LABEL_PATTERN = Pattern.compile(
             "(?iu)(?:IATA\\s*(?:CODE)?|MA\\s*IATA)(?:\\s*\\([^)]*\\))?"
-                    + "\\s*:\\s*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
+                    + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
+    private static final Pattern CARRIER_NAME_PATTERN = Pattern.compile(
+            "(?iu)(?:^|\\n)(?:NAME|TÊN(?:\\s*/\\s*NAME)?|(?:CARRIER|OPERATOR)\\s+NAME)"
+                    + "\\s*:\\s*(?<value>.+?)"
+                    + "(?=\\s+(?:IATA|ICAO|POSTAL|ADDRESS|ĐỊA\\s+CHỈ|TEL|PHONE|EMAIL)\\b|\\n|$)");
     private static final Pattern ICAO_FLIGHT_PREFIX_PATTERN = Pattern.compile(
             "^([A-Z]{3})(?=\\d)");
+    private static final Pattern REPLACEMENT_SCHEDULE_CONTEXT = Pattern.compile(
+            "(?iu)(?:LỊCH\\s+BAY.{0,50}(?:SỬA\\s+ĐỔI|THAY\\s+ĐỔI|ĐIỀU\\s+CHỈNH|BỔ\\s+SUNG|MỚI))"
+                    + "|(?:(?:SỬA\\s+ĐỔI|THAY\\s+ĐỔI|ĐIỀU\\s+CHỈNH|BỔ\\s+SUNG).{0,50}LỊCH\\s+BAY)"
+                    + "|(?:(?:NEW|REVISED|AMENDED|REPLACEMENT)\\s+(?:FLIGHT\\s+)?SCHEDULE)"
+                    + "|(?:SCHEDULE\\s+(?:REVISION|CHANGES?|AMENDMENT))");
+    private static final Pattern ORIGINAL_SCHEDULE_CONTEXT = Pattern.compile(
+            "(?iu)(?:LỊCH\\s+BAY.{0,50}(?:DỰ\\s+KIẾN|GỐC|BAN\\s+ĐẦU))"
+                    + "|(?:(?:DỰ\\s+KIẾN|GỐC|BAN\\s+ĐẦU).{0,50}LỊCH\\s+BAY)"
+                    + "|(?:(?:ORIGINAL|PLANNED)\\s+(?:FLIGHT\\s+)?SCHEDULE)"
+                    + "|(?:SCHEDULE\\s+(?:ORIGINAL|PLANNED))");
+    private static final Map<String, List<String>> UNIVERSAL_COLUMN_ALIASES = Map.ofEntries(
+            Map.entry("flightNumber", List.of("FlightNumber")),
+            Map.entry("effectiveFrom", List.of("EffectiveFrom")),
+            Map.entry("effectiveTo", List.of("EffectiveTo")),
+            Map.entry("fromAirport", List.of(
+                    "Dep airport", "Sân bay đi", "Sân bay điDeparture Airport")),
+            Map.entry("etd", List.of(
+                    "EOBT", "Giờ dự kiến đi", "Giờ dự kiến điEOBT")),
+            Map.entry("toAirport", List.of(
+                    "Arr airport", "Sân bay đến", "Sân bay đếnArrival Airport")),
+            Map.entry("eta", List.of(
+                    "EIBT", "Giờ dự kiến đến", "Giờ dựkiến đếnEIBT")),
+            Map.entry("sector", List.of("Setors", "Chặng baySector")),
+            Map.entry("airways", List.of("ATS Routes", "Đường hàng khôngAirways")),
+            Map.entry("aircraftType", List.of(
+                    "Aircraft type", "Loại tàu bay/Aircraft Type(mã ICAO/ ICAO code)")));
 
     private static final DateTimeFormatter ORACLE_TIME = DateTimeFormatter.ofPattern("HHmm");
 
     private final WordPermitDocumentReader documentReader;
     private final WordPermitFormatDetector formatDetector;
     private final AirportCodeCatalog airportCodeCatalog;
+    private final PermitOperatorCatalog permitOperatorCatalog;
+    private final PermitOperatorResolver permitOperatorResolver;
+    private final Clock clock;
 
     /**
      * Retained for callers that constructed the former DOCX-only parser directly.
@@ -50,21 +84,39 @@ public class DocxSchedulePermitParser {
     public DocxSchedulePermitParser() {
         this(new WordPermitDocumentReader(),
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog()),
-                new AirportCodeCatalog());
+                new AirportCodeCatalog(), new PermitOperatorCatalog(), Clock.systemDefaultZone());
     }
 
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector) {
-        this(documentReader, formatDetector, new AirportCodeCatalog());
+        this(documentReader, formatDetector, new AirportCodeCatalog(),
+                new PermitOperatorCatalog(), Clock.systemDefaultZone());
     }
 
     @Autowired
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector,
-                                    AirportCodeCatalog airportCodeCatalog) {
+                                    AirportCodeCatalog airportCodeCatalog,
+                                    PermitOperatorCatalog permitOperatorCatalog,
+                                    Clock clock) {
+        this(documentReader, formatDetector, airportCodeCatalog, permitOperatorCatalog,
+                (iataCode, carrierName) -> java.util.Optional.ofNullable(
+                        permitOperatorCatalog.operatorForIata(iataCode)),
+                clock);
+    }
+
+    public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
+                                    WordPermitFormatDetector formatDetector,
+                                    AirportCodeCatalog airportCodeCatalog,
+                                    PermitOperatorCatalog permitOperatorCatalog,
+                                    PermitOperatorResolver permitOperatorResolver,
+                                    Clock clock) {
         this.documentReader = documentReader;
         this.formatDetector = formatDetector;
         this.airportCodeCatalog = airportCodeCatalog;
+        this.permitOperatorCatalog = permitOperatorCatalog;
+        this.permitOperatorResolver = permitOperatorResolver;
+        this.clock = clock;
     }
 
     public SchedulePermit parse(Path file, String fileName) {
@@ -103,57 +155,29 @@ public class DocxSchedulePermitParser {
         String billingAddress = extractText(profile.billingAddress(), document, fileName, "billing address");
 
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
-        List<List<String>> scheduleTable = null;
-        if (!safeList(schedule.preferredTableContextPatterns()).isEmpty()) {
-            scheduleTable = findTable(
-                    document.tables(),
-                    document.tableContexts(),
-                    schedule.columns(),
-                    schedule.requiredColumns(),
-                    schedule.excludeColumns(),
-                    schedule.preferredTableContextPatterns(),
-                    schedule.lastMatchingTable());
-        }
-        if (scheduleTable == null) {
-            scheduleTable = findTable(
-                    document.tables(),
-                    document.tableContexts(),
-                    schedule.columns(),
-                    schedule.requiredColumns(),
-                    schedule.excludeColumns(),
-                    schedule.tableContextPatterns(),
-                    schedule.lastMatchingTable());
-        }
-        if (scheduleTable == null || scheduleTable.size() < 2) {
+        List<List<List<String>>> scheduleTables = selectScheduleTables(schedule, document);
+        if (scheduleTables.isEmpty() || scheduleTables.getFirst().size() < 2) {
             throw invalid(fileName, missingScheduleFields(profile, document));
         }
-        List<List<String>> primaryScheduleTable = scheduleTable;
-        List<List<List<String>>> scheduleTables = new ArrayList<>();
-        scheduleTables.add(primaryScheduleTable);
-        if (!safeList(schedule.supplementalTableContextPatterns()).isEmpty()) {
-            findTables(
-                    document.tables(),
-                    document.tableContexts(),
-                    schedule.columns(),
-                    schedule.requiredColumns(),
-                    schedule.excludeColumns(),
-                    schedule.supplementalTableContextPatterns())
-                    .stream()
-                    .filter(table -> table != primaryScheduleTable)
-                    .forEach(scheduleTables::add);
+        String iataCode = extractIataPrefix(document.rawContent());
+        String carrierName = extractCarrierName(document);
+        String operatorId = extractLabeledCode(document.rawContent(), ICAO_LABEL_PATTERN);
+        if (operatorId == null && (iataCode == null || hasFixedValue(profile.operator()))) {
+            operatorId = normalizedOperator(
+                    extractOptionalText(profile.operator(), document, fileName, "carrier ICAO code"));
         }
-
-        String operatorId = normalizedOperator(
-                extractText(profile.operator(), document, fileName, "carrier ICAO code"));
-        if (operatorId == null) {
-            operatorId = extractLabeledCode(document.rawContent(), ICAO_LABEL_PATTERN);
+        if (operatorId == null && iataCode != null) {
+            operatorId = permitOperatorResolver.resolve(iataCode, carrierName).orElse(null);
+        }
+        if (operatorId == null && iataCode == null) {
+            operatorId = inferOperator(scheduleTables, schedule.columns());
         }
         if (operatorId == null) {
-            operatorId = inferOperator(scheduleTable, schedule.columns(), fileName);
+            operatorId = "PRV";
         }
         String resolvedOperatorId = operatorId;
         String iataPrefix = schedule.inferIataPrefix()
-                ? extractIataPrefix(document.rawContent())
+                ? iataCode
                 : null;
         boolean normalizeAirportsToIcao = profile.validation() == null
                 || !profile.validation().allowIataAirports();
@@ -218,29 +242,52 @@ public class DocxSchedulePermitParser {
         return normalized.matches("[A-Z0-9]{3}") ? normalized : null;
     }
 
-    private String inferOperator(List<List<String>> scheduleTable,
-                                 Map<String, List<String>> aliases,
-                                 String fileName) {
-        Map<String, Integer> columns = resolveColumns(scheduleTable.getFirst(), aliases);
-        for (int rowIndex = 1; rowIndex < scheduleTable.size(); rowIndex++) {
-            String flightNumber = clean(value(scheduleTable.get(rowIndex), columns, "flightNumber"))
-                    .replaceAll("[^A-Za-z0-9]", "")
-                    .toUpperCase(Locale.ROOT);
-            Matcher prefix = ICAO_FLIGHT_PREFIX_PATTERN.matcher(flightNumber);
-            if (prefix.find()) {
-                return prefix.group(1);
+    private String inferOperator(List<List<List<String>>> scheduleTables,
+                                 Map<String, List<String>> aliases) {
+        for (List<List<String>> scheduleTable : scheduleTables) {
+            Map<String, Integer> columns = resolveColumns(scheduleTable.getFirst(), aliases);
+            for (int rowIndex = 1; rowIndex < scheduleTable.size(); rowIndex++) {
+                String flightNumber = clean(value(scheduleTable.get(rowIndex), columns, "flightNumber"))
+                        .replaceAll("[^A-Za-z0-9]", "")
+                        .toUpperCase(Locale.ROOT);
+                Matcher prefix = ICAO_FLIGHT_PREFIX_PATTERN.matcher(flightNumber);
+                if (prefix.find()) {
+                    return prefix.group(1);
+                }
             }
         }
-        throw invalid(fileName, "Carrier ICAO code could not be inferred from the schedule");
+        return null;
+    }
+
+    private boolean hasFixedValue(DocxPermitFormatProfile.TextField field) {
+        return field != null && field.fixedValue() != null && !field.fixedValue().isBlank();
     }
 
     private String extractIataPrefix(String rawContent) {
         return extractLabeledCode(rawContent, IATA_LABEL_PATTERN);
     }
 
+    private String extractCarrierName(WordPermitDocument document) {
+        for (List<List<String>> table : document.tables()) {
+            for (List<String> row : table) {
+                for (String cell : row) {
+                    Matcher matcher = CARRIER_NAME_PATTERN.matcher("\n" + clean(cell));
+                    if (matcher.find()) {
+                        return clean(matcher.group("value"));
+                    }
+                }
+            }
+        }
+        Matcher matcher = CARRIER_NAME_PATTERN.matcher("\n" + document.rawContent());
+        return matcher.find() ? clean(matcher.group("value")) : null;
+    }
+
     private String extractLabeledCode(String content, Pattern pattern) {
         String folded = Normalizer.normalize(
-                        clean(content).replace('Đ', 'D').replace('đ', 'd'),
+                        Objects.requireNonNullElse(content, "")
+                                .replace('\u00A0', ' ')
+                                .replace('Đ', 'D')
+                                .replace('đ', 'd'),
                         Normalizer.Form.NFD)
                 .replaceAll("\\p{M}+", "")
                 .toUpperCase(Locale.ROOT);
@@ -328,6 +375,9 @@ public class DocxSchedulePermitParser {
             String flightNumber = normalizeFlightNumber(
                     value(row, columns, "flightNumber"), operatorId, iataPrefix);
             if (flightNumber.isBlank()) {
+                continue;
+            }
+            if (isScheduleSectionLabel(row, columns)) {
                 continue;
             }
             String rawFrom = value(row, columns, "fromAirport").toUpperCase(Locale.ROOT);
@@ -475,12 +525,13 @@ public class DocxSchedulePermitParser {
                 && aircraft.scheduleColumn() != null
                 && !aircraft.scheduleColumn().isBlank()) {
             String rowType = value(row, columns, aircraft.scheduleColumn()).toUpperCase(Locale.ROOT);
-            if (rowType.isBlank()) {
+            if (!rowType.matches(".*[A-Z0-9].*")) {
+                rowType = "";
                 Integer configuredIndex = columns.get(aircraft.scheduleColumn());
                 if (configuredIndex != null) {
                     for (int index = row.size() - 1; index > configuredIndex; index--) {
                         String candidate = clean(row.get(index)).toUpperCase(Locale.ROOT);
-                        if (!candidate.isBlank()) {
+                        if (candidate.matches(".*[A-Z0-9].*")) {
                             rowType = candidate;
                             break;
                         }
@@ -525,6 +576,89 @@ public class DocxSchedulePermitParser {
         return lastMatchingTable ? matches.getLast() : matches.getFirst();
     }
 
+    private List<List<List<String>>> selectScheduleTables(
+            DocxPermitFormatProfile.ScheduleDefinition schedule,
+            WordPermitDocument document) {
+        List<TableMatch> structuralMatches = findTableMatches(
+                document.tables(),
+                document.tableContexts(),
+                schedule.columns(),
+                schedule.requiredColumns(),
+                schedule.excludeColumns());
+        if (structuralMatches.isEmpty()) {
+            return List.of();
+        }
+
+        ScheduleSection activeSection = ScheduleSection.UNKNOWN;
+        List<ClassifiedTable> classified = new ArrayList<>();
+        for (TableMatch match : structuralMatches) {
+            String context = match.context();
+            if (matchesAny(context, schedule.preferredTableContextPatterns())
+                    || REPLACEMENT_SCHEDULE_CONTEXT.matcher(context).find()) {
+                activeSection = ScheduleSection.REPLACEMENT;
+            } else if (ORIGINAL_SCHEDULE_CONTEXT.matcher(context).find()) {
+                activeSection = ScheduleSection.ORIGINAL;
+            }
+            classified.add(new ClassifiedTable(match, activeSection));
+        }
+
+        List<TableMatch> selected = classified.stream()
+                .filter(candidate -> candidate.section() == ScheduleSection.REPLACEMENT)
+                .map(ClassifiedTable::match)
+                .toList();
+        if (selected.isEmpty()) {
+            selected = structuralMatches.stream()
+                    .filter(match -> matchesAll(match.context(), schedule.tableContextPatterns()))
+                    .toList();
+            if (schedule.lastMatchingTable() && !selected.isEmpty()) {
+                selected = List.of(selected.getLast());
+            }
+        }
+
+        if (!safeList(schedule.supplementalTableContextPatterns()).isEmpty()) {
+            LinkedHashMap<Integer, TableMatch> withSupplemental = new LinkedHashMap<>();
+            selected.forEach(match -> withSupplemental.put(match.index(), match));
+            structuralMatches.stream()
+                    .filter(match -> matchesAll(
+                            match.context(), schedule.supplementalTableContextPatterns()))
+                    .forEach(match -> withSupplemental.putIfAbsent(match.index(), match));
+            selected = new ArrayList<>(withSupplemental.values());
+        }
+        return selected.stream().map(TableMatch::table).toList();
+    }
+
+    private List<TableMatch> findTableMatches(List<List<List<String>>> tables,
+                                              List<String> tableContexts,
+                                              Map<String, List<String>> aliases,
+                                              List<String> requiredColumns,
+                                              List<String> excludedColumns) {
+        List<TableMatch> matches = new ArrayList<>();
+        for (int tableIndex = 0; tableIndex < tables.size(); tableIndex++) {
+            List<List<String>> table = tables.get(tableIndex);
+            if (table.isEmpty()) {
+                continue;
+            }
+            Map<String, Integer> columns = resolveColumns(table.getFirst(), aliases);
+            if (!columns.keySet().containsAll(safeList(requiredColumns))
+                    || safeList(excludedColumns).stream().anyMatch(columns::containsKey)) {
+                continue;
+            }
+            String context = tableIndex < tableContexts.size() ? tableContexts.get(tableIndex) : "";
+            matches.add(new TableMatch(tableIndex, table, context));
+        }
+        return matches;
+    }
+
+    private boolean matchesAny(String context, List<String> patterns) {
+        return safeList(patterns).stream()
+                .anyMatch(pattern -> Pattern.compile(pattern).matcher(context).find());
+    }
+
+    private boolean matchesAll(String context, List<String> patterns) {
+        return safeList(patterns).stream()
+                .allMatch(pattern -> Pattern.compile(pattern).matcher(context).find());
+    }
+
     private List<List<List<String>>> findTables(List<List<List<String>>> tables,
                                                 List<String> tableContexts,
                                                 Map<String, List<String>> aliases,
@@ -562,7 +696,9 @@ public class DocxSchedulePermitParser {
         for (int index = 0; index < header.size(); index++) {
             String actual = canonicalHeader(header.get(index));
             for (Map.Entry<String, List<String>> entry : safeAliases.entrySet()) {
-                boolean matches = safeList(entry.getValue()).stream()
+                boolean matches = java.util.stream.Stream.concat(
+                                safeList(entry.getValue()).stream(),
+                                safeList(UNIVERSAL_COLUMN_ALIASES.get(entry.getKey())).stream())
                         .map(this::canonicalHeader)
                         .anyMatch(actual::equals);
                 if (matches) {
@@ -571,6 +707,15 @@ public class DocxSchedulePermitParser {
             }
         }
         return result;
+    }
+
+    private boolean isScheduleSectionLabel(List<String> row, Map<String, Integer> columns) {
+        return value(row, columns, "effectiveFrom").isBlank()
+                && value(row, columns, "effectiveTo").isBlank()
+                && value(row, columns, "serviceDays").isBlank()
+                && value(row, columns, "fromAirport").isBlank()
+                && value(row, columns, "toAirport").isBlank()
+                && value(row, columns, "etd").isBlank();
     }
 
     private String missingScheduleFields(DocxPermitFormatProfile profile,
@@ -634,23 +779,39 @@ public class DocxSchedulePermitParser {
         if (field == null) {
             throw invalid(fileName, description + " extraction is not configured");
         }
-        Matcher matcher = Pattern.compile(field.pattern())
-                .matcher(sourceText(field.source(), document));
-        if (!matcher.find()) {
-            if (field.fallbackToDocumentCreatedDate() && document.authoredDate() != null) {
-                return document.authoredDate();
+        String dateSource = sourceText(field.source(), document);
+        Matcher matcher = Pattern.compile(field.pattern()).matcher(dateSource);
+        while (matcher.find()) {
+            int valueStart = matcher.start(field.group());
+            if (valueStart > 0 && Character.isDigit(dateSource.charAt(valueStart - 1))) {
+                continue;
             }
-            throw invalid(fileName, description + " not found");
+            return parseDate(
+                    requireGroup(matcher, field.group(), fileName, description),
+                    field.formats(), field.locale(), fileName, description);
         }
-        return parseDate(
-                requireGroup(matcher, field.group(), fileName, description),
-                field.formats(), field.locale(), fileName, description);
+        return LocalDate.now(clock);
     }
 
     private String extractText(DocxPermitFormatProfile.TextField field,
                                WordPermitDocument document,
                                String fileName,
                                String description) {
+        return extractText(field, document, fileName, description, true);
+    }
+
+    private String extractOptionalText(DocxPermitFormatProfile.TextField field,
+                                       WordPermitDocument document,
+                                       String fileName,
+                                       String description) {
+        return extractText(field, document, fileName, description, false);
+    }
+
+    private String extractText(DocxPermitFormatProfile.TextField field,
+                               WordPermitDocument document,
+                               String fileName,
+                               String description,
+                               boolean enforceRequired) {
         if (field != null && field.fixedValue() != null && !field.fixedValue().isBlank()) {
             return clean(field.fixedValue());
         }
@@ -659,7 +820,7 @@ public class DocxSchedulePermitParser {
         }
         Matcher matcher = Pattern.compile(field.pattern()).matcher(sourceText(field.source(), document));
         if (!matcher.find()) {
-            if (field.required()) {
+            if (enforceRequired && field.required()) {
                 throw invalid(fileName, description + " not found");
             }
             return null;
@@ -670,6 +831,18 @@ public class DocxSchedulePermitParser {
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .orElse(extracted);
+    }
+
+    private enum ScheduleSection {
+        UNKNOWN,
+        ORIGINAL,
+        REPLACEMENT
+    }
+
+    private record TableMatch(int index, List<List<String>> table, String context) {
+    }
+
+    private record ClassifiedTable(TableMatch match, ScheduleSection section) {
     }
 
     private String sourceText(String source, WordPermitDocument document) {

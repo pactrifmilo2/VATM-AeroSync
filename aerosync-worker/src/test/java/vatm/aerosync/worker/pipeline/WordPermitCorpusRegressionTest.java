@@ -7,6 +7,7 @@ import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.worker.atfm.AtfmAircraftTypeResolver;
 import vatm.aerosync.worker.atfm.AtfmAirportCodeResolver;
 import vatm.aerosync.worker.atfm.AtfmViaResolver;
+import vatm.aerosync.worker.atfm.JdbcPermitOperatorResolver;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Clock;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -37,9 +39,13 @@ class WordPermitCorpusRegressionTest {
         WordPermitDocumentReader reader = new WordPermitDocumentReader();
         WordPermitFormatDetector detector =
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog());
-        DocxSchedulePermitParser parser =
-                new DocxSchedulePermitParser(reader, detector);
         AtfmDatabaseProperties liveAtfm = liveAtfmProperties();
+        PermitOperatorCatalog operatorCatalog = new PermitOperatorCatalog();
+        DocxSchedulePermitParser parser = liveAtfm == null
+                ? new DocxSchedulePermitParser(reader, detector)
+                : new DocxSchedulePermitParser(
+                        reader, detector, new AirportCodeCatalog(), operatorCatalog,
+                        new JdbcPermitOperatorResolver(liveAtfm), Clock.systemDefaultZone());
         AircraftTypeResolutionStep aircraftTypeResolutionStep = liveAtfm == null
                 ? null
                 : new AircraftTypeResolutionStep(

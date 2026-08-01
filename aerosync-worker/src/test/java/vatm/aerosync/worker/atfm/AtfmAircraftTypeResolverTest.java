@@ -45,7 +45,11 @@ class AtfmAircraftTypeResolverTest {
                         (1226, 'B77W', '77W', NULL, 351),
                         (6765, '77W', '77W', NULL, 12),
                         (4082, 'B77X', 'B77X', NULL, 347),
-                        (6801, 'B77X', 'B77X', NULL, 45)
+                        (6801, 'B77X', 'B77X', NULL, 45),
+                        (6484, 'A32X', 'A32X', NULL, 12),
+                        (6485, 'A32X', 'A32X', NULL, 12),
+                        (6481, '73Y', '73Y', NULL, 15),
+                        (6482, '73Y', '73Y', NULL, 15)
                     """);
         }
         resolver = new AtfmAircraftTypeResolver(
@@ -86,6 +90,12 @@ class AtfmAircraftTypeResolverTest {
 
         assertThat(aircraft.craftId()).isEqualTo(4082L);
         assertThat(aircraft.mtow()).isEqualByComparingTo(new BigDecimal("347"));
+    }
+
+    @Test
+    void resolve_usesApprovedPreferencesForObservedDuplicateRows() {
+        assertThat(resolver.resolve(List.of("A32X")).craftId()).isEqualTo(6484L);
+        assertThat(resolver.resolve(List.of("73Y")).craftId()).isEqualTo(6481L);
     }
 
     @Test

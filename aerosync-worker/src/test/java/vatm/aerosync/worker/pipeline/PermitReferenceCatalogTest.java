@@ -18,6 +18,8 @@ class PermitReferenceCatalogTest {
     void airportCatalog_normalizesIataAndPreservesIcao() {
         assertThat(airports.normalize(" HAN ")).isEqualTo("VVNB");
         assertThat(airports.normalize("SHA")).isEqualTo("ZSSS");
+        assertThat(airports.normalize("DRW")).isEqualTo("YPDN");
+        assertThat(airports.normalize("SRG")).isEqualTo("WARS");
         assertThat(airports.normalize("VHHH")).isEqualTo("VHHH");
     }
 
@@ -55,8 +57,17 @@ class PermitReferenceCatalogTest {
                 Arguments.of("B787-900", "B789"),
                 Arguments.of("BOEING 738 OR SUBS B733F / SUBS B734F", "B738"),
                 Arguments.of("BOEING 747-400F", "B74F"),
+                Arguments.of("32X", "A32X"),
+                Arguments.of("73Y/73P/73K", "73Y"),
+                Arguments.of("B747-400", "B744"),
+                Arguments.of("73W", "B737"),
+                Arguments.of("747-400F/747-8F/777-200F", "B74Y"),
                 Arguments.of("GULFSTREAM G450", "GLF4"),
-                Arguments.of("GULFSTREAM GVII-G500", "G500"));
+                Arguments.of("GULFSTREAM GVII-G500", "G500"),
+                Arguments.of("A319-115 OR SUB", "A319"),
+                Arguments.of("B747F OR SUB", "B74F"),
+                Arguments.of("BOMBARDIER CHALLENGER 604", "CL60"),
+                Arguments.of("75W/76W", "75W"));
     }
 
     @Test

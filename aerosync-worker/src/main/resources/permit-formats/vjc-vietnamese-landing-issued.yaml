@@ -56,6 +56,10 @@ schedule:
   requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta]
   excludeColumns: []
   tableContextPatterns: []
+  # Khi có nhóm lịch bay sửa đổi/thay đổi, bỏ nhóm dự kiến và đọc toàn bộ
+  # các bảng con (ví dụ: quốc tế và quốc nội) thuộc nhóm sửa đổi.
+  preferredTableContextPatterns:
+    - '(?iu)LỊCH\s+BAY.{0,50}(?:SỬA\s+ĐỔI|THAY\s+ĐỔI|ĐIỀU\s+CHỈNH|MỚI)'
   dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en

@@ -13,8 +13,11 @@ import vatm.aerosync.worker.model.SchedulePermit;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -84,16 +87,64 @@ class DocxSchedulePermitParserTest {
         assertThat(permit.operatorId()).isEqualTo("HVN");
         assertThat(permit.flights())
                 .extracting(flight -> flight.flightNumber())
-                .containsExactly("HVN200", "HVN201", "HVN300");
+                .containsExactly("HVN200", "HVN201", "HVN202", "HVN300");
         assertThat(permit.flights())
                 .extracting(flight -> flight.etd())
-                .containsExactly("0905", "1105", "1300");
+                .containsExactly("0905", "1105", "1205", "1300");
         assertThat(permit.flights())
                 .allSatisfy(flight -> {
                     assertThat(flight.sourceAircraftType()).isEqualTo("321/320");
                     assertThat(flight.craftId()).isZero();
                     assertThat(flight.mtow()).isNull();
                 });
+    }
+
+    @Test
+    void parse_vjcWithoutIcao_readsInternationalAndDomesticTablesAndUsesCurrentDate()
+            throws Exception {
+        Path file = createVjcPermitWithoutIcao();
+        Clock fixedClock = Clock.fixed(
+                Instant.parse("2026-07-31T03:00:00Z"), ZoneId.of("Asia/Ho_Chi_Minh"));
+        DocxSchedulePermitParser fixedClockParser = new DocxSchedulePermitParser(
+                new WordPermitDocumentReader(),
+                new WordPermitFormatDetector(new DocxPermitProfileCatalog()),
+                new AirportCodeCatalog(),
+                new PermitOperatorCatalog(),
+                fixedClock);
+
+        SchedulePermit permit = fixedClockParser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.operatorId()).isEqualTo("VJC");
+        assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 31));
+        assertThat(permit.flights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("VJC8890", "VJC1282");
+    }
+
+    @Test
+    void parse_withoutIcao_passesIataAndCarrierNameToAtfmResolver() throws Exception {
+        Path file = createVjcPermitWithoutIcao();
+        String[] resolvedInput = new String[2];
+        PermitOperatorResolver resolver = (iataCode, carrierName) -> {
+            resolvedInput[0] = iataCode;
+            resolvedInput[1] = carrierName;
+            return Optional.of("VJC");
+        };
+        DocxSchedulePermitParser atfmBackedParser = new DocxSchedulePermitParser(
+                new WordPermitDocumentReader(),
+                new WordPermitFormatDetector(new DocxPermitProfileCatalog()),
+                new AirportCodeCatalog(),
+                new PermitOperatorCatalog(),
+                resolver,
+                Clock.systemDefaultZone());
+
+        SchedulePermit permit = atfmBackedParser.parse(file, file.getFileName().toString());
+
+        assertThat(resolvedInput).containsExactly(
+                "VJ", "Công ty cổ phần hàng không Vietjet (Vietjet air)");
+        assertThat(permit.operatorId()).isEqualTo("VJC");
+        assertThat(permit.flights()).extracting(flight -> flight.flightNumber())
+                .containsExactly("VJC8890", "VJC1282");
     }
 
     @Test
@@ -248,6 +299,12 @@ class DocxSchedulePermitParserTest {
                             "SGN", "1230", "321/320"}
             });
 
+            document.createParagraph().createRun().setText("2.3. DOMESTIC SCHEDULE");
+            scheduleTable(document, new String[][] {
+                    {"VN202", "04JUL26", "04JUL26", "6", "HAN", "1205",
+                            "DAD", "1325", "321/320"}
+            });
+
             document.createParagraph().createRun().setText("2.5. TRANSFER FLIGHTS");
             scheduleTable(document, new String[][] {
                     {"VN300", "04JUL26", "04JUL26", "6", "HAN", "1300",
@@ -259,6 +316,63 @@ class DocxSchedulePermitParserTest {
             }
         }
         return file;
+    }
+
+    private Path createVjcPermitWithoutIcao() throws Exception {
+        Path file = tempDir.resolve("LD-2821-VJC-no-ICAO.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("LD-2821/7/2026VN");
+            document.createParagraph().createRun().setText("Mục đích: Chở khách");
+
+            XWPFTable operator = document.createTable(3, 2);
+            operator.getRow(0).getCell(0).setText(
+                    "Tên: Công ty cổ phần hàng không Vietjet (Vietjet air)");
+            operator.getRow(1).getCell(0).setText("Mã IATA: VJ");
+            operator.getRow(1).getCell(1).setText("Mã ICAO:");
+            operator.getRow(2).getCell(0).setText("Địa chỉ bưu điện: Hà Nội");
+
+            document.createParagraph().createRun().setText("2.1. Lịch bay quốc tế");
+            vjcScheduleTable(document, new String[][] {
+                    {"VJ8890", "04-Aug-26", "04-Aug-26", "2", "DAD", "5:15", "HAN", "6:50"}
+            });
+            document.createParagraph().createRun().setText("2.2. Lịch bay quốc nội");
+            vjcScheduleTable(document, new String[][] {
+                    {"VJ1282", "05-Aug-26", "05-Aug-26", "3", "HAN", "7:15", "SGN", "9:20"}
+            });
+
+            XWPFTable aircraft = document.createTable(2, 2);
+            aircraft.getRow(0).getCell(0).setText("Loại tàu bay");
+            aircraft.getRow(0).getCell(1).setText("Số đăng ký");
+            aircraft.getRow(1).getCell(0).setText("320");
+
+            XWPFTable route = document.createTable(3, 2);
+            route.getRow(0).getCell(0).setText("Chặng bay");
+            route.getRow(0).getCell(1).setText("Đường hàng không");
+            route.getRow(1).getCell(0).setText("DAD-HAN");
+            route.getRow(1).getCell(1).setText("W1");
+            route.getRow(2).getCell(0).setText("HAN-SGN");
+            route.getRow(2).getCell(1).setText("W2");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private void vjcScheduleTable(XWPFDocument document, String[][] rows) {
+        String[] headers = {"Số hiệu chuyến bay", "Hiệu lực từ", "Hiệu lực đến",
+                "Ngày trong tuần", "Sân bay cất cánh", "Giờ khởi hành dự kiến",
+                "Sân bay hạ cánh", "Giờ hạ cánh dự kiến"};
+        XWPFTable schedule = document.createTable(rows.length + 1, headers.length);
+        for (int column = 0; column < headers.length; column++) {
+            schedule.getRow(0).getCell(column).setText(headers[column]);
+        }
+        for (int row = 0; row < rows.length; row++) {
+            for (int column = 0; column < headers.length; column++) {
+                schedule.getRow(row + 1).getCell(column).setText(rows[row][column]);
+            }
+        }
     }
 
     private void scheduleTable(XWPFDocument document, String[][] rows) {

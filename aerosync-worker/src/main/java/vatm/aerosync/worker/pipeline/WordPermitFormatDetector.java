@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import vatm.aerosync.common.exception.FormatValidationException;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -39,8 +40,23 @@ class WordPermitFormatDetector {
     }
 
     private boolean supports(DocxPermitFormatProfile profile, WordPermitDocument document) {
+        boolean hasIata = Pattern.compile(
+                        "(?iu)(?:IATA\\s*(?:CODE)?|M[ÃA]\\s*IATA)(?:\\s*\\([^)]*\\))?"
+                                + "[ \\t]*:[ \\t]*[A-Z0-9]{2}(?![A-Z0-9])")
+                .matcher(document.rawContent())
+                .find();
+        boolean hasIcao = Pattern.compile(
+                        "(?iu)(?:ICAO\\s*(?:CODE)?|M[ÃA]\\s*ICAO)(?:\\s*\\([^)]*\\))?"
+                                + "[ \\t]*:[ \\t]*[A-Z0-9]{3}(?![A-Z0-9])")
+                .matcher(document.rawContent())
+                .find();
         return profile.detectionPatterns().stream()
-                .allMatch(pattern -> Pattern.compile(pattern).matcher(document.rawContent()).find());
+                .allMatch(pattern -> Pattern.compile(pattern).matcher(document.rawContent()).find()
+                        || (hasIata && !hasIcao && isIcaoIdentificationPattern(pattern)));
+    }
+
+    private boolean isIcaoIdentificationPattern(String pattern) {
+        return pattern.toUpperCase(Locale.ROOT).contains("ICAO");
     }
 
     private FormatValidationException invalid(String fileName, String detail) {

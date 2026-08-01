@@ -30,6 +30,11 @@ class PermitOperatorCatalog {
         this.icaoCodesByIata = load();
     }
 
+    String operatorForIata(String value) {
+        List<String> candidates = icaoCodesByIata.get(canonical(value));
+        return candidates != null && candidates.size() == 1 ? candidates.getFirst() : null;
+    }
+
     String normalizeFlightNumber(String value, String operatorId) {
         String compact = canonical(value);
         Matcher matcher = IATA_FLIGHT_NUMBER.matcher(compact);
@@ -43,6 +48,9 @@ class PermitOperatorCatalog {
         }
 
         String normalizedOperator = canonical(operatorId);
+        if (candidates.size() > 1 && "PRV".equals(normalizedOperator)) {
+            return "PRV" + matcher.group("suffix");
+        }
         String icaoCode = candidates.stream()
                 .filter(candidate -> candidate.equals(normalizedOperator))
                 .findFirst()

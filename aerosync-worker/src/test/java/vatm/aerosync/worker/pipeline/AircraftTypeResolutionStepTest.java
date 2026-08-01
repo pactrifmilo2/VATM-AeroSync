@@ -46,7 +46,9 @@ class AircraftTypeResolutionStepTest {
                         (6864, 'A33X', 'A33X', NULL, 230),
                         (1712, 'GLF6', NULL, NULL, 46),
                         (4102, 'GA6C', 'GA6C', NULL, 94600),
-                        (4941, 'GA6C', 'GA6C', NULL, 42)
+                        (4941, 'GA6C', 'GA6C', NULL, 42),
+                        (9001, 'AMB', 'AMB', NULL, 10),
+                        (9002, 'AMB', 'AMB', NULL, 20)
                     """);
         }
         step = new AircraftTypeResolutionStep(
@@ -77,17 +79,26 @@ class AircraftTypeResolutionStepTest {
 
     @Test
     void resolve_quarantinesAmbiguousAtfmCodes() {
-        ProcessingContext context = context("GA6C");
+        ProcessingContext context = context("AMB");
 
         assertThatThrownBy(() -> step.resolve(context))
                 .isInstanceOf(BusinessRuleException.class)
                 .hasMessageContaining("BR-AIRCRAFT-AMBIGUOUS")
-                .hasMessageContaining("4102")
-                .hasMessageContaining("4941");
+                .hasMessageContaining("9001")
+                .hasMessageContaining("9002");
         assertThat(context.getRowValidationErrors())
                 .extracting("field", "code", "value")
                 .containsExactly(org.assertj.core.groups.Tuple.tuple(
-                        "aircraftType", "BR-AIRCRAFT-AMBIGUOUS", "GA6C"));
+                        "aircraftType", "BR-AIRCRAFT-AMBIGUOUS", "AMB"));
+    }
+
+    @Test
+    void resolve_usesConfiguredPreferenceForObservedAmbiguousCode() {
+        ProcessingContext context = context("GA6C");
+
+        step.resolve(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(4102L);
     }
 
     @Test

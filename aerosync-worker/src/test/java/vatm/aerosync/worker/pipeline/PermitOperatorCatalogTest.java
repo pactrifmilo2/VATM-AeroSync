@@ -25,11 +25,19 @@ class PermitOperatorCatalogTest {
     }
 
     @Test
+    void operatorForIata_resolvesOperatorWhenDocumentDoesNotContainIcao() {
+        assertThat(catalog.operatorForIata("VJ")).isEqualTo("VJC");
+        assertThat(catalog.operatorForIata("NN")).isNull();
+        assertThat(catalog.operatorForIata("unknown")).isNull();
+    }
+
+    @Test
     void normalizeFlightNumber_mapsInvalidDatabaseIcaoCodesToPrivateOperator() {
         assertThat(catalog.normalizeFlightNumber("2G123", "PRV")).isEqualTo("PRV123");
         assertThat(catalog.normalizeFlightNumber("3K123", "PRV")).isEqualTo("PRV123");
         assertThat(catalog.normalizeFlightNumber("MG123", "PRV")).isEqualTo("PRV123");
         assertThat(catalog.normalizeFlightNumber("VF123", "PRV")).isEqualTo("PRV123");
+        assertThat(catalog.normalizeFlightNumber("NN123", "PRV")).isEqualTo("PRV123");
 
         assertThat(catalog.normalizeFlightNumber("2G123", "CRG")).isEqualTo("CRG123");
         assertThat(catalog.normalizeFlightNumber("3K123", "JSA")).isEqualTo("JSA123");

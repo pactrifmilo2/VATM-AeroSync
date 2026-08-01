@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -137,13 +138,13 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             statement.setString(index++, permit.season());
             statement.setDate(index++, Date.valueOf(permit.permitDate()));
             statement.setString(index++, permit.operatorId());
-            statement.setString(index++, truncate(permit.reference(), 4000));
+            statement.setString(index++, truncateUtf8(permit.reference(), 4000));
             statement.setInt(index++, permit.validHours());
             statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
             statement.setString(index++, "AEROSYNC");
             statement.setString(index++, "0");
-            statement.setString(index++, truncate(permit.rawContent(), 4000));
-            statement.setString(index++, truncate(permit.billingAddress(), 4000));
+            statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
+            statement.setString(index++, truncateUtf8(permit.billingAddress(), 4000));
             statement.setString(index++, permit.flightType());
             statement.registerOutParameter(index++, Types.NUMERIC);
             statement.registerOutParameter(index, Types.NUMERIC);
@@ -272,7 +273,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index++, "AEROSYNC");
         statement.setDate(index++, Date.valueOf(flight.beginDate()));
         statement.setDate(index++, Date.valueOf(flight.endDate()));
-        statement.setString(index, truncate(flight.remark(), 4000));
+        statement.setString(index, truncateUtf8(flight.remark(), 4000));
     }
 
     private boolean masterMatches(ResultSet row, SchedulePermit permit) throws SQLException {
@@ -352,8 +353,24 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
     }
 
-    private String truncate(String value, int length) {
-        return value == null || value.length() <= length ? value : value.substring(0, length);
+    static String truncateUtf8(String value, int maxBytes) {
+        if (value == null || value.getBytes(StandardCharsets.UTF_8).length <= maxBytes) {
+            return value;
+        }
+        StringBuilder result = new StringBuilder();
+        int bytes = 0;
+        for (int offset = 0; offset < value.length();) {
+            int codePoint = value.codePointAt(offset);
+            String character = new String(Character.toChars(codePoint));
+            int characterBytes = character.getBytes(StandardCharsets.UTF_8).length;
+            if (bytes + characterBytes > maxBytes) {
+                break;
+            }
+            result.append(character);
+            bytes += characterBytes;
+            offset += Character.charCount(codePoint);
+        }
+        return result.toString();
     }
 
     private static String normalize(String value) {
