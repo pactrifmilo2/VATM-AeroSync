@@ -23,6 +23,8 @@ class PermitOperatorCatalog {
     private static final String RESOURCE = "permit-reference/permit-oper.yaml";
     private static final Pattern IATA_FLIGHT_NUMBER = Pattern.compile(
             "^(?<iata>[A-Z0-9]{2})(?<suffix>\\d[A-Z0-9]*)$");
+    private static final Pattern ICAO_FLIGHT_NUMBER = Pattern.compile(
+            "^(?<icao>[A-Z]{3})\\d[A-Z0-9]*$");
 
     private final Map<String, List<String>> icaoCodesByIata;
 
@@ -51,6 +53,23 @@ class PermitOperatorCatalog {
             return compact;
         }
         return icaoCode + matcher.group("suffix");
+    }
+
+    String inferOperator(String flightNumber) {
+        String compact = canonical(flightNumber);
+        Matcher icaoMatcher = ICAO_FLIGHT_NUMBER.matcher(compact);
+        if (icaoMatcher.matches()) {
+            return icaoMatcher.group("icao");
+        }
+
+        Matcher iataMatcher = IATA_FLIGHT_NUMBER.matcher(compact);
+        if (!iataMatcher.matches()) {
+            return null;
+        }
+        List<String> candidates = icaoCodesByIata.get(iataMatcher.group("iata"));
+        return candidates != null && candidates.size() == 1
+                ? candidates.getFirst()
+                : null;
     }
 
     private Map<String, List<String>> load() {

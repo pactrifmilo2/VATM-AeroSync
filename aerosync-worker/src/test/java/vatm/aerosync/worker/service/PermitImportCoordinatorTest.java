@@ -156,6 +156,26 @@ class PermitImportCoordinatorTest {
         verify(atfmScheduleGateway, never()).insert(any());
     }
 
+    @Test
+    void importPermit_refreshesTrackingWhenReusingAResetAttempt() {
+        PermitImport resetAttempt = imported("x".repeat(64), 203001L, 202510L);
+        resetAttempt.setStatus(PermitImportStatus.RESERVED);
+        resetAttempt.setNormalizedPermitId("OLD-ID");
+        resetAttempt.setErrorMessage("old failure");
+        when(permitImportRepository.findBySyncJobId(7L)).thenReturn(Optional.of(resetAttempt));
+        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
+                anyString(), any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(303001L, 302510L, 1));
+
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        assertThat(resetAttempt.getNormalizedPermitId()).isEqualTo("O/F 05199/S/CHK/2026");
+        assertThat(resetAttempt.getSemanticHash()).isEqualTo("s".repeat(64));
+        assertThat(resetAttempt.getErrorMessage()).isNull();
+    }
+
     private PermitImport imported(String hash, long masterId, long permId) {
         PermitImport permitImport = new PermitImport();
         permitImport.setNormalizedPermitId("O/F 05199/S/CHK/2026");

@@ -35,14 +35,12 @@ public class DocxSchedulePermitParser {
     private static final Pattern IATA_LABEL_PATTERN = Pattern.compile(
             "(?iu)(?:IATA\\s*(?:CODE)?|MA\\s*IATA)(?:\\s*\\([^)]*\\))?"
                     + "\\s*:\\s*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
-    private static final Pattern ICAO_FLIGHT_PREFIX_PATTERN = Pattern.compile(
-            "^([A-Z]{3})(?=\\d)");
-
     private static final DateTimeFormatter ORACLE_TIME = DateTimeFormatter.ofPattern("HHmm");
 
     private final WordPermitDocumentReader documentReader;
     private final WordPermitFormatDetector formatDetector;
     private final AirportCodeCatalog airportCodeCatalog;
+    private final PermitOperatorCatalog permitOperatorCatalog;
 
     /**
      * Retained for callers that constructed the former DOCX-only parser directly.
@@ -50,21 +48,30 @@ public class DocxSchedulePermitParser {
     public DocxSchedulePermitParser() {
         this(new WordPermitDocumentReader(),
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog()),
-                new AirportCodeCatalog());
+                new AirportCodeCatalog(),
+                new PermitOperatorCatalog());
     }
 
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector) {
-        this(documentReader, formatDetector, new AirportCodeCatalog());
+        this(documentReader, formatDetector, new AirportCodeCatalog(), new PermitOperatorCatalog());
+    }
+
+    public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
+                                    WordPermitFormatDetector formatDetector,
+                                    AirportCodeCatalog airportCodeCatalog) {
+        this(documentReader, formatDetector, airportCodeCatalog, new PermitOperatorCatalog());
     }
 
     @Autowired
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector,
-                                    AirportCodeCatalog airportCodeCatalog) {
+                                    AirportCodeCatalog airportCodeCatalog,
+                                    PermitOperatorCatalog permitOperatorCatalog) {
         this.documentReader = documentReader;
         this.formatDetector = formatDetector;
         this.airportCodeCatalog = airportCodeCatalog;
+        this.permitOperatorCatalog = permitOperatorCatalog;
     }
 
     public SchedulePermit parse(Path file, String fileName) {
@@ -223,12 +230,10 @@ public class DocxSchedulePermitParser {
                                  String fileName) {
         Map<String, Integer> columns = resolveColumns(scheduleTable.getFirst(), aliases);
         for (int rowIndex = 1; rowIndex < scheduleTable.size(); rowIndex++) {
-            String flightNumber = clean(value(scheduleTable.get(rowIndex), columns, "flightNumber"))
-                    .replaceAll("[^A-Za-z0-9]", "")
-                    .toUpperCase(Locale.ROOT);
-            Matcher prefix = ICAO_FLIGHT_PREFIX_PATTERN.matcher(flightNumber);
-            if (prefix.find()) {
-                return prefix.group(1);
+            String operator = permitOperatorCatalog.inferOperator(
+                    value(scheduleTable.get(rowIndex), columns, "flightNumber"));
+            if (operator != null) {
+                return operator;
             }
         }
         throw invalid(fileName, "Carrier ICAO code could not be inferred from the schedule");

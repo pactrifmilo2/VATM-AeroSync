@@ -75,6 +75,19 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void parse_infersOperatorFromUnambiguousIataFlightPrefix() throws Exception {
+        Path file = createIataOperatorLandingPermitDocument();
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02842/S/CHK/2026");
+        assertThat(permit.operatorId()).isEqualTo("IGA");
+        assertThat(permit.flights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("TE619", "TE620");
+    }
+
+    @Test
     void parse_genericLandingWithOriginalAndNewSchedules_prefersNewSchedule() throws Exception {
         Path file = createGenericLandingReplacementScheduleDocument();
 
@@ -215,6 +228,30 @@ class DocxSchedulePermitParserTest {
             route.getRow(0).getCell(1).setText("Airways");
             route.getRow(1).getCell(0).setText("BMV-HPH");
             route.getRow(1).getCell(1).setText("W1 - DAN - W2");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private Path createIataOperatorLandingPermitDocument() throws Exception {
+        Path file = tempDir.resolve("LD-2842.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun()
+                    .setText("LANDING PERMIT FOR NON-SCHEDULED FLIGHT");
+            document.createParagraph().createRun().setText("Hanoi, 31/07/2026");
+            document.createParagraph().createRun().setText("Permit No.: LD-2842/07/2026VN");
+            document.createParagraph().createRun().setText("1. Carrier: SkyTaxi Sp. z o.o");
+            document.createParagraph().createRun().setText("3. Purpose of Flight: CARGO FLIGHT");
+
+            scheduleTable(document, new String[][] {
+                    {"TE619", "04AUG26", "04AUG26", "-2-----", "DWC", "0900",
+                            "SGN", "1600", "76X"},
+                    {"TE620", "05AUG26", "05AUG26", "--3----", "SGN", "1630",
+                            "BRU", "0630+1", "76Y"}
+            });
 
             try (OutputStream output = Files.newOutputStream(file)) {
                 document.write(output);

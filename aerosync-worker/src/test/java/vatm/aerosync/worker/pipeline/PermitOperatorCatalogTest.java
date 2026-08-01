@@ -42,4 +42,11 @@ class PermitOperatorCatalogTest {
         assertThat(catalog.normalizeFlightNumber("VN-B593", "VNB"))
                 .isEqualTo("VNB593");
     }
+
+    @Test
+    void inferOperator_mapsUnambiguousIataFlightPrefix() {
+        assertThat(catalog.inferOperator("TE619")).isEqualTo("IGA");
+        assertThat(catalog.inferOperator("HVN1822")).isEqualTo("HVN");
+        assertThat(catalog.inferOperator("3Q123")).isNull();
+    }
 }

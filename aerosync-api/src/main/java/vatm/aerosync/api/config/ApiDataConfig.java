@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "vatm.aerosync.common.repository",
         "vatm.aerosync.api.repository"
 })
-@EnableConfigurationProperties({ApiProperties.class, RabbitMqProperties.class})
+@EnableConfigurationProperties({ApiProperties.class, RabbitMqProperties.class, TestReplayProperties.class})
 public class ApiDataConfig {
 }

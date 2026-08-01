@@ -47,6 +47,12 @@ app:
       max-files-per-cycle: 100
       blacklist-senders:
         - ops@vatm.local
+  test-replay:
+    enabled: ${APP_TEST_REPLAY_ENABLED:false}
+    atfm-write-enabled: ${APP_ATFM_WRITE_ENABLED:false}
+    atfm-url: ${APP_ATFM_DATASOURCE_URL:}
+    atfm-username: ${APP_ATFM_DATASOURCE_USERNAME:}
+    atfm-password: ${APP_ATFM_DATASOURCE_PASSWORD:}
   rabbit:
     sync-result-exchange: sync.result
     dashboard-alerts-queue: dashboard.alerts.queue
