@@ -31,6 +31,9 @@ public class RabbitMqProperties {
             "permit.profile.validation";
     private String permitProfileValidationQueue =
             "permit.profile.validation.queue";
+    private String permitProfileCanaryExchange = "permit.profile.canary";
+    private String permitProfileCanaryRoutingKey = "permit.profile.canary";
+    private String permitProfileCanaryQueue = "permit.profile.canary.queue";
 
     public String getFileIngestedExchange() {
         return fileIngestedExchange;
@@ -199,5 +202,32 @@ public class RabbitMqProperties {
     public void setPermitProfileValidationQueue(
             String permitProfileValidationQueue) {
         this.permitProfileValidationQueue = permitProfileValidationQueue;
+    }
+
+    public String getPermitProfileCanaryExchange() {
+        return permitProfileCanaryExchange;
+    }
+
+    public void setPermitProfileCanaryExchange(
+            String permitProfileCanaryExchange) {
+        this.permitProfileCanaryExchange = permitProfileCanaryExchange;
+    }
+
+    public String getPermitProfileCanaryRoutingKey() {
+        return permitProfileCanaryRoutingKey;
+    }
+
+    public void setPermitProfileCanaryRoutingKey(
+            String permitProfileCanaryRoutingKey) {
+        this.permitProfileCanaryRoutingKey = permitProfileCanaryRoutingKey;
+    }
+
+    public String getPermitProfileCanaryQueue() {
+        return permitProfileCanaryQueue;
+    }
+
+    public void setPermitProfileCanaryQueue(
+            String permitProfileCanaryQueue) {
+        this.permitProfileCanaryQueue = permitProfileCanaryQueue;
     }
 }

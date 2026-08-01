@@ -47,4 +47,20 @@ class RabbitMqConfigTest {
         assertThat(binding.getRoutingKey())
                 .isEqualTo("permit.profile.validation");
     }
+
+    @Test
+    void declaresDedicatedLearnedProfileCanaryTopology() {
+        RabbitMqConfig config = new RabbitMqConfig();
+        RabbitMqProperties properties = new RabbitMqProperties();
+
+        DirectExchange exchange =
+                config.permitProfileCanaryExchange(properties);
+        Queue queue = config.permitProfileCanaryQueue(properties);
+        Binding binding = config.permitProfileCanaryBinding(
+                queue, exchange, properties);
+
+        assertThat(exchange.getName()).isEqualTo("permit.profile.canary");
+        assertThat(queue.getName()).isEqualTo("permit.profile.canary.queue");
+        assertThat(binding.getRoutingKey()).isEqualTo("permit.profile.canary");
+    }
 }

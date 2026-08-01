@@ -35,3 +35,4 @@ app:
     sync-result-exchange: sync.result
     permit-training-validation-queue: permit.training.validation.queue
     permit-profile-validation-queue: permit.profile.validation.queue
+    permit-profile-canary-queue: permit.profile.canary.queue

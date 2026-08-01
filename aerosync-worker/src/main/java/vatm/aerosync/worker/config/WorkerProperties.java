@@ -9,6 +9,8 @@ public class WorkerProperties {
     private int processedRetentionDays = 60;
     private int errorRetentionDays = 90;
     private long lockTtlSeconds = 600;
+    private boolean learnedProfilesRuntimeEnabled;
+    private long learnedProfileCacheSeconds = 30;
 
     public long getMaxFileSizeBytes() {
         return maxFileSizeBytes;
@@ -40,5 +42,22 @@ public class WorkerProperties {
 
     public void setLockTtlSeconds(long lockTtlSeconds) {
         this.lockTtlSeconds = lockTtlSeconds;
+    }
+
+    public boolean isLearnedProfilesRuntimeEnabled() {
+        return learnedProfilesRuntimeEnabled;
+    }
+
+    public void setLearnedProfilesRuntimeEnabled(
+            boolean learnedProfilesRuntimeEnabled) {
+        this.learnedProfilesRuntimeEnabled = learnedProfilesRuntimeEnabled;
+    }
+
+    public long getLearnedProfileCacheSeconds() {
+        return learnedProfileCacheSeconds;
+    }
+
+    public void setLearnedProfileCacheSeconds(long learnedProfileCacheSeconds) {
+        this.learnedProfileCacheSeconds = learnedProfileCacheSeconds;
     }
 }

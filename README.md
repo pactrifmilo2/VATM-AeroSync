@@ -319,23 +319,33 @@ or executable code.
 | `POST` | `/api/permit-training-profiles/{id}/confirm` | Operator/Admin | Lock the mapping and move it to evidence collection |
 | `POST` | `/api/permit-training-profiles/{id}/validate` | Operator/Admin | Queue safe compilation and replay of all corrected evidence |
 | `GET` | `/api/permit-training-profiles/{id}/compiled` | Operator/Admin | Inspect the non-active compiled profile artifact |
+| `POST` | `/api/permit-training-profiles/{id}/canaries` | Operator/Admin | Attach an unseen corrected source and queue canary replay |
+| `GET` | `/api/permit-training-profiles/{id}/canary-readiness` | Operator/Admin | Read canary counts and activation-review blockers |
 
-The guided lifecycle implemented through Phase 3 is
+The guided lifecycle implemented through Phase 4 is
 `DRAFT -> COLLECTING_EVIDENCE -> VALIDATING -> CANARY`. The worker compiles only
 declarative cell coordinates, plain-text anchors, table column indexes, and
 business options. It then replays every corrected retained source and compares
 only the semantic fields that the operator mapped. A mismatch moves the version
 to `NEEDS_REVISION` and records per-source diagnostics; a complete pass moves it
-to `CANARY` with a compiled preview. `CANARY` means ready for the later canary
-phase—it is not active and is not loaded by live mail parsing.
+to `CANARY` with a compiled preview.
+
+In `CANARY`, an operator attaches a retained document that was not used by that
+profile version, together with the corrected result it should produce. The API
+rejects both reused source IDs and duplicate document hashes. The worker replays
+the compiled preview asynchronously. Each pass increases the canary count; any
+failure returns the profile to `NEEDS_REVISION` and cancels its pending canaries.
+The readiness endpoint requires three successful canaries by default, configurable
+with `APP_PERMIT_PROFILE_MINIMUM_CANARY_SUCCESSES`. Readiness is informational:
+Phase 4 never activates the profile or loads it into live mail parsing.
 
 Every mutation uses an `expectedVersion` value to prevent one operator from
 silently overwriting another operator's changes. Validation is dispatched to
 the worker only after the database transaction commits, avoiding a race where
 the worker could see the previous status. The existing migration already
-contains the required profile, evidence, and event columns; Phase 3 adds no new
-database migration. Actual canary evaluation and admin-only activation remain
-future phases.
+contains the required profile, evidence, and event columns; Phase 4 adds no new
+database migration. Admin-only activation, rollback, and learned-profile runtime
+loading remain a future phase.
 
 Before deploying this phase to an existing database, rerun the idempotent
 `scripts/migrate-adaptive-permit-review-oracle.sql` migration. Previously
@@ -376,8 +386,12 @@ credentials. With the current HTTP Basic setup, the browser may show its native
 login prompt once when opening the protected page. An `OPERATOR` account can
 test review, correction, approval, and rejection; an `ADMIN` account also
 unlocks ATFM publication and alias validation, activation, disabling,
-reactivation, and history. The feature is disabled by default and should remain
-disabled in production.
+reactivation, and history. Both roles can use the **Profile training** tab to
+select retained documents, label fields and schedule headers, attach corrected
+examples, queue validation, inspect the compiled preview, run unseen canaries,
+and read activation-review readiness. The test console deliberately has no
+learned-profile activation control. The feature is disabled by default and
+should remain disabled in production.
 
 To regression-test a local directory of Word permits without importing anything:
 

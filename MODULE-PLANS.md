@@ -282,7 +282,7 @@ Track consecutive email server failures in Redis; alert after 3 consecutive fail
 - [x] Replay every corrected retained source and store per-source pass/fail diagnostics
 - [x] Dispatch worker validation after the API transaction commits and ignore stale commands
 - [x] Expose validation requests and non-active compiled-preview APIs
-- [ ] Evaluate unseen canary permits and require a configured success threshold
+- [x] Evaluate unseen canary permits and require a configured success threshold
 - [ ] Expose admin-only activation, rollback, and learned-profile runtime loading
 
 ---

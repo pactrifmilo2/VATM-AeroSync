@@ -33,6 +33,10 @@
                 Alias training
                 <span id="training-count-badge" class="count-badge">0</span>
             </button>
+            <button id="profile-training-tab" class="tab" type="button" data-tab="profile-training">
+                Profile training
+                <span id="profile-training-count-badge" class="count-badge">0</span>
+            </button>
         </nav>
         <p id="connection-message" class="connection-message" role="status">
             Checking your existing AeroSync access…
@@ -371,6 +375,416 @@
                     </div>
                 </article>
             </div>
+        </section>
+
+        <section id="profile-training-panel" class="tab-panel" data-panel="profile-training" hidden>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">GUIDED PROFILE WORKFLOW</p>
+                    <h2>Teach AeroSync a new permit layout</h2>
+                    <p>Correct a normal permit form. AeroSync handles document retention, mappings, and testing.</p>
+                </div>
+                <div class="toolbar">
+                    <label>
+                        Profile status
+                        <select id="profile-training-status-filter">
+                            <option value="">All statuses</option>
+                            <option value="DRAFT">Draft</option>
+                            <option value="COLLECTING_EVIDENCE">Collecting evidence</option>
+                            <option value="VALIDATING">Validating</option>
+                            <option value="CANARY">Canary</option>
+                            <option value="NEEDS_REVISION">Needs revision</option>
+                        </select>
+                    </label>
+                    <button id="refresh-profile-training" class="button button-secondary" type="button">
+                        Refresh profiles
+                    </button>
+                </div>
+            </div>
+
+            <section class="training-wizard" aria-labelledby="wizard-title">
+                <div class="wizard-progress" aria-label="Training progress">
+                    <div class="wizard-step is-current" data-wizard-step="CHOOSE_DOCUMENT"><span>1</span>Choose document</div>
+                    <div class="wizard-step" data-wizard-step="CHECK_RESULT"><span>2</span>Check permit</div>
+                    <div class="wizard-step" data-wizard-step="RESOLVE_FIELDS"><span>3</span>Resolve fields</div>
+                    <div class="wizard-step" data-wizard-step="TEST_DOCUMENTS"><span>4</span>Test documents</div>
+                    <div class="wizard-step" data-wizard-step="ACTIVATE"><span>5</span>Activate</div>
+                </div>
+
+                <section class="subsection wizard-start-card">
+                    <div class="panel-title-row">
+                        <div>
+                            <p class="eyebrow">STEP 1</p>
+                            <h3 id="wizard-title">Choose a permit document</h3>
+                            <p class="supporting-copy">AeroSync keeps the document and prepares the training draft automatically.</p>
+                        </div>
+                        <button id="wizard-refresh-documents" class="button button-quiet" type="button">Refresh documents</button>
+                    </div>
+                    <div class="wizard-start-row">
+                        <label>
+                            Document to teach
+                            <select id="wizard-source"></select>
+                        </label>
+                        <button id="wizard-start" class="button button-primary" type="button">Start or resume training</button>
+                    </div>
+                    <p id="wizard-start-message" class="inline-message" role="status"></p>
+                </section>
+
+                <div id="wizard-workspace" hidden>
+                    <div class="detail-heading wizard-heading">
+                        <div>
+                            <p id="wizard-kicker" class="eyebrow">TRAINING DRAFT</p>
+                            <h3 id="wizard-name">Permit format</h3>
+                            <p id="wizard-guidance" class="supporting-copy"></p>
+                        </div>
+                        <span id="wizard-status" class="pill"></span>
+                    </div>
+
+                    <div class="metric-grid metric-grid-four">
+                        <div class="metric-card"><span>Current step</span><strong id="wizard-current-step">1 of 5</strong></div>
+                        <div class="metric-card"><span>Training examples</span><strong id="wizard-training-progress">0 / 1</strong></div>
+                        <div class="metric-card"><span>Unseen tests</span><strong id="wizard-test-progress">0 / 3</strong></div>
+                        <div class="metric-card"><span>Saved version</span><strong id="wizard-version">0</strong></div>
+                    </div>
+
+                    <section class="subsection">
+                        <div class="panel-title-row">
+                            <div>
+                                <p class="eyebrow">STEP 2</p>
+                                <h3>Check the correct permit result</h3>
+                                <p class="supporting-copy">Fix anything that is wrong. This becomes the answer AeroSync learns from.</p>
+                            </div>
+                            <button id="wizard-add-flight" class="button button-quiet" type="button">Add flight</button>
+                        </div>
+                        <div id="wizard-permit-fields" class="form-grid form-grid-four"></div>
+                        <div class="flag-row">
+                            <label class="checkbox-label"><input id="wizard-iata" type="checkbox">Allow IATA airport codes</label>
+                            <label class="checkbox-label"><input id="wizard-empty-airways" type="checkbox">Allow empty airways</label>
+                        </div>
+                        <div class="table-scroll">
+                            <table>
+                                <thead><tr>
+                                    <th>Flight</th><th>Registration</th><th>Craft ID</th><th>Aircraft type</th>
+                                    <th>Purpose</th><th>MTOW</th><th>From</th><th>To</th><th>ETD</th><th>ETA</th>
+                                    <th>Days</th><th>From date</th><th>To date</th><th>Airways</th><th>Remark</th><th></th>
+                                </tr></thead>
+                                <tbody id="wizard-flight-body"></tbody>
+                            </table>
+                        </div>
+                        <div class="action-row">
+                            <button id="wizard-save-permit" class="button button-primary" type="button">Save correct permit</button>
+                        </div>
+                        <p id="wizard-permit-message" class="inline-message" role="status"></p>
+                    </section>
+
+                    <div class="wizard-mapping-layout">
+                        <section class="subsection wizard-document-panel">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">DOCUMENT PREVIEW</p>
+                                    <h3>Click the document value for the highlighted field</h3>
+                                </div>
+                                <span id="wizard-unresolved-count" class="pill pill-neutral">0 to resolve</span>
+                            </div>
+                            <div id="wizard-document-preview" class="source-table-list wizard-document-preview"></div>
+                        </section>
+
+                        <aside class="subsection wizard-resolution-panel" aria-label="Fields to link">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">STEP 3</p>
+                                    <h3>Fields to link</h3>
+                                    <p class="supporting-copy">Keep this panel in view while selecting values from the document.</p>
+                                </div>
+                            </div>
+                            <div id="wizard-resolutions" class="resolution-list"></div>
+                            <div class="action-row">
+                                <button id="wizard-save-resolutions" class="button button-secondary" type="button">Confirm selections</button>
+                            </div>
+                            <p id="wizard-resolution-message" class="inline-message" role="status"></p>
+                        </aside>
+                    </div>
+
+                    <section class="subsection">
+                        <div class="panel-title-row">
+                            <div>
+                                <p class="eyebrow">STEP 4</p>
+                                <h3>Test with more documents</h3>
+                                <p class="supporting-copy">Choose a same-layout document, correct the form above for that document, then add it as a training example or unseen test.</p>
+                            </div>
+                        </div>
+                        <div class="wizard-start-row">
+                            <label>Another document<select id="wizard-example-source"></select></label>
+                            <button id="wizard-add-example" class="button button-secondary" type="button">Add this document</button>
+                            <button id="wizard-validate" class="button button-primary" type="button">Build and start testing</button>
+                        </div>
+                        <div id="wizard-blockers" class="compact-list"></div>
+                        <p id="wizard-test-message" class="inline-message" role="status"></p>
+                    </section>
+
+                    <section class="subsection wizard-activation-card">
+                        <div class="panel-title-row">
+                            <div>
+                                <p class="eyebrow">STEP 5</p>
+                                <h3>Activate for future email permits</h3>
+                                <p class="supporting-copy">Activation changes extraction only. Every learned result still requires operator review and is never published to ATFM automatically.</p>
+                            </div>
+                            <button id="wizard-activate" class="button button-success" type="button">Activate format</button>
+                        </div>
+                        <p id="wizard-activation-message" class="inline-message" role="status"></p>
+                    </section>
+                </div>
+            </section>
+
+            <details id="advanced-profile-training" class="advanced-training">
+                <summary>Advanced view — technical mappings and diagnostics</summary>
+                <div class="advanced-training-content">
+            <section class="subsection profile-create-card">
+                <div class="panel-title-row">
+                    <div>
+                        <p class="eyebrow">STEP 1</p>
+                        <h3>Start from a captured Word document</h3>
+                    </div>
+                    <button id="refresh-training-sources" class="button button-quiet" type="button">
+                        Refresh documents
+                    </button>
+                </div>
+                <div class="form-grid">
+                    <label class="span-two">
+                        Training document
+                        <select id="new-profile-source"></select>
+                    </label>
+                    <label>
+                        Profile key
+                        <input id="new-profile-key" placeholder="qatar-cargo-permit">
+                    </label>
+                    <label>
+                        Display name
+                        <input id="new-profile-name" placeholder="Qatar cargo permit">
+                    </label>
+                    <label>
+                        Format family
+                        <input id="new-profile-family" value="caav-english">
+                    </label>
+                    <label>
+                        Existing YAML baseline (optional)
+                        <input id="new-profile-base" placeholder="caav-generic-landing-issued">
+                    </label>
+                </div>
+                <div class="action-row">
+                    <button id="retain-profile-source" class="button button-secondary" type="button">
+                        Retain selected document
+                    </button>
+                    <button id="create-profile-draft" class="button button-primary" type="button">
+                        Create draft profile
+                    </button>
+                </div>
+                <p id="profile-create-message" class="inline-message" role="status"></p>
+            </section>
+
+            <div class="split-layout profile-training-layout">
+                <aside class="queue-panel" aria-label="Guided profile versions">
+                    <div class="panel-title-row">
+                        <h3>Profile versions</h3>
+                        <span id="profile-training-total" class="muted">0 profiles</span>
+                    </div>
+                    <div id="profile-training-list" class="record-list"></div>
+                    <div id="profile-training-empty" class="empty-state">
+                        No profile versions match this filter.
+                    </div>
+                </aside>
+
+                <article class="detail-panel">
+                    <div id="profile-training-detail-empty" class="empty-state detail-empty">
+                        <span class="empty-number">03</span>
+                        <h3>Select or create a profile</h3>
+                        <p>The document map, corrected examples, validation, and canary gate will appear here.</p>
+                    </div>
+
+                    <div id="profile-training-detail" hidden>
+                        <div class="detail-heading">
+                            <div>
+                                <p id="profile-training-kicker" class="eyebrow"></p>
+                                <h3 id="profile-training-title"></h3>
+                                <p id="profile-training-subtitle" class="supporting-copy"></p>
+                            </div>
+                            <span id="profile-training-status-pill" class="pill"></span>
+                        </div>
+
+                        <div class="metric-grid metric-grid-four">
+                            <div class="metric-card">
+                                <span>Database version</span>
+                                <strong id="profile-training-version">0</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Training evidence</span>
+                                <strong id="profile-training-evidence-count">0</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Canaries passed</span>
+                                <strong id="profile-training-canary-count">0</strong>
+                            </div>
+                            <div class="metric-card">
+                                <span>Activation review</span>
+                                <strong id="profile-training-ready">Blocked</strong>
+                            </div>
+                        </div>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">SOURCE DOCUMENT</p>
+                                    <h3 id="profile-source-title">Captured cells</h3>
+                                </div>
+                                <span id="profile-source-retained" class="pill"></span>
+                            </div>
+                            <p id="profile-source-copy" class="supporting-copy"></p>
+                            <div id="profile-source-tables" class="source-table-list"></div>
+                        </section>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">STEP 2</p>
+                                    <h3>Map permit fields</h3>
+                                </div>
+                                <button id="add-scalar-mapping" class="button button-quiet" type="button">
+                                    Add field
+                                </button>
+                            </div>
+                            <p class="supporting-copy">Required mappings are source permit number, permit date, and operator ICAO. Choose CELL, TEXT, or CONSTANT and supply the matching source value.</p>
+                            <div class="table-scroll mapping-table-wrap">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Meaning</th>
+                                        <th>Read from</th>
+                                        <th>Cell ID</th>
+                                        <th>Selected text</th>
+                                        <th>Correct value</th>
+                                        <th>Required</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="scalar-mapping-body"></tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">STEP 3</p>
+                                    <h3>Map the schedule table</h3>
+                                </div>
+                            </div>
+                            <div class="form-grid schedule-settings">
+                                <label>
+                                    Table
+                                    <select id="schedule-table-index"></select>
+                                </label>
+                                <label>
+                                    First data row index
+                                    <input id="schedule-data-row" type="number" min="1" value="1">
+                                </label>
+                            </div>
+                            <p class="supporting-copy">Select the header cell for each meaning. Fields marked * are required.</p>
+                            <div id="schedule-column-grid" class="schedule-column-grid"></div>
+                        </section>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">STEP 4</p>
+                                    <h3>Set safe business defaults</h3>
+                                </div>
+                                <span class="pill pill-pending">Review only</span>
+                            </div>
+                            <div class="form-grid">
+                                <label>Authority ID *<input id="profile-option-author" maxlength="20"></label>
+                                <label>Permit type *<input id="profile-option-type" maxlength="20"></label>
+                                <label>Version *<input id="profile-option-version" maxlength="10"></label>
+                                <label>Season *<input id="profile-option-season" maxlength="20"></label>
+                                <label>Valid hours *<input id="profile-option-valid-hours" type="number" min="1" max="720"></label>
+                                <label>Flight type *<input id="profile-option-flight-type" maxlength="20"></label>
+                            </div>
+                            <div class="flag-row">
+                                <label class="checkbox-label"><input id="profile-option-iata" type="checkbox">Allow IATA airport codes</label>
+                                <label class="checkbox-label"><input id="profile-option-empty-airways" type="checkbox">Allow empty airways</label>
+                            </div>
+                            <div class="action-row">
+                                <button id="save-profile-definition" class="button button-primary" type="button">
+                                    Save field mapping
+                                </button>
+                            </div>
+                            <p id="profile-definition-message" class="inline-message" role="status"></p>
+                        </section>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">STEP 5</p>
+                                    <h3>Add the correct expected result</h3>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <label class="span-two">Evidence document<select id="profile-evidence-source"></select></label>
+                            </div>
+                            <label class="json-editor-label">
+                                Correct permit JSON
+                                <textarea id="profile-expected-json" class="json-editor" rows="14" spellcheck="false"></textarea>
+                            </label>
+                            <div class="action-row">
+                                <button id="attach-profile-evidence" class="button button-secondary" type="button">Attach expected result</button>
+                                <button id="confirm-profile-mapping" class="button button-success" type="button">Confirm mapping</button>
+                                <button id="validate-profile" class="button button-primary" type="button">Compile and validate</button>
+                                <button id="view-compiled-profile" class="button button-quiet" type="button">View compiled preview</button>
+                            </div>
+                            <p id="profile-evidence-message" class="inline-message" role="status"></p>
+                            <pre id="compiled-profile-report" class="report-block" hidden></pre>
+                        </section>
+
+                        <section class="subsection">
+                            <div class="panel-title-row">
+                                <div>
+                                    <p class="eyebrow">STEP 6</p>
+                                    <h3>Test an unseen canary</h3>
+                                </div>
+                                <span id="profile-canary-ready-pill" class="pill"></span>
+                            </div>
+                            <p class="supporting-copy">Use a different document that was never used as training evidence. Any mismatch sends the profile back for revision.</p>
+                            <div class="form-grid">
+                                <label class="span-two">Unseen canary document<select id="profile-canary-source"></select></label>
+                            </div>
+                            <label class="json-editor-label">
+                                Correct canary permit JSON
+                                <textarea id="profile-canary-json" class="json-editor" rows="12" spellcheck="false"></textarea>
+                            </label>
+                            <div class="action-row">
+                                <button id="run-profile-canary" class="button button-primary" type="button">Run canary evaluation</button>
+                                <button id="refresh-profile-readiness" class="button button-secondary" type="button">Refresh readiness</button>
+                            </div>
+                            <div id="profile-readiness-list" class="compact-list profile-readiness-list"></div>
+                            <p id="profile-canary-message" class="inline-message" role="status"></p>
+                        </section>
+
+                        <div class="evidence-grid">
+                            <section class="subsection">
+                                <p class="eyebrow">EVIDENCE</p>
+                                <h3>Training and canary documents</h3>
+                                <div id="profile-evidence-list" class="compact-list"></div>
+                            </section>
+                            <section class="subsection">
+                                <p class="eyebrow">IMMUTABLE HISTORY</p>
+                                <h3>Profile events</h3>
+                                <div id="profile-history-list" class="compact-list"></div>
+                            </section>
+                        </div>
+                    </div>
+                </article>
+            </div>
+                </div>
+            </details>
         </section>
     </section>
 </main>

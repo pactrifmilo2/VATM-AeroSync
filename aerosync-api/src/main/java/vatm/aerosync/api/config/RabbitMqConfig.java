@@ -56,4 +56,13 @@ public class RabbitMqConfig {
                 true,
                 false);
     }
+
+    @Bean
+    DirectExchange permitProfileCanaryExchange(
+            RabbitMqProperties properties) {
+        return new DirectExchange(
+                properties.getPermitProfileCanaryExchange(),
+                true,
+                false);
+    }
 }

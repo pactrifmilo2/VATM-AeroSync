@@ -453,6 +453,17 @@ BEGIN
     END IF;
 
     SELECT COUNT(*)
+      INTO column_count
+      FROM user_tab_columns
+     WHERE table_name = 'PERMIT_TRAINING_PROFILES'
+       AND column_name = 'LAYOUT_FINGERPRINT';
+    IF column_count = 0 THEN
+        EXECUTE IMMEDIATE
+            'ALTER TABLE permit_training_profiles ' ||
+            'ADD layout_fingerprint VARCHAR2(64)';
+    END IF;
+
+    SELECT COUNT(*)
       INTO index_count
       FROM user_indexes
      WHERE index_name = 'IX_TRAINING_PROFILE_STATUS';
@@ -460,6 +471,16 @@ BEGIN
         EXECUTE IMMEDIATE
             'CREATE INDEX ix_training_profile_status ' ||
             'ON permit_training_profiles(status, updated_at)';
+    END IF;
+
+    SELECT COUNT(*)
+      INTO index_count
+      FROM user_indexes
+     WHERE index_name = 'IX_TRAINING_PROFILE_LAYOUT';
+    IF index_count = 0 THEN
+        EXECUTE IMMEDIATE
+            'CREATE INDEX ix_training_profile_layout ' ||
+            'ON permit_training_profiles(layout_fingerprint, status)';
     END IF;
 
     SELECT COUNT(*)

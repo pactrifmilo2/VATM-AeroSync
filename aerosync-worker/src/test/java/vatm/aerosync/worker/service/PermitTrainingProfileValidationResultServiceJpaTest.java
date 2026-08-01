@@ -127,6 +127,70 @@ class PermitTrainingProfileValidationResultServiceJpaTest {
                 .getResult()).isEqualTo(PermitTrainingEvidenceResult.FAILED);
     }
 
+    @Test
+    void passedUnseenCanaryIncrementsCountWithoutActivation() {
+        PermitTrainingProfileVersion profile = saveCanaryProfile();
+        PermitTrainingProfileEvidence evidence = saveEvidence(
+                profile,
+                "c",
+                PermitTrainingEvidenceKind.CANARY,
+                PermitTrainingEvidenceResult.PENDING);
+        PermitTrainingProfileCanaryResultService service =
+                canaryResultService();
+
+        service.complete(
+                profile.getId(),
+                evidence.getId(),
+                profile.getDefinitionChecksum(),
+                "worker",
+                true,
+                List.of());
+
+        PermitTrainingProfileVersion saved = profileRepository
+                .findById(profile.getId()).orElseThrow();
+        assertThat(saved.getStatus())
+                .isEqualTo(PermitTrainingProfileStatus.CANARY);
+        assertThat(saved.getStatus())
+                .isNotEqualTo(PermitTrainingProfileStatus.ACTIVE);
+        assertThat(saved.getCanarySuccessCount()).isEqualTo(1);
+        assertThat(evidenceRepository.findById(evidence.getId()).orElseThrow()
+                .getResult()).isEqualTo(PermitTrainingEvidenceResult.PASSED);
+    }
+
+    @Test
+    void failedCanaryRequiresRevisionAndCancelsOtherPendingCanaries() {
+        PermitTrainingProfileVersion profile = saveCanaryProfile();
+        PermitTrainingProfileEvidence failed = saveEvidence(
+                profile,
+                "d",
+                PermitTrainingEvidenceKind.CANARY,
+                PermitTrainingEvidenceResult.PENDING);
+        PermitTrainingProfileEvidence pending = saveEvidence(
+                profile,
+                "e",
+                PermitTrainingEvidenceKind.CANARY,
+                PermitTrainingEvidenceResult.PENDING);
+
+        canaryResultService().complete(
+                profile.getId(),
+                failed.getId(),
+                profile.getDefinitionChecksum(),
+                "worker",
+                false,
+                List.of("operator.icao expected=QTR actual=ABC"));
+
+        PermitTrainingProfileVersion saved = profileRepository
+                .findById(profile.getId()).orElseThrow();
+        assertThat(saved.getStatus())
+                .isEqualTo(PermitTrainingProfileStatus.NEEDS_REVISION);
+        assertThat(saved.getStatus())
+                .isNotEqualTo(PermitTrainingProfileStatus.ACTIVE);
+        assertThat(evidenceRepository.findById(failed.getId()).orElseThrow()
+                .getResult()).isEqualTo(PermitTrainingEvidenceResult.FAILED);
+        assertThat(evidenceRepository.findById(pending.getId()).orElseThrow()
+                .getResult()).isEqualTo(PermitTrainingEvidenceResult.REJECTED);
+    }
+
     private PermitTrainingProfileVersion saveProfile() {
         PermitTrainingProfileVersion profile =
                 new PermitTrainingProfileVersion();
@@ -140,18 +204,37 @@ class PermitTrainingProfileValidationResultServiceJpaTest {
         return profileRepository.saveAndFlush(profile);
     }
 
+    private PermitTrainingProfileVersion saveCanaryProfile() {
+        PermitTrainingProfileVersion profile = saveProfile();
+        profile.setStatus(PermitTrainingProfileStatus.CANARY);
+        profile.setCompiledProfileJson("{\"schemaVersion\":1}");
+        return profileRepository.saveAndFlush(profile);
+    }
+
     private PermitTrainingProfileEvidence saveEvidence(
             PermitTrainingProfileVersion profile) {
+        return saveEvidence(
+                profile,
+                "b",
+                PermitTrainingEvidenceKind.TRAINING,
+                PermitTrainingEvidenceResult.CORRECTED);
+    }
+
+    private PermitTrainingProfileEvidence saveEvidence(
+            PermitTrainingProfileVersion profile,
+            String seed,
+            PermitTrainingEvidenceKind kind,
+            PermitTrainingEvidenceResult result) {
         SyncJob job = new SyncJob();
-        job.setFileHash("b".repeat(64));
+        job.setFileHash(seed.repeat(64));
         job.setStatus(SyncStatus.QUARANTINED);
         job = jobRepository.saveAndFlush(job);
 
         FileRecord file = new FileRecord();
         file.setSyncJob(job);
         file.setSourceType(FileSourceType.EMAIL);
-        file.setOriginalFileName("permit.docx");
-        file.setStoredPath("C:/archive/permit.docx");
+        file.setOriginalFileName("permit-" + seed + ".docx");
+        file.setStoredPath("C:/archive/permit-" + seed + ".docx");
         file = fileRepository.saveAndFlush(file);
 
         PermitTrainingSource source = new PermitTrainingSource();
@@ -160,7 +243,7 @@ class PermitTrainingProfileValidationResultServiceJpaTest {
         source.setSourceHash(job.getFileHash());
         source.setOriginalFileName(file.getOriginalFileName());
         source.setDocumentJson("{}");
-        source.setCorpusPath("C:/training/permit.docx");
+        source.setCorpusPath("C:/training/permit-" + seed + ".docx");
         source.setRetainedAt(LocalDateTime.now());
         source = sourceRepository.saveAndFlush(source);
 
@@ -168,11 +251,19 @@ class PermitTrainingProfileValidationResultServiceJpaTest {
                 new PermitTrainingProfileEvidence();
         evidence.setTrainingProfile(profile);
         evidence.setTrainingSource(source);
-        evidence.setKind(PermitTrainingEvidenceKind.TRAINING);
-        evidence.setResult(PermitTrainingEvidenceResult.CORRECTED);
+        evidence.setKind(kind);
+        evidence.setResult(result);
         evidence.setExpectedSnapshotJson("{}");
         evidence.setActor("operator.one");
         return evidenceRepository.saveAndFlush(evidence);
+    }
+
+    private PermitTrainingProfileCanaryResultService canaryResultService() {
+        return new PermitTrainingProfileCanaryResultService(
+                profileRepository,
+                evidenceRepository,
+                eventRepository,
+                new ObjectMapper().findAndRegisterModules());
     }
 
     @SpringBootConfiguration

@@ -13,6 +13,7 @@ import vatm.aerosync.common.enums.PermitTrainingProfileStatus;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Collection;
 
 @Repository
 public interface PermitTrainingProfileVersionRepository
@@ -25,6 +26,14 @@ public interface PermitTrainingProfileVersionRepository
             PermitTrainingProfileStatus status,
             Pageable pageable);
 
+    List<PermitTrainingProfileVersion> findAllByStatus(
+            PermitTrainingProfileStatus status);
+
+    Optional<PermitTrainingProfileVersion>
+    findFirstByLayoutFingerprintAndStatusInOrderByUpdatedAtDesc(
+            String layoutFingerprint,
+            Collection<PermitTrainingProfileStatus> statuses);
+
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("""
             select profile
@@ -33,4 +42,14 @@ public interface PermitTrainingProfileVersionRepository
             """)
     Optional<PermitTrainingProfileVersion> findByIdForUpdate(
             @Param("id") Long id);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("""
+            select profile
+              from PermitTrainingProfileVersion profile
+             where profile.profileKey = :profileKey
+             order by profile.profileVersion desc
+            """)
+    List<PermitTrainingProfileVersion> findByProfileKeyForUpdate(
+            @Param("profileKey") String profileKey);
 }

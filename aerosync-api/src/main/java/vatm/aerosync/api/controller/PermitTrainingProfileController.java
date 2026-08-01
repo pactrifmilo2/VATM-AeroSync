@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.api.dto.PermitTrainingProfileConfirmRequest;
+import vatm.aerosync.api.dto.PermitTrainingProfileCanaryReadinessResponse;
+import vatm.aerosync.api.dto.PermitTrainingProfileCanaryRequest;
 import vatm.aerosync.api.dto.PermitTrainingProfileCreateRequest;
 import vatm.aerosync.api.dto.PermitTrainingProfileDetailResponse;
 import vatm.aerosync.api.dto.PermitTrainingProfileEvidenceRequest;
@@ -26,6 +28,7 @@ import vatm.aerosync.api.dto.PermitTrainingProfileSummaryResponse;
 import vatm.aerosync.api.dto.PermitTrainingProfileUpdateRequest;
 import vatm.aerosync.api.dto.PermitTrainingProfileValidateRequest;
 import vatm.aerosync.api.service.PermitTrainingProfileService;
+import vatm.aerosync.api.service.PermitTrainingProfileCanaryApiService;
 import vatm.aerosync.api.service.PermitTrainingProfileValidationApiService;
 import vatm.aerosync.common.dto.CompiledPermitTrainingProfile;
 import vatm.aerosync.common.enums.PermitTrainingProfileStatus;
@@ -41,12 +44,15 @@ public class PermitTrainingProfileController {
 
     private final PermitTrainingProfileService service;
     private final PermitTrainingProfileValidationApiService validationService;
+    private final PermitTrainingProfileCanaryApiService canaryService;
 
     public PermitTrainingProfileController(
             PermitTrainingProfileService service,
-            PermitTrainingProfileValidationApiService validationService) {
+            PermitTrainingProfileValidationApiService validationService,
+            PermitTrainingProfileCanaryApiService canaryService) {
         this.service = service;
         this.validationService = validationService;
+        this.canaryService = canaryService;
     }
 
     @GetMapping
@@ -142,5 +148,25 @@ public class PermitTrainingProfileController {
     @Operation(summary = "Inspect the non-active compiled profile preview")
     public CompiledPermitTrainingProfile compiled(@PathVariable Long id) {
         return validationService.compiled(id);
+    }
+
+    @PostMapping("/{id}/canaries")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @Operation(summary = "Evaluate one unseen retained source as a canary")
+    public PermitTrainingProfileDetailResponse requestCanary(
+            @PathVariable Long id,
+            @Valid @RequestBody PermitTrainingProfileCanaryRequest request,
+            Authentication authentication) {
+        return canaryService.requestCanary(
+                id,
+                request,
+                authentication.getName());
+    }
+
+    @GetMapping("/{id}/canary-readiness")
+    @Operation(summary = "Check the canary gate for later activation review")
+    public PermitTrainingProfileCanaryReadinessResponse canaryReadiness(
+            @PathVariable Long id) {
+        return canaryService.readiness(id);
     }
 }

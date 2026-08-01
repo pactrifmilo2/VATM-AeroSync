@@ -66,6 +66,8 @@ app:
     processed-retention-days: 60
     error-retention-days: 90
     lock-ttl-seconds: 600
+    learned-profiles-runtime-enabled: ${APP_PERMIT_LEARNED_PROFILES_RUNTIME_ENABLED:false}
+    learned-profile-cache-seconds: ${APP_PERMIT_LEARNED_PROFILE_CACHE_SECONDS:30}
   rabbit:
     file-ingested-exchange: file.ingested
     file-processing-routing-key: file.processing
@@ -87,3 +89,6 @@ app:
     permit-profile-validation-exchange: permit.profile.validation
     permit-profile-validation-routing-key: permit.profile.validation
     permit-profile-validation-queue: permit.profile.validation.queue
+    permit-profile-canary-exchange: permit.profile.canary
+    permit-profile-canary-routing-key: permit.profile.canary
+    permit-profile-canary-queue: permit.profile.canary.queue

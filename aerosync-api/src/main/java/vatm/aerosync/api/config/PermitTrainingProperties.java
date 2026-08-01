@@ -7,6 +7,8 @@ public class PermitTrainingProperties {
 
     private int minimumEvidence = 2;
     private boolean requireCorpusValidation = true;
+    private int minimumCanarySuccesses = 3;
+    private boolean assistedUiEnabled = true;
 
     public int getMinimumEvidence() {
         return minimumEvidence;
@@ -22,5 +24,21 @@ public class PermitTrainingProperties {
 
     public void setRequireCorpusValidation(boolean requireCorpusValidation) {
         this.requireCorpusValidation = requireCorpusValidation;
+    }
+
+    public int getMinimumCanarySuccesses() {
+        return minimumCanarySuccesses;
+    }
+
+    public void setMinimumCanarySuccesses(int minimumCanarySuccesses) {
+        this.minimumCanarySuccesses = minimumCanarySuccesses;
+    }
+
+    public boolean isAssistedUiEnabled() {
+        return assistedUiEnabled;
+    }
+
+    public void setAssistedUiEnabled(boolean assistedUiEnabled) {
+        this.assistedUiEnabled = assistedUiEnabled;
     }
 }

@@ -33,6 +33,12 @@ class PermitReviewTestUiControllerTest {
                 .andExpect(content().string(
                         org.hamcrest.Matchers.containsString(
                                 "AeroSync Permit Review Test Console")))
+                .andExpect(content().string(
+                        org.hamcrest.Matchers.containsString(
+                                "Profile training")))
+                .andExpect(content().string(
+                        org.hamcrest.Matchers.containsString(
+                                "Run canary evaluation")))
                 .andExpect(header().string(
                         "Cache-Control",
                         org.hamcrest.Matchers.containsString("no-store")))
@@ -55,7 +61,13 @@ class PermitReviewTestUiControllerTest {
                 .andExpect(content().contentTypeCompatibleWith("text/javascript"))
                 .andExpect(content().string(
                         org.hamcrest.Matchers.containsString(
-                                "/api/permit-training-candidates")));
+                                "/api/permit-training-candidates")))
+                .andExpect(content().string(
+                        org.hamcrest.Matchers.containsString(
+                                "/api/permit-training-profiles")))
+                .andExpect(content().string(
+                        org.hamcrest.Matchers.containsString(
+                                "/canary-readiness")));
     }
 
     @Test

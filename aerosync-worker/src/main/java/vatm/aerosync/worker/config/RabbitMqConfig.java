@@ -137,6 +137,31 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    DirectExchange permitProfileCanaryExchange(
+            RabbitMqProperties properties) {
+        return new DirectExchange(
+                properties.getPermitProfileCanaryExchange(),
+                true,
+                false);
+    }
+
+    @Bean
+    Queue permitProfileCanaryQueue(RabbitMqProperties properties) {
+        return QueueBuilder.durable(
+                properties.getPermitProfileCanaryQueue()).build();
+    }
+
+    @Bean
+    Binding permitProfileCanaryBinding(
+            Queue permitProfileCanaryQueue,
+            DirectExchange permitProfileCanaryExchange,
+            RabbitMqProperties properties) {
+        return BindingBuilder.bind(permitProfileCanaryQueue)
+                .to(permitProfileCanaryExchange)
+                .with(properties.getPermitProfileCanaryRoutingKey());
+    }
+
+    @Bean
     StatelessRetryOperationsInterceptor fileProcessingRetryInterceptor(
             RabbitTemplate rabbitTemplate,
             RabbitMqProperties properties) {

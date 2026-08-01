@@ -16,6 +16,8 @@ public interface PermitReviewRepository extends JpaRepository<PermitReview, Long
 
     Optional<PermitReview> findByPermitImportId(Long permitImportId);
 
+    Optional<PermitReview> findByPermitImportSyncJobId(Long syncJobId);
+
     Page<PermitReview> findByStatus(PermitReviewStatus status, Pageable pageable);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)

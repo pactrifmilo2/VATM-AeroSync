@@ -104,9 +104,9 @@ YAML profile version changes, the candidate becomes inactive until it is
 reviewed again. Business-value corrections are retained as evidence but are
 never turned into executable parser rules automatically.
 
-For a genuinely new family, the guided training API can now collect and validate
-a profile without asking the operator to write YAML or Java. Its flow through
-Phase 3 is:
+For a genuinely new family, the guided training API can now collect, validate,
+and canary-test a profile without asking the operator to write YAML or Java. Its
+flow through Phase 4 is:
 
 ```text
 retained Word source
@@ -116,6 +116,8 @@ retained Word source
   -> confirm as COLLECTING_EVIDENCE
   -> compile and replay as VALIDATING
   -> CANARY when every retained example passes
+  -> attach corrected, previously unseen documents as canaries
+  -> ready for activation review after the configured pass threshold
 ```
 
 Use `/api/permit-training-sources/{id}` to obtain the structured document and
@@ -137,8 +139,20 @@ for inspection from `GET /api/permit-training-profiles/{id}/compiled`.
 
 If every mapped value matches its corrected example, the version moves to
 `CANARY`; otherwise it moves to `NEEDS_REVISION` with per-source diagnostics.
-Neither state affects live mail. The existing YAML profiles remain the runtime
-baseline until canary evaluation and separate admin activation are implemented.
+While it is in `CANARY`, call
+`POST /api/permit-training-profiles/{id}/canaries` with an unseen retained source,
+the current `expectedVersion`, and the corrected expected permit. The API rejects
+a source already used by the profile, including a different source record with
+the same document hash. The worker evaluates it asynchronously. A mismatch moves
+the profile to `NEEDS_REVISION`; a pass leaves it in `CANARY` and increments its
+successful-canary count.
+
+Use `GET /api/permit-training-profiles/{id}/canary-readiness` to see passed,
+failed, and pending counts plus any blockers. The default requirement is three
+successful canaries and can be changed with
+`APP_PERMIT_PROFILE_MINIMUM_CANARY_SUCCESSES`. Readiness does not activate the
+profile. The existing YAML profiles remain the live runtime baseline until the
+separate admin activation phase is implemented.
 
 Make recognition patterns tolerant of harmless punctuation and spacing changes:
 

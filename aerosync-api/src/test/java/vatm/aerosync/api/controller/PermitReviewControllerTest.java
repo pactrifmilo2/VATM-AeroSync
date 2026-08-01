@@ -18,6 +18,7 @@ import vatm.aerosync.api.security.LegacyTUsersPasswordEncoder;
 import vatm.aerosync.api.service.PermitReviewService;
 import vatm.aerosync.api.service.PermitTrainingCandidateService;
 import vatm.aerosync.api.service.PermitTrainingProfileService;
+import vatm.aerosync.api.service.PermitTrainingProfileCanaryApiService;
 import vatm.aerosync.api.service.PermitTrainingProfileValidationApiService;
 
 import java.util.List;
@@ -57,6 +58,10 @@ class PermitReviewControllerTest {
     @MockitoBean
     private PermitTrainingProfileValidationApiService
             trainingProfileValidationService;
+
+    @MockitoBean
+    private PermitTrainingProfileCanaryApiService
+            trainingProfileCanaryService;
 
     @MockitoBean
     private LegacyTUserAccountRepository legacyTUserAccountRepository;
@@ -182,6 +187,34 @@ class PermitReviewControllerTest {
 
         verify(trainingProfileValidationService)
                 .requestValidation(7L, 3L, "operator.one");
+    }
+
+    @Test
+    void operatorCanRequestAnUnseenProfileCanary() throws Exception {
+        mockMvc.perform(post("/api/permit-training-profiles/7/canaries")
+                        .with(user("operator.one").roles("OPERATOR"))
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                  "expectedVersion":4,
+                                  "sourceId":22,
+                                  "expectedPermit":{
+                                    "normalizedPermitId":"LD 02838/S/CHK/2026",
+                                    "permitType":"LD",
+                                    "permitDate":"2026-07-31",
+                                    "operatorId":"QTR",
+                                    "flightType":"NO",
+                                    "validHours":24,
+                                    "iataAirportsAllowed":false,
+                                    "emptyAirwaysAllowed":false,
+                                    "flights":[]
+                                  }
+                                }
+                                """))
+                .andExpect(status().isAccepted());
+
+        verify(trainingProfileCanaryService)
+                .requestCanary(eq(7L), any(), eq("operator.one"));
     }
 
     @Test

@@ -46,6 +46,7 @@ public class DocxSchedulePermitParser {
     private final WordPermitDocumentReader documentReader;
     private final WordPermitFormatDetector formatDetector;
     private final AirportCodeCatalog airportCodeCatalog;
+    private final LearnedPermitRuntimeParser learnedRuntimeParser;
 
     /**
      * Retained for callers that constructed the former DOCX-only parser directly.
@@ -53,21 +54,30 @@ public class DocxSchedulePermitParser {
     public DocxSchedulePermitParser() {
         this(new WordPermitDocumentReader(),
                 new WordPermitFormatDetector(new DocxPermitProfileCatalog()),
-                new AirportCodeCatalog());
+                new AirportCodeCatalog(),
+                null);
     }
 
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector) {
-        this(documentReader, formatDetector, new AirportCodeCatalog());
+        this(documentReader, formatDetector, new AirportCodeCatalog(), null);
+    }
+
+    public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
+                                    WordPermitFormatDetector formatDetector,
+                                    AirportCodeCatalog airportCodeCatalog) {
+        this(documentReader, formatDetector, airportCodeCatalog, null);
     }
 
     @Autowired
     public DocxSchedulePermitParser(WordPermitDocumentReader documentReader,
                                     WordPermitFormatDetector formatDetector,
-                                    AirportCodeCatalog airportCodeCatalog) {
+                                    AirportCodeCatalog airportCodeCatalog,
+                                    LearnedPermitRuntimeParser learnedRuntimeParser) {
         this.documentReader = documentReader;
         this.formatDetector = formatDetector;
         this.airportCodeCatalog = airportCodeCatalog;
+        this.learnedRuntimeParser = learnedRuntimeParser;
     }
 
     public SchedulePermit parse(Path file, String fileName) {
@@ -108,8 +118,22 @@ public class DocxSchedulePermitParser {
     }
 
     WordPermitParseResult parseWithDiagnostics(WordPermitDocument document, String fileName) {
-        WordPermitDetectionResult detection = formatDetector.detectResult(document, fileName);
-        return parseWithDiagnostics(document, fileName, detection);
+        try {
+            WordPermitDetectionResult detection = formatDetector.detectResult(document, fileName);
+            WordPermitParseResult baseline = parseWithDiagnostics(
+                    document, fileName, detection);
+            if (!baseline.reviewRequired() || learnedRuntimeParser == null) {
+                return baseline;
+            }
+            return learnedRuntimeParser.tryParse(document, fileName)
+                    .orElse(baseline);
+        } catch (FormatValidationException baselineFailure) {
+            if (learnedRuntimeParser == null) {
+                throw baselineFailure;
+            }
+            return learnedRuntimeParser.tryParse(document, fileName)
+                    .orElseThrow(() -> baselineFailure);
+        }
     }
 
     private WordPermitParseResult parseWithDiagnostics(

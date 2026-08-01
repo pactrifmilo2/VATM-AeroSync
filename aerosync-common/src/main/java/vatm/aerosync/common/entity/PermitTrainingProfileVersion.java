@@ -61,6 +61,9 @@ public class PermitTrainingProfileVersion {
     @Column(name = "definition_checksum", length = 64)
     private String definitionChecksum;
 
+    @Column(name = "layout_fingerprint", length = 64)
+    private String layoutFingerprint;
+
     @Column(name = "evidence_count", nullable = false)
     private int evidenceCount;
 
@@ -183,6 +186,14 @@ public class PermitTrainingProfileVersion {
         this.definitionChecksum = definitionChecksum;
     }
 
+    public String getLayoutFingerprint() {
+        return layoutFingerprint;
+    }
+
+    public void setLayoutFingerprint(String layoutFingerprint) {
+        this.layoutFingerprint = layoutFingerprint;
+    }
+
     public int getEvidenceCount() {
         return evidenceCount;
     }
@@ -241,5 +252,9 @@ public class PermitTrainingProfileVersion {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void touch() {
+        updatedAt = LocalDateTime.now();
     }
 }

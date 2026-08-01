@@ -56,6 +56,8 @@ app:
   permit-training:
     minimum-evidence: ${APP_PERMIT_TRAINING_MINIMUM_EVIDENCE:2}
     require-corpus-validation: ${APP_PERMIT_TRAINING_REQUIRE_CORPUS_VALIDATION:true}
+    minimum-canary-successes: ${APP_PERMIT_PROFILE_MINIMUM_CANARY_SUCCESSES:3}
+    assisted-ui-enabled: ${APP_PERMIT_TRAINING_ASSISTED_UI_ENABLED:true}
   permit-review-test-ui:
     enabled: ${APP_PERMIT_REVIEW_TEST_UI_ENABLED:false}
   rabbit:
@@ -69,3 +71,5 @@ app:
     permit-training-validation-routing-key: permit.training.validation
     permit-profile-validation-exchange: permit.profile.validation
     permit-profile-validation-routing-key: permit.profile.validation
+    permit-profile-canary-exchange: permit.profile.canary
+    permit-profile-canary-routing-key: permit.profile.canary

@@ -19,6 +19,8 @@ public class RabbitMqProperties {
             "permit.profile.validation";
     private String permitProfileValidationRoutingKey =
             "permit.profile.validation";
+    private String permitProfileCanaryExchange = "permit.profile.canary";
+    private String permitProfileCanaryRoutingKey = "permit.profile.canary";
 
     public String getSyncResultExchange() {
         return syncResultExchange;
@@ -105,5 +107,23 @@ public class RabbitMqProperties {
             String permitProfileValidationRoutingKey) {
         this.permitProfileValidationRoutingKey =
                 permitProfileValidationRoutingKey;
+    }
+
+    public String getPermitProfileCanaryExchange() {
+        return permitProfileCanaryExchange;
+    }
+
+    public void setPermitProfileCanaryExchange(
+            String permitProfileCanaryExchange) {
+        this.permitProfileCanaryExchange = permitProfileCanaryExchange;
+    }
+
+    public String getPermitProfileCanaryRoutingKey() {
+        return permitProfileCanaryRoutingKey;
+    }
+
+    public void setPermitProfileCanaryRoutingKey(
+            String permitProfileCanaryRoutingKey) {
+        this.permitProfileCanaryRoutingKey = permitProfileCanaryRoutingKey;
     }
 }

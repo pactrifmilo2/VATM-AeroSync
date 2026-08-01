@@ -46,8 +46,9 @@ public class LearnedPermitProfileReplayValidator {
             CompiledPermitTrainingProfile profile,
             PermitTrainingDocument document,
             PermitReviewSnapshot expected) {
-        Map<String, String> fields = extractFields(profile, document);
-        List<TableExtraction> tables = extractTables(profile, document);
+        ExtractionResult extraction = extract(profile, document);
+        Map<String, String> fields = extraction.fields();
+        List<TableExtraction> tables = extraction.tables();
         List<String> errors = new ArrayList<>();
         validateFields(profile, fields, expected, errors);
         validateOptions(profile.options(), expected, errors);
@@ -59,6 +60,18 @@ public class LearnedPermitProfileReplayValidator {
                 Map.copyOf(fields),
                 List.copyOf(tables),
                 List.copyOf(errors));
+    }
+
+    public ExtractionResult extract(
+            CompiledPermitTrainingProfile profile,
+            PermitTrainingDocument document) {
+        if (profile == null || document == null) {
+            throw new IllegalArgumentException(
+                    "Compiled profile and document are required");
+        }
+        return new ExtractionResult(
+                Map.copyOf(extractFields(profile, document)),
+                List.copyOf(extractTables(profile, document)));
     }
 
     static String findDateText(String selectedText, String confirmedValue) {
@@ -519,6 +532,12 @@ public class LearnedPermitProfileReplayValidator {
             Map<String, String> fields,
             List<TableExtraction> tables,
             List<String> errors
+    ) {
+    }
+
+    public record ExtractionResult(
+            Map<String, String> fields,
+            List<TableExtraction> tables
     ) {
     }
 

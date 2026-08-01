@@ -12,4 +12,8 @@ public interface PermitTrainingProfileEventRepository
 
     List<PermitTrainingProfileEvent>
     findByTrainingProfileIdOrderByCreatedAtAsc(Long trainingProfileId);
+
+    boolean existsByTrainingProfileIdAndAction(
+            Long trainingProfileId,
+            String action);
 }
