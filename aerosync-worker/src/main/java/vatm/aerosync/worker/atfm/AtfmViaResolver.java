@@ -14,11 +14,12 @@ import java.util.Set;
 public class AtfmViaResolver {
 
     private static final String FIND_ROUTES_SQL = """
-            SELECT DISTINCT TRIM(VIA) AS VIA, UPPER(TRIM(OPER)) AS OPER
+            SELECT DISTINCT UPPER(TRIM(VIA)) AS VIA, UPPER(TRIM(OPER)) AS OPER
               FROM M_VIA
              WHERE UPPER(TRIM(FROM_AIRP)) = ?
                AND UPPER(TRIM(TO_AIRP)) = ?
                AND VIA IS NOT NULL
+             ORDER BY 1, 2
             """;
 
     public String resolve(Connection connection,
@@ -58,13 +59,13 @@ public class AtfmViaResolver {
         }
 
         if (!operatorRoutes.isEmpty()) {
-            return selectUnique(from, to, operator, existing, operatorRoutes);
+            return selectFirst(operatorRoutes);
         }
         if (!genericRoutes.isEmpty()) {
-            return selectUnique(from, to, operator, existing, genericRoutes);
+            return selectFirst(genericRoutes);
         }
         if (!allRoutes.isEmpty()) {
-            return selectUnique(from, to, operator, existing, allRoutes);
+            return selectFirst(allRoutes);
         }
         throw new AtfmReferenceDataException(
                 "ATFM route not found: M_VIA.FROM_AIRP=" + from
@@ -72,20 +73,8 @@ public class AtfmViaResolver {
                         + ", OPER=" + operator);
     }
 
-    private String selectUnique(String from,
-                                String to,
-                                String operator,
-                                String existing,
-                                Set<String> routes) {
-        if (routes.size() == 1) {
-            return routes.iterator().next();
-        }
-        if (!existing.isBlank() && routes.contains(existing)) {
-            return existing;
-        }
-        throw new AtfmReferenceDataException(
-                "Ambiguous ATFM routes in M_VIA for " + from + " -> " + to
-                        + ", OPER=" + operator + ": " + String.join(", ", routes));
+    private String selectFirst(Set<String> routes) {
+        return routes.iterator().next();
     }
 
     private String normalize(String value) {

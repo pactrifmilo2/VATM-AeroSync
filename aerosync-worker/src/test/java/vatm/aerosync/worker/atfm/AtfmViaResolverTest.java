@@ -32,7 +32,11 @@ class AtfmViaResolverTest {
                     ('VVTS', 'VVCA', ' Q2/W12/W1/W11 ', 'VJC'),
                     ('VVTS', 'VVCA', ' Q2/Q7/Q1/W11/W1 ', 'HVN'),
                     ('VVCA', 'VVTS', ' W11/Q1/W1 ', 'HVN'),
-                    ('VVNB', 'VVDN', ' Q1 ', NULL)
+                    ('VVNB', 'VVDN', ' Q1 ', NULL),
+                    ('VHHH', 'WIII', ' N892 ', 'SKY'),
+                    ('VHHH', 'WIII', ' L642/L644 ', 'SKY'),
+                    ('VHHH', 'WIII', ' L642 ', 'SKY'),
+                    ('VHHH', 'WIII', ' L642/G221/W12/W1/L644 ', 'SKY')
                 """);
     }
 
@@ -75,10 +79,14 @@ class AtfmViaResolverTest {
     }
 
     @Test
-    void resolve_rejectsAnAmbiguousPairWithoutAnOperatorMatch() {
-        assertThatThrownBy(() -> resolver.resolve(
-                connection, "VVTS", "VVCA", "XXX", null))
-                .isInstanceOf(AtfmReferenceDataException.class)
-                .hasMessageContaining("Ambiguous ATFM routes");
+    void resolve_selectsTheFirstRouteWhenMultipleOperatorRoutesMatch() throws Exception {
+        assertThat(resolver.resolve(connection, "VHHH", "WIII", "SKY", null))
+                .isEqualTo("L642");
+    }
+
+    @Test
+    void resolve_selectsTheFirstRouteWhenNoOperatorRouteMatches() throws Exception {
+        assertThat(resolver.resolve(connection, "VVTS", "VVCA", "XXX", null))
+                .isEqualTo("Q2/Q7/Q1/W11/W1");
     }
 }

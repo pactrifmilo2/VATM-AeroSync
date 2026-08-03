@@ -75,7 +75,7 @@ class ViaResolutionStepTest {
     }
 
     @Test
-    void resolve_allowsAnEmptyRouteWhenTheProfileExplicitlyAllowsIt() {
+    void resolve_selectsTheFirstRouteWhenNoOperatorRouteMatches() {
         ProcessingContext context = context("XXX", true);
 
         step.resolve(context);
@@ -83,7 +83,7 @@ class ViaResolutionStepTest {
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
         assertThat(flight.fromAirport()).isEqualTo("VVTS");
         assertThat(flight.toAirport()).isEqualTo("VVCA");
-        assertThat(flight.via()).isNull();
+        assertThat(flight.via()).isEqualTo("Q2/Q7/Q1/W11/W1");
     }
 
     private ProcessingContext context() {
