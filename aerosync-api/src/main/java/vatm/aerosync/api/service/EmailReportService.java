@@ -40,13 +40,16 @@ public class EmailReportService {
     private final EmailMetadataRepository emailMetadataRepository;
     private final PermitImportRepository permitImportRepository;
     private final FileRecordRepository fileRecordRepository;
+    private final VietnameseErrorMessageTranslator errorMessageTranslator;
 
     public EmailReportService(EmailMetadataRepository emailMetadataRepository,
                               PermitImportRepository permitImportRepository,
-                              FileRecordRepository fileRecordRepository) {
+                              FileRecordRepository fileRecordRepository,
+                              VietnameseErrorMessageTranslator errorMessageTranslator) {
         this.emailMetadataRepository = emailMetadataRepository;
         this.permitImportRepository = permitImportRepository;
         this.fileRecordRepository = fileRecordRepository;
+        this.errorMessageTranslator = errorMessageTranslator;
     }
 
     @Transactional(readOnly = true)
@@ -95,7 +98,9 @@ public class EmailReportService {
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
                 latestFileRecord.map(StoredFileName::from).orElse(null),
-                latestFileRecord.map(FileRecord::getErrorMessage).orElse(null),
+                latestFileRecord.map(FileRecord::getErrorMessage)
+                        .map(errorMessageTranslator::translate)
+                        .orElse(null),
                 metadata.getBody(),
                 metadata.getProcessingStatus(),
                 metadata.getAcknowledgementStatus(),
@@ -182,7 +187,9 @@ public class EmailReportService {
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
                 StoredFileName.from(latestFileRecord),
-                latestFileRecord != null ? latestFileRecord.getErrorMessage() : null,
+                latestFileRecord != null
+                        ? errorMessageTranslator.translate(latestFileRecord.getErrorMessage())
+                        : null,
                 metadata.getProcessingStatus(),
                 metadata.getAcknowledgementStatus(),
                 metadata.isIngestComplete(),

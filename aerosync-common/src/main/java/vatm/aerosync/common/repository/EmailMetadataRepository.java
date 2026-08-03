@@ -22,6 +22,8 @@ public interface EmailMetadataRepository
 
     boolean existsByMessageIdAndIngestCompleteTrue(String messageId);
 
+    List<EmailMetadata> findByMessageIdOrderByAttachmentIndexAsc(String messageId);
+
     Optional<EmailMetadata> findFirstBySyncJobIdOrderByIdAsc(Long syncJobId);
 
     List<EmailMetadata> findBySyncJobIdIn(Collection<Long> syncJobIds);

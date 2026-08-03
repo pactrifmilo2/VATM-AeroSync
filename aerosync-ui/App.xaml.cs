@@ -10,6 +10,12 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+        UnhandledException += App_UnhandledException;
+        TaskScheduler.UnobservedTaskException += (_, args) =>
+        {
+            WriteUiError(args.Exception);
+            args.SetObserved();
+        };
     }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args)
@@ -19,8 +25,38 @@ public partial class App : Application
             BaseAddress = new Uri("http://localhost:8081")
         });
 
-        window = new MainWindow(apiClient);
+        var openEmailResend = args.Arguments.Contains("--email-resend", StringComparison.OrdinalIgnoreCase)
+                              || Environment.GetCommandLineArgs().Any(argument =>
+                                  argument.Equals("--email-resend", StringComparison.OrdinalIgnoreCase));
+        var initialTag = openEmailResend
+            ? "email-resend"
+            : "dashboard";
+        window = new MainWindow(apiClient, initialTag);
         window.Activate();
+    }
+
+    private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs args)
+    {
+        WriteUiError(args.Exception);
+        args.Handled = true;
+    }
+
+    private static void WriteUiError(Exception exception)
+    {
+        try
+        {
+            var logDirectory = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "VATM-AeroSync");
+            Directory.CreateDirectory(logDirectory);
+            File.AppendAllText(
+                Path.Combine(logDirectory, "ui-errors.log"),
+                $"[{DateTimeOffset.Now:O}] {exception}\n\n");
+        }
+        catch
+        {
+            // Không để lỗi ghi log làm ứng dụng đóng.
+        }
     }
 
     private static Uri ResolveApiBaseAddress()

@@ -8,5 +8,6 @@
 target/
 bin/
 obj/
+.superdesign/tmp/
 
 *.log

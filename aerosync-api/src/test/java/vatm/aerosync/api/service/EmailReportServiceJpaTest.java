@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @ActiveProfiles("test")
 @ContextConfiguration(classes = EmailReportServiceJpaTest.TestConfiguration.class)
-@Import(EmailReportService.class)
+@Import({EmailReportService.class, VietnameseErrorMessageTranslator.class})
 class EmailReportServiceJpaTest {
 
     @Autowired
@@ -106,7 +106,7 @@ class EmailReportServiceJpaTest {
         assertThat(result.content().getFirst().storedFileName())
                 .isEqualTo("operator_20260724_100000_email_permit_update.docx");
         assertThat(result.content().getFirst().errorMessage())
-                .isEqualTo("Unsupported Word permit format; no format profile matched");
+                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
         assertThat(result.content().getFirst().jobStatus()).isEqualTo(SyncStatus.FAILED);
     }
 

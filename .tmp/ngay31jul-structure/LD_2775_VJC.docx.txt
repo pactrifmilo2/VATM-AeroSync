@@ -1,0 +1,45 @@
+FILE: LD 2775 VJC.docx
+
+PARAGRAPHS
+Hanoi, 28/7/2026
+LD-2775/7/2026VN
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay
+Chuyển sân vì mục đích bảo dưỡng
+4. Tàu bay
+5. Đường hàng không
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực phép bay: -12/+24 giờ
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 28/7/2026
+LD-2775/7/2026VN
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến
+VJ35 | 28-Jul-26 | 28-Jul-26 | 2 | HAN | 16:00 | HAK | 17:25
+VJ36 | 01-Aug-26 | 01-Aug-26 | 6 | HAK | 16:05 | HAN | 17:40
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay
+Chuyển sân vì mục đích bảo dưỡng
+4. Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+ | Có trong AOC/FAOC | 
+333 | VN-A814 | Viet Nam
+
+TABLE 4
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không
+ | 
+HAN-HAK | R474
+HAK-HAN | R474

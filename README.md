@@ -207,6 +207,22 @@ To ingest attachments from a real mailbox:
 
 Email envelopes are checked newest-first before attachment bodies are downloaded. The ingest service combines an IMAP received-today search with a bounded recent window (500 messages by default) and a small old-backlog window, so a large mailbox does not delay current mail. Completed IMAP UIDs and Message-IDs are skipped in Oracle, five slots per cycle are reserved for old backlog by default, and unsupported attachment types are recorded as skipped without creating worker jobs. Automatic moves to `AeroSync/Processed` or `AeroSync/Error` are disabled by default; enable them only after testing with `APP_EMAIL_ACKNOWLEDGEMENT_ENABLED=true`. Run `scripts/migrate-phase4-oracle.sql` once when upgrading an existing database.
 
+### Gmail resend
+
+The desktop **Resend email** screen can create a new Gmail message containing only attachments whose processing statuses were selected. Configure a Gmail account with an App Password in `.env`, then restart `aerosync-api`:
+
+```env
+APP_EMAIL_RESEND_ENABLED=true
+APP_EMAIL_RESEND_SMTP_HOST=smtp.gmail.com
+APP_EMAIL_RESEND_SMTP_PORT=587
+APP_EMAIL_RESEND_USERNAME=your-resend-account@gmail.com
+APP_EMAIL_RESEND_PASSWORD=your-gmail-app-password
+APP_EMAIL_RESEND_RECIPIENT=mailbox-monitored-by-aerosync@vatm.vn
+APP_EMAIL_RESEND_STARTTLS=true
+```
+
+Each resend receives a new `Message-ID`. It does not delete existing ATFM data. Normal ingest and SHA-256 duplicate checks still apply when the new email reaches the monitored mailbox.
+
 ### Scheduled permit Word import
 
 The worker recognizes CAAV landing and overflight permits in both `.doc` and `.docx`

@@ -11,15 +11,15 @@ public sealed partial class MainWindow : Window
 {
     private readonly AeroSyncApiClient apiClient;
 
-    public MainWindow(AeroSyncApiClient apiClient)
+    public MainWindow(AeroSyncApiClient apiClient, string initialTag = "dashboard")
     {
         this.apiClient = apiClient;
         InitializeComponent();
         AppWindow.Title = "HTSLB AeroSync";
         AppWindow.Resize(new SizeInt32(1180, 760));
         RootNav.SelectedItem = RootNav.MenuItems.OfType<NavigationViewItem>()
-            .First(item => (string)item.Tag == "dashboard");
-        Navigate("dashboard");
+            .First(item => (string)item.Tag == initialTag);
+        Navigate(initialTag);
     }
 
     private void RootNav_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -36,6 +36,7 @@ public sealed partial class MainWindow : Window
         {
             "config" => new ConfigPage(apiClient),
             "dashboard" => new DashboardPage(apiClient),
+            "email-resend" => new EmailResendPage(apiClient),
             _ => new PlaceholderPage((RootNav.SelectedItem as NavigationViewItem)?.Content?.ToString() ?? "AeroSync")
         };
     }

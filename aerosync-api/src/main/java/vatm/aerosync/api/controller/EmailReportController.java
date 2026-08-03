@@ -5,18 +5,24 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import vatm.aerosync.api.dto.EmailReportDetailResponse;
+import vatm.aerosync.api.dto.EmailResendRequest;
+import vatm.aerosync.api.dto.EmailResendResponse;
 import vatm.aerosync.api.dto.EmailReportRowResponse;
 import vatm.aerosync.api.dto.EmailReportSummaryResponse;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.api.service.EmailReportFilter;
 import vatm.aerosync.api.service.EmailReportService;
+import vatm.aerosync.api.service.EmailResendService;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
@@ -29,9 +35,12 @@ import java.time.LocalDateTime;
 public class EmailReportController {
 
     private final EmailReportService emailReportService;
+    private final EmailResendService emailResendService;
 
-    public EmailReportController(EmailReportService emailReportService) {
+    public EmailReportController(EmailReportService emailReportService,
+                                 EmailResendService emailResendService) {
         this.emailReportService = emailReportService;
+        this.emailResendService = emailResendService;
     }
 
     @GetMapping
@@ -102,5 +111,19 @@ public class EmailReportController {
             @Parameter(description = "Email metadata record ID", required = true)
             @PathVariable Long id) {
         return emailReportService.get(id);
+    }
+
+    @PostMapping("/resend")
+    @Operation(
+            summary = "Resend selected email attachments through Gmail SMTP",
+            description = "Creates a new email with a new Message-ID and attaches only records matching the selected statuses.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Email accepted by Gmail SMTP"),
+            @ApiResponse(responseCode = "400", description = "Invalid request or no matching attachments"),
+            @ApiResponse(responseCode = "404", description = "Original email not found"),
+            @ApiResponse(responseCode = "409", description = "Gmail resend is disabled or not configured")
+    })
+    public EmailResendResponse resend(@Valid @RequestBody EmailResendRequest request) {
+        return emailResendService.resend(request);
     }
 }

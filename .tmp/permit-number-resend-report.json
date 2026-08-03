@@ -1,0 +1,568 @@
+﻿{
+    "sourceDirectory":  "E:\\ATFM-AEROSYNC\\VATM-AeroSync\\ngay0307_edited_9021",
+    "backupDirectory":  "E:\\ATFM-AEROSYNC\\VATM-AeroSync\\ngay0307_edited_9021_backup_20260731_172346",
+    "editedAt":  "2026-07-31T17:25:02.3046286+07:00",
+    "totalFiles":  62,
+    "updatedFiles":  0,
+    "hashRefreshedFiles":  62,
+    "files":  [
+                  {
+                      "file":  "LD  2501 IGO.docx",
+                      "expectedPermitNumber":  9021,
+                      "previousPermitNumber":  "9021",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "A495E81C209BDAF8CA0D3189C01E0754B04644E67472E42F7F8FD4D0EDCA85C9",
+                      "hashAfter":  "6BA763D615DFD88B6C3B25F643AE7E9EC42A82394A9302142A6B1FFE6FDBF810"
+                  },
+                  {
+                      "file":  "LD 2353 HAI rev2.docx",
+                      "expectedPermitNumber":  9022,
+                      "previousPermitNumber":  "9022",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "C28C36BF4B726EA1958D3250E590EA07A1AC4E9E3ACC949721AD9BA0421DD8B2",
+                      "hashAfter":  "C6E59623AC6047BA316BBD3B1B88174C4A80D108B2248FE8F7FF58E490F2E567"
+                  },
+                  {
+                      "file":  "LD 2473 KYE REV1.docx",
+                      "expectedPermitNumber":  9023,
+                      "previousPermitNumber":  "9023",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "F790EABD50B32F5FC47C189DFA1ACBCD6D527ECEEA370879D3BBAA89C3706A8C",
+                      "hashAfter":  "201C5D09A5927AA2F46F643414A3D912B2B3D44010F9EC32EC620F33E71DC693"
+                  },
+                  {
+                      "file":  "LD 2475 GTI (REV1).docx",
+                      "expectedPermitNumber":  9024,
+                      "previousPermitNumber":  "9024",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "673858B15D49EA692345817660888DAEA3ACD909A7E541DF4A57734808A36BD7",
+                      "hashAfter":  "FC4D437585D7E1CA6D9C651C8EF97F063F48F81E39581634DD649BFB32D15207"
+                  },
+                  {
+                      "file":  "LD 2486  N77999 (REV1).docx",
+                      "expectedPermitNumber":  9025,
+                      "previousPermitNumber":  "9025",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "C171061AA44A46798D435890B40BA64755B57582C53BD0A206F3397375E2F057",
+                      "hashAfter":  "ECC8048B6286799462683544D054917DC1EA7C3EA097B08A26C253D2F037DDE9"
+                  },
+                  {
+                      "file":  "LD 2502 BAV.docx",
+                      "expectedPermitNumber":  9026,
+                      "previousPermitNumber":  "9026",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "D143BCEFED650A89D78F08EEA72CF06C62BA24CFFE5DADF4DC6FFBF79F1924F1",
+                      "hashAfter":  "F8D86EC23DB38705C118D5E8F77ACBCEA6B55C45622AF9D2A4ABA94DF00CC96B"
+                  },
+                  {
+                      "file":  "LD 2503 MYU.docx",
+                      "expectedPermitNumber":  9027,
+                      "previousPermitNumber":  "9027",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "A081B6A61C728B7C48931424A77ED74004055AD441DDA3B691981953432160F5",
+                      "hashAfter":  "832CD6B179C65A34273B732FDAAF6DBF5E3441AE2A26B12AB5465BC722B8900D"
+                  },
+                  {
+                      "file":  "LD 2504 SPA C26_06JUL-13JUL_ND.docx",
+                      "expectedPermitNumber":  9028,
+                      "previousPermitNumber":  "9028",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "AD033AA268707AA3A2677CE724DE66883ED5EF11A44DD7CA17BCC85863DFA1EF",
+                      "hashAfter":  "FD8D51BCCE1FA00DCDDE7943612F575A0E885F98D197F3CC77AF3492AF43D329"
+                  },
+                  {
+                      "file":  "LD 2505  SPA C26_04JUL-12JUL_FrIN-FrOut_VNA921.docx",
+                      "expectedPermitNumber":  9029,
+                      "previousPermitNumber":  "9029",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "65336D02257A402FAE490AC0046AAE120B1B5B0F0E6BCF6FF04D4B073D513AD1",
+                      "hashAfter":  "C8F15B4DF5DEA96BB86DFEEA6B70F17E8F9168FE5F5A695B9DD8EE555CED5FDE"
+                  },
+                  {
+                      "file":  "LD 2507  9MTMJ.docx",
+                      "expectedPermitNumber":  9030,
+                      "previousPermitNumber":  "9030",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "C13B0F38E2A0CB16954F14DD4DEEAD2A44545FF05D60404A64DF64E264BE7664",
+                      "hashAfter":  "7E9F09D56751BF5DF411D7766FD38D41C044D5B1B3B658BE3308C572CC553F29"
+                  },
+                  {
+                      "file":  "LD 2510 SIN.docx",
+                      "expectedPermitNumber":  9031,
+                      "previousPermitNumber":  "9031",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "70D922CB906ED2BC24CF3D34C5FB776D2D85476DAC22B1CC863A0BF6F03AF5ED",
+                      "hashAfter":  "0F5E71F82F9E0F8B7838D5FCAF9CDF224A49F296970A2CBEC24FB519A7E8902C"
+                  },
+                  {
+                      "file":  "LD 2511 TUA CORR.DOCX",
+                      "expectedPermitNumber":  9032,
+                      "previousPermitNumber":  "9032",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "12DD691FCC289A3FDB1F7E145FA1252B2AA710681C1080834E1EA8815FD9AD51",
+                      "hashAfter":  "94AA3585CFC735B6314ABF69B71DDC5248ADC5896313100C0CF7F3EFB3450DEF"
+                  },
+                  {
+                      "file":  "LD 2511 TUA.DOCX",
+                      "expectedPermitNumber":  9033,
+                      "previousPermitNumber":  "9033",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "A352FAE7A1AFBDCF8794ACD813D374A9D0E1D6671AF2652EBA33D662C68EFE9C",
+                      "hashAfter":  "4E5BB888FE3C2E1D9E254D0A8A9E17136E8D47519E98F89870C1390D89F762CB"
+                  },
+                  {
+                      "file":  "LD 2517 HVN.docx",
+                      "expectedPermitNumber":  9034,
+                      "previousPermitNumber":  "9034",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "F48EF74E111E16B86AA555B62B9C38662CC1F5DCBFF3298269DB48069820FCA0",
+                      "hashAfter":  "9C4E909E83A2997A3D1EBDEE8C340B425BAE59D4758012867A7D301FEE9273CF"
+                  },
+                  {
+                      "file":  "OF 4669 RVS 2.docx",
+                      "expectedPermitNumber":  9035,
+                      "previousPermitNumber":  "9035",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "D07292BE91A329D830DE12CBCB846541E1C0B7E2C6BFA6F9FF30F279E90B65A3",
+                      "hashAfter":  "18627F62ED3CDF652152AD838B5AAB6ECA10831083EB5E9C2D1119C0055CD7DB"
+                  },
+                  {
+                      "file":  "OF 4690 RVS 1 VJT232.docx",
+                      "expectedPermitNumber":  9036,
+                      "previousPermitNumber":  "9036",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "9F2F661508F91BA3F8FECD8BD76A06E7E352C3187BA72683813801F04395080F",
+                      "hashAfter":  "144E8FAECFBAF186809CD08FB5FF2B5945B9C6DC0740676096D5F296A7109841"
+                  },
+                  {
+                      "file":  "OF 4690 RVS 2.docx",
+                      "expectedPermitNumber":  9037,
+                      "previousPermitNumber":  "9037",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "621AA4B783B687119B4CFA7CB6F559B590641BDF772CF284965C2D6C0B5A93EB",
+                      "hashAfter":  "25DE42B2A8C130AD510032D171FED118C194863391F130D3AF69C3F0B1CB24FE"
+                  },
+                  {
+                      "file":  "OF 4794_RCR3373.docx",
+                      "expectedPermitNumber":  9038,
+                      "previousPermitNumber":  "9038",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "7BFAA0453A93CB33AD855916D6665C54B7F18FC1F2684FB41F8936AEB681A9C1",
+                      "hashAfter":  "40153CEA0C7FF10BD2244689071F03E0C9428EC5F167F615F2F0E175A265539A"
+                  },
+                  {
+                      "file":  "OF 4794_VQBOY.docx",
+                      "expectedPermitNumber":  9039,
+                      "previousPermitNumber":  "9039",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "00A0993DF00C46B1A5C0797FD1AF98B187B5318AC59C3F968BE809EC0CDD6BAF",
+                      "hashAfter":  "5EC33DF5F06EC5F53D1E3759C413ACB6BD6F47A1B472D82BA673DD1A07BB71D2"
+                  },
+                  {
+                      "file":  "OF 4795_B65AP.docx",
+                      "expectedPermitNumber":  9040,
+                      "previousPermitNumber":  "9040",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "795E2500A27950EEDF97C3A251C04C059FEE7BDEB27F6D0D7B15665E00A00F3C",
+                      "hashAfter":  "43B9C4E131A8AFE464705ECF604C5EDFBBEB90FD25BCE536B92A517D3C5916C0"
+                  },
+                  {
+                      "file":  "OF 4795_VJT861.docx",
+                      "expectedPermitNumber":  9041,
+                      "previousPermitNumber":  "9041",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "9CA111B6AF74DE2E31D85AB8CBC0477FA1B077C53CDE4217C37E6289F6B6F437",
+                      "hashAfter":  "97AD55318282EF9F1C74F31CD4260E1EFC99ADE8C688B14D3362E2E6C11C2848"
+                  },
+                  {
+                      "file":  "OF 4796_FDX9080.docx",
+                      "expectedPermitNumber":  9042,
+                      "previousPermitNumber":  "9042",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "9F6B4CD9F7CBFEDE199C9DACAF8380D6E12F531510AC0FAC99DC2EBA419CE174",
+                      "hashAfter":  "89DA9676E8E52E8BAF53C873F9589CFFB3D0B7C394A60C985EF30D70FDA916F1"
+                  },
+                  {
+                      "file":  "OF 4840 RVS 1.docx",
+                      "expectedPermitNumber":  9043,
+                      "previousPermitNumber":  "9043",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "6D9E1EF6E30CF85C3393515EB58318E77ED696A0C433E4D208180A9349D7C084",
+                      "hashAfter":  "3DB0303E9634AF9C3078823A4720BB481DEC7173EF64C188FEC736D53ADB2206"
+                  },
+                  {
+                      "file":  "OF 4868 N111AP.docx",
+                      "expectedPermitNumber":  9044,
+                      "previousPermitNumber":  "9044",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "868D34F38AE1847A45A40B8196DAE751378FE9E0BA2A8A7340E13343D75F70D0",
+                      "hashAfter":  "1EBB14F089438DE33D570183031E10FC7157344B412FE6E52A04F86689037C82"
+                  },
+                  {
+                      "file":  "OF 4869 TAY400.docx",
+                      "expectedPermitNumber":  9045,
+                      "previousPermitNumber":  "9045",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "A44A6115864DCF6D1E90805467D26161C82239DBDA596747AF6C67F109E0BA58",
+                      "hashAfter":  "FD6C0DC8BF1B2E1BEEE2EC9DB61485C088BA6450AE5E685B62FDFE6B669BA832"
+                  },
+                  {
+                      "file":  "OF 4870 ABD4800.docx",
+                      "expectedPermitNumber":  9046,
+                      "previousPermitNumber":  "9046",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "2DAA8EA4F9FB259DFFDFD38FAD090C0F25F4ECEFF2F6ED2762AAC0DB019F9CB8",
+                      "hashAfter":  "1D18B617C3DAF0F98C6E6539FC37FF719F6E613BD04D2A28627B805D1A35A8A1"
+                  },
+                  {
+                      "file":  "OF 4871.docx",
+                      "expectedPermitNumber":  9047,
+                      "previousPermitNumber":  "9047",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "D305268CD00C0AC9160C74985B98152B22CA11EEF04F353B26BFDD5BCE87EEE8",
+                      "hashAfter":  "F837660F8C4F4A601F50E2CAE512BC194F5953A4A49110E35810BFA4B30702AB"
+                  },
+                  {
+                      "file":  "OF 4872 FDX.docx",
+                      "expectedPermitNumber":  9048,
+                      "previousPermitNumber":  "9048",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "2DD82A37CDF5BD35108E5838A06ACDC6DB31D87457A0CA33BA0E6D0DC79C6A5A",
+                      "hashAfter":  "FB83A39E3109B098FD79FE53414F72D382A14834FF99259FC48A12F56941ACE0"
+                  },
+                  {
+                      "file":  "OF 4873 VPBFP.docx",
+                      "expectedPermitNumber":  9049,
+                      "previousPermitNumber":  "9049",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "A1535C335856085E1425004234444324C41462A7C2DC51827B025815839AA95D",
+                      "hashAfter":  "08C3D87489F31F1DB1C5FE02A410AE96128A6BABAE7F1BCBC1EA848A67421126"
+                  },
+                  {
+                      "file":  "OF 4875.docx",
+                      "expectedPermitNumber":  9050,
+                      "previousPermitNumber":  "9050",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "4180703FA432232E4347CC42588DFCF4D041D2A2A24ADA6F44A1A1E7CFF2E1F8",
+                      "hashAfter":  "B68DCB9423481CEFDDF61195CCD094EEE729ED156BDBDA056BF523C7420D228B"
+                  },
+                  {
+                      "file":  "OF 4876.docx",
+                      "expectedPermitNumber":  9051,
+                      "previousPermitNumber":  "9051",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "9642D9834FEE470440A1895E452A9287E59055BD3F5E0D25D0AD322058A4BA40",
+                      "hashAfter":  "8AFB869E5EF486EAD7168142774E3DFE97FC79B54E8095F96C5B948E4459934F"
+                  },
+                  {
+                      "file":  "OF 4877.docx",
+                      "expectedPermitNumber":  9052,
+                      "previousPermitNumber":  "9052",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "7FB533CFC389A12CF12174A95447EE104DA0165809DF2D4E538D82B0687F685E",
+                      "hashAfter":  "6BFE04DC3ECB51ECE1E10F6F3B07E93C59B1BEFBC4522C383479BEB40E9605F1"
+                  },
+                  {
+                      "file":  "OF 4878.docx",
+                      "expectedPermitNumber":  9053,
+                      "previousPermitNumber":  "9053",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "CEE61B47F455BCB10B3215ED5C566F4429B59A56F94A7D187B696A0C0041459A",
+                      "hashAfter":  "70F7DEF3796EEB610E138B729E288F55165A5948986FE0E856DC6713F97B6FD6"
+                  },
+                  {
+                      "file":  "OF 4879.docx",
+                      "expectedPermitNumber":  9054,
+                      "previousPermitNumber":  "9054",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "AA90E7579B13ADAFB814892926513CDEFE1EAA0C4D8870C6D194BC9B6ACCFD61",
+                      "hashAfter":  "9063278D2D010318F53C4BD5D98D74BFBD095E940ADB6AA3BC4CF57473C96B33"
+                  },
+                  {
+                      "file":  "OF 4881.docx",
+                      "expectedPermitNumber":  9055,
+                      "previousPermitNumber":  "9055",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "2B2219110BC321276F401BB151B03A297EFA8446A9E55EEDB44F116D809B50A5",
+                      "hashAfter":  "8EAB6F8CB8179F6796770AD9AD291C166941F54E16EDCAEB40D0B42A28BB9A14"
+                  },
+                  {
+                      "file":  "OF 4882.docx",
+                      "expectedPermitNumber":  9056,
+                      "previousPermitNumber":  "9056",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "695126A320127C05211059F242C83A061EB7E770E890B43F94C81F870BCC56A7",
+                      "hashAfter":  "63330ED978DEDC90B145B53EB8EC398FD8CE9EE12973816469A516BD32F4014A"
+                  },
+                  {
+                      "file":  "OF 4883.docx",
+                      "expectedPermitNumber":  9057,
+                      "previousPermitNumber":  "9057",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "2D0F1435B8030E6A1706F717311882D7A26B0A8183F80A21BCC58C66EE841B4C",
+                      "hashAfter":  "2253849195891FC15C87F5FBEC790916BCAD84F8FE03D43757AF9246CD20561C"
+                  },
+                  {
+                      "file":  "OF 4884.docx",
+                      "expectedPermitNumber":  9058,
+                      "previousPermitNumber":  "9058",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "5A7BA947BF4C2ADE31B40CECC73078479E537418D9ADCBEA5C505D87ABDE4C90",
+                      "hashAfter":  "045955917A83F33BEDDF46513A5121E39C792086551EF8FE1D9DA4DD828B44E8"
+                  },
+                  {
+                      "file":  "OF 4885.docx",
+                      "expectedPermitNumber":  9059,
+                      "previousPermitNumber":  "9059",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "BAEE17EE6F68F0D854A4B7C344060A8E0E3C4752BCDCDDECCA79E26221E92008",
+                      "hashAfter":  "09944AC518D5395C515034620D3A4D7A994919C33F79A16E591B1263E0D0127E"
+                  },
+                  {
+                      "file":  "OF 4886.docx",
+                      "expectedPermitNumber":  9060,
+                      "previousPermitNumber":  "9060",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "C0E1EF9FC6E36391B60E874498B6A3416A107579E8BF5780D5DACEAADD62FF6F",
+                      "hashAfter":  "A7344E53E347C533107F70ADD1438C7C9BC53B760C7E03551D39C6236DE44EF1"
+                  },
+                  {
+                      "file":  "OF 4887 N858KE.docx",
+                      "expectedPermitNumber":  9061,
+                      "previousPermitNumber":  "9061",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "08B7A1D64CFD216418D3E5AACE8A0A5F49B864C9BAA70709B1BED73669996630",
+                      "hashAfter":  "FC398F97A2227A9D0098CC1D57489586F40C5242A149ED0608E796EF26C18F61"
+                  },
+                  {
+                      "file":  "OF 4888.docx",
+                      "expectedPermitNumber":  9062,
+                      "previousPermitNumber":  "9062",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "0981F02E18A824B1CD6E5137D644F12BC1124878C0D2C60087F2F3413FC8DB74",
+                      "hashAfter":  "813E8A82051795A80779DE7FD493C797A026322F1EE5E8E8DBA02C3BC455A479"
+                  },
+                  {
+                      "file":  "OF 4889.docx",
+                      "expectedPermitNumber":  9063,
+                      "previousPermitNumber":  "9063",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "5307C4FB11A76B68929756EFF0D9AEFE6FD032F8665CD6BB940DC3DB0FC8B231",
+                      "hashAfter":  "E5736280602BAE38C0FB9A87DADCB8883129C56247980560C9277F74F3B5D250"
+                  },
+                  {
+                      "file":  "OF 4890.docx",
+                      "expectedPermitNumber":  9064,
+                      "previousPermitNumber":  "9064",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "D84F3C2ECBCF4919872AA8748AD7D9E3E33A465D43A24278B19ADB86EEBD423F",
+                      "hashAfter":  "5A5D0CD673E423DB3EBDB8FFC64598B70FABC99024D0209D0A663338DFE0689D"
+                  },
+                  {
+                      "file":  "OF 4891.docx",
+                      "expectedPermitNumber":  9065,
+                      "previousPermitNumber":  "9065",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "9BFBE698EEEF0983BAE1055A189D713832B75B082A5D16CFAD58642CA8027D98",
+                      "hashAfter":  "9300B27CD0F1BA9BA206316188A0A0F7A65EF7A8AE38859CDE75D62CF0B347E6"
+                  },
+                  {
+                      "file":  "OF 4892 T7BOSS.docx",
+                      "expectedPermitNumber":  9066,
+                      "previousPermitNumber":  "9066",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "06ABAD22060093BA2E33823AA8125D4FF9D0347C18BA8D6B967F440CD5920D7E",
+                      "hashAfter":  "3D836FCEAFB3BE60CBC0CA94273774A7E36948CCD8557FDFC60CB189E0841CD9"
+                  },
+                  {
+                      "file":  "OF 4893.docx",
+                      "expectedPermitNumber":  9067,
+                      "previousPermitNumber":  "9067",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "D6A663BC3F9AC0A89045B3FEC3B2DE5219674BB80B4292D89380DD3B65C4D72A",
+                      "hashAfter":  "2130BB57A0F58E9B9191EF7600CCF1A341ECA3A07A2CCCBCC9EC81A71E216492"
+                  },
+                  {
+                      "file":  "OF 4894 HSDID.docx",
+                      "expectedPermitNumber":  9068,
+                      "previousPermitNumber":  "9068",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "EC3BF291758406C3A506647FB45627878309A675AA0553A7301ED687785AFB68",
+                      "hashAfter":  "2AC173EB80713E651C1BF9C68C9389CE48CDDAB5CF3453B6DBC01EE80F72BCC6"
+                  },
+                  {
+                      "file":  "OF 4895_ABD3571.docx",
+                      "expectedPermitNumber":  9069,
+                      "previousPermitNumber":  "9069",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "3D1A64B1A6A5F9122E87CF3549B2C1B43207492259B5D6CBF06D70D42EF6DA1F",
+                      "hashAfter":  "77DF24ACE7473EAAB5D57F7134538083EFCE39BC26838E491467E39924D6C1E8"
+                  },
+                  {
+                      "file":  "OF 4896 AIQ9701.docx",
+                      "expectedPermitNumber":  9070,
+                      "previousPermitNumber":  "9070",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "E4BF8EDB38A0046EF33397AD1B6B58BC9427844FE75477006BAE8309F21DE0BD",
+                      "hashAfter":  "DBA62012D759113960B8BB0E481DBF686B781D97038942F06E624FE6E3DF1C67"
+                  },
+                  {
+                      "file":  "REV1 LD 2467 AZG.docx",
+                      "expectedPermitNumber":  9071,
+                      "previousPermitNumber":  "9071",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "56C8D94FDCB420DCFD35286D0B8BB7EE2CC7CDB3D2E36D49A2DD71CA8E31FE88",
+                      "hashAfter":  "D670156679433C604229F2B215FB44C8E30A115F3F5FA7CAC8522128C6EC9F92"
+                  },
+                  {
+                      "file":  "of 4813 rvs 1.docx",
+                      "expectedPermitNumber":  9072,
+                      "previousPermitNumber":  "9072",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "3BE5B456755980F902D2D079A341D7CE5ABF675456C7762D0A6660F1D0AE38D1",
+                      "hashAfter":  "D89197E231708AFEF770147FC76FBBA5DEE921C55EB69FC9176BA45155437A28"
+                  },
+                  {
+                      "file":  "of 4880 KAL.docx",
+                      "expectedPermitNumber":  9073,
+                      "previousPermitNumber":  "9073",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "1E64B30D3468C2085745DABB323CABCD7B00C8E386E43062BEED3DAC96C889EA",
+                      "hashAfter":  "638AFEFF3A23102686C6D8E5BD9CB4B2211C6E8C0B7CA6B98761103B60314EC6"
+                  },
+                  {
+                      "file":  "LD 2473 KYE.doc",
+                      "expectedPermitNumber":  9074,
+                      "previousPermitNumber":  "9074",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "B586E5A0DC3269B3E68E5D28E2525654EB38039E19073A43D7764464B3AEA8CA",
+                      "hashAfter":  "6550103D8B2CADBC426C40A2A2480D02647099988185C811E536791BF828853B"
+                  },
+                  {
+                      "file":  "LD 2506 N65WL.doc",
+                      "expectedPermitNumber":  9075,
+                      "previousPermitNumber":  "9075",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "D122A5BC08CCB64FE4A83A590D8CD47E2A1ED768E914A8F28C47C9DC067DF534",
+                      "hashAfter":  "9EEF009CCBCF37A257677F64137AB2D36C3501DF2D2BCDC7DD049C6B2D9D8D95"
+                  },
+                  {
+                      "file":  "LD 2508  N111AP.doc",
+                      "expectedPermitNumber":  9076,
+                      "previousPermitNumber":  "9076",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "CB8BA907225C309B3BE8DB7A7B2CB09E5535FDC3AE5CD219693794898BACFD46",
+                      "hashAfter":  "825B2CB8F29C39E655BC6ECFD23F94AA06ED794726805D3CFFC234D0B8E4C88D"
+                  },
+                  {
+                      "file":  "LD 2509 MSCDM.doc",
+                      "expectedPermitNumber":  9077,
+                      "previousPermitNumber":  "9077",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "70F77F3F36409B2E7EAD90C9EDEDDEE97AE97E3865FDD4A8D9504350E9067D13",
+                      "hashAfter":  "8B1F323152325F715C4A9F8F1FCE03EF83607EF0FC654CDED3C51FC28BC1CC79"
+                  },
+                  {
+                      "file":  "LD 2512 N88AY.doc",
+                      "expectedPermitNumber":  9078,
+                      "previousPermitNumber":  "9078",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "A23478B4F942881F1D32230936777710C0F3F7DA228FCB839F205C7AB8600F01",
+                      "hashAfter":  "BAFF4BBA4C2589C9FE0EFDC29F3E5172263C3F3C151DABE2E394CD895608BDB8"
+                  },
+                  {
+                      "file":  "LD 2513 B652Q.doc",
+                      "expectedPermitNumber":  9079,
+                      "previousPermitNumber":  "9079",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "752D2315F7C53B4F71CFD3CAF214A0A7A062144F1D19638C5B05DE7102D0CF4F",
+                      "hashAfter":  "DD6EC4853F836968FC2A8B2A90475947BC140A42F7A74731FC36C8DAC9268EC7"
+                  },
+                  {
+                      "file":  "LD 2514 VNA268.doc",
+                      "expectedPermitNumber":  9080,
+                      "previousPermitNumber":  "9080",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "E50B8FABE1DD7F01B1A0A5C76D700F590E63956CD4BF0836644B0B82D6832799",
+                      "hashAfter":  "AA43368375B1286CC2ADBB69A78E611D1C76191B03F2DED5CF871ED2DAAD69E7"
+                  },
+                  {
+                      "file":  "LD 2515 SAV298.doc",
+                      "expectedPermitNumber":  9081,
+                      "previousPermitNumber":  "9081",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "8DB42D1DD5E14B2348EBC667F2C1230F3E5BFEECFE0A96DE9AC8FD90D9D96911",
+                      "hashAfter":  "232C50C76FEC3001940322BAA281A43CDE6541561EB0A81DD2971C59C2B5C5E2"
+                  },
+                  {
+                      "file":  "LD 2516 HKC327.doc",
+                      "expectedPermitNumber":  9082,
+                      "previousPermitNumber":  "9082",
+                      "status":  "HASH_REFRESHED",
+                      "structurePreserved":  true,
+                      "hashBefore":  "C430BE1051D0BD481B0CD04E66A5241FE5F1DAD163E7F0F03F9044411D37A3DF",
+                      "hashAfter":  "0C0315B7D0E1F10429633EB97D38710C7ED646A40E7DCDA4F56BAA29A8C81C7D"
+                  }
+              ]
+}

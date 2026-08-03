@@ -42,6 +42,7 @@ public class SyncJobService {
     private final JobRetryPublisher jobRetryPublisher;
     private final AuditLogRepository auditLogRepository;
     private final PermitImportRepository permitImportRepository;
+    private final VietnameseErrorMessageTranslator errorMessageTranslator;
     private final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
 
     public SyncJobService(SyncJobRepository syncJobRepository,
@@ -49,13 +50,15 @@ public class SyncJobService {
                           EmailMetadataRepository emailMetadataRepository,
                           JobRetryPublisher jobRetryPublisher,
                           AuditLogRepository auditLogRepository,
-                          PermitImportRepository permitImportRepository) {
+                          PermitImportRepository permitImportRepository,
+                          VietnameseErrorMessageTranslator errorMessageTranslator) {
         this.syncJobRepository = syncJobRepository;
         this.fileRecordRepository = fileRecordRepository;
         this.emailMetadataRepository = emailMetadataRepository;
         this.jobRetryPublisher = jobRetryPublisher;
         this.auditLogRepository = auditLogRepository;
         this.permitImportRepository = permitImportRepository;
+        this.errorMessageTranslator = errorMessageTranslator;
     }
 
     @Transactional(readOnly = true)
@@ -133,7 +136,9 @@ public class SyncJobService {
                 permitImport != null ? permitImport.getTargetMasterId() : null,
                 permitImport != null ? permitImport.getTargetPermId() : null,
                 permitImport != null ? permitImport.getDetailCount() : null,
-                permitImport != null ? permitImport.getErrorMessage() : null);
+                permitImport != null
+                        ? errorMessageTranslator.translate(permitImport.getErrorMessage())
+                        : null);
     }
 
     @Transactional
@@ -245,7 +250,7 @@ public class SyncJobService {
                 record.getDatabaseSavedAt(),
                 record.getArchiveStatus(),
                 record.getArchivedAt(),
-                record.getErrorMessage(),
+                errorMessageTranslator.translate(record.getErrorMessage()),
                 record.getFileSize(),
                 record.getChecksum(),
                 record.getCreatedAt(),

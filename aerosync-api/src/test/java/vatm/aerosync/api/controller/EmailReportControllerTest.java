@@ -4,14 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import vatm.aerosync.api.dto.EmailReportDetailResponse;
 import vatm.aerosync.api.dto.EmailReportRowResponse;
 import vatm.aerosync.api.dto.EmailReportSummaryResponse;
+import vatm.aerosync.api.dto.EmailResendRequest;
+import vatm.aerosync.api.dto.EmailResendResponse;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.api.service.EmailReportFilter;
 import vatm.aerosync.api.service.EmailReportService;
+import vatm.aerosync.api.service.EmailResendService;
 import vatm.aerosync.api.web.ApiExceptionHandler;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
@@ -25,6 +29,7 @@ import java.util.Map;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,6 +42,9 @@ class EmailReportControllerTest {
 
     @MockitoBean
     private EmailReportService emailReportService;
+
+    @MockitoBean
+    private EmailResendService emailResendService;
 
     @Test
     void search_parsesFiltersAndReturnsPagedRows() throws Exception {
@@ -61,7 +69,7 @@ class EmailReportControllerTest {
                 0,
                 "permit.docx",
                 "operator_20260724_091600_email_permit.docx",
-                "Unsupported Word permit format; no format profile matched",
+                "Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.",
                 EmailProcessingStatus.FAILED,
                 EmailAcknowledgementStatus.MOVED_ERROR,
                 true,
@@ -88,7 +96,7 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.content[0].storedFileName")
                         .value("operator_20260724_091600_email_permit.docx"))
                 .andExpect(jsonPath("$.content[0].errorMessage")
-                        .value("Unsupported Word permit format; no format profile matched"))
+                        .value("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp."))
                 .andExpect(jsonPath("$.content[0].processingStatus").value("FAILED"))
                 .andExpect(jsonPath("$.content[0].jobStatus").value("FAILED"))
                 .andExpect(jsonPath("$.page").value(1))
@@ -159,5 +167,29 @@ class EmailReportControllerTest {
     void search_rejectsMalformedDate() throws Exception {
         mockMvc.perform(get("/api/reports/emails").param("from", "not-a-date"))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void resend_sendsSelectedStatusesThroughGmail() throws Exception {
+        EmailResendRequest request = new EmailResendRequest(
+                "mail-102", java.util.Set.of(EmailProcessingStatus.FAILED, EmailProcessingStatus.QUARANTINED));
+        when(emailResendService.resend(request)).thenReturn(new EmailResendResponse(
+                "mail-102", "gmail-new-102", "ingest@vatm.vn", 2, 0, true));
+
+        mockMvc.perform(post("/api/reports/emails/resend")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "messageId": "mail-102",
+                                  "statuses": ["FAILED", "QUARANTINED"]
+                                }
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.sentMessageId").value("gmail-new-102"))
+                .andExpect(jsonPath("$.recipient").value("ingest@vatm.vn"))
+                .andExpect(jsonPath("$.attachmentsSent").value(2))
+                .andExpect(jsonPath("$.accepted").value(true));
+
+        verify(emailResendService).resend(request);
     }
 }

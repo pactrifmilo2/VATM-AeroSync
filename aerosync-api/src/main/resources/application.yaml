@@ -53,6 +53,15 @@ app:
     atfm-url: ${APP_ATFM_DATASOURCE_URL:}
     atfm-username: ${APP_ATFM_DATASOURCE_USERNAME:}
     atfm-password: ${APP_ATFM_DATASOURCE_PASSWORD:}
+  email-resend:
+    enabled: ${APP_EMAIL_RESEND_ENABLED:false}
+    smtp-host: ${APP_EMAIL_RESEND_SMTP_HOST:smtp.gmail.com}
+    smtp-port: ${APP_EMAIL_RESEND_SMTP_PORT:587}
+    username: ${APP_EMAIL_RESEND_USERNAME:}
+    password: ${APP_EMAIL_RESEND_PASSWORD:}
+    recipient: ${APP_EMAIL_RESEND_RECIPIENT:${APP_EMAIL_USERNAME:}}
+    starttls: ${APP_EMAIL_RESEND_STARTTLS:true}
+    timeout-ms: ${APP_EMAIL_RESEND_TIMEOUT_MS:30000}
   rabbit:
     sync-result-exchange: sync.result
     dashboard-alerts-queue: dashboard.alerts.queue

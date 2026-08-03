@@ -19,6 +19,7 @@
             </NavigationView.PaneHeader>
 
             <NavigationView.MenuItems>
+                <NavigationViewItem Content="Resend email" Icon="Send" Tag="email-resend" />
                 <NavigationViewItem Content="Tổng quan" Icon="Home" Tag="overview" />
                 <NavigationViewItem Content="Giám sát đồng bộ" Icon="View" Tag="dashboard" />
                 <NavigationViewItem Content="Lịch sử đồng bộ" Icon="Clock" Tag="history" />

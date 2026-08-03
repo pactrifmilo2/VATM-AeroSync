@@ -1,0 +1,98 @@
+<failure message="[Every configured Word permit should match a profile and parse] &#10;Expecting empty but was: [&quot;YEN NHI.docx | File format validation failed for YEN NHI.docx: Unsupported Word permit format; no format profile matched&quot;]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError:
+Expecting empty but was: ["YEN NHI.docx | File format validation failed for YEN NHI.docx: Unsupported Word permit format; no format profile matched"]
+LD  2655 (REV1).docx | prv-ollie-landing-revision | LD 02655/S/CHK/2026 | 2 flight(s) | review-only
+LD  2814 VSV.docx | vsv-english-landing-issued | LD 02814/S/CHK/2026 | 60 flight(s) | import-ready
+LD  2815 VSV.docx | vsv-english-landing-issued | LD 02815/S/CHK/2026 | 14 flight(s) | import-ready
+LD 2747 CLX4731.docx | clx-english-landing-issued | LD 02747/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2749 N88AY.docx | prv-amber-landing-issued | LD 02749/S/CHK/2026 | 4 flight(s) | import-ready
+LD 2752 VJC.docx | vjc-vietnamese-landing-issued | LD 02752/S/CHK/2026 | 6 flight(s) | import-ready
+LD 2753 SAV298.docx | sav-sun-air-landing-issued | LD 02753/S/CHK/2026 | 4 flight(s) | import-ready
+LD 2755 HAI488.docx | hai-english-landing-issued | LD 02755/S/CHK/2026 | 4 flight(s) | import-ready
+LD 2756 BSF979A.docx | bsf-english-landing-issued | LD 02756/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2758 AIH.docx | aih-english-landing-issued | LD 02758/S/CHK/2026 | 12 flight(s) | import-ready
+LD 2760 TBA.docx | tba-english-landing-issued | LD 02760/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2762 MEDIC15.docx | pfa-english-landing-issued | LD 02762/S/CHK/2026 | 4 flight(s) | import-ready
+LD 2763 LTX1.docx | ltx-english-landing-issued | LD 02763/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2765 HVN.docx | hvn-vietnamese-landing-change | LD 02765/S/CHK/2026 | 217 flight(s) | import-ready
+LD 2773 VFC.docx | vfc-vietnamese-landing-change | LD 02773/S/CHK/2026 | 6 flight(s) | import-ready
+LD 2774.docx | caav-generic-landing-issued | LD 02774/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2775 VJC.docx | vjc-vietnamese-landing-issued | LD 02775/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2777.docx | caav-generic-landing-issued | LD 02777/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2782 HAI.docx | hai-english-landing-issued | LD 02782/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2783 HAI.docx | hai-english-landing-issued | LD 02783/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2785 KAR.docx | kar-english-landing-issued | LD 02785/S/CHK/2026 | 32 flight(s) | import-ready
+LD 2786 NWS.docx | nws-english-landing-issued | LD 02786/S/CHK/2026 | 30 flight(s) | import-ready
+LD 2787 SAV579.docx | sav-sun-air-landing-issued | LD 02787/S/CHK/2026 | 7 flight(s) | import-ready
+LD 2788 N55999.docx | caav-generic-landing-issued | LD 02788/S/CHK/2026 | 13 flight(s) | import-ready
+LD 2790 VAG.docx | vag-vietnamese-landing-issued | LD 02790/S/CHK/2026 | 30 flight(s) | import-ready
+LD 2794.docx | caav-generic-landing-issued | LD 02794/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2809.docx | hai-english-landing-issued | LD 02809/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2823 VJC.docx | vjc-vietnamese-landing-issued | LD 02823/S/CHK/2026 | 239 flight(s) | import-ready
+LD 2828 VFC.docx | vfc-vietnamese-landing-change | LD 02828/S/CHK/2026 | 77 flight(s) | import-ready
+LD 2830 HVN.docx | hvn-vietnamese-landing-change | LD 02830/S/CHK/2026 | 66 flight(s) | import-ready
+LD 2837 SPQ.docx | spq-vietnamese-landing-issued | LD 02837/S/CHK/2026 | 3 flight(s) | import-ready
+LD 2838-QTR.docx | qtr-english-landing-issued | LD 02838/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2841_N77999.docx | caav-generic-landing-issued | LD 02841/S/CHK/2026 | 4 flight(s) | import-ready
+LD 2843 MYU.docx | myu-english-landing-issued | LD 02843/S/CHK/2026 | 2 flight(s) | import-ready
+LD 2845 HVN7109.docx | hvn-vietnamese-landing-change | LD 02845/S/CHK/2026 | 1 flight(s) | import-ready
+LD 2846 HVN.docx | hvn-vietnamese-landing-change | LD 02846/S/CHK/2026 | 3 flight(s) | import-ready
+LD 2847 HVN384.docx | hvn-vietnamese-landing-change | LD 02847/S/CHK/2026 | 1 flight(s) | import-ready
+LD2587 REV3.-PTW.docx | ptw-english-landing-revision | LD 02587/S/CHK/2026 | 1 flight(s) | review-only
+OF 5307 V8OAS.docx | prv-sultan-flight-overflight-issued | O/F 05307/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5343 VHPFA.docx | pfa-english-overflight-issued | O/F 05343/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5367 ADB390F.docx | caav-generic-overflight-issued | O/F 05367/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5368 T7JUE.docx | caav-generic-overflight-issued | O/F 05368/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5374 CQH.docx | cqh-english-overflight-issued | O/F 05374/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5391 IGT1183.docx | igt-english-overflight-issued | O/F 05391/S/CHK/2026 | 4 flight(s) | import-ready
+OF 5392 IGT1202.docx | igt-english-overflight-issued | O/F 05392/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5394 HGO.docx | hgo-english-overflight-issued | O/F 05394/S/CHK/2026 | 5 flight(s) | import-ready
+OF 5414 N1972.docx | caav-generic-overflight-issued | O/F 05414/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5415 T7688NJ.docx | caav-generic-overflight-issued | O/F 05415/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5419  BTN.docx | btn-english-overflight-issued | O/F 05419/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5420 AZG1922.docx | azg-english-overflight-issued | O/F 05420/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5421 MFX7632.docx | mfx-english-overflight-issued | O/F 05421/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5425 KXP.docx | kxp-english-overflight-scheduled | O/F 05425/S/CHK/2026 | 37 flight(s) | import-ready
+OF 5426 T7TJ1.docx | caav-generic-overflight-issued | O/F 05426/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5427 SIN.docx | sin-english-overflight-scheduled | O/F 05427/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5428 KMI001.docx | kmi-english-overflight-issued | O/F 05428/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5429 APG.docx | apg-english-overflight-issued | O/F 05429/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5430 QQE.docx | caav-generic-overflight-issued | O/F 05430/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5433 GTI.docx | gti-english-overflight-issued | O/F 05433/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5434 GTI.docx | gti-english-overflight-issued | O/F 05434/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5435 GTI.docx | gti-english-overflight-issued | O/F 05435/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5436 VJT.docx | vjt-inline-overflight-issued | O/F 05436/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5438 IGT.docx | igt-english-overflight-scheduled | O/F 05438/S/CHK/2026 | 3 flight(s) | import-ready
+OF 5441 TCJ02.docx | caav-generic-overflight-issued | O/F 05441/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5442 N363JG.docx | caav-generic-overflight-issued | O/F 05442/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5443 N6FE.docx | caav-generic-overflight-issued | O/F 05443/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5446 B8309.docx | prv-amber-overflight-issued | O/F 05446/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5447 ADZ9087.docx | adz-english-overflight-issued | O/F 05447/S/CHK/2026 | 5 flight(s) | import-ready
+OF 5448 B3246.docx | caav-generic-overflight-issued | O/F 05448/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5452 DASSY.docx | caav-generic-overflight-issued | O/F 05452/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5453 VPCNP.docx | caav-generic-overflight-issued | O/F 05453/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5454 MEDIC77.docx | caav-generic-overflight-issued | O/F 05454/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5477 N369WW.docx | caav-generic-overflight-issued | O/F 05477/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5478 ABD.docx | abd-english-overflight-issued | O/F 05478/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5479 VQBOY.docx | prv-lily-jet-overflight-issued | O/F 05479/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5480 VJT.docx | vjt-inline-overflight-issued | O/F 05480/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5481 VJT COR.docx | vjt-inline-overflight-issued | O/F 05481/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5481 VJT.docx | vjt-inline-overflight-issued | O/F 05481/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5482 N779LG.docx | caav-generic-overflight-issued | O/F 05482/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5483 HGO.docx | hgo-english-overflight-issued | O/F 05483/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5484 N212DD.docx | prv-sinojet-overflight-issued | O/F 05484/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5485 N65WL.docx | prv-circadian-overflight-issued | O/F 05485/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5486 VJT.docx | vjt-inline-overflight-issued | O/F 05486/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5487 VJT.docx | vjt-inline-overflight-issued | O/F 05487/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5488 VPCNP.docx | caav-generic-overflight-issued | O/F 05488/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5489 B16888.docx | caav-generic-overflight-issued | O/F 05489/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5495 THY.docx | thy-english-overflight-issued | O/F 05495/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5495 THY6314 COR LAY.docx | thy-english-overflight-issued | O/F 05495/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5496 P4JPB.docx | caav-generic-overflight-issued | O/F 05496/S/CHK/2026 | 2 flight(s) | import-ready
+OF 5497 THY.docx | thy-english-overflight-issued | O/F 05497/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5498 VHOFA.docx | caav-generic-overflight-issued | O/F 05498/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5499 T7Y8998.docx | caav-generic-overflight-issued | O/F 05499/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5500 QQE.docx | caav-generic-overflight-issued | O/F 05500/S/CHK/2026 | 1 flight(s) | import-ready
+OF 5501 T7BOSS.docx | asi-asian-corporate-overflight-issued | O/F 05501/S/CHK/2026 | 2 flight(s) | import-ready
+QLB 158.docx | pfa-bilingual-qlb-issued | QLB 00158/S/VATM/2026 | 2 flight(s) | review-only
+QLB 161 VHULJ.docx | prv-avcair-qlb-issued | QLB 00161/S/VATM/2026 | 2 flight(s) | review-only
+YEN NHI.docx | File format validation failed for YEN NHI.docx: Unsupported Word permit format; no format profile matched

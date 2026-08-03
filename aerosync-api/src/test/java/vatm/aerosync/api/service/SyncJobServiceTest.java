@@ -31,13 +31,16 @@ class SyncJobServiceTest {
     private final AuditLogRepository auditLogRepository = mock(AuditLogRepository.class);
     private final JobRetryPublisher jobRetryPublisher = mock(JobRetryPublisher.class);
     private final PermitImportRepository permitImportRepository = mock(PermitImportRepository.class);
+    private final VietnameseErrorMessageTranslator errorMessageTranslator =
+            new VietnameseErrorMessageTranslator();
     private final SyncJobService service = new SyncJobService(
             syncJobRepository,
             fileRecordRepository,
             emailMetadataRepository,
             jobRetryPublisher,
             auditLogRepository,
-            permitImportRepository);
+            permitImportRepository,
+            errorMessageTranslator);
 
     @Test
     void listJobs_includesOriginalFileNameAndSenderFromLatestFileRecord() {

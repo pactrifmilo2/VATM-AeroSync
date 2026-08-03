@@ -31,8 +31,10 @@ class EmailReportServiceTest {
     private final EmailMetadataRepository repository = mock(EmailMetadataRepository.class);
     private final PermitImportRepository permitImportRepository = mock(PermitImportRepository.class);
     private final FileRecordRepository fileRecordRepository = mock(FileRecordRepository.class);
+    private final VietnameseErrorMessageTranslator errorMessageTranslator =
+            new VietnameseErrorMessageTranslator();
     private final EmailReportService service = new EmailReportService(
-            repository, permitImportRepository, fileRecordRepository);
+            repository, permitImportRepository, fileRecordRepository, errorMessageTranslator);
 
     @Test
     void search_mapsRowsWithoutEmailBodyAndUsesPaginationMetadata() {
@@ -68,7 +70,7 @@ class EmailReportServiceTest {
         assertThat(result.content().getFirst().storedFileName())
                 .isEqualTo("operator_20260724_091500_email_permit.docx");
         assertThat(result.content().getFirst().errorMessage())
-                .isEqualTo("Unsupported Word permit format; no format profile matched");
+                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
         assertThat(result.totalElements()).isEqualTo(1);
         assertThat(result.page()).isZero();
     }
@@ -105,7 +107,7 @@ class EmailReportServiceTest {
         assertThat(service.get(7L).storedFileName())
                 .isEqualTo("operator_20260724_100000_email_permit.docx");
         assertThat(service.get(7L).errorMessage())
-                .isEqualTo("Unsupported Word permit format; no format profile matched");
+                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
         assertThat(service.get(7L).acknowledgementError()).isEqualTo("Could not move message");
         assertThatThrownBy(() -> service.get(8L))
                 .isInstanceOf(java.util.NoSuchElementException.class)

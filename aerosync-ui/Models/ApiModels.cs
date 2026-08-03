@@ -51,12 +51,80 @@ public sealed class SyncJobDetailResponse
     public string? LatestLogMessage { get; set; }
     public string? EmailSubject { get; set; }
     public string? EmailBody { get; set; }
+    public string? PermitImportStatus { get; set; }
+    public string? NormalizedPermitId { get; set; }
+    public long? TargetMasterId { get; set; }
+    public long? TargetPermId { get; set; }
+    public int? PermitDetailCount { get; set; }
+    public string? PermitImportError { get; set; }
 
     /// <summary>
     /// True when email metadata (subject or body) is present.
     /// </summary>
     public bool HasEmailContent => !string.IsNullOrWhiteSpace(EmailSubject)
                                    || !string.IsNullOrWhiteSpace(EmailBody);
+}
+
+public sealed class PagedResponse<T>
+{
+    public List<T> Content { get; set; } = [];
+    public int Page { get; set; }
+    public int Size { get; set; }
+    public long TotalElements { get; set; }
+    public int TotalPages { get; set; }
+    public bool HasNext { get; set; }
+    public bool HasPrevious { get; set; }
+}
+
+public sealed class EmailReportRowResponse
+{
+    public long Id { get; set; }
+    public long? SyncJobId { get; set; }
+    public string? PermitNumber { get; set; }
+    public string MessageId { get; set; } = "";
+    public string Sender { get; set; } = "";
+    public string Subject { get; set; } = "";
+    public DateTime ReceivedAt { get; set; }
+    public int AttachmentCount { get; set; }
+    public int? AttachmentIndex { get; set; }
+    public string AttachmentName { get; set; } = "";
+    public string? StoredFileName { get; set; }
+    public string? ErrorMessage { get; set; }
+    public string ProcessingStatus { get; set; } = "";
+    public string? AcknowledgementStatus { get; set; }
+    public bool IngestComplete { get; set; }
+    public DateTime? AcknowledgedAt { get; set; }
+    public string? JobStatus { get; set; }
+}
+
+public sealed class EmailResendRequestModel
+{
+    public string MessageId { get; set; } = "";
+    public IReadOnlySet<string> Statuses { get; set; } = new HashSet<string>();
+}
+
+public sealed class EmailResendResponseModel
+{
+    public string OriginalMessageId { get; set; } = "";
+    public string SentMessageId { get; set; } = "";
+    public string Recipient { get; set; } = "";
+    public int AttachmentsSent { get; set; }
+    public int AttachmentsSkipped { get; set; }
+    public bool Accepted { get; set; }
+}
+
+public sealed class TestReplayRequest
+{
+    public string ConfirmPermitId { get; set; } = "";
+}
+
+public sealed class TestReplayResponse
+{
+    public long JobId { get; set; }
+    public string NormalizedPermitId { get; set; } = "";
+    public int DeletedTargetMasterRows { get; set; }
+    public int DeletedTargetDetailRows { get; set; }
+    public bool ReplayQueued { get; set; }
 }
 
 public sealed class FileRecordResponse
