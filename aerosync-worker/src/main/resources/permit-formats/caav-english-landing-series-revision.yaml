@@ -1,0 +1,96 @@
+id: caav-english-landing-series-revision
+priority: 180
+detectionPatterns:
+  - '(?iu)(?:(?:PERMIT\s+NO\.?)\s*:\s*|№\s*:\s*)LD\s*-?\s*\d{1,4}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:2\.2\.?\s*(?:NEW|NEW\s+SCHEDULE)|NEW\s+SCHEDULE\(S\))'
+permit:
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,4})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})\s*VN'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?:HA\s*NOI|HANOI)\s*,?\s*(?<date>\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}(?:ST|ND|RD|TH)?\s+[A-Z]+\s+20\d{2})'
+  group: date
+  formats: [d/M/uuuu, d MMMM uuuu, d MMM uuuu]
+  locale: en
+operator:
+  source: TABLE
+  pattern: '(?iu)ICAO\s*(?:CODE)?\s*:\s*(?<value>[A-Z0-9]{3})'
+  group: value
+  required: false
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)POSTAL\s+ADDRESS\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+referenceColumn: originalPermit
+purpose:
+  defaultId: PAX
+  mappings:
+    - pattern: '(?iu)\bCARGO\b|\bFREIGHTER\b'
+      value: CAR
+    - pattern: '(?iu)\bFERR?Y\b'
+      value: FER
+    - pattern: '(?iu)\bTECH(?:NICAL)?\s*STOP\b|\bREFUEL'
+      value: OTH
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: S
+  validHours: 24
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival Airport]
+    eta: [ETA]
+    aircraftType: [Aircraft Type]
+    originalPermit: [Original permit]
+  headerlessColumns:
+    flightNumber: 0
+    effectiveFrom: 1
+    effectiveTo: 2
+    serviceDays: 3
+    fromAirport: 4
+    etd: 5
+    toAirport: 6
+    eta: 7
+    aircraftType: 8
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta, aircraftType]
+  excludeColumns: [originalPermit]
+  preferredTableContextPatterns:
+    - '(?iu)(?:2\.2\.?\s*NEW|NEW\s+SCHEDULE)'
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  lastMatchingTable: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: ''
+validation:
+  allowIataAirports: true
+  reviewOnly: true

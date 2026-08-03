@@ -1,0 +1,39 @@
+FILE: tu1412000_20260801_161513_email_quarantine_tu1412000_20260801_155111_email_quarantine_tu1412000_20260731_185201_email_quarantine_017_LD_2799.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 29/07/2026
+Permit No.: LD-2799/07/2026VN
+1. Carrier: 
+Name: De Havilland Aircraft of Canada Ltd Postal Address: 4100 Westwinds Drive, N.E., Calgary, Alberta, Canada T3J, 4L2 
+2. Schedules: (UTC Time) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA DHC4407 02AUG26 02AUG26 ------7 CCU 0510 DAD 0930 DHC4407 03AUG26 03AUG26 1------ DAD 2200 OKA 0220+1 
+3. Purpose of Flight: PRIVATE FLIGHT
+ 
+4. Aircraft:
+Aircraft Type Registration Mark DH4 C-FKQX 
+ 5. Airways:
+Sector Airways CCU-DAD A206-W2 CCU-DAD A206-Q1 CCU-DAD A1 DAD-OKA A1 Airways: Other permitted airways published in Viet Nam’s AIP.
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: De Havilland Aircraft of Canada Ltd
+Postal Address: 4100 Westwinds Drive, N.E., Calgary, Alberta, Canada T3J, 4L2
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+DHC4407 | 02AUG26 | 02AUG26 | ------7 | CCU | 0510 | DAD | 0930
+DHC4407 | 03AUG26 | 03AUG26 | 1------ | DAD | 2200 | OKA | 0220+1
+
+TABLE 3
+Aircraft Type | Registration Mark
+DH4 | C-FKQX
+
+TABLE 4
+Sector | Airways
+CCU-DAD | A206-W2
+CCU-DAD | A206-Q1
+CCU-DAD | A1
+DAD-OKA | A1

@@ -1,0 +1,56 @@
+FILE: job-1574_quyngoxuan_20260803_090327_email_001_LD_2785__REV1_.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 01/08/2026
+Permit No.: LD-2785/07/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: LLC ‘IKAR’ IATA code: EO ICAO code: KAR Postal Address: Russian Federation, Moscow Region, Khimki, Sheremetyevo Airport, P.O. Box 172 Tel: +7 495 730 4330 ext. 419
++7 903 683 23 79 Email: HYPERLINK "mailto:dispatch@operations.aero" dispatch@operations.aero 
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit EO3657 02AUG26 02AUG26 ------7 OVB 0015 CXR 0755 B772/B739 LD-2785/07/2026VN EO3680 02AUG26 02AUG26 ------7 CXR 1230 OVB 2005 B772/B739 LD-2785/07/2026VN 2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type EO3657 02AUG26 02AUG26 ------7 OVB 0015 CXR 0755 B772 EO3680 02AUG26 02AUG26 ------7 CXR 1035 OVB 1810 B772 
+3. Purpose of Flight: Charter PAX flights
+4. Aircraft
+Aircraft Type Registration Mark Nationality B772 RA-73272 Russia B772 RA-73347 Russia B739 RA73343 Russia B739 RA73344 Russia 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CXR-OVB VVCR KARAN W2 DAN Q1 HAMIN Q5 NIVEN Q2 VPH W22 MEOVA R471 KATBO KATBO OVB-CXR KATBO R471 NAKHA Q3 NAH Q1 DAN W2 KAMGO VVCR KATBO 
+Other details unchanged
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: LLC ‘IKAR’
+IATA code: EO | ICAO code: KAR
+Postal Address: Russian Federation, Moscow Region, Khimki, Sheremetyevo Airport, P.O. Box 172
+Tel: +7 495 730 4330 ext. 419 +7 903 683 23 79 | Email: HYPERLINK "mailto:dispatch@operations.aero" dispatch@operations.aero
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+EO3657 | 02AUG26 | 02AUG26 | ------7 | OVB | 0015 | CXR | 0755 | B772/B739 | LD-2785/07/2026VN
+EO3680 | 02AUG26 | 02AUG26 | ------7 | CXR | 1230 | OVB | 2005 | B772/B739 | LD-2785/07/2026VN
+
+TABLE 3
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EO3657 | 02AUG26 | 02AUG26 | ------7 | OVB | 0015 | CXR | 0755 | B772
+EO3680 | 02AUG26 | 02AUG26 | ------7 | CXR | 1035 | OVB | 1810 | B772
+
+TABLE 4
+Aircraft Type | Registration Mark | Nationality
+B772 | RA-73272 | Russia
+B772 | RA-73347 | Russia
+B739 | RA73343 | Russia
+B739 | RA73344 | Russia
+
+TABLE 5
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CXR-OVB | VVCR KARAN W2 DAN Q1 HAMIN Q5 NIVEN Q2 VPH W22 MEOVA R471 KATBO |  | KATBO
+OVB-CXR | KATBO R471 NAKHA Q3 NAH Q1 DAN W2 KAMGO VVCR | KATBO | 

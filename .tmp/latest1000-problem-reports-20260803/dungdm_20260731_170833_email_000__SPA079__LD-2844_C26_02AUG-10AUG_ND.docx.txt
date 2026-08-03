@@ -1,0 +1,66 @@
+FILE: dungdm_20260731_170833_email_000__SPA079__LD-2844_C26_02AUG-10AUG_ND.docx
+
+PARAGRAPHS
+Phép bay cho chuyến bay không thường lệ cất/hạ cánh tại Việt Nam
+Hà Nội, 31/07/2026
+To: VATM, SPQ
+Cc: NAA, MAA, SAA
+Phép bay số: LD-2844/07/2026VN
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Vận tải hàng không thương mại <tăng chuyến chở khách>
+4. Tàu bay
+5. Đường hàng không
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+Đinh Mạnh Dũng gửi thay Ông Đào Ngọc Dũng - Phó Trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay cho chuyến bay không thường lệ cất/hạ cánh tại Việt Nam
+Hà Nội, 31/07/2026
+To: VATM, SPQ
+Cc: NAA, MAA, SAA
+Phép bay số: LD-2844/07/2026VN
+1. Người vận chuyển
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+9G935 | 09-Aug-26 | 09-Aug-26 | ------7 | HAN | 12:15 | DAD | 13:35
+9G1963 | 02-Aug-26 | 02-Aug-26 | ------7 | SGN | 02:40 | PQC | 03:55
+9G2962 | 03-Aug-26 | 10-Aug-26 | 1------ | PQC | 04:35 | DAD | 06:20
+9G2963 | 03-Aug-26 | 10-Aug-26 | 1------ | DAD | 02:10 | PQC | 04:05
+9G1968 | 09-Aug-26 | 09-Aug-26 | ------7 | PQC | 07:20 | SGN | 08:25
+9G1560 | 08-Aug-26 | 08-Aug-26 | -----6- | SGN | 02:45 | VDO | 05:00
+9G817 | 02-Aug-26 | 03-Aug-26 | 1-----7 | HAN | 00:55 | SGN | 03:05
+9G854 | 02-Aug-26 | 02-Aug-26 | ------7 | SGN | 08:25 | HAN | 10:35
+9G869 | 03-Aug-26 | 03-Aug-26 | 1------ | HAN | 11:35 | SGN | 13:45
+9G966 | 02-Aug-26 | 03-Aug-26 | 1-----7 | SGN | 04:00 | DAD | 05:25
+9G973 | 02-Aug-26 | 03-Aug-26 | 1-----7 | DAD | 06:15 | SGN | 07:40
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay: Vận tải hàng không thương mại <tăng chuyến chở khách>
+4. Tàu bay
+Loại tàu bay | Số ghế cao nhất | Số đăng ký tàu bay
+321 | 220 | Theo AOC của 9G
+32Q | 236 / 240 | Theo AOC của 9G
+32N | 174 | Theo AOC của 9G
+
+TABLE 4
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không
+HAN-SGN | Q1 / W1
+SGN-HAN | Q2 / W1
+SGN-PQC | W17
+PQC-SGN | W8 W16
+HAN-DAD | Q1/ W1
+SGN-DAD | Q2/ W1
+DAD-SGN | Q1/ W1
+DAD-PQC | Q1 W12 W16 W8
+PQC-DAD | W17 Q2
+SGN-VDO | Q2 Q4 W20

@@ -8,5 +8,9 @@ public interface AtfmScheduleGateway {
 
     Optional<AtfmPermitSnapshot> findExisting(SchedulePermit permit);
 
+    Optional<AtfmRevisionBaseline> findRevisionBaseline(SchedulePermit permit);
+
     AtfmWriteResult insert(SchedulePermit permit);
+
+    AtfmWriteResult update(SchedulePermit permit);
 }

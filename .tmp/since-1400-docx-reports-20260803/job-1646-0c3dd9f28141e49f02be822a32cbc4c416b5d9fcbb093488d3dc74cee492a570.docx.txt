@@ -1,0 +1,49 @@
+FILE: job-1646-0c3dd9f28141e49f02be822a32cbc4c416b5d9fcbb093488d3dc74cee492a570.docx
+
+PARAGRAPHS
+HANOI, 3-Aug-26
+PERMIT NUMBER OF-5543/8/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. Additional information (if any):
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260802-170117)
+
+TABLE 1
+CONTEXT: HANOI, 3-Aug-26
+PERMIT NUMBER OF-5543/8/2026VN
+1. Carrier/Operator
+Name: PAN ASIA PROPERTY MANAGEMENT SDN BHD
+Postal Address: LEVEL 1, LOBBY LOUNGE, THE PEARL, NO 2A JALAN STONOR, 50450 KUALA LUMPUR, MALAYSIA | Nationality: MALAYSIA
+ |  | 
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: AONE TRIP SUPPORT PTE LTD
+Postal Address: 690 WEST CAMP ROAD #09-02 JTC AVIATION TWO @ SELETAR AEROSPACE PARK SINGAPORE 797523
+Email: aonetrip.finance@aone.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+N81118 | 03AUG26 | 03AUG26 | 1------ | WMSA | 1030 | ZBTJ | 1640
+N81118 | 05AUG26 | 05AUG26 | --3---- | ZBTJ | 0600 | WMSA | 1120
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type(ICAO code) | Aircraft registration mark | Maximum Take-off weight(MTOW)
+GL5T | N81118 | 41.9
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+WMSA-ZBTJ | M765-M771
+ZBTJ-WMSA | L642

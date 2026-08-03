@@ -1,0 +1,77 @@
+FILE: haanhlv_20260801_104404_email_001_LD-55.A.S.2026VN.REV7.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 31/07/2026 PERMIT NO.: LD-55/A/S/2026VN /REV7
+1. Carrier
+2. Revised Schedules (UTC Time)
+2.1. Old Schedule:
+2.2 New:
+3. Airways
+3.1 Old
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+3.2 New
+OTHER DETAILS REMAIN UNCHANGED
+Airways: Other permitted airways published in Viet Nam’s AIP.
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 31/07/2026 PERMIT NO.: LD-55/A/S/2026VN /REV7
+1. Carrier
+Name: Aerologic GmbH
+IATA code:3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Straße 2, 04435 Schkeuditz, Germany
+Tel: +49 (0) 34204 443 140 | Email: 3S-schedule-slot@aerologic.aero
+
+TABLE 2
+CONTEXT: 2. Revised Schedules (UTC Time)
+2.1. Old Schedule:
+3S738 | 03Aug26 | 24Aug26 | 1000000 | LEJ | 21:00 | BAH | 02:30+1 | 77X
+3S738 | 04Aug26 | 25Aug26 | 0200000 | BAH | 05:40 | HAN | 12:30 | 77X
+3S738 | 04Aug26 | 25Aug26 | 0200000 | HAN | 14:30 | HKG | 16:30 | 77X
+ |  |  |  |  |  |  |  | 
+3S736 | 04Aug26 | 25Aug26 | 0200000 | LEJ | 21:00 | BAH | 02:30+1 | 77X
+3S736 | 05Aug26 | 26Aug26 | 0030000 | BAH | 05:40 | HAN | 12:30 | 77X
+3S736 | 05Aug26 | 26Aug26 | 0030000 | HAN | 14:30 | HKG | 16:30 | 77X
+ |  |  |  |  |  |  |  | 
+3S738 | 05Aug26 | 26Aug26 | 0030000 | LEJ | 21:00 | BAH | 02:30+1 | 77X
+3S738 | 06Aug26 | 27Aug26 | 0004000 | BAH | 05:40 | HAN | 12:30 | 77X
+3S738 | 06Aug26 | 27Aug26 | 0004000 | HAN | 14:30 | HKG | 16:30 | 77X
+ |  |  |  |  |  |  |  | 
+3S736 | 06Aug26 | 27Aug26 | 0004000 | LEJ | 21:00 | BAH | 02:30+1 | 77X
+3S736 | 07Aug26 | 28Aug26 | 0000500 | BAH | 05:40 | HAN | 12:30 | 77X
+3S736 | 07Aug26 | 28Aug26 | 0000500 | HAN | 14:30 | HKG | 16:30 | 77X
+
+TABLE 3
+CONTEXT: 2.2 New:
+3S748 | 04Aug26 | 25Aug26 | 0200000 | LEJ | 00:25 | DXB | 06:30 | 77X
+3S748 | 04Aug26 | 25Aug26 | 0200000 | DXB | 08:30 | HAN | 15:00 | 77X
+3S748 | 04Aug26 | 25Aug26 | 0200000 | HAN | 17:00 | HKG | 19:00 | 77X
+ |  |  |  |  |  |  |  | 
+3S746 | 05Aug26 | 26Aug26 | 0030000 | LEJ | 00:25 | DXB | 06:30 | 77X
+3S746 | 05Aug26 | 26Aug26 | 0030000 | DXB | 08:30 | HAN | 15:00 | 77X
+3S746 | 05Aug26 | 26Aug26 | 0030000 | HAN | 16:55 | HKG | 18:55 | 77X
+ |  |  |  |  |  |  |  | 
+3S748 | 06Aug26 | 27Aug26 | 0004000 | LEJ | 00:25 | DXB | 06:30 | 77X
+3S748 | 06Aug26 | 27Aug26 | 0004000 | DXB | 08:30 | HAN | 15:00 | 77X
+3S748 | 06Aug26 | 27Aug26 | 0004000 | HAN | 17:00 | HKG | 19:00 | 77X
+ |  |  |  |  |  |  |  | 
+3S746 | 07Aug26 | 28Aug26 | 0000500 | LEJ | 00:25 | DXB | 06:30 | 77X
+3S746 | 07Aug26 | 28Aug26 | 0000500 | DXB | 08:30 | HAN | 15:00 | 77X
+3S746 | 07Aug26 | 28Aug26 | 0000500 | HAN | 17:00 | HKG | 19:00 | 77X
+
+TABLE 4
+CONTEXT: 3. Airways
+3.1 Old
+Sector | Airways
+BAH-HAN | B214-W21
+HAN-HKG | R474
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+3.2 New
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DXB-HAN | B214-W21 | LADON | 
+HAN-HKG | R474 |  | TEBAK

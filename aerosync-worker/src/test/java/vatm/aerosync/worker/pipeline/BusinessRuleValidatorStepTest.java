@@ -107,6 +107,24 @@ class BusinessRuleValidatorStepTest {
     }
 
     @Test
+    void validate_rejectsScheduledPermitNumberWithoutYear() {
+        ProcessingContext context = scheduleContext(
+                "1000000", LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 27));
+        SchedulePermit permit = context.getSchedulePermit();
+        context.setSchedulePermit(new SchedulePermit(
+                permit.sourcePermitNumber(), "O/F 05199/S/CHK", permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
+                permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
+                permit.emptyAirwaysAllowed(), permit.reviewOnly(), permit.rawContent(),
+                permit.flights(), permit.originalFlights()));
+
+        assertThatThrownBy(() -> validator.validate(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("BR-PERMIT-YEAR");
+    }
+
+    @Test
     void validate_rejectsScheduleWithoutOperatingDateInRange() {
         ProcessingContext context = scheduleContext("0200000", LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20));
 

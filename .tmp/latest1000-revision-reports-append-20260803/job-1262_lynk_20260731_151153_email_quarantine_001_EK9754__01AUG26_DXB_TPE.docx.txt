@@ -1,0 +1,55 @@
+FILE: job-1262_lynk_20260731_151153_email_quarantine_001_EK9754__01AUG26_DXB_TPE.docx
+
+PARAGRAPHS
+Application for Revision of overflight permit
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Refer to the issued permit: OF - 78/B/S/2026VN
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+ATS RTE : BOMPA B202 MUMGA G474 VIMUT L628 MESOX
+ENT: BOMPA EXIT: MESOX
+4. Applicant
+__________________________
+NOTES:
+(1) In case of amendment or addition of the contents in a single flight permit, indicate the permit number already issued (e.g., LD-01/01/2025VN). In case of amendment or addition of the contents in more than one flight permits, only the information specified in Note (3) is required.
+(2) In case of amendment of the flight schedule only, both the original and the revised schedules must be specified. In case of amendment or addition of other contents, the original and the amended contents, together with the related information, must be specified.
+(3) If the amendment or addition involves more than one flight permits, indicate the permit numbers already issued.
+
+TABLE 1
+CONTEXT: Application for Revision of overflight permit
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Refer to the issued permit: OF - 78/B/S/2026VN
+1. Carrier/Operator
+Name: EMIRATES
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.BOX 686, DUBAI, UNITED ARAB EMIRATES
+Tel: +971 4 7085766 | Email: DL - OVP <eocopscntrl@emirates.com>
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+UAE9754 | 01AUG26 | 24OCT26 | ------6- | OMDW | 0530 | VHHH | 1220 | B747/B77F | OF - 78/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+UAE9754 | 01AUG26 | 24OCT26 | ------6- | OMDW | 0105 | RCTP | 0940 | B747/B77F
+
+TABLE 4
+CONTEXT: 3. Note: Other details unchanged.
+ATS RTE : BOMPA B202 MUMGA G474 VIMUT L628 MESOX
+ENT: BOMPA EXIT: MESOX
+4. Applicant
+Company EMIRATES | 
+Individual: Nejib | Title (if any): Aeronautical Services Officer
+Postal Address: P.O.Box 686, Dubai, U.A.E
+Tel: +971 4 7084170 | Email: eocopscntrl@emirates.com Nejibuddin.rahiman@emirates.com
+Submitted date: 29JUL 2026

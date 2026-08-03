@@ -1,0 +1,51 @@
+FILE: duongvtt_20260802_223823_email_001_THAILAND-GW-OF_22-317_HADID__NOK__B737__HS-DBZ__NOK502__03AUG26.docx
+
+PARAGRAPHS
+Application for non-scheduled Overflight
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PASSENGERS FLIGHT | UNEXPECTED WEATHER
+5. Aircraft:
+6. Airways:
+7. Applicant: GOLDENWING AVIATION | 173 XUAN THUY, CAU GIAY, HA NOI, VIET NAM.
+T: +84 903 358 188 | F: +84 24 73 001 988 | E: Permits@goldenwingaviation.com
+Application is submitted on: 31/7/2026.
+Kind regards The Kien | Flight Permits Team GoldenWing Aviation | 173 Xuan Thuy, Cau Giay, Ha Noi, Viet Nam. T: +84 903 358 188 | F: +84 24 73 001 988. E: permits@goldenwingaviation.com | W: https://goldenwingaviation.com
+
+TABLE 1
+CONTEXT: Application for non-scheduled Overflight
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Operator:
+Name: NOK AIR
+IATA code: DD | ICAO code: NOK
+Postal Address: 222 CENTRAL BUILDING, ROOM NO. 4235, 4TH FLOOR, VIBHAVADI RANGSIT ROAD, SANAMBIN, DON MUEANG, BANGKOK 10120, THAILAND
+Tel: +662-627-2000 | Email: SchedulePlanning@nokair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: HADID INTERNATIONAL SERVICES FZE
+Postal Address: P.O.BOX 54508, DUBAI, UAE
+Tel: +971 (04) 205 3000 | Email: PERMITS@HADID.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+NOK502 | 03AUG26 | 03AUG26 | 1------ | VTBD | 0220 | VTSS | 0405
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): PASSENGERS FLIGHT | UNEXPECTED WEATHER
+5. Aircraft:
+Aircraft Type | Registration Mark | MTOW (Ton)
+B737-800 | HS-DBZ OR SUB | 79.00
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways
+VTBD-VTSS | N891
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

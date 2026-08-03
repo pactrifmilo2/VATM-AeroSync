@@ -1,0 +1,35 @@
+FILE: quyngoxuan_20260803_090331_email_quarantine_005_LD_2852_VFC_CORR.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 31/7/2026
+LD-2852/7/2026VN
+Lịch bay mùa IATA: Hè 2026
+Hãng hàng không
+Lịch bay Gốc (Giờ UTC)
+Lịch bay thay đổi (Giờ UTC)
+Ghi chú: Các thông tin khác không thay đổi
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 31/7/2026
+LD-2852/7/2026VN
+Lịch bay mùa IATA: Hè 2026
+Hãng hàng không
+Tên: CÔNG TY BAY DỊCH VỤ HÀNG KHÔNG VASCO
+Mã IATA: 0V | Mã ICAO: VFC
+Địa chỉ bưu điện:
+Điện thoại: 0981818334 | Thư điện tử: ktb.vasco@vietnamairlines.com
+
+TABLE 2
+CONTEXT: Lịch bay Gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Số Phép bay
+0V8081 | 02AUG26 | 02AUG26 | 7 | SGN | 22:55 | VCS | 00:10+ | LD-2828/7/2026VN
+0V8080 | 03AUG26 | 03AUG26 | 1 | VCS | 00:30 | SGN | 01:10 | LD-2828/7/2026VN
+
+TABLE 3
+CONTEXT: Lịch bay thay đổi (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+0V8081 | 02AUG26 | 02AUG26 | 7 | SGN | 22:55 | VCS | 23:45 | ATR72
+0V8080 | 03AUG26 | 03AUG26 | 1 | VCS | 00:05 | SGN | 01:10 | ATR72

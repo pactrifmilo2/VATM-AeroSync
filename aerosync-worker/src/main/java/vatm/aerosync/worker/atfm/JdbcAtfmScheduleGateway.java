@@ -41,7 +41,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
              WHERE m.ID = (
                    SELECT MAX(candidate.ID)
                      FROM T_PERMMASTER_SC candidate
-                    WHERE candidate.PERMNBR_ID = ?)
+                    WHERE candidate.PERMNBR_ID = ?
+                      AND SUBSTR(TRIM(candidate.PERMNBR_ID), -4) = ?)
              ORDER BY d.ID
             """;
 
@@ -65,6 +66,25 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+    private static final String LOCK_EXISTING_SQL = """
+            SELECT ID, PERM_ID
+              FROM T_PERMMASTER_SC
+             WHERE ID = (SELECT MAX(candidate.ID)
+                           FROM T_PERMMASTER_SC candidate
+                          WHERE candidate.PERMNBR_ID = ?
+                            AND SUBSTR(TRIM(candidate.PERMNBR_ID), -4) = ?)
+             FOR UPDATE
+            """;
+
+    private static final String UPDATE_MASTER_SQL = """
+            UPDATE T_PERMMASTER_SC
+               SET AUTHOR_ID = ?, PERMTYPE = ?, PERMNBR = ?, VERSION = ?, SEASON = ?,
+                   PERMDATE = ?, OPER_ID = ?, REFERENCE = ?, VALIDHOURS = ?,
+                   LASTMODIFY = ?, LASTUSER = ?, STATUS = ?, PERMCONTENT = ?,
+                   BILLINGADDRESS = ?, FLIGHTTYPE = ?
+             WHERE ID = ?
+            """;
+
     private final AtfmDatabaseProperties properties;
     private final AtfmAirportCodeResolver airportCodeResolver;
 
@@ -80,6 +100,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
             try (PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
                 statement.setString(1, permit.normalizedPermitId());
+                statement.setString(2, requiredPermitYear(permit));
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (!resultSet.next()) {
                         return Optional.empty();
@@ -96,11 +117,38 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     return Optional.of(new AtfmPermitSnapshot(
                             masterId,
                             permId,
-                            masterMatches && flightsMatch(existingFlights, resolvedFlights)));
+                            permit.revision()
+                                    ? flightsContain(existingFlights, resolvedFlights)
+                                    : masterMatches && flightsMatch(existingFlights, resolvedFlights)));
                 }
             }
         } catch (SQLException exception) {
             throw databaseFailure("read existing permit", exception);
+        }
+    }
+
+    @Override
+    public Optional<AtfmRevisionBaseline> findRevisionBaseline(SchedulePermit permit) {
+        try (Connection connection = openConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
+            statement.setString(1, permit.normalizedPermitId());
+            statement.setString(2, requiredPermitYear(permit));
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (!resultSet.next()) {
+                    return Optional.empty();
+                }
+                long masterId = resultSet.getLong("ID");
+                long permId = resultSet.getLong("PERM_ID");
+                List<ScheduleFlight> flights = new ArrayList<>();
+                do {
+                    if (resultSet.getString("FLIGHTNBR") != null) {
+                        flights.add(toBaselineFlight(resultSet));
+                    }
+                } while (resultSet.next());
+                return Optional.of(new AtfmRevisionBaseline(masterId, permId, flights));
+            }
+        } catch (SQLException exception) {
+            throw databaseFailure("read revision baseline", exception);
         }
     }
 
@@ -121,11 +169,110 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
     }
 
+    @Override
+    public AtfmWriteResult update(SchedulePermit permit) {
+        try (Connection connection = openConnection()) {
+            connection.setAutoCommit(false);
+            try {
+                AtfmWriteResult result = updateWithinTransaction(connection, permit);
+                connection.commit();
+                return result;
+            } catch (SQLException | RuntimeException exception) {
+                rollback(connection, exception);
+                throw exception;
+            }
+        } catch (SQLException exception) {
+            throw databaseFailure("update scheduled permit", exception);
+        }
+    }
+
+    private AtfmWriteResult updateWithinTransaction(Connection connection,
+                                                    SchedulePermit permit) throws SQLException {
+        List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
+        validateReferenceData(connection, permit);
+        long masterId;
+        long permId;
+        try (PreparedStatement statement = connection.prepareStatement(LOCK_EXISTING_SQL)) {
+            statement.setString(1, permit.normalizedPermitId());
+            statement.setString(2, requiredPermitYear(permit));
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (!resultSet.next()) {
+                    throw new AtfmReferenceDataException(
+                            "Revision base permit not found in ATFM: " + permit.normalizedPermitId());
+                }
+                masterId = resultSet.getLong("ID");
+                permId = resultSet.getLong("PERM_ID");
+            }
+        }
+
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_MASTER_SQL)) {
+            int index = 1;
+            statement.setString(index++, permit.authorId());
+            statement.setString(index++, permit.permitType());
+            statement.setString(index++, permit.permitNumber());
+            statement.setString(index++, permit.version());
+            statement.setString(index++, permit.season());
+            statement.setDate(index++, Date.valueOf(permit.permitDate()));
+            statement.setString(index++, permit.operatorId());
+            statement.setString(index++, truncateUtf8(permit.reference(), 4000));
+            statement.setInt(index++, permit.validHours());
+            statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(index++, "AEROSYNC");
+            statement.setString(index++, "0");
+            statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
+            statement.setString(index++, truncateUtf8(permit.billingAddress(), 4000));
+            statement.setString(index++, permit.flightType());
+            statement.setLong(index, masterId);
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException("Revision master update affected an unexpected number of rows");
+            }
+        }
+        List<ExistingFlight> existingFlights = readExistingFlights(connection, permId);
+        if (flightsContain(existingFlights, resolvedFlights)) {
+            return new AtfmWriteResult(masterId, permId, 0);
+        }
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
+            for (ScheduleFlight flight : resolvedFlights) {
+                bindDetail(statement, permId, flight);
+                statement.addBatch();
+            }
+            int[] counts = statement.executeBatch();
+            for (int count : counts) {
+                if (count == PreparedStatement.EXECUTE_FAILED) {
+                    throw new SQLException("ATFM revision detail batch reported a failed row");
+                }
+            }
+        }
+        return new AtfmWriteResult(masterId, permId, resolvedFlights.size());
+    }
+
+    private List<ExistingFlight> readExistingFlights(Connection connection,
+                                                      long permId) throws SQLException {
+        String sql = """
+                SELECT PURPOSE_ID, CRAFT_ID, MTOW, FLIGHTNBR, REGISTRATION,
+                       DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7,
+                       FROM_AIRP, TO_AIRP, ETD, ETA, VIA, BEGINDATE, ENDDATE, REMARK
+                  FROM T_PERMDETAIL_SC
+                 WHERE PERM_ID = ?
+                """;
+        List<ExistingFlight> flights = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, permId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    flights.add(toExistingFlight(resultSet));
+                }
+            }
+        }
+        return flights;
+    }
+
     private AtfmWriteResult insertWithinTransaction(Connection connection,
                                                     SchedulePermit permit) throws SQLException {
         List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
         validateReferenceData(connection, permit);
-        ensurePermitNumberIsAvailable(connection, permit.normalizedPermitId());
+        ensurePermitNumberIsAvailable(
+                connection, permit.normalizedPermitId(), requiredPermitYear(permit));
         long masterId;
         long permId;
         try (CallableStatement statement = connection.prepareCall(INSERT_MASTER_SQL)) {
@@ -237,10 +384,17 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     }
 
     private void ensurePermitNumberIsAvailable(Connection connection,
-                                               String normalizedPermitId) throws SQLException {
+                                               String normalizedPermitId,
+                                               String permitYear) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
-                "SELECT COUNT(*) FROM T_PERMMASTER_SC WHERE PERMNBR_ID = ?")) {
+                """
+                        SELECT COUNT(*)
+                          FROM T_PERMMASTER_SC
+                         WHERE PERMNBR_ID = ?
+                           AND SUBSTR(TRIM(PERMNBR_ID), -4) = ?
+                        """)) {
             statement.setString(1, normalizedPermitId);
+            statement.setString(2, permitYear);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
                 if (resultSet.getInt(1) > 0) {
@@ -305,6 +459,19 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         return actualSorted.equals(expectedSorted);
     }
 
+    private boolean flightsContain(List<ExistingFlight> existing, List<ScheduleFlight> expected) {
+        List<ExistingFlight> remaining = new ArrayList<>(existing);
+        for (ScheduleFlight flight : expected) {
+            ExistingFlight expectedFlight = ExistingFlight.fromExpected(flight);
+            int match = remaining.indexOf(expectedFlight);
+            if (match < 0) {
+                return false;
+            }
+            remaining.remove(match);
+        }
+        return true;
+    }
+
     private ExistingFlight toExistingFlight(ResultSet row) throws SQLException {
         StringBuilder days = new StringBuilder(7);
         for (int day = 1; day <= 7; day++) {
@@ -327,6 +494,15 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 begin == null ? null : begin.toLocalDate(),
                 end == null ? null : end.toLocalDate(),
                 normalize(row.getString("REMARK")));
+    }
+
+    private ScheduleFlight toBaselineFlight(ResultSet row) throws SQLException {
+        ExistingFlight flight = toExistingFlight(row);
+        return new ScheduleFlight(
+                flight.purposeId(), flight.craftId(), flight.mtow(), flight.flightNumber(),
+                flight.registration(), flight.serviceDays(), flight.fromAirport(), flight.toAirport(),
+                flight.etd(), flight.eta(), flight.via(), flight.beginDate(), flight.endDate(),
+                flight.remark(), null);
     }
 
     private Connection openConnection() throws SQLException {
@@ -375,6 +551,16 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     private static String normalize(String value) {
         return value == null || value.isBlank() ? null : value.trim();
+    }
+
+    private String requiredPermitYear(SchedulePermit permit) {
+        Integer year = permit.permitYear();
+        if (year == null) {
+            throw new IllegalArgumentException(
+                    "Permit number does not contain a four-digit year: "
+                            + permit.normalizedPermitId());
+        }
+        return Integer.toString(year);
     }
 
     private char nullToZero(String value) {

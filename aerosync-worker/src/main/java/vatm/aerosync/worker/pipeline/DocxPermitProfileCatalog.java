@@ -191,6 +191,13 @@ class DocxPermitProfileCatalog {
             profile.schedule().supplementalTableContextPatterns().forEach(
                     pattern -> validatePattern(profile, pattern, "supplemental schedule table context"));
         }
+        if (profile.schedule().headerlessColumns() != null
+                && profile.schedule().headerlessColumns().entrySet().stream()
+                        .anyMatch(entry -> blank(entry.getKey())
+                                || entry.getValue() == null
+                                || entry.getValue() < 0)) {
+            throw invalid(profile, "headerless schedule columns require non-negative indexes");
+        }
         if (profile.route() != null && profile.route().staticAirways() != null) {
             profile.route().staticAirways().forEach((sector, airways) -> {
                 if (blank(sector) || blank(airways)

@@ -25,25 +25,29 @@ master:
   flightType: 'NO'
 schedule:
   columns:
-    flightNumber: [Flight number, Số hiệu chuyến bayFlight number]
-    effectiveFrom: [Effective from, Hiệu lực từEffective from]
-    effectiveTo: [Effective to, Hiệu lực đếnEffective to]
-    serviceDays: [Days of services, Day(s) of services, Ngày trong tuầnDays of services]
-    fromAirport: [Departure Airport, Sân bay điDeparture Airport]
-    etd: [ETD, EOBT, Giờ dự kiến điEOBT]
-    toAirport: [Arrival Airport, Sân bay đếnArrival Airport]
-    eta: [ETA, EIBT, Giờ dựkiến đếnEIBT]
+    flightNumber: [Flight number, Số hiệu chuyến bay, Số hiệu chuyến bayFlight number]
+    effectiveFrom: [Effective from, Hiệu lực từ, Hiệu lực từEffective from]
+    effectiveTo: [Effective to, Hiệu lực đến, Hiệu lực đếnEffective to]
+    serviceDays: [Days of services, Day(s) of services, Ngày trong tuần, Ngày trong tuầnDays of services]
+    fromAirport: [Departure Airport, Sân bay đi, Sân bay điDeparture Airport]
+    etd: [ETD, EOBT, Giờ dự kiến đi, Giờ dự kiến điEOBT]
+    toAirport: [Arrival Airport, Sân bay đến, Sân bay đếnArrival Airport]
+    eta: [ETA, EIBT, Giờ dự kiến đến, Giờ dựkiến đếnEIBT]
 route:
   columns:
     sector: [Sector, Chặng baySector]
     airways: [Airways, Đường hàng khôngAirways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: false
 aircraft:
   auxiliaryColumns:
-    aircraftType: [Aircraft Type, Aircraft type, Loại tàu bay/Aircraft Type(mã ICAO/ ICAO code)]
+    aircraftType: [Aircraft Type, Aircraft type, Loại tàu bay/Aircraft Type(mã ICAO/ ICAO code), Loại tàu bay/Aircraft Type(mã IATA/ IATA code)]
     registrationMarks: [Registration Mark, Registration Marks, Reg marks, Số đăng ký tàu bayAircraft registration mark]
   auxiliaryRequiredColumns: [aircraftType, registrationMarks]
   auxiliaryTypeColumn: aircraftType
   defaultType: GLEX
 validation:
-  allowIataAirports: false
+  allowIataAirports: true
   reviewOnly: true

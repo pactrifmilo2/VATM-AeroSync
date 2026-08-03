@@ -1,0 +1,37 @@
+FILE: job-1524_anhkd_20260801_204224_email_quarantine_001_LD-2604_rev1_HAI499_01aug_G17.44-260801-170225.docx
+
+PARAGRAPHS
+Permit to Revise Landing Permit
+Hanoi, 01/08/2026 Permit No.: LD-2604/06/2026VN/REV1
+Refer to the issued permit:: LD-2604/06/2026VN
+1. Operator
+2. Schedule (UTC Time)
+2.1 Original in permit number LD-2604/07/2026VN
+2.1 New
+3. Purpose of flight:
+3.1. Original: Ferry
+3.2. New: Commercial Business Aviation
+4. Note: Other details unchanged.
+Khuat Duy Anh for Mr. Dao Ngoc Dung – Deputy Director of ATD-CAAV
+C.c: Mr.Bui Minh Dang - Director of ATD-CAAV (For report)
+
+TABLE 1
+CONTEXT: Permit to Revise Landing Permit
+Hanoi, 01/08/2026 Permit No.: LD-2604/06/2026VN/REV1
+Refer to the issued permit:: LD-2604/06/2026VN
+1. Operator
+Name: HAI AU AVIATION
+IATA code: | ICAO code: HAI
+Postal Address: 8 FLOOR, 70 BA TRIEU STREET, HOAN KIEM DISTRICT, HA NOI
+Tel: +84 868130110 | Email: DUTYMANAGER@HAIAUAVIATION.COM
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1 Original in permit number LD-2604/07/2026VN
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+HAI499 | 01Aug26 | 01Aug26 | 6 | SGN | 2200 | SZB | 2345
+
+TABLE 3
+CONTEXT: 2.1 New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+HAI499 | 01Aug26 | 01Aug26 | 6 | SGN | 2200 | SZB | 0310

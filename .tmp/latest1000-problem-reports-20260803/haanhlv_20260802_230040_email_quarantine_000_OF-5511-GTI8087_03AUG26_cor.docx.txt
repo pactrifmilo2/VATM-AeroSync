@@ -1,0 +1,51 @@
+FILE: haanhlv_20260802_230040_email_quarantine_000_OF-5511-GTI8087_03AUG26_cor.docx
+
+PARAGRAPHS
+HA NOI, 01 AUG 2026
+PERMIT NUMBER: OF-5511/08/2026VN
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s):
+RKSI-WSSS: CARGO
+WSSS- RKSI: FERRY FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 01 AUG 2026
+PERMIT NUMBER: OF-5511/08/2026VN
+1. Operator:
+Name: ATLAS AIR
+IATA code: 5Y | ICAO code: GTI
+Postal Address: 2000, WESTCHESTER AVENUE, PURCHASE, NY, USA 10577-2543
+Tel: +1 914 701 8000 | E: info@atlasair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: PRIME TRIP SUPPORT
+Postal Address: JUMEIRAH BAY X3 TOWER, SUITE 3701, JLT DUBAI, UAE
+Tel: +971 (4) 247-2300 | Email: AP@PRIMETRIPSUPPORT.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GTI8087 | 03AUG26 | 03AUG26 | 1------ | RKSI | 1850 | WSSS | 0100+1
+GTI8087 | 04AUG26 | 04AUG26 | -2----- | WSSS | 0400 | RKSI | 1045
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s):
+RKSI-WSSS: CARGO
+WSSS- RKSI: FERRY FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark
+B747-8F OR SUB | N854GT, OR SUBS N431GT, N429MC, N498MC, N477MC
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways
+RKSI-WSSS | M765 N892
+WSSS-RKSI | M771 L625
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

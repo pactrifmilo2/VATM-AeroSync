@@ -1,0 +1,62 @@
+FILE: lynk_20260802_170816_email_000_LD_request_EK394D_03AUG.docx
+
+PARAGRAPHS
+Mẫu số 7C. Đề nghị sửa đổi, hủy bỏ phép bay
+Application to Revise, Cancel Landing/Overflight Permit
+Kính gửi: Cục Hàng không Việt Nam
+Địa chỉ: 119 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại: 84 4 38272281; Thư điện tử: atd@caa.gov.vn;
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Tham chiếu phép bay số: LD-72/A/S/2026VN
+Refer to the issued permit number: …
+1. Người vận chuyển/Người khai thác
+Carrier/Operator
+2. [Tên mục sửa đổi, bổ sung, hủy bỏ: Thay đổi số hiệu chuyến bay
+[Revised Item or Additional details or Cancelled, e.g. Schedule, Aircraft type …]
+OLD SCHEDULE
+NEW SCHEDULE
+3. Ghi chú: Các chi tiết khác không thay đổi.
+Note: Other details unchanged.
+4. Người đề nghị cấp phép bay/ Applicant
+
+TABLE 1
+CONTEXT: Mẫu số 7C. Đề nghị sửa đổi, hủy bỏ phép bay
+Application to Revise, Cancel Landing/Overflight Permit
+Kính gửi: Cục Hàng không Việt Nam
+Địa chỉ: 119 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại: 84 4 38272281; Thư điện tử: atd@caa.gov.vn;
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Tham chiếu phép bay số: LD-72/A/S/2026VN
+Refer to the issued permit number: …
+1. Người vận chuyển/Người khai thác
+Carrier/Operator
+Tên/Name: Emirates Airlines
+Mã IATA/IATA code: EK | Mã ICAO/ICAO code: UAE
+Địa chỉ bưu điện/ Postal Address: P. O. Box: 686, Dubai United Arab Emirates
+Điện thoại/Tel: +97147083415 | Thư điện tử/Email: HDQFHEK2@emirates.com
+
+TABLE 2
+CONTEXT: 2. [Tên mục sửa đổi, bổ sung, hủy bỏ: Thay đổi số hiệu chuyến bay
+[Revised Item or Additional details or Cancelled, e.g. Schedule, Aircraft type …]
+OLD SCHEDULE
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+EK 394 | 02AUG26 | 02AUG26 | ______7 | DXB | 23:30 | HAN | 06:15+1 | B777
+
+TABLE 3
+CONTEXT: NEW SCHEDULE
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+EK 394D | 03AUG26 | 03AUG26 | 1______ | DXB | 02:05 | HAN | 08:50 | B777
+
+TABLE 4
+CONTEXT: 3. Ghi chú: Các chi tiết khác không thay đổi.
+Note: Other details unchanged.
+4. Người đề nghị cấp phép bay/ Applicant
+Tên tổ chức/Company: | Emirates Airlines
+Cá nhân gửi đơn/Individual: | Đặng Trung Kiên
+Địa chỉ bưu điện/Postal Address:
+Điện thoại/Tel:+84981674743 | Thư điện tử/Email: hanapt@emirates.com
+Ngày gửi đơn/Submitted date: 31/07/2026

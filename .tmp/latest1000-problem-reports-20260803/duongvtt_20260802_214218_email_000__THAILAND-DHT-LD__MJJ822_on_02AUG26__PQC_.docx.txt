@@ -1,0 +1,49 @@
+FILE: duongvtt_20260802_214218_email_000__THAILAND-DHT-LD__MJJ822_on_02AUG26__PQC_.docx
+
+PARAGRAPHS
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator
+2. Schedules (UTC Time)
+3. Purpose of Flight: Charter flight
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Applicant
+
+TABLE 1
+CONTEXT: To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator
+Name: MJETS LIMITED
+Postal Address: PRIVATE JET TERMINAL, DON MUEANG INTERNATIONAL AIRPORT, 222 VIPHAVADEE-RANGSIT ROAD , DON MUEANG, BANGKOK, 10210 THAILAND
+Tel: +6620345678 | Email: dispatch@mjets.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MJJ822 | 03AUG26 | 03AUG26 | 1------ | DMK | 0250 | PQC | 0400
+MJJ822 | 03AUG26 | 03AUG26 | 1------ | PQC | 0500 | DMK | 0610
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Charter flight
+4. Aircraft
+Aircraft Type | Registration Mark | Seats number | MTOW (Tons) | Nationality
+GLF5 | HSWEH | 12 | 41 | THAILAND
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DMK-PQC | R334 | NUMDI | 
+PQC-DMK | R334 |  | NUMDI
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Applicant
+Company: | DHT Aviation
+Individual: Bao Nguyen | Title (if any):
+Postal Address: G16 Pandora Residence, 53 Trieu Khuc Str, Thanh Liet Ward, Ha Noi.
+Tel: +84 904 320 022 | Email: operations@dhtaviation.com
+Submitted date: 02/08/2026

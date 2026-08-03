@@ -1,0 +1,41 @@
+FILE: giangpth_20260731_170302_email_001_LD_65_A_S_2026VN.RVS.30JUL26.doc
+
+PARAGRAPHS
+Ha Noi, 30th July 2026
+№: LD - 65/A/S/2026VN.RVS.30JUL26
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: PARATA AIR. Inc IATA code: WE ICAO code: PTA Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea Tel: 0935304545 Email: nle@parataair.com 
+2. Schedules: All times in UTC
+2.1. Original schedule(s)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type WE205 29Mar26 24Oct26 0034067 ICN 0945 CXR 1515 320 WE206 29Mar26 24Oct26 0034067 CXR 1615 ICN 2125 320 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type WE205 01Aug26 24Oct26 0034067 ICN 1030 CXR 1600 320/330 WE206 01Aug26 24Oct26 0034067 CXR 1720 ICN 2225 320/330 
+3. Notes: Others remain unchanged.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+Name: PARATA AIR. Inc
+IATA code: WE | ICAO code: PTA
+Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea
+Tel: 0935304545 | Email: nle@parataair.com
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+WE205 | 29Mar26 | 24Oct26 | 0034067 | ICN | 0945 | CXR | 1515 | 320
+WE206 | 29Mar26 | 24Oct26 | 0034067 | CXR | 1615 | ICN | 2125 | 320
+
+TABLE 3
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+WE205 | 01Aug26 | 24Oct26 | 0034067 | ICN | 1030 | CXR | 1600 | 320/330
+WE206 | 01Aug26 | 24Oct26 | 0034067 | CXR | 1720 | ICN | 2225 | 320/330

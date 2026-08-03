@@ -1,0 +1,50 @@
+FILE: phamgiangcaav_20260801_221654_email_quarantine_000_LD-2760__RVS1_.docx
+
+PARAGRAPHS
+Hanoi, 31/7/2026
+REV 1: LD-2760/7/2026VN
+1. Carrier/Operator
+2. Schedules: All times in UTC
+2.1. Old
+2.2. New
+3. Aircraft
+3.1. Old
+3.2. New
+OTHER DETAILS REMAIN UNCHANGED
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/7/2026
+REV 1: LD-2760/7/2026VN
+1. Carrier/Operator
+Name: Xizang Airlines Co., Ltd
+IATA code: TV | ICAO code: TBA
+Postal Address: No. 66 South 4th Road of the Airport, Xizang Airlines Comprehensive Building,Chengdu, Sichuan Province, P.R.China
+Tel: +86 15928512325 | Email: luye@airxizang.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+2.1. Old
+Flight Number | Effective From | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETD | Original permit
+TV9781 | 05AUG26 | 23AUG26 | 0030007 | TFU | 1300 | PQC | 1700 | A319
+TV9782 | 05AUG26 | 23AUG26 | 0030007 | PQC | 1800 | TFU | 2120 | A319
+
+TABLE 3
+CONTEXT: 2.2. New
+Flight Number | Effective From | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETD
+TV9781 | 02AUG26 | 23AUG26 | 0030007 | TFU | 1300 | PQC | 1700
+TV9782 | 02AUG26 | 23AUG26 | 0030007 | PQC | 1800 | TFU | 2120
+
+TABLE 4
+CONTEXT: 3. Aircraft
+3.1. Old
+Aircraft Type | Registration Mark | Seats for passenger flight | Payload for All-cargo flight (Tons) | MTOW (Ton) | Nationality
+A319-115 | B1007,B1008,B1010,B300W,B304M,B306S,B309V,B30ER,B320F,B320G,B322D,B323J,B6426,B6436,B6437,B6438,B6440,B6441,B6443,B6451,B6467,B6473,B6475,B6480,B6481,B8691,B8692 | 136/134/128 | 1.5 | 70 | China
+A319-153N | B329H,B32AJ,B32AK,B32C0,B32C1,B32E6,B32E7,B32GJ,B32FF,B32J7,B32LJ,B32KJ | 136/134/128 | 1.5 | 75.5 | China
+
+TABLE 5
+CONTEXT: 3.2. New
+Aircraft Type | Registration Mark | Seats for passenger flight | Payload for All-cargo flight (Tons) | MTOW (Ton) | Nationality
+A319-115 | B1007,B1008,B1010,B300W,B304M,B306S,B309V,B30ER,B320F,B320G,B322D,B323J,B6426,B6436,B6437,B6438,B6440,B6441,B6443,B6451,B6467,B6473,B6475,B6480,B6481,B8691,B8692 | 136/134/128 | 1.5 | 70 | China
+A319-153N | B329H,B32AJ,B32AK,B32C0,B32C1,B32E6,B32E7,B32GJ,B32FF,B32J7,B32LJ,B32KJ, B32KK, B32Q0, B32J8 | 136/134/128 | 1.5 | 75.5 | China

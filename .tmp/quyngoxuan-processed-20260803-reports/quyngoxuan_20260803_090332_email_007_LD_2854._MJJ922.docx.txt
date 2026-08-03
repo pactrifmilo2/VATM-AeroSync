@@ -1,0 +1,43 @@
+FILE: quyngoxuan_20260803_090332_email_007_LD_2854._MJJ922.docx
+
+PARAGRAPHS
+HANOI, 01AUG2026
+PERMIT NUMBER LD- 2854/8/2026VN
+IATA Season: SUMMER 2026
+1. Carrier:
+2. Schedules (UTC Time)
+3. Purpose of Flight: CHARTER FLIGHT
+4. Aircraft:
+5. Airways:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 HOURS
+BRGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 01AUG2026
+PERMIT NUMBER LD- 2854/8/2026VN
+IATA Season: SUMMER 2026
+1. Carrier:
+Name: MJETS LIMITED
+Postal Address: Private Jet Terminal, Don Mueang Int’l Airport, 222 Viphavadee-Rangsit Rd., Don Mueang, Bangkok 10210 Thailand.
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MJJ922 | 01AUG26 | 01AUG26 | -----6- | DMK | 0800 | PQC | 0910
+MJJ922 | 01AUG26 | 01AUG26 | -----6- | PQC | 1010 | DMK | 1120
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: CHARTER FLIGHT
+4. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+GJ5 | HSSKS | Thailand
+
+TABLE 4
+CONTEXT: 5. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DMK-PQC | R334 | NUMDI | 
+PQC-DMK | R334 |  | NUMDI
+PQC-HKG | W8-W17-N500-M771orW8-W17-W1-A1orW8-W17-Q2-A1orW8-W17-W12-G221 |  | EXOTO/ BUNTA

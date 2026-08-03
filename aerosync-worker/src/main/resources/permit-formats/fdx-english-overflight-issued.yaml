@@ -123,9 +123,12 @@ route:
   - airways
   tableRequired: true
   allowEmpty: false
-  fallbackToFirst: false
+  # Some FDX permits contain a schedule origin/destination that differs from
+  # the filed overflight sector. Preserve the schedule row and use the first
+  # published airway instead of silently dropping the flight.
+  fallbackToFirst: true
   lastMatchingTable: false
-  filterSchedule: true
+  filterSchedule: false
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:

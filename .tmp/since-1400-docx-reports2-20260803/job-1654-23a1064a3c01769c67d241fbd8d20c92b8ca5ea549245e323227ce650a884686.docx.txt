@@ -1,0 +1,45 @@
+FILE: job-1654-23a1064a3c01769c67d241fbd8d20c92b8ca5ea549245e323227ce650a884686.docx
+
+PARAGRAPHS
+HA NOI, 03 AUG 2026
+PERMIT NUMBER: OF-5548/08/2026VN
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CHARTER / COMMERCIAL NON-SCHEDULED FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 03 AUG 2026
+PERMIT NUMBER: OF-5548/08/2026VN
+1. Operator:
+Name: VISTAJET LIMITED
+IATA code: | ICAO code:
+Postal Address: SKYPARKS BUSINESS CENTRE, LUQA LQA 4000, MALTA
+Tel: + 356 20928030 | Email: press@vistajet.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Jetex FZE
+Postal Address: P.O BOX: 54698 DUBAI, UAE
+Tel: +971 4 2124000 | Email: INVOICES@JETEX.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VJT569 | 09AUG26 | 09AUG26 | ------7 | RJAA | 0830 | VDTI | 1430
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CHARTER / COMMERCIAL NON-SCHEDULED FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark
+CL60 | 9H-VFE OR SUB
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways
+RJAA-VDTI | A1
+Airways: Other permitted airways published in Viet Nam’s AIP.

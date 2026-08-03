@@ -1,0 +1,55 @@
+FILE: job-1345_dungdm_20260731_171407_email_000__SPA076__REV1_LD-2801_C26_04AUG-10AUG_ND.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 31/07/2026
+To: VATM, SPQ
+Cc: NAA, SAA
+Phép bay số: LD-2801/07/2026VN /REV1
+Tham chiếu phép bay số: LD-2801/07/2026VN
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+2.2. Lịch bay mới (sửa đổi)
+CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+*****
+Đinh Mạnh Dũng gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 31/07/2026
+To: VATM, SPQ
+Cc: NAA, SAA
+Phép bay số: LD-2801/07/2026VN /REV1
+Tham chiếu phép bay số: LD-2801/07/2026VN
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+9G1561 | 04-Aug-26 | 04-Aug-26 | -2----- | VDO | 05:40 | SGN | 07:55
+9G1561 | 05-Aug-26 | 05-Aug-26 | --3---- | VDO | 05:40 | SGN | 08:00
+9G1561 | 06-Aug-26 | 06-Aug-26 | ---4--- | VDO | 05:40 | SGN | 07:45
+9G1561 | 07-Aug-26 | 07-Aug-26 | ----5-- | VDO | 05:40 | SGN | 08:05
+9G1561 | 08-Aug-26 | 08-Aug-26 | -----6- | VDO | 05:40 | SGN | 08:00
+9G1561 | 09-Aug-26 | 09-Aug-26 | ------7 | VDO | 05:40 | SGN | 07:45
+9G1561 | 10-Aug-26 | 10-Aug-26 | 1------ | VDO | 05:40 | SGN | 08:00
+9G1560 | 05-Aug-26 | 05-Aug-26 | --3---- | SGN | 03:00 | VDO | 05:00
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (sửa đổi)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+9G1561 | 04-Aug-26 | 04-Aug-26 | -2----- | VDO | 05:25 | SGN | 07:55
+9G1561 | 05-Aug-26 | 05-Aug-26 | --3---- | VDO | 05:25 | SGN | 08:00
+9G1561 | 06-Aug-26 | 06-Aug-26 | ---4--- | VDO | 05:25 | SGN | 07:45
+9G1561 | 07-Aug-26 | 07-Aug-26 | ----5-- | VDO | 05:25 | SGN | 08:05
+9G1561 | 08-Aug-26 | 08-Aug-26 | -----6- | VDO | 05:25 | SGN | 08:00
+9G1561 | 09-Aug-26 | 09-Aug-26 | ------7 | VDO | 05:25 | SGN | 07:45
+9G1561 | 10-Aug-26 | 10-Aug-26 | 1------ | VDO | 05:25 | SGN | 08:00
+9G1560 | 05-Aug-26 | 05-Aug-26 | --3---- | SGN | 02:45 | VDO | 04:45

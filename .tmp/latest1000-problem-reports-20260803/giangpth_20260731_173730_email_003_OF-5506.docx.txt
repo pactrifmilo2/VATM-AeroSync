@@ -1,0 +1,49 @@
+FILE: giangpth_20260731_173730_email_003_OF-5506.docx
+
+PARAGRAPHS
+Hanoi, 31/7/2026
+OF-5506/7/2026VN
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CHARTER CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+7. Validity: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/7/2026
+OF-5506/7/2026VN
+1. Operator:
+Name: Tianjin Air Cargo Co., Ltd.
+IATA code: HT | ICAO code: CTJ
+Postal Address: Room 305, No.6,No.1 Road International Logistics Zone, Tianjin Pilot Free Trade Zone, Tianjin, China
+Tel: +862258209282 | Email: tjacocio@hnair.com, hzheng.liu@hnair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Tianjin Air Cargo Co., Ltd.
+Postal Address: 3 / F, Office Building II, Huayu Air Cargo Terminal, No.8 Third Street, Airport International Logistics Zone, Dongli District, Tianjin China
+Tel: +862258209282 | Email: tjacocio@hnair.com, hzheng.liu@hnair.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CTJ3885 | 04 Aug 2026 | 04 Aug 2026 | 2 | ZJHK | 0000 | VDTI | 0220
+CTJ3886 | 04 Aug 2026 | 04 Aug 2026 | 2 | VDTI | 0320 | ZUTF | 0640
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CHARTER CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | MTOW (Ton)
+B737-800 | B-2676/B-222L/B-222Y/B-222R/B5439/B5135 | 75976KG
+B737-800 | B223H | 79015KG
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways
+ZJHK -VDTI | A1 W1 R588
+VDTI-ZUTF | A1
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

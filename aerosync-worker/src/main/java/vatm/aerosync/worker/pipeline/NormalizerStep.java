@@ -53,7 +53,13 @@ public class NormalizerStep {
                             permitOperatorCatalog.normalizeFlightNumber(
                                     flight.flightNumber(), permit.operatorId())))
                     .toList();
-            context.setSchedulePermit(permit.withFlights(normalizedFlights));
+            List<ScheduleFlight> normalizedOriginalFlights = permit.originalFlights().stream()
+                    .map(flight -> flight.withFlightNumber(
+                            permitOperatorCatalog.normalizeFlightNumber(
+                                    flight.flightNumber(), permit.operatorId())))
+                    .toList();
+            context.setSchedulePermit(permit.withFlightsAndOriginals(
+                    normalizedFlights, normalizedOriginalFlights));
         }
     }
 }

@@ -1,0 +1,48 @@
+FILE: job-1656-9b5d77f7bcb334ffb658fec2817045168fbe70678e5910ea0780bf414e1e4e88.docx
+
+PARAGRAPHS
+HA NOI, 03 AUG 2026
+PERMIT NUMBER: OF-5550/08/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+6. Airways
+Airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 03 AUG 2026
+PERMIT NUMBER: OF-5550/08/2026VN
+1. Carrier/Operator
+Name: TAG Aviation (Cayman) SEZC
+IATA code: | ICAO code:
+Postal Address: 24/F HARCOURT HOUSE, 39 GLOUCESTER ROAD, WAN CHAI, HONG KONG | Nationality: Hong Kong
+Tel: | Email:
+ |  | 
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: TAG Aviation
+Postal address: 24/F HARCOURT HOUSE, 39 GLOUCESTER ROAD, WAN CHAI, HONG KONG
+Email: asia.accounts@tagaviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+TCJ01 | 06AUG26 | 06AUG26 | ---4--- | ZSHC | 2000 | WSSL | 0025+1
+TCJ01 | 09AUG26 | 09AUG26 | ------7 | WSSL | 2200 | ZSHC | 0250+1
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+Aircraft Type(ICAO code) | Aircraft registration mark
+GLF6 | VPCPU
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+ZSHC-WSSL | L642
+WSSL-ZSHC | M771

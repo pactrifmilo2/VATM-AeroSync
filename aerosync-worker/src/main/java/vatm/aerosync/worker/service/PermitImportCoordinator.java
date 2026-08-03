@@ -61,14 +61,13 @@ public class PermitImportCoordinator {
         if (existingAttempt.isPresent()) {
             refreshAttempt(attempt, job, permit, semanticHash);
         }
-        if (permit.reviewOnly()) {
-            markRevision(attempt, "Revision permit requires review before ATFM update");
+        if (permit.reviewOnly() && !permit.revision()) {
+            markRevision(attempt, "Permit profile requires manual review");
             throw new BusinessRuleException(
-                    "PERMIT-REVISION-REVIEW",
-                    "Permit %s is a revision and was not written automatically"
+                    "PERMIT-MANUAL-REVIEW",
+                    "Permit %s requires manual review before ATFM update"
                             .formatted(permit.normalizedPermitId()));
         }
-
         String lockKey = LOCK_PREFIX + permit.normalizedPermitId();
         Boolean acquired = redisTemplate.opsForValue().setIfAbsent(
                 lockKey, Long.toString(syncJobId), Duration.ofSeconds(properties.getPermitLockSeconds()));
@@ -77,6 +76,9 @@ public class PermitImportCoordinator {
         }
 
         try {
+            if (permit.revision()) {
+                return updateRevision(attempt, permit);
+            }
             Optional<PermitImport> savedImport = permitImportRepository
                     .findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
                             permit.normalizedPermitId(),
@@ -84,11 +86,23 @@ public class PermitImportCoordinator {
             if (savedImport.isPresent()) {
                 PermitImport original = savedImport.get();
                 if (original.getSemanticHash().equals(semanticHash)) {
-                    markDuplicate(attempt, original.getTargetMasterId(), original.getTargetPermId(), permit.flights().size());
-                    return outcome(attempt);
+                    Optional<AtfmPermitSnapshot> currentTarget = atfmScheduleGateway.findExisting(permit);
+                    if (currentTarget.isPresent() && currentTarget.get().matchesExpectedPermit()) {
+                        AtfmPermitSnapshot snapshot = currentTarget.get();
+                        markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
+                        return outcome(attempt);
+                    }
+                    if (currentTarget.isPresent()) {
+                        markRevision(attempt, "Target ATFM permit exists with different schedule data");
+                        throw revisionException(permit);
+                    }
+                    // Local history can outlive an ATFM record (for example after an
+                    // external cleanup). Continue to the normal insert path so a
+                    // resent original permit can safely restore the missing target.
+                } else {
+                    markRevision(attempt, "Permit already exists with different schedule data");
+                    throw revisionException(permit);
                 }
-                markRevision(attempt, "Permit already exists with different schedule data");
-                throw revisionException(permit);
             }
 
             if (!properties.isWriteEnabled()) {
@@ -130,6 +144,44 @@ public class PermitImportCoordinator {
         } finally {
             redisTemplate.delete(lockKey);
         }
+    }
+
+    private PermitImportOutcome updateRevision(PermitImport attempt, SchedulePermit permit) {
+        if (!properties.isWriteEnabled()) {
+            attempt.setStatus(PermitImportStatus.DRY_RUN);
+            attempt.setDetailCount(permit.flights().size());
+            attempt.setErrorMessage("ATFM writes are disabled");
+            permitImportRepository.save(attempt);
+            throw new BusinessRuleException(
+                    "ATFM-WRITE-DISABLED",
+                    "Revision parsed and compared, but ATFM writes are disabled");
+        }
+
+        Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);
+        if (target.isEmpty()) {
+            markRevision(attempt, "Original ATFM permit was not found");
+            throw new BusinessRuleException(
+                    "BR-REVISION-BASE-NOT-FOUND",
+                    "Original ATFM permit not found: " + permit.normalizedPermitId());
+        }
+        AtfmPermitSnapshot snapshot = target.get();
+        if (snapshot.matchesExpectedPermit()) {
+            markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
+            return outcome(attempt);
+        }
+
+        AtfmWriteResult result = atfmScheduleGateway.update(permit);
+        if (result.detailCount() == 0) {
+            markDuplicate(attempt, result.masterId(), result.permId(), permit.flights().size());
+            return outcome(attempt);
+        }
+        attempt.setStatus(PermitImportStatus.SAVED);
+        attempt.setTargetMasterId(result.masterId());
+        attempt.setTargetPermId(result.permId());
+        attempt.setDetailCount(result.detailCount());
+        attempt.setErrorMessage(null);
+        permitImportRepository.save(attempt);
+        return outcome(attempt);
     }
 
     private PermitImport reserve(SyncJob job, SchedulePermit permit, String semanticHash) {

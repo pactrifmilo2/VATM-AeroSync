@@ -1,0 +1,39 @@
+FILE: job-1261_lynk_20260731_151151_email_000_REV21-OF-78B-S26-UAE9754-01AUG-24OCT.docx
+
+PARAGRAPHS
+Hanoi, 31/07/2026
+Permit No.: OF - 78/B/S/2026VN/REV21
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Airways: Other permitted airways published in Viet Nam’s AIP.
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/07/2026
+Permit No.: OF - 78/B/S/2026VN/REV21
+1. Carrier/Operator
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.Box: 686, Dubai, United Arab Emirates
+Tel: +971 4 7085766 | Email: DL - OVP <eocopscntrl@emirates.com>
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+UAE9754 | 01AUG26 | 24OCT26 | ------6- | OMDW | 0530 | VHHH | 1220 | OF - 78/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+UAE9754 | 01AUG26 | 24OCT26 | ------6- | OMDW | 0105 | RCTP | 0940
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways
+OMDW-RCTP | B202 G474 L628

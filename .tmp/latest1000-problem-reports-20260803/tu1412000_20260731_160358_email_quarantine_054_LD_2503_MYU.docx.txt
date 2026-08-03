@@ -1,0 +1,49 @@
+FILE: tu1412000_20260731_160358_email_quarantine_054_LD_2503_MYU.docx
+
+PARAGRAPHS
+HANOI, 3-Jul-26
+PERMIT NO.: LD-2503/7/2026VN
+1. Carrier:
+2. SCHEDULES: ALL TIMES IN UTC
+3. PURPOSE OF FLIGHT(S): CHARTER CARGO FLIGHT
+SUB-SGN: Load at SUB and offload at SGN
+SGN-SIN: Load at SGN and offload at SIN 4. Aircraft:
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260703-170287)
+
+TABLE 1
+CONTEXT: HANOI, 3-Jul-26
+PERMIT NO.: LD-2503/7/2026VN
+1. Carrier:
+Name: PT MY INDO AIRLINE
+IATA code: 3Y | ICAO code: MYU
+Postal Address: Kirana Cawang Business Park B 17-19, Jl. DI Panjaitan Kav 48, CipinangCempedak Jatinegara, Jakarta Timur 13340
+Tel: +62 - 021 – 29554777 / Fax: +62 - 021 – 2947479
+
+TABLE 2
+CONTEXT: 2. SCHEDULES: ALL TIMES IN UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+3Y2211 | 04JUL26 | 04JUL26 | -----6- | SUB | 1630 | SGN | 2000 | 73Y/73P/73K
+3Y2210 | 04JUL26 | 04JUL26 | -----6- | SGN | 2300 | SIN | 0100+1 | 73Y/73P/73K
+
+TABLE 3
+CONTEXT: 3. PURPOSE OF FLIGHT(S): CHARTER CARGO FLIGHT
+SUB-SGN: Load at SUB and offload at SGN
+SGN-SIN: Load at SGN and offload at SIN 4. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+73Y | As per FAOC 3Y | INDONESIA
+73P |  | INDONESIA
+73K |  | INDONESIA
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+SUB-SGN | M765-L637 | IGARI | 
+SUB-SGN | M753-L637 | IPRIX | 
+SGN-SIN | L637-M753 |  | IPRIX
+SGN-SIN | L643-L642 |  | ESPOB

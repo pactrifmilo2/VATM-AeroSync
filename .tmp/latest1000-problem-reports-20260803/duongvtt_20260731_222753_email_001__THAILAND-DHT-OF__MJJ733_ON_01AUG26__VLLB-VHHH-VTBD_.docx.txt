@@ -1,0 +1,60 @@
+FILE: duongvtt_20260731_222753_email_001__THAILAND-DHT-OF__MJJ733_ON_01AUG26__VLLB-VHHH-VTBD_.docx
+
+PARAGRAPHS
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: +84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+6. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. Additional information (if any):
+8. Applicant
+
+TABLE 1
+CONTEXT: To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: +84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator
+Name: MJETS Limited
+IATA code: | ICAO code:
+Postal Address: Private Jet Terminal, Don Mueang Int'l Airport, 222 Viphavadee-Rangsit Rd., Don Mueang, Bangkok 10210 Thailand | Nationality: Thailand
+Tel: | Email:
+ |  | 
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: MJETS Limited
+Postal address: 88 The Parq Building, 12th Fl . Ratchadaphisek Road, Klongtoey Subdistrict, 10110(MS.PERIN-FINANCE CONTROL)
+Email: dispatch@mjets.com , finance@mjets.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+MJJ733 | 01AUG26 | 01AUG26 | -----6- | VLLB | 0500 | VHHH | 0655
+MJJ733 | 01AUG26 | 01AUG26 | -----6- | VHHH | 0755 | VTBD | 1015
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+Aircraft Type(ICAO code) | Aircraft registration mark | Maximum Take-off weight(MTOW)
+C750 | HSKCS | 16.37
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VLLB-VHHH | B465-R474
+VHHH-VTBD | A1
+
+TABLE 6
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. Additional information (if any):
+8. Applicant
+Company: | 
+Individual: Bao Nguyen | Title (if any):
+Postal Address: G16 Pandora Residence, 53 Trieu Khuc Str, Thanh Liet Ward, Ha Noi
+Tel: +84 904 320 022 | Email: operations@dhtaviation.com
+Submitted date: 31/07/2026

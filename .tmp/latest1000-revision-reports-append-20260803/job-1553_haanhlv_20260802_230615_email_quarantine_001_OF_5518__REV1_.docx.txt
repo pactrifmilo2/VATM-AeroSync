@@ -1,0 +1,48 @@
+FILE: job-1553_haanhlv_20260802_230615_email_quarantine_001_OF_5518__REV1_.docx
+
+PARAGRAPHS
+Overflight permit for non-scheduled flight
+HA NOI, 02 AUG 2026
+PERMIT NUMBER OF-5518/08/2026VN /REV1
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+3.1. ORIGINAL SCHEDULE:
+3.2. NEW SCHEDULE:
+4. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP OTHER DETAILS REMAIN UNCHANGED
+5. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Overflight permit for non-scheduled flight
+HA NOI, 02 AUG 2026
+PERMIT NUMBER OF-5518/08/2026VN /REV1
+1. Carrier/Operator
+Name: TAG Aviation San Marino S.R.L
+Postal Address: VIA CONSIGLIO DEI SESSANTA, 99 47891 DOGANA SAN MARINO | Nationality: San Marino
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: TAG AVIATION
+Postal address:24th Floor, Harcourt House, 39 Gloucester Road, Wanchai, Hong Kong
+Email: asia.accounts@tagaviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. ORIGINAL SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+TAG02 | 02AUG26 | 02AUG26 | ------7 | WSSL | 2100 | VHHH | 0115+1
+TAG02 | 03AUG26 | 03AUG26 | 1------ | VHHH | 0230 | WMSA | 0625
+
+TABLE 4
+CONTEXT: 3.2. NEW SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+TAG02 | 03AUG26 | 03AUG26 | 1------ | WMSA | 2220 | VHHH | 0200+1
+TAG02 | 04AUG26 | 04AUG26 | -2----- | VHHH | 0300 | WMSA | 0655
+
+TABLE 5
+CONTEXT: 4. Airways
+Sector | Airways
+WMSA-VHHH | M765-M771
+VHHH-WMSA | L642-M765

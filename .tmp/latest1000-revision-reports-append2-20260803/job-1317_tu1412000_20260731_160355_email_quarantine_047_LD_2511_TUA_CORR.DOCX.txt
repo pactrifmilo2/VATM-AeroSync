@@ -1,0 +1,42 @@
+FILE: job-1317_tu1412000_20260731_160355_email_quarantine_047_LD_2511_TUA_CORR.DOCX
+
+PARAGRAPHS
+HANOI, 03JUL2026
+PERMIT NUMBER LD-2511/7/2026VN
+1. CARRIER/OPERATOR:
+2. SCHEDULES: ALL TIMES UTC
+3. PURPOSE OF FLIGHT: All cargo
+4. AIRCRAFT
+5. AIRWAYS:
+7. VALIDITY: -3/+72 HOURS
+RGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 03JUL2026
+PERMIT NUMBER LD-2511/7/2026VN
+1. CARRIER/OPERATOR:
+Name: TURKMENISTAN AIRLINES
+IATA code: T5 | ICAO code: TUA
+Address: Ashgabat International Airport, Ashgabat, Turkmenistan
+Tel: +84 943 448 898 | Email: operations@havaviation.com
+
+TABLE 2
+CONTEXT: 2. SCHEDULES: ALL TIMES UTC
+Flight number | Effective from | Effective to | Day(s) of service | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+T5693 | 09JUL26 | 30JUL26 | 4 | ASB | 0500 | SGN | 1255 | 33X
+T5694 | 09JUL26 | 30JUL26 | 4 | SGN | 1455 | ASB | 2300 | 33X
+
+TABLE 3
+CONTEXT: 3. PURPOSE OF FLIGHT: All cargo
+4. AIRCRAFT
+Aircraft Type | Registration marks | Nationality
+33X | According to T5’s FAOC | Turkmenistan
+
+TABLE 4
+CONTEXT: 5. AIRWAYS:
+Sector | Airways | Entry Point Into Vietnam FIR | Exit Point From Vietnam FIR
+ASB-SGN | R468 | SAPEN | -
+SGN-ASB | R468 | - | SAPEN
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

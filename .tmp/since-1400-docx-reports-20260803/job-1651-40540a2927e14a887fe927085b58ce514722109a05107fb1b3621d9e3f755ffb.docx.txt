@@ -1,0 +1,48 @@
+FILE: job-1651-40540a2927e14a887fe927085b58ce514722109a05107fb1b3621d9e3f755ffb.docx
+
+PARAGRAPHS
+Overflight permit for non-scheduled flight
+HA NOI, 02 AUG 2026
+PERMIT NUMBER OF-5527/08/2026VN /REV1
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+3.1. OLD:
+3.2. NEW:
+4. Airways:
+OTHER MAIN DETAILS IS UNCHANGED.
+5. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Overflight permit for non-scheduled flight
+HA NOI, 02 AUG 2026
+PERMIT NUMBER OF-5527/08/2026VN /REV1
+1. Operator:
+Name: VISTAJET LIMITED
+IATA code: | ICAO code:
+SKYPARKS BUSINESS CENTRE, LUQA LQA 4000, MALTA
+Tel: + 356 20928030 | Email: press@vistajet.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Jetex FZE
+Postal Address: P.O BOX: 54698 DUBAI, UAE
+Tel: +971 4 2124000 | Email: INVOICES@JETEX.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. OLD:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VJT570 | 04AUG26 | 04AUG26 | -2----- | ZSSS | 0835 | WSSL | 1335
+
+TABLE 4
+CONTEXT: 3.2. NEW:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VJT570 | 04AUG26 | 04AUG26 | -2----- | ZSSS | 0835 | WMSA | 1335
+
+TABLE 5
+CONTEXT: 4. Airways:
+Sector | Airways
+ZSSS-WMSA | L642 W15 W2 L637 M765
+Airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,47 @@
+FILE: haanhlv_20260731_213333_email_quarantine_001_OF-5494-N88999_16AUG26.docx
+
+PARAGRAPHS
+HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-5494/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+6. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-5494/07/2026VN
+1. Carrier/Operator
+Name: GREEN TREE GLOBAL, LTD
+IATA code: | ICAO code:
+Postal Address: 5F, No.45-1, Dexing, W. Rd., Shilin Dist., Taipei City, Taiwan
+ |  | 
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: WORLD FUEL SERVICES, INC.
+Postal address: ACCOUNTS PAYABLE9800 N.W. 41ST STREET SUITE 400MIAMI, FL 33178US
+Email: TSACCOUNTING@WFSCORP.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+N88999 | 16AUG26 | 16AUG26 | ------7 | RCSS | 0130 | WSSL | 0530
+N88999 | 20AUG26 | 20AUG26 | ---4--- | WSSL | 0830 | RCSS | 1300
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+Aircraft Type(ICAO code) | Aircraft registration mark
+GLF4 | N88999
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+RCSS-WSSL | N892
+WSSL-RCSS | L625

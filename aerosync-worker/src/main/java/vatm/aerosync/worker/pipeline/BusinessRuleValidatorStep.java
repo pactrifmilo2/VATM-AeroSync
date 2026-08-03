@@ -62,6 +62,11 @@ public class BusinessRuleValidatorStep {
             errors.add(error(0, "permitNumber", "BR-PERMIT-ID",
                     "Invalid normalized scheduled permit number", permit.normalizedPermitId()));
         }
+        if (permit.permitYear() == null) {
+            errors.add(error(0, "permitYear", "BR-PERMIT-YEAR",
+                    "Scheduled permit number must include its four-digit year",
+                    permit.normalizedPermitId()));
+        }
         if (permit.permitDate() == null) {
             errors.add(error(0, "permitDate", "BR-PERMIT-DATE", "Permit date is required", null));
         }

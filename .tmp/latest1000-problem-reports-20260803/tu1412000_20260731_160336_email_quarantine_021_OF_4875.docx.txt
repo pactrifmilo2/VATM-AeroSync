@@ -1,0 +1,45 @@
+FILE: tu1412000_20260731_160336_email_quarantine_021_OF_4875.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-4875/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-4875/07/2026VN
+1. Carrier/Operator
+Name: SANDS AVIATION BERMUDA LTD
+Postal Address: 5500 Haven Street, Las Vegas NV 89119, USA
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: WORLD FUEL SERVICES, INC.
+Postal Address: ACCOUNTS PAYABLE9800 N.W. 41ST STREET SUITE 400, MIAMI, FL 33178, US
+PHN: +65 6215 6888 | Email: TSACCOUNTING@WFSCORP.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+N108MS | 08JUL26 | 08JUL26 | --3---- | VMMC | 1000 | WSSL | 1330
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+73W | N108MS | USA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VMMC-WSSL | L642 | EXOTO | ESPOB
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

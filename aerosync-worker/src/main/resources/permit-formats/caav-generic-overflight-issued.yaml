@@ -77,7 +77,7 @@ schedule:
     - toAirport
   excludeColumns: []
   tableContextPatterns: []
-  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu, d MMM uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
   purposeId: PAX

@@ -1,0 +1,57 @@
+FILE: job-1528_phamgiangcaav_20260801_221652_email_000_OF-5286__rvs1_.docx
+
+PARAGRAPHS
+Hanoi, 01/8/2026
+REV1: OF-5286/7/2026VN
+1. Carrier/Opera
+2. Billing address
+3. Schedules: UTC Time
+3.1. Old
+3.2. New
+4. Airways
+4.1. Old
+4.2. New
+5. OTHER DETAILS REMAIN UNCHANGED
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 01/8/2026
+REV1: OF-5286/7/2026VN
+1. Carrier/Opera
+Name: HAINAN LILY JET CO., LTD
+IATA code: N/A | ICAO code: N/A
+Suite 2904, Central Plaza, 18 Harbour Road, Wan Chai, Hong Kong
+Tel: +86 21 61680605 | Email: shjlgwfwbzx@hnair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE.
+Tel: +971-4-299-6633 | Tel: +971-4-299-6633
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. Old
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+B651H | 01AUG26 | 01AUG26 | 0000060 | ZSAM | 0005 | VRMM | 0625
+B651H | 05AUG26 | 05AUG26 | 0030000 | VRMM | 0800 | ZSAM | 1510
+
+TABLE 4
+CONTEXT: 3.2. New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+B651H | 03AUG26 | 03AUG26 | 1000000 | ZSFZ | 0030 | VRMM | 0720
+B651H | 07AUG26 | 07AUG26 | 0000500 | VRMM | 1530 | ZSAM | 2240
+
+TABLE 5
+CONTEXT: 4. Airways
+4.1. Old
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSAM-VRMM | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 4.2. New
+Sector | Airways | Entry Point into Vietnam FIR
+ZSFZ-VRMM | A202 | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

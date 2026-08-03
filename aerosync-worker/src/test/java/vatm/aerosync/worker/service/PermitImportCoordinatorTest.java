@@ -3,7 +3,6 @@ package vatm.aerosync.worker.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,6 +16,7 @@ import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.atfm.AtfmScheduleGateway;
+import vatm.aerosync.worker.atfm.AtfmPermitSnapshot;
 import vatm.aerosync.worker.atfm.AtfmWriteResult;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
@@ -36,7 +36,6 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -107,6 +106,8 @@ class PermitImportCoordinatorTest {
         PermitImport original = imported("s".repeat(64), 203001L, 202510L);
         when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
                 anyString(), any())).thenReturn(Optional.of(original));
+        when(atfmScheduleGateway.findExisting(any()))
+                .thenReturn(Optional.of(new AtfmPermitSnapshot(203001L, 202510L, true)));
 
         PermitImportOutcome outcome = coordinator.importPermit(context);
 
@@ -128,19 +129,35 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
-    void importPermit_holdsConfiguredRevisionForReviewWithoutCallingAtfm() {
+    void importPermit_updatesConfiguredRevisionAfterAtfmComparison() {
         context.setSchedulePermit(reviewOnlyPermit());
+        when(atfmScheduleGateway.findExisting(any()))
+                .thenReturn(Optional.of(new AtfmPermitSnapshot(203001L, 202510L, false)));
+        when(atfmScheduleGateway.update(any()))
+                .thenReturn(new AtfmWriteResult(203001L, 202510L, 1));
 
-        assertThatThrownBy(() -> coordinator.importPermit(context))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("PERMIT-REVISION-REVIEW");
+        PermitImportOutcome outcome = coordinator.importPermit(context);
 
-        ArgumentCaptor<PermitImport> saved = ArgumentCaptor.forClass(PermitImport.class);
-        verify(permitImportRepository, times(2)).save(saved.capture());
-        assertThat(saved.getAllValues().getLast().getStatus())
-                .isEqualTo(PermitImportStatus.REVISION_REVIEW);
-        verify(atfmScheduleGateway, never()).findExisting(any());
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        assertThat(outcome.targetPermId()).isEqualTo(202510L);
+        verify(atfmScheduleGateway).findExisting(any());
+        verify(atfmScheduleGateway).update(any());
         verify(atfmScheduleGateway, never()).insert(any());
+    }
+
+    @Test
+    void importPermit_restoresMissingAtfmTargetDespiteSavedLocalHistory() {
+        PermitImport original = imported("s".repeat(64), 203001L, 202510L);
+        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
+                anyString(), any())).thenReturn(Optional.of(original));
+        when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(303001L, 302510L, 1));
+
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        assertThat(outcome.targetMasterId()).isEqualTo(303001L);
+        verify(atfmScheduleGateway).insert(any());
     }
 
     @Test
@@ -214,6 +231,6 @@ class PermitImportCoordinatorTest {
                 permit.authorId(), permit.permitType(), permit.version(), permit.season(),
                 permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
                 permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
-                permit.emptyAirwaysAllowed(), true, permit.rawContent(), permit.flights());
+                permit.emptyAirwaysAllowed(), true, "REV1\n" + permit.rawContent(), permit.flights());
     }
 }

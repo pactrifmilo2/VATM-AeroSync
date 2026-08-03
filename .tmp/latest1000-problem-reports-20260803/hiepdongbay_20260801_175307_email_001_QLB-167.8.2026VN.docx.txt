@@ -1,0 +1,85 @@
+FILE: hiepdongbay_20260801_175307_email_001_QLB-167.8.2026VN.docx
+
+PARAGRAPHS
+HANOI, 01-AUG-26
+PERMIT NO: QLB-167/8/2026VN
+1. Người vận chuyển/ Người khai thác (Carrier/Operator)
+2. Lịch bay (Giờ UTC) / Schedules (UTC Time)
+3. Mục đích chuyến bay/ Purpose of Flight:
+3.1. Vận tải hàng không thương mại / Commercial air transport
+☐ Tăng chuyến chở khách / Passenger Extra ☐ Tăng chuyến Chở hàng / All-cargo Extra
+☐ Thuê chuyến chở khách / Passenger Charter ☐ Thuê chuyến Chở hàng / All-Cargo Charter
+☐ Thuê chuyến theo yêu cầu riêng/taxi / Commercial Business Aviation/Air Taxi
+3.2. Không vận chuyển hàng không thương mại / Non-commercial air transport
+☐ Tư nhân / Private
+☐ Hạ cánh kỹ thuật / Technical landing
+☐ Y tế/cấp cứu y tế / Medical/Ambulance
+☑ Chuyển sân / Ferry
+☐ Chuyển sân vì mục đích bảo dưỡng / Ferry for maintenance
+☐ Huấn luyện tổ bay / Cockpit crew training
+☐ Kiểm tra kỹ thuật / Technical test
+☐ Giới thiệu tàu bay / Demonstration
+☐ Bay kiểm chứng / Validation
+☐ Chuyến bay hàng không chuyên dùng / Aerial Work
+☐ Chuyến bay khác / Other
+4. Tàu bay/ Aircraft
+5. Đường hàng không/Airways
+6. Thông tin bổ sung/Additional information (nếu có/if any)
+- Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+- Ferry FLT for carry PAX SU837 01AUG.
+7. Người đề nghị cấp phép bay/ Applicant
+8.Hiệu lực/ Validity: -12/+24h
+BRGDS/VATM-NGUYEN QUANG VINH FOR HOANG TUAN NAM MANAGER OF FCC C/C: NGUYEN THI TRANG NHUNG -DEP MAN OF FCC (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 01-AUG-26
+PERMIT NO: QLB-167/8/2026VN
+1. Người vận chuyển/ Người khai thác (Carrier/Operator)
+Tên/Name: PJSC AEROFLOT RUSSIAN AIRLINES
+Mã IATA/IATA code: SU | Mã ICAO/ICAO code: AFL
+Địa chỉ bưu điện/ Postal Address: 01, Arbat str., Moscow, 119019, Russia
+Điện thoại/Tel: +7(499)5006253 | Thư điện tử/Email: svozgsu@aeroflot.ru
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC) / Schedules (UTC Time)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+SU7772 | 01AUG26 | 01AUG26 | 0000060 | SVO | 1100 | CXR | 2110
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay/ Purpose of Flight:
+3.1. Vận tải hàng không thương mại / Commercial air transport
+☐ Tăng chuyến chở khách / Passenger Extra ☐ Tăng chuyến Chở hàng / All-cargo Extra
+☐ Thuê chuyến chở khách / Passenger Charter ☐ Thuê chuyến Chở hàng / All-Cargo Charter
+☐ Thuê chuyến theo yêu cầu riêng/taxi / Commercial Business Aviation/Air Taxi
+3.2. Không vận chuyển hàng không thương mại / Non-commercial air transport
+☐ Tư nhân / Private
+☐ Hạ cánh kỹ thuật / Technical landing
+☐ Y tế/cấp cứu y tế / Medical/Ambulance
+☑ Chuyển sân / Ferry
+☐ Chuyển sân vì mục đích bảo dưỡng / Ferry for maintenance
+☐ Huấn luyện tổ bay / Cockpit crew training
+☐ Kiểm tra kỹ thuật / Technical test
+☐ Giới thiệu tàu bay / Demonstration
+☐ Bay kiểm chứng / Validation
+☐ Chuyến bay hàng không chuyên dùng / Aerial Work
+☐ Chuyến bay khác / Other
+4. Tàu bay/ Aircraft
+Loại tàu bay/Aircraft Type | Số ghế cao nhất / Highest number of seats | Số đăng ký tàu bay / Aircraft registration mark
+A333 | 296 | AS Per FAOC Of SU
+
+TABLE 4
+CONTEXT: 5. Đường hàng không/Airways
+Chặng bay / Sector | Đường hàng không / Airways
+SVO - CXR | MAIN: KATBO R471 NOB R474 LOVBI Q1 ONEBI W7 SOSPA W15 BANKE DCT CR021 BANK1A RW02L DCT VVCR
+
+TABLE 5
+CONTEXT: 6. Thông tin bổ sung/Additional information (nếu có/if any)
+- Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+- Ferry FLT for carry PAX SU837 01AUG.
+7. Người đề nghị cấp phép bay/ Applicant
+Tên tổ chức/Company: PJSC Aeroflot
+Cá nhân gửi đơn/Individual: Shaykhitdinov Roman | Chức vụ/Title (nếu có/if any): General Director of PJSC Aeroflot in Viet Nam
+Địa chỉ bưu điện/Postal Address: Room 209-210, Building D1, Van Phuc Diplomatic Compound, No.298 Kim Ma Str., Ngoc Ha ward., Hanoi, Vietnam
+Điện thoại/Tel: (+84 24) 3771 8718 / 3771 8742, (+84)382425558, +7(499) 5007500, +7(499) 5007501 | Thư điện tử/Email: hangmsu@aeroflot.ru; hantosu@aeroflot.ru; aflrpl@aeroflot.ru; cmr@aeroflot.ru; ngxuannhat18@yahoo.com; rshaykhitdinov@aeroflot.ru
+Ngày gửi đơn/Submitted date: 01/08/2026

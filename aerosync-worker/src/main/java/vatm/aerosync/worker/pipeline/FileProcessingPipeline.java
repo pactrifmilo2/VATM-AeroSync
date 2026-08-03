@@ -34,6 +34,7 @@ public class FileProcessingPipeline {
     private final FormatValidatorStep formatValidatorStep;
     private final ParserStep parserStep;
     private final NormalizerStep normalizerStep;
+    private final RevisionReconciliationStep revisionReconciliationStep;
     private final AircraftTypeResolutionStep aircraftTypeResolutionStep;
     private final ViaResolutionStep viaResolutionStep;
     private final BusinessRuleValidatorStep businessRuleValidatorStep;
@@ -49,6 +50,7 @@ public class FileProcessingPipeline {
                                   FormatValidatorStep formatValidatorStep,
                                   ParserStep parserStep,
                                   NormalizerStep normalizerStep,
+                                  RevisionReconciliationStep revisionReconciliationStep,
                                   AircraftTypeResolutionStep aircraftTypeResolutionStep,
                                   ViaResolutionStep viaResolutionStep,
                                   BusinessRuleValidatorStep businessRuleValidatorStep,
@@ -62,6 +64,7 @@ public class FileProcessingPipeline {
         this.formatValidatorStep = formatValidatorStep;
         this.parserStep = parserStep;
         this.normalizerStep = normalizerStep;
+        this.revisionReconciliationStep = revisionReconciliationStep;
         this.aircraftTypeResolutionStep = aircraftTypeResolutionStep;
         this.viaResolutionStep = viaResolutionStep;
         this.businessRuleValidatorStep = businessRuleValidatorStep;
@@ -85,12 +88,18 @@ public class FileProcessingPipeline {
             formatValidatorStep.validate(context);
             parserStep.parse(context);
             normalizerStep.normalize(context);
+            revisionReconciliationStep.reconcile(context);
             aircraftTypeResolutionStep.resolve(context);
             viaResolutionStep.resolve(context);
             businessRuleValidatorStep.validate(context);
             DatabaseWriteResult writeResult = databaseWriterStep.write(context);
-            Path archived = archiveSafely(event.getSyncJobId(), () ->
-                    fileArchiverStep.archiveProcessed(context.getFilePath(), event.getSourceType(), context.getSender()));
+            boolean inserted = writeResult.status() == SyncStatus.SUCCESS;
+            Path archived = inserted
+                    ? archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveProcessed(
+                            context.getFilePath(), event.getSourceType(), context.getSender()))
+                    : archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveError(
+                            context.getFilePath(), event.getSourceType(),
+                            writeResult.message(), context.getSender()));
             if (archived != null) {
                 markArchived(event.getSyncJobId(), archived.toString());
             }
@@ -126,7 +135,23 @@ public class FileProcessingPipeline {
             updateJobStatus(event.getSyncJobId(), SyncStatus.FAILED);
             updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.FAILED, e.getMessage());
             updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.FAILED);
-            throw e;
+            Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveError(
+                    context.getFilePath(), event.getSourceType(),
+                    e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage(),
+                    context.getSender()));
+            if (archived != null) {
+                markArchived(event.getSyncJobId(), archived.toString());
+            }
+            auditLogService.record(
+                    event.getSyncJobId(),
+                    "SYNC_RUNTIME_ERROR",
+                    summaryInput(context),
+                    e.getMessage(),
+                    SyncStatus.FAILED,
+                    context.elapsedMillis());
+            syncResultPublisher.publish(
+                    event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING,
+                    e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage());
         }
     }
 
@@ -178,8 +203,8 @@ public class FileProcessingPipeline {
         updateJobStatus(event.getSyncJobId(), SyncStatus.QUARANTINED);
         updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.QUARANTINED, e.getMessage());
         updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.QUARANTINED);
-        Path archived = archiveSafely(event.getSyncJobId(), () ->
-                fileArchiverStep.archiveQuarantine(context.getFilePath(), event.getSourceType(), context.getSender()));
+        Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveError(
+                context.getFilePath(), event.getSourceType(), e.getMessage(), context.getSender()));
         if (archived != null) {
             markArchived(event.getSyncJobId(), archived.toString());
         }

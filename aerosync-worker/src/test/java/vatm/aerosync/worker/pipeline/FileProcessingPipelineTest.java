@@ -51,6 +51,8 @@ class FileProcessingPipelineTest {
     @Mock
     private NormalizerStep normalizerStep;
     @Mock
+    private RevisionReconciliationStep revisionReconciliationStep;
+    @Mock
     private AircraftTypeResolutionStep aircraftTypeResolutionStep;
     @Mock
     private ViaResolutionStep viaResolutionStep;
@@ -78,6 +80,7 @@ class FileProcessingPipelineTest {
                 formatValidatorStep,
                 parserStep,
                 normalizerStep,
+                revisionReconciliationStep,
                 aircraftTypeResolutionStep,
                 viaResolutionStep,
                 businessRuleValidatorStep,
@@ -121,11 +124,13 @@ class FileProcessingPipelineTest {
 
         InOrder processingOrder = inOrder(
                 normalizerStep,
+                revisionReconciliationStep,
                 aircraftTypeResolutionStep,
                 viaResolutionStep,
                 businessRuleValidatorStep,
                 databaseWriterStep);
         processingOrder.verify(normalizerStep).normalize(any());
+        processingOrder.verify(revisionReconciliationStep).reconcile(any());
         processingOrder.verify(aircraftTypeResolutionStep).resolve(any());
         processingOrder.verify(viaResolutionStep).resolve(any());
         processingOrder.verify(businessRuleValidatorStep).validate(any());
@@ -154,12 +159,27 @@ class FileProcessingPipelineTest {
     }
 
     @Test
+    void process_archivesSkippedDatabaseWriteInErrorDirectory() throws Exception {
+        Path archived = Path.of("C:/archive/error/duplicate.csv");
+        when(databaseWriterStep.write(any())).thenReturn(new DatabaseWriteResult(
+                SyncStatus.SKIPPED, 1, "Permit already exists; target write skipped"));
+        when(fileArchiverStep.archiveError(any(), any(), any(), any())).thenReturn(archived);
+
+        pipeline.process(event);
+
+        verify(fileArchiverStep).archiveError(
+                any(), any(), org.mockito.ArgumentMatchers.contains("target write skipped"), any());
+        assertThat(record.getStoredPath()).isEqualTo(archived.toString());
+        assertThat(record.getArchiveStatus()).isEqualTo(FileArchiveStatus.ARCHIVED);
+    }
+
+    @Test
     void process_quarantinesPermanentAtfmReferenceFailureWithoutRethrowing() throws Exception {
         SyncJob job = new SyncJob();
         job.setFileHash("a".repeat(64));
         when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
-        when(fileArchiverStep.archiveQuarantine(any(), any(), any()))
-                .thenReturn(Path.of("C:/archive/quarantine.csv"));
+        when(fileArchiverStep.archiveError(any(), any(), any(), any()))
+                .thenReturn(Path.of("C:/archive/error/reference.csv"));
         doThrow(new AtfmReferenceDataException("ATFM lookup not found: M_OPER.OPER_ICAO=POS"))
                 .when(databaseWriterStep).write(any());
 
@@ -168,6 +188,7 @@ class FileProcessingPipelineTest {
         assertThat(job.getStatus()).isEqualTo(SyncStatus.QUARANTINED);
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.QUARANTINED);
         assertThat(record.getErrorMessage()).contains("M_OPER.OPER_ICAO=POS");
+        assertThat(record.getStoredPath()).isEqualTo("C:\\archive\\error\\reference.csv");
         verify(syncResultPublisher).publish(
                 org.mockito.ArgumentMatchers.eq(7L),
                 org.mockito.ArgumentMatchers.eq(SyncStatus.QUARANTINED),

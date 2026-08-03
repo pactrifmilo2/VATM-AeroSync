@@ -63,4 +63,19 @@ public record ScheduleFlight(
                 serviceDays, resolvedFromAirport, resolvedToAirport, etd, eta, resolvedVia,
                 beginDate, endDate, remark, sourceAircraftType);
     }
+
+    public ScheduleFlight withRevisionDefaults(long inheritedCraftId,
+                                               BigDecimal inheritedMtow,
+                                               String inheritedRegistration,
+                                               String inheritedVia,
+                                               String inheritedRemark) {
+        return new ScheduleFlight(
+                purposeId, inheritedCraftId, inheritedMtow, flightNumber,
+                registration == null || registration.isBlank() ? inheritedRegistration : registration,
+                serviceDays, fromAirport, toAirport, etd, eta,
+                via == null || via.isBlank() ? inheritedVia : via,
+                beginDate, endDate,
+                remark == null || remark.isBlank() ? inheritedRemark : remark,
+                sourceAircraftType);
+    }
 }

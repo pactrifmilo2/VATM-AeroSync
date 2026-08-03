@@ -51,8 +51,8 @@ public class DocxSchedulePermitParser {
     private static final Pattern ORIGINAL_SCHEDULE_CONTEXT = Pattern.compile(
             "(?iu)(?:LỊCH\\s+BAY.{0,50}(?:DỰ\\s+KIẾN|GỐC|BAN\\s+ĐẦU))"
                     + "|(?:(?:DỰ\\s+KIẾN|GỐC|BAN\\s+ĐẦU).{0,50}LỊCH\\s+BAY)"
-                    + "|(?:(?:ORIGINAL|PLANNED)\\s+(?:FLIGHT\\s+)?SCHEDULE)"
-                    + "|(?:SCHEDULE\\s+(?:ORIGINAL|PLANNED))");
+                    + "|(?:(?:OLD|ORIGINAL|PLANNED)\\s+(?:FLIGHT\\s+)?SCHEDULE)"
+                    + "|(?:SCHEDULE\\s+(?:OLD|ORIGINAL|PLANNED))");
     private static final Map<String, List<String>> UNIVERSAL_COLUMN_ALIASES = Map.ofEntries(
             Map.entry("flightNumber", List.of("FlightNumber")),
             Map.entry("effectiveFrom", List.of("EffectiveFrom")),
@@ -157,6 +157,7 @@ public class DocxSchedulePermitParser {
 
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
         List<List<List<String>>> scheduleTables = selectScheduleTables(schedule, document);
+        List<List<List<String>>> originalScheduleTables = selectOriginalScheduleTables(schedule, document);
         if (scheduleTables.isEmpty() || scheduleTables.getFirst().size() < 2) {
             throw invalid(fileName, missingScheduleFields(profile, document));
         }
@@ -190,6 +191,12 @@ public class DocxSchedulePermitParser {
 
         String auxiliaryAircraftTypes = auxiliaryAircraftTypes(profile.aircraft(), document.tables());
         List<ScheduleFlight> flights = scheduleTables.stream()
+                .flatMap(table -> scheduleFlights(
+                        profile, table, routes, auxiliaryAircraftTypes,
+                        document.rawContent(), resolvedOperatorId, iataPrefix,
+                        normalizeAirportsToIcao, fileName).stream())
+                .toList();
+        List<ScheduleFlight> originalFlights = originalScheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
                         profile, table, routes, auxiliaryAircraftTypes,
                         document.rawContent(), resolvedOperatorId, iataPrefix,
@@ -233,7 +240,8 @@ public class DocxSchedulePermitParser {
                 profile.route() != null && profile.route().allowEmpty(),
                 validation != null && validation.reviewOnly(),
                 document.rawContent(),
-                flights);
+                flights,
+                originalFlights);
     }
 
     private String normalizedOperator(String value) {
@@ -370,9 +378,18 @@ public class DocxSchedulePermitParser {
                                                  String fileName) {
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
         Map<String, Integer> columns = resolveColumns(table.getFirst(), schedule.columns());
+        int firstDataRow = 1;
+        if (!columns.keySet().containsAll(safeList(schedule.requiredColumns()))
+                && isHeaderlessScheduleTable(table, schedule)) {
+            columns = new LinkedHashMap<>(safeMap(schedule.headerlessColumns()));
+            firstDataRow = 0;
+        }
         List<ScheduleFlight> flights = new ArrayList<>();
-        for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
+        for (int rowIndex = firstDataRow; rowIndex < table.size(); rowIndex++) {
             List<String> row = table.get(rowIndex);
+            if (isRepeatedScheduleHeader(row, columns)) {
+                continue;
+            }
             String flightNumber = normalizeFlightNumber(
                     value(row, columns, "flightNumber"), operatorId, iataPrefix);
             if (flightNumber.isBlank()) {
@@ -388,7 +405,9 @@ public class DocxSchedulePermitParser {
             AircraftSource aircraftSource = aircraftType(
                     profile.aircraft(), row, columns, auxiliaryAircraftTypes);
             String aircraftType = aircraftSource.value();
-            if (aircraftType == null || aircraftType.isBlank()) {
+            boolean mayInheritAircraft = profile.validation() != null
+                    && profile.validation().reviewOnly();
+            if ((aircraftType == null || aircraftType.isBlank()) && !mayInheritAircraft) {
                 throw invalid(fileName, "Aircraft type is required");
             }
             String purposeId = purposeId(
@@ -586,6 +605,24 @@ public class DocxSchedulePermitParser {
                 schedule.columns(),
                 schedule.requiredColumns(),
                 schedule.excludeColumns());
+        if (!safeMap(schedule.headerlessColumns()).isEmpty()) {
+            java.util.Set<Integer> matchedIndexes = structuralMatches.stream()
+                    .map(TableMatch::index)
+                    .collect(java.util.stream.Collectors.toSet());
+            for (int tableIndex = 0; tableIndex < document.tables().size(); tableIndex++) {
+                if (matchedIndexes.contains(tableIndex)) {
+                    continue;
+                }
+                List<List<String>> table = document.tables().get(tableIndex);
+                if (isHeaderlessScheduleTable(table, schedule)) {
+                    String context = tableIndex < document.tableContexts().size()
+                            ? document.tableContexts().get(tableIndex)
+                            : "";
+                    structuralMatches.add(new TableMatch(tableIndex, table, context));
+                }
+            }
+            structuralMatches.sort(java.util.Comparator.comparingInt(TableMatch::index));
+        }
         if (structuralMatches.isEmpty()) {
             return List.of();
         }
@@ -593,12 +630,12 @@ public class DocxSchedulePermitParser {
         ScheduleSection activeSection = ScheduleSection.UNKNOWN;
         List<ClassifiedTable> classified = new ArrayList<>();
         for (TableMatch match : structuralMatches) {
-            String context = match.context();
-            if (matchesAny(context, schedule.preferredTableContextPatterns())
+            String context = scheduleSectionText(match);
+            if (ORIGINAL_SCHEDULE_CONTEXT.matcher(context).find()) {
+                activeSection = ScheduleSection.ORIGINAL;
+            } else if (matchesAny(context, schedule.preferredTableContextPatterns())
                     || REPLACEMENT_SCHEDULE_CONTEXT.matcher(context).find()) {
                 activeSection = ScheduleSection.REPLACEMENT;
-            } else if (ORIGINAL_SCHEDULE_CONTEXT.matcher(context).find()) {
-                activeSection = ScheduleSection.ORIGINAL;
             }
             classified.add(new ClassifiedTable(match, activeSection));
         }
@@ -626,6 +663,55 @@ public class DocxSchedulePermitParser {
             selected = new ArrayList<>(withSupplemental.values());
         }
         return selected.stream().map(TableMatch::table).toList();
+    }
+
+    private List<List<List<String>>> selectOriginalScheduleTables(
+            DocxPermitFormatProfile.ScheduleDefinition schedule,
+            WordPermitDocument document) {
+        List<TableMatch> structuralMatches = findTableMatches(
+                document.tables(), document.tableContexts(), schedule.columns(),
+                schedule.requiredColumns(), List.of());
+        if (!safeMap(schedule.headerlessColumns()).isEmpty()) {
+            java.util.Set<Integer> matchedIndexes = structuralMatches.stream()
+                    .map(TableMatch::index)
+                    .collect(java.util.stream.Collectors.toSet());
+            for (int tableIndex = 0; tableIndex < document.tables().size(); tableIndex++) {
+                if (matchedIndexes.contains(tableIndex)) {
+                    continue;
+                }
+                List<List<String>> table = document.tables().get(tableIndex);
+                if (isHeaderlessScheduleTable(table, schedule)) {
+                    String context = tableIndex < document.tableContexts().size()
+                            ? document.tableContexts().get(tableIndex) : "";
+                    structuralMatches.add(new TableMatch(tableIndex, table, context));
+                }
+            }
+            structuralMatches.sort(java.util.Comparator.comparingInt(TableMatch::index));
+        }
+
+        ScheduleSection activeSection = ScheduleSection.UNKNOWN;
+        List<TableMatch> originals = new ArrayList<>();
+        for (TableMatch match : structuralMatches) {
+            String context = scheduleSectionText(match);
+            if (ORIGINAL_SCHEDULE_CONTEXT.matcher(context).find()) {
+                activeSection = ScheduleSection.ORIGINAL;
+            } else if (matchesAny(context, schedule.preferredTableContextPatterns())
+                    || REPLACEMENT_SCHEDULE_CONTEXT.matcher(context).find()) {
+                activeSection = ScheduleSection.REPLACEMENT;
+            }
+            if (activeSection == ScheduleSection.ORIGINAL) {
+                originals.add(match);
+            }
+        }
+        return originals.stream().map(TableMatch::table).toList();
+    }
+
+    private String scheduleSectionText(TableMatch match) {
+        StringBuilder text = new StringBuilder(match.context());
+        for (int row = 0; row < Math.min(2, match.table().size()); row++) {
+            text.append(' ').append(String.join(" ", match.table().get(row)));
+        }
+        return text.toString();
     }
 
     private List<TableMatch> findTableMatches(List<List<List<String>>> tables,
@@ -717,6 +803,41 @@ public class DocxSchedulePermitParser {
                 && value(row, columns, "fromAirport").isBlank()
                 && value(row, columns, "toAirport").isBlank()
                 && value(row, columns, "etd").isBlank();
+    }
+
+    private boolean isRepeatedScheduleHeader(List<String> row, Map<String, Integer> columns) {
+        String flight = canonicalHeader(value(row, columns, "flightNumber"));
+        String effectiveFrom = canonicalHeader(value(row, columns, "effectiveFrom"));
+        String from = canonicalHeader(value(row, columns, "fromAirport"));
+        String etd = canonicalHeader(value(row, columns, "etd"));
+        String to = canonicalHeader(value(row, columns, "toAirport"));
+        return flight.equals("flightnumber")
+                || effectiveFrom.equals("effectivefrom")
+                || effectiveFrom.contains("ddmmmyy")
+                || from.equals("departureairport")
+                || from.contains("iatacode")
+                || etd.equals("eobt")
+                || etd.equals("utc")
+                || to.equals("arrivalairport");
+    }
+
+    private boolean isHeaderlessScheduleTable(
+            List<List<String>> table,
+            DocxPermitFormatProfile.ScheduleDefinition schedule) {
+        Map<String, Integer> indexes = safeMap(schedule.headerlessColumns());
+        if (table.isEmpty()
+                || !indexes.keySet().containsAll(safeList(schedule.requiredColumns()))) {
+            return false;
+        }
+        List<String> first = table.getFirst();
+        String flight = value(first, indexes, "flightNumber").replaceAll("[^A-Za-z0-9]", "");
+        String effectiveFrom = value(first, indexes, "effectiveFrom");
+        String from = value(first, indexes, "fromAirport").replaceAll("[^A-Za-z]", "");
+        String to = value(first, indexes, "toAirport").replaceAll("[^A-Za-z]", "");
+        return flight.matches("(?i)[A-Z0-9]{3,10}")
+                && effectiveFrom.matches("(?i).*[0-9].*")
+                && from.matches("(?i)[A-Z]{3,4}")
+                && to.matches("(?i)[A-Z]{3,4}");
     }
 
     private String missingScheduleFields(DocxPermitFormatProfile profile,
@@ -904,13 +1025,22 @@ public class DocxSchedulePermitParser {
         Locale locale = localeTag == null || localeTag.isBlank()
                 ? Locale.ENGLISH
                 : Locale.forLanguageTag(localeTag);
-        for (String pattern : safeList(formats)) {
+        String normalizedValue = value.trim()
+                .replaceFirst("(?iu)^(\\d{1,2})(?:ST|ND|RD|TH)(?=\\s)", "$1");
+        List<String> acceptedFormats = new ArrayList<>(safeList(formats));
+        List.of("dMMMyy", "d-MMM-yy", "d/M/uuuu", "d MMM uuuu")
+                .forEach(pattern -> {
+                    if (!acceptedFormats.contains(pattern)) {
+                        acceptedFormats.add(pattern);
+                    }
+                });
+        for (String pattern : acceptedFormats) {
             DateTimeFormatter formatter = new DateTimeFormatterBuilder()
                     .parseCaseInsensitive()
                     .appendPattern(pattern)
                     .toFormatter(locale);
             try {
-                return LocalDate.parse(value.trim(), formatter);
+                return LocalDate.parse(normalizedValue, formatter);
             } catch (DateTimeParseException ignored) {
                 // Try the next configured format.
             }

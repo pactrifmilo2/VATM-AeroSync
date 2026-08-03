@@ -1,0 +1,71 @@
+FILE: job-1325_tu1412000_20260731_160403_email_059_LD_2473_KYE_REV1.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 03/07/2026 PERMIT NO.: LD-9023/07/2026VN /REV1
+1. Carrier/Operator
+2. Schedules (UTC Time)
+2.1. Old:
+2.2. New:
+3. Purpose of Flight: Charter cargo flight (INCLUDE THE FOLLOWING DG)
+ORD-ICN: Load cargo at ICN
+ICN-HAN: Offload cargo at HAN
+HAN-EHU: Load cargo to ANC, no offload cargo at EHU
+EHU-ANC: Offload cargo at ANC
+4. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED
+5. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 03/07/2026 PERMIT NO.: LD-9023/07/2026VN /REV1
+1. Carrier/Operator
+Name: SKY LEASE CARGO
+IATA code: GG | ICAO code: KYE
+Postal Address: 4200 NW 36th Street, Suite 260, Miami, FL 33166, USA
+Tel: (305) 871 0130 Ext.1170 | Email: sysops@skylease.aero
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1. Old:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+GG9723 | 04JUL26 | 04JUL26 | -----6- | ORD | 0700 | NRT | 2000 | 74Y
+GG9723 | 04JUL26 | 04JUL26 | -----6- | NRT | 2200 | HAN | 0230+1 | 74Y
+GG9723 | 05JUL26 | 05JUL26 | ------7 | HAN | 0430 | EHU | 0700 | 74Y
+GG9724 | 05JUL26 | 05JUL26 | ------7 | EHU | 0900 | ANC | 1815 | 74Y
+ |  |  |  |  |  |  |  | 
+GG9723 | 07JUL26 | 07JUL26 | -2----- | ORD | 0230 | NRT | 1830 | 74Y
+GG9723 | 07JUL26 | 07JUL26 | -2----- | NRT | 2030 | HAN | 0100+1 | 74Y
+GG9723 | 08JUL26 | 08JUL26 | --3---- | HAN | 0300 | EHU | 0530 | 74Y
+GG9724 | 08JUL26 | 08JUL26 | --3---- | EHU | 0730 | ANC | 1645 | 74Y
+
+TABLE 3
+CONTEXT: 2.2. New:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+GG9723 | 04JUL26 | 04JUL26 | -----6- | ORD | 0700 | ICN | 2000 | 74Y
+GG9723 | 04JUL26 | 04JUL26 | -----6- | ICN | 2200 | HAN | 0230+1 | 74Y
+GG9723 | 05JUL26 | 05JUL26 | ------7 | HAN | 0430 | EHU | 0700 | 74Y
+GG9724 | 05JUL26 | 05JUL26 | ------7 | EHU | 0900 | ANC | 1815 | 74Y
+ |  |  |  |  |  |  |  | 
+GG9723 | 07JUL26 | 07JUL26 | -2----- | ORD | 0230 | ICN | 1830 | 74Y
+GG9723 | 07JUL26 | 07JUL26 | -2----- | ICN | 2030 | HAN | 0100+1 | 74Y
+GG9723 | 08JUL26 | 08JUL26 | --3---- | HAN | 0300 | EHU | 0530 | 74Y
+GG9724 | 08JUL26 | 08JUL26 | --3---- | EHU | 0730 | ANC | 1645 | 74Y
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Charter cargo flight (INCLUDE THE FOLLOWING DG)
+ | UN or ID Number | Proper Shipping Name | Class or Division
+1 | UN3480 | Lithium Ion Batteries | 9
+
+TABLE 5
+CONTEXT: ORD-ICN: Load cargo at ICN
+ICN-HAN: Offload cargo at HAN
+HAN-EHU: Load cargo to ANC, no offload cargo at EHU
+EHU-ANC: Offload cargo at ANC
+4. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-HAN | R474 | TEBAK | 
+HAN-EHU | R474 |  | TEBAK
+HAN-EHU | R474-R471 |  | KATBO

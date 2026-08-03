@@ -8,6 +8,7 @@ import vatm.aerosync.worker.atfm.AtfmAircraftTypeResolver;
 import vatm.aerosync.worker.atfm.AtfmAirportCodeResolver;
 import vatm.aerosync.worker.atfm.AtfmViaResolver;
 import vatm.aerosync.worker.atfm.JdbcPermitOperatorResolver;
+import vatm.aerosync.worker.atfm.JdbcAtfmScheduleGateway;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
@@ -51,6 +52,11 @@ class WordPermitCorpusRegressionTest {
                 : new AircraftTypeResolutionStep(
                         new AircraftTypeCatalog(),
                         new AtfmAircraftTypeResolver(liveAtfm));
+        RevisionReconciliationStep revisionReconciliationStep = liveAtfm == null
+                ? null
+                : new RevisionReconciliationStep(
+                        new JdbcAtfmScheduleGateway(liveAtfm, new AtfmAirportCodeResolver()),
+                        new AirportCodeCatalog());
         ViaResolutionStep viaResolutionStep = liveAtfm == null
                 ? null
                 : new ViaResolutionStep(
@@ -75,11 +81,12 @@ class WordPermitCorpusRegressionTest {
         List<String> successes = new ArrayList<>();
         List<String> failures = new ArrayList<>();
         for (Path file : files) {
+            DocxPermitFormatProfile detectedProfile = null;
             try {
                 WordPermitDocument document = reader.read(file);
                 writeDocumentReport(reportDirectory, file, document);
-                DocxPermitFormatProfile profile =
-                        detector.detect(document, file.getFileName().toString());
+                DocxPermitFormatProfile profile = detector.detect(document, file.getFileName().toString());
+                detectedProfile = profile;
                 SchedulePermit permit =
                         parser.parse(document, file.getFileName().toString());
                 ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
@@ -91,6 +98,7 @@ class WordPermitCorpusRegressionTest {
                                     .map(flight -> flight.withResolvedAircraft(1L, BigDecimal.ZERO))
                                     .toList()));
                 } else {
+                    revisionReconciliationStep.reconcile(context);
                     aircraftTypeResolutionStep.resolve(context);
                     viaResolutionStep.resolve(context);
                 }
@@ -102,8 +110,10 @@ class WordPermitCorpusRegressionTest {
                         permit.flights().size(),
                         permit.reviewOnly() ? "review-only" : "import-ready"));
             } catch (Exception exception) {
-                failures.add("%s | %s".formatted(
-                        file.getFileName(), rootMessage(exception)));
+                failures.add("%s | %s | %s".formatted(
+                        file.getFileName(),
+                        detectedProfile == null ? "<no-profile>" : detectedProfile.id(),
+                        rootMessage(exception)));
             }
         }
 

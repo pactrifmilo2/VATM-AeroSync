@@ -61,6 +61,7 @@ class PermitReferenceCatalogTest {
                 Arguments.of("73Y/73P/73K", "73Y"),
                 Arguments.of("B747-400", "B744"),
                 Arguments.of("73W", "B737"),
+                Arguments.of("BOEING 737-7EI", "B737"),
                 Arguments.of("747-400F/747-8F/777-200F", "B74Y"),
                 Arguments.of("GULFSTREAM G450", "GLF4"),
                 Arguments.of("GULFSTREAM GVII-G500", "G500"),

@@ -1,0 +1,44 @@
+FILE: tu1412000_20260731_160404_email_quarantine_061_LD__2501_IGO.docx
+
+PARAGRAPHS
+HANOI, 03JUL2026
+PERMIT NUMBER LD- 9021/7/2026VN
+IATA Season: SUMMER 2026
+1. Carrier/Operator:
+2. Schedules: All times in UTC
+3. Purpose of Flight: Cargo Charters
+4. Aircraft
+5. Airways
+ALTERNATE ROUTE: OTHER PERMITTED AIR TRAFFIC SERVICE ROUTES PUBLISHED IN VIETNAM’S AIP
+6. VALIDITY: -12/+24 HOURS
+RGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 03JUL2026
+PERMIT NUMBER LD- 9021/7/2026VN
+IATA Season: SUMMER 2026
+1. Carrier/Operator:
+Name: InterGlobe Aviation Limited (IndiGo)
+IATA code : 6E | ICAO code : IGO
+Address: Level 2, Tower 2, Emaar Capital, MG Road, Gurgaon – 122002, India
+Tel: +91 9891625334 | Email: +91 9891625334
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+6E 9287 | 03Jul26 | 31Jul26 | ..3.5.7 | CCU | 1225 | HAN | 1525 | A32X
+6E 9278 | 03Jul26 | 31Jul26 | ..3.5.7 | HAN | 1655 | DEL | 2120 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Cargo Charters
+4. Aircraft
+Aircraft Type | Registration Marks | Nationality
+32X | According to the FAOC of 6E | INDIA
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CCU-HAN | B214 W21 | LADON | 
+HAN-DEL | W21 B214 |  | LADON

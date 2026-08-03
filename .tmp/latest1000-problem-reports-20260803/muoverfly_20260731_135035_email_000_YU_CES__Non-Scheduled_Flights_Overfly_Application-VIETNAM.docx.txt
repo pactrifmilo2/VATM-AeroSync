@@ -1,0 +1,80 @@
+FILE: muoverfly_20260731_135035_email_000_YU_CES__Non-Scheduled_Flights_Overfly_Application-VIETNAM.docx
+
+PARAGRAPHS
+Application for non-scheduled Overflight
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Charter Passenger
+(Private/Charter/Medical/Tech stop/Ferry or other.)
+5. Aircraft:
+6. Airways:
+7. Validity: -3/+72 Hours
+8. Note (if any)
+________________________________________________________
+Explanatory Notes:
+(1) Flight number: ICAO code.
+(2) Effective from: Start date, in English, format DDMmmYY.
+(3) Effective to: End date, in English, format DDMmmYY.
+(4) Days of services: Numbers 1–7 correspond to Monday–Sunday; “–” indicates no operation.
+(5) (7) Departure/Arrival airport: 4-letter ICAO code.
+(6) (8) Scheduled departure/arrival time: UTC time.
+(9) Aircraft type: ICAO code.
+(10) Registration marks: “As per AOC of [Operator name: ICAO code]” or list specific registration marks;
+(11) Maximum seats of aircraft type.
+(12) Maximum payload of aircraft type.
+(13) Aircraft nationality: in English.
+(14) Sector: ICAO code (e.g., WMKK-ZGGG).
+(15) Airways: List only airways within Vietnam FIR, including primary and alternative airways (if any).
+
+TABLE 1
+CONTEXT: Application for non-scheduled Overflight
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator
+Name: CHINA EASTERN AIRLINES
+IATA code:MU | ICAO code:CES
+Postal Address:NO.35 HONGXIANG ROAD SHANGHAI 201100 P.R. CHINA
+Tel: +862122379860 | Email: muoverfly@ceair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: MS LI YIPING
+Postal Address:LEARING & SETTLEMENT DEPT. ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDINGXI BA HE BEI LI CHAO YANG DISTRICT P.O.BOX 5402100028 BEIJING CHINA
+Tel:+8610-64513489 | Email: NAVSERVICE@ACCA.COM.CN;LYP@ACCA.COM.CN
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+CES7137 | 05AUG26 | 05AUG26 | 0030000 | ZSCN | 1100 | VDSA | 1420
+CES7138 | 05AUG26 | 05AUG26 | 0030000 | VDSA | 1550 | ZSCN | 1910
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Charter Passenger
+(Private/Charter/Medical/Tech stop/Ferry or other.)
+5. Aircraft:
+Aircraft Type (9) | Registration Mark (10) | Seats for passenger flight(11) | Payload for All-cargo flight (Tons) (12) | MTOW (Ton) | Nationality(13)
+B737 | As per AOC of CES | 134 |  | 67 | China
+B738 | As per AOC of CES | 176 |  | 79 | China
+B38M | As per AOC of CES | 176 |  | 82 | China
+A319 | As per AOC of CES | 122 |  | 70 | China
+A320 | As per AOC of CES | 158 |  | 77 | China
+A20N | As per AOC of CES | 164 |  | 79 | China
+A321 | As per AOC of CES | 182 |  | 93 | China
+A21N | As per AOC of CES | 198 |  | 94 | China
+A332 | As per AOC of CES | 264 |  | 238 | China
+A333 | As per AOC of CES | 300 |  | 233/242 | China
+B77W | As per AOC of CES | 316 |  | 351 | China
+B789 | As per AOC of CES | 319 |  | 247 | China
+A359 | As per AOC of CES | 288 |  | 280 | China
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector(14) | Airways(15) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSCN-VDSA | R474 Q1 N639 | TEBAK | VILAO
+VDSA-ZSCN | N639 Q1 R474 | VILAO | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

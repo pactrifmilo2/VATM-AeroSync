@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.FileCopyUtils;
 import vatm.aerosync.worker.model.FlightRow;
@@ -105,6 +106,52 @@ class ParserStepTest {
         assertThat(rows.getFirst().getDateFlight()).isEqualTo(LocalDate.of(2026, 6, 1));
         assertThat(rows.get(1).getCallsign()).isEqualTo("rwqr");
         assertThat(rows.get(1).getDateFlight()).isEqualTo(LocalDate.of(2026, 6, 1));
+    }
+
+    @Test
+    void parseXlsx_readsVnaBaseScheduleWithSectionDateAndSector() throws Exception {
+        Path file = Files.createTempFile("vna-base-schedule-", ".xlsx");
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet();
+            sheet.createRow(0).createCell(0).setCellValue("LICH_BAY_TUAN");
+            Row header = sheet.createRow(4);
+            header.createCell(0).setCellValue("Stt");
+            header.createCell(5).setCellValue("FLT_NO");
+            header.createCell(7).setCellValue("Sector");
+            sheet.createRow(5).createCell(0).setCellValue("04/08/2026");
+            Row first = sheet.createRow(6);
+            first.createCell(0).setCellValue(1);
+            first.createCell(5).setCellValue("VN319");
+            first.createCell(7).setCellValue("NRT-DAD");
+            Row second = sheet.createRow(7);
+            second.createCell(0).setCellValue(2);
+            second.createCell(5).setCellValue("VN129");
+            second.createCell(7).setCellValue("DAD-SGN");
+            try (OutputStream out = Files.newOutputStream(file)) {
+                workbook.write(out);
+            }
+        }
+
+        List<FlightRow> rows = parserStep.parseXlsx(file, "vna.xlsx");
+
+        assertThat(rows).hasSize(2);
+        assertThat(rows.getFirst().getCallsign()).isEqualTo("VN319");
+        assertThat(rows.getFirst().getFrom()).isEqualTo("NRT");
+        assertThat(rows.getFirst().getTo()).isEqualTo("DAD");
+        assertThat(rows.getFirst().getDateFlight()).isEqualTo(LocalDate.of(2026, 8, 4));
+    }
+
+    @Test
+    void parseXlsx_readsConfiguredRegressionWorkbook() {
+        String configured = System.getProperty("xlsx.regression.file");
+        Assumptions.assumeTrue(configured != null && !configured.isBlank(),
+                "Set -Dxlsx.regression.file to validate a real workbook");
+
+        Path file = Path.of(configured);
+        List<FlightRow> rows = parserStep.parseXlsx(file, file.getFileName().toString());
+
+        assertThat(rows).isNotEmpty();
+        System.out.println("XLSX REGRESSION ROWS=" + rows.size());
     }
 
     private Path copySample(String resource, String name) throws Exception {

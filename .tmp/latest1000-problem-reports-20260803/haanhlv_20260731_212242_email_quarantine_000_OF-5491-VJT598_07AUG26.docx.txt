@@ -1,0 +1,44 @@
+FILE: haanhlv_20260731_212242_email_quarantine_000_OF-5491-VJT598_07AUG26.docx
+
+PARAGRAPHS
+HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-5491/07/2026VN
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CHARTER / COMMERCIAL NON-SCHEDULED FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-5491/07/2026VN
+1. Operator:
+Name: VISTAJET LIMITED
+IATA code: | ICAO code:
+SKYPARKS BUSINESS CENTRE, LUQA LQA 4000, MALTA
+Tel: + 356 20928030 | Email: press@vistajet.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Jetex FZE
+Postal Address: P.O BOX: 54698 DUBAI, UAE
+Tel: +971 4 2124000 | Email: INVOICES@JETEX.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VJT598 | 07AUG26 | 07AUG26 | ----5-- | WMSA | 0800 | VHHH | 1150
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CHARTER / COMMERCIAL NON-SCHEDULED FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark
+CL60 | 9H-VFB OR SUB
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways
+WMSA-VHHH | M765 L637 W12 Q1 Q6 A1

@@ -1,0 +1,42 @@
+FILE: anhkd_20260731_164125_email_006_LD-79A_rev2_VU750.VU635_02aug-23oct_G17.44-260728-170619.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 30/7/2026
+Phép bay số: LD-79/A/S/2026VN/REV2
+Tham chiếu phép bay số: LD-79/A/S/2026VN
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+2.2. Lịch bay mới
+3. Ghi chú: Các chi tiết khác không thay đổi.
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 30/7/2026
+Phép bay số: LD-79/A/S/2026VN/REV2
+Tham chiếu phép bay số: LD-79/A/S/2026VN
+1. Người vận chuyển:
+Tên: VIETRAVEL AIRLINES
+Mã IATA: VU | Mã ICAO: VAG
+Địa chỉ bưu điện: Số 172 Ngọc Khánh, Phường Giảng Võ, Thành phố Hà Nội, Việt Nam.
+Điện thoại: 1900.6686 | Thư điện tử: customercare@vietravelairlines.vn
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bayđi | Giờdự kiến đi | Sânbayđến | Giờ dự kiến đến
+VU750 | 02Aug26 | 23Oct26 | 1234567 | SGN | 2245 | HAN | 0055+1
+VU635 | 02Aug26 | 23Oct26 | 1234567 | HAN | 2325 | DAD | 0050+1
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bayđi | Giờdự kiến đi | Sânbayđến | Giờ dự kiến đến
+VU750 | 02Aug26 | 23Oct26 | 1234567 | SGN | 2235 | HAN | 0045+1
+VU635 | 02Aug26 | 23Oct26 | 1234567 | HAN | 2315 | DAD | 0040+1
+
+TABLE 4
+CONTEXT: 3. Ghi chú: Các chi tiết khác không thay đổi.
+KT. CỤC TRƯỞNGPHÓ CỤC TRƯỞNG | 
+ | 
+Đỗ Hồng Cẩm | 

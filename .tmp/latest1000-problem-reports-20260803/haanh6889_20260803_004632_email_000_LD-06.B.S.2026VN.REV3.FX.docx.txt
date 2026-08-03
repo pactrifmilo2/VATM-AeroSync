@@ -1,0 +1,44 @@
+FILE: haanh6889_20260803_004632_email_000_LD-06.B.S.2026VN.REV3.FX.docx
+
+PARAGRAPHS
+LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 02/08/2026
+Permit No.: LD-06/B/S/2026VN/REV3
+1. Carrier/Operator
+2. Schedule (UTC Time)
+2.1. Original schedule(s)
+2.2. New schedule(s)
+3. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED.
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV _CAAV
+
+TABLE 1
+CONTEXT: LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 02/08/2026
+Permit No.: LD-06/B/S/2026VN/REV3
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX9794 | 01Aug26 | 01Aug26 | -----6- | RMS | 1640 | HAN | 0405+1 | 77F | LD-06/B/S/2026VN/REV2
+FX9749 | 02Aug26 | 02Aug26 | ------7 | HAN | 0640 | ANC | 1730 | 77F | LD-06/B/S/2026VN/REV2
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX9794 | 01Aug26 | 01Aug26 | -----6- | RMS | 1640 | HAN | 0405+1 | 77F
+FX9742 | 02Aug26 | 02Aug26 | ------7 | HAN | 0640 | ANC | 1730 | 77F
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HAN-ANC | R474 |  | TEBAK
+RMS-HAN | B214 | LADON | 

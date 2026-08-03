@@ -5,8 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import vatm.aerosync.ingest.config.EmailProperties;
+import vatm.aerosync.ingest.support.Hashing;
 
 import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -49,6 +55,46 @@ class JavaMailEmailClientLiveTest {
                     message.attachments().size(),
                     message.receivedAt());
         }
+    }
+
+    @Test
+    void recoverAttachmentsForConfiguredMessageId() throws Exception {
+        String messageId = System.getProperty("email.recovery.message-id");
+        String outputDirectory = System.getProperty("email.recovery.output-dir");
+        Assumptions.assumeTrue(messageId != null && !messageId.isBlank(),
+                "Set -Demail.recovery.message-id to recover one message");
+        Assumptions.assumeTrue(outputDirectory != null && !outputDirectory.isBlank(),
+                "Set -Demail.recovery.output-dir to select the output directory");
+
+        Set<String> normalizedMessageIds = Arrays.stream(messageId.split(","))
+                .map(value -> value.replace("<", "").replace(">", "").trim())
+                .filter(value -> !value.isBlank())
+                .collect(Collectors.toSet());
+        List<EmailMessage> messages = emailClient.fetchMessages(
+                1000,
+                envelope -> normalizedMessageIds.contains(
+                        envelope.messageId().replace("<", "").replace(">", "")));
+        Set<String> foundMessageIds = messages.stream()
+                .map(candidate -> candidate.messageId().replace("<", "").replace(">", ""))
+                .collect(Collectors.toSet());
+        assertThat(foundMessageIds).containsExactlyInAnyOrderElementsOf(normalizedMessageIds);
+
+        Path output = Path.of(outputDirectory);
+        Files.createDirectories(output);
+        int recovered = 0;
+        for (EmailMessage message : messages) {
+            for (EmailAttachment attachment : message.attachments()) {
+                String extension = attachment.fileName().contains(".")
+                        ? attachment.fileName().substring(attachment.fileName().lastIndexOf('.'))
+                        : ".bin";
+                Files.write(
+                        output.resolve(Hashing.sha256Hex(attachment.content()) + extension),
+                        attachment.content());
+                recovered++;
+            }
+        }
+        System.out.println("Recovered " + recovered + " attachment(s) from "
+                + messages.size() + " message(s) into " + output.toAbsolutePath());
     }
 
     private static String env(String name, String defaultValue) {
