@@ -272,9 +272,15 @@ APP_ATFM_DATASOURCE_URL=jdbc:oracle:thin:@//172.29.187.90:1521/PDBORCL
 APP_ATFM_DATASOURCE_USERNAME=atfm
 APP_ATFM_DATASOURCE_PASSWORD=your-password
 APP_ATFM_WRITE_ENABLED=false
+APP_ATFM_MANUAL_REVIEW_ENABLED=true
 ```
 
 Writes are disabled by default. With the flag disabled, a valid permit is recorded as `DRY_RUN` and quarantined so it cannot be mistaken for a successful target insert. Run `scripts/migrate-phase5-oracle.sql` against the AeroSync tracking schema before enabling imports. After review, set `APP_ATFM_WRITE_ENABLED=true` and restart only the worker.
+
+Manual review is enabled by default. Set `APP_ATFM_MANUAL_REVIEW_ENABLED=false`
+to allow non-revision permits from review-only format profiles to continue through
+the normal duplicate checks and ATFM write path. This bypass applies to every
+review-only format, so use it only when that behavior is intended.
 
 Duplicate handling uses both the original SHA-256 file hash and a semantic schedule hash. The same normalized permit with the same schedule is skipped successfully; changed schedule data for the same permit is quarantined for manual review.
 

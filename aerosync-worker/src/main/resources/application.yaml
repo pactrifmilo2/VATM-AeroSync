@@ -53,6 +53,7 @@ app:
     username: ${APP_ATFM_DATASOURCE_USERNAME:}
     password: ${APP_ATFM_DATASOURCE_PASSWORD:}
     write-enabled: ${APP_ATFM_WRITE_ENABLED:false}
+    manual-review-enabled: ${APP_ATFM_MANUAL_REVIEW_ENABLED:true}
     permit-lock-seconds: ${APP_ATFM_PERMIT_LOCK_SECONDS:600}
     aircraft-cache-ttl-seconds: ${APP_ATFM_AIRCRAFT_CACHE_TTL_SECONDS:300}
   file-paths:

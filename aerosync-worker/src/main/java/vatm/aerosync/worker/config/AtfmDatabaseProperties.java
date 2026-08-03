@@ -9,6 +9,7 @@ public class AtfmDatabaseProperties {
     private String username = "";
     private String password = "";
     private boolean writeEnabled;
+    private boolean manualReviewEnabled = true;
     private int permitLockSeconds = 600;
     private int aircraftCacheTtlSeconds = 300;
 
@@ -42,6 +43,14 @@ public class AtfmDatabaseProperties {
 
     public void setWriteEnabled(boolean writeEnabled) {
         this.writeEnabled = writeEnabled;
+    }
+
+    public boolean isManualReviewEnabled() {
+        return manualReviewEnabled;
+    }
+
+    public void setManualReviewEnabled(boolean manualReviewEnabled) {
+        this.manualReviewEnabled = manualReviewEnabled;
     }
 
     public int getPermitLockSeconds() {

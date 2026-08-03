@@ -146,6 +146,32 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
+    void importPermit_blocksReviewOnlyPermitWhenManualReviewIsEnabled() {
+        context.setSchedulePermit(nonRevisionReviewOnlyPermit());
+
+        assertThatThrownBy(() -> coordinator.importPermit(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("PERMIT-MANUAL-REVIEW");
+        verify(atfmScheduleGateway, never()).findExisting(any());
+        verify(atfmScheduleGateway, never()).insert(any());
+    }
+
+    @Test
+    void importPermit_writesReviewOnlyPermitWhenManualReviewIsDisabled() {
+        properties.setManualReviewEnabled(false);
+        context.setSchedulePermit(nonRevisionReviewOnlyPermit());
+        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
+                anyString(), any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(203001L, 202510L, 1));
+
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        verify(atfmScheduleGateway).insert(any());
+    }
+
+    @Test
     void importPermit_restoresMissingAtfmTargetDespiteSavedLocalHistory() {
         PermitImport original = imported("s".repeat(64), 203001L, 202510L);
         when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
@@ -232,5 +258,15 @@ class PermitImportCoordinatorTest {
                 permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
                 permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
                 permit.emptyAirwaysAllowed(), true, "REV1\n" + permit.rawContent(), permit.flights());
+    }
+
+    private SchedulePermit nonRevisionReviewOnlyPermit() {
+        SchedulePermit permit = permit();
+        return new SchedulePermit(
+                permit.sourcePermitNumber(), permit.normalizedPermitId(), permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
+                permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
+                permit.emptyAirwaysAllowed(), true, permit.rawContent(), permit.flights());
     }
 }

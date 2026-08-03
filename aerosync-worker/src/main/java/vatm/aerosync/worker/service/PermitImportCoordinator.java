@@ -61,7 +61,7 @@ public class PermitImportCoordinator {
         if (existingAttempt.isPresent()) {
             refreshAttempt(attempt, job, permit, semanticHash);
         }
-        if (permit.reviewOnly() && !permit.revision()) {
+        if (properties.isManualReviewEnabled() && permit.reviewOnly() && !permit.revision()) {
             markRevision(attempt, "Permit profile requires manual review");
             throw new BusinessRuleException(
                     "PERMIT-MANUAL-REVIEW",
