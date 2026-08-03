@@ -282,7 +282,7 @@ to allow non-revision permits from review-only format profiles to continue throu
 the normal duplicate checks and ATFM write path. This bypass applies to every
 review-only format, so use it only when that behavior is intended.
 
-Duplicate handling uses both the original SHA-256 file hash and a semantic schedule hash. The same normalized permit with the same schedule is skipped successfully; changed schedule data for the same permit is quarantined for manual review.
+Duplicate handling uses both the original SHA-256 file hash and the target ATFM schedule. The same normalized permit with the same schedule is skipped successfully; changed schedule data reuses the existing permit master and appends only detail rows that are not already present.
 
 ### Replay a permit during local testing
 

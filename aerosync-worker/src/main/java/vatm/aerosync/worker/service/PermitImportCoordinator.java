@@ -16,7 +16,6 @@ import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -77,32 +76,7 @@ public class PermitImportCoordinator {
 
         try {
             if (permit.revision()) {
-                return updateRevision(attempt, permit);
-            }
-            Optional<PermitImport> savedImport = permitImportRepository
-                    .findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                            permit.normalizedPermitId(),
-                            List.of(PermitImportStatus.SAVED, PermitImportStatus.DUPLICATE));
-            if (savedImport.isPresent()) {
-                PermitImport original = savedImport.get();
-                if (original.getSemanticHash().equals(semanticHash)) {
-                    Optional<AtfmPermitSnapshot> currentTarget = atfmScheduleGateway.findExisting(permit);
-                    if (currentTarget.isPresent() && currentTarget.get().matchesExpectedPermit()) {
-                        AtfmPermitSnapshot snapshot = currentTarget.get();
-                        markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
-                        return outcome(attempt);
-                    }
-                    if (currentTarget.isPresent()) {
-                        markRevision(attempt, "Target ATFM permit exists with different schedule data");
-                        throw revisionException(permit);
-                    }
-                    // Local history can outlive an ATFM record (for example after an
-                    // external cleanup). Continue to the normal insert path so a
-                    // resent original permit can safely restore the missing target.
-                } else {
-                    markRevision(attempt, "Permit already exists with different schedule data");
-                    throw revisionException(permit);
-                }
+                return updateExistingPermit(attempt, permit);
             }
 
             if (!properties.isWriteEnabled()) {
@@ -122,8 +96,7 @@ public class PermitImportCoordinator {
                     markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
                     return outcome(attempt);
                 }
-                markRevision(attempt, "Target ATFM permit exists with different schedule data");
-                throw revisionException(permit);
+                return updateExistingPermit(attempt, permit);
             }
 
             AtfmWriteResult result = atfmScheduleGateway.insert(permit);
@@ -146,7 +119,7 @@ public class PermitImportCoordinator {
         }
     }
 
-    private PermitImportOutcome updateRevision(PermitImport attempt, SchedulePermit permit) {
+    private PermitImportOutcome updateExistingPermit(PermitImport attempt, SchedulePermit permit) {
         if (!properties.isWriteEnabled()) {
             attempt.setStatus(PermitImportStatus.DRY_RUN);
             attempt.setDetailCount(permit.flights().size());
@@ -223,13 +196,6 @@ public class PermitImportCoordinator {
         attempt.setStatus(PermitImportStatus.REVISION_REVIEW);
         attempt.setErrorMessage(message);
         permitImportRepository.save(attempt);
-    }
-
-    private BusinessRuleException revisionException(SchedulePermit permit) {
-        return new BusinessRuleException(
-                "PERMIT-REVISION-REVIEW",
-                "Permit %s was previously imported with different schedule data"
-                        .formatted(permit.normalizedPermitId()));
     }
 
     private PermitImportOutcome outcome(PermitImport attempt) {

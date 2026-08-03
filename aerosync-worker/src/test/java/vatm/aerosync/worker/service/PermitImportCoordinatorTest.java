@@ -87,8 +87,6 @@ class PermitImportCoordinatorTest {
 
     @Test
     void importPermit_insertsAndRecordsGeneratedKeys() {
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(203001L, 202510L, 1));
 
@@ -103,9 +101,6 @@ class PermitImportCoordinatorTest {
 
     @Test
     void importPermit_skipsSameSemanticPermit() {
-        PermitImport original = imported("s".repeat(64), 203001L, 202510L);
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.of(original));
         when(atfmScheduleGateway.findExisting(any()))
                 .thenReturn(Optional.of(new AtfmPermitSnapshot(203001L, 202510L, true)));
 
@@ -117,14 +112,18 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
-    void importPermit_quarantinesChangedSchedule() {
-        PermitImport original = imported("x".repeat(64), 203001L, 202510L);
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.of(original));
+    void importPermit_appendsChangedScheduleToExistingMaster() {
+        when(atfmScheduleGateway.findExisting(any()))
+                .thenReturn(Optional.of(new AtfmPermitSnapshot(203001L, 202510L, false)));
+        when(atfmScheduleGateway.update(any()))
+                .thenReturn(new AtfmWriteResult(203001L, 202510L, 1));
 
-        assertThatThrownBy(() -> coordinator.importPermit(context))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("PERMIT-REVISION-REVIEW");
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        assertThat(outcome.targetMasterId()).isEqualTo(203001L);
+        assertThat(outcome.targetPermId()).isEqualTo(202510L);
+        verify(atfmScheduleGateway).update(any());
         verify(atfmScheduleGateway, never()).insert(any());
     }
 
@@ -160,8 +159,6 @@ class PermitImportCoordinatorTest {
     void importPermit_writesReviewOnlyPermitWhenManualReviewIsDisabled() {
         properties.setManualReviewEnabled(false);
         context.setSchedulePermit(nonRevisionReviewOnlyPermit());
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(203001L, 202510L, 1));
 
@@ -172,10 +169,7 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
-    void importPermit_restoresMissingAtfmTargetDespiteSavedLocalHistory() {
-        PermitImport original = imported("s".repeat(64), 203001L, 202510L);
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.of(original));
+    void importPermit_insertsWhenAtfmTargetIsMissing() {
         when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(303001L, 302510L, 1));
 
@@ -189,8 +183,6 @@ class PermitImportCoordinatorTest {
     @Test
     void importPermit_dryRunDoesNotConnectToTarget() {
         properties.setWriteEnabled(false);
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> coordinator.importPermit(context))
                 .isInstanceOf(BusinessRuleException.class)
@@ -206,8 +198,6 @@ class PermitImportCoordinatorTest {
         resetAttempt.setNormalizedPermitId("OLD-ID");
         resetAttempt.setErrorMessage("old failure");
         when(permitImportRepository.findBySyncJobId(7L)).thenReturn(Optional.of(resetAttempt));
-        when(permitImportRepository.findFirstByNormalizedPermitIdAndStatusInOrderByCreatedAtAsc(
-                anyString(), any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(303001L, 302510L, 1));
 

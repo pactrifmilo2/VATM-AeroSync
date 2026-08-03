@@ -228,11 +228,12 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             }
         }
         List<ExistingFlight> existingFlights = readExistingFlights(connection, permId);
-        if (flightsContain(existingFlights, resolvedFlights)) {
+        List<ScheduleFlight> missingFlights = missingFlights(existingFlights, resolvedFlights);
+        if (missingFlights.isEmpty()) {
             return new AtfmWriteResult(masterId, permId, 0);
         }
         try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
-            for (ScheduleFlight flight : resolvedFlights) {
+            for (ScheduleFlight flight : missingFlights) {
                 bindDetail(statement, permId, flight);
                 statement.addBatch();
             }
@@ -243,7 +244,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 }
             }
         }
-        return new AtfmWriteResult(masterId, permId, resolvedFlights.size());
+        return new AtfmWriteResult(masterId, permId, missingFlights.size());
     }
 
     private List<ExistingFlight> readExistingFlights(Connection connection,
@@ -460,16 +461,23 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     }
 
     private boolean flightsContain(List<ExistingFlight> existing, List<ScheduleFlight> expected) {
+        return missingFlights(existing, expected).isEmpty();
+    }
+
+    private List<ScheduleFlight> missingFlights(List<ExistingFlight> existing,
+                                                List<ScheduleFlight> expected) {
         List<ExistingFlight> remaining = new ArrayList<>(existing);
+        List<ScheduleFlight> missing = new ArrayList<>();
         for (ScheduleFlight flight : expected) {
             ExistingFlight expectedFlight = ExistingFlight.fromExpected(flight);
             int match = remaining.indexOf(expectedFlight);
             if (match < 0) {
-                return false;
+                missing.add(flight);
+            } else {
+                remaining.remove(match);
             }
-            remaining.remove(match);
         }
-        return true;
+        return missing;
     }
 
     private ExistingFlight toExistingFlight(ResultSet row) throws SQLException {
