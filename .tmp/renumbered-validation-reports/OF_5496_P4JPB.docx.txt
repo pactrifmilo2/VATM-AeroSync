@@ -1,0 +1,48 @@
+FILE: OF 5496 P4JPB.docx
+
+PARAGRAPHS
+Hanoi, 31/7/2026
+Permit number O/F-8173/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Business Flight
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/7/2026
+Permit number O/F-8173/07/2026VN
+1. Carrier/Operator
+Name: ACTION AVIATION FZC
+IATA code: N/A | ICAO code: N/A
+Postal Address: 125 M2 Warehouse Q3-155 PO Box 120842, Sharjah, UAE
+Tel: | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: AVIAARC TRIP SUPPORT PVT LTD GSTIN: 07AAYCS0911M1ZT
+Postal Address: UNIT NO. 899, 8TH FLOOR, VEGAS MALL, SECTOR -14, DWARKA,NEW DELHI - 110078, INDIA
+Tel: | Email: operations@aviaarc.in, finance@aviaarc.in
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+P4JPB | 04AUG26 | 04AUG26 | -2----- | VOMM | 0000 | VHHH | 0545
+P4JPB | 10AUG26 | 10AUG26 | 1------ | VHHH | 0000 | VOMM | 0520
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Business Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Mtow (ton) | Nationality
+E35L | P4JPB | 22,5 | UAE
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VOMM - VHHH | A1
+VHHH - VOMM | A1
+Airways: Other permitted airways published in Viet Nam’s AIP.

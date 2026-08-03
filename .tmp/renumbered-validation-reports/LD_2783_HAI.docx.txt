@@ -1,0 +1,45 @@
+FILE: LD 2783 HAI.docx
+
+PARAGRAPHS
+Permit for Non-scheduled Flight(s) with landing at/taking off from Viet Nam
+Hanoi, 28/7/2026
+Permit No.: LD-8051/07/2026VN
+1. Operator
+2. Schedules (UTC Time)
+3. Purpose of Flight(s): Commercial Business Aviation/Air Taxi
+4. Aircraft
+5. Airways
+Airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours.
+Khuat Duy Anh for Mr. Dao Ngoc Dung – Deputy Director of ATD-CAAV
+C.c: Mr.Bui Minh Dang - Director of ATD-CAAV (For report)
+
+TABLE 1
+CONTEXT: Permit for Non-scheduled Flight(s) with landing at/taking off from Viet Nam
+Hanoi, 28/7/2026
+Permit No.: LD-8051/07/2026VN
+1. Operator
+Name: HAI AU AVIATION
+IATA code: None | ICAO code: HAI
+Postal Address: 8 FLOOR, 70 BA TRIEU STREET, CUA NAM WARD, HA NOI
+Tel: +84 868130110 | Email: DUTYMANAGER@HAIAUAVIATION.COM
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+HAI238 | 30Jul26 | 30Jul26 | 4 | DAD | 0000 | PQC | 0145
+HAI238 | 31Jul26 | 31Jul26 | 5 | PQC | 0000 | SGN | 0050
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight(s): Commercial Business Aviation/Air Taxi
+4. Aircraft
+Aircraft Type | Highest number of seats | Registration Mark
+F2TH | 10 | As per AOC of Hai Au Aviation
+FA8X | 14 | As per AOC of Hai Au Aviation
+GA7C | 19 | As per AOC of Hai Au Aviation
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways
+DAD-PQC | Q1 W1 W17
+PQC-SGN | W17

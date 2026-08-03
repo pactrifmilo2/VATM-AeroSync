@@ -1,0 +1,322 @@
+FILE: tu1412000_20260731_172631_email_000_LD_2821_VJC.docx
+
+PARAGRAPHS
+Hà Nội, ngày 30/7/2026
+LD-2821/7/2026VN
+1. Người vận chuyển/ Người khai thác:
+2. Lịch bay (Giờ UTC):
+2.1. Lịch bay quốc tế:
+2.2. Lịch bay quốc nội:
+3. Mục đích chuyến bay: Chở khách và hàng hóa.
+4. Tàu bay:
+5. Đường hàng không:
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực phép bay: -12/+24 giờ
+PHẠM GIANG GỬI THAY PHẠM THẢO-PTP VTHK, CỤC HKVN
+C/c: BÙI MINH ĐĂNG-TP VTHK (để b/c)
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 30/7/2026
+LD-2821/7/2026VN
+1. Người vận chuyển/ Người khai thác:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại/Tel: +84 1900 1886 | Thư điện tử/Email:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC):
+2.1. Lịch bay quốc tế:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến
+DAD - MFM - DAD
+VJ8890 | 01Aug26 | 29Aug26 | -2-4-6- | DAD | 5:15 | MFM | 6:50
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay quốc nội:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến
+SGN - HPH - SGN
+VJ1282 | 16Aug26 | 16Aug26 | ------7 | SGN | 13:15 | HPH | 15:15
+VJ1282 | 17Aug26 | 17Aug26 | 1------ | SGN | 12:55 | HPH | 15:15
+VJ1282 | 18Aug26 | 18Aug26 | -2----- | SGN | 12:55 | HPH | 15:15
+VJ1282 | 19Aug26 | 19Aug26 | --3---- | SGN | 12:55 | HPH | 15:15
+VJ1282 | 20Aug26 | 20Aug26 | ---4--- | SGN | 12:55 | HPH | 15:15
+VJ1282 | 21Aug26 | 21Aug26 | ----5-- | SGN | 12:55 | HPH | 15:15
+VJ1282 | 22Aug26 | 22Aug26 | -----6- | SGN | 13:15 | HPH | 15:15
+VJ1282 | 23Aug26 | 23Aug26 | ------7 | SGN | 13:15 | HPH | 15:15
+VJ1282 | 24Aug26 | 24Aug26 | 1------ | SGN | 13:15 | HPH | 15:15
+VJ1282 | 25Aug26 | 25Aug26 | -2----- | SGN | 13:15 | HPH | 15:15
+VJ1282 | 27Aug26 | 27Aug26 | ---4--- | SGN | 12:55 | HPH | 15:15
+VJ1283 | 16Aug26 | 16Aug26 | ------7 | HPH | 15:45 | SGN | 17:45
+VJ1283 | 17Aug26 | 17Aug26 | 1------ | HPH | 15:45 | SGN | 17:45
+VJ1283 | 18Aug26 | 18Aug26 | -2----- | HPH | 15:45 | SGN | 17:45
+VJ1283 | 19Aug26 | 19Aug26 | --3---- | HPH | 15:45 | SGN | 17:45
+VJ1283 | 20Aug26 | 20Aug26 | ---4--- | HPH | 15:45 | SGN | 17:45
+VJ1283 | 21Aug26 | 21Aug26 | ----5-- | HPH | 15:45 | SGN | 17:45
+VJ1283 | 22Aug26 | 22Aug26 | -----6- | HPH | 15:45 | SGN | 17:45
+VJ1283 | 23Aug26 | 23Aug26 | ------7 | HPH | 15:45 | SGN | 17:45
+VJ1283 | 24Aug26 | 24Aug26 | 1------ | HPH | 15:45 | SGN | 17:45
+VJ1283 | 25Aug26 | 25Aug26 | -2----- | HPH | 15:45 | SGN | 17:45
+VJ273 | 03Aug26 | 03Aug26 | 1------ | HPH | 10:50 | SGN | 12:50
+VJ273 | 04Aug26 | 04Aug26 | -2----- | HPH | 10:50 | SGN | 12:50
+VJ273 | 07Aug26 | 07Aug26 | ----5-- | HPH | 10:50 | SGN | 12:50
+VJ273 | 10Aug26 | 10Aug26 | 1------ | HPH | 10:50 | SGN | 12:50
+VJ273 | 11Aug26 | 11Aug26 | -2----- | HPH | 10:50 | SGN | 12:50
+VJ273 | 14Aug26 | 14Aug26 | ----5-- | HPH | 10:50 | SGN | 12:50
+VJ273 | 17Aug26 | 17Aug26 | 1------ | HPH | 10:50 | SGN | 12:50
+VJ273 | 18Aug26 | 18Aug26 | -2----- | HPH | 10:50 | SGN | 12:50
+VJ273 | 21Aug26 | 21Aug26 | ----5-- | HPH | 10:50 | SGN | 12:50
+VJ273 | 24Aug26 | 24Aug26 | 1------ | HPH | 10:50 | SGN | 12:50
+VJ273 | 25Aug26 | 25Aug26 | -2----- | HPH | 10:50 | SGN | 12:50
+VJ273 | 28Aug26 | 28Aug26 | ----5-- | HPH | 10:50 | SGN | 12:50
+VJ273 | 31Aug26 | 31Aug26 | 1------ | HPH | 10:50 | SGN | 12:50
+VJ283 | 01Aug26 | 01Aug26 | -----6- | HPH | 13:10 | SGN | 16:00
+VJ283 | 02Aug26 | 02Aug26 | ------7 | HPH | 13:10 | SGN | 16:00
+VJ283 | 07Aug26 | 07Aug26 | ----5-- | HPH | 13:10 | SGN | 16:00
+VJ283 | 08Aug26 | 08Aug26 | -----6- | HPH | 13:10 | SGN | 16:00
+VJ283 | 09Aug26 | 09Aug26 | ------7 | HPH | 13:10 | SGN | 16:00
+VJ283 | 14Aug26 | 14Aug26 | ----5-- | HPH | 13:10 | SGN | 16:00
+VJ283 | 15Aug26 | 15Aug26 | -----6- | HPH | 13:10 | SGN | 16:00
+VJ283 | 16Aug26 | 16Aug26 | ------7 | HPH | 13:10 | SGN | 16:00
+VJ283 | 21Aug26 | 21Aug26 | ----5-- | HPH | 13:10 | SGN | 16:00
+VJ283 | 22Aug26 | 22Aug26 | -----6- | HPH | 13:10 | SGN | 16:00
+VJ283 | 23Aug26 | 23Aug26 | ------7 | HPH | 13:10 | SGN | 16:00
+VJ283 | 28Aug26 | 28Aug26 | ----5-- | HPH | 13:10 | SGN | 16:00
+VJ283 | 29Aug26 | 29Aug26 | -----6- | HPH | 13:10 | SGN | 16:00
+VJ283 | 30Aug26 | 30Aug26 | ------7 | HPH | 13:10 | SGN | 16:00
+VJ284 | 06Aug26 | 06Aug26 | ---4--- | SGN | 12:55 | HPH | 15:15
+VJ284 | 13Aug26 | 13Aug26 | ---4--- | SGN | 13:15 | HPH | 15:15
+SGN - PQC - SGN
+VJ1320 | 31Jul26 | 31Jul26 | ----5-- | PQC | 23:55 | SGN | 0:55
+VJ322 | 01Aug26 | 01Aug26 | -----6- | PQC | 11:55 | SGN | 14:00
+VJ322 | 08Aug26 | 08Aug26 | -----6- | PQC | 11:55 | SGN | 14:05
+VJ322 | 15Aug26 | 15Aug26 | -----6- | PQC | 11:55 | SGN | 14:00
+VJ322 | 29Aug26 | 29Aug26 | -----6- | PQC | 12:25 | SGN | 13:25
+VJ329 | 31Jul26 | 31Jul26 | ----5-- | SGN | 22:15 | PQC | 23:20
+VJ329 | 01Aug26 | 01Aug26 | -----6- | SGN | 22:15 | PQC | 23:20
+VJ329 | 02Aug26 | 02Aug26 | ------7 | SGN | 22:15 | PQC | 23:20
+VJ329 | 03Aug26 | 03Aug26 | 1------ | SGN | 22:15 | PQC | 23:20
+VJ329 | 04Aug26 | 04Aug26 | -2----- | SGN | 22:15 | PQC | 23:20
+VJ329 | 05Aug26 | 05Aug26 | --3---- | SGN | 22:15 | PQC | 23:20
+VJ329 | 06Aug26 | 06Aug26 | ---4--- | SGN | 22:15 | PQC | 23:20
+VJ329 | 07Aug26 | 07Aug26 | ----5-- | SGN | 22:15 | PQC | 23:20
+VJ329 | 08Aug26 | 08Aug26 | -----6- | SGN | 22:15 | PQC | 23:20
+VJ329 | 09Aug26 | 09Aug26 | ------7 | SGN | 22:15 | PQC | 23:20
+VJ329 | 10Aug26 | 10Aug26 | 1------ | SGN | 22:15 | PQC | 23:20
+VJ329 | 11Aug26 | 11Aug26 | -2----- | SGN | 22:15 | PQC | 23:20
+VJ329 | 12Aug26 | 12Aug26 | --3---- | SGN | 22:15 | PQC | 23:20
+VJ329 | 13Aug26 | 13Aug26 | ---4--- | SGN | 22:15 | PQC | 23:20
+VJ329 | 14Aug26 | 14Aug26 | ----5-- | SGN | 22:15 | PQC | 23:20
+HAN - PQC - HAN
+VJ1453 | 02Aug26 | 02Aug26 | ------7 | HAN | 4:50 | PQC | 6:55
+VJ1453 | 05Aug26 | 05Aug26 | --3---- | HAN | 4:50 | PQC | 6:55
+VJ1453 | 07Aug26 | 07Aug26 | ----5-- | HAN | 4:50 | PQC | 6:55
+VJ1453 | 09Aug26 | 09Aug26 | ------7 | HAN | 4:50 | PQC | 6:55
+VJ1453 | 12Aug26 | 12Aug26 | --3---- | HAN | 4:50 | PQC | 6:55
+VJ1453 | 14Aug26 | 14Aug26 | ----5-- | HAN | 4:50 | PQC | 6:55
+VJ1453 | 18Aug26 | 18Aug26 | -2----- | HAN | 4:50 | PQC | 6:55
+VJ1453 | 31Aug26 | 31Aug26 | 1------ | HAN | 4:50 | PQC | 6:55
+VJ1454 | 01Aug26 | 01Aug26 | -----6- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 02Aug26 | 02Aug26 | ------7 | PQC | 0:00 | HAN | 2:05
+VJ1454 | 03Aug26 | 03Aug26 | 1------ | PQC | 0:00 | HAN | 2:05
+VJ1454 | 04Aug26 | 04Aug26 | -2----- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 05Aug26 | 05Aug26 | --3---- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 06Aug26 | 06Aug26 | ---4--- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 07Aug26 | 07Aug26 | ----5-- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 08Aug26 | 08Aug26 | -----6- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 09Aug26 | 09Aug26 | ------7 | PQC | 0:00 | HAN | 2:05
+VJ1454 | 10Aug26 | 10Aug26 | 1------ | PQC | 0:00 | HAN | 2:05
+VJ1454 | 11Aug26 | 11Aug26 | -2----- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 12Aug26 | 12Aug26 | --3---- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 13Aug26 | 13Aug26 | ---4--- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 14Aug26 | 14Aug26 | ----5-- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 15Aug26 | 15Aug26 | -----6- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 16Aug26 | 16Aug26 | ------7 | PQC | 0:00 | HAN | 2:05
+VJ1454 | 17Aug26 | 17Aug26 | 1------ | PQC | 0:00 | HAN | 2:05
+VJ1454 | 18Aug26 | 18Aug26 | -2----- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 19Aug26 | 19Aug26 | --3---- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 20Aug26 | 20Aug26 | ---4--- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 21Aug26 | 21Aug26 | ----5-- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 22Aug26 | 22Aug26 | -----6- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 23Aug26 | 23Aug26 | ------7 | PQC | 0:00 | HAN | 2:05
+VJ1454 | 24Aug26 | 24Aug26 | 1------ | PQC | 0:00 | HAN | 2:05
+VJ1454 | 25Aug26 | 25Aug26 | -2----- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 26Aug26 | 26Aug26 | --3---- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 27Aug26 | 27Aug26 | ---4--- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 28Aug26 | 28Aug26 | ----5-- | PQC | 0:00 | HAN | 2:05
+VJ1454 | 29Aug26 | 29Aug26 | -----6- | PQC | 4:55 | HAN | 7:00
+VJ1454 | 30Aug26 | 30Aug26 | ------7 | PQC | 0:00 | HAN | 2:05
+VJ1454 | 31Aug26 | 31Aug26 | 1------ | PQC | 0:00 | HAN | 2:05
+HAN - CXR - HAN
+VJ1772 | 12Aug26 | 12Aug26 | --3---- | CXR | 2:25 | HAN | 5:00
+VJ1772 | 16Aug26 | 16Aug26 | ------7 | CXR | 2:25 | HAN | 5:00
+VJ1772 | 21Aug26 | 21Aug26 | ----5-- | CXR | 2:25 | HAN | 5:00
+HAN - DLI - HAN
+VJ401 | 31Aug26 | 31Aug26 | 1------ | HAN | 0:00 | DLI | 1:50
+VJ409 | 30Aug26 | 30Aug26 | ------7 | HAN | 12:15 | DLI | 14:05
+HAN - PXU - HAN
+VJ424 | 23Aug26 | 23Aug26 | ------7 | PXU | 10:10 | HAN | 12:00
+VJ424 | 30Aug26 | 30Aug26 | ------7 | PXU | 10:10 | HAN | 11:45
+HAN - UIH - HAN
+VJ430 | 01Aug26 | 01Aug26 | -----6- | UIH | 1:10 | HAN | 2:50
+VJ430 | 03Aug26 | 03Aug26 | 1------ | UIH | 1:10 | HAN | 2:50
+VJ430 | 04Aug26 | 04Aug26 | -2----- | UIH | 1:10 | HAN | 2:50
+VJ430 | 06Aug26 | 06Aug26 | ---4--- | UIH | 1:10 | HAN | 2:50
+VJ430 | 08Aug26 | 08Aug26 | -----6- | UIH | 1:10 | HAN | 2:50
+VJ430 | 10Aug26 | 10Aug26 | 1------ | UIH | 1:10 | HAN | 2:50
+VJ430 | 11Aug26 | 11Aug26 | -2----- | UIH | 1:10 | HAN | 2:50
+VJ430 | 13Aug26 | 13Aug26 | ---4--- | UIH | 1:10 | HAN | 2:50
+VJ430 | 15Aug26 | 15Aug26 | -----6- | UIH | 1:10 | HAN | 2:50
+VJ430 | 17Aug26 | 17Aug26 | 1------ | UIH | 1:10 | HAN | 2:50
+VJ430 | 18Aug26 | 18Aug26 | -2----- | UIH | 1:10 | HAN | 2:50
+VJ430 | 20Aug26 | 20Aug26 | ---4--- | UIH | 1:10 | HAN | 2:50
+VJ430 | 22Aug26 | 22Aug26 | -----6- | UIH | 1:10 | HAN | 2:50
+VJ430 | 24Aug26 | 24Aug26 | 1------ | UIH | 1:10 | HAN | 2:50
+VJ430 | 25Aug26 | 25Aug26 | -2----- | UIH | 1:10 | HAN | 2:50
+VJ430 | 27Aug26 | 27Aug26 | ---4--- | UIH | 1:10 | HAN | 2:50
+VJ430 | 29Aug26 | 29Aug26 | -----6- | UIH | 1:10 | HAN | 2:50
+VJ430 | 31Aug26 | 31Aug26 | 1------ | UIH | 1:10 | HAN | 2:50
+VJ431 | 31Jul26 | 31Jul26 | ----5-- | HAN | 23:05 | UIH | 0:40
+VJ431 | 02Aug26 | 02Aug26 | ------7 | HAN | 23:05 | UIH | 0:40
+VJ431 | 03Aug26 | 03Aug26 | 1------ | HAN | 23:05 | UIH | 0:40
+VJ431 | 05Aug26 | 05Aug26 | --3---- | HAN | 23:05 | UIH | 0:40
+VJ431 | 07Aug26 | 07Aug26 | ----5-- | HAN | 23:05 | UIH | 0:40
+VJ431 | 09Aug26 | 09Aug26 | ------7 | HAN | 23:05 | UIH | 0:40
+VJ431 | 10Aug26 | 10Aug26 | 1------ | HAN | 23:05 | UIH | 0:40
+VJ431 | 12Aug26 | 12Aug26 | --3---- | HAN | 23:05 | UIH | 0:40
+VJ431 | 14Aug26 | 14Aug26 | ----5-- | HAN | 23:05 | UIH | 0:40
+VJ431 | 16Aug26 | 16Aug26 | ------7 | HAN | 23:05 | UIH | 0:40
+VJ431 | 17Aug26 | 17Aug26 | 1------ | HAN | 23:05 | UIH | 0:40
+VJ431 | 19Aug26 | 19Aug26 | --3---- | HAN | 23:05 | UIH | 0:40
+VJ431 | 21Aug26 | 21Aug26 | ----5-- | HAN | 23:05 | UIH | 0:40
+VJ431 | 23Aug26 | 23Aug26 | ------7 | HAN | 23:05 | UIH | 0:40
+VJ431 | 24Aug26 | 24Aug26 | 1------ | HAN | 23:05 | UIH | 0:40
+VJ431 | 26Aug26 | 26Aug26 | --3---- | HAN | 23:05 | UIH | 0:40
+VJ431 | 28Aug26 | 28Aug26 | ----5-- | HAN | 23:05 | UIH | 0:40
+VJ431 | 30Aug26 | 30Aug26 | ------7 | HAN | 23:05 | UIH | 0:40
+VJ433 | 01Aug26 | 01Aug26 | -----6- | HAN | 6:20 | UIH | 7:55
+VJ433 | 02Aug26 | 02Aug26 | ------7 | HAN | 6:20 | UIH | 8:25
+VJ433 | 03Aug26 | 03Aug26 | 1------ | HAN | 6:20 | UIH | 8:25
+VJ433 | 04Aug26 | 04Aug26 | -2----- | HAN | 6:20 | UIH | 7:55
+VJ433 | 05Aug26 | 05Aug26 | --3---- | HAN | 6:20 | UIH | 8:25
+VJ433 | 06Aug26 | 06Aug26 | ---4--- | HAN | 6:20 | UIH | 7:55
+VJ433 | 07Aug26 | 07Aug26 | ----5-- | HAN | 6:20 | UIH | 8:25
+VJ433 | 08Aug26 | 08Aug26 | -----6- | HAN | 6:20 | UIH | 7:55
+VJ433 | 10Aug26 | 10Aug26 | 1------ | HAN | 6:20 | UIH | 8:25
+VJ433 | 11Aug26 | 11Aug26 | -2----- | HAN | 6:20 | UIH | 7:55
+VJ433 | 12Aug26 | 12Aug26 | --3---- | HAN | 5:55 | UIH | 8:25
+VJ433 | 13Aug26 | 13Aug26 | ---4--- | HAN | 6:20 | UIH | 7:55
+VJ433 | 14Aug26 | 14Aug26 | ----5-- | HAN | 6:20 | UIH | 8:25
+VJ433 | 15Aug26 | 15Aug26 | -----6- | HAN | 6:20 | UIH | 7:55
+VJ433 | 16Aug26 | 16Aug26 | ------7 | HAN | 6:20 | UIH | 8:25
+VJ433 | 17Aug26 | 17Aug26 | 1------ | HAN | 6:20 | UIH | 8:25
+VJ433 | 18Aug26 | 18Aug26 | -2----- | HAN | 6:20 | UIH | 7:55
+VJ433 | 19Aug26 | 19Aug26 | --3---- | HAN | 6:20 | UIH | 8:25
+VJ433 | 20Aug26 | 20Aug26 | ---4--- | HAN | 6:20 | UIH | 7:55
+VJ433 | 21Aug26 | 21Aug26 | ----5-- | HAN | 6:20 | UIH | 8:25
+VJ433 | 22Aug26 | 22Aug26 | -----6- | HAN | 6:20 | UIH | 7:55
+VJ433 | 23Aug26 | 23Aug26 | ------7 | HAN | 5:55 | UIH | 8:25
+VJ433 | 24Aug26 | 24Aug26 | 1------ | HAN | 5:55 | UIH | 8:25
+VJ433 | 25Aug26 | 25Aug26 | -2----- | HAN | 6:20 | UIH | 7:55
+VJ433 | 26Aug26 | 26Aug26 | --3---- | HAN | 6:20 | UIH | 8:25
+VJ433 | 27Aug26 | 27Aug26 | ---4--- | HAN | 6:20 | UIH | 7:55
+VJ433 | 28Aug26 | 28Aug26 | ----5-- | HAN | 6:20 | UIH | 8:25
+VJ433 | 29Aug26 | 29Aug26 | -----6- | HAN | 6:20 | UIH | 7:55
+VJ433 | 30Aug26 | 30Aug26 | ------7 | HAN | 6:20 | UIH | 8:25
+VJ433 | 31Aug26 | 31Aug26 | 1------ | HAN | 6:20 | UIH | 8:25
+VJ434 | 01Aug26 | 01Aug26 | -----6- | UIH | 8:30 | HAN | 10:10
+VJ434 | 02Aug26 | 02Aug26 | ------7 | UIH | 9:00 | HAN | 10:10
+VJ434 | 03Aug26 | 03Aug26 | 1------ | UIH | 9:00 | HAN | 10:10
+VJ434 | 04Aug26 | 04Aug26 | -2----- | UIH | 8:30 | HAN | 10:10
+VJ434 | 05Aug26 | 05Aug26 | --3---- | UIH | 9:00 | HAN | 10:10
+VJ434 | 06Aug26 | 06Aug26 | ---4--- | UIH | 8:30 | HAN | 10:10
+VJ434 | 07Aug26 | 07Aug26 | ----5-- | UIH | 9:00 | HAN | 10:10
+VJ434 | 08Aug26 | 08Aug26 | -----6- | UIH | 8:30 | HAN | 10:10
+VJ434 | 10Aug26 | 10Aug26 | 1------ | UIH | 9:00 | HAN | 10:10
+VJ434 | 11Aug26 | 11Aug26 | -2----- | UIH | 8:30 | HAN | 10:10
+VJ434 | 12Aug26 | 12Aug26 | --3---- | UIH | 9:00 | HAN | 9:55
+VJ434 | 13Aug26 | 13Aug26 | ---4--- | UIH | 8:30 | HAN | 10:10
+VJ434 | 14Aug26 | 14Aug26 | ----5-- | UIH | 9:00 | HAN | 10:10
+VJ434 | 15Aug26 | 15Aug26 | -----6- | UIH | 8:30 | HAN | 10:10
+VJ434 | 16Aug26 | 16Aug26 | ------7 | UIH | 9:00 | HAN | 10:10
+VJ434 | 17Aug26 | 17Aug26 | 1------ | UIH | 9:00 | HAN | 10:10
+VJ434 | 18Aug26 | 18Aug26 | -2----- | UIH | 8:30 | HAN | 10:10
+VJ434 | 19Aug26 | 19Aug26 | --3---- | UIH | 9:00 | HAN | 10:10
+VJ434 | 20Aug26 | 20Aug26 | ---4--- | UIH | 8:30 | HAN | 10:10
+VJ434 | 21Aug26 | 21Aug26 | ----5-- | UIH | 9:00 | HAN | 10:10
+VJ434 | 22Aug26 | 22Aug26 | -----6- | UIH | 8:30 | HAN | 10:10
+VJ434 | 23Aug26 | 23Aug26 | ------7 | UIH | 9:00 | HAN | 10:10
+VJ434 | 24Aug26 | 24Aug26 | 1------ | UIH | 9:00 | HAN | 10:10
+VJ434 | 25Aug26 | 25Aug26 | -2----- | UIH | 8:30 | HAN | 10:10
+VJ434 | 26Aug26 | 26Aug26 | --3---- | UIH | 9:00 | HAN | 10:10
+VJ434 | 27Aug26 | 27Aug26 | ---4--- | UIH | 8:30 | HAN | 10:10
+VJ434 | 28Aug26 | 28Aug26 | ----5-- | UIH | 9:00 | HAN | 10:10
+VJ434 | 29Aug26 | 29Aug26 | -----6- | UIH | 8:30 | HAN | 10:10
+VJ434 | 30Aug26 | 30Aug26 | ------7 | UIH | 9:00 | HAN | 10:10
+VJ434 | 31Aug26 | 31Aug26 | 1------ | UIH | 9:00 | HAN | 10:10
+HAN - VCA - HAN
+VJ468 | 30Aug26 | 30Aug26 | ------7 | VCA | 10:40 | HAN | 13:00
+HAN - HUI - HAN
+VJ566 | 11Aug26 | 11Aug26 | -2----- | HUI | 5:15 | HAN | 7:00
+VJ566 | 12Aug26 | 12Aug26 | --3---- | HUI | 6:15 | HAN | 7:30
+DAD - PQC - DAD
+VJ719 | 03Aug26 | 03Aug26 | 1------ | DAD | 0:15 | PQC | 1:55
+VJ719 | 10Aug26 | 10Aug26 | 1------ | DAD | 0:15 | PQC | 1:55
+VJ719 | 17Aug26 | 17Aug26 | 1------ | DAD | 0:15 | PQC | 1:55
+VJ719 | 24Aug26 | 24Aug26 | 1------ | DAD | 0:15 | PQC | 1:55
+VJ719 | 31Aug26 | 31Aug26 | 1------ | DAD | 0:15 | PQC | 1:55
+HPH - PQC - HPH
+VJ767 | 01Aug26 | 01Aug26 | -----6- | HPH | 8:40 | PQC | 14:00
+VJ767 | 03Aug26 | 03Aug26 | 1------ | HPH | 8:40 | PQC | 14:00
+VJ767 | 04Aug26 | 04Aug26 | -2----- | HPH | 8:40 | PQC | 14:00
+VJ767 | 06Aug26 | 06Aug26 | ---4--- | HPH | 8:40 | PQC | 14:00
+VJ767 | 08Aug26 | 08Aug26 | -----6- | HPH | 8:40 | PQC | 14:00
+VJ767 | 10Aug26 | 10Aug26 | 1------ | HPH | 8:40 | PQC | 14:00
+VJ767 | 11Aug26 | 11Aug26 | -2----- | HPH | 8:40 | PQC | 14:00
+VJ767 | 13Aug26 | 13Aug26 | ---4--- | HPH | 8:40 | PQC | 14:00
+VJ767 | 15Aug26 | 15Aug26 | -----6- | HPH | 8:40 | PQC | 14:00
+VJ767 | 17Aug26 | 17Aug26 | 1------ | HPH | 8:40 | PQC | 14:00
+VJ767 | 18Aug26 | 18Aug26 | -2----- | HPH | 8:40 | PQC | 14:00
+VJ767 | 20Aug26 | 20Aug26 | ---4--- | HPH | 8:40 | PQC | 14:00
+VJ767 | 22Aug26 | 22Aug26 | -----6- | HPH | 8:40 | PQC | 14:00
+VJ767 | 24Aug26 | 24Aug26 | 1------ | HPH | 8:40 | PQC | 14:00
+VJ767 | 25Aug26 | 25Aug26 | -2----- | HPH | 8:40 | PQC | 14:00
+VJ767 | 27Aug26 | 27Aug26 | ---4--- | HPH | 8:40 | PQC | 14:00
+VJ767 | 29Aug26 | 29Aug26 | -----6- | HPH | 8:40 | PQC | 14:00
+VJ767 | 31Aug26 | 31Aug26 | 1------ | HPH | 8:40 | PQC | 14:00
+
+TABLE 4
+CONTEXT: 3. Mục đích chuyến bay: Chở khách và hàng hóa.
+4. Tàu bay:
+Loại tàu bay | Số đăng ký | Quốc tịch
+320 | Theo AOC của VJ | Vietnam
+321 | Theo AOC của VJ | Vietnam
+32Q | Theo AOC của VJ | Vietnam
+333 | Theo AOC của VJ | Vietnam
+
+TABLE 5
+CONTEXT: 5. Đường hàng không:
+Chặng bay | Đường hàng không
+SGN-HPH | Q2 Q4 W20
+HPH-SGN | Q10 Q1
+SGN-PQC | W17 W8 hoặc W16 W8
+PQC-SGN | W8 W16 hoặc W8 W17
+HAN-DLI | Q1 W7
+DLI-HAN | Q1 Q6 Q2 hoặc W1 W2 Q2
+HAN-CXR | Q1 W2
+CXR-HAN | W2 Q2
+HAN-PQC | Q1 N639 M753
+PQC-HAN | M753 N639 Q2
+HAN-VCA | Q1 W12
+VCA-HAN | W16 Q2
+HAN-UIH | Q1 W2
+UIH-HAN | W2 Q2
+HAN-PXU | Q1
+PXU-HAN | W1 W2 Q2 hoặc Q1 W2 Q2
+HPH-PQC | W5 N639 B329 M753 hoặc W5 N639 M753
+PQC-HPH | M753 N639 W5 hoặc M753 B329 N639 W5
+HAN-HUI | Q1
+HUI-HAN | Q2 OR W10 Q5 Q2
+PQC-DAD | W8 W16 W12 Q2 Q7 Q1 hoặc W8 W16 W12 Q1 hoặc W8 Q2
+DAD-PQC | Q1 W12 W16 W8
+DAD-MFM | A1
+MFM-DAD | A1

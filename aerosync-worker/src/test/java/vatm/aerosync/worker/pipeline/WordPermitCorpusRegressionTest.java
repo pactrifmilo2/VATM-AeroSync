@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.worker.atfm.AtfmAircraftTypeResolver;
 import vatm.aerosync.worker.atfm.AtfmAirportCodeResolver;
 import vatm.aerosync.worker.atfm.AtfmViaResolver;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -80,11 +82,16 @@ class WordPermitCorpusRegressionTest {
 
         List<String> successes = new ArrayList<>();
         List<String> failures = new ArrayList<>();
+        List<String> nonPermitDocuments = new ArrayList<>();
         for (Path file : files) {
             DocxPermitFormatProfile detectedProfile = null;
             try {
                 WordPermitDocument document = reader.read(file);
                 writeDocumentReport(reportDirectory, file, document);
+                if (!containsPermitIdentity(document.rawContent())) {
+                    nonPermitDocuments.add(file.getFileName().toString());
+                    continue;
+                }
                 DocxPermitFormatProfile profile = detector.detect(document, file.getFileName().toString());
                 detectedProfile = profile;
                 SchedulePermit permit =
@@ -121,10 +128,19 @@ class WordPermitCorpusRegressionTest {
         successes.forEach(System.out::println);
         System.out.println("WORD PERMIT CORPUS FAILURES (" + failures.size() + ")");
         failures.forEach(System.out::println);
+        System.out.println("WORD NON-PERMIT DOCUMENTS (" + nonPermitDocuments.size() + ")");
+        nonPermitDocuments.forEach(System.out::println);
 
         assertThat(failures)
                 .as("Every configured Word permit should match a profile and parse")
                 .isEmpty();
+    }
+
+    private boolean containsPermitIdentity(String content) {
+        return Pattern.compile(
+                        "(?iu)\\b(?:LD|OF|O\\s*/\\s*F|QLB)\\s*[-:/ ]*\\d")
+                .matcher(content)
+                .find();
     }
 
     private AtfmDatabaseProperties liveAtfmProperties() {
@@ -153,6 +169,15 @@ class WordPermitCorpusRegressionTest {
     }
 
     private String rootMessage(Throwable throwable) {
+        if (throwable instanceof BusinessRuleException businessRule
+                && !businessRule.getRowErrors().isEmpty()) {
+            return businessRule.getRowErrors().stream()
+                    .map(error -> "%s[row=%d,value=%s]".formatted(
+                            error.code(), error.rowNumber(), error.value()))
+                    .distinct()
+                    .toList()
+                    .toString();
+        }
         Throwable current = throwable;
         while (current.getCause() != null) {
             current = current.getCause();

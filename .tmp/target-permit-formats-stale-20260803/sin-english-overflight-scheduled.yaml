@@ -1,0 +1,9 @@
+id: sin-english-overflight-scheduled
+extends: caav-english-overflight-scheduled
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*SIN\b|\bSIN\d+[A-Z0-9]*\b)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: SIN

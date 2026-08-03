@@ -1,0 +1,48 @@
+FILE: LD 2516 HKC327.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 03/07/2026
+Permit No.: LD-2516/07/2026VN
+1. Carrier/Operator
+Name: Hong Kong Air Cargo Carrier Limited IATA code: RH ICAO code: HKC Postal Address: Unit 3007-11, 30/F, CDW Building, 388 Castle Peak Road, Tsuen Wan, New Territories, Hong Kong SAR Tel: HYPERLINK "Tel:+852" +852 3920 9125 Email: tommy.fei@hkaircargo.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type RH327 07JUL26 21JUL26 -2----- HKG 1500 HAN 1700 33X RH328 07JUL26 21JUL26 -2----- HAN 1830 HKG 2030 33X 
+3. Purpose of Flight: Non Schedule Freighter;
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality Included in AOC/FAOC Not included in AOC/FAOC 33X As per FAOC Certificate # 00135-FAOC, 
+Registration Mark
+B-LNW/
+B-LNV/
+B-LNX/
+B-LNY/
+B-LNZ/
+B-LMA [specify registration mark] Hong Kong, China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HKG-HAN R474 TEBAK N/A HAN-HKG R474 N/A TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: Hong Kong Air Cargo Carrier Limited
+IATA code: RH | ICAO code: HKC
+Postal Address: Unit 3007-11, 30/F, CDW Building, 388 Castle Peak Road, Tsuen Wan, New Territories, Hong Kong SAR
+Tel: HYPERLINK "Tel:+852" +852 3920 9125 | Email: tommy.fei@hkaircargo.com
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+RH327 | 07JUL26 | 21JUL26 | -2----- | HKG | 1500 | HAN | 1700 | 33X
+RH328 | 07JUL26 | 21JUL26 | -2----- | HAN | 1830 | HKG | 2030 | 33X
+
+TABLE 3
+Aircraft Type | Registration Mark | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+33X | As per FAOC Certificate # 00135-FAOC, Registration Mark B-LNW/ B-LNV/ B-LNX/ B-LNY/ B-LNZ/ B-LMA | [specify registration mark] | Hong Kong, China
+
+TABLE 4
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG-HAN | R474 | TEBAK | N/A
+HAN-HKG | R474 | N/A | TEBAK

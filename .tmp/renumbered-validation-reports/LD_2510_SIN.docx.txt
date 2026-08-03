@@ -1,0 +1,46 @@
+FILE: LD 2510 SIN.docx
+
+PARAGRAPHS
+HANOI, 3-Jul-26
+PERMIT NO.: LD-8022/7/2026VN
+1. Carrier/Operator
+2. Schedules (UTC Time)
+Note: 9A is authorized to operate 5th freedom right on sector SGN-HKT
+3. Purpose Of Flight: All Cargo Flight
+4. Aircraft
+5. Airways
+6. Validity: -12/+24 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260701-170303)
+
+TABLE 1
+CONTEXT: HANOI, 3-Jul-26
+PERMIT NO.: LD-8022/7/2026VN
+1. Carrier/Operator
+Name: SIN-KUNG AIRWAYS SDN.BHD
+IATA Code: 9A | ICAO Code: SIN
+Postal address: Lot 1928, Jalan Bukit Kemuning, 40460 Shah Alam, Selangor, Malaysia
+Tel:+603 5122 5000 | Email: financeska@sinkung.com.my
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Day(s) of services | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+9A202 | 05JUL26 | 26JUL26 | 7 | KUL | 0300 | SGN | 0510 | 734
+9A203 | 05JUL26 | 26JUL26 | 7 | SGN | 0610 | HKT | 0800 | 734
+
+TABLE 3
+CONTEXT: Note: 9A is authorized to operate 5th freedom right on sector SGN-HKT
+3. Purpose Of Flight: All Cargo Flight
+4. Aircraft
+Aircraft Type | Registration Marks | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+734 |  | 9MSLB | Malaysia
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point Into Vietnam FIR | Exit Point From Vietnam FIR
+KUL-SGN | M765-L637 | IGARI | -
+SGN-HKT | R468 | - | SAPEN
+Alternate Route: Other Permitted Air Traffic Service Routes Published In Vietnam’s AIP

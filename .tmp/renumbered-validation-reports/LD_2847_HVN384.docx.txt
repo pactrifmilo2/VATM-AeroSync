@@ -1,0 +1,37 @@
+FILE: LD 2847 HVN384.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 31/7/2026
+LD-8082/7/2026VN
+Lịch bay mùa IATA: Hè 2026
+1. Người vận chuyển/Người khai thác
+2.1. Lịch bay gốc (Giờ UTC)
+2.2. Lịch bay mới (Giờ UTC)
+3. Ghi chú:
+Đường hàng không: THEO PHEP BAY LD-68/A/S/2026VN
+Tàu bay nêu tại mục 3 ban hành kèm theo phép bay mùa số LD-68/A/S/2026VN;
+4. Hiệu lực phép bay: -12/+24 giờ
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+Mã số hồ sơ: G17.44-260731-170658
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 31/7/2026
+LD-8082/7/2026VN
+Lịch bay mùa IATA: Hè 2026
+1. Người vận chuyển/Người khai thác
+Tên: VIETNAM AIRLINES | 
+Mã IATA (nếu có): VN | Mã ICAO (nếu có): HVN
+Địa chỉ bưu điện: 200 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam | 
+Điện thoại: 0904186949 | Thư điện tử: HUNGDQ@VIETNAMAIRLINES.COM
+
+TABLE 2
+CONTEXT: 2.1. Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ dự kiến cất cánh | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay | Số phép bay đã cấp
+VN384 | 01AUG26 | 01AUG26 | 6 | HAN | 01:05 | HND | 06:05 | 787/350/321/320 | LD-68/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ dự kiến cất cánh | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay | Lưu ý
+VN384 | 01AUG26 | 01AUG26 | 6 | HAN | 00:45 | HND | 06:05 | 787/350/321/320 | Bay sớm

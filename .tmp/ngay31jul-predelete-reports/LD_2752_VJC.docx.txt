@@ -1,0 +1,52 @@
+FILE: LD 2752 VJC.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+LD-2752/7/2026VN
+1. Người vận chuyển/ Người khai thác
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Tăng chuyến chở khách và hàng hóa.
+4. Tàu bay
+5. Đường hàng không
+6. Hiệu lực phép bay: -12/+24 giờ
+Phạm Giang gửi thay bà Phạm Thảo, PTP VTHK
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+LD-2752/7/2026VN
+1. Người vận chuyển/ Người khai thác
+Tên: Công ty cổ phần hàng không Vietjet (Vietjet air)
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến
+VJ1642 | 27JUL26 | 27JUL26 | 1------ | SGN | 11:00 | DAD | 12:25
+VJ1641 | 28JUL26 | 28JUL26 | -2----- | DAD | 3:00 | SGN | 4:25
+VJ442 | 29JUL26 | 29JUL26 | --3---- | PQC | 10:00 | HAN | 12:05
+VJ442 | 30JUL26 | 30JUL26 | ---4--- | PQC | 10:00 | HAN | 12:05
+VJ1616 | 30JUL26 | 30JUL26 | ---4--- | SGN | 8:10 | CXR | 9:10
+VJ1616 | 31JUL26 | 31JUL26 | ----5-- | SGN | 15:30 | CXR | 16:30
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay: Tăng chuyến chở khách và hàng hóa.
+4. Tàu bay
+Loại tàu bay | Số ghế cao nhất | Số đăng ký
+320 | 186 | Theo AOC của VJ
+321 | 230 | Theo AOC của VJ
+32Q | 240 | Theo AOC của VJ
+333 | 377 | Theo AOC của VJ
+
+TABLE 4
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không
+SGN-DAD | Q2 Q7 Q1
+DAD-SGN | Q1
+HAN-PQC | Q1 N639 M753
+PQC-HAN | M753 N639 Q2
+SGN-CXR | W15
+CXR-SGN | W15

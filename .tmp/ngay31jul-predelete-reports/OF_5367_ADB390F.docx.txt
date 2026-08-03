@@ -1,0 +1,47 @@
+FILE: OF 5367 ADB390F.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 24 JUL 2026
+PERMIT NUMBER: OF-5367/07/2026VN
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): FERRY FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 24 JUL 2026
+PERMIT NUMBER: OF-5367/07/2026VN
+1. Operator:
+Name: ANTONOV AIRLINES
+IATA code: | ICAO code:
+Postal Address: 1 AKADEMIKA TUPOLEV ST, KIEV, Ukraine
+T: +380(44)454-61-42 | E: sales@antonov-airlines.aero
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: MIXJET FLIGHT SUPPORT
+Postal Address P6-177, SAIF ZONE, SHJ - UAE
+Tel: +971 48972111 | Email: ACC.PERMIT@MIXJET.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ADB390F | 04AUG26 | 04AUG26 | -2----- | RPLC | 0000 | VCBI | 0630
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): FERRY FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark
+AN-124 | UR82007 OR SUB UR82029,UR82027,UR82072, UR82008,UR82009.
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways
+RPLC-VCBI | L628 G474
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

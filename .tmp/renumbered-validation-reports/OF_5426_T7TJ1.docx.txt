@@ -1,0 +1,46 @@
+FILE: OF 5426 T7TJ1.docx
+
+PARAGRAPHS
+HANOI, 28-Jul-26
+PERMIT NUMBER OF-8138/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260727-170278)
+
+TABLE 1
+CONTEXT: HANOI, 28-Jul-26
+PERMIT NUMBER OF-8138/7/2026VN
+1. Carrier/Operator
+Name: AVIATION ONE PTE LTD
+Postal Address: 690 WEST CAMP ROAD, #09-02 JTC AVIATION TWO @ SELETAR AEROSPACE PARK, SINGAPORE 797523
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: AVIATION ONE PTE LTD.
+Postal Address: 690 WEST CAMP ROAD, #09-02 JTC AVIATION TWO @ SELETAR AEROSPACE PARK, SINGAPORE 797523
+PHN: +65 6715 9830 | fltops@aone.aero // invoice@aone.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+T7TJ1 | 31JUL26 | 31JUL26 | -----5-- | RCSS | 0500 | WSSL | 0920
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Seats for passenger flight | MTOW (Tons) | Nationality
+G7500 | T7TJ1 | 18 | 52 | SAN MARINO
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCSS-WSSL | N892 | MIGUG | MELAS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

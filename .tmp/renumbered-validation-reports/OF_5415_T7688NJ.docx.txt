@@ -1,0 +1,43 @@
+FILE: OF 5415 T7688NJ.docx
+
+PARAGRAPHS
+HA NOI, 28 JUL 2026
+PERMIT NUMBER: OF-8133/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 28 JUL 2026
+PERMIT NUMBER: OF-8133/07/2026VN
+1. Carrier/Operator
+Name: VISION VALUES AVIATION SERVICE LTD
+Postal Address: 17/F, 118 Connaught Road West,Hong Kong
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: AONE TRIP SUPPORT PTE LTD
+Postal Address: 690 WEST CAMP ROAD#09-02 JTC AVIATION TWO @ SELETAR AEROSPACE PARKSINGAPORE 797523
+PHN: +(65) 6990 1023 | Email: permits@aone.aero // aonetrip.finance@aone.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+T7688NJ | 02AUG26 | 02AUG26 | ------7 | VHHH | 0200 | WSSL | 0515
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Seats for passenger flight | MTOW (Ton) | Nationality
+G650 | T7-688NJ | 19 | 47 | San Marino
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-WSSL | L642 | EXOTO | ESPOB
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

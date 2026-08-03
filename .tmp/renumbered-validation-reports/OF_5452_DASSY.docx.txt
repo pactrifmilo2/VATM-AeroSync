@@ -1,0 +1,47 @@
+FILE: OF 5452 DASSY.docx
+
+PARAGRAPHS
+HA NOI, 29 JUL 2026
+PERMIT NUMBER: OF-8154/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 29 JUL 2026
+PERMIT NUMBER: OF-8154/07/2026VN
+1. Carrier/Operator
+Name: ADOLF WÜRTH GMBH & CO. KG - AVIATION
+IATA code: N/A | ICAO code: N/A
+Postal Address: AdolfWürth GmbH & Co. KG Würth Aviation Adolf Würth Airport 74523 Schwäbisch Hall Germany
+Tel: +1.514.636.1099 | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: CLICK AVIATION NETWORK-DMCC
+Postal Address: JUMEIRAH BAY TOWER X2 X CLUSTER, JLT PO BOX, 337171 DUBAI, UAE
+Tel: +97142766209 | Email: Payables@click.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+DASSY | 26AUG26 | 26AUG26 | 0030000 | WSSL | 0100 | RCSS | 0510
+DASSY | 28AUG26 | 28AUG26 | 0000500 | VHHH | 1650 | LCTG | 0245+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private
+5. Aircraft:
+Aircraft Type | Registration Mark
+FA7X | DASSY
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+WSSL-RCSS | M771-L628
+VHHH-LCTG | R474-W21-B214
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

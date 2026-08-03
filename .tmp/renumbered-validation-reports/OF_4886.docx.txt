@@ -1,0 +1,47 @@
+FILE: OF 4886.docx
+
+PARAGRAPHS
+HANOI, 03JUL2026
+PERMIT NUMBER OF-8113/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+RGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 03JUL2026
+PERMIT NUMBER OF-8113/7/2026VN
+1. Carrier/Operator
+Name: ARIRANG AVIATION LIMITED
+Postal Address: Arirang Hangar Complex, General Aviation Area Hazrat Shahjalal International Airport Kurmitola, Dhaka-1229, Bangladesh
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: WORLD FUEL SERVICES, INC.
+Postal Address: 9800 N.W. 41ST STREET SUITE 400MIAMI, FL 33178 US
+Email: TSACCOUNTING@WFSCORP.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MSURE | 12JUL26 | 12JUL26 | ------7 | RKSI | 0400 | WSSL | 0945
+MSURE | 14JUL26 | 14JUL26 | -2----- | WSSL | 0430 | RCMQ | 0840
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+FA7X | MSURE | ISLE OF MAN
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI-WSSL | N892 | MIGUG | MELAS
+WSSL-RCMQ | L625 | AKMON | ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

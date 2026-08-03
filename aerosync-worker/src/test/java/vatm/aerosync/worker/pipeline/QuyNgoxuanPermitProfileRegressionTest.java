@@ -101,7 +101,7 @@ class QuyNgoxuanPermitProfileRegressionTest {
     }
 
     @Test
-    void fdxOverflight_keepsScheduleWhenAirwaySectorDiffers() throws Exception {
+    void fdxOverflight_repairsDuplicateScheduleAirportFromPublishedSector() throws Exception {
         Path file = tempDir.resolve("OF 5517-FDX9082.docx");
         try (XWPFDocument document = new XWPFDocument()) {
             paragraph(document, "HA NOI, 01 AUG 2026");
@@ -138,7 +138,7 @@ class QuyNgoxuanPermitProfileRegressionTest {
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("FDX9082");
             assertThat(flight.fromAirport()).isEqualTo("WSSS");
-            assertThat(flight.toAirport()).isEqualTo("WSSS");
+            assertThat(flight.toAirport()).isEqualTo("PANC");
             assertThat(flight.via()).isEqualTo("M771/M765/L625");
             assertThat(flight.sourceAircraftType()).isEqualTo("MD11/B77F/B763");
             assertThat(flight.purposeId()).isEqualTo("CAR");

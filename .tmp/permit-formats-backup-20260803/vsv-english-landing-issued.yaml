@@ -1,0 +1,9 @@
+id: vsv-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*VSV\b|\bVSV\d+[A-Z0-9]*\b)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b|SỬA\s+ĐỔI).*$'
+operator:
+  fixedValue: VSV

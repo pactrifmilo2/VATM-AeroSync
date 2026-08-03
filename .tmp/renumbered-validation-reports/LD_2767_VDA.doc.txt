@@ -1,0 +1,52 @@
+FILE: LD 2767 VDA.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 28/07/2026
+Permit No.: LD-8043/07/2026VN
+1. Carrier/Operator
+Name: «Volga-Dnepr Airlines» IATA code: VI ICAO code: VDA Postal Address: 14, KARBYSHEVA Str. ULYANOVSK, RUSSIA, 432072 Tel: +7 (8422) 590107, 590059, 590004 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF9O6XNZOJ38MM%26View%3DCompose%26New%3DYes%26To%3Dpdsp%2540volga-dnepr.com','Compose',800,600,'yes');" pdsp@volga-dnepr.com , HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF9O6XNZOJ38MM%26View%3DCompose%26New%3DYes%26To%3Dinfo%2540volga-dnepr.com','Compose',800,600,'yes');" info@volga-dnepr.com 
+2. Billing address
+Name: «Volga-Dnepr Airlines» Postal Address: 14, KARBYSHEVA Str. ULYANOVSK, RUSSIA, 432072 Tel: +7 (8422) 590059, 590004 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF9O6XNZOJ38MM%26View%3DCompose%26New%3DYes%26To%3Dinfo%2540volga-dnepr.com','Compose',800,600,'yes');" info@volga-dnepr.com 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA VDA7996 29JUL26 29JUL26 --3---- OVB 0200 SGN 1000 VDA7996 30JUL26 30JUL26 ---4--- SGN 0400 SRG 0800 VDA3159 31JUL26 31JUL26 ----5-- SRG 0300 DAD 0800 VDA8010 01AUG26 01AUG26 -----6- DAD 0100 OVB 0900 
+4. Purpose of Flight(s): Cargo
+Novosibirsk-Semarang - transportation of Mi-35 helicopter and spare parts. Total cargo weight: up to 20,000 kg. Semarang-Danang – without cargo. Danang-Novosibirsk - 4 sets of aircraft engines with afterburners. Total cargo weight: up to 16,000 kg. No F/F dangerous goods.
+ 
+5. Aircraft:
+Aircraft Type Registration Mark IL-76 RA-76950
+RA-76951, RA-76511, RA-76952 
+6. Airways
+Sector Airways OVG – SGN SAPEN STAR SGN – SRG SID-XOBAV-L643-CN-L644-DUDIS SRG – DAD DUDIS/0535-L644-AC-W1-BMT-Q1-SADIN-SADI1D-DAN-DIR DAD – OVB HUE-W10-HAMIN-Q1-NAH-Q3-NAKHA-R471-KATBO Airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: «Volga-Dnepr Airlines»
+IATA code: VI | ICAO code: VDA
+Postal Address: 14, KARBYSHEVA Str. ULYANOVSK, RUSSIA, 432072
+Tel: +7 (8422) 590107, 590059, 590004 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF9O6XNZOJ38MM%26View%3DCompose%26New%3DYes%26To%3Dpdsp%2540volga-dnepr.com','Compose',800,600,'yes');" pdsp@volga-dnepr.com , HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF9O6XNZOJ38MM%26View%3DCompose%26New%3DYes%26To%3Dinfo%2540volga-dnepr.com','Compose',800,600,'yes');" info@volga-dnepr.com
+
+TABLE 2
+Name: «Volga-Dnepr Airlines»
+Postal Address: 14, KARBYSHEVA Str. ULYANOVSK, RUSSIA, 432072
+Tel: +7 (8422) 590059, 590004 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF9O6XNZOJ38MM%26View%3DCompose%26New%3DYes%26To%3Dinfo%2540volga-dnepr.com','Compose',800,600,'yes');" info@volga-dnepr.com
+
+TABLE 3
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VDA7996 | 29JUL26 | 29JUL26 | --3---- | OVB | 0200 | SGN | 1000
+VDA7996 | 30JUL26 | 30JUL26 | ---4--- | SGN | 0400 | SRG | 0800
+VDA3159 | 31JUL26 | 31JUL26 | ----5-- | SRG | 0300 | DAD | 0800
+VDA8010 | 01AUG26 | 01AUG26 | -----6- | DAD | 0100 | OVB | 0900
+
+TABLE 4
+Aircraft Type | Registration Mark
+IL-76 | RA-76950 RA-76951, RA-76511, RA-76952
+
+TABLE 5
+Sector | Airways
+OVG – SGN | SAPEN STAR
+SGN – SRG | SID-XOBAV-L643-CN-L644-DUDIS
+SRG – DAD | DUDIS/0535-L644-AC-W1-BMT-Q1-SADIN-SADI1D-DAN-DIR
+DAD – OVB | HUE-W10-HAMIN-Q1-NAH-Q3-NAKHA-R471-KATBO
+Airways: Other permitted airways published in Viet Nam’s AIP.

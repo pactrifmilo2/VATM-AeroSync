@@ -1,0 +1,44 @@
+FILE: OF 5454 MEDIC77.docx
+
+PARAGRAPHS
+Hanoi, 29/7/2026
+Permit number: O/F-8156/07/2026VN
+1. Carrier/Operator
+2. Billing address:
+3. Schedules: All times in UTC
+4. PURPOSE OF FLIGHT(S): MEDEVAC FLIGHT
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 29/7/2026
+Permit number: O/F-8156/07/2026VN
+1. Carrier/Operator
+Name: SELETAR JET CHARTER PTE LTD
+Postal Address: 20 Cowdroy Ave, Cammeray NSW 2062, AustraliaEmail: ops@seletarjet.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Red Dot Air Ambulance Pte Ltd
+Postal Address: JTC Aviation Two, 690 West Camp Road, #10-13, Singapore 797523
+Email: admin@seletarjet.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MEDIC77 | 30JUL26 | 30JUL26 | ---4--- | ZGGG | 0700 | WIII | 1130
+
+TABLE 4
+CONTEXT: 4. PURPOSE OF FLIGHT(S): MEDEVAC FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | MTOW (Ton)
+H25B | VH-RIO | 12.7
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+ZGGG-WIII | L642
+Airways: Other permitted airways published in Viet Nam’s AIP.

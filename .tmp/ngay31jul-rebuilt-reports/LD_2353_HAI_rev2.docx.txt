@@ -1,0 +1,27 @@
+FILE: LD 2353 HAI rev2.docx
+
+PARAGRAPHS
+Permit to Revise Landing Permit
+Hanoi, 03/07/2026 Permit No.: LD-9002/07/2026VN/REV2
+1. Operator
+2. Schedule (UTC Time)
+3. Purpose of Flight:
+Original: Ferry
+New: Passengers
+4. Note: Other details unchanged.
+Khuat Duy Anh for Mr. Dao Ngoc Dung – Deputy Director of ATD-CAAV
+C.c: Mr.Bui Minh Dang - Director of ATD-CAAV (For report)
+
+TABLE 1
+CONTEXT: Permit to Revise Landing Permit
+Hanoi, 03/07/2026 Permit No.: LD-9002/07/2026VN/REV2
+1. Operator
+Name: HAI AU AVIATION
+IATA code: | ICAO code: HAI
+Postal Address: 8 FLOOR, 70 BA TRIEU STREET, HOAN KIEM DISTRICT, HA NOI
+Tel: +84 868130110 | Email: DUTYMANAGER@HAIAUAVIATION.COM
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+HAI238 | 05Jul26 | 05Jul26 | 7 | HAN | 0800 | SGN | 1010 | LD-2353/07/2026VN

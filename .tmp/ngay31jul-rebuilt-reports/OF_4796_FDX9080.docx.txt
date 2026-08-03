@@ -1,0 +1,49 @@
+FILE: OF 4796_FDX9080.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-4796/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Cargo
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-4796/07/2026VN
+1. Carrier/Operator
+Name: Federal Express Corporation
+IATA code: JD | ICAO code: FDX
+Postal Address: 3131 Democrat Road Bldg. C Memphis, TN 38118 USA
+Tel: +86 28 8888 8888 | Email: Overflyinvoices@corp.ds.fedex.com.
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE.
+Tel: +971-4-299-6633 | Email: PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+FDX9080 | 15JUL26 | 15JUL26 | 0030000 | WSSS | 2230 | PANC | 1100+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+MD11 | As per AOC of Federal Express Corporation | US
+B77F |  | 
+B763 |  | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WSSS-PANC | M771-M765-L625 | DUDIS | ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -1,0 +1,47 @@
+FILE: OF 4884.docx
+
+PARAGRAPHS
+HANOI, 03JUL2026
+PERMIT NUMBER OF-8111/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+RGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 03JUL2026
+PERMIT NUMBER OF-8111/7/2026VN
+1. Carrier/Operator
+Name: FREEDOM CHARTER SERVICES PVT LTD
+IATA code: N/A | ICAO code: N/A
+Postal Address: Module A3, Quadrant No. 3, 4th Floor, Cyber Towers, HITEC City, Madhapur, Hyderabad, Telangana, India.
+Tel: +998 55 5188888 | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Apogee Aviation services FZCO
+Postal Address: Dubai Integrated Economic Zone Dubai Silicon Oasis, Apricot Business Tower, Office 705, Po Box: 341008 Dubai, United Arab Emirates
+Tel: +971 4 295 4041 | Email: supplier@apogee.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VTAMG | 03JUL26 | 03JUL26 | 0000500 | RCSS | 1400 | VOHS | 2030
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+E35L | VTAMG | INDIA
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCSS-VOHS | A1 | BUNTA | PAPRA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

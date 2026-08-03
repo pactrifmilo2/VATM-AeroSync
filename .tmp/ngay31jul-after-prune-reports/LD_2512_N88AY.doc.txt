@@ -1,0 +1,39 @@
+FILE: LD 2512 N88AY.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 03/07/2026
+Permit No.: LD-9018/07/2026VN
+1. Carrier/Operator
+Name: AMBER AVIATION LIMITED IATA code: N/A ICAO code: N/A Postal Address: Room 3205, Bank of America Tower, HYPERLINK "https://www.google.com/maps/search/12+Harcourt+Road,Admiralty,+Hong+Kong?entry=gmail&source=g" \t "_blank" 12 Harcourt Road,Admiralty, Hong Kong Tel: +(852) 2217 5600 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DI3J36NU1QIRHJ%26View%3DCompose%26New%3DYes%26To%3Dinvoice%2540amber-aviation.com','Compose',800,600,'yes');" \o "Send email to invoice@amber-aviation.com" invoice@amber-aviation.com 
+2. Schedules: All times in UTC
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA N88AY 06JUL26 06JUL26 1000000 RMQ 0030 HAN 0315 N88AY 08JUL26 08JUL26 0030000 HAN 0300 RMQ 0615 
+3. Type of services/ Purpose of Flight(s): PRIVATE
+ 
+4. Aircraft
+Aircraft Type Registration Mark Nationality GJ5 N88AY US 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RMQ-HAN R474 TEBAK HAN-RMQ R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: AMBER AVIATION LIMITED
+IATA code: N/A | ICAO code: N/A
+Postal Address: Room 3205, Bank of America Tower, HYPERLINK "https://www.google.com/maps/search/12+Harcourt+Road,Admiralty,+Hong+Kong?entry=gmail&source=g" \t "_blank" 12 Harcourt Road,Admiralty, Hong Kong
+Tel: +(852) 2217 5600 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DI3J36NU1QIRHJ%26View%3DCompose%26New%3DYes%26To%3Dinvoice%2540amber-aviation.com','Compose',800,600,'yes');" \o "Send email to invoice@amber-aviation.com" invoice@amber-aviation.com
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+N88AY | 06JUL26 | 06JUL26 | 1000000 | RMQ | 0030 | HAN | 0315
+N88AY | 08JUL26 | 08JUL26 | 0030000 | HAN | 0300 | RMQ | 0615
+
+TABLE 3
+Aircraft Type | Registration Mark | Nationality
+GJ5 | N88AY | US
+
+TABLE 4
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RMQ-HAN | R474 | TEBAK | 
+HAN-RMQ | R474 |  | TEBAK

@@ -1,0 +1,46 @@
+FILE: OF 5499 T7Y8998.docx
+
+PARAGRAPHS
+Hanoi, 31/7/2026
+Permit number: O/F-5499/07/2026VN
+1. Carrier/Operator
+2. Billing address:
+3. Schedules: All times in UTC
+4. PURPOSE OF FLIGHT(S): Private flight
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/7/2026
+Permit number: O/F-5499/07/2026VN
+1. Carrier/Operator
+Name: EXECUJET AUSTRALIA PTY LTD
+IATA code: N/A | ICAO code: N/A
+Postal Address: 394 ROSS SMITH AVE, MASCOT NSW 2020, AUSTRALIA
+Tel: +61 2 9693 0800 | Email: payable@uas.aero
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: UAS International Trip Support
+Postal Address: UAS Building, DAFZA, P.O.Box 54482, Dubai, UAE
+Tel: +971 4 299 6633 | Email: payable@uas.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+T7Y8998 | 03AUG26 | 03AUG26 | 1------ | VHHH | 0700 | WSSL | 1020
+
+TABLE 4
+CONTEXT: 4. PURPOSE OF FLIGHT(S): Private flight
+5. Aircraft:
+Aircraft Type | Registration Mark | MTOW (Ton) | Nationality
+GJ7 | T7Y8998 | 49 | San Marino
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VHHH-WSSL | L642
+Airways: Other permitted airways published in Viet Nam’s AIP.

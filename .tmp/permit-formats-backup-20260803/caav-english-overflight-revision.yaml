@@ -1,0 +1,80 @@
+id: caav-english-overflight-revision
+priority: 100
+detectionPatterns:
+  - '(?iu)PERMIT\s+NUMBER:\s*OF-'
+  - '(?iu)3\.1\.\s*OLD'
+  - '(?iu)3\.2\.\s*NEW'
+  - '(?iu)OTHER\s+DETAILS\s+REMAIN\s+UNCHANGED'
+permit:
+  pattern: '(?iu)\bOF-\s*(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\s*/\s*REV(?<revision>\d+)\b'
+  numberGroup: number
+  normalizedTemplate: 'O/F {number}/S/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+    month: 2
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)HA\s+NOI,\s*(?<date>\d{1,2}\s+[A-Z]{3}\s+20\d{2})'
+  group: date
+  formats: [d MMM uuuu]
+  locale: en
+operator:
+  source: RAW
+  pattern: '(?iu)\b(?<value>VJT)\d+\b'
+  group: value
+  required: true
+billingAddress:
+  source: TABLE
+  pattern: '(?isu)NAME:\s*JETEX\s+FZE.*?POSTAL\s+ADDRESS:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+master:
+  authorId: CHK
+  permitType: O/F
+  version: A
+  season: S
+  validHours: 72
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival Airport]
+    eta: [ETA]
+  requiredColumns:
+    - flightNumber
+    - effectiveFrom
+    - effectiveTo
+    - serviceDays
+    - fromAirport
+    - etd
+    - toAirport
+  excludeColumns: []
+  tableContextPatterns:
+    - '(?iu)3\.2\.\s*NEW'
+  dateFormats: [dMMMyy, d-MMM-yy]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: CHT
+  includeEta: false
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  staticAirways:
+    WSSL-RCSS: L625
+  tableRequired: false
+  allowEmpty: false
+  fallbackToFirst: false
+aircraft:
+  defaultType: CL60
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: CHT
+validation:
+  allowIataAirports: false

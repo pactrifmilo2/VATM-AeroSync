@@ -1,0 +1,39 @@
+FILE: LD 2747 CLX4731.docx
+
+PARAGRAPHS
+LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 24/07/2026 Permit No.: LD-8031/07/2026VN
+1. Carrier/Operator
+Name: Cargolux Airlines International S.A. IATA code: CV ICAO code: CLX Postal Address: 70 Rue de Luxembourg L-5230 Sandweiler, Luxembourg Tel: +352 4211 3494 Email: opsplanning@cargolux.com
+2. Lịch bay (Giờ UTC) / Schedules (UTC Time)
+3. Purpose of Flight: Commercial air transport: All-Cargo
+4. Aircraft
+5. Airways
+CV request to operate 5th freedom rights on sector : HAN-LAX
+6. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 24/07/2026 Permit No.: LD-8031/07/2026VN
+1. Carrier/Operator
+Name: Cargolux Airlines International S.A. IATA code: CV ICAO code: CLX Postal Address: 70 Rue de Luxembourg L-5230 Sandweiler, Luxembourg Tel: +352 4211 3494 Email: opsplanning@cargolux.com
+2. Lịch bay (Giờ UTC) / Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+CV4731 | 27JUL26 | 27JUL26 | 1000000 | LUX | 0730 | HAN | 2005
+CV5722 | 27JUL26 | 27JUL26 | 1000000 | HAN | 2205 | ANC | 0910+1
+CV38J | 28JUL26 | 28JUL26 | 0200000 | ANC | 1010 | LAX | 1525
+CV38J | 28JUL26 | 28JUL26 | 0200000 | LAX | 1755 | LUX | 0435+1
+
+TABLE 2
+CONTEXT: 3. Purpose of Flight: Commercial air transport: All-Cargo
+4. Aircraft
+Aircraft Type | Aircraft registration mark
+B747-400F(74Y)B747-400ERF(74Y) | As per FAOC of Cargolux Airlines
+
+TABLE 3
+CONTEXT: 5. Airways
+Sector | Airways
+LUX-HAN | B214
+HAN-ANC | R474
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

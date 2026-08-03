@@ -1,0 +1,29 @@
+id: eth-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 250
+detectionPatterns:
+  - '(?iu)REVISION\s+OF\s+LANDING/OVERFLIGHT\s+PERMIT'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*ET\b|ETHIOPIAN\s+AIRLINES)'
+  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+permit:
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+operator:
+  fixedValue: ETH
+schedule:
+  preferredTableContextPatterns:
+    - '(?iu)(?:REVISE|REVISED|NEW)\s+SCHEDULE'
+  supplementalTableContextPatterns: []
+  lastMatchingTable: true
+route:
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: false
+validation:
+  allowIataAirports: false
+  reviewOnly: false

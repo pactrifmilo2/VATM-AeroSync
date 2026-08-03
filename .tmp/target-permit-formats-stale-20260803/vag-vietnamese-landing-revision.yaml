@@ -1,0 +1,81 @@
+id: vag-vietnamese-landing-revision
+priority: 240
+detectionPatterns:
+  - '(?iu)PHÉP\s+BAY\s+SỬA\s+ĐỔI'
+  - '(?iu)MÃ\s*ICAO\s*:\s*VAG\b'
+  - '(?iu)\bLD\s*-\s*\d{1,4}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}\s*VN\s*/\s*REV\d+'
+permit:
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,4})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})\s*VN\s*/\s*REV(?<revision>\d+)'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN/REV{revision}'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)HÀ\s*NỘI\s*,\s*(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: vi
+operator:
+  fixedValue: VAG
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)ĐỊA\s+CHỈ\s+BƯU\s+ĐIỆN\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+reference:
+  source: PARAGRAPH
+  pattern: '(?iu)THAM\s+CHIẾU\s+PHÉP\s+BAY\s+SỐ\s*:\s*(?<value>LD[^\n]+)'
+  group: value
+  required: false
+purpose:
+  defaultId: PAX
+  mappings: []
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: S
+  validHours: 24
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Số hiệu chuyến bay]
+    effectiveFrom: [Hiệu lực từ]
+    effectiveTo: [Hiệu lực đến]
+    serviceDays: [Ngày trong tuần]
+    fromAirport: [Sân bay đi]
+    etd: [Giờ dự kiến đi]
+    toAirport: [Sân bay đến]
+    eta: [Giờ dự kiến đến]
+    aircraftType: [Loại tàu bay]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta]
+  excludeColumns: []
+  preferredTableContextPatterns:
+    - '(?iu)LỊCH\s+BAY\s+MỚI'
+  dateFormats: [dMMMyy, d-MMM-yy]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  lastMatchingTable: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Chặng bay]
+    airways: [Đường hàng không]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: ''
+validation:
+  allowIataAirports: true
+  reviewOnly: true

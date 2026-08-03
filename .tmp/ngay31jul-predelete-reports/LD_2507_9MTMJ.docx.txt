@@ -1,0 +1,41 @@
+FILE: LD 2507  9MTMJ.docx
+
+PARAGRAPHS
+HANOI, 3-Jul-26
+PERMIT NO.: LD-9012/7/2026VN
+1. Carrier:
+2. SCHEDULES: ALL TIMES IN UTC
+3. PURPOSE OF FLIGHT(S): Private Flight
+4. Aircraft:
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260702-170659)
+
+TABLE 1
+CONTEXT: HANOI, 3-Jul-26
+PERMIT NO.: LD-9012/7/2026VN
+1. Carrier:
+Name: MADOS'S HOLDINGS SDN BHD
+Postal Address: MADOS'S HOLDINGS SDN BHD Bukit Pelangi, Jalan Pasir Pelangi, 80050 Johor Bahru Johor, Malaysia
+
+TABLE 2
+CONTEXT: 2. SCHEDULES: ALL TIMES IN UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+9MTMJ | 04JUL26 | 04JUL26 | -----6- | JHB | 0000 | PQC | 0110 | GLF6
+9MTMJ | 04JUL26 | 04JUL26 | -----6- | PQC | 0300 | JHB | 0405 | GLF6
+
+TABLE 3
+CONTEXT: 3. PURPOSE OF FLIGHT(S): Private Flight
+4. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+GLF6 | 9MTMJ | Malaysia
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+JHB-PQC | M753 | IPRIX | 
+PQC-JHB | M753 |  | IPRIX

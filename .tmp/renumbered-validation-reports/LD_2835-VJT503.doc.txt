@@ -1,0 +1,45 @@
+FILE: LD 2835-VJT503.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 31/07/2026
+Permit No.: LD-8072/07/2026VN
+1. Carrier/Operator:
+Name: VISTAJET LIMITED IATA Code: ICAO Code: VJT Address: SKYPARKS BUSINESS CENTRE, LUQA LQA 4000, MALTA Tel: +84 943 448 898 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DM65YRN8W4DVS3%26View%3DCompose%26New%3DYes%26To%3Doperations%2540havaviation.com','Compose',800,600,'yes');" operations@havaviation.com 
+2. Schedules (UTC Time)
+Flight Number Effective From Effective To Days Of Services Departure Airport ETD Arrival Airport ETA VJT503 02AUG26 02AUG26 7 SZB 0400 SGN 0600 VJT503 02AUG26 02AUG26 7 SGN 2230 HAN 0035+1 VJT503 03AUG26 03AUG26 1 HAN 0600 SGN 0805 VJT503 04AUG26 04AUG26 2 SGN 0000 SZB 0140 
+3. Purpose Of Flight: Business Flight
+SZB-SGN-HAN-SGN-SZB: 4 PAX
+ INCLUDEPICTURE "https://mail.caa.gov.vn/WorldClient.dll?Session=M65YRN8W4DVS3&View=Attachment&FolderID=69&Number=5515&Part=1.2" \* MERGEFORMATINET 
+ 
+4. Aircraft
+Aircraft Type Registration Marks CL60 9H-VFA 
+5. Airways
+Sector Airways SZB-SGN M765-L637 SGN-HAN Q2 HAN-SGN Q1-W1 SGN-SZB L637-M765 Other permitted airways published in Viet Nam’s AIP 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: VISTAJET LIMITED
+IATA Code: | ICAO Code: VJT
+Address: SKYPARKS BUSINESS CENTRE, LUQA LQA 4000, MALTA
+Tel: +84 943 448 898 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DM65YRN8W4DVS3%26View%3DCompose%26New%3DYes%26To%3Doperations%2540havaviation.com','Compose',800,600,'yes');" operations@havaviation.com
+
+TABLE 2
+Flight Number | Effective From | Effective To | Days Of Services | Departure Airport | ETD | Arrival Airport | ETA
+VJT503 | 02AUG26 | 02AUG26 | 7 | SZB | 0400 | SGN | 0600
+VJT503 | 02AUG26 | 02AUG26 | 7 | SGN | 2230 | HAN | 0035+1
+VJT503 | 03AUG26 | 03AUG26 | 1 | HAN | 0600 | SGN | 0805
+VJT503 | 04AUG26 | 04AUG26 | 2 | SGN | 0000 | SZB | 0140
+
+TABLE 3
+Aircraft Type | Registration Marks
+CL60 | 9H-VFA
+
+TABLE 4
+Sector | Airways
+SZB-SGN | M765-L637
+SGN-HAN | Q2
+HAN-SGN | Q1-W1
+SGN-SZB | L637-M765
+Other permitted airways published in Viet Nam’s AIP

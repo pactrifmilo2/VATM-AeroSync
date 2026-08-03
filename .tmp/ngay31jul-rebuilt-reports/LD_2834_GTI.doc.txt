@@ -1,0 +1,49 @@
+FILE: LD 2834 GTI.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 30/07/2026
+Permit No.: LD-2834/07/2026VN
+1. Carrier/Operator 
+Name: ATLAS AIR                                  IATA code: 5Y ICAO code: GTI Postal Address: 2000 WESTCHESTER AVE PURCHASE NEW YORK 10577 USA Tel: +1 (914) 701-8000 Email: HYPERLINK "mailto:info@atlasair.com" \o "mailto:info@atlasair.com" info@atlasair.com   
+2. Schedules (UTC Time) 
+
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type 5Y8559 01AUG26 01AUG26 -----6- ORD 1025 ICN 2205 74Y/74N/77F/76Y 5Y8559 02AUG26 02AUG26 ------7 ICN 0005 HAN 0455 74Y/74N/77F/76Y 5Y8559 02AUG26 02AUG26 ------7 HAN 0655 EHU 0930 74Y/74N/77F/76Y 5Y8560 02AUG26 02AUG26 ------7 EHU 1230 ANC 1430 74Y/74N/77F/76Y   
+3. Purpose of Flight: Charter Cargo Flight  
+ORD-ICN: Load cargo at ICN 
+ICN-HAN: Offload cargo at HAN 
+HAN-EHU: Load cargo to ANC, no offload cargo, tech stop at EHU 
+EHU-ANC: Offload cargo at ANC 
+  
+4. Aircraft 
+Aircraft Type  Registration Mark Payload (Tons)  MTOW (Ton) Nationality 77F As per FAOC of 5Y 105 348 USA 74Y  As per FAOC of 5Y 115 396 USA 76Y  As per FAOC of 5Y 49 186.880 USA 74N  As per FAOC of 5Y 135 447 USA   
+5. Airways 
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-HAN R474 TEBAK   HAN-EHU R474   TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: ATLAS AIR                                 
+IATA code: 5Y | ICAO code: GTI
+Postal Address: 2000 WESTCHESTER AVE PURCHASE NEW YORK 10577 USA
+Tel: +1 (914) 701-8000 | Email: HYPERLINK "mailto:info@atlasair.com" \o "mailto:info@atlasair.com" info@atlasair.com
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+5Y8559 | 01AUG26 | 01AUG26 | -----6- | ORD | 1025 | ICN | 2205 | 74Y/74N/77F/76Y
+5Y8559 | 02AUG26 | 02AUG26 | ------7 | ICN | 0005 | HAN | 0455 | 74Y/74N/77F/76Y
+5Y8559 | 02AUG26 | 02AUG26 | ------7 | HAN | 0655 | EHU | 0930 | 74Y/74N/77F/76Y
+5Y8560 | 02AUG26 | 02AUG26 | ------7 | EHU | 1230 | ANC | 1430 | 74Y/74N/77F/76Y
+
+TABLE 3
+Aircraft Type |  Registration Mark | Payload (Tons)  | MTOW (Ton) | Nationality
+77F | As per FAOC of 5Y | 105 | 348 | USA
+74Y |  As per FAOC of 5Y | 115 | 396 | USA
+76Y |  As per FAOC of 5Y | 49 | 186.880 | USA
+74N |  As per FAOC of 5Y | 135 | 447 | USA
+
+TABLE 4
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-HAN | R474 | TEBAK |  
+HAN-EHU | R474 |   | TEBAK

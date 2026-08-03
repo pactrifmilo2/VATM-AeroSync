@@ -1,0 +1,45 @@
+FILE: OF 5498 VHOFA.docx
+
+PARAGRAPHS
+Hanoi, 31/7/2026
+Permit number: O/F-8175/07/2026VN
+1. Carrier/Operator
+2. Billing address:
+3. Schedules: All times in UTC
+4. PURPOSE OF FLIGHT(S): Ambulance Flight
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/7/2026
+Permit number: O/F-8175/07/2026VN
+1. Carrier/Operator
+Name: LIFEFLIGHT AUSTRALIA LIMITED
+IATA code: N/A | ICAO code: N/A
+Postal Address: 32 EDWARD ST, BRISBANE QLD, 4000, AUSTRALIA
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: LIFEFLIGHT SINGAPORE PTE LTD
+Postal Address: 23 PALM GROVE AVENUE #03-28, PALM GROVE CONDOMINIUM, SINGAPORE 547325
+Tel: +61 1300 883 422. | Email: ACCOUNTS@LIFEFLIGHT.SG
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VHOFA | 02AUG26 | 02AUG26 | ------7 | WSSL | 0200 | RJTT | 0843
+
+TABLE 4
+CONTEXT: 4. PURPOSE OF FLIGHT(S): Ambulance Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | MTOW (Ton)
+Bombardier Challenger 604 | VH-OFA | 21.9
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+WSSL-RJTT | M771-M765-L625
+Airways: Other permitted airways published in Viet Nam’s AIP.

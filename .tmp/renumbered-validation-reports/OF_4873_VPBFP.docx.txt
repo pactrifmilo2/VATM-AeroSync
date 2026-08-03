@@ -1,0 +1,45 @@
+FILE: OF 4873 VPBFP.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-8101/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedule (UTC Time)
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-8101/07/2026VN
+1. Carrier/Operator
+Name: DEERJET (HONG KONG) BUSINESS JET MANAGEMENT LIMITED (“Hong Kong Jet”)
+Postal Address: Suite 807-809, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: DEERJET (HONG KONG) BUSINESS JET MANAGEMENT LIMITED (“Hong Kong Jet”)
+Postal Address: Suite 807-809, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+PHN: +852 3126 1042 | Email: billing@hongkongjet.com.hk focc@hongkongjet.com.hk
+
+TABLE 3
+CONTEXT: 3. Schedule (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VPBFP | 08JUL26 | 08JUL26 | --3---- | ZSNJ | 0100 | VTBD | 0455
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A318 | VPBFP | Bermuda
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSNJ-VTBD | R474 | TEBAK | LAVOS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,41 @@
+FILE: LD 2763 LTX1.docx
+
+PARAGRAPHS
+Hanoi, 27/7/2026
+Permit No.: LD-8041/07/2026VN
+1. Carrier/Operator
+2. Schedules (UTC Time)
+3. Purpose of flight(s): Business flight
+4. Aircraft
+5. Airways
+Airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24HRS
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/7/2026
+Permit No.: LD-8041/07/2026VN
+1. Carrier/Operator
+Name: Aerolytix International FC LLZ
+IATA Code: N/A | ICAO Code: LTX
+Address: Meydan Grandstand 6t, Nad Al Sheba, Dubai, United Arab Emirates
+Tel: +84 943 448 898 | Email: operations@havaviation.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+LTX1 | 28JUL26 | 28JUL26 | -2----- | MNL | 0900 | HAN | 1200 | GLF6
+LTX1 | 29JUL26 | 29JUL26 | --3---- | HAN | 0730 | AYT | 1620 | GLF6
+
+TABLE 3
+CONTEXT: 3. Purpose of flight(s): Business flight
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+GLF6 | T7-272 | SAN MARINO
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MNL-HAN | L628-G474-Q2 | ARESI | -
+HAN-AYT | W21-B214 | - | LADON

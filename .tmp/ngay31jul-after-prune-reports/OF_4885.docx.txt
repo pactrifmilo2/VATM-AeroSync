@@ -1,0 +1,47 @@
+FILE: OF 4885.docx
+
+PARAGRAPHS
+HANOI, 02JUL2026
+PERMIT NUMBER OF-4885/7/2026VN
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules (UTC Time)
+4. Purpose Of Flight: Business flight
+5 Aircraft
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+RGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 02JUL2026
+PERMIT NUMBER OF-4885/7/2026VN
+1. Carrier/Operator:
+Name: GSEC AVIATION LTD
+IATA Code: N/A | ICAO Code: N/A
+Address: ch-7, Inspire Business Park, near Vaishnodevi Circle, Shantigram, Daskroi, Ahmedabad, Gujarat, India
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: FREEDOM CHARTER SERVICES PVT LTDC/O AEROVISTA AVIATION SERVICES
+Postal address: FLAT NO 13-6-437/A/35KHADAR BAGH,INDRA NAGAR,HYDERABAD,TELANGANA -500008
+Tel: +91-9000130819 | Email: Ops@flyfreedom.in
+
+TABLE 3
+CONTEXT: 3. Schedules (UTC Time)
+Flight Number | Effective From | Effective To | Days Of Services | Departure Airport | ETD | Arrival Airport | ETA
+VTAMG | 02JUL26 | 02JUL26 | 4 | VOHS | 1820 | RCSS | 0130+
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight: Business flight
+5 Aircraft
+Aircraft Type | Registration Marks | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+E35L |  | VTAMG | India
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point Into Vietnam FIR | Exit Point From Vietnam FIR
+VOHS – RCSS | B214-W21-R474 | LADON | TEBAK
+Alternative Airways: Other Permitted Airways Published In Viet Nam’s AIP.

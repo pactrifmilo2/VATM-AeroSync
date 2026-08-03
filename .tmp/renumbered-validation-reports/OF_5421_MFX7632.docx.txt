@@ -1,0 +1,47 @@
+FILE: OF 5421 MFX7632.docx
+
+PARAGRAPHS
+HANOI, 27JUL2026
+PERMIT NUMBER OF-8136/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Cargo
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 27JUL2026
+PERMIT NUMBER OF-8136/7/2026VN
+1. Carrier/Operator
+Name: MY FREIGHTER LLC (CENTRUM AIR)
+IATA code: C6 | ICAO code: MFX
+Postal Address: 62, Buyuk Ipak Yuli Str., Tashkent, Uzbekistan.
+Tel: +998 55 5188888 | Email: customercare@centrum-air.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Apogee Aviation services FZCO
+Postal Address: Dubai Integrated Economic Zone Dubai Silicon Oasis, Apricot Business Tower, Office 705, Po Box: 341008 Dubai, United Arab Emirates
+Tel: +971 4 295 4041 | Email: supplier@apogee.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MFX7632 | 30JUL26 | 30JUL26 | 0004000 | VHHH | 0500 | VABB | 0640
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+763 | UK67021 | UZBEKISTAN
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-VABB | R474-W21-B214 | TEBAK | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

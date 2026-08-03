@@ -1,0 +1,41 @@
+FILE: LD 2839-VPBMH.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 31/07/2026
+Permit No.: LD-8076/07/2026VN
+1. Carrier/Operator
+Name: SANDS AVIATION LLC IATA code: N/A ICAO code: N/A Postal Address: 5500 Haven Street, Las Vegas NV 89119-2415 USA. Tel: +6581183591 Email: joanne.lee(at) HYPERLINK "http://marinabaysands.com/" \t "_blank" marinabaysands.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type VPBMH 02AUG26 02AUG26 7 XSP 0300 SGN 0430 A319 VPBMH 02AUG26 02AUG26 7 SGN 0530 XSP 0700 A319 XSP-SGN: 03 pax
+SGN-XSP: ferry
+ 
+3. Purpose of Flight: Private
+ 
+4. Aircraft
+Aircraft Type Registration Mark A319 VP-BMH 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR XSP-SGN M753-L637 IPRIX SGN-XSP L643-L642 ESPOB Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: SANDS AVIATION LLC
+IATA code: N/A | ICAO code: N/A
+Postal Address: 5500 Haven Street, Las Vegas NV 89119-2415 USA.
+Tel: +6581183591 | Email: joanne.lee(at) HYPERLINK "http://marinabaysands.com/" \t "_blank" marinabaysands.com
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+VPBMH | 02AUG26 | 02AUG26 | 7 | XSP | 0300 | SGN | 0430 | A319
+VPBMH | 02AUG26 | 02AUG26 | 7 | SGN | 0530 | XSP | 0700 | A319
+
+TABLE 3
+Aircraft Type | Registration Mark
+A319 | VP-BMH
+
+TABLE 4
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+XSP-SGN | M753-L637 | IPRIX | 
+SGN-XSP | L643-L642 |  | ESPOB

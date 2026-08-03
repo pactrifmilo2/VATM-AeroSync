@@ -1,0 +1,46 @@
+FILE: LD 2762 MEDIC15.docx
+
+PARAGRAPHS
+Hanoi, 27/7/2026
+Permit No.: LD-8040/07/2026VN
+1. Carrier/Operator
+2. Schedules (UTC Time)
+3. Purpose of flight(s): AMBULANCE FLIGHT
+4. Aircraft
+5. Airways
+Airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24HRS
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/7/2026
+Permit No.: LD-8040/07/2026VN
+1. Carrier/Operator
+Name: PACIFIC FLIGHT SERVICES PTY LTD
+IATA Code: | ICAO Code: PFA
+Address: 1 Drover Rd, Bankstown Airport Nsw 2200, Australia
+Billing Address: Pacific Flight Services Pte Ltd, 600 West Camp Road, St Engineering Bldg, Singapore
+Tel: +84 943 448 898 | Email: operations@havaviation.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MEDIC15 | 27JUL26 | 27JUL26 | 1------ | XSP | 2200 | HAN | 0100+ | G150
+MEDIC15 | 28JUL26 | 28JUL26 | -2----- | HAN | 0200 | UBN | 0600 | G150
+MEDIC15 | 28JUL26 | 28JUL26 | -2----- | UBN | 2200 | HAN | 0200+ | G150
+MEDIC15 | 29JUL26 | 29JUL26 | --3---- | HAN | 0300 | XSP | 0600 | G150
+
+TABLE 3
+CONTEXT: 3. Purpose of flight(s): AMBULANCE FLIGHT
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+G150 | VH- PFV | Australia
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+XSP - HAN | M753-L637-Q2 | IPRIX | -
+HAN - UBN | R474 | - | TEBAK
+UBN - HAN | R474 | TEBAK | 
+HAN - XSP | Q1-L644-L642 |  | ESPOB

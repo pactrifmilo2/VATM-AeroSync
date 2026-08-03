@@ -1,0 +1,47 @@
+FILE: dungdm_20260729_172132_email_007__SPA070__REV1_LD-2702_S26_04AUG-07AUG_ND.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 29/07/2026
+To: VATM, SPQ
+Cc: NAA, SAA
+Phép bay số: LD-2788/07/2026VN /REV1
+Tham chiếu phép bay số: LD-2788/07/2026VN
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+2.2. Lịch bay mới (sửa đổi)
+CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+*****
+Đinh Mạnh Dũng gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 29/07/2026
+To: VATM, SPQ
+Cc: NAA, SAA
+Phép bay số: LD-2788/07/2026VN /REV1
+Tham chiếu phép bay số: LD-2788/07/2026VN
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+9G824 | 04-Aug-26 | 04-Aug-26 | -2----- | SGN | 01:55 | HAN | 05:00
+9G824 | 06-Aug-26 | 06-Aug-26 | ---4--- | SGN | 02:25 | HAN | 04:35
+9G824 | 07-Aug-26 | 07-Aug-26 | ----5-- | SGN | 02:25 | HAN | 05:00
+9G841 | 04-Aug-26 | 04-Aug-26 | -2----- | HAN | 05:25 | SGN | 08:05
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (sửa đổi)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+9G824 | 04-Aug-26 | 04-Aug-26 | -2----- | SGN | 01:25 | HAN | 03:35
+9G824 | 06-Aug-26 | 06-Aug-26 | ---4--- | SGN | 01:25 | HAN | 03:35
+9G824 | 07-Aug-26 | 07-Aug-26 | ----5-- | SGN | 01:25 | HAN | 03:35
+9G841 | 04-Aug-26 | 04-Aug-26 | -2----- | HAN | 04:20 | SGN | 06:30

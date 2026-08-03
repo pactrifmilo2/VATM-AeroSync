@@ -1,0 +1,49 @@
+FILE: OF 4887 N858KE.docx
+
+PARAGRAPHS
+HANOI, 03JUL2026
+PERMIT NUMBER OF-8114/7/2026VN
+1. Carrier:
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+6. Air traffic service routes:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS
+RGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 03JUL2026
+PERMIT NUMBER OF-8114/7/2026VN
+1. Carrier:
+Name: BLOOMBERRY RESORTS AND HOTELS INC.
+Postal Address: Solaire Executive Offices, Solaire Resort and Casino, Asean Ave, Entertainment City, Paranaque City, Philippines.
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: FAMI FAO BRHI
+Postal address: Interisland Hangar General Aviation Area, Andrews Avenue, Barangay 183, Pasay City 1300, Philippines
+Email: aviation.account@ictsi.com slo@fami.ictsi.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+N858KE | 07JUL26 | 07JUL26 | -2----- | RPLL | 0005 | VTBD | 0300
+N858KE | 07JUL26 | 07JUL26 | -2----- | VTBD | 0800 | RPLL | 1100
+N858KE | 09JUL26 | 09JUL26 | ---4--- | RPLL | 1100 | VTBD | 1400
+N858KE | 10JUL26 | 10JUL26 | ----5-- | VTBD | 0800 | RPLL | 1100
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+GLF5 | N858KE | UNITED STATES
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+RPLL-VTBD | L628-G474-B202 | ARESI | BOMPA
+VTBD-RPLL | B202-G474-L628 | BOMPA | ARESI

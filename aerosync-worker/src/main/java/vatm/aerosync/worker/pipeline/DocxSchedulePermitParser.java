@@ -194,13 +194,13 @@ public class DocxSchedulePermitParser {
                 .flatMap(table -> scheduleFlights(
                         profile, table, routes, auxiliaryAircraftTypes,
                         document.rawContent(), resolvedOperatorId, iataPrefix,
-                        normalizeAirportsToIcao, fileName).stream())
+                        normalizeAirportsToIcao, false, fileName).stream())
                 .toList();
         List<ScheduleFlight> originalFlights = originalScheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
                         profile, table, routes, auxiliaryAircraftTypes,
                         document.rawContent(), resolvedOperatorId, iataPrefix,
-                        normalizeAirportsToIcao, fileName).stream())
+                        normalizeAirportsToIcao, true, fileName).stream())
                 .toList();
         if (flights.isEmpty()) {
             throw invalid(fileName, "No schedule rows found for profile " + profile.id());
@@ -375,6 +375,7 @@ public class DocxSchedulePermitParser {
                                                  String operatorId,
                                                  String iataPrefix,
                                                  boolean normalizeAirportsToIcao,
+                                                 boolean allowMissingAircraft,
                                                  String fileName) {
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
         Map<String, Integer> columns = resolveColumns(table.getFirst(), schedule.columns());
@@ -402,18 +403,29 @@ public class DocxSchedulePermitParser {
             String rawTo = value(row, columns, "toAirport").toUpperCase(Locale.ROOT);
             String from = normalizeAirport(rawFrom, normalizeAirportsToIcao);
             String to = normalizeAirport(rawTo, normalizeAirportsToIcao);
+            if (from.equals(to) && routes.size() == 1) {
+                RouteRow publishedRoute = routes.getFirst();
+                if (publishedRoute.from().equals(from) && !publishedRoute.to().equals(to)) {
+                    to = publishedRoute.to();
+                } else if (publishedRoute.to().equals(to)
+                        && !publishedRoute.from().equals(from)) {
+                    from = publishedRoute.from();
+                }
+            }
             AircraftSource aircraftSource = aircraftType(
                     profile.aircraft(), row, columns, auxiliaryAircraftTypes);
             String aircraftType = aircraftSource.value();
-            boolean mayInheritAircraft = profile.validation() != null
-                    && profile.validation().reviewOnly();
+            boolean mayInheritAircraft = allowMissingAircraft
+                    || (profile.validation() != null && profile.validation().reviewOnly());
             if ((aircraftType == null || aircraftType.isBlank()) && !mayInheritAircraft) {
                 throw invalid(fileName, "Aircraft type is required");
             }
             String purposeId = purposeId(
                     profile, rawContent, rawFrom, rawTo, value(row, columns, "remark"));
+            String routeFrom = from;
+            String routeTo = to;
             RouteRow matchedRoute = routes.stream()
-                    .filter(route -> route.matches(from, to))
+                    .filter(route -> route.matches(routeFrom, routeTo))
                     .findFirst()
                     .orElse(null);
             if (profile.route() != null

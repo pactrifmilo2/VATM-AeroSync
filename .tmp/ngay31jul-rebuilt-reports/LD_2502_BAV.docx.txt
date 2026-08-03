@@ -1,0 +1,50 @@
+FILE: LD 2502 BAV.docx
+
+PARAGRAPHS
+Phép bay cho chuyến bay không thường lệ cất/hạ cánh tại Việt Nam
+Hà Nội, 03/7/2026
+Phép bay số: LD-9007/07/2026VN
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Tăng chuyến chở khách
+4. Tàu bay
+5. Đường hàng không
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay cho chuyến bay không thường lệ cất/hạ cánh tại Việt Nam
+Hà Nội, 03/7/2026
+Phép bay số: LD-9007/07/2026VN
+1. Người vận chuyển
+Tên: BAMBOO AIRWAY
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh
+QH251 | 06Jul26 | 06Jul26 | 1------ | HAN | 0645 | SGN | 0905
+QH148 | 06Jul26 | 27Jul26 | 1------ | DAD | 1515 | HAN | 1640
+QH138 | 08Jul26 | 08Jul26 | --3---- | DAD | 0820 | HAN | 0945
+QH1217 | 13Jul26 | 13Jul26 | 1------ | HAN | 1120 | UIH | 1300
+QH1216 | 13Jul26 | 13Jul26 | 1------ | UIH | 1330 | HAN | 1510
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay: Tăng chuyến chở khách
+4. Tàu bay
+Loại tàu bay | Số ghế cao nhất | Số đăng ký
+32N |  | Theo AOC của QH
+321 |  | Theo AOC của QH
+320 |  | Theo FAOC của Mongolian Airways Cargo LLC
+
+TABLE 4
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không
+DAD-HAN | Q2 / Q1 Q5 Q2
+HAN-UIH | Q1 W2
+UIH-HAN | W2 Q2
+HAN-SGN | Q1 / Q1 W12 /W1

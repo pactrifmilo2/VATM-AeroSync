@@ -1,0 +1,53 @@
+id: qlb-generic-issued
+extends: caav-generic-overflight-issued
+priority: -50
+detectionPatterns:
+  - '(?iu)\bQLB\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
+permit:
+  pattern: '(?iu)\bQLB\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
+  numberGroup: number
+  sourceTemplate: 'QLB-{number}/{month}/{year}VN'
+  normalizedTemplate: 'QLB {number}/S/VATM/{year}'
+  zeroPadGroups:
+    number: 5
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)(?:BILLING\s+ADDRESS|ĐỊA\s+CHỈ\s+THANH\s+TOÁN|POSTAL\s+ADDRESS)\s*:?\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+master:
+  authorId: VATM
+  permitType: QLB
+  version: A
+  season: S
+  validHours: 72
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Flight number, Số hiệu chuyến bay, Số hiệu chuyến bayFlight number]
+    effectiveFrom: [Effective from, Hiệu lực từ, Hiệu lực từEffective from]
+    effectiveTo: [Effective to, Hiệu lực đến, Hiệu lực đếnEffective to]
+    serviceDays: [Days of services, Day(s) of services, Ngày trong tuần, Ngày trong tuầnDays of services]
+    fromAirport: [Departure Airport, Sân bay đi, Sân bay điDeparture Airport]
+    etd: [ETD, EOBT, Giờ dự kiến đi, Giờ dự kiến điEOBT]
+    toAirport: [Arrival Airport, Sân bay đến, Sân bay đếnArrival Airport]
+    eta: [ETA, EIBT, Giờ dự kiến đến, Giờ dựkiến đếnEIBT]
+route:
+  columns:
+    sector: [Sector, Chặng baySector]
+    airways: [Airways, Đường hàng khôngAirways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type, Loại tàu bay/Aircraft Type(mã ICAO/ ICAO code), Loại tàu bay/Aircraft Type(mã IATA/ IATA code)]
+    registrationMarks: [Registration Mark, Registration Marks, Reg marks, Số đăng ký tàu bayAircraft registration mark]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: GLEX
+validation:
+  allowIataAirports: true
+  reviewOnly: true

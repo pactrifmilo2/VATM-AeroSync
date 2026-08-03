@@ -1,0 +1,64 @@
+FILE: LD 2826.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 30/07/2026
+Permit No.: LD-8067/07/2026VN
+1. Carrier
+Name: Greater Bay Airlines Company Limited IATA code: HB ICAO code: HGB Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong Tel: +852 – 3956 6166 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DYGU4KIQKBSVUW%26View%3DCompose%26New%3DYes%26To%3Dairlineplanning%2540greaterbay-airlines.com','Compose',800,600,'yes');" \o "mailto:airlineplanning@greaterbay-airlines.com" airlineplanning@greaterbay-airlines.com 
+2. Schedules (UTC Time)
+Flight Number Effective From Effective To Day(s) of services Departure Airport ETD Arrival Airport ETD Aircraft Type HB2549 31JUL26 31JUL26 .....5.. HKG 1355 DAD 1555 738 HB2550 31JUL26 31JUL26 .....5.. DAD 1900 HKG 2110 738 HB2531 02AUG26 02AUG26 .......7 HKG 1105 DAD 1305 738 HB2532 02AUG26 02AUG26 .......7 DAD 1355 HKG 1545 738 HB2531 04AUG26 04AUG26 .2..... HKG 0945 DAD 1140 738 HB2532 04AUG26 04AUG26 .2..... DAD 1235 HKG 1435 738 HB2549 07AUG26 07AUG26 .....5.. HKG 1355 DAD 1555 738 HB2550 07AUG26 07AUG26 .....5.. DAD 1900 HKG 2110 738 HB2531 12AUG26 12AUG26 ..3.... HKG 1015 DAD 1215 738 HB2532 12AUG26 12AUG26 ..3.... DAD 1315 HKG 1515 738 HB2549 14AUG26 14AUG26 .....5.. HKG 1355 DAD 1555 738 HB2550 14AUG26 14AUG26 .....5.. DAD 1900 HKG 2110 738 HB2531 18AUG26 18AUG26 .2..... HKG 0945 DAD 1140 738 HB2532 18AUG26 18AUG26 .2..... DAD 1235 HKG 1435 738 HB2549 21AUG26 21AUG26 .....5.. HKG 1355 DAD 1555 738 HB2550 21AUG26 21AUG26 .....5.. DAD 1900 HKG 2110 738 
+3. Purpose of Flight: Passenger
+ 
+4. Aircraft
+ 
+Aircraft Type Registration Mark 738
+ As per FAOC of HB
+ 738
+ As per FAOC of HB
+ 738
+ As per FAOC of HB
+ 
+5. Airways
+Sector Airways HKG-DAD
+ A1 DAD-HKG
+ A1 Airways: Other permitted airways published in Viet Nam’s AIP.
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: Greater Bay Airlines Company Limited
+IATA code: HB | ICAO code: HGB
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DYGU4KIQKBSVUW%26View%3DCompose%26New%3DYes%26To%3Dairlineplanning%2540greaterbay-airlines.com','Compose',800,600,'yes');" \o "mailto:airlineplanning@greaterbay-airlines.com" airlineplanning@greaterbay-airlines.com
+
+TABLE 2
+Flight Number | Effective From | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETD | Aircraft Type
+HB2549 | 31JUL26 | 31JUL26 | .....5.. | HKG | 1355 | DAD | 1555 | 738
+HB2550 | 31JUL26 | 31JUL26 | .....5.. | DAD | 1900 | HKG | 2110 | 738
+HB2531 | 02AUG26 | 02AUG26 | .......7 | HKG | 1105 | DAD | 1305 | 738
+HB2532 | 02AUG26 | 02AUG26 | .......7 | DAD | 1355 | HKG | 1545 | 738
+HB2531 | 04AUG26 | 04AUG26 | .2..... | HKG | 0945 | DAD | 1140 | 738
+HB2532 | 04AUG26 | 04AUG26 | .2..... | DAD | 1235 | HKG | 1435 | 738
+HB2549 | 07AUG26 | 07AUG26 | .....5.. | HKG | 1355 | DAD | 1555 | 738
+HB2550 | 07AUG26 | 07AUG26 | .....5.. | DAD | 1900 | HKG | 2110 | 738
+HB2531 | 12AUG26 | 12AUG26 | ..3.... | HKG | 1015 | DAD | 1215 | 738
+HB2532 | 12AUG26 | 12AUG26 | ..3.... | DAD | 1315 | HKG | 1515 | 738
+HB2549 | 14AUG26 | 14AUG26 | .....5.. | HKG | 1355 | DAD | 1555 | 738
+HB2550 | 14AUG26 | 14AUG26 | .....5.. | DAD | 1900 | HKG | 2110 | 738
+HB2531 | 18AUG26 | 18AUG26 | .2..... | HKG | 0945 | DAD | 1140 | 738
+HB2532 | 18AUG26 | 18AUG26 | .2..... | DAD | 1235 | HKG | 1435 | 738
+HB2549 | 21AUG26 | 21AUG26 | .....5.. | HKG | 1355 | DAD | 1555 | 738
+HB2550 | 21AUG26 | 21AUG26 | .....5.. | DAD | 1900 | HKG | 2110 | 738
+
+TABLE 3
+Aircraft Type | Registration Mark
+738 | As per FAOC of HB
+738 | As per FAOC of HB
+738 | As per FAOC of HB
+
+TABLE 4
+Sector | Airways
+HKG-DAD | A1
+DAD-HKG | A1

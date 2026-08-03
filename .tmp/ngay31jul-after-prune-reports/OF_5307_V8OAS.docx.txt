@@ -1,0 +1,49 @@
+FILE: OF 5307 V8OAS.docx
+
+PARAGRAPHS
+HANOI, 22JUL2026
+PERMIT NUMBER OF-5307/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 22JUL2026
+PERMIT NUMBER OF-5307/7/2026VN
+1. Carrier/Operator
+Name: HIS MAJESTY THE SULTAN'S FLIGHT
+IATA code: N/A | ICAO code: N/A
+Postal Address: Hangar 2, Brunei International Airport, Bandar Seri Begawan, Bandar Seri Begawan Negara Brunei, Darussalam.
+Tel: +673 2 330142 ext 63223 | Email: N/A
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE
+Tel: +971-4-299-6633 | Email: PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+V8OAS | 25JUL26 | 25JUL26 | 0000060 | WBSB | 1500 | LMML | 0330+1
+V8OAS | 27JUL26 | 27JUL26 | 1000000 | LEMG | 0930 | WBSB | 0030+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+788 | V8OAS | Brunei
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WBSB-LMML | M768 R468 | AKMON | SAPEN
+LEMG-WBSB | R468 M768 | SAPEN | AKMON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

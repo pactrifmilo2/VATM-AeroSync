@@ -1,0 +1,50 @@
+FILE: LD 2505  SPA C26_04JUL-12JUL_FrIN-FrOut_VNA921.docx
+
+PARAGRAPHS
+Phép bay không thường lệ cất, hạ cánh tại Việt Nam
+Hà Nội, 03/07/2026
+To: VATM, SPQ
+Cc: NAA
+Phép bay số: LD-8017/07/2026VN
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Ferry (Tiếp nhận tàu bay mới DIA - HAN; Đi sơn tàu HAN - DPS - HAN)
+4. Tàu bay
+5. Đường hàng không
+Đường hàng không dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+Đinh Mạnh Dũng gửi thay Ông Đào Ngọc Dũng - Phó Trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay không thường lệ cất, hạ cánh tại Việt Nam
+Hà Nội, 03/07/2026
+To: VATM, SPQ
+Cc: NAA
+Phép bay số: LD-8017/07/2026VN
+1. Người vận chuyển
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+9G9921 | 04-Jul-26 | 04-Jul-26 | -----6- | DIA | 15:25 | HAN | 23:00 | 32Q
+9G9921 | 07-Jul-26 | 07-Jul-26 | -2----- | HAN | 00:00 | DPS | 05:20 | 32Q
+9G9921 | 12-Jul-26 | 12-Jul-26 | ------7 | DPS | 08:30 | HAN | 13:50 | 32Q
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay: Ferry (Tiếp nhận tàu bay mới DIA - HAN; Đi sơn tàu HAN - DPS - HAN)
+4. Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+ | Có trong AOC/FAOC | Không có trong AOC/FAOC | 
+32Q |  | VN-A921 | Vietnam
+
+TABLE 4
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không | Điểm bay vàovùng trời Việt Nam | Điểm bay ravùng trời Việt Nam
+DIA-HAN | B214 W21 | LADON | 
+HAN-DPS | Q1 L644 |  | DUDIS
+DPS-HAN | M753 M755 N639 Q2 | IPRIX/VILAO | KISAN

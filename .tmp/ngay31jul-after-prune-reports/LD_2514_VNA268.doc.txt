@@ -1,0 +1,51 @@
+FILE: LD 2514 VNA268.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 03/07/2026
+Permit No.: LD-9020/07/2026VN
+1. Carrier/Operator:
+Name: VIETSTAR AIRLINES MULTIROLE CORPORATION IATA code: VN ICAO code:VNA Postal Address: 286 Hoang Hoa Tham Street, Bay Hien Ward, Ho Chi Minh City, Vietnam Tel: +84 981432089 Email: flightdispatchvsa@vietstarairlines.vn 
+2. Schedules: (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Notes VNA268 04-Jul-26 04-Jul-26 -----6- SGN 2000 MNL 2240 E35L Ferry VNA268 05-Jul-26 05-Jul-26 ------7 MNL 0005 CXR 0200 E35L VNA268 05-Jul-26 05-Jul-26 ------7 CXR 0245 SGN 0345 E35L Ferry VNA268 07-Jul-26 07-Jul-26 -2----- SGN 0005 DRW 0515 E35L Ferry VNA268 07-Jul-26 07-Jul-26 -2----- DRW 1830 SGN 2345 E35L VNA268 08-Jul-26 08-Jul-26 --3---- SGN 0100 DRW 0615 E35L VNA268 09-Jul-26 09-Jul-26 ---4--- DRW 0005 SGN 0515 E35L Ferry 
+ 3. Purpose of Flight: Private flight
+ 
+ 4. Aircraft:
+Aircraft Type Registration Mark Nationality Included in AOC/FAOC Not included in AOC/FAOC E35L VN-A268 Vietnam 
+ 5. Airways:
+Sector Airways Entry Point into
+Vietnam FIR Exit Point from
+Vietnam FIR SGN-MNL N500 PANDI MNL-CXR L628-Q15 ARESI CXR-SGN W15 SGN-DRW M768 AKMON DRW-SGN M768 AKMON 
+ Alternative airways: Other permitted airways published in Vietnam’s AIP.
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR DAO NGOC DUNG DEP DIR OF ATD_CAAV
+CC: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+Name: VIETSTAR AIRLINES MULTIROLE CORPORATION
+IATA code: VN | ICAO code:VNA
+Postal Address: 286 Hoang Hoa Tham Street, Bay Hien Ward, Ho Chi Minh City, Vietnam
+Tel: +84 981432089 | Email: flightdispatchvsa@vietstarairlines.vn
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Notes
+VNA268 | 04-Jul-26 | 04-Jul-26 | -----6- | SGN | 2000 | MNL | 2240 | E35L | Ferry
+VNA268 | 05-Jul-26 | 05-Jul-26 | ------7 | MNL | 0005 | CXR | 0200 | E35L | 
+VNA268 | 05-Jul-26 | 05-Jul-26 | ------7 | CXR | 0245 | SGN | 0345 | E35L | Ferry
+VNA268 | 07-Jul-26 | 07-Jul-26 | -2----- | SGN | 0005 | DRW | 0515 | E35L | Ferry
+VNA268 | 07-Jul-26 | 07-Jul-26 | -2----- | DRW | 1830 | SGN | 2345 | E35L | 
+VNA268 | 08-Jul-26 | 08-Jul-26 | --3---- | SGN | 0100 | DRW | 0615 | E35L | 
+VNA268 | 09-Jul-26 | 09-Jul-26 | ---4--- | DRW | 0005 | SGN | 0515 | E35L | Ferry
+
+TABLE 3
+Aircraft Type | Registration Mark | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+E35L | VN-A268 |  | Vietnam
+
+TABLE 4
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+SGN-MNL | N500 |  | PANDI
+MNL-CXR | L628-Q15 | ARESI | 
+CXR-SGN | W15 |  | 
+SGN-DRW | M768 |  | AKMON
+DRW-SGN | M768 | AKMON | 

@@ -1,0 +1,8 @@
+id: pfa-bilingual-qlb-issued
+extends: qlb-generic-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\bQLB\s*-\s*\d+'
+  - '(?iu)(?:PACIFIC\s+FLIGHT\s+SERVICES|\bPFA\b)'
+operator:
+  fixedValue: PFA

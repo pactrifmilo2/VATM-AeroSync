@@ -1,0 +1,62 @@
+FILE: OF 4881.docx
+
+PARAGRAPHS
+HANOI, 03-Jul-26
+PERMIT NUMBER OF-8108/6/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): ADDITIONAL CARGO SERVICES
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260701-170521)
+
+TABLE 1
+CONTEXT: HANOI, 03-Jul-26
+PERMIT NUMBER OF-8108/6/2026VN
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Planning and Scheduling, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Malaysia Airlines Berhad
+Postal Address: Level 3, Account Payable, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel:603 87774938 : 603 87776067 : 603 87776236 | Email: faizahhanim.ahyan@malaysiaairlines.com,suraya.sulaiman@malaysiaairlines.com,nurhazirah.abdulpuhat@malaysiaairlines.com, nurinalifah.yaakub@malaysiaairlines.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+… | … | … | … | … | … | … | …
+MAS6012 | 04JULY26 | 25JUL26 | -----6- | WMKK | 1505 | VHHH | 1855
+MAS6013 | 04JULY26 | 25JUL26 | -----6- | VHHH | 2055 | WMKK | 0035+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): ADDITIONAL CARGO SERVICES
+5. Aircraft:
+Aircraft Type (9) | Registration Mark (10) | Seats for passenger flight(11) | Payload for All-cargo flight (Tons) (12) | MTOW (Ton) | Nationality(13)
+… | … | … |  | … | …
+A33X | 9MMUA 9MMUB 9MMUD | NIL | 233 | 233 | Malaysia
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector(14) | Airways(15) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+… | … | … | …
+WMKK - VHHH | M771 | DUDIS | DONDA
+VHHH - WMKK | L642 | EXOTO | ESPOB
+ |  |  | 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+1st WMKK - VHHH | M765 M755A1 | IGARIPAPRA | KISANBUNTA
+2nd WMKK - VHHH | L625 | AKMON | ARESI
+3rd WMKK - VHHH | M765 M771 | IGARI | DONDA
+4th WMKK - VHHH | M765 L637 Q2 W12G221 | IGARI | BUNTA
+ |  |  | 
+1st VHHH - WMKK | A1M755 M765 | BUNTAKISAN | PAPRAIGARI
+2nd VHHH - WMKK | L642 M765 | EXOTO | IGARI
+ |  |  | 

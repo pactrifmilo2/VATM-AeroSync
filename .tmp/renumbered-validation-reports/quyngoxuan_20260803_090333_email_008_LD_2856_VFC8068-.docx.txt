@@ -1,0 +1,48 @@
+FILE: quyngoxuan_20260803_090333_email_008_LD_2856_VFC8068-.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 01/8/2026
+LD8183/8/2026VN
+Lịch bay mùa IATA: Hè 2026
+Hãng hàng không
+Lịch bay (Giờ UTC)
+Mục đích chuyến bay: chở khách
+Tàu bay
+Đường hàng không
+6. Hiệu lực phép bay: -12/+24 giờ
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 01/8/2026
+LD8183/8/2026VN
+Lịch bay mùa IATA: Hè 2026
+Hãng hàng không
+Tên: CÔNG TY BAY DỊCH VỤ HÀNG KHÔNG VASCO
+Mã IATA: 0V | Mã ICAO: VFC
+Địa chỉ bưu điện:
+Điện thoại: 0981818334 | Thư điện tử: ktb.vasco@vietnamairlines.com
+
+TABLE 2
+CONTEXT: Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+0V8068 | 02AUG26 | 30AUG26 | 7 | VCS | 09:45 | SGN | 10:50 | ATR72
+0V8068 | 06AUG26 | 13AUG26 | 4 | VCS | 09:45 | SGN | 10:50 | ATR72
+
+TABLE 3
+CONTEXT: Mục đích chuyến bay: chở khách
+Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+ATR72 | VNB218 | Việt Nam
+ATR72 | VNB219 | Việt Nam
+ATR72 | VNB221 | Việt Nam
+ATR72 | VNB223 | Việt Nam
+ATR72 | VNB225 | Việt Nam
+ATR72 | VNB220 | Việt Nam
+
+TABLE 4
+CONTEXT: Đường hàng không
+Chặng bay | Đường hàng không | Điểm bay vàovùng trời Việt Nam | Điểm bay ravùng trời Việt Nam
+SGN-VCS | W9 |  | 
+VCS-SGN | W9 |  | 

@@ -1,0 +1,48 @@
+FILE: OF 4890.docx
+
+PARAGRAPHS
+HANOI, 03-Jul-26
+PERMIT NUMBER OF-8117/6/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight: Private
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260702-170424)
+
+TABLE 1
+CONTEXT: HANOI, 03-Jul-26
+PERMIT NUMBER OF-8117/6/2026VN
+1. Carrier/Operator
+Name: ORIENT GLOBAL AVIATION LTD.
+IATA code: N/A | ICAO code: N/A
+Postal Address: UOB Plaza 1, 80 Raffles Place, Singapore.
+Tel: 006581260070 | Email: Ops(at)Orientglobal.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: VietSky Support Company Limited
+Postal Address: C7 Phu Thuan Street, KDC Tan Thuan Nam, Phu Thuan Ward, Ho Chi Minh City, Vietnam
+Tel: +84964688845 | Email: ops(at)vietskysupport.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+VPBEL | 06JUL26 | 06JUL26 | 1 | WSSL | 0100 | RJAA | 0810
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight: Private
+5. Aircraft:
+Aircraft Type | Registration Mark | Seats for passenger flight | MTOW (Ton) | Nationality
+B737 | VPBEL | 25 | 77 | BERMUDA
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WSSL-RJAA | M771L625 | DUDISAKMON | DONDAARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

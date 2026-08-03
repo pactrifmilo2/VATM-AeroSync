@@ -1,0 +1,47 @@
+FILE: OF 4878.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-8105/07/2026VN
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): COMMERCIAL NON-SCHEDULED - PASSENGER FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 03 JUL 2026
+PERMIT NUMBER: OF-8105/07/2026VN
+1. Operator:
+Name: ATLAS AIR
+IATA code: 5Y | ICAO code: GTI
+Postal Address: 2000, WESTCHESTER AVENUE, PURCHASE, NY, USA 10577-2543
+Tel+ 1 914 701 8000 | E: info@atlasair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: PRIME TRIP SUPPORT
+Postal Address: JUMEIRAH BAY X3 TOWER, SUITE 3701, JLT DUBAI, UAE
+Tel: : +1 (888) 209-8190 | Email: AP@PRIMETRIPSUPPORT.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GTI8032 | 19JUL26 | 19JUL26 | ------7 | VTBU | 0005 | PGUM | 0625
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): COMMERCIAL NON-SCHEDULED - PASSENGER FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B767-300F | N645GT OR SUBS | USA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBU-PGUM | G474 L628 | ANINA | ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

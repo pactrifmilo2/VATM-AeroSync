@@ -1,0 +1,49 @@
+FILE: OF 5428 KMI001.docx
+
+PARAGRAPHS
+HANOI, 28JUL2026
+PERMIT NUMBER OF-8140/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s):
+Ferry
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 28JUL2026
+PERMIT NUMBER OF-8140/7/2026VN
+1. Carrier/Operator
+Name: K-Mile Air
+IATA code: 8K | ICAO code: KMI
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: K-Mile Air Company Ltd
+Postal Address: Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+KMI001 | 30Jul26 | 30Jul26 | ---4--- | VTCC | 1520 | ZGGG | 1810
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s):
+Ferry
+5. Aircraft:
+Aircraft Type (9) | Registration Mark (10) | Nationality(13)
+B763 | HSKSA | Thailand
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector(14) | Airways(15) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTCC-ZGGG | B465, R474 | LAPON | TEBAK
+Airways: Other permitted airways published in Viet Nam’s AIP.

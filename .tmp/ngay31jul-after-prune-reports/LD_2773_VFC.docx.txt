@@ -1,0 +1,52 @@
+FILE: LD 2773 VFC.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 29/7/2026
+LD-2773/7/2026VN
+Lịch bay mùa IATA: Hè 2026
+Hãng hàng không
+Lịch bay (Giờ UTC)
+Mục đích chuyến bay: chở khách
+Tàu bay
+Đường hàng không
+6. Hiệu lực phép bay: -12/+24 giờ
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 29/7/2026
+LD-2773/7/2026VN
+Lịch bay mùa IATA: Hè 2026
+Hãng hàng không
+Tên: CÔNG TY BAY DỊCH VỤ HÀNG KHÔNG VASCO
+Mã IATA: 0V | Mã ICAO: VFC
+Địa chỉ bưu điện:
+Điện thoại: 0981818334 | Thư điện tử: ktb.vasco@vietnamairlines.com
+
+TABLE 2
+CONTEXT: Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | SỐ PHÉP BAY
+0V8079 | 28JUL26 | 29JUL26 | 23 | SGN | 22:55 | VCS | 23:50 | ATR72
+0V8019 | 31JUL26 | 31JUL26 | 5 | SGN | 00:10 | VCS | 01:05 | ATR72
+0V8079 | 30JUL26 | 30JUL26 | 4 | SGN | 23:30 | VCS | 00:45+ | ATR72
+0V8078 | 29JUL26 | 30JUL26 | 34 | VCS | 00:10 | SGN | 01:10 | ATR72
+0V8078 | 31JUL26 | 31JUL26 | 5 | VCS | 01:05 | SGN | 01:45 | ATR72
+0V8018 | 31JUL26 | 31JUL26 | 5 | VCS | 01:25 | SGN | 02:25 | ATR72
+
+TABLE 3
+CONTEXT: Mục đích chuyến bay: chở khách
+Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+ATR72 | VNB218 | Việt Nam
+ATR72 | VNB219 | Việt Nam
+ATR72 | VNB221 | Việt Nam
+ATR72 | VNB223 | Việt Nam
+ATR72 | VNB225 | Việt Nam
+ATR72 | VNB220 | Việt Nam
+
+TABLE 4
+CONTEXT: Đường hàng không
+Chặng bay(16) | Đường hàng không(17) | Điểm bay vàovùng trời Việt Nam | Điểm bay ravùng trời Việt Nam
+SGN-VCS | W9 |  | 
+VCS-SGN | W9 |  | 

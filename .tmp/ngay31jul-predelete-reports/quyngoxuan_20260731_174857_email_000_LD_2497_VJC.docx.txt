@@ -1,0 +1,96 @@
+FILE: quyngoxuan_20260731_174857_email_000_LD_2497_VJC.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+LD-12498/7/2026VN
+1. Hãng hàng không:
+2. Lịch bay (Giờ UTC):
+3. Mục đích chuyến bay: Chở khách và hàng hóa.
+4. Tàu bay:
+5. Đường hàng không:
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực phép bay: -12/+24 giờ
+Phạm Giang gửi thay bà Phạm Thảo, PTP VTHK
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+LD-12498/7/2026VN
+1. Hãng hàng không:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC):
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+1 - SGN - CXR - SGN
+VJ1602 | 03JUL26 | 03JUL26 | ----5-- | SGN | 3:40 | CXR | 4:45 | 320/321/32Q
+VJ602 | 03JUL26 | 03JUL26 | ----5-- | SGN | 1:15 | CXR | 2:20 | 320/321/32Q
+VJ602 | 05JUL26 | 05JUL26 | ------7 | SGN | 1:15 | CXR | 2:20 | 320/321/32Q
+VJ602 | 06JUL26 | 06JUL26 | 1------ | SGN | 1:15 | CXR | 2:20 | 320/321/32Q
+VJ602 | 08JUL26 | 08JUL26 | --3---- | SGN | 1:15 | CXR | 2:20 | 320/321/32Q
+VJ603 | 03JUL26 | 03JUL26 | ----5-- | CXR | 2:50 | SGN | 4:00 | 320/321/32Q
+VJ603 | 05JUL26 | 05JUL26 | ------7 | CXR | 2:50 | SGN | 4:00 | 320/321/32Q
+VJ603 | 06JUL26 | 06JUL26 | 1------ | CXR | 2:50 | SGN | 3:55 | 320/321/32Q
+VJ603 | 08JUL26 | 08JUL26 | --3---- | CXR | 2:50 | SGN | 3:55 | 320/321/32Q
+2 - HAN - CXR - HAN
+VJ1775 | 06JUL26 | 06JUL26 | 1------ | HAN | 22:45 | CXR | 0:35 | 320/321/32Q
+VJ1775 | 07JUL26 | 07JUL26 | -2----- | HAN | 22:45 | CXR | 0:35 | 320/321/32Q
+3 - HAN - PQC - HAN
+VJ1454 | 03JUL26 | 03JUL26 | ----5-- | PQC | 1:00 | HAN | 2:30 | 320/321/32Q
+VJ1454 | 05JUL26 | 05JUL26 | ------7 | PQC | 1:00 | HAN | 2:30 | 320/321/32Q
+VJ1454 | 06JUL26 | 06JUL26 | 1------ | PQC | 1:00 | HAN | 2:30 | 320/321/32Q
+VJ1454 | 08JUL26 | 08JUL26 | --3---- | PQC | 1:00 | HAN | 2:30 | 320/321/32Q
+VJ1454 | 10JUL26 | 10JUL26 | ----5-- | PQC | 1:00 | HAN | 2:30 | 320/321/32Q
+4 - HAN - DAD - HAN
+VJ538 | 03JUL26 | 03JUL26 | ----5-- | DAD | 5:55 | HAN | 9:00 | 320/321/32Q
+VJ540 | 05JUL26 | 05JUL26 | ------7 | DAD | 11:10 | HAN | 12:30 | 320/321/32Q
+VJ538 | 08JUL26 | 08JUL26 | --3---- | DAD | 5:55 | HAN | 6:55 | 320/321/32Q
+VJ539 | 08JUL26 | 08JUL26 | --3---- | HAN | 8:55 | DAD | 10:40 | 320/321/32Q
+5 - SGN - HAN - SGN
+VJ1124 | 07JUL26 | 07JUL26 | -2----- | SGN | 0:30 | HAN | 2:40 | 320/321/32Q
+VJ1124 | 08JUL26 | 08JUL26 | --3---- | SGN | 0:30 | HAN | 2:40 | 320/321/32Q
+VJ188 | 04JUL26 | 04JUL26 | -----6- | SGN | 9:50 | HAN | 13:00 | 320/321/32Q
+VJ191 | 04JUL26 | 04JUL26 | -----6- | HAN | 6:40 | SGN | 8:50 | 320/321/32Q
+VJ191 | 07JUL26 | 07JUL26 | -2----- | HAN | 7:00 | SGN | 8:55 | 320/321/32Q
+VJ194 | 07JUL26 | 07JUL26 | -2----- | SGN | 10:10 | HAN | 12:20 | 320/321/32Q
+VJ198 | 07JUL26 | 07JUL26 | -2----- | SGN | 2:55 | HAN | 5:40 | 320/321/32Q
+6 - SGN - PQC - SGN
+VJ1334 | 04JUL26 | 09JUL26 | -2---67 | PQC | 14:00 | SGN | 14:40 | 320/321/32Q
+VJ1334 | 11JUL26 | 13JUL26 | 1----67 | PQC | 14:00 | SGN | 14:40 | 320/321/32Q
+VJ1334 | 17JUL26 | 17JUL26 | ----5-- | PQC | 14:00 | SGN | 14:40 | 320/321/32Q
+VJ1334 | 20JUL26 | 23JUL26 | 1234--- | PQC | 14:00 | SGN | 14:40 | 320/321/32Q
+7 - SGN - DAD - SGN
+VJ624 | 05JUL26 | 05JUL26 | ------7 | SGN | 4:25 | DAD | 5:45 | 320/321/32Q
+VJ624 | 06JUL26 | 06JUL26 | 1------ | SGN | 4:25 | DAD | 5:45 | 320/321/32Q
+VJ624 | 07JUL26 | 07JUL26 | -2----- | SGN | 4:25 | DAD | 5:45 | 320/321/32Q
+VJ624 | 08JUL26 | 08JUL26 | --3---- | SGN | 4:25 | DAD | 5:45 | 320/321/32Q
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay: Chở khách và hàng hóa.
+4. Tàu bay:
+Loại tàu bay | Số đăng ký | Quốc tịch
+320 | Theo AOC của VJ | Vietnam
+321 | Theo AOC của VJ | Vietnam
+32Q | Theo AOC của VJ | Vietnam
+
+TABLE 4
+CONTEXT: 5. Đường hàng không:
+Chặng bay | Đường hàng không | Điểm bay vào vùng trời Việt Nam | Điểm bay ra vùng trời Việt Nam
+SGN-CXR | W15 |  | 
+CXR-SGN | W15 |  | 
+HAN-CXR | Q1 W2 |  | 
+CXR-HAN | W2 Q2 |  | 
+HAN-PQC | Q1 N639 M753 | OSOTA | VILAO
+PQC-HAN | M753 N639 Q2 | VILAO | OSOTA
+HAN-DAD | Q1 |  | 
+DAD-HAN | Q2 |  | 
+SGN-HAN | Q2 |  | 
+HAN-SGN | Q1 |  | 
+SGN-PQC | W17 W8 hoặc W16 W8 |  | 
+PQC-SGN | W8 W16 hoặc W8 W17 |  | 
+SGN-DAD | Q2 Q7 Q1 |  | 
+DAD-SGN | Q1 |  | 

@@ -1,0 +1,85 @@
+id: vfc-vietnamese-landing-change
+priority: 300
+detectionPatterns:
+  - '(?iu)MÃ\s*IATA\s*:\s*0V\b'
+  - '(?iu)MÃ\s*ICAO\s*:\s*VFC\b'
+  - '(?iu)\bLD\s*-?\s*\d{1,5}/\d{1,2}/20\d{2}VN\b'
+permit:
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{month}/{year}VN'
+  normalizedTemplate: 'LD {number}/S/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: vi
+operator:
+  source: TABLE
+  pattern: '(?iu)MÃ\s*ICAO\s*:\s*(?<value>VFC)\b'
+  group: value
+  required: true
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)ĐỊA\s+CHỈ\s+BƯU\s+ĐIỆN[ \t]*:[ \t]*(?<value>[^\n]+)'
+  group: value
+  required: false
+referenceColumn: originalPermit
+purpose:
+  defaultId: PAX
+  mappings: []
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: S
+  validHours: 24
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Số hiệu chuyến bay]
+    effectiveFrom: [Hiệu lực từ]
+    effectiveTo: [Hiệu lực đến]
+    serviceDays: [Ngày trong tuần]
+    fromAirport: [Sân bay cất cánh]
+    etd: [Giờ khởi hành dự kiến]
+    toAirport: [Sân bay hạ cánh]
+    eta: [Giờ dự kiến hạ cánh, Giờ hạ cánh dự kiến]
+    aircraftType: [Loại tàu bay]
+    originalPermit: [Số Phép bay]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta]
+  excludeColumns: []
+  # Nếu có cả lịch bay gốc và lịch bay thay đổi, luôn ưu tiên bảng thay đổi.
+  # Nếu không tìm thấy bảng thay đổi, parser sẽ dùng bảng lịch bay phù hợp duy nhất.
+  tableContextPatterns: []
+  preferredTableContextPatterns:
+    - '(?iu)LỊCH\s+BAY\s+THAY\s+ĐỔI'
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Chặng bay]
+    airways: [Đường hàng không]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: true
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Loại tàu bay]
+    registrationMarks: [Số đăng ký, Số đăng ký tàu bay]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
+  remarkPrefix: ''
+validation:
+  allowIataAirports: false
+  reviewOnly: false

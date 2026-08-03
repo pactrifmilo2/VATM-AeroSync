@@ -1,0 +1,9 @@
+id: btn-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*BTN\b|\bBTN\d+[A-Z0-9]*\b)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: BTN

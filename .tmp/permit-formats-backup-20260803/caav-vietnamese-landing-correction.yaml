@@ -1,0 +1,83 @@
+id: caav-vietnamese-landing-correction
+priority: 100
+detectionPatterns:
+  - '(?iu)CỤC\s+HKVN\s+CẤP\s+PHÉP\s+BAY\s+LD-'
+  - '(?iu)CAAV\s+XÁC\s+NHẬN\s+SỬA\s+ĐỔI\s+NHƯ\s+SAU'
+  - '(?iu)2\.2\s*LỊCH\s+BAY\s+MỚI'
+permit:
+  pattern: '(?iu)\bLD-\s*(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{month}/{year}VN'
+  normalizedTemplate: 'LD-{number}/{month}/{year}'
+  zeroPadGroups:
+    month: 2
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)HÀ\s*NỘI,\s*NGÀY\s*(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: vi
+operator:
+  source: PARAGRAPH
+  pattern: '(?iu)NGƯỜI\s+KHAI\s+THÁC:\s*BAMBOO\s+AIRWAYS\s*/\s*(?<value>[A-Z0-9]{2,3})'
+  group: value
+  required: true
+  valueMappings:
+    QH: BAV
+billingAddress:
+  source: PARAGRAPH
+  pattern: '(?iu)ĐỊA\s+CHỈ:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+referenceColumn: originalPermit
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: W
+  validHours: 24
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Số hiệu chuyến bay]
+    effectiveFrom: [Hiệu lực từ]
+    effectiveTo: [Hiệu lực đến]
+    serviceDays: [Ngày khai thác]
+    fromAirport: [Sân bay cất cánh]
+    etd: [Giờ dự kiến cất cánh]
+    toAirport: [Sân bay hạ cánh]
+    eta: [Giờ dự kiến hạ cánh]
+    aircraftType: [Tàu bay]
+    originalPermit: [Phép bay liên quan]
+  requiredColumns:
+    - flightNumber
+    - effectiveFrom
+    - effectiveTo
+    - serviceDays
+    - fromAirport
+    - etd
+    - toAirport
+    - eta
+    - aircraftType
+  # The old schedule has this extra column; only import the 2.2 new schedule.
+  excludeColumns: [originalPermit]
+  dateFormats: [d-MMM-yy, dMMMyy, d/M/uuuu]
+  timeFormats: [H:mm, HH:mm, HHmm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Chặng bay, Sector]
+    airways: [Đường hàng không, Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: PAX
+validation:
+  allowIataAirports: true

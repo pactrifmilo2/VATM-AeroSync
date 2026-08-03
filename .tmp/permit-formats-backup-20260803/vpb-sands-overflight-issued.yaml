@@ -1,0 +1,146 @@
+id: vpb-sands-overflight-issued
+priority: 50
+detectionPatterns:
+- (?iu)\bOF\s*-\s*\d+
+- (?iu)SANDS\s+AVIATION\s+BERMUDA
+permit:
+  pattern: (?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b
+  numberGroup: number
+  sourceTemplate: OF-{number}/{month}/{year}VN
+  normalizedTemplate: O/F {number}/S/CHK/{year}
+  zeroPadGroups:
+    number: 5
+permitDate:
+  source: PARAGRAPH
+  pattern: (?iu)(?<date>(?<!\d)\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}[A-Z]{3}20\d{2})
+  group: date
+  formats:
+  - d/M/uuuu
+  - d-MMM-uu
+  - d-MMM-uuuu
+  - d MMM uuuu
+  - dMMMuuuu
+  locale: en
+  fallbackToDocumentCreatedDate: true
+operator:
+  source: TABLE
+  pattern: (?iu)ICAO\s*(?:CODE)?\s*:\s*(?<value>[A-Z0-9]{3})
+  group: value
+  required: false
+  fixedValue: VPB
+billingAddress:
+  source: TABLE
+  pattern: (?iu)POSTAL\s+ADDRESS\s*:\s*(?<value>[^\n]+)
+  group: value
+  required: false
+reference:
+  source: RAW
+  pattern: (?iu)\(REF\.\s*(?<value>[^)]+)\)
+  group: value
+  required: false
+purpose:
+  defaultId: PAX
+  mappings:
+  - pattern: (?iu)\bFERR?Y\b
+    value: FER
+  - pattern: (?iu)\bCARGO\b|\bFREIGHTER\b
+    value: CAR
+  - pattern: (?iu)\bTECH(?:NICAL)?\s*STOP\b|\bREFUEL
+    value: OTH
+  - pattern: (?iu)\bBUSINESS\b
+    value: BUS
+  - pattern: (?iu)\bPASSENGER\b|\bPAX\b|\bPRIVATE\b|\bCHARTER\b
+    value: PAX
+master:
+  authorId: CHK
+  permitType: O/F
+  version: A
+  season: S
+  validHours: 72
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber:
+    - Flight number
+    - Flt number
+    effectiveFrom:
+    - Effective from
+    - Eff from
+    effectiveTo:
+    - Effective to
+    - Eff to
+    serviceDays:
+    - Days of services
+    - Day(s) of services
+    fromAirport:
+    - Departure Airport
+    - Dep airport
+    etd:
+    - ETD
+    toAirport:
+    - Arrival Airport
+    - Arr airport
+    eta:
+    - ETA
+    aircraftType:
+    - Aircraft Type
+    originalPermit:
+    - Original permit
+    remark:
+    - Notes
+    - Note
+  requiredColumns:
+  - flightNumber
+  - effectiveFrom
+  - effectiveTo
+  - serviceDays
+  - fromAirport
+  - etd
+  - toAirport
+  excludeColumns: []
+  tableContextPatterns: []
+  dateFormats:
+  - dMMMyy
+  - d-MMM-yy
+  - d/M/uuuu
+  timeFormats:
+  - HHmm
+  - H:mm
+  - HH:mm
+  locale: en
+  purposeId: PAX
+  includeEta: false
+  lastMatchingTable: false
+  inferIataPrefix: true
+route:
+  columns:
+    sector:
+    - Sector
+    airways:
+    - Airways
+  requiredColumns:
+  - sector
+  - airways
+  tableRequired: true
+  allowEmpty: false
+  fallbackToFirst: false
+  lastMatchingTable: false
+  filterSchedule: true
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType:
+    - Aircraft Type
+    registrationMarks:
+    - Registration Mark
+    - Registration Marks
+  auxiliaryRequiredColumns:
+  - aircraftType
+  - registrationMarks
+  auxiliaryTypeColumn: aircraftType
+  remarkPrefix: ''
+  defaultType: GLEX
+  lastMatchingTable: false
+validation:
+  allowIataAirports: false
+  reviewOnly: false

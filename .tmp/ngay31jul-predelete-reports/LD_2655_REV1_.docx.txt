@@ -1,0 +1,31 @@
+FILE: LD  2655 (REV1).docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 31/07/2026 PERMIT NO.: LD-2655/07/2026VN /REV1
+1. Carrier:
+2. Revised Schedules (UTC Time)
+2.1. Original
+2.2. New
+Other details remain unchanged.
+Airways: Other permitted airways published in Viet Nam’s AIP.
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 31/07/2026 PERMIT NO.: LD-2655/07/2026VN /REV1
+1. Carrier:
+Name: OLLIE GROUP CORPORATION
+Postal Address: NERINE CHAMBERS, 3RD FLOOR, QUASTISKY BUILDING, PO BOX 905, ROAD TOWN, TORTOLA, BRITISH VIRGIN ISLANDS
+
+TABLE 2
+CONTEXT: 2. Revised Schedules (UTC Time)
+2.1. Original
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+T7OLLIE | 02AUG26 | 02AUG26 | ------7 | SGN | 0200 | HKG | 0405
+
+TABLE 3
+CONTEXT: 2.2. New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+T7OLLIE | 13AUG26 | 13AUG26 | ---4--- | SGN | 0200 | HKG | 0405

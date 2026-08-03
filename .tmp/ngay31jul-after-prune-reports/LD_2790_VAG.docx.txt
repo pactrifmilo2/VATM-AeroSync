@@ -1,0 +1,84 @@
+FILE: LD 2790 VAG.docx
+
+PARAGRAPHS
+Phép bay cho chuyến bay không thường lệ cất/hạ cánh tại Việt Nam
+Hà Nội, 28/7/2026
+Phép bay số: LD-2790/07/2026VN
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Tăng chuyến chở khách
+4. Tàu bay
+5. Đường hàng không
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay cho chuyến bay không thường lệ cất/hạ cánh tại Việt Nam
+Hà Nội, 28/7/2026
+Phép bay số: LD-2790/07/2026VN
+1. Người vận chuyển:
+Tên: VIETRAVEL AIRLINES
+Mã IATA: VU | Mã ICAO: VAG
+Địa chỉ bưu điện: Số 172 Ngọc Khánh, Phường Giảng Võ, Thành phố Hà Nội, Việt Nam.
+Điện thoại: 1900.6686 | Thư điện tử: customercare@vietravelairlines.vn
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+VU787 | 01AUG26 | 07AUG26 | 1234567 | HAN | 1300 | SGN | 1510
+VU787 | 09AUG26 | 15AUG26 | 1234567 | HAN | 1300 | SGN | 1510
+VU794 | 01AUG26 | 07AUG26 | 1234567 | SGN | 1550 | HAN | 1800
+VU794 | 09AUG26 | 15AUG26 | 1234567 | SGN | 1550 | HAN | 1800
+VU639 | 01AUG26 | 15AUG26 | 1234567 | HAN | 0955 | DAD | 1120
+VU658 | 01AUG26 | 15AUG26 | 1234567 | DAD | 1155 | HAN | 1325
+VU670 | 01AUG26 | 01AUG26 | -----6- | SGN | 2145 | DAD | 2310
+VU670 | 05AUG26 | 15AUG26 | --34567 | SGN | 2135 | DAD | 2300
+VU671 | 01AUG26 | 15AUG26 | --34567 | DAD | 2345 | SGN | 0120 +1
+VU550 | 01AUG26 | 15AUG26 | 1234567 | SGN | 0615 | VII | 0805
+VU551 | 01AUG26 | 15AUG26 | 1234567 | VII | 0840 | SGN | 1035
+VU303 | 01AUG26 | 15AUG26 | 1234567 | SGN | 1115 | PQC | 1155
+VU302 | 01AUG26 | 01AUG26 | -----6- | PQC | 1250 | SGN | 1400
+VU302 | 02AUG26 | 02AUG26 | ------7 | PQC | 1250 | SGN | 1355
+VU302 | 03AUG26 | 15AUG26 | 12-4567 | PQC | 1250 | SGN | 1400
+VU302 | 03AUG26 | 15AUG26 | --3---- | PQC | 1250 | SGN | 1355
+VU774 | 01AUG26 | 15AUG26 | 1234567 | SGN | 0000 | HAN | 0210
+VU775 | 01AUG26 | 15AUG26 | 1234567 | HAN | 0255 | SGN | 0505
+VU778 | 01AUG26 | 15AUG26 | 1234567 | SGN | 0545 | HAN | 0755
+VU779 | 31JUL26 | 03AUG26 | 1---567 | HAN | 1440 | SGN | 1650
+VU779 | 04AUG26 | 04AUG26 | -2----- | HAN | 1405 | SGN | 1615
+VU779 | 05AUG26 | 15AUG26 | 1234567 | HAN | 1440 | SGN | 1650
+VU684 | 01AUG26 | 14AUG26 | 1234567 | SGN | 1440 | DAD | 1605
+VU685 | 01AUG26 | 14AUG26 | 1234567 | DAD | 1640 | SGN | 1815
+VU1271 | 01AUG26 | 02AUG26 | -----67 | HAN | 0020 | CXR | 0220
+VU1271 | 03AUG26 | 15AUG26 | 1234567 | HAN | 0010 | CXR | 0210
+VU1270 | 01AUG26 | 15AUG26 | 1234567 | CXR | 0255 | HAN | 0455
+VU1213 | 01AUG26 | 15AUG26 | 1234567 | HAN | 0535 | BMV | 0720
+VU1214 | 01AUG26 | 15AUG26 | 1234567 | BMV | 0755 | HAN | 0940
+VU1275 | 01AUG26 | 15AUG26 | 1234567 | HAN | 1020 | CXR | 1220
+VU1276 | 01AUG26 | 15AUG26 | 1234567 | CXR | 1255 | HAN | 1455
+VU791 | 01AUG26 | 15AUG26 | 1234567 | HAN | 1530 | SGN | 1740
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay: Tăng chuyến chở khách
+4. Tàu bay
+Loại tàu bay | Số ghế cao nhất | Số đăng ký
+320 | 230 | Theo AOC của VU
+321 | 182 | Theo AOC của VU
+
+TABLE 4
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không
+SGN – HAN | W12 Q2
+HAN – SGN | Q1
+SGN – VII | Q2 W2
+VII – SGN | W2 Q1
+SGN – DAD | Q2
+DAD – SGN | Q1
+HAN – DAD | Q1
+DAD – HAN | Q2
+SGN – PQC | W17 W8
+PQC – SGN | W8 W16
+HAN – CXR | Q1 W2
+CXR – HAN | W2 Q2

@@ -1,0 +1,40 @@
+FILE: LD 2807 FDX.doc
+
+PARAGRAPHS
+LANDING PERMIT for non-scheduled flight
+Hanoi, 29/07/2026
+Permit No.: LD-2807/07/2026VN
+Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION IATA code: FX ICAO code: FDX Postal Address: 3131 Democrat Rd, Bldg C, Memphis, TN 38118 USA. Tel: (1-901) 606-9983 Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com 
+2. Schedule (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type FX6417 16Aug26 30Aug26 ------7 HKG 0530 HAN 0730 77F FX6427 16Aug26 30Aug26 ------7 HAN 0855 ANC 1945 77F *FX6417: Ferry flights
+*FX6427: Finished electronic products (estimated 95 tons). 
+3. Purpose of Flight:Charter – All cargo flights.
+4. Aircraft
+Aircraft Type Registration Mark Included in AOC/FAOC Not included in AOC/FAOC 77F As per FAOC of FX N/A 
+5. Airways
+Sector Airways HKG-HAN R474 HAN-ANC R474 Airways: Other permitted airways published in Viet Nam’s AIP.
+ 
+6. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com
+
+TABLE 2
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX6417 | 16Aug26 | 30Aug26 | ------7 | HKG | 0530 | HAN | 0730 | 77F
+FX6427 | 16Aug26 | 30Aug26 | ------7 | HAN | 0855 | ANC | 1945 | 77F
+
+TABLE 3
+Aircraft Type | Registration Mark
+ | Included in AOC/FAOC | Not included in AOC/FAOC
+77F | As per FAOC of FX | N/A
+
+TABLE 4
+Sector | Airways
+HKG-HAN | R474
+HAN-ANC | R474

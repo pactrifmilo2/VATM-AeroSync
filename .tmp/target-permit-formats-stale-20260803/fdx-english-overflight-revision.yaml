@@ -1,0 +1,29 @@
+id: fdx-english-overflight-revision
+extends: fdx-english-overflight-issued
+priority: 260
+detectionPatterns:
+  - '(?iu)PERMIT\s+NO\.?\s*:\s*OF\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\s*/\s*REV\d+'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*FDX\b'
+  - '(?iu)3\.2\.?\s*NEW'
+permit:
+  pattern: '(?iu)\bOF\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\s*/\s*REV(?<revision>\d+)'
+  numberGroup: number
+  sourceTemplate: 'OF-{number}/{month}/{year}VN/REV{revision}'
+  normalizedTemplate: 'O/F {number}/S/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+schedule:
+  excludeColumns: [originalPermit]
+  preferredTableContextPatterns:
+    - '(?iu)3\.2\.?\s*NEW'
+  lastMatchingTable: true
+route:
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  filterSchedule: false
+aircraft:
+  defaultType: ''
+validation:
+  allowIataAirports: false
+  reviewOnly: true

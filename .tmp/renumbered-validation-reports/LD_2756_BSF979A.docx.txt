@@ -1,0 +1,72 @@
+FILE: LD 2756 BSF979A.docx
+
+PARAGRAPHS
+LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 26/07/2026
+Permit No.: LD-8036/07/2026VN
+1. Carrier/Operator
+2. Schedules (UTC Time)
+3. Purpose of Flight
+HAN-HUI: PRIVATE FLIGHT
+HUI-HAN: PRIVATE FLIGHT
+4. Aircraft
+Aircraft type IATA code: DF7
+Aircraft type ICAO code: FA8X
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR DAO NGOC DUNG DEP DIR OF ATD_CAAV
+CC: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+PAX LIST:
+26JUL26 HAN-HUI
+26JUL26 HUI-HAN
+
+TABLE 1
+CONTEXT: LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 26/07/2026
+Permit No.: LD-8036/07/2026VN
+1. Carrier/Operator
+Name: BLUE SKY AIRWAYS JOINT STOCK COMPANY
+IATA code: - | ICAO code: -
+Postal Address: 8th Floor, Tower 54A Nguyen Chi Thanh, Lang Ward, Hanoi, Vietnam
+Tel: 0912930446 | Email: ops@blueskyairways.vn
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BSF979A | 26Jul26 | 26Jul26 | ……7 | HAN | 1400 | HUI | 1500 | DF7
+BSF979A | 26Jul26 | 26Jul26 | ……7 | HUI | 1600 | HAN | 1700 | DF7
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight
+HAN-HUI: PRIVATE FLIGHT
+HUI-HAN: PRIVATE FLIGHT
+4. Aircraft
+Aircraft Type | Registration Mark
+ | Included in AOC/FAOC | Not included in AOC/FAOC
+DF7 | VN-A979 | 
+
+TABLE 4
+CONTEXT: Aircraft type IATA code: DF7
+Aircraft type ICAO code: FA8X
+5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HAN-HUI | Q1 / W1 / W10 / W2 |  | 
+HUI-HAN | Q1 / W1 / Q2 / Q5 / W2 / N639 |  | 
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR DAO NGOC DUNG DEP DIR OF ATD_CAAV
+CC: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+PAX LIST:
+26JUL26 HAN-HUI
+No | Name | Nationality
+1 | Trần Phan Anh | Vietnamese
+2 | Trần Khánh Tùng | Vietnamese
+
+TABLE 6
+CONTEXT: 26JUL26 HUI-HAN
+No | Name | Nationality
+1 | Nguyễn Văn Quảng | Vietnamese
+2 | Phạm Hữu Minh | Vietnamese

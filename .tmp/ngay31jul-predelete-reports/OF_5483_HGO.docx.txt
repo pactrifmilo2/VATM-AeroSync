@@ -1,0 +1,44 @@
+FILE: OF 5483 HGO.docx
+
+PARAGRAPHS
+HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-5483/07/2026VN
+1. Carrier:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of flight(s): Cargo flights
+5. Aircraft
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-5483/07/2026VN
+1. Carrier:
+Name: ONE AIR LIMITED
+IATA Code: HC | ICAO Code: HGO
+Postal address: 1 BECKETTS PLACE HAMPTON WICK KINGSTON UPON THAMES ENGLAND KT1 4EQ UNITED KINGDOM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: ONE AIR LIMITED
+Postal address: 1 BECKETTS PLACE HAMPTON WICK KINGSTON UPON THAMES ENGLAND KT1 4EQ UNITED KINGDOM
+Tel: +44 (0)7908 473030 | Email: accountspayable@oneair.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Eff from | Eff to | Day(s) of services | Dep airport | EOBT | Arr airport | EIBT
+HGO834 | 05AUG26 | 05AUG26 | --3---- | VHHH | 0200 | OERK | 1100
+
+TABLE 4
+CONTEXT: 4. Purpose of flight(s): Cargo flights
+5. Aircraft
+Aircraft type | Registration marks
+B777 | G-ONEE SUB G-ONEF SUB G-UNET SUB G-ONEG
+B744 | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VHHH-OERK | R474-W21-B214
