@@ -33,9 +33,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -142,6 +144,27 @@ class PermitImportCoordinatorTest {
         verify(atfmScheduleGateway).findExisting(any());
         verify(atfmScheduleGateway).update(any());
         verify(atfmScheduleGateway, never()).insert(any());
+    }
+
+    @Test
+    void importPermit_locksAndTracksReferencedRevisionTarget() {
+        context.setSchedulePermit(referencedRevisionPermit());
+        when(atfmScheduleGateway.findExisting(any()))
+                .thenReturn(Optional.of(new AtfmPermitSnapshot(4167L, 9001L, false)));
+        when(atfmScheduleGateway.update(any()))
+                .thenReturn(new AtfmWriteResult(4167L, 9001L, 1));
+
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        verify(valueOperations).setIfAbsent(
+                eq("aerosync:permit-lock:LD 0068A/S/CHK/2026"),
+                eq("7"), any(Duration.class));
+        verify(atfmScheduleGateway).update(argThat(permit ->
+                permit.atfmTargetPermitId().equals("LD 0068A/S/CHK/2026")
+                        && permit.normalizedPermitId().equals("O/F 05199/S/CHK/2026")));
+        verify(permitImportRepository, atLeastOnce()).save(argThat(attempt ->
+                "LD 0068A/S/CHK/2026".equals(attempt.getNormalizedPermitId())));
     }
 
     @Test
@@ -258,5 +281,17 @@ class PermitImportCoordinatorTest {
                 permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
                 permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
                 permit.emptyAirwaysAllowed(), true, permit.rawContent(), permit.flights());
+    }
+
+    private SchedulePermit referencedRevisionPermit() {
+        SchedulePermit permit = permit();
+        return new SchedulePermit(
+                permit.sourcePermitNumber(), permit.normalizedPermitId(), permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), permit.operatorId(), "LD-68/A/S/2026VN",
+                permit.validHours(), permit.billingAddress(), permit.flightType(),
+                permit.iataAirportsAllowed(), permit.emptyAirwaysAllowed(), false,
+                "ORIGINAL SCHEDULE\n" + permit.rawContent(), permit.flights(), List.of(),
+                "LD 0068A/S/CHK/2026");
     }
 }

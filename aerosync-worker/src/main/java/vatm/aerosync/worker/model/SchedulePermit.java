@@ -23,7 +23,8 @@ public record SchedulePermit(
         boolean reviewOnly,
         String rawContent,
         List<ScheduleFlight> flights,
-        List<ScheduleFlight> originalFlights
+        List<ScheduleFlight> originalFlights,
+        String referencedPermitId
 ) {
     private static final Pattern REVISION_MARKER = Pattern.compile(
             "(?iu)(?:\\bREV(?:ISION)?\\s*\\d*\\b|\\bRVS\\s*\\d*\\b|"
@@ -41,7 +42,7 @@ public record SchedulePermit(
                 sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
-                resolvedFlights, originalFlights);
+                resolvedFlights, originalFlights, referencedPermitId);
     }
 
     public SchedulePermit withFlightsAndOriginals(List<ScheduleFlight> resolvedFlights,
@@ -50,7 +51,7 @@ public record SchedulePermit(
                 sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
-                resolvedFlights, resolvedOriginalFlights);
+                resolvedFlights, resolvedOriginalFlights, referencedPermitId);
     }
 
     public boolean revision() {
@@ -69,6 +70,50 @@ public record SchedulePermit(
             year = Integer.valueOf(matcher.group());
         }
         return year;
+    }
+
+    public String atfmTargetPermitId() {
+        return revision() && referencedPermitId != null && !referencedPermitId.isBlank()
+                ? referencedPermitId
+                : normalizedPermitId;
+    }
+
+    public Integer atfmTargetPermitYear() {
+        String target = atfmTargetPermitId();
+        if (target == null) {
+            return null;
+        }
+        java.util.regex.Matcher matcher = PERMIT_YEAR.matcher(target);
+        Integer year = null;
+        while (matcher.find()) {
+            year = Integer.valueOf(matcher.group());
+        }
+        return year;
+    }
+
+    public SchedulePermit(String sourcePermitNumber,
+                          String normalizedPermitId,
+                          String permitNumber,
+                          String authorId,
+                          String permitType,
+                          String version,
+                          String season,
+                          LocalDate permitDate,
+                          String operatorId,
+                          String reference,
+                          int validHours,
+                          String billingAddress,
+                          String flightType,
+                          boolean iataAirportsAllowed,
+                          boolean emptyAirwaysAllowed,
+                          boolean reviewOnly,
+                          String rawContent,
+                          List<ScheduleFlight> flights,
+                          List<ScheduleFlight> originalFlights) {
+        this(sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
+                version, season, permitDate, operatorId, reference, validHours, billingAddress,
+                flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
+                flights, originalFlights, null);
     }
 
     /**
@@ -93,7 +138,7 @@ public record SchedulePermit(
         this(sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, "LD".equals(permitType), "LD".equals(permitType), false,
-                rawContent, flights, List.of());
+                rawContent, flights, List.of(), null);
     }
 
     public SchedulePermit(String sourcePermitNumber,
@@ -116,7 +161,7 @@ public record SchedulePermit(
         this(sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, false, rawContent, flights,
-                List.of());
+                List.of(), null);
     }
 
     public SchedulePermit(String sourcePermitNumber,
@@ -140,6 +185,6 @@ public record SchedulePermit(
         this(sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
-                flights, List.of());
+                flights, List.of(), null);
     }
 }

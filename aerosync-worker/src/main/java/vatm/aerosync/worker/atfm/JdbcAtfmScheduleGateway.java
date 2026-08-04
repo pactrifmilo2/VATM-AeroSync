@@ -99,7 +99,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         try (Connection connection = openConnection()) {
             List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
             try (PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
-                statement.setString(1, permit.normalizedPermitId());
+                statement.setString(1, permit.atfmTargetPermitId());
                 statement.setString(2, requiredPermitYear(permit));
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (!resultSet.next()) {
@@ -131,7 +131,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     public Optional<AtfmRevisionBaseline> findRevisionBaseline(SchedulePermit permit) {
         try (Connection connection = openConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
-            statement.setString(1, permit.normalizedPermitId());
+            statement.setString(1, permit.atfmTargetPermitId());
             statement.setString(2, requiredPermitYear(permit));
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (!resultSet.next()) {
@@ -193,38 +193,40 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         long masterId;
         long permId;
         try (PreparedStatement statement = connection.prepareStatement(LOCK_EXISTING_SQL)) {
-            statement.setString(1, permit.normalizedPermitId());
+            statement.setString(1, permit.atfmTargetPermitId());
             statement.setString(2, requiredPermitYear(permit));
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (!resultSet.next()) {
                     throw new AtfmReferenceDataException(
-                            "Revision base permit not found in ATFM: " + permit.normalizedPermitId());
+                            "Revision base permit not found in ATFM: " + permit.atfmTargetPermitId());
                 }
                 masterId = resultSet.getLong("ID");
                 permId = resultSet.getLong("PERM_ID");
             }
         }
 
-        try (PreparedStatement statement = connection.prepareStatement(UPDATE_MASTER_SQL)) {
-            int index = 1;
-            statement.setString(index++, permit.authorId());
-            statement.setString(index++, permit.permitType());
-            statement.setString(index++, permit.permitNumber());
-            statement.setString(index++, permit.version());
-            statement.setString(index++, permit.season());
-            statement.setDate(index++, Date.valueOf(permit.permitDate()));
-            statement.setString(index++, permit.operatorId());
-            statement.setString(index++, truncateUtf8(permit.reference(), 4000));
-            statement.setInt(index++, permit.validHours());
-            statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
-            statement.setString(index++, "AEROSYNC");
-            statement.setString(index++, "0");
-            statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
-            statement.setString(index++, truncateUtf8(permit.billingAddress(), 4000));
-            statement.setString(index++, permit.flightType());
-            statement.setLong(index, masterId);
-            if (statement.executeUpdate() != 1) {
-                throw new SQLException("Revision master update affected an unexpected number of rows");
+        if (!permit.revision()) {
+            try (PreparedStatement statement = connection.prepareStatement(UPDATE_MASTER_SQL)) {
+                int index = 1;
+                statement.setString(index++, permit.authorId());
+                statement.setString(index++, permit.permitType());
+                statement.setString(index++, permit.permitNumber());
+                statement.setString(index++, permit.version());
+                statement.setString(index++, permit.season());
+                statement.setDate(index++, Date.valueOf(permit.permitDate()));
+                statement.setString(index++, permit.operatorId());
+                statement.setString(index++, truncateUtf8(permit.reference(), 4000));
+                statement.setInt(index++, permit.validHours());
+                statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+                statement.setString(index++, "AEROSYNC");
+                statement.setString(index++, "0");
+                statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
+                statement.setString(index++, truncateUtf8(permit.billingAddress(), 4000));
+                statement.setString(index++, permit.flightType());
+                statement.setLong(index, masterId);
+                if (statement.executeUpdate() != 1) {
+                    throw new SQLException("Permit master update affected an unexpected number of rows");
+                }
             }
         }
         List<ExistingFlight> existingFlights = readExistingFlights(connection, permId);
@@ -562,11 +564,11 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     }
 
     private String requiredPermitYear(SchedulePermit permit) {
-        Integer year = permit.permitYear();
+        Integer year = permit.atfmTargetPermitYear();
         if (year == null) {
             throw new IllegalArgumentException(
                     "Permit number does not contain a four-digit year: "
-                            + permit.normalizedPermitId());
+                            + permit.atfmTargetPermitId());
         }
         return Integer.toString(year);
     }
