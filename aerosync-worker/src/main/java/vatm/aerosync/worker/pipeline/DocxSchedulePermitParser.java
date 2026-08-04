@@ -3,6 +3,7 @@ package vatm.aerosync.worker.pipeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.common.exception.FormatValidationException;
+import vatm.aerosync.worker.atfm.AtfmPermitIdNormalizer;
 import vatm.aerosync.worker.model.ScheduleFlight;
 import vatm.aerosync.worker.model.SchedulePermit;
 
@@ -213,6 +214,8 @@ public class DocxSchedulePermitParser {
             reference = joinedColumnValues(
                     document.tables(), profile.schedule().columns(), profile.referenceColumn());
         }
+        String referencedPermitId = singleReferencedPermitId(
+                originalScheduleTables, profile.schedule().columns(), profile.referenceColumn());
 
         DocxPermitFormatProfile.MasterDefaults master = profile.master();
         String sourcePermitNumber = profile.permit().sourceTemplate() == null
@@ -241,7 +244,8 @@ public class DocxSchedulePermitParser {
                 validation != null && validation.reviewOnly(),
                 document.rawContent(),
                 flights,
-                originalFlights);
+                originalFlights,
+                referencedPermitId);
     }
 
     private String normalizedOperator(String value) {
@@ -904,6 +908,30 @@ public class DocxSchedulePermitParser {
             }
         }
         return values.isEmpty() ? null : String.join("; ", values);
+    }
+
+    private String singleReferencedPermitId(List<List<List<String>>> tables,
+                                            Map<String, List<String>> aliases,
+                                            String semanticColumn) {
+        if (semanticColumn == null || semanticColumn.isBlank()) {
+            return null;
+        }
+        LinkedHashSet<String> normalizedIds = new LinkedHashSet<>();
+        for (List<List<String>> table : tables) {
+            if (table.isEmpty()) {
+                continue;
+            }
+            Map<String, Integer> columns = resolveColumns(table.getFirst(), aliases);
+            if (!columns.containsKey(semanticColumn)) {
+                continue;
+            }
+            for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
+                AtfmPermitIdNormalizer.normalizeReference(
+                                value(table.get(rowIndex), columns, semanticColumn))
+                        .ifPresent(normalizedIds::add);
+            }
+        }
+        return normalizedIds.size() == 1 ? normalizedIds.getFirst() : null;
     }
 
     private LocalDate extractDate(DocxPermitFormatProfile.DateField field,

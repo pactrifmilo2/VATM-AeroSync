@@ -284,6 +284,15 @@ review-only format, so use it only when that behavior is intended.
 
 Duplicate handling uses both the original SHA-256 file hash and the target ATFM schedule. The same normalized permit with the same schedule is skipped successfully; changed schedule data reuses the existing permit master and appends only detail rows that are not already present.
 
+For revision documents that contain an original schedule, AeroSync normalizes the
+single permit value from the original schedule's `Original permit` / `Số phép bay
+đã cấp` column and uses it as the ATFM target. The current document permit number
+is retained as source data. Revision imports lock and compare the referenced
+master, append only missing detail rows, and do not overwrite that master's
+permit identity or metadata. If the original schedule names multiple different
+permits, AeroSync does not choose one implicitly and retains the profile's
+existing current-permit behavior.
+
 ### Replay a permit during local testing
 
 The API can replay the exact archived email attachment without editing its permit number or sending the email again. This helper deletes the recorded ATFM master/detail rows first, but only when the master row still has `LASTUSER=AEROSYNC` and its IDs and normalized permit ID all match the tracking record.

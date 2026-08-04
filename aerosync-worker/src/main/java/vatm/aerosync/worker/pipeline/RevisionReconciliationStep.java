@@ -40,7 +40,7 @@ public class RevisionReconciliationStep {
         AtfmRevisionBaseline baseline = atfmScheduleGateway.findRevisionBaseline(permit)
                 .orElseThrow(() -> new BusinessRuleException(
                         "BR-REVISION-BASE-NOT-FOUND",
-                        "Không tìm thấy phép bay gốc trong ATFM: " + permit.normalizedPermitId()));
+                        "Không tìm thấy phép bay gốc trong ATFM: " + permit.atfmTargetPermitId()));
         List<ScheduleFlight> unchanged = new ArrayList<>(baseline.flights());
         List<ScheduleFlight> reconciled = new ArrayList<>(permit.flights().size());
         List<ScheduleFlight> matchedDeclaredOriginals = new ArrayList<>();

@@ -67,11 +67,12 @@ public class PermitImportCoordinator {
                     "Permit %s requires manual review before ATFM update"
                             .formatted(permit.normalizedPermitId()));
         }
-        String lockKey = LOCK_PREFIX + permit.normalizedPermitId();
+        String targetPermitId = permit.atfmTargetPermitId();
+        String lockKey = LOCK_PREFIX + targetPermitId;
         Boolean acquired = redisTemplate.opsForValue().setIfAbsent(
                 lockKey, Long.toString(syncJobId), Duration.ofSeconds(properties.getPermitLockSeconds()));
         if (!Boolean.TRUE.equals(acquired)) {
-            throw new IllegalStateException("Another worker is processing permit " + permit.normalizedPermitId());
+            throw new IllegalStateException("Another worker is processing permit " + targetPermitId);
         }
 
         try {
@@ -135,7 +136,7 @@ public class PermitImportCoordinator {
             markRevision(attempt, "Original ATFM permit was not found");
             throw new BusinessRuleException(
                     "BR-REVISION-BASE-NOT-FOUND",
-                    "Original ATFM permit not found: " + permit.normalizedPermitId());
+                    "Original ATFM permit not found: " + permit.atfmTargetPermitId());
         }
         AtfmPermitSnapshot snapshot = target.get();
         if (snapshot.matchesExpectedPermit()) {
@@ -160,7 +161,7 @@ public class PermitImportCoordinator {
     private PermitImport reserve(SyncJob job, SchedulePermit permit, String semanticHash) {
         PermitImport attempt = new PermitImport();
         attempt.setSyncJob(job);
-        attempt.setNormalizedPermitId(permit.normalizedPermitId());
+        attempt.setNormalizedPermitId(permit.atfmTargetPermitId());
         attempt.setSemanticHash(semanticHash);
         attempt.setSourceFileHash(job.getFileHash());
         attempt.setStatus(PermitImportStatus.RESERVED);
@@ -172,7 +173,7 @@ public class PermitImportCoordinator {
                                 SyncJob job,
                                 SchedulePermit permit,
                                 String semanticHash) {
-        attempt.setNormalizedPermitId(permit.normalizedPermitId());
+        attempt.setNormalizedPermitId(permit.atfmTargetPermitId());
         attempt.setSemanticHash(semanticHash);
         attempt.setSourceFileHash(job.getFileHash());
         attempt.setDetailCount(permit.flights().size());
