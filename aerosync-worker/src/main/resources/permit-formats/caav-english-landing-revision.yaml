@@ -1,8 +1,8 @@
 id: caav-english-landing-revision
 priority: 100
 detectionPatterns:
-  - '(?iu)REVISION\s+OF\s+LANDING/OVERFLIGHT\s+PERMIT'
-  - '(?iu)2\.2\.\s*NEW\s+SCHEDULE\(S\)'
+  - '(?iu)(?:APPLICATION\s+FOR\s+)?REVISION\s+OF\s+LANDING(?:/OVERFLIGHT)?\s+PERMIT'
+  - '(?iu)2\.2\.\s*NEW\s+SCHEDULE(?:\(S\))?'
 permit:
   pattern: '(?iu)\bLD-(?<number>\d{1,5})/(?<version>[A-Z])/(?<season>S)/(?<year>20\d{2})VN(?:/REV(?<revision>\d+))?\b'
   numberGroup: number
@@ -11,7 +11,7 @@ permit:
   zeroPadGroups: {}
 permitDate:
   source: RAW
-  pattern: '(?iu)HANOI\s*,\s*(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  pattern: '(?iu)(?:HANOI\s*,\s*|SUBMITTED\s+DATE:\s*)(?<date>\d{1,2}/\d{1,2}/20\d{2})'
   group: date
   formats: [d/M/uuuu]
   locale: en
@@ -61,6 +61,7 @@ schedule:
   locale: en
   purposeId: CAR
   includeEta: true
+  lastMatchingTable: true
 route:
   columns:
     sector: [Sector]

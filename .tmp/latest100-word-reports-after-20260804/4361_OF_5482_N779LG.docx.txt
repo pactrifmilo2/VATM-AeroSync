@@ -1,0 +1,47 @@
+FILE: 4361_OF_5482_N779LG.docx
+
+PARAGRAPHS
+HANOI, 31-Jul-26
+PERMIT NUMBER OF-8163/7/2026VN
+1. CARRIER/OPERATOR
+2. Billing address:
+3. Schedules (UTC Time)
+4. Purpose Of Flight: Charter flights
+5. Aircraft
+6. Airways
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260729-170007)
+
+TABLE 1
+CONTEXT: HANOI, 31-Jul-26
+PERMIT NUMBER OF-8163/7/2026VN
+1. CARRIER/OPERATOR
+Name: METROPOLIS PROPERTINDO UTAMA
+IATA Code: N/A | ICAO Code: N/A
+Address: Menara Matahari, 15th Floor, Jl. Boulevard Palem Raya No. 7. Tangerang, Banten 15810, Indonesia
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: PT. KARISMA BAHANA AVIASI
+Postal address: Jl. Komodor Halim Perdana Kusuma No. 8, RT.5/RW.1, Kb. Pala, Makasar Subdistrict, East Jakarta City,Special Capital Region of Jakarta 13650
+Tel: +6281210051005 | Email: ops.control@kbairops.com
+
+TABLE 3
+CONTEXT: 3. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+N779LG | 02AUG26 | 02AUG26 | ------7 | VDSA | 0400 | WMSA | 0545
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight: Charter flights
+5. Aircraft
+Aircraft type | Aircraft Registration marks | Mtow (tons)
+CL60 | N779LG | 21,8
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VDSA-WMSA | M755- M765

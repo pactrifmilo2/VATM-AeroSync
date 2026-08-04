@@ -1,0 +1,48 @@
+FILE: 4419_Application_VJT255_26JUL2026.docx
+
+PARAGRAPHS
+TO: VATM Refer to the issued permit number: OF-5271/07/2026VN
+Carrier/Operator
+Revised Item or Additional details or Cancelled : Schedules UTC Time
+OLD
+NEW
+Airways:
+3. Note: OTHER DETAILS UNCHANGED.
+4. Applicant
+THANK YOU.
+
+TABLE 1
+CONTEXT: TO: VATM Refer to the issued permit number: OF-5271/07/2026VN
+Carrier/Operator
+Name: VISTAJET LIMITED
+IATA code: | ICAO code: VJT
+SKYPARKS BUSINESS CENTRE, LUQA LQA 4000, MALTA
+Tel: + 356 20928030 | Email: press@vistajet.com
+
+TABLE 2
+CONTEXT: Revised Item or Additional details or Cancelled : Schedules UTC Time
+OLD
+Flight number | Effective from | Effective to | Days of service | Departure Airport | ETD | Arrival Airport | ETA | 
+VJT255 | 26JUL26 | 26JUL26 | ------7 | EGLF | 1400 | RCSS | 0130+1
+ |  |  |  |  |  |  |  |  | 
+
+TABLE 3
+CONTEXT: NEW
+Flight number | Effective from | Effective to | Days of service | Departure Airport | ETD | Arrival Airport | ETA | 
+VJT255 | 26JUL26 | 26JUL26 | ------7 | EGGW | 1400 | RCSS | 0220+
+ |  |  |  |  |  |  |  |  | 
+
+TABLE 4
+CONTEXT: Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+EGGW-RCSS | A206 W2 A1 | NALAO | BUNTA
+Airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 5
+CONTEXT: 3. Note: OTHER DETAILS UNCHANGED.
+4. Applicant
+Company: GoldenWing Aviation | 
+Individual: The Kien | Title (if any): Flight Permits Team
+Postal Address: 173 Xuan Thuy, Cau Giay, Ha Noi, Viet Nam
+Tel: +84 903 358 188 | Email:permits@goldenwingaviation.com
+Submitted date: 26/07/2026

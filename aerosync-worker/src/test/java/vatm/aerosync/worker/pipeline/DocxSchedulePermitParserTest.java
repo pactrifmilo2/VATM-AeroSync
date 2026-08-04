@@ -29,7 +29,7 @@ class DocxSchedulePermitParserTest {
     private final DocxSchedulePermitParser parser = new DocxSchedulePermitParser();
 
     @Test
-    void parse_mapsScheduledOverflightPermit() throws Exception {
+    void parse_mapsScheduledOverflightPermitAndStripsUtcSuffix() throws Exception {
         Path file = createPermitDocument();
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
@@ -209,7 +209,7 @@ class DocxSchedulePermitParserTest {
             String[] headers = {"Flight number", "Eff from", "Eff to", "Day(s) of services",
                     "Dep airport", "ETD", "Arr airport", "ETA"};
             String[] values = {"RMY685", "20JUL26", "27JUL26", "1------",
-                    "WMKK", "1140", "VHHH", "1550"};
+                    "WMKK", "1140Z", "VHHH", "1550Z"};
             for (int index = 0; index < headers.length; index++) {
                 schedule.getRow(0).getCell(index).setText(headers[index]);
                 schedule.getRow(1).getCell(index).setText(values[index]);

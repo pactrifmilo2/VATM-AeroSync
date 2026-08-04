@@ -1107,6 +1107,7 @@ public class DocxSchedulePermitParser {
         }
         boolean nextDay = cleanValue.matches(".*\\+\\s*(?:1)?$");
         cleanValue = cleanValue.replaceFirst("\\s*\\+\\s*(?:1)?$", "");
+        cleanValue = cleanValue.replaceFirst("(?iu)\\s*Z$", "");
         Locale locale = localeTag == null || localeTag.isBlank()
                 ? Locale.ENGLISH
                 : Locale.forLanguageTag(localeTag);

@@ -1,0 +1,34 @@
+FILE: 4394_LD-2736_rev1_HAI799_05aug_G17.44-260803-170132.docx
+
+PARAGRAPHS
+Permit to Revise Landing Permit
+Hanoi, 03/08/2026 Permit No.: LD-2736/07/2026VN/REV1
+Refer to the issued permit: LD-2736/07/2026VN
+1. Operator
+2. Schedule (UTC Time)
+2.1 Original
+2.1 New
+3. Note: Other details unchanged.
+Khuat Duy Anh for Mr. Dao Ngoc Dung – Deputy Director of ATD-CAAV
+C.c: Mr.Bui Minh Dang - Director of ATD-CAAV (For report)
+
+TABLE 1
+CONTEXT: Permit to Revise Landing Permit
+Hanoi, 03/08/2026 Permit No.: LD-2736/07/2026VN/REV1
+Refer to the issued permit: LD-2736/07/2026VN
+1. Operator
+Name: HAI AU AVIATION
+IATA code: | ICAO code: HAI
+Postal Address: 8 FLOOR, 70 BA TRIEU STREET, HOAN KIEM DISTRICT, HA NOI
+Tel: +84 868130110 | Email: DUTYMANAGER@HAIAUAVIATION.COM
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1 Original
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+HAI799 | 07Aug26 | 07Aug26 | 5 | SGN | 0000 | HAN | 0205
+
+TABLE 3
+CONTEXT: 2.1 New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+HAI799 | 05Aug26 | 05Aug26 | 3 | SGN | 0030 | HAN | 0235

@@ -1,0 +1,49 @@
+FILE: 4352_OF_5447_ADZ9087.docx
+
+PARAGRAPHS
+HA NOI, 29 JUL 2026
+PERMIT NUMBER: OF-8152/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Cargo
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 29 JUL 2026
+PERMIT NUMBER: OF-8152/07/2026VN
+1. Carrier/Operator
+Name: COMPASS CARGO AIRLINE
+IATA code: HQ | ICAO code: ADZ
+Postal Address: 229 Botevgradsko shose Blvd.1517 Sofia, BULGARIA
+Tel: +998 55 5188888 | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Apogee Aviation services FZCO
+Postal Address: Dubai Integrated Economic Zone Dubai Silicon Oasis, Apricot Business Tower, Office 705, Po Box: 341008 Dubai, United Arab Emirates
+Tel: +971 4 295 4041 | Email: supplier@apogee.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ADZ9087 | 04AUG26 | 04AUG26 | 0200000 | VHHH | 0015 | OMDW | 0755
+ADZ9087 | 08AUG26 | 08AUG26 | 0000060 | VHHH | 0015 | OMDW | 0755
+ADZ9087 | 12AUG26 | 12AUG26 | 0030000 | VHHH | 0015 | OMDW | 0755
+ADZ9087 | 14AUG26 | 14AUG26 | 0000500 | VHHH | 0015 | OMDW | 0755
+ADZ9087 | 16AUG26 | 16AUG26 | 0000007 | VHHH | 0015 | OMDW | 0755
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark
+747 | LZ-CJB OR SUB LZ-CJA LZ-CJC
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VHHH-OMDW | A206
+airways: Other permitted airways published in Viet Nam’s AIP.

@@ -55,7 +55,7 @@ schedule:
     flightNumber: [Flight number, Flt number]
     effectiveFrom: [Effective from, Eff from]
     effectiveTo: [Effective to, Eff to]
-    serviceDays: [Days of services, Day(s) of services]
+    serviceDays: [Days of services, Day(s) of services, Days of service]
     fromAirport: [Departure Airport, Dep airport]
     etd: [ETD]
     toAirport: [Arrival Airport, Arr airport]
@@ -66,7 +66,7 @@ schedule:
   requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
   excludeColumns: []
   tableContextPatterns: []
-  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
   purposeId: PAX

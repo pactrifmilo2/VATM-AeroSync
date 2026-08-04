@@ -1,0 +1,80 @@
+id: cpa-english-overflight-revision
+priority: 220
+detectionPatterns:
+  - '(?iu)(?:APPLICATION\s+FOR\s+)?REVISION\s+OF\s+(?:OVERFLIGHT\s+)?PERMIT|REVISED\s+ITEM'
+  - '(?iu)\bOF-\s*\d{1,5}/[A-Z]/S/20\d{2}VN/REV\d+\b'
+  - '(?iu)CATHAY\s+PACIFIC|ICAO\s+CODE:\s*CPA'
+permit:
+  pattern: '(?iu)\bOF-\s*(?<number>\d{1,5})/(?<version>[A-Z])/(?<season>S)/(?<year>20\d{2})VN/REV(?<revision>\d+)\b'
+  numberGroup: number
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN/REV{revision}'
+  normalizedTemplate: 'O/F {number}/S/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:SUBMITTED\s+DATE:\s*)?(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: en
+operator:
+  source: TABLE
+  pattern: '(?iu)ICAO\s*(?:CODE)?\s*:\s*(?<value>CPA)'
+  group: value
+  required: true
+  fixedValue: CPA
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)POSTAL\s+ADDRESS\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+referenceColumn: originalPermit
+master:
+  authorId: CHK
+  permitType: O/F
+  version: A
+  season: S
+  validHours: 72
+  flightType: 'NO'
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services, Day(s) of services, Days of service]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival Airport]
+    eta: [ETA]
+    aircraftType: [Aircraft Type]
+    originalPermit: [Original permit]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  excludeColumns: [originalPermit]
+  tableContextPatterns:
+    - '(?iu)NEW\s+SCHEDULE(?:\(S\))?'
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  lastMatchingTable: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  lastMatchingTable: true
+  filterSchedule: true
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: PAX
+  defaultType: A359
+  lastMatchingTable: true
+validation:
+  allowIataAirports: false
+  reviewOnly: true

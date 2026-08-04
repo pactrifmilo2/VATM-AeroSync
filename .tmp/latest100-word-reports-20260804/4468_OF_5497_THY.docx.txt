@@ -1,0 +1,45 @@
+FILE: 4468_OF_5497_THY.docx
+
+PARAGRAPHS
+Hanoi, 31/07/2026 Permit number O/F-5497/07/2026VN
+1. Carrier/Operator
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Cargo.
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 Hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/07/2026 Permit number O/F-5497/07/2026VN
+1. Carrier/Operator
+Name: TURKISH AIRLINES
+IATA code: TK | ICAO code: THY
+Postal Address: USTGECIS UCRET TAHAKKUK VE KONTROL SEFLIGI, ENTEGRE OPERASYON KONTROL BASKANLIGI, TURKISH AIRLINES OPERATION CENTER ISTANBUL AIRPORT/ARNAVUTKOY-ISTANBUL/TURKIYE
+Tel: 902124636363 | Email: ENROUTECHARGES@THY.COM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: TURKISH AIRLINES
+IATA code: TK | ICAO code: THY
+Postal Address: USTGECIS UCRET TAHAKKUK VE KONTROL SEFLIGI, ENTEGRE OPERASYON KONTROL BASKANLIGI, TURKISH AIRLINES OPERATION CENTER ISTANBUL AIRPORT/ARNAVUTKOY-ISTANBUL/TURKIYE
+Tel: 902124636363 | Email: ENROUTECHARGES@THY.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Eff from | Eff to | Day(s) of services | Dep airport | ETD | Arr airport | ETA
+THY6314 | 06AUG26 | 06AUG26 | ---4--- | OMDW | 2150 | VHHH | 0615+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Cargo.
+5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A330-200F B777-200FB747-400F | As per AOC of Turkish Airlines | Turkish
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+OMDW-VHHH | A206 W2 A1
+Airways: Other permitted airways published in Viet Nam’s AIP.

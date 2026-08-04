@@ -1,0 +1,47 @@
+FILE: 4335_OF_5420_AZG1922.docx
+
+PARAGRAPHS
+HANOI, 27JUL2026
+PERMIT NUMBER OF-8135/7/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CARGO
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 27JUL2026
+PERMIT NUMBER OF-8135/7/2026VN
+1. Carrier/Operator
+Name: SILK WAY WEST AIRLINES
+IATA code: 7L | ICAO code: AZG
+Postal Address: Heydar Aliyev International Airport, AZ1044 Baku, Azerbaijan.
+Tel: +994124374757 ext. 6203 | Email: info.hq@silkwaywest.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: CLICK AVIATION NETWORK-DMCC
+Postal Address: JUMEIRAH BAY TOWER X2 X CLUSTER, JLT PO BOX, 337171 DUBAI, UAE
+Tel: +97142766209 | Email: Payables@click.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AZG1922 | 29JUL26 | 29JUL26 | 0030000 | VTBS | 2245 | VHHH | 0115+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CARGO
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+748 | 4K-SW888 or subs | Azerbaijan
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS-VHHH | A202 | VILAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

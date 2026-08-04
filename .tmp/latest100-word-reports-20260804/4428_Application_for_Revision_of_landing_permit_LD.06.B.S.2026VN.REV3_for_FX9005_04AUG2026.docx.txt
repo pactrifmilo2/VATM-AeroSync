@@ -1,0 +1,62 @@
+FILE: 4428_Application_for_Revision_of_landing_permit_LD.06.B.S.2026VN.REV3_for_FX9005_04AUG2026.docx
+
+PARAGRAPHS
+Application for Revision of landing permit
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Refer to the issued permit: LD-06/B/S/2026VN/REV3
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+2. Schedule (UTC Time)
+2.1. Original schedule(s)
+2.2. New schedule(s)
+3. Note:
+OTHER DETAILS REMAIN UNCHANGED.
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. Applicant
+
+TABLE 1
+CONTEXT: Application for Revision of landing permit
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Refer to the issued permit: LD-06/B/S/2026VN/REV3
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX9005 | 03Aug26 | 03Aug26 | 1------ | ANC | 1015 | HAN | 2310 | 77F | LD-06/B/S/2026VN/REV3
+FX9007 | 04Aug26 | 04Aug26 | -2----- | HAN | 0045 | ANC | 1135 | 77F | LD-06/B/S/2026VN/REV3
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX9005 | 03Aug26 | 03Aug26 | 1------ | SIN | 2000 | HAN | 2310 | 77F
+FX9007 | 04Aug26 | 04Aug26 | -2----- | HAN | 0045 | ANC | 1135 | 77F
+
+TABLE 4
+CONTEXT: 3. Note:
+OTHER DETAILS REMAIN UNCHANGED.
+5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RMS-HAN | B214 | LADON | 
+HAN-ANC | R474 |  | TEBAK
+SIN – HAN | M753 N639 | IPRIX | 
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. Applicant
+Company: FedEx Express | 
+Individual: Trương Minh Ngoc | Title (if any): Operation Manager
+Postal Address: Room 225, ACSV Cargo Terminal, Noi Bai, Hà Nội.
+Tel: +84 (24) 35842708 | Email: truong.ngoc@fedex.com
+Submitted date: 03/08/2026

@@ -1,6 +1,6 @@
 id: qlb-generic-issued
 extends: caav-generic-overflight-issued
-priority: -50
+priority: 200
 detectionPatterns:
   - '(?iu)\bQLB\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
@@ -28,11 +28,13 @@ schedule:
     flightNumber: [Flight number, Số hiệu chuyến bay, Số hiệu chuyến bayFlight number]
     effectiveFrom: [Effective from, Hiệu lực từ, Hiệu lực từEffective from]
     effectiveTo: [Effective to, Hiệu lực đến, Hiệu lực đếnEffective to]
-    serviceDays: [Days of services, Day(s) of services, Ngày trong tuần, Ngày trong tuầnDays of services]
+    serviceDays: [Days of services, Day(s) of services, Days of service, Ngày trong tuần, Ngày trong tuầnDays of services]
     fromAirport: [Departure Airport, Sân bay đi, Sân bay điDeparture Airport]
     etd: [ETD, EOBT, Giờ dự kiến đi, Giờ dự kiến điEOBT]
     toAirport: [Arrival Airport, Sân bay đến, Sân bay đếnArrival Airport]
     eta: [ETA, EIBT, Giờ dự kiến đến, Giờ dựkiến đếnEIBT]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  lastMatchingTable: true
 route:
   columns:
     sector: [Sector, Chặng baySector]

@@ -1,0 +1,32 @@
+FILE: 4424_PMSN_QLB_155_CPA652D_23JUL2026.docx
+
+PARAGRAPHS
+Hanoi, 22/07/2026 Permit No.: QLB-155/07/2026VN
+Refer to the issued permit: OF-90/A/S/2026VN ( REV7 )
+Carrier/Operator
+2. Revised Item or Additional details or Cancelled : Flight delay and change callsign
+Original schedule(s) (UTC Time)
+New schedule(s) (UTC Time)
+3. Notes: OTHER MAIN DETAILS IS UNCHANGED.
+BRGDS. TRAN KHAC LUU FOR HOANG TUAN NAM MANAGER OF FCC
+C/C: NGUYEN THI TRANG NHUNG - DEP MAN OF FCC (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 22/07/2026 Permit No.: QLB-155/07/2026VN
+Refer to the issued permit: OF-90/A/S/2026VN ( REV7 )
+Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 2
+CONTEXT: 2. Revised Item or Additional details or Cancelled : Flight delay and change callsign
+Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+CPA652 | 22Jul2026 | 22Jul2026 | 3 | WSSS | 0445Z | VHHH | 0900Z | A359 | OF-90/A/S/2026VN
+
+TABLE 3
+CONTEXT: New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CPA652D | 23Jul2026 | 23Jul2026 | 4 | WSSS | 0115Z | VHHH | 0510Z | A359

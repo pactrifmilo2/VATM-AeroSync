@@ -4,7 +4,7 @@ detectionPatterns:
 - (?iu)\bOF\s*-\s*\d+
 - (?iu)VISTAJET\s+LIMITED
 - (?iu)\bVJT\d+\b
-- (?isu)^(?!.*(?:/REV\d+|\bORIGINAL\b.*\bNEW\b)).*$
+- (?isu)^(?!.*(?:/REV\d+|\bORIGINAL\b.*\bNEW\b|\bOLD\b.*\bNEW\b|\bREVISED\s+ITEM\b)).*$
 permit:
   pattern: (?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b
   numberGroup: number
@@ -74,6 +74,7 @@ schedule:
     serviceDays:
     - Days of services
     - Day(s) of services
+    - Days of service
     fromAirport:
     - Departure Airport
     - Dep airport
@@ -103,7 +104,9 @@ schedule:
   tableContextPatterns: []
   dateFormats:
   - dMMMyy
+  - dMMMuuuu
   - d-MMM-yy
+  - d-MMM-uuuu
   - d/M/uuuu
   timeFormats:
   - HHmm

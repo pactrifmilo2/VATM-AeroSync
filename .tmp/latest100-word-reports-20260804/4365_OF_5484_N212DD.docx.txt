@@ -1,0 +1,46 @@
+FILE: 4365_OF_5484_N212DD.docx
+
+PARAGRAPHS
+HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-8165/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+6. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 31 JUL 2026
+PERMIT NUMBER: OF-8165/07/2026VN
+1. Carrier/Operator
+Name: SINO JET MANAGEMENT LIMITED
+Postal Address: Suite 2801, 28/F, Central Plaza,18 Harbour Road, Wan Chai, Hong Kong
+ |  | 
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: SINO JET MANAGEMENT LIMITED
+Postal address: Suite 2801, 28/F, Central Plaza,18 Harbour Road, Wan Chai, Hong Kong
+Email: fltops@sinojet.org
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | EOBT | Arrival Airport | EIBT
+N212DD | 03AUG26 | 03AUG26 | 1------ | VHHH | 2200 | WSSL | 0110+1
+N212DD | 05AUG26 | 05AUG26 | --3---- | WSSL | 0130 | VHHH | 0510
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight(S): PRIVATE FLIGHT
+5. Aircraft:
+Aircraft Type(ICAO code) | Aircraft registration mark
+GLF6 | N212DD
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+VHHH-WSSL | L642
+WSSL-VHHH | M771

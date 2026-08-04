@@ -1,0 +1,43 @@
+FILE: 4332_OF_5414_N1972.docx
+
+PARAGRAPHS
+HA NOI, 28 JUL 2026
+PERMIT NUMBER: OF-8132/07/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 28 JUL 2026
+PERMIT NUMBER: OF-8132/07/2026VN
+1. Carrier/Operator
+Name: NIKE FLIGHT OPERATIONS
+Postal Address: 4223 NE Penny Way, Hillsboro, Oregon, USA, 97124
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: WORLD FUEL SERVICES, INC.
+Postal Address: ACCOUNTS PAYABLE9800 N.W. 41ST STREET SUITE 400 MIAMI, FL 33178 US
+Email: TSACCOUNTING@WFSCORP.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+N1972 | 04AUG26 | 04AUG26 | -2----- | WSSL | 0100 | RJTT | 0710
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Private Flight
+5. Aircraft:
+Aircraft Type | Registration Mark
+G650ER | N1972
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways
+WSSL-RJTT | M771
+Airways: Other permitted airways published in Viet Nam’s AIP.
