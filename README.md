@@ -60,8 +60,8 @@ Initialize the AeroSync tables while connected as that schema user:
   @D:\path\to\VATM-AeroSync\scripts\init-aerosync-oracle.sql
 ```
 
-The initialization script creates only AeroSync-owned tables, indexes, constraints,
-and the `FLIGHT_DATA_SEQ` sequence. It can be run again safely: existing tables and
+The initialization script creates only AeroSync-owned tables, indexes, and constraints.
+The legacy training/`FLIGHT_DATA` table and sequence are intentionally excluded. It can be run again safely: existing tables and
 indexes are kept. After initialization, set
 `SPRING_JPA_HIBERNATE_DDL_AUTO=validate` so application startup verifies the schema
 without modifying it.
@@ -102,7 +102,7 @@ Edit `.env` with a text editor. For a basic local setup, the defaults point to l
 | `SPRING_DATASOURCE_*` | `localhost:1521/XEPDB1` | Oracle XE connection |
 | `SPRING_RABBITMQ_*` | `localhost:5672` | guest / guest |
 | `SPRING_DATA_REDIS_*` | `localhost:6379` | |
-| `APP_FILE_PATHS_*` | `C:/vatm-storage/...` | Created automatically on first run |
+| `APP_FILE_PATHS_*` | `D:/vatm-storage/...` | Created automatically on first run |
 | `APP_INGEST_SCHEDULER_FIXED_DELAY_MS` | `300000` (5 min) | Use `30000` for faster dev testing |
 | `APP_EMAIL_*` | Empty password | Optional — see [Email ingest](#email-ingest-optional) |
 
@@ -161,7 +161,7 @@ The UI connects to `http://localhost:8080` and auto-refreshes every 3 seconds.
 Copy the sample CSV into the incoming folder:
 
 ```powershell
-copy aerosync-worker\src\test\resources\samples\valid-flights.csv C:\vatm-storage\incoming\
+copy aerosync-worker\src\test\resources\samples\valid-flights.csv D:\vatm-storage\incoming\
 ```
 
 Wait for the next ingest cycle (or set `APP_INGEST_SCHEDULER_FIXED_DELAY_MS=30000` in `.env` and restart). Then check:
@@ -171,12 +171,9 @@ Wait for the next ingest cycle (or set `APP_INGEST_SCHEDULER_FIXED_DELAY_MS=3000
 
 ### 8. Confirm data in Oracle Database (optional)
 
-```powershell
-sqlplus vatm_user@localhost:1521/XEPDB1
-SELECT COUNT(*) FROM flight_data;
-```
-
-Or use an Oracle client connected to the `XEPDB1` service on `localhost:1521` as `VATM_USER`.
+The legacy CSV/training `flight_data` writer is currently disabled. Permit
+documents are verified in the ATFM master/detail tables instead; the old
+`flight_data` query is intentionally not used.
 
 ---
 
@@ -234,7 +231,7 @@ You do not need to import files one at a time. Copy a whole folder into the inco
 directory:
 
 ```powershell
-Copy-Item -Path 'C:\source-permits\*.doc*' -Destination 'C:\vatm-storage\incoming'
+Copy-Item -Path 'C:\source-permits\*.doc*' -Destination 'D:\vatm-storage\incoming'
 ```
 
 The ingest service accepts up to 100 files per scan by default, so 50 documents are
@@ -244,11 +241,12 @@ uses its own target transaction: one master row in `T_PERMMASTER_SC`, followed b
 its schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID`.
 
 Format recognition is profile-based rather than automatic machine-learning
-training. The reusable profiles are stored under
-`aerosync-worker/src/main/resources/permit-formats`, while airport and aircraft
-normalization data is under `permit-reference`. New files with one of the learned
-layouts are handled automatically; a genuinely new layout requires another YAML
-profile or reference mapping.
+training. The legacy `flight_data`/training persistence path is intentionally
+disabled and is not part of the active worker schema. The reusable profiles are
+stored under `aerosync-worker/src/main/resources/permit-formats`, while airport
+and aircraft normalization data is under `permit-reference`. New files with one
+of the configured layouts are handled automatically; a genuinely new layout
+requires another YAML profile or reference mapping.
 
 Revision forms are parsed and validated, but are marked `REVISION_REVIEW` instead
 of being written automatically. This prevents a revision from silently replacing
@@ -427,7 +425,7 @@ dotnet build aerosync-ui\AeroSync.UI.csproj -p:Platform=x64
 .\aerosync-ui\bin\x64\Debug\net8.0-windows10.0.19041.0\AeroSync.UI.exe
 
 # Test file ingest
-copy aerosync-worker\src\test\resources\samples\valid-flights.csv C:\vatm-storage\incoming\
+copy aerosync-worker\src\test\resources\samples\valid-flights.csv D:\vatm-storage\incoming\
 
 # Stop
 .\run-aerosync.bat stop

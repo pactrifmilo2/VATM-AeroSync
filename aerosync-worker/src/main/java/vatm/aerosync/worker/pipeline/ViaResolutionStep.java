@@ -2,7 +2,6 @@ package vatm.aerosync.worker.pipeline;
 
 import org.springframework.stereotype.Component;
 import vatm.aerosync.worker.atfm.AtfmAirportCodeResolver;
-import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 import vatm.aerosync.worker.atfm.AtfmViaResolver;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
@@ -62,7 +61,7 @@ public class ViaResolutionStep {
             context.setSchedulePermit(permit.withFlights(resolvedFlights));
         } catch (SQLException exception) {
             throw new IllegalStateException(
-                    "Failed to resolve ATFM routes from M_VIA: " + exception.getMessage(),
+                    "Failed to resolve ATFM routes from M_AIRPORT_ROUTE/M_VIA: " + exception.getMessage(),
                     exception);
         }
     }
@@ -84,15 +83,8 @@ public class ViaResolutionStep {
                               ScheduleFlight flight,
                               String from,
                               String to) throws SQLException {
-        try {
-            return viaResolver.resolve(
-                    connection, from, to, permit.operatorId(), flight.via());
-        } catch (AtfmReferenceDataException exception) {
-            if (permit.emptyAirwaysAllowed()) {
-                return null;
-            }
-            throw exception;
-        }
+        return viaResolver.resolve(
+                connection, from, to, permit.operatorId(), flight.via());
     }
 
     private record RouteKey(String from, String to, String operator, String documentVia) {

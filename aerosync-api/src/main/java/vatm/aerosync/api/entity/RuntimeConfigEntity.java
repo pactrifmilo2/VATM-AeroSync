@@ -24,6 +24,12 @@ public class RuntimeConfigEntity {
     @Column(name = "scheduler_fixed_delay_ms", nullable = false)
     private long schedulerFixedDelayMs;
 
+    @Column(name = "ingestion_mode")
+    private String ingestionMode = "EMAIL";
+
+    @Column(name = "folder_polling_interval_ms")
+    private Long folderPollingIntervalMs = 60_000L;
+
     @Column(name = "max_files_per_cycle", nullable = false)
     private int maxFilesPerCycle;
 
@@ -85,6 +91,22 @@ public class RuntimeConfigEntity {
 
     public void setSchedulerFixedDelayMs(long schedulerFixedDelayMs) {
         this.schedulerFixedDelayMs = schedulerFixedDelayMs;
+    }
+
+    public String getIngestionMode() {
+        return ingestionMode;
+    }
+
+    public void setIngestionMode(String ingestionMode) {
+        this.ingestionMode = ingestionMode;
+    }
+
+    public long getFolderPollingIntervalMs() {
+        return folderPollingIntervalMs == null ? 60_000L : folderPollingIntervalMs;
+    }
+
+    public void setFolderPollingIntervalMs(long folderPollingIntervalMs) {
+        this.folderPollingIntervalMs = folderPollingIntervalMs;
     }
 
     public int getMaxFilesPerCycle() {

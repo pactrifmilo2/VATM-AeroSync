@@ -2,29 +2,35 @@
     x:Class="AeroSync.UI.Views.EmailResendDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Chọn file để gửi lại qua Gmail"
-    PrimaryButtonText="Gửi lại qua Gmail"
+    Title="Xác nhận resend qua Gmail"
+    PrimaryButtonText="Bắt đầu resend"
     SecondaryButtonText="Hủy"
     IsPrimaryButtonEnabled="False">
-    <ScrollViewer MaxHeight="610" HorizontalScrollBarVisibility="Disabled">
-        <StackPanel Spacing="16" Width="520">
+    <ScrollViewer MaxHeight="650" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Spacing="16" Width="560">
             <Border Background="#F8FAFC" BorderBrush="#D9E2EF" BorderThickness="1" CornerRadius="10" Padding="14">
                 <Grid ColumnSpacing="20">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="3*" /><ColumnDefinition Width="2*" /></Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Spacing="5">
-                        <TextBlock Text="{Binding Email.Sender}" Foreground="#0B5CAD" FontWeight="Bold" />
-                        <TextBlock Text="{Binding Email.Subject}" TextWrapping="Wrap" Foreground="#334155" />
+                        <TextBlock Text="{Binding ScopeTitle}" Foreground="#0B5CAD" FontWeight="Bold" />
+                        <TextBlock Text="{Binding ScopeSubtitle}" TextWrapping="Wrap" Foreground="#334155" />
                     </StackPanel>
                     <StackPanel Grid.Column="1" Spacing="5">
-                        <TextBlock Text="{Binding Email.ReceivedLabel}" Foreground="#334155" />
-                        <TextBlock Text="{Binding Email.MaskedMessageId}" FontFamily="Consolas" FontSize="11" Foreground="#64748B" />
+                        <TextBlock Text="{Binding ScopeDetail}" Foreground="#334155" TextWrapping="Wrap" />
                         <TextBlock Text="{Binding AttachmentLabel}" FontWeight="SemiBold" Foreground="#102A56" />
                     </StackPanel>
                 </Grid>
             </Border>
 
             <StackPanel Spacing="8">
-                <TextBlock Text="Chọn ít nhất một trạng thái" FontWeight="Bold" Foreground="#102A56" />
+                <Grid>
+                    <TextBlock Text="Chọn ít nhất một trạng thái" FontWeight="Bold" Foreground="#102A56" VerticalAlignment="Center" />
+                    <CheckBox x:Name="SelectAllStatusesCheckBox"
+                              Content="Chọn tất cả trạng thái có thể resend"
+                              HorizontalAlignment="Right"
+                              Checked="SelectAllStatuses_Changed"
+                              Unchecked="SelectAllStatuses_Changed" />
+                </Grid>
                 <ListView ItemsSource="{Binding StatusOptions}" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -37,7 +43,7 @@
                                         <TextBlock Text="{Binding Description}" Foreground="#64748B" FontSize="12" TextWrapping="Wrap" />
                                     </StackPanel>
                                     <Border Grid.Column="2" Background="#EEF4FF" CornerRadius="14" Padding="12,5" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Count}" Foreground="#174A8B" FontWeight="Bold" />
+                                        <TextBlock Text="{Binding CountLabel}" Foreground="#174A8B" FontWeight="Bold" />
                                     </Border>
                                 </Grid>
                             </Border>
@@ -50,11 +56,11 @@
                 <Grid ColumnSpacing="9">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition /></Grid.ColumnDefinitions>
                     <SymbolIcon Grid.Column="0" Symbol="Important" Foreground="#C2410C" VerticalAlignment="Top" />
-                    <TextBlock Grid.Column="1" Text="Hệ thống tạo email Gmail mới và không xóa permit ATFM. File giống bản cũ vẫn phải qua kiểm tra SHA-256 và có thể được đánh dấu duplicate." Foreground="#9A3412" TextWrapping="Wrap" />
+                    <TextBlock Grid.Column="1" Text="Email được gửi lần lượt, không gửi đồng thời. Với từng email gửi thành công, hệ thống sẽ xóa SHA-256, SyncJob, dữ liệu phép bay và file lưu cũ; lịch sử thông báo vẫn được giữ lại." Foreground="#9A3412" TextWrapping="Wrap" />
                 </Grid>
             </Border>
             <Border Background="#EFF6FF" BorderBrush="#BFDBFE" BorderThickness="1" CornerRadius="10" Padding="14">
-                <TextBlock x:Name="SelectionSummaryText" Foreground="#174A8B" FontWeight="SemiBold" />
+                <TextBlock x:Name="SelectionSummaryText" Foreground="#174A8B" FontWeight="SemiBold" TextWrapping="Wrap" />
             </Border>
         </StackPanel>
     </ScrollViewer>

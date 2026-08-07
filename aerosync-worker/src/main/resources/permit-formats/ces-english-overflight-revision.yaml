@@ -1,0 +1,64 @@
+id: ces-english-overflight-revision
+extends: caav-generic-overflight-revision
+priority: 280
+detectionPatterns:
+  - '(?iu)(?:REFER\s+TO|PERMIT\s+NUMBER)\s*(?:OF\s*-?\s*)?\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CES\b|CHINA\s+EASTERN\s+AIRLINES)'
+  - '(?iu)(?:REVISED\s+ITEM|NEW\s+SCHEDULE)'
+permit:
+  pattern: '(?iu)\b(?:OF\s*-?\s*)(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN(?:\s*\.?\s*RVS?\.?\s*\d*)?\b'
+  numberGroup: number
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: en
+operator:
+  fixedValue: CES
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)(?:POSTAL\s+ADDRESS|ADDRESS)\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight number(1)]
+    effectiveFrom: [Effective from, Effective from(2)]
+    effectiveTo: [Effective To, Effective to, Effective to(3)]
+    serviceDays: [Day(s) of services, Days of services, Days of services(4)]
+    fromAirport: [Departure Airport, Departure Airport(5)]
+    etd: [ETD, ETD(6)]
+    toAirport: [Arrival Airport, Arrival Airport(7)]
+    eta: [ETA, ETA(8)]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  excludeColumns: []
+  preferredTableContextPatterns:
+    - '(?iu)REVISED\s+ITEM'
+    - '(?iu)NEW\s+SCHEDULE'
+  lastMatchingTable: true
+  dateFormats: [dMMMyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+aircraft:
+  defaultType: B737
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  remarkPrefix: PAX
+validation:
+  reviewOnly: false
+  allowIataAirports: false

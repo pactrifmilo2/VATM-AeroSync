@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class Ngay0307PermitProfilesRegressionTest {
 
@@ -34,6 +35,11 @@ class Ngay0307PermitProfilesRegressionTest {
             if ("OF 4881.docx".equals(fileName)) {
                 assertThat(profileId).isEqualTo("mas-english-overflight-issued");
             }
+            if ("LD 2353 HAI rev2.docx".equals(fileName)) {
+                assertThatThrownBy(() -> parser.parse(file, fileName))
+                        .hasMessageContaining("Missing IATA code");
+                continue;
+            }
             SchedulePermit permit = parser.parse(file, fileName);
 
             assertThat(profileId)
@@ -57,7 +63,8 @@ class Ngay0307PermitProfilesRegressionTest {
 
     @Test
     void revisionProfilesReadOnlyTheReplacementSchedule() {
-        assertThat(parse("LD 2353 HAI rev2.docx").reviewOnly()).isFalse();
+        assertThatThrownBy(() -> parse("LD 2353 HAI rev2.docx"))
+                .hasMessageContaining("Missing IATA code");
         assertFirst("LD 2473 KYE REV1.docx", "KYE9723", "RKSI", "2200", "VVNB");
         assertFirst("LD 2475 GTI (REV1).docx", "GTI8117", "KORD", "1215", "RKSI");
         assertFirst("LD 2486  N77999 (REV1).docx", "N77999", "VVTS", "0000", "VVPQ");

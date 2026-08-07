@@ -12,7 +12,9 @@ import vatm.aerosync.common.repository.FileRecordRepository;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @Service
@@ -36,14 +38,23 @@ public class AuditLogQueryService {
         if (status != null) {
             stream = stream.filter(log -> log.getResultStatus() == status);
         }
-        return stream
+        List<AuditLog> logs = stream
                 .sorted(Comparator.comparing(AuditLog::getTimestamp).reversed())
-                .map(log -> toResponse(log, source))
+                .limit(500)
+                .toList();
+        Map<Long, FileSourceType> sourceTypes = resolveSourceTypes(logs);
+        return logs.stream()
+                .map(log -> toResponse(log, sourceTypes))
                 .filter(response -> source == null || response.sourceType() == source)
                 .toList();
     }
 
     private Stream<AuditLog> loadLogs(LocalDateTime from, LocalDateTime to) {
+        if (from == null && to == null) {
+            // The dashboard refreshes frequently. Loading the complete audit
+            // table here eventually exhausts the API process as data grows.
+            return auditLogRepository.findTop500ByOrderByTimestampDesc().stream();
+        }
         if (from != null && to != null) {
             return auditLogRepository.findByTimestampBetween(from, to).stream();
         }
@@ -54,12 +65,13 @@ public class AuditLogQueryService {
         if (to != null) {
             return auditLogRepository.findByTimestampBetween(LocalDateTime.MIN, to).stream();
         }
-        return auditLogRepository.findAll().stream();
+        return Stream.empty();
     }
 
-    private AuditLogResponse toResponse(AuditLog log, FileSourceType sourceFilter) {
+    private AuditLogResponse toResponse(AuditLog log, Map<Long, FileSourceType> sourceTypes) {
         Long syncJobId = log.getSyncJob() != null ? log.getSyncJob().getId() : null;
-        FileSourceType sourceType = resolveSourceType(syncJobId);
+        boolean incomingNotice = log.getAction() != null && log.getAction().startsWith("INCOMING_");
+        FileSourceType sourceType = incomingNotice ? FileSourceType.FILESYSTEM : sourceTypes.get(syncJobId);
         return new AuditLogResponse(
                 log.getId(),
                 syncJobId,
@@ -67,16 +79,23 @@ public class AuditLogQueryService {
                 log.getResultStatus(),
                 log.getTimestamp(),
                 log.getDurationMs(),
-                sourceType);
+                sourceType,
+                incomingNotice ? log.getOutputSummary() : null);
     }
 
-    private FileSourceType resolveSourceType(Long syncJobId) {
-        if (syncJobId == null) {
-            return null;
+    private Map<Long, FileSourceType> resolveSourceTypes(List<AuditLog> logs) {
+        List<Long> syncJobIds = logs.stream()
+                .filter(log -> log.getSyncJob() != null)
+                .map(log -> log.getSyncJob().getId())
+                .distinct()
+                .toList();
+        if (syncJobIds.isEmpty()) {
+            return Map.of();
         }
-        return fileRecordRepository.findBySyncJobId(syncJobId).stream()
-                .map(FileRecord::getSourceType)
-                .findFirst()
-                .orElse(null);
+        Map<Long, FileSourceType> sourceTypes = new HashMap<>();
+        for (FileRecord record : fileRecordRepository.findBySyncJobIdIn(syncJobIds)) {
+            sourceTypes.putIfAbsent(record.getSyncJob().getId(), record.getSourceType());
+        }
+        return sourceTypes;
     }
 }

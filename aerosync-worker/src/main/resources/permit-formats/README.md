@@ -95,7 +95,7 @@ operator:
   fixedValue: ABC
 ```
 
-Mã chuyến bay có prefix IATA hai ký tự sẽ được đổi sang ICAO ba ký tự khi `inferIataPrefix: true`. Prefix ICAO ba ký tự được giữ nguyên. Nếu hãng được giải quyết thành `PRV`, ví dụ `XY123` trở thành `PRV123`.
+Mã chuyến bay có prefix IATA hai ký tự sẽ được đổi sang ICAO ba ký tự khi `inferIataPrefix: true`. Prefix ICAO ba ký tự được giữ nguyên. Nếu có IATA thật nhưng không giải quyết được hãng và operator trở thành `PRV`, ví dụ `XY123` có thể trở thành `PRV123`. Riêng khi cả IATA/ICAO là `N/A`, hoặc tài liệu hoàn toàn không có dòng IATA/ICAO, `PRV` chỉ là operator dùng để lưu database và callsign trong Word phải được giữ nguyên.
 
 ### `schedule`
 
@@ -122,7 +122,8 @@ schedule:
 
 Quy tắc chọn bảng:
 
-- Có lịch gốc và lịch sửa đổi: cấu hình `preferredTableContextPatterns` khớp “new/revised/sửa đổi/thay đổi”; parser bỏ lịch gốc khỏi danh sách insert và giữ lịch gốc riêng để đối chiếu revision.
+- Có lịch/chuyến bay cũ hoặc gốc và lịch/chuyến bay mới hoặc sửa đổi: parser luôn bỏ bảng cũ/gốc khỏi danh sách insert và giữ riêng để đối chiếu revision. Quy tắc này dựa vào tiêu đề bảng, không phụ thuộc số phép bay có `REV`, `REV1`, `RVS`, `RVS1` hay không.
+- `preferredTableContextPatterns` dùng để bổ sung cách viết riêng của hãng cho các tiêu đề “new/revised/sửa đổi/thay đổi” mà quy tắc chung chưa bao phủ.
 - Có nhiều bảng cùng nhóm, ví dụ quốc tế và quốc nội: tất cả bảng khớp nhóm được ghép lại.
 - Bảng bổ sung cần insert cùng bảng chính: cấu hình `supplementalTableContextPatterns` cho tiêu đề “additional/supplemental/bổ sung”.
 - Chỉ có một bảng: bảng đó được chọn bình thường.

@@ -1,0 +1,68 @@
+id: khv-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 280
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN\s*/\s*REV\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*KHV\b|AIR\s+CAMBODIA)'
+  - '(?iu)2\.[12]\s+(?:OLD|NEW)\s+SCHEDULE'
+permit:
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\s*/\s*REV\d+\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>\d{1,2}[A-Z]{3}20\d{2}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [dMMMuuuu, d MMM uuuu, d/M/uuuu]
+  locale: en
+operator:
+  fixedValue: KHV
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)(?:POSTAL\s+ADDRESS|ADDRESS)\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival Airport]
+    eta: [ETA]
+    aircraftType: [Aircraft Type]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  excludeColumns: []
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\s+NEW\s+SCHEDULE'
+  lastMatchingTable: true
+  dateFormats: [dMMMyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A321
+  remarkPrefix: PAX
+validation:
+  reviewOnly: false
+  # Air Cambodia's table uses three-letter IATA airport codes (for example KOS).
+  # Keep the value and let the airport reference/normalization layer resolve it.
+  allowIataAirports: true

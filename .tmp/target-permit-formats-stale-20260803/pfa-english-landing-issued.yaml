@@ -1,9 +1,0 @@
-id: pfa-english-landing-issued
-extends: caav-generic-landing-issued
-priority: 200
-detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d+'
-  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*PFA\b|PACIFIC\s+FLIGHT\s+SERVICES)'
-  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
-operator:
-  fixedValue: PFA

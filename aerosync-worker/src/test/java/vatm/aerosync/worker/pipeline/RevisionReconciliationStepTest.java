@@ -3,75 +3,44 @@ package vatm.aerosync.worker.pipeline;
 import org.junit.jupiter.api.Test;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.enums.FileSourceType;
-import vatm.aerosync.common.exception.BusinessRuleException;
-import vatm.aerosync.worker.atfm.AtfmRevisionBaseline;
 import vatm.aerosync.worker.atfm.AtfmScheduleGateway;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.ScheduleFlight;
 import vatm.aerosync.worker.model.SchedulePermit;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 class RevisionReconciliationStepTest {
 
     @Test
-    void reconcile_inheritsUnchangedAircraftAndRouteFromAtfm() {
+    void reconcile_keepsReplacementRowsWithoutAtfmLookup() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
-        ScheduleFlight original = flight(1935L, BigDecimal.valueOf(79000), "FDX9082", "WSSS", "PANC", "M765");
-        SchedulePermit revision = permit(List.of(flight(0L, null, "FDX9082", "WSSS", "PANC", null)));
-        when(gateway.findRevisionBaseline(revision))
-                .thenReturn(Optional.of(new AtfmRevisionBaseline(10L, 20L, List.of(original))));
+        SchedulePermit revision = permit(List.of(flight("NEW100")), List.of(flight("OLD100")));
         ProcessingContext context = context(revision);
 
         new RevisionReconciliationStep(gateway).reconcile(context);
 
-        ScheduleFlight reconciled = context.getSchedulePermit().flights().getFirst();
-        assertThat(reconciled.craftId()).isEqualTo(1935L);
-        assertThat(reconciled.mtow()).isEqualByComparingTo("79000");
-        assertThat(reconciled.via()).isEqualTo("M765");
+        assertThat(context.getSchedulePermit().flights()).extracting(ScheduleFlight::flightNumber)
+                .containsExactly("NEW100");
+        assertThat(context.getSchedulePermit().originalFlights()).extracting(ScheduleFlight::flightNumber)
+                .containsExactly("OLD100");
+        verifyNoInteractions(gateway);
     }
 
     @Test
-    void reconcile_usesDeclaredOriginalAndReturnsOnlyRowsToAppend() {
+    void reconcile_doesNotFailWhenRevisionBaseIsMissing() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
-        ScheduleFlight unchanged = flight(99L, BigDecimal.valueOf(1000),
-                "FDX1000", "VVNB", "VVTS", "W1");
-        ScheduleFlight original = flight(1935L, BigDecimal.valueOf(79000),
-                "FDX9082", "WSSS", "PANC", "M765");
-        ScheduleFlight replacement = flight(0L, null,
-                "FDX9082", "WSSS", "RCTP", null);
-        SchedulePermit revision = permit(List.of(replacement), List.of(original));
-        when(gateway.findRevisionBaseline(revision)).thenReturn(Optional.of(
-                new AtfmRevisionBaseline(10L, 20L, List.of(unchanged, original))));
+        SchedulePermit revision = permit(List.of(flight("NEW100")), List.of());
 
-        ProcessingContext context = context(revision);
-        new RevisionReconciliationStep(gateway).reconcile(context);
+        new RevisionReconciliationStep(gateway).reconcile(context(revision));
 
-        assertThat(context.getSchedulePermit().flights()).hasSize(1);
-        assertThat(context.getSchedulePermit().flights().getFirst().toAirport()).isEqualTo("RCTP");
-        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(1935L);
-    }
-
-    @Test
-    void reconcile_rejectsAmbiguousAtfmBaseline() {
-        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
-        SchedulePermit revision = permit(List.of(flight(0L, null, "NEW100", "VVNB", "VVTS", null)));
-        when(gateway.findRevisionBaseline(revision)).thenReturn(Optional.of(
-                new AtfmRevisionBaseline(10L, 20L, List.of(
-                        flight(1L, BigDecimal.ZERO, "OLD100", "VVNB", "VVDN", "A1"),
-                        flight(2L, BigDecimal.ZERO, "OLD200", "VVDN", "VVTS", "W1")))));
-
-        assertThatThrownBy(() -> new RevisionReconciliationStep(gateway).reconcile(context(revision)))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("BR-REVISION-BASE-AMBIGUOUS");
+        assertThat(revision.flights()).hasSize(1);
+        verifyNoInteractions(gateway);
     }
 
     private ProcessingContext context(SchedulePermit permit) {
@@ -79,10 +48,6 @@ class RevisionReconciliationStepTest {
                 7L, "C:/revision.docx", "a".repeat(64), FileSourceType.EMAIL, false));
         context.setSchedulePermit(permit);
         return context;
-    }
-
-    private SchedulePermit permit(List<ScheduleFlight> flights) {
-        return permit(flights, List.of());
     }
 
     private SchedulePermit permit(List<ScheduleFlight> flights, List<ScheduleFlight> originals) {
@@ -93,15 +58,10 @@ class RevisionReconciliationStepTest {
                 flights, originals);
     }
 
-    private ScheduleFlight flight(long craftId,
-                                  BigDecimal mtow,
-                                  String number,
-                                  String from,
-                                  String to,
-                                  String via) {
+    private ScheduleFlight flight(String number) {
         return new ScheduleFlight(
-                "CAR", craftId, mtow, number, null, "0000007", from, to,
-                "0300", "1540", via, LocalDate.of(2026, 8, 16),
+                "CAR", 0L, null, number, null, "0000007", "VVNB", "VVTS",
+                "0300", "1540", null, LocalDate.of(2026, 8, 16),
                 LocalDate.of(2026, 8, 16), null, null);
     }
 }

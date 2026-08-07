@@ -1,0 +1,8 @@
+App.xbf
+MainWindow.xbf
+Views\ConfigPage.xbf
+Views\DashboardPage.xbf
+Views\EmailResendDialog.xbf
+Views\EmailResendPage.xbf
+Views\JobDetailsDialog.xbf
+Views\PlaceholderPage.xbf

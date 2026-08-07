@@ -1,8 +1,0 @@
-id: prv-avcair-qlb-issued
-extends: qlb-generic-issued
-priority: 250
-detectionPatterns:
-  - '(?iu)\bQLB\s*-\s*\d+'
-  - '(?iu)(?:AVCAIR\s+PTY\s+LTD|\bVHULJ\b)'
-operator:
-  fixedValue: PRV

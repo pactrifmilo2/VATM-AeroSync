@@ -41,6 +41,8 @@ class ConfigControllerTest {
         mockMvc.perform(get("/api/config"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.schedulerFixedDelayMs").value(300000))
+                .andExpect(jsonPath("$.ingestionMode").value("EMAIL"))
+                .andExpect(jsonPath("$.folderPollingIntervalMs").value(60000))
                 .andExpect(jsonPath("$.maxFilesPerCycle").value(100))
                 .andExpect(jsonPath("$.blacklistSenders[0]").value("ops@vatm.local"))
                 .andExpect(jsonPath("$.incomingDir").value("/data/incoming/"))
@@ -80,9 +82,27 @@ class ConfigControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void putConfig_acceptsBothIngestionMode() throws Exception {
+        RuntimeConfigDto both = new RuntimeConfigDto(
+                300_000L, "BOTH", 60_000L, 100, List.of(),
+                "/data/incoming/", "/data/processed/", "/data/error/",
+                "mail.vatm.vn", 993, "IMAP SSL/TLS", "system_slb@vatm.vn",
+                "secret", "Exponential", 10, true, true, false);
+        when(runtimeConfigService.updateConfig(any())).thenReturn(both);
+
+        mockMvc.perform(put("/api/config")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(both)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.ingestionMode").value("BOTH"));
+    }
+
     private RuntimeConfigDto configDto(long schedulerFixedDelayMs, int maxFilesPerCycle, List<String> senders) {
         return new RuntimeConfigDto(
                 schedulerFixedDelayMs,
+                "EMAIL",
+                60_000L,
                 maxFilesPerCycle,
                 senders,
                 "/data/incoming/",

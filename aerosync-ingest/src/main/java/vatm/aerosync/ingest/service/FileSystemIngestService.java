@@ -5,11 +5,14 @@ import org.springframework.stereotype.Service;
 import vatm.aerosync.common.config.FilePathProperties;
 import vatm.aerosync.common.debug.DebugSessionLog;
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.entity.AuditLog;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
+import vatm.aerosync.common.enums.SyncStatus;
+import vatm.aerosync.common.repository.AuditLogRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.ingest.support.Hashing;
 import vatm.aerosync.ingest.support.PriorityDetector;
@@ -31,17 +34,20 @@ public class FileSystemIngestService {
     private final IngestPublisher ingestPublisher;
     private final FileRecordRepository fileRecordRepository;
     private final StringRedisTemplate redisTemplate;
+    private final AuditLogRepository auditLogRepository;
 
     public FileSystemIngestService(FilePathProperties filePathProperties,
                                  DeduplicationService deduplicationService,
                                  IngestPublisher ingestPublisher,
                                  FileRecordRepository fileRecordRepository,
-                                 StringRedisTemplate redisTemplate) {
+                                 StringRedisTemplate redisTemplate,
+                                 AuditLogRepository auditLogRepository) {
         this.filePathProperties = filePathProperties;
         this.deduplicationService = deduplicationService;
         this.ingestPublisher = ingestPublisher;
         this.fileRecordRepository = fileRecordRepository;
         this.redisTemplate = redisTemplate;
+        this.auditLogRepository = auditLogRepository;
     }
 
     public int ingestUpTo(int limit) {
@@ -87,7 +93,10 @@ public class FileSystemIngestService {
         if (deduplicationService.isDuplicate(hash)) {
             DebugSessionLog.log("D", "FileSystemIngestService.java:ingestFile", "duplicate hash skipped",
                     DebugSessionLog.map("file", file.getFileName().toString(), "hash", hash));
-            deduplicationService.createSkippedDuplicateJob(hash);
+            SyncJob duplicateJob = deduplicationService.createSkippedDuplicateJob(hash);
+            saveIncomingNotice(duplicateJob, "INCOMING_DUPLICATE_SKIPPED", SyncStatus.SKIPPED,
+                    file, "Đã đọc file từ Incoming nhưng bỏ qua vì nội dung trùng SHA-256: "
+                            + file.getFileName());
             markPathSeen(file);
             return false;
         }
@@ -119,9 +128,25 @@ public class FileSystemIngestService {
                 FileSourceType.FILESYSTEM,
                 priority);
         ingestPublisher.publish(event);
+        saveIncomingNotice(saved, "INCOMING_FILE_ACCEPTED", SyncStatus.PENDING,
+                file, "Đã nhận file từ Incoming và đưa vào hàng đợi xử lý: " + file.getFileName());
         DebugSessionLog.log("B", "FileSystemIngestService.java:ingestFile", "published ingest event",
                 DebugSessionLog.map("syncJobId", saved.getId(), "path", record.getStoredPath()));
         return true;
+    }
+
+    private void saveIncomingNotice(SyncJob job,
+                                    String action,
+                                    SyncStatus status,
+                                    Path file,
+                                    String message) {
+        AuditLog auditLog = new AuditLog();
+        auditLog.setSyncJob(job);
+        auditLog.setAction(action);
+        auditLog.setInputSummary(file.toAbsolutePath().normalize().toString());
+        auditLog.setOutputSummary(message);
+        auditLog.setResultStatus(status);
+        auditLogRepository.save(auditLog);
     }
 
     private void markDownloaded(FileRecord record, Path file, String checksum) {

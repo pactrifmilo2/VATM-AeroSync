@@ -1,0 +1,50 @@
+id: thy-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 280
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN\s*/\s*REV\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*THY\b|TURKISH\s+AIRLINES\s+CARGO)'
+permit:
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\s*/\s*REV\d+\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}[A-Z]{3}20\d{2})'
+  group: date
+  formats: [d/M/uuuu, d MMM uuuu, dMMMuuuu]
+  locale: en
+operator:
+  fixedValue: THY
+schedule:
+  preferredTableContextPatterns: ['(?iu)2\.2\.?\s*(?:NEW|REVISED)']
+  lastMatchingTable: true
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival Airport]
+    eta: [ETA]
+    aircraftType: [Aircraft Type]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: CAR
+  includeEta: true
+route:
+  tableRequired: false
+  allowEmpty: true
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B77W
+  auxiliaryRequiredColumns: []
+validation:
+  reviewOnly: false
+  allowIataAirports: true

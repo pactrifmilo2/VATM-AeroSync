@@ -28,21 +28,44 @@ public sealed partial class EmailResendPage : Page
             return;
         }
 
+        await ShowResendDialogAndExecuteAsync([email]);
+    }
+
+    private async void ResendSelectedButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel.IsLoading)
+        {
+            return;
+        }
+
+        var selected = ViewModel.SelectedEmails;
+        if (selected.Count == 0)
+        {
+            await ShowMessageSafelyAsync("Chưa chọn email", "Hãy chọn ít nhất một email để resend.");
+            return;
+        }
+
+        await ShowResendDialogAndExecuteAsync(selected);
+    }
+
+    private async Task ShowResendDialogAndExecuteAsync(IReadOnlyList<EmailGroupRow> emails)
+    {
         try
         {
-            var dialog = new EmailResendDialog(email) { XamlRoot = XamlRoot };
+            var dialog = new EmailResendDialog(emails) { XamlRoot = XamlRoot };
             if (await dialog.ShowAsync() != ContentDialogResult.Primary)
             {
                 return;
             }
 
             ViewModel.IsLoading = true;
-            ViewModel.StatusMessage = $"Đang gửi lại email của {email.Sender} qua Gmail...";
-            var result = await ViewModel.ResendAsync(email, dialog.SelectedStatuses);
-
-            await ShowMessageSafelyAsync(
-                "Đã gửi lại email qua Gmail",
-                $"Người nhận: {result.Recipient}\nFile đã đính kèm: {result.AttachmentsSent}\nFile không còn trong kho lưu trữ: {result.AttachmentsSkipped}\nMessage-ID mới: {result.SentMessageId}\n\nEmail mới sẽ được ingest kiểm tra theo lịch quét hộp thư.");
+            var result = await ViewModel.ResendManyAsync(emails, dialog.SelectedStatuses);
+            var title = result.Failed == 0
+                ? "Đã hoàn tất resend email"
+                : result.Succeeded > 0
+                    ? "Resend email hoàn tất một phần"
+                    : "Không thể resend email";
+            await ShowMessageSafelyAsync(title, BuildResultMessage(result));
         }
         catch (Exception ex)
         {
@@ -56,6 +79,26 @@ public sealed partial class EmailResendPage : Page
         }
 
         await ViewModel.SearchAsync();
+    }
+
+    private static string BuildResultMessage(BulkEmailResendResult result)
+    {
+        var message = $"Email gửi thành công: {result.Succeeded}\n"
+                      + $"Email gửi lỗi: {result.Failed}\n"
+                      + $"Email bỏ qua do không có trạng thái phù hợp: {result.Skipped}\n"
+                      + $"Tổng file đã gửi: {result.AttachmentsSent}\n\n"
+                      + "Các email gửi thành công đã được dọn dữ liệu cũ và sẽ được ingest lại như email mới.";
+
+        if (result.Errors.Count > 0)
+        {
+            message += "\n\nChi tiết lỗi:\n- "
+                       + string.Join("\n- ", result.Errors.Take(8));
+            if (result.Errors.Count > 8)
+            {
+                message += $"\n- ... và {result.Errors.Count - 8} lỗi khác.";
+            }
+        }
+        return message;
     }
 
     private async Task ShowMessageSafelyAsync(string title, string content)

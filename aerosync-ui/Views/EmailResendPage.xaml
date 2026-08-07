@@ -15,12 +15,12 @@
         <Grid Grid.Row="0">
             <StackPanel Spacing="3">
                 <TextBlock Text="QUẢN LÝ RESEND EMAIL" FontSize="26" FontWeight="Bold" Foreground="#102A56" />
-                <TextBlock Text="Tìm email theo messageId, chọn trạng thái và gửi lại các attachment phù hợp qua Gmail." Foreground="#64748B" />
+                <TextBlock Text="Tìm trên toàn bộ dữ liệu, lọc theo trạng thái, chọn một hoặc tất cả email và gửi lại tuần tự qua Gmail." Foreground="#64748B" />
             </StackPanel>
             <Border HorizontalAlignment="Right" VerticalAlignment="Center" Background="#E8F7EE" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="18" Padding="12,7">
                 <StackPanel Orientation="Horizontal" Spacing="7">
                     <SymbolIcon Symbol="ProtectedDocument" Foreground="#15803D" />
-                    <TextBlock Text="Kiểm tra an toàn đang bật" Foreground="#15803D" FontWeight="SemiBold" />
+                    <TextBlock Text="Dọn dữ liệu cũ sau khi gửi thành công" Foreground="#15803D" FontWeight="SemiBold" />
                 </StackPanel>
             </Border>
         </Grid>
@@ -28,24 +28,26 @@
         <Border Grid.Row="1" Background="White" BorderBrush="#D9E2EF" BorderThickness="1" CornerRadius="12" Padding="16,12">
             <Grid ColumnSpacing="12">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.2*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1.2*" />
                     <ColumnDefinition Width="1.2*" />
-                    <ColumnDefinition Width="1.4*" />
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="1.2*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0" Header="Tên hoặc địa chỉ email người gửi" PlaceholderText="Ví dụ: tu1412000@gmail.com" Text="{Binding SenderFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNotLoading}" />
                 <DatePicker Grid.Column="1" Header="Từ ngày" Date="{Binding FromDate, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
                 <DatePicker Grid.Column="2" Header="Đến ngày" Date="{Binding ToDate, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
                 <ComboBox Grid.Column="3" Header="Trạng thái chung" ItemsSource="{Binding OverallStatuses}" SelectedItem="{Binding SelectedOverallStatus, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
-                <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Bottom" Spacing="8">
+                <ComboBox Grid.Column="4" Header="Trạng thái file" ItemsSource="{Binding AttachmentStatuses}" SelectedItem="{Binding SelectedAttachmentStatus, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
+                <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Bottom" Spacing="8">
                     <Button Command="{Binding SearchCommand}" IsEnabled="{Binding IsNotLoading}" Background="#0B5CAD" Foreground="White" Padding="18,8">
                         <StackPanel Orientation="Horizontal" Spacing="7">
                             <SymbolIcon Symbol="Find" />
                             <TextBlock Text="Tìm kiếm" FontWeight="SemiBold" />
                         </StackPanel>
                     </Button>
-                    <Button Command="{Binding ClearCommand}" IsEnabled="{Binding IsNotLoading}" Padding="12,8"><SymbolIcon Symbol="Clear" /></Button>
+                    <Button Command="{Binding ClearCommand}" IsEnabled="{Binding IsNotLoading}" Padding="12,8" ToolTipService.ToolTip="Xóa bộ lọc"><SymbolIcon Symbol="Clear" /></Button>
                 </StackPanel>
             </Grid>
         </Border>
@@ -70,7 +72,7 @@
 
         <Border Grid.Row="3" Background="White" BorderBrush="#D9E2EF" BorderThickness="1" CornerRadius="12">
             <Grid>
-                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
                 <Grid Grid.Row="0" Padding="16,10" Background="#F8FAFC">
                     <StackPanel>
                         <TextBlock Text="DANH SÁCH EMAIL" FontSize="16" FontWeight="Bold" Foreground="#174A8B" />
@@ -83,7 +85,25 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-                <controls:DataGrid Grid.Row="1" x:Name="EmailGrid"
+
+                <Grid Grid.Row="1" Padding="16,9" Background="#EEF4FF" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0"
+                              Content="{Binding SelectAllLabel}"
+                              IsChecked="{Binding IsAllSelected, Mode=TwoWay}"
+                              IsEnabled="{Binding IsNotLoading}"
+                              VerticalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Text="{Binding SelectionLabel}" Foreground="#475569" VerticalAlignment="Center" />
+                    <Button Grid.Column="2"
+                            Content="Resend email đã chọn"
+                            Click="ResendSelectedButton_Click"
+                            IsEnabled="{Binding CanResendSelected}"
+                            Background="#0B5CAD"
+                            Foreground="White"
+                            Padding="18,8" />
+                </Grid>
+
+                <controls:DataGrid Grid.Row="2" x:Name="EmailGrid"
                                    AutoGenerateColumns="False"
                                    GridLinesVisibility="Horizontal"
                                    HeadersVisibility="Column"
@@ -91,6 +111,13 @@
                                    IsEnabled="{Binding IsNotLoading}"
                                    ItemsSource="{Binding Emails}">
                     <controls:DataGrid.Columns>
+                        <controls:DataGridTemplateColumn Header="CHỌN" Width="64">
+                            <controls:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}" IsEnabled="{Binding CanResend}" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </controls:DataGridTemplateColumn.CellTemplate>
+                        </controls:DataGridTemplateColumn>
                         <controls:DataGridTemplateColumn Header="NGƯỜI GỬI / TIÊU ĐỀ" Width="2.2*">
                             <controls:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -110,6 +137,7 @@
                                 <DataTemplate><Border Background="#EEF4FF" BorderBrush="#BFDBFE" BorderThickness="1" CornerRadius="12" Padding="10,4" HorizontalAlignment="Left"><TextBlock Text="{Binding OverallStatus}" Foreground="#174A8B" FontWeight="Bold" FontSize="11" /></Border></DataTemplate>
                             </controls:DataGridTemplateColumn.CellTemplate>
                         </controls:DataGridTemplateColumn>
+                        <controls:DataGridTextColumn Header="TIẾN ĐỘ" Binding="{Binding ResendState}" Width="125" />
                         <controls:DataGridTemplateColumn Header="HÀNH ĐỘNG" Width="105">
                             <controls:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate><Button Content="Resend" Click="ResendButton_Click" IsEnabled="{Binding CanResend}" Background="#0B5CAD" Foreground="White" Padding="14,6" /></DataTemplate>
@@ -124,7 +152,7 @@
             <Grid ColumnSpacing="9">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition /></Grid.ColumnDefinitions>
                 <SymbolIcon Grid.Column="0" Symbol="Important" Foreground="#C2410C" />
-                <TextBlock Grid.Column="1" Text="Resend tạo một email Gmail mới và không xóa dữ liệu ATFM. Khi ingest nhận email, SHA-256 vẫn được kiểm tra nên file giống hệt bản cũ có thể được đánh dấu duplicate." Foreground="#9A3412" TextWrapping="Wrap" />
+                <TextBlock Grid.Column="1" Text="Mỗi email được gửi tuần tự để tránh quá tải Gmail. Sau khi Gmail gửi thành công, hệ thống xóa SHA-256, SyncJob và dữ liệu phép bay cũ; thông báo lịch sử vẫn được giữ lại. Email mới sẽ được ingest như lần đầu." Foreground="#9A3412" TextWrapping="Wrap" />
             </Grid>
         </Border>
     </Grid>

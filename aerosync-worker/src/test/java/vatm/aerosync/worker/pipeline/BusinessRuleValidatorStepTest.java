@@ -133,6 +133,17 @@ class BusinessRuleValidatorStepTest {
                 .hasMessageContaining("BR-SERVICE-DAYS-RANGE");
     }
 
+    @Test
+    void validate_rejectsBeginDateAfterEndDate() {
+        ProcessingContext context = scheduleContext(
+                "1000000", LocalDate.of(2026, 8, 6), LocalDate.of(2026, 8, 4));
+
+        assertThatThrownBy(() -> validator.validate(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("BR-EFFECTIVE-DATES")
+                .hasMessageContaining("begin date must not be after end date");
+    }
+
     private ProcessingContext contextWith(FlightRow row) {
         ProcessingContext context = new ProcessingContext(
                 new FileIngestedEvent(1L, "/tmp/f.csv", "h", FileSourceType.FILESYSTEM, false));

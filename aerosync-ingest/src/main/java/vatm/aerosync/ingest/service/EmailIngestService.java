@@ -1,9 +1,11 @@
 package vatm.aerosync.ingest.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.config.FilePathProperties;
 import vatm.aerosync.common.entity.EmailMetadata;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
@@ -24,6 +26,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +46,9 @@ public class EmailIngestService {
     private final EmailMetadataRepository emailMetadataRepository;
     private final EmailFailureTracker emailFailureTracker;
     private final EmailAcknowledgementService emailAcknowledgementService;
+    private final FilePathProperties filePathProperties;
 
+    @Autowired
     public EmailIngestService(EmailClient emailClient,
                               EmailProperties emailProperties,
                               DeduplicationService deduplicationService,
@@ -50,7 +56,8 @@ public class EmailIngestService {
                               FileRecordRepository fileRecordRepository,
                               EmailMetadataRepository emailMetadataRepository,
                               EmailFailureTracker emailFailureTracker,
-                              EmailAcknowledgementService emailAcknowledgementService) {
+                              EmailAcknowledgementService emailAcknowledgementService,
+                              FilePathProperties filePathProperties) {
         this.emailClient = emailClient;
         this.emailProperties = emailProperties;
         this.deduplicationService = deduplicationService;
@@ -59,6 +66,21 @@ public class EmailIngestService {
         this.emailMetadataRepository = emailMetadataRepository;
         this.emailFailureTracker = emailFailureTracker;
         this.emailAcknowledgementService = emailAcknowledgementService;
+        this.filePathProperties = filePathProperties;
+    }
+
+    /** Compatibility constructor used by unit tests and small embedded callers. */
+    public EmailIngestService(EmailClient emailClient,
+                              EmailProperties emailProperties,
+                              DeduplicationService deduplicationService,
+                              IngestPublisher ingestPublisher,
+                              FileRecordRepository fileRecordRepository,
+                              EmailMetadataRepository emailMetadataRepository,
+                              EmailFailureTracker emailFailureTracker,
+                              EmailAcknowledgementService emailAcknowledgementService) {
+        this(emailClient, emailProperties, deduplicationService, ingestPublisher,
+                fileRecordRepository, emailMetadataRepository, emailFailureTracker,
+                emailAcknowledgementService, null);
     }
 
     public int ingestUpTo(int limit) {
@@ -118,6 +140,18 @@ public class EmailIngestService {
                                      EmailAttachment attachment,
                                      int attachmentIndex) {
         try {
+            Path stagingDir = emailProperties.getStagingDir();
+            Path messageStagingDir = stagingDir.resolve(messageStagingKey(message));
+            Files.createDirectories(messageStagingDir);
+            Path storedFile = messageStagingDir.resolve(
+                    "%03d_%s".formatted(attachmentIndex, sanitizeFileName(attachment.fileName())));
+            Files.write(storedFile, attachment.content());
+            // Keep a durable copy of every supported email attachment.  The worker
+            // moves the staging copy to processed/error/quarantine; duplicate
+            // attachments used to be deleted here and therefore appeared to be
+            // missing even though the email had been downloaded successfully.
+            preserveEmailDownload(message, attachment, attachmentIndex);
+
             Optional<EmailMetadata> existingAttachment = emailMetadataRepository
                     .findByMailboxFolderAndUidValidityAndMessageUidAndAttachmentIndex(
                             message.mailboxFolder(),
@@ -125,14 +159,9 @@ public class EmailIngestService {
                             message.messageUid(),
                             attachmentIndex);
             if (existingAttachment.isPresent()) {
+                Files.deleteIfExists(storedFile);
                 return false;
             }
-            Path stagingDir = emailProperties.getStagingDir();
-            Path messageStagingDir = stagingDir.resolve(messageStagingKey(message));
-            Files.createDirectories(messageStagingDir);
-            Path storedFile = messageStagingDir.resolve(
-                    "%03d_%s".formatted(attachmentIndex, sanitizeFileName(attachment.fileName())));
-            Files.write(storedFile, attachment.content());
 
             String hash = Hashing.sha256Hex(attachment.content());
 
@@ -199,8 +228,30 @@ public class EmailIngestService {
         if (fileName == null) {
             return false;
         }
-        String normalized = fileName.toLowerCase(java.util.Locale.ROOT);
+        String normalized = fileName.trim().toLowerCase(java.util.Locale.ROOT);
         return SUPPORTED_EXTENSIONS.stream().anyMatch(normalized::endsWith);
+    }
+
+    private void preserveEmailDownload(EmailMessage message,
+                                       EmailAttachment attachment,
+                                       int attachmentIndex) throws IOException {
+        if (filePathProperties == null || filePathProperties.getIncoming() == null
+                || filePathProperties.getIncoming().isBlank()) {
+            return;
+        }
+        Path archiveDir = Path.of(filePathProperties.getIncoming())
+                .resolve("email-attachments")
+                .resolve(LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE));
+        Files.createDirectories(archiveDir);
+        String messageKey = message.messageUid() > 0
+                ? message.uidValidity() + "_" + message.messageUid()
+                : sanitizeFileName(message.messageId());
+        String name = "email_%s_%03d_%s".formatted(
+                sanitizeFileName(messageKey), attachmentIndex, sanitizeFileName(attachment.fileName()));
+        Path target = archiveDir.resolve(name);
+        if (!Files.exists(target)) {
+            Files.write(target, attachment.content());
+        }
     }
 
     private void persistSkippedAttachment(EmailMessage message,

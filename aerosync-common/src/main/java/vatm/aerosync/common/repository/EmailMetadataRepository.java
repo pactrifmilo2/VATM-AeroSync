@@ -26,6 +26,8 @@ public interface EmailMetadataRepository
 
     Optional<EmailMetadata> findFirstBySyncJobIdOrderByIdAsc(Long syncJobId);
 
+    List<EmailMetadata> findBySyncJobId(Long syncJobId);
+
     List<EmailMetadata> findBySyncJobIdIn(Collection<Long> syncJobIds);
 
     List<EmailMetadata> findByMailboxFolderAndUidValidityAndMessageUid(

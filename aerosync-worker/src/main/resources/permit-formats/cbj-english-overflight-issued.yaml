@@ -1,0 +1,53 @@
+id: cbj-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 280
+detectionPatterns:
+  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CBJ\b|BEIJING\s+CAPITAL\s+AIRLINES)'
+permit:
+  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\b'
+  numberGroup: number
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>\d{1,2}(?:st|nd|rd|th)?\s+[A-Z]{3,9}\s+20\d{2}|\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d MMMM uuuu, d MMM uuuu, d/M/uuuu]
+  locale: en
+operator:
+  fixedValue: CBJ
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [EOBT, ETD]
+    toAirport: [Arrival Airport]
+    eta: [EIBT, ETA]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: CAR
+  includeEta: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (ICAO code)]
+    registrationMarks: [Aircraft registration mark, Registration Mark]
+  auxiliaryRequiredColumns: []
+  defaultType: A330
+validation:
+  reviewOnly: false
+  allowIataAirports: false

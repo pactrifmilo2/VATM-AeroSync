@@ -326,7 +326,7 @@ Run these services locally on Windows:
 | RabbitMQ | 5672 / 15672 | Messaging |
 | Redis | 6379 | Dedup, locks, email failure counter |
 
-File paths (worker/common config): `incoming`, `processed`, `error`, `quarantine` under `C:/vatm-storage/...`.
+File paths (worker/common config): `incoming`, `processed`, `error`, `quarantine` under `D:/vatm-storage/...`.
 
 ---
 

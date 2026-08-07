@@ -14,6 +14,17 @@
             <TabView>
                 <TabViewItem Header="Email &amp; Thư mục" IsClosable="False">
                     <StackPanel Padding="4,16,4,4" Spacing="12">
+                        <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="16">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="NGUỒN ĐỌC TỰ ĐỘNG" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                                <TextBlock Text="Chọn một chế độ đọc. Chế độ cả hai chạy email và Incoming đồng thời, mỗi nguồn có ngân sách xử lý riêng." Foreground="#64748B" TextWrapping="Wrap" />
+                                <StackPanel Orientation="Horizontal" Spacing="24">
+                                    <CheckBox Content="Tự đọc từ email" IsChecked="{Binding IsEmailMode, Mode=TwoWay}" />
+                                    <CheckBox Content="Tự đọc từ thư mục Incoming" IsChecked="{Binding IsFolderMode, Mode=TwoWay}" />
+                                    <CheckBox Content="Đọc đồng thời cả email và Incoming" IsChecked="{Binding IsBothMode, Mode=TwoWay}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
                         <Grid ColumnSpacing="14">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -25,7 +36,9 @@
                                     <TextBlock Text="CẤU HÌNH THƯ MỤC" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
                                     <TextBox Header="Thư mục gốc (Incoming)" Text="{Binding Config.IncomingDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBox Header="Thư mục xử lý (Processed)" Text="{Binding Config.ProcessedDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock Text="File đọc trực tiếp từ Incoming được lưu riêng trong thư mục con incoming/YYYY/MM/DD của Processed." Foreground="#64748B" TextWrapping="Wrap" />
                                     <TextBox Header="Thư mục lỗi (Error)" Text="{Binding Config.ErrorDir, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <NumberBox Header="Chu kỳ đọc thư mục (ms)" Value="{Binding Config.FolderPollingIntervalMs, Mode=TwoWay}" Minimum="10000" />
                                 </StackPanel>
                             </Border>
 

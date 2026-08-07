@@ -30,7 +30,11 @@ public class FileArchiverStep {
     }
 
     public Path archiveProcessed(Path sourceFile, FileSourceType sourceType, String sender) throws IOException {
-        return moveTo(sourceFile, Path.of(filePathProperties.getProcessed()), sourceType, null, sender);
+        Path processedRoot = Path.of(filePathProperties.getProcessed());
+        Path targetRoot = sourceType == FileSourceType.FILESYSTEM
+                ? processedRoot.resolve("incoming")
+                : processedRoot;
+        return moveTo(sourceFile, targetRoot, sourceType, null, sender);
     }
 
     public Path archiveError(Path sourceFile, FileSourceType sourceType, String errorDetail, String sender)

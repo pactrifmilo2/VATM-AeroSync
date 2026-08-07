@@ -1,0 +1,24 @@
+id: caav-generic-landing-issued-na-operator
+extends: caav-generic-landing-issued
+priority: 150
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:IATA\s*(?:CODE)?|MA\s*IATA)\s*:\s*(?:N/A|NA)\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|MA\s*ICAO)\s*:\s*(?:N/A|NA)\b'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|Flight\s+number)'
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>(?<!\d)\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}[A-Z]{3}20\d{2})'
+  group: date
+  formats: [d/M/uuuu, d-MMM-uu, d-MMM-uuuu, d MMM uuuu, dMMMuuuu]
+  locale: en
+billingAddress:
+  source: TABLE_WITH_CONTEXT
+  pattern: '(?isu)2\.\s*Billing\s+address\s*:.*?Postal\s+address\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+schedule:
+  includeEta: true
+  inferIataPrefix: false
+aircraft:
+  registrationColumn: registrationMarks

@@ -8,7 +8,7 @@ permit:
   pattern: '(?iu)\bQLB\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   sourceTemplate: 'QLB-{number}/{month}/{year}VN'
-  normalizedTemplate: 'QLB {number}/S/VATM/{year}'
+  normalizedTemplate: 'QLB {number}/S/QLB/{year}'
   zeroPadGroups:
     number: 5
 billingAddress:
@@ -17,7 +17,7 @@ billingAddress:
   group: value
   required: false
 master:
-  authorId: VATM
+  authorId: QLB
   permitType: QLB
   version: A
   season: S

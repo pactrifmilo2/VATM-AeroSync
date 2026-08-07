@@ -28,6 +28,15 @@ class AtfmViaResolverTest {
                 )
                 """);
         connection.createStatement().execute("""
+                CREATE TABLE M_AIRPORT_ROUTE (
+                    ID NUMBER,
+                    FROM_AIRP VARCHAR2(4),
+                    TO_AIRP VARCHAR2(4),
+                    ROUTE VARCHAR2(150),
+                    SUMMARY NUMBER
+                )
+                """);
+        connection.createStatement().execute("""
                 INSERT INTO M_VIA (FROM_AIRP, TO_AIRP, VIA, OPER) VALUES
                     ('VVTS', 'VVCA', ' Q2/W12/W1/W11 ', 'VJC'),
                     ('VVTS', 'VVCA', ' Q2/Q7/Q1/W11/W1 ', 'HVN'),
@@ -49,6 +58,17 @@ class AtfmViaResolverTest {
     void resolve_usesFromToAndOperatorForTheHvnRoute() throws Exception {
         assertThat(resolver.resolve(connection, "vvts", "vvca", "hvn", null))
                 .isEqualTo("Q2/Q7/Q1/W11/W1");
+    }
+
+    @Test
+    void resolve_prefersAirportRouteCatalogWhenDocumentRouteIsMissing() throws Exception {
+        connection.createStatement().execute("""
+                INSERT INTO M_AIRPORT_ROUTE (ID, FROM_AIRP, TO_AIRP, ROUTE, SUMMARY)
+                VALUES (1, 'VVTS', 'VVCA', 'W1/A206', 10)
+                """);
+
+        assertThat(resolver.resolve(connection, "VVTS", "VVCA", "HVN", null))
+                .isEqualTo("W1/A206");
     }
 
     @Test
@@ -74,7 +94,7 @@ class AtfmViaResolverTest {
         assertThatThrownBy(() -> resolver.resolve(
                 connection, "VVNB", "WSSS", "HVN", null))
                 .isInstanceOf(AtfmReferenceDataException.class)
-                .hasMessageContaining("M_VIA.FROM_AIRP=VVNB")
+                .hasMessageContaining("M_AIRPORT_ROUTE.FROM_AIRP=VVNB")
                 .hasMessageContaining("TO_AIRP=WSSS");
     }
 

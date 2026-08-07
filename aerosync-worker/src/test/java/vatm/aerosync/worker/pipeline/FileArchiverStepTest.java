@@ -48,7 +48,8 @@ class FileArchiverStepTest {
         Path archived = fileArchiverStep.archiveProcessed(source, FileSourceType.FILESYSTEM, null);
 
         assertThat(Files.exists(archived)).isTrue();
-        assertThat(archived.getParent()).isEqualTo(processedDir.resolve("2026").resolve("06").resolve("04"));
+        assertThat(archived.getParent()).isEqualTo(processedDir.resolve("incoming")
+                .resolve("2026").resolve("06").resolve("04"));
         // No sender => "local" prefix
         assertThat(archived.getFileName().toString())
                 .startsWith("local_20260604_101530_fs_flight.csv");

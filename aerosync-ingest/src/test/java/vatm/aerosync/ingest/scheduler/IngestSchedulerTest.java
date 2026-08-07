@@ -10,8 +10,11 @@ import vatm.aerosync.ingest.config.IngestProperties;
 import vatm.aerosync.ingest.service.EmailIngestService;
 import vatm.aerosync.ingest.service.EmailAcknowledgementService;
 import vatm.aerosync.ingest.service.FileSystemIngestService;
+import vatm.aerosync.ingest.service.RuntimeIngestionConfig;
 
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -58,5 +61,50 @@ class IngestSchedulerTest {
 
         verify(fileSystemIngestService).ingestUpTo(100);
         verify(emailIngestService).ingestUpTo(0);
+    }
+
+    @Test
+    void runCycle_folderModeRunsOnlyFolderScanner() {
+        RuntimeIngestionConfig runtime = mock(RuntimeIngestionConfig.class);
+        when(runtime.read()).thenReturn(new RuntimeIngestionConfig.Settings(
+                "FOLDER", 10_000L, 60_000L, 25));
+        IngestScheduler scheduler = new IngestScheduler(
+                new IngestProperties(), fileSystemIngestService, emailIngestService,
+                emailAcknowledgementService, runtime);
+
+        scheduler.runCycle();
+
+        verify(fileSystemIngestService).ingestUpTo(25);
+        verify(emailIngestService, never()).ingestUpTo(org.mockito.ArgumentMatchers.anyInt());
+    }
+
+    @Test
+    void runCycle_emailModeRunsOnlyEmailScanner() {
+        RuntimeIngestionConfig runtime = mock(RuntimeIngestionConfig.class);
+        when(runtime.read()).thenReturn(new RuntimeIngestionConfig.Settings(
+                "EMAIL", 10_000L, 60_000L, 25));
+        IngestScheduler scheduler = new IngestScheduler(
+                new IngestProperties(), fileSystemIngestService, emailIngestService,
+                emailAcknowledgementService, runtime);
+
+        scheduler.runCycle();
+
+        verify(emailIngestService).ingestUpTo(25);
+        verify(fileSystemIngestService, never()).ingestUpTo(org.mockito.ArgumentMatchers.anyInt());
+    }
+
+    @Test
+    void runCycle_bothModeRunsBothScannersWithIndependentBudgets() {
+        RuntimeIngestionConfig runtime = mock(RuntimeIngestionConfig.class);
+        when(runtime.read()).thenReturn(new RuntimeIngestionConfig.Settings(
+                "BOTH", 10_000L, 60_000L, 25));
+        IngestScheduler scheduler = new IngestScheduler(
+                new IngestProperties(), fileSystemIngestService, emailIngestService,
+                emailAcknowledgementService, runtime);
+
+        scheduler.runCycle();
+
+        verify(fileSystemIngestService).ingestUpTo(25);
+        verify(emailIngestService).ingestUpTo(25);
     }
 }

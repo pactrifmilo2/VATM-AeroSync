@@ -43,8 +43,17 @@ spring:
 app:
   api:
     defaults:
-      scheduler-fixed-delay-ms: 300000
-      max-files-per-cycle: 100
+      scheduler-fixed-delay-ms: ${APP_INGEST_SCHEDULER_FIXED_DELAY_MS:300000}
+      ingestion-mode: EMAIL
+      folder-polling-interval-ms: 60000
+      max-files-per-cycle: ${APP_INGEST_MAX_FILES_PER_CYCLE:100}
+      incoming-dir: ${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}
+      processed-dir: ${APP_FILE_PATHS_PROCESSED:D:/vatm-storage/processed}
+      error-dir: ${APP_FILE_PATHS_ERROR:D:/vatm-storage/error}
+      email-host: ${APP_EMAIL_HOST:mail.vatm.vn}
+      email-port: ${APP_EMAIL_PORT:993}
+      email-protocol: ${APP_EMAIL_PROTOCOL:imaps}
+      email-user: ${APP_EMAIL_USERNAME:}
       blacklist-senders:
         - ops@vatm.local
   test-replay:

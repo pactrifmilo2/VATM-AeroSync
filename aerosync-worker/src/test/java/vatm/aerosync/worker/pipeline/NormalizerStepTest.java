@@ -64,6 +64,63 @@ class NormalizerStepTest {
                 .containsExactly("HVN1822", "HVN7158");
     }
 
+    @Test
+    void normalize_preservesCallsignWhenIataAndIcaoAreUnavailable() {
+        NormalizerStep step = new NormalizerStep(
+                ZoneId.of("UTC"), new PermitOperatorCatalog());
+        ProcessingContext context = permitContext(
+                "PRV",
+                "Name: DEER JET CO., LTD\nIATA code: N/A\nICAO code: N/A",
+                "B8415");
+
+        step.normalize(context);
+
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(ScheduleFlight::flightNumber)
+                .containsExactly("B8415");
+    }
+
+    @Test
+    void normalize_preservesCallsignWhenOperatorLabelsAreAbsent() {
+        NormalizerStep step = new NormalizerStep(
+                ZoneId.of("UTC"), new PermitOperatorCatalog());
+        ProcessingContext context = permitContext(
+                "PRV", "Private non-scheduled flight", "B8415");
+
+        step.normalize(context);
+
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(ScheduleFlight::flightNumber)
+                .containsExactly("B8415");
+    }
+
+    @Test
+    void normalize_stillUsesPrvForAnUnresolvedRealIataCode() {
+        NormalizerStep step = new NormalizerStep(
+                ZoneId.of("UTC"), new PermitOperatorCatalog());
+        ProcessingContext context = permitContext(
+                "PRV", "IATA code: NN\nICAO code:", "NN123");
+
+        step.normalize(context);
+
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(ScheduleFlight::flightNumber)
+                .containsExactly("PRV123");
+    }
+
+    private ProcessingContext permitContext(String operatorId,
+                                             String rawContent,
+                                             String flightNumber) {
+        ProcessingContext context = new ProcessingContext(
+                new FileIngestedEvent(1L, "/tmp/permit.docx", "h", FileSourceType.EMAIL, false));
+        context.setSchedulePermit(new SchedulePermit(
+                "OF-5592/08/2026VN", "O/F 05592/S/CHK/2026", "5592",
+                "CHK", "O/F", "A", "S", LocalDate.of(2026, 8, 4),
+                operatorId, null, 72, null, "NO", rawContent,
+                List.of(flight(flightNumber))));
+        return context;
+    }
+
     private ScheduleFlight flight(String flightNumber) {
         return new ScheduleFlight(
                 "PAX", 249L, BigDecimal.ZERO, flightNumber, null, "0004000",

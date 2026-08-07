@@ -26,18 +26,30 @@ public class EmailResendService {
     private final EmailMetadataRepository emailMetadataRepository;
     private final FileRecordRepository fileRecordRepository;
     private final OutboundEmailSender emailSender;
+    private final EmailResendCleanupService cleanupService;
 
+    @org.springframework.beans.factory.annotation.Autowired
     public EmailResendService(EmailResendProperties properties,
                               EmailMetadataRepository emailMetadataRepository,
                               FileRecordRepository fileRecordRepository,
-                              OutboundEmailSender emailSender) {
+                              OutboundEmailSender emailSender,
+                              EmailResendCleanupService cleanupService) {
         this.properties = properties;
         this.emailMetadataRepository = emailMetadataRepository;
         this.fileRecordRepository = fileRecordRepository;
         this.emailSender = emailSender;
+        this.cleanupService = cleanupService;
     }
 
-    @Transactional(readOnly = true)
+    /** Compatibility constructor for focused unit tests. */
+    public EmailResendService(EmailResendProperties properties,
+                              EmailMetadataRepository emailMetadataRepository,
+                              FileRecordRepository fileRecordRepository,
+                              OutboundEmailSender emailSender) {
+        this(properties, emailMetadataRepository, fileRecordRepository, emailSender, null);
+    }
+
+    @Transactional
     public EmailResendResponse resend(EmailResendRequest request) {
         List<EmailMetadata> allMetadata = emailMetadataRepository
                 .findByMessageIdOrderByAttachmentIndexAsc(request.messageId());
@@ -97,6 +109,10 @@ public class EmailResendService {
                 original.getBody(),
                 new ArrayList<>(attachments.values()),
                 headers));
+
+        if (cleanupService != null) {
+            cleanupService.cleanup(selected, request.messageId());
+        }
 
         return new EmailResendResponse(
                 request.messageId(),

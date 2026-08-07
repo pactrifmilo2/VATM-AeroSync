@@ -4,12 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 import vatm.aerosync.worker.entity.FlightData;
 
 import java.util.List;
 
-@Repository
+// @Repository intentionally disabled: the legacy training table flight_data
+// was dropped from the active worker schema. It is only enabled by the legacy
+// WorkerJpaTestConfiguration when running historical tests.
 public interface FlightDataRepository extends JpaRepository<FlightData, Long> {
 
     List<FlightData> findBySyncJobId(Long syncJobId);

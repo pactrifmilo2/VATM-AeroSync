@@ -1,0 +1,81 @@
+id: igo-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 300
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}VN\s*/\s*(?:REV|RVS)\d*'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*6E\b|ICAO\s*(?:CODE)?\s*:\s*IGO\b|INTERGLOBE\s+AVIATION|\bINDIGO\b)'
+  - '(?iu)2\.2\.?\s*NEW\s+SCHEDULE'
+permit:
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})VN\s*/\s*(?:REV|RVS)\d*\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>\d{1,2}\s+[A-Z]{3,9}\s+20\d{2}|\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d MMMM uuuu, d MMM uuuu, d/M/uuuu]
+  locale: en
+operator:
+  fixedValue: IGO
+billingAddress:
+  source: TABLE
+  pattern: '(?iu)(?:POSTAL\s+ADDRESS|ADDRESS)\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+purpose:
+  defaultId: PAX
+  mappings:
+    - pattern: '(?iu)\bCARGO\b|\bFREIGHTER\b'
+      value: CAR
+    - pattern: '(?iu)\bFERR?Y\b'
+      value: FER
+    - pattern: '(?iu)\bTECH(?:NICAL)?\s*STOP\b|\bREFUEL\b'
+      value: OTH
+schedule:
+  columns:
+    flightNumber: [Flight Number, Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Day(s) of Services, Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport]
+    eta: [ETA, EIBT]
+    aircraftType: [Aircraft Type]
+    originalPermit: [Original Permit, Original permit]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  excludeColumns: []
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\.?\s*NEW\s+SCHEDULE'
+  supplementalTableContextPatterns: []
+  lastMatchingTable: true
+  inferIataPrefix: true
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  fallbackToFirst: false
+  lastMatchingTable: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A320
+  remarkPrefix: PAX
+  lastMatchingTable: true
+validation:
+  allowIataAirports: true
+  reviewOnly: false

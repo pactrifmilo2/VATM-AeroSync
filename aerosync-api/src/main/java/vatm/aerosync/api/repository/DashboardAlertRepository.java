@@ -11,5 +11,7 @@ public interface DashboardAlertRepository extends JpaRepository<DashboardAlert, 
 
     List<DashboardAlert> findByResolvedFalseOrderByCreatedAtDesc();
 
+    List<DashboardAlert> findBySyncJobId(Long syncJobId);
+
     long countByResolvedFalse();
 }

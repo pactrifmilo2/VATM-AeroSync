@@ -1,0 +1,56 @@
+id: caav-generic-overflight-issued-na-operator
+extends: caav-generic-overflight-issued
+priority: 150
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:IATA\s*(?:CODE)?|MA\s*IATA)\s*:\s*(?:N/A|NA)\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|MA\s*ICAO)\s*:\s*(?:N/A|NA)\b'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|Flight\s+number)'
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>(?<!\d)\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}[A-Z]{3}20\d{2})'
+  group: date
+  formats: [d/M/uuuu, d-MMM-uu, d-MMM-uuuu, d MMM uuuu, dMMMuuuu]
+  locale: en
+billingAddress:
+  source: TABLE_WITH_CONTEXT
+  pattern: '(?isu)2\.\s*Billing\s+address\s*:.*?Postal\s+address\s*:\s*(?<value>[^\n]+)'
+  group: value
+  required: false
+schedule:
+  includeEta: true
+  columns:
+    flightNumber: [Flight number, Flt number]
+    effectiveFrom: [Effective from, Eff from]
+    effectiveTo: [Effective to, Eff to]
+    serviceDays: [Days of services, Day(s) of services, Days of service]
+    fromAirport: [Departure Airport, Dep airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport, Arr airport]
+    eta: [ETA, EIBT]
+    aircraftType: [Aircraft Type, Aircraft type]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  inferIataPrefix: false
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: true
+  allowEmpty: false
+  filterSchedule: true
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft type, Aircraft Type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+  remarkPrefix: ''
+  defaultType: GLEX
+  lastMatchingTable: false

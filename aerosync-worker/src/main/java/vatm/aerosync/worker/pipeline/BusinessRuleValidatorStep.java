@@ -125,7 +125,7 @@ public class BusinessRuleValidatorStep {
         if (flight.beginDate() == null || flight.endDate() == null
                 || flight.beginDate().isAfter(flight.endDate())) {
             errors.add(error(rowNumber, "effectiveDates", "BR-EFFECTIVE-DATES",
-                    "Invalid schedule effective date range",
+                    "Invalid schedule effective date range: begin date must not be after end date",
                     flight.beginDate() + " -> " + flight.endDate()));
         }
         if (!validServiceDays(flight.serviceDays())) {

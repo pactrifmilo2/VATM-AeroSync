@@ -50,7 +50,7 @@ class SyncJobServiceTest {
         when(job.getStatus()).thenReturn(SyncStatus.FAILED);
         FileRecord record = new FileRecord();
         record.setOriginalFileName("data.csv");
-        record.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\28\\operator_20260728_091500_email_data.csv");
+        record.setStoredPath("D:\\vatm-storage\\error\\2026\\07\\28\\operator_20260728_091500_email_data.csv");
         record.setSourceType(FileSourceType.EMAIL);
         record.setSyncJob(job);
         when(syncJobRepository.findAll()).thenReturn(List.of(job));

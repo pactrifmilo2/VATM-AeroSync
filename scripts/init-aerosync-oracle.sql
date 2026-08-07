@@ -64,6 +64,25 @@ DECLARE
             DBMS_OUTPUT.PUT_LINE('Kept existing index ' || UPPER(index_name_in));
         END IF;
     END;
+
+    PROCEDURE add_column_if_missing(
+        table_name_in  VARCHAR2,
+        column_name_in VARCHAR2,
+        column_ddl_in  VARCHAR2
+    ) IS
+        column_count NUMBER;
+    BEGIN
+        SELECT COUNT(*)
+          INTO column_count
+          FROM user_tab_columns
+         WHERE table_name = UPPER(table_name_in)
+           AND column_name = UPPER(column_name_in);
+
+        IF column_count = 0 THEN
+            EXECUTE IMMEDIATE column_ddl_in;
+            DBMS_OUTPUT.PUT_LINE('Added ' || UPPER(table_name_in) || '.' || UPPER(column_name_in));
+        END IF;
+    END;
 BEGIN
     create_table_if_missing('sync_jobs', q'[
         CREATE TABLE sync_jobs (
@@ -167,25 +186,8 @@ BEGIN
         )
     ]');
 
-    create_sequence_if_missing(
-        'flight_data_seq',
-        'CREATE SEQUENCE flight_data_seq START WITH 1 INCREMENT BY 50 CACHE 50 NOCYCLE'
-    );
-
-    create_table_if_missing('flight_data', q'[
-        CREATE TABLE flight_data (
-            id            NUMBER(19,0) NOT NULL,
-            sync_job_id   NUMBER(19,0) NOT NULL,
-            callsign      VARCHAR2(16 CHAR) NOT NULL,
-            from_airport  VARCHAR2(3 CHAR) NOT NULL,
-            to_airport    VARCHAR2(3 CHAR) NOT NULL,
-            date_flight   DATE NOT NULL,
-            created_at    TIMESTAMP(6) NOT NULL,
-            CONSTRAINT pk_flight_data PRIMARY KEY (id),
-            CONSTRAINT fk_flight_data_sync_job
-                FOREIGN KEY (sync_job_id) REFERENCES sync_jobs(id)
-        )
-    ]');
+    /* Legacy training table intentionally disabled; the active worker only
+       imports Word permit files and must not recreate FLIGHT_DATA. */
 
     create_table_if_missing('dashboard_alerts', q'[
         CREATE TABLE dashboard_alerts (
@@ -209,6 +211,8 @@ BEGIN
         CREATE TABLE runtime_config (
             id                          NUMBER(19,0) NOT NULL,
             scheduler_fixed_delay_ms    NUMBER(19,0) NOT NULL,
+            ingestion_mode              VARCHAR2(16 CHAR) DEFAULT 'EMAIL' NOT NULL,
+            folder_polling_interval_ms  NUMBER(19,0) DEFAULT 60000 NOT NULL,
             max_files_per_cycle         NUMBER(10,0) NOT NULL,
             incoming_dir                VARCHAR2(255 CHAR) NOT NULL,
             processed_dir               VARCHAR2(255 CHAR) NOT NULL,
@@ -232,6 +236,15 @@ BEGIN
                 CHECK (send_zalo_alert IN (0, 1))
         )
     ]');
+
+    add_column_if_missing(
+        'runtime_config', 'ingestion_mode',
+        q'[ALTER TABLE runtime_config ADD ingestion_mode VARCHAR2(16 CHAR) DEFAULT 'EMAIL' NOT NULL]'
+    );
+    add_column_if_missing(
+        'runtime_config', 'folder_polling_interval_ms',
+        'ALTER TABLE runtime_config ADD folder_polling_interval_ms NUMBER(19,0) DEFAULT 60000 NOT NULL'
+    );
 
     create_table_if_missing('runtime_config_blacklist', q'[
         CREATE TABLE runtime_config_blacklist (
@@ -271,10 +284,7 @@ BEGIN
         'CREATE INDEX ix_permit_import_status ' ||
         'ON permit_imports(normalized_permit_id, status)'
     );
-    create_index_if_missing(
-        'ix_flight_data_sync_job',
-        'CREATE INDEX ix_flight_data_sync_job ON flight_data(sync_job_id)'
-    );
+    /* ix_flight_data_sync_job intentionally disabled with the training table. */
     create_index_if_missing(
         'ix_dashboard_alerts_job',
         'CREATE INDEX ix_dashboard_alerts_job ON dashboard_alerts(sync_job_id)'
@@ -303,7 +313,6 @@ SELECT table_name
        'EMAIL_METADATA',
        'AUDIT_LOGS',
        'PERMIT_IMPORTS',
-       'FLIGHT_DATA',
        'DASHBOARD_ALERTS',
        'RUNTIME_CONFIG',
        'RUNTIME_CONFIG_BLACKLIST'

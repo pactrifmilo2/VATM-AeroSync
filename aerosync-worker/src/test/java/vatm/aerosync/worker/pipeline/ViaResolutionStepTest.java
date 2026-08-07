@@ -51,6 +51,15 @@ class ViaResolutionStepTest {
                     )
                     """);
             connection.createStatement().execute("""
+                    CREATE TABLE M_AIRPORT_ROUTE (
+                        ID NUMBER,
+                        FROM_AIRP VARCHAR2(4),
+                        TO_AIRP VARCHAR2(4),
+                        ROUTE VARCHAR2(150),
+                        SUMMARY NUMBER
+                    )
+                    """);
+            connection.createStatement().execute("""
                     INSERT INTO M_VIA (FROM_AIRP, TO_AIRP, VIA, OPER) VALUES
                         ('VVTS', 'VVCA', 'Q2/W12/W1/W11', 'VJC'),
                         ('VVTS', 'VVCA', 'Q2/Q7/Q1/W11/W1', 'HVN')

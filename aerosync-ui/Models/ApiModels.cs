@@ -157,12 +157,17 @@ public sealed class AuditLogResponse
     public DateTime Timestamp { get; set; }
     public long? DurationMs { get; set; }
     public string? SourceType { get; set; }
-    public string DisplayLine => $"[{Timestamp:HH:mm:ss}] [{ResultStatus}] {Action}";
+    public string? Message { get; set; }
+    public string DisplayLine => string.IsNullOrWhiteSpace(Message)
+        ? $"[{Timestamp:HH:mm:ss}] [{ResultStatus}] {Action}"
+        : $"[{Timestamp:HH:mm:ss}] [{ResultStatus}] {Message}";
 }
 
 public sealed class RuntimeConfigModel : ObservableObject
 {
     private long schedulerFixedDelayMs = 300_000;
+    private string ingestionMode = "EMAIL";
+    private long folderPollingIntervalMs = 60_000;
     private int maxFilesPerCycle = 100;
     private List<string> blacklistSenders = [];
     private string incomingDir = "";
@@ -183,6 +188,18 @@ public sealed class RuntimeConfigModel : ObservableObject
     {
         get => schedulerFixedDelayMs;
         set => SetProperty(ref schedulerFixedDelayMs, value);
+    }
+
+    public string IngestionMode
+    {
+        get => ingestionMode;
+        set => SetProperty(ref ingestionMode, value);
+    }
+
+    public long FolderPollingIntervalMs
+    {
+        get => folderPollingIntervalMs;
+        set => SetProperty(ref folderPollingIntervalMs, value);
     }
 
     public int MaxFilesPerCycle

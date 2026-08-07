@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CaavEnglishOverflightRevisionProfileTest {
 
@@ -23,7 +24,9 @@ class CaavEnglishOverflightRevisionProfileTest {
 
     @Test
     void parse_mapsOnlyTheNewOverflightSchedule() throws Exception {
-        assertPermit(parser.parse(createDocument(), "OF-5277 (REV1).docx"));
+        assertThatThrownBy(() -> parser.parse(createDocument(), "OF-5277 (REV1).docx"))
+                .hasMessageContaining("IATA and ICAO fields")
+                .hasMessageContaining("blank or invalid");
     }
 
     @Test

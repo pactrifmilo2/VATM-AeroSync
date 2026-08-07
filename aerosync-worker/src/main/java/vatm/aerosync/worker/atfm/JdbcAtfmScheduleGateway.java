@@ -17,6 +17,10 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -85,6 +89,41 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
              WHERE ID = ?
             """;
 
+    private static final String FIND_NO_MASTER_SQL = """
+            SELECT ID, PERM_ID
+              FROM T_PERMMASTER_NO
+             WHERE ID = (SELECT MAX(candidate.ID)
+                           FROM T_PERMMASTER_NO candidate
+                          WHERE candidate.PERMNBR_ID = ?
+                            AND SUBSTR(TRIM(candidate.PERMNBR_ID), -4) = ?)
+            """;
+
+    private static final String LOCK_NO_MASTER_SQL = FIND_NO_MASTER_SQL + " FOR UPDATE";
+
+    private static final String INSERT_NO_MASTER_SQL = """
+            BEGIN
+              INSERT INTO T_PERMMASTER_NO (
+                  PERMNBR_ID, AUTHOR_ID, PERMTYPE, PERMNBR, PERMDATE, OPER_ID,
+                  REFERENCE, VALIDHOURS, STATUS, LASTUSER, LASTMODIFY,
+                  BILLINGADDRESS, PERMCONTENT, PERMCONTENT1, ADDRESS1, VERSION, FLIGHTTYPE)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+              RETURNING ID, PERM_ID INTO ?, ?;
+            END;
+            """;
+
+    private static final String INSERT_NO_DETAIL_SQL = """
+            INSERT INTO T_PERMDETAIL_NO (
+                PERM_ID, CRAFT_ID, MTOW, DAYSFLIGHT, FLIGHTNBR, REGISTRATION,
+                FROM_AIRP, TO_AIRP, ETD, ETA, VIA, STATUS, LASTMODIFY,
+                LASTUSER, PURPOSE_ID, MAX_DATE, REMARK)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """;
+
+    private static final DateTimeFormatter NO_FLIGHT_DATE = new DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern("dd-MMM-uuuu")
+            .toFormatter(java.util.Locale.ENGLISH);
+
     private final AtfmDatabaseProperties properties;
     private final AtfmAirportCodeResolver airportCodeResolver;
 
@@ -98,6 +137,11 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     public Optional<AtfmPermitSnapshot> findExisting(SchedulePermit permit) {
         try (Connection connection = openConnection()) {
             List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
+            List<ScheduleFlight> noFlights = noFlights(resolvedFlights);
+            List<ScheduleFlight> scheduledFlights = scheduledFlights(resolvedFlights);
+            if (scheduledFlights.isEmpty()) {
+                return findExistingNo(connection, permit, noFlights);
+            }
             try (PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
                 statement.setString(1, permit.atfmTargetPermitId());
                 statement.setString(2, requiredPermitYear(permit));
@@ -118,8 +162,12 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                             masterId,
                             permId,
                             permit.revision()
-                                    ? flightsContain(existingFlights, resolvedFlights)
-                                    : masterMatches && flightsMatch(existingFlights, resolvedFlights)));
+                                    ? flightsContain(existingFlights, scheduledFlights)
+                                    : masterMatches && flightsMatch(existingFlights, scheduledFlights)
+                                            && (noFlights.isEmpty()
+                                                || findExistingNo(connection, permit, noFlights)
+                                                        .map(AtfmPermitSnapshot::matchesExpectedPermit)
+                                                        .orElse(false))));
                 }
             }
         } catch (SQLException exception) {
@@ -188,6 +236,20 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     private AtfmWriteResult updateWithinTransaction(Connection connection,
                                                     SchedulePermit permit) throws SQLException {
+        List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
+        List<ScheduleFlight> noFlights = noFlights(resolvedFlights);
+        List<ScheduleFlight> scheduledFlights = scheduledFlights(resolvedFlights);
+        AtfmWriteResult scheduledResult = scheduledFlights.isEmpty()
+                ? null
+                : updateScWithinTransaction(connection, permit.withFlights(scheduledFlights));
+        AtfmWriteResult noResult = noFlights.isEmpty()
+                ? null
+                : upsertNoWithinTransaction(connection, permit.withFlights(noFlights), noFlights);
+        return combine(scheduledResult, noResult);
+    }
+
+    private AtfmWriteResult updateScWithinTransaction(Connection connection,
+                                                      SchedulePermit permit) throws SQLException {
         List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
         validateReferenceData(connection, permit);
         long masterId;
@@ -273,6 +335,20 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private AtfmWriteResult insertWithinTransaction(Connection connection,
                                                     SchedulePermit permit) throws SQLException {
         List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
+        List<ScheduleFlight> noFlights = noFlights(resolvedFlights);
+        List<ScheduleFlight> scheduledFlights = scheduledFlights(resolvedFlights);
+        AtfmWriteResult scheduledResult = scheduledFlights.isEmpty()
+                ? null
+                : insertScWithinTransaction(connection, permit.withFlights(scheduledFlights));
+        AtfmWriteResult noResult = noFlights.isEmpty()
+                ? null
+                : upsertNoWithinTransaction(connection, permit.withFlights(noFlights), noFlights);
+        return combine(scheduledResult, noResult);
+    }
+
+    private AtfmWriteResult insertScWithinTransaction(Connection connection,
+                                                      SchedulePermit permit) throws SQLException {
+        List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
         validateReferenceData(connection, permit);
         ensurePermitNumberIsAvailable(
                 connection, permit.normalizedPermitId(), requiredPermitYear(permit));
@@ -316,6 +392,217 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             }
         }
         return new AtfmWriteResult(masterId, permId, resolvedFlights.size());
+    }
+
+    private Optional<AtfmPermitSnapshot> findExistingNo(Connection connection,
+                                                         SchedulePermit permit,
+                                                         List<ScheduleFlight> expected)
+            throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(FIND_NO_MASTER_SQL)) {
+            statement.setString(1, noPermitId(permit));
+            statement.setString(2, requiredPermitYear(permit));
+            try (ResultSet rows = statement.executeQuery()) {
+                if (!rows.next()) {
+                    return Optional.empty();
+                }
+                long masterId = rows.getLong("ID");
+                long permId = rows.getLong("PERM_ID");
+                List<ExistingFlight> actual = readExistingNoFlights(connection, permId);
+                boolean matches = permit.revision()
+                        ? flightsContain(actual, expected)
+                        : flightsMatch(actual, expected);
+                return Optional.of(new AtfmPermitSnapshot(masterId, permId, matches));
+            }
+        }
+    }
+
+    private AtfmWriteResult upsertNoWithinTransaction(Connection connection,
+                                                       SchedulePermit permit,
+                                                       List<ScheduleFlight> flights)
+            throws SQLException {
+        validateReferenceData(connection, permit);
+        long masterId;
+        long permId;
+        try (PreparedStatement statement = connection.prepareStatement(LOCK_NO_MASTER_SQL)) {
+            statement.setString(1, noPermitId(permit));
+            statement.setString(2, requiredPermitYear(permit));
+            try (ResultSet rows = statement.executeQuery()) {
+                if (rows.next()) {
+                    masterId = rows.getLong("ID");
+                    permId = rows.getLong("PERM_ID");
+                } else {
+                    long[] ids = insertNoMaster(connection, permit);
+                    masterId = ids[0];
+                    permId = ids[1];
+                }
+            }
+        }
+
+        List<ExistingFlight> existing = readExistingNoFlights(connection, permId);
+        List<ScheduleFlight> missing = missingFlights(existing, flights);
+        if (missing.isEmpty()) {
+            return new AtfmWriteResult(masterId, permId, 0);
+        }
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_NO_DETAIL_SQL)) {
+            for (ScheduleFlight flight : missing) {
+                bindNoDetail(statement, permId, flight);
+                statement.addBatch();
+            }
+            int[] counts = statement.executeBatch();
+            for (int count : counts) {
+                if (count == PreparedStatement.EXECUTE_FAILED) {
+                    throw new SQLException("ATFM non-scheduled detail batch reported a failed row");
+                }
+            }
+        }
+        return new AtfmWriteResult(masterId, permId, missing.size());
+    }
+
+    private long[] insertNoMaster(Connection connection, SchedulePermit permit) throws SQLException {
+        try (CallableStatement statement = connection.prepareCall(INSERT_NO_MASTER_SQL)) {
+            int index = 1;
+            statement.setString(index++, noPermitId(permit));
+            statement.setString(index++, permit.authorId());
+            statement.setString(index++, permit.permitType());
+            statement.setString(index++, permit.permitNumber());
+            statement.setDate(index++, Date.valueOf(permit.permitDate()));
+            statement.setString(index++, permit.operatorId());
+            statement.setString(index++, truncateUtf8(permit.reference(), 4000));
+            statement.setInt(index++, permit.validHours());
+            statement.setString(index++, "0");
+            statement.setString(index++, "AEROSYNC");
+            statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(index++, truncateUtf8(permit.billingAddress(), 4000));
+            statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
+            statement.setString(index++, permit.rawContent());
+            statement.setString(index++, permit.billingAddress());
+            statement.setString(index++, permit.version());
+            statement.setString(index++, "NO");
+            statement.registerOutParameter(index++, Types.NUMERIC);
+            statement.registerOutParameter(index, Types.NUMERIC);
+            statement.execute();
+            return new long[] {statement.getLong(index - 1), statement.getLong(index)};
+        }
+    }
+
+    private void bindNoDetail(PreparedStatement statement,
+                              long permId,
+                              ScheduleFlight flight) throws SQLException {
+        int index = 1;
+        statement.setLong(index++, permId);
+        statement.setLong(index++, flight.craftId());
+        statement.setBigDecimal(index++, flight.mtow());
+        statement.setString(index++, flight.beginDate().format(NO_FLIGHT_DATE).toUpperCase(java.util.Locale.ENGLISH));
+        statement.setString(index++, flight.flightNumber());
+        setNullableString(statement, index++, flight.registration());
+        statement.setString(index++, flight.fromAirport());
+        statement.setString(index++, flight.toAirport());
+        statement.setString(index++, flight.etd());
+        setNullableString(statement, index++, flight.eta());
+        statement.setString(index++, flight.via());
+        statement.setString(index++, "0");
+        statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+        statement.setString(index++, "AEROSYNC");
+        statement.setString(index++, flight.purposeId());
+        statement.setDate(index++, Date.valueOf(flight.endDate()));
+        statement.setString(index, truncateUtf8(flight.remark(), 4000));
+    }
+
+    private List<ExistingFlight> readExistingNoFlights(Connection connection,
+                                                        long permId) throws SQLException {
+        String sql = """
+                SELECT PURPOSE_ID, CRAFT_ID, MTOW, DAYSFLIGHT, FLIGHTNBR,
+                       REGISTRATION, FROM_AIRP, TO_AIRP, ETD, ETA, VIA, REMARK
+                  FROM T_PERMDETAIL_NO
+                 WHERE PERM_ID = ?
+                """;
+        List<ExistingFlight> flights = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, permId);
+            try (ResultSet rows = statement.executeQuery()) {
+                while (rows.next()) {
+                    for (LocalDate date : parseNoFlightDates(rows.getString("DAYSFLIGHT"))) {
+                        flights.add(new ExistingFlight(
+                                normalize(rows.getString("PURPOSE_ID")),
+                                rows.getLong("CRAFT_ID"),
+                                defaultZero(rows.getBigDecimal("MTOW")),
+                                normalize(rows.getString("FLIGHTNBR")),
+                                normalize(rows.getString("REGISTRATION")),
+                                serviceDayFor(date),
+                                normalize(rows.getString("FROM_AIRP")),
+                                normalize(rows.getString("TO_AIRP")),
+                                normalize(rows.getString("ETD")),
+                                normalize(rows.getString("ETA")),
+                                normalize(rows.getString("VIA")),
+                                date, date, normalize(rows.getString("REMARK"))));
+                    }
+                }
+            }
+        }
+        return flights;
+    }
+
+    private List<LocalDate> parseNoFlightDates(String value) {
+        if (value == null || value.isBlank()) {
+            return List.of();
+        }
+        List<LocalDate> dates = new ArrayList<>();
+        for (String token : value.split("[,;]")) {
+            String candidate = token.trim();
+            for (String pattern : List.of("d-MMM-uuuu", "d-M-uuuu", "d/M/uuuu")) {
+                try {
+                    dates.add(LocalDate.parse(candidate, new DateTimeFormatterBuilder()
+                            .parseCaseInsensitive().appendPattern(pattern)
+                            .toFormatter(java.util.Locale.ENGLISH)));
+                    break;
+                } catch (DateTimeParseException ignored) {
+                    // Try the next legacy representation.
+                }
+            }
+        }
+        return dates;
+    }
+
+    private String serviceDayFor(LocalDate date) {
+        char[] days = "0000000".toCharArray();
+        int index = date.getDayOfWeek().getValue() - 1;
+        days[index] = (char) ('1' + index);
+        return new String(days);
+    }
+
+    private List<ScheduleFlight> noFlights(List<ScheduleFlight> flights) {
+        return flights.stream()
+                .filter(flight -> flight.beginDate() != null
+                        && flight.beginDate().equals(flight.endDate()))
+                .toList();
+    }
+
+    private List<ScheduleFlight> scheduledFlights(List<ScheduleFlight> flights) {
+        return flights.stream()
+                .filter(flight -> flight.beginDate() == null
+                        || !flight.beginDate().equals(flight.endDate()))
+                .toList();
+    }
+
+    private String noPermitId(SchedulePermit permit) {
+        String target = permit.atfmTargetPermitId();
+        String season = permit.season();
+        if (season != null && !season.isBlank()) {
+            target = target.replaceFirst("/(?i:" + java.util.regex.Pattern.quote(season) + ")/", "/");
+        }
+        return target.replaceFirst("/(?i:S|W)/(?=[A-Z0-9]+/(?:19|20)\\d{2}$)", "/");
+    }
+
+    private AtfmWriteResult combine(AtfmWriteResult scheduled, AtfmWriteResult nonScheduled) {
+        if (scheduled == null) {
+            return nonScheduled;
+        }
+        if (nonScheduled == null) {
+            return scheduled;
+        }
+        return new AtfmWriteResult(
+                scheduled.masterId(), scheduled.permId(),
+                scheduled.detailCount() + nonScheduled.detailCount());
     }
 
     private List<ScheduleFlight> resolveAirportCodes(Connection connection,

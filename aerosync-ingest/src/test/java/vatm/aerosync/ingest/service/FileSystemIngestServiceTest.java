@@ -16,6 +16,7 @@ import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.repository.FileRecordRepository;
+import vatm.aerosync.common.repository.AuditLogRepository;
 import org.springframework.test.util.ReflectionTestUtils;
 import vatm.aerosync.ingest.support.Hashing;
 
@@ -51,6 +52,9 @@ class FileSystemIngestServiceTest {
     @Mock
     private ValueOperations<String, String> valueOperations;
 
+    @Mock
+    private AuditLogRepository auditLogRepository;
+
     private FilePathProperties filePathProperties;
     private FileSystemIngestService fileSystemIngestService;
 
@@ -65,7 +69,8 @@ class FileSystemIngestServiceTest {
                 deduplicationService,
                 ingestPublisher,
                 fileRecordRepository,
-                redisTemplate);
+                redisTemplate,
+                auditLogRepository);
     }
 
     @Test
@@ -90,6 +95,9 @@ class FileSystemIngestServiceTest {
 
         assertThat(ingested).isEqualTo(0);
         verify(deduplicationService).createSkippedDuplicateJob(hash);
+        verify(auditLogRepository).save(org.mockito.ArgumentMatchers.argThat(log ->
+                "INCOMING_DUPLICATE_SKIPPED".equals(log.getAction())
+                        && log.getOutputSummary().contains("dup.csv")));
         verify(ingestPublisher, never()).publish(any());
     }
 
@@ -168,6 +176,9 @@ class FileSystemIngestServiceTest {
                         && record.getDownloadedAt() != null
                         && record.getFileSize() == 2L
                         && record.getChecksum().length() == 64));
+        verify(auditLogRepository).save(org.mockito.ArgumentMatchers.argThat(log ->
+                "INCOMING_FILE_ACCEPTED".equals(log.getAction())
+                        && log.getOutputSummary().contains("data.json")));
     }
 
     private void stubNewPendingJob() {

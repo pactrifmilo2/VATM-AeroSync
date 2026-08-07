@@ -13,6 +13,13 @@
                 <Button HorizontalAlignment="Right" Content="Refresh" Command="{Binding RefreshCommand}" />
             </Grid>
 
+            <Border Background="#EFF6FF" BorderBrush="#3B82F6" BorderThickness="1" CornerRadius="8" Padding="14">
+                <StackPanel Spacing="5">
+                    <TextBlock Text="THÔNG BÁO THƯ MỤC INCOMING" FontWeight="Bold" Foreground="#1D4ED8" />
+                    <TextBlock Text="{Binding IncomingNotice}" TextWrapping="Wrap" Foreground="#1E3A5F" />
+                </StackPanel>
+            </Border>
+
             <Grid ColumnSpacing="16" RowSpacing="16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

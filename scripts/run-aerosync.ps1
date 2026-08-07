@@ -50,10 +50,10 @@ function Ensure-StorageDirs {
     $errorsPath = Read-DotEnvValue -Name "APP_FILE_PATHS_ERROR"
     $quarantine = Read-DotEnvValue -Name "APP_FILE_PATHS_QUARANTINE"
 
-    if (-not $incoming) { $incoming = "C:/vatm-storage/incoming" }
-    if (-not $processed) { $processed = "C:/vatm-storage/processed" }
-    if (-not $errorsPath) { $errorsPath = "C:/vatm-storage/error" }
-    if (-not $quarantine) { $quarantine = "C:/vatm-storage/quarantine" }
+    if (-not $incoming) { $incoming = "D:/vatm-storage/incoming" }
+    if (-not $processed) { $processed = "D:/vatm-storage/processed" }
+    if (-not $errorsPath) { $errorsPath = "D:/vatm-storage/error" }
+    if (-not $quarantine) { $quarantine = "D:/vatm-storage/quarantine" }
 
     foreach ($dir in @($incoming, $processed, $errorsPath, $quarantine)) {
         if (-not (Test-Path $dir)) {
@@ -235,10 +235,10 @@ if ($script:OracleJdbcCheckSkipped) {
     Write-Host "Oracle Database OK"
 }
 
-if ((-not $SkipBuild) -or (-not (Test-JarsPresent))) {
-    Write-Step -Message "Stopping running AeroSync apps before build"
-    Stop-AerosyncApps
+Write-Step -Message "Stopping running AeroSync apps before startup"
+Stop-AerosyncApps
 
+if ((-not $SkipBuild) -or (-not (Test-JarsPresent))) {
     Write-Step -Message "Building applications with Maven"
     if (-not (Test-Path $mvnw)) { throw "Maven wrapper not found at $mvnw" }
     & $mvnw -f (Join-Path $root "pom.xml") clean package `

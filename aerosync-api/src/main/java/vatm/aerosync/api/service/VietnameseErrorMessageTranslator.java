@@ -108,6 +108,18 @@ public class VietnameseErrorMessageTranslator {
         if (lower.startsWith("invalid effective-from date:")) {
             return "Ngày bắt đầu hiệu lực không hợp lệ: " + value.substring(value.indexOf(':') + 1).trim() + ".";
         }
+        if (lower.contains("missing icao code")) {
+            return "Thiếu trường ICAO: file có IATA nhưng ICAO đang trống hoặc không hợp lệ.";
+        }
+        if (lower.contains("missing iata code")) {
+            return "Thiếu trường IATA: file có ICAO nhưng IATA đang trống hoặc không hợp lệ.";
+        }
+        if (lower.contains("airways table row") || lower.contains("airways table is present")) {
+            return "Thiếu đường bay trong bảng Airways; vui lòng điền đủ sector và route.";
+        }
+        if (lower.contains("invalid schedule effective date range")) {
+            return "Sai khoảng ngày hiệu lực: ngày bắt đầu không được lớn hơn ngày kết thúc.";
+        }
         if (lower.startsWith("invalid permit date:")) {
             return "Ngày cấp phép bay không hợp lệ: " + value.substring(value.indexOf(':') + 1).trim() + ".";
         }

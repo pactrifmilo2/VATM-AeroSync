@@ -36,7 +36,7 @@ entries:
     type: 75W
 
   # Manufacturer and marketing names translated to ATFM codes.
-  - aliases: ['B737-800', 'BOEING 737-7EI']
+  - aliases: ['B737-800', 'BOEING 737-7EI', 'BOEING 737-7BC']
     type: B737
   - aliases: ['B747-400F', 'BOEING 747-400F']
     type: B74F

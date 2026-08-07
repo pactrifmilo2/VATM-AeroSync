@@ -19,6 +19,7 @@ public sealed partial class DashboardViewModel : ObservableObject
     private long activeAlerts;
     private bool isLoading;
     private string statusMessage = "Ready";
+    private string incomingNotice = "Chưa có thông báo mới từ thư mục Incoming.";
 
     public ObservableCollection<SyncJobSummaryResponse> Jobs { get; } = [];
     public ObservableCollection<AuditLogResponse> Logs { get; } = [];
@@ -82,6 +83,12 @@ public sealed partial class DashboardViewModel : ObservableObject
         set => SetProperty(ref statusMessage, value);
     }
 
+    public string IncomingNotice
+    {
+        get => incomingNotice;
+        set => SetProperty(ref incomingNotice, value);
+    }
+
     [RelayCommand]
     public async Task RefreshAsync()
     {
@@ -103,7 +110,17 @@ public sealed partial class DashboardViewModel : ObservableObject
             ActiveAlerts = stats.ActiveAlerts;
 
             Replace(Jobs, await apiClient.GetJobsAsync());
-            Replace(Logs, (await apiClient.GetAuditLogsAsync()).Take(20));
+            var auditLogs = await apiClient.GetAuditLogsAsync();
+            Replace(Logs, auditLogs.Take(20));
+            var latestIncoming = auditLogs.FirstOrDefault(log =>
+                log.Action.StartsWith("INCOMING_", StringComparison.OrdinalIgnoreCase));
+            if (latestIncoming is not null)
+            {
+                IncomingNotice = $"{latestIncoming.Timestamp:dd/MM/yyyy HH:mm:ss} - "
+                    + (string.IsNullOrWhiteSpace(latestIncoming.Message)
+                        ? latestIncoming.Action
+                        : latestIncoming.Message);
+            }
             StatusMessage = $"{TotalJobs} jobs tracked · {ProcessingCount} processing · updated {DateTime.Now:HH:mm:ss}";
         }
         catch (Exception ex)

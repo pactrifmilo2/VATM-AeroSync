@@ -21,12 +21,10 @@ import vatm.aerosync.worker.config.RabbitMqProperties;
 )
 @EnableScheduling
 @EntityScan(basePackages = {
-        "vatm.aerosync.common.entity",
-        "vatm.aerosync.worker.entity"
+        "vatm.aerosync.common.entity"
 })
 @EnableJpaRepositories(basePackages = {
-        "vatm.aerosync.common.repository",
-        "vatm.aerosync.worker.repository"
+        "vatm.aerosync.common.repository"
 })
 @EnableConfigurationProperties({FilePathProperties.class, RabbitMqProperties.class})
 public class AerosyncWorkerApplication {

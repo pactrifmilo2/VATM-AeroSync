@@ -12,6 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.temp
 
 ### IntelliJ IDEA ###
 .idea
@@ -35,3 +36,4 @@ build/
 ## file word
 .doc
 .docx
+.tmp/

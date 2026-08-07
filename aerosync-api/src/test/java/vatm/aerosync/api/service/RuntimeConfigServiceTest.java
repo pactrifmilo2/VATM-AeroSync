@@ -28,10 +28,12 @@ class RuntimeConfigServiceTest {
 
         verify(repository).save(org.mockito.ArgumentMatchers.argThat(entity ->
                 entity.getSchedulerFixedDelayMs() == 300_000L
+                        && entity.getIngestionMode().equals("EMAIL")
+                        && entity.getFolderPollingIntervalMs() == 60_000L
                         && entity.getMaxFilesPerCycle() == 100
-                        && entity.getIncomingDir().equals("C:/vatm-storage/incoming")
-                        && entity.getProcessedDir().equals("C:/vatm-storage/processed")
-                        && entity.getErrorDir().equals("C:/vatm-storage/error")
+                        && entity.getIncomingDir().equals("D:/vatm-storage/incoming")
+                        && entity.getProcessedDir().equals("D:/vatm-storage/processed")
+                        && entity.getErrorDir().equals("D:/vatm-storage/error")
                         && entity.getEmailHost().equals("mail.vatm.vn")
                         && entity.getEmailPort() == 993
                         && entity.getEmailProtocol().equals("IMAP SSL/TLS")
@@ -50,6 +52,8 @@ class RuntimeConfigServiceTest {
         when(repository.findById(RuntimeConfigEntity.SINGLETON_ID)).thenReturn(Optional.of(entity));
         RuntimeConfigDto dto = new RuntimeConfigDto(
                 600_000L,
+                "BOTH",
+                120_000L,
                 50,
                 List.of("finance@airline.com", "slot@caa.gov.vn"),
                 "/data/incoming/",

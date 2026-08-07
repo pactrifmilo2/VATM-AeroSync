@@ -1,9 +1,0 @@
-id: vag-vietnamese-landing-issued
-extends: caav-generic-landing-issued
-priority: 250
-detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d+'
-  - '(?iu)(?:MÃ\s*ICAO[ \t]*:[ \t]*VAG\b|\bVAG\d+[A-Z0-9]*\b)'
-  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b|SỬA\s+ĐỔI).*$'
-operator:
-  fixedValue: VAG

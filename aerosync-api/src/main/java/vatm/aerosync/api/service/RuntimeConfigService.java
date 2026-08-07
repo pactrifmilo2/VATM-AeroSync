@@ -29,6 +29,8 @@ public class RuntimeConfigService {
         RuntimeConfigEntity entity = new RuntimeConfigEntity();
         entity.setId(RuntimeConfigEntity.SINGLETON_ID);
         entity.setSchedulerFixedDelayMs(defaults.getSchedulerFixedDelayMs());
+        entity.setIngestionMode(defaults.getIngestionMode());
+        entity.setFolderPollingIntervalMs(defaults.getFolderPollingIntervalMs());
         entity.setMaxFilesPerCycle(defaults.getMaxFilesPerCycle());
         entity.setBlacklistSenders(defaults.getBlacklistSenders());
         entity.setIncomingDir(defaults.getIncomingDir());
@@ -56,6 +58,8 @@ public class RuntimeConfigService {
     public RuntimeConfigDto updateConfig(RuntimeConfigDto dto) {
         RuntimeConfigEntity entity = loadConfig();
         entity.setSchedulerFixedDelayMs(dto.schedulerFixedDelayMs());
+        entity.setIngestionMode(dto.ingestionMode());
+        entity.setFolderPollingIntervalMs(dto.folderPollingIntervalMs());
         entity.setMaxFilesPerCycle(dto.maxFilesPerCycle());
         entity.setBlacklistSenders(dto.blacklistSenders());
         entity.setIncomingDir(dto.incomingDir());
@@ -83,6 +87,8 @@ public class RuntimeConfigService {
     private RuntimeConfigDto toDto(RuntimeConfigEntity entity) {
         return new RuntimeConfigDto(
                 entity.getSchedulerFixedDelayMs(),
+                entity.getIngestionMode() == null ? "EMAIL" : entity.getIngestionMode(),
+                entity.getFolderPollingIntervalMs(),
                 entity.getMaxFilesPerCycle(),
                 entity.getBlacklistSenders(),
                 entity.getIncomingDir(),

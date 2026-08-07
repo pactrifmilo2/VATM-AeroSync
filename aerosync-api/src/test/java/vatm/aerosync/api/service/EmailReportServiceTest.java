@@ -53,7 +53,7 @@ class EmailReportServiceTest {
         fileRecord.setSyncJob(syncJob);
         fileRecord.setSourceType(FileSourceType.EMAIL);
         fileRecord.setOriginalFileName("permit.docx");
-        fileRecord.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_091500_email_permit.docx");
+        fileRecord.setStoredPath("D:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_091500_email_permit.docx");
         fileRecord.setErrorMessage("Unsupported Word permit format; no format profile matched");
         when(repository.findAll(
                 org.mockito.ArgumentMatchers.<Specification<EmailMetadata>>any(),
@@ -93,7 +93,7 @@ class EmailReportServiceTest {
         fileRecord.setSyncJob(syncJob);
         fileRecord.setSourceType(FileSourceType.EMAIL);
         fileRecord.setOriginalFileName("permit.docx");
-        fileRecord.setStoredPath("C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit.docx");
+        fileRecord.setStoredPath("D:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit.docx");
         fileRecord.setErrorMessage("Unsupported Word permit format; no format profile matched");
         PermitImport permitImport = mock(PermitImport.class);
         when(permitImport.getNormalizedPermitId()).thenReturn("O/F 05199/S/CHK/2026");

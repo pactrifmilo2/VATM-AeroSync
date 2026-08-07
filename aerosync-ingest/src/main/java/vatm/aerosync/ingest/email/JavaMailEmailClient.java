@@ -523,6 +523,11 @@ public class JavaMailEmailClient implements EmailClient {
                 BodyPart bodyPart = multipart.getBodyPart(i);
                 collectAttachment(bodyPart, attachments);
             }
+        } else if (content instanceof Part nestedMessage) {
+            // Some clients wrap the real MIME message in message/rfc822.  Do
+            // not depend on the parent MIME type here: IMAP providers often
+            // return an incomplete type header for forwarded attachments.
+            collectAttachment(nestedMessage, attachments);
         }
         return attachments;
     }
@@ -586,18 +591,25 @@ public class JavaMailEmailClient implements EmailClient {
         return stripped.trim();
     }
 
-    private void collectAttachment(BodyPart bodyPart, List<EmailAttachment> attachments) throws MessagingException {
+    private void collectAttachment(Part bodyPart, List<EmailAttachment> attachments) throws MessagingException {
+        if (bodyPart.isMimeType("message/rfc822")) {
+            attachments.addAll(extractAttachments(bodyPart));
+            return;
+        }
         if (bodyPart.isMimeType("multipart/*")) {
             attachments.addAll(extractAttachments(bodyPart));
             return;
         }
         if (isAttachmentPart(bodyPart)) {
-            String fileName = bodyPart.getFileName() != null ? bodyPart.getFileName() : "attachment.csv";
+            String fileName = decodeHeader(bodyPart.getFileName());
+            if (fileName == null || fileName.isBlank()) {
+                fileName = "attachment.csv";
+            }
             attachments.add(new EmailAttachment(fileName, readBytes(bodyPart)));
         }
     }
 
-    private boolean isAttachmentPart(BodyPart bodyPart) throws MessagingException {
+    private boolean isAttachmentPart(Part bodyPart) throws MessagingException {
         if (Part.ATTACHMENT.equalsIgnoreCase(bodyPart.getDisposition())) {
             return true;
         }
@@ -607,7 +619,7 @@ public class JavaMailEmailClient implements EmailClient {
         return bodyPart.isMimeType("text/csv") || bodyPart.isMimeType("application/csv");
     }
 
-    private byte[] readBytes(BodyPart bodyPart) throws MessagingException {
+    private byte[] readBytes(Part bodyPart) throws MessagingException {
         try (InputStream input = bodyPart.getInputStream()) {
             return input.readAllBytes();
         } catch (IOException e) {

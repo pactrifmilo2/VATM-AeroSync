@@ -147,6 +147,21 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
+    void importPermit_insertsRevisionWhenReferencedBaseIsMissing() {
+        context.setSchedulePermit(reviewOnlyPermit());
+        when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.insert(any()))
+                .thenReturn(new AtfmWriteResult(203002L, 202511L, 1));
+
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        assertThat(outcome.targetMasterId()).isEqualTo(203002L);
+        verify(atfmScheduleGateway).insert(any());
+        verify(atfmScheduleGateway, never()).update(any());
+    }
+
+    @Test
     void importPermit_locksAndTracksReferencedRevisionTarget() {
         context.setSchedulePermit(referencedRevisionPermit());
         when(atfmScheduleGateway.findExisting(any()))

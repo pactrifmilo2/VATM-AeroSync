@@ -77,7 +77,7 @@ public class PermitImportCoordinator {
 
         try {
             if (permit.revision()) {
-                return updateExistingPermit(attempt, permit);
+                return importRevision(attempt, permit);
             }
 
             if (!properties.isWriteEnabled()) {
@@ -121,6 +121,12 @@ public class PermitImportCoordinator {
     }
 
     private PermitImportOutcome updateExistingPermit(PermitImport attempt, SchedulePermit permit) {
+        return updateExistingPermit(attempt, permit, null);
+    }
+
+    private PermitImportOutcome updateExistingPermit(PermitImport attempt,
+                                                      SchedulePermit permit,
+                                                      AtfmPermitSnapshot knownTarget) {
         if (!properties.isWriteEnabled()) {
             attempt.setStatus(PermitImportStatus.DRY_RUN);
             attempt.setDetailCount(permit.flights().size());
@@ -128,10 +134,12 @@ public class PermitImportCoordinator {
             permitImportRepository.save(attempt);
             throw new BusinessRuleException(
                     "ATFM-WRITE-DISABLED",
-                    "Revision parsed and compared, but ATFM writes are disabled");
+                    "Revision parsed, but ATFM writes are disabled");
         }
 
-        Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);
+        Optional<AtfmPermitSnapshot> target = knownTarget != null
+                ? Optional.of(knownTarget)
+                : atfmScheduleGateway.findExisting(permit);
         if (target.isEmpty()) {
             markRevision(attempt, "Original ATFM permit was not found");
             throw new BusinessRuleException(
@@ -149,6 +157,46 @@ public class PermitImportCoordinator {
             markDuplicate(attempt, result.masterId(), result.permId(), permit.flights().size());
             return outcome(attempt);
         }
+        attempt.setStatus(PermitImportStatus.SAVED);
+        attempt.setTargetMasterId(result.masterId());
+        attempt.setTargetPermId(result.permId());
+        attempt.setDetailCount(result.detailCount());
+        attempt.setErrorMessage(null);
+        permitImportRepository.save(attempt);
+        return outcome(attempt);
+    }
+
+    /**
+     * Revision path: the parser has already selected only replacement/new
+     * schedule tables.  Do not reconcile the old table against ATFM.  Append
+     * the selected rows to an existing permit, or insert a new permit when the
+     * referenced base permit cannot be found.
+     */
+    private PermitImportOutcome importRevision(PermitImport attempt, SchedulePermit permit) {
+        if (!properties.isWriteEnabled()) {
+            attempt.setStatus(PermitImportStatus.DRY_RUN);
+            attempt.setDetailCount(permit.flights().size());
+            attempt.setErrorMessage("ATFM writes are disabled");
+            permitImportRepository.save(attempt);
+            throw new BusinessRuleException(
+                    "ATFM-WRITE-DISABLED",
+                    "Revision parsed, but ATFM writes are disabled");
+        }
+
+        Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);
+        if (target.isEmpty()) {
+            return insertPermit(attempt, permit);
+        }
+        AtfmPermitSnapshot snapshot = target.get();
+        if (snapshot.matchesExpectedPermit()) {
+            markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
+            return outcome(attempt);
+        }
+        return updateExistingPermit(attempt, permit, snapshot);
+    }
+
+    private PermitImportOutcome insertPermit(PermitImport attempt, SchedulePermit permit) {
+        AtfmWriteResult result = atfmScheduleGateway.insert(permit);
         attempt.setStatus(PermitImportStatus.SAVED);
         attempt.setTargetMasterId(result.masterId());
         attempt.setTargetPermId(result.permId());

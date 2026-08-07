@@ -13,6 +13,16 @@ import java.util.Set;
 @Component
 public class AtfmViaResolver {
 
+    private static final String FIND_AIRPORT_ROUTE_SQL = """
+            SELECT ROUTE
+              FROM M_AIRPORT_ROUTE
+             WHERE UPPER(TRIM(FROM_AIRP)) = ?
+               AND UPPER(TRIM(TO_AIRP)) = ?
+               AND ROUTE IS NOT NULL
+               AND TRIM(ROUTE) IS NOT NULL
+             ORDER BY NVL(SUMMARY, 0) DESC, ID DESC
+            """;
+
     private static final String FIND_ROUTES_SQL = """
             SELECT DISTINCT UPPER(TRIM(VIA)) AS VIA, UPPER(TRIM(OPER)) AS OPER
               FROM M_VIA
@@ -34,6 +44,25 @@ public class AtfmViaResolver {
         if (!existing.isBlank()) {
             return existing;
         }
+
+        // M_AIRPORT_ROUTE is the authoritative airport-pair route catalogue.
+        // Use the most recently maintained/highest-summary route when the Word
+        // document does not publish an airway table.
+        try (PreparedStatement statement = connection.prepareStatement(FIND_AIRPORT_ROUTE_SQL)) {
+            statement.setString(1, from);
+            statement.setString(2, to);
+            try (ResultSet rows = statement.executeQuery()) {
+                while (rows.next()) {
+                    String route = normalizeRoute(rows.getString("ROUTE"));
+                    if (!route.isBlank()) {
+                        return route;
+                    }
+                }
+            }
+        }
+
+        // Keep M_VIA as a compatibility fallback for airport pairs that have
+        // not yet been migrated into M_AIRPORT_ROUTE.
         Set<String> operatorRoutes = new LinkedHashSet<>();
         Set<String> genericRoutes = new LinkedHashSet<>();
         Set<String> allRoutes = new LinkedHashSet<>();
@@ -68,9 +97,9 @@ public class AtfmViaResolver {
             return selectFirst(allRoutes);
         }
         throw new AtfmReferenceDataException(
-                "ATFM route not found: M_VIA.FROM_AIRP=" + from
+                "ATFM route not found: M_AIRPORT_ROUTE.FROM_AIRP=" + from
                         + ", TO_AIRP=" + to
-                        + ", OPER=" + operator);
+                        + " (also checked M_VIA for OPER=" + operator + ")");
     }
 
     private String selectFirst(Set<String> routes) {

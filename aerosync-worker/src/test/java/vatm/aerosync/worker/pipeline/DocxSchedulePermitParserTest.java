@@ -20,6 +20,7 @@ import java.time.ZoneId;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DocxSchedulePermitParserTest {
 
@@ -62,7 +63,7 @@ class DocxSchedulePermitParserTest {
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
         assertThat(permit.normalizedPermitId()).isEqualTo("LD 02483/S/CHK/2026");
-        assertThat(permit.operatorId()).isEqualTo("VNB");
+        assertThat(permit.operatorId()).isEqualTo("PRV");
         assertThat(permit.reviewOnly()).isFalse();
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("VNB593");
@@ -100,7 +101,7 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
-    void parse_vjcWithoutIcao_readsInternationalAndDomesticTablesAndUsesCurrentDate()
+    void parse_vjcWithIataButBlankIcao_failsWithMissingFieldMessage()
             throws Exception {
         Path file = createVjcPermitWithoutIcao();
         Clock fixedClock = Clock.fixed(
@@ -112,17 +113,13 @@ class DocxSchedulePermitParserTest {
                 new PermitOperatorCatalog(),
                 fixedClock);
 
-        SchedulePermit permit = fixedClockParser.parse(file, file.getFileName().toString());
-
-        assertThat(permit.operatorId()).isEqualTo("VJC");
-        assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 31));
-        assertThat(permit.flights())
-                .extracting(flight -> flight.flightNumber())
-                .containsExactly("VJC8890", "VJC1282");
+        assertThatThrownBy(() -> fixedClockParser.parse(file, file.getFileName().toString()))
+                .hasMessageContaining("Missing ICAO code")
+                .hasMessageContaining("IATA is present");
     }
 
     @Test
-    void parse_withoutIcao_passesIataAndCarrierNameToAtfmResolver() throws Exception {
+    void parse_withoutIcao_doesNotSilentlyResolveTheMissingField() throws Exception {
         Path file = createVjcPermitWithoutIcao();
         String[] resolvedInput = new String[2];
         PermitOperatorResolver resolver = (iataCode, carrierName) -> {
@@ -138,13 +135,15 @@ class DocxSchedulePermitParserTest {
                 resolver,
                 Clock.systemDefaultZone());
 
-        SchedulePermit permit = atfmBackedParser.parse(file, file.getFileName().toString());
+        assertThatThrownBy(() -> atfmBackedParser.parse(file, file.getFileName().toString()))
+                .hasMessageContaining("Missing ICAO code");
 
-        assertThat(resolvedInput).containsExactly(
+        /* Previous behavior resolved a missing ICAO from IATA. It is intentionally
                 "VJ", "Công ty cổ phần hàng không Vietjet (Vietjet air)");
         assertThat(permit.operatorId()).isEqualTo("VJC");
         assertThat(permit.flights()).extracting(flight -> flight.flightNumber())
-                .containsExactly("VJC8890", "VJC1282");
+                .containsExactly("VJC8890", "VJC1282"); */
+        assertThat(resolvedInput).containsOnlyNulls();
     }
 
     @Test

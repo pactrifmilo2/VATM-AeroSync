@@ -17,11 +17,13 @@ public class ApiProperties {
     public static class Defaults {
 
         private long schedulerFixedDelayMs = 300_000L;
+        private String ingestionMode = "EMAIL";
+        private long folderPollingIntervalMs = 60_000L;
         private int maxFilesPerCycle = 100;
         private List<String> blacklistSenders = new ArrayList<>(List.of("ops@vatm.local"));
-        private String incomingDir = "C:/vatm-storage/incoming";
-        private String processedDir = "C:/vatm-storage/processed";
-        private String errorDir = "C:/vatm-storage/error";
+        private String incomingDir = "D:/vatm-storage/incoming";
+        private String processedDir = "D:/vatm-storage/processed";
+        private String errorDir = "D:/vatm-storage/error";
         private String emailHost = "mail.vatm.vn";
         private int emailPort = 993;
         private String emailProtocol = "IMAP SSL/TLS";
@@ -39,6 +41,22 @@ public class ApiProperties {
 
         public void setSchedulerFixedDelayMs(long schedulerFixedDelayMs) {
             this.schedulerFixedDelayMs = schedulerFixedDelayMs;
+        }
+
+        public String getIngestionMode() {
+            return ingestionMode;
+        }
+
+        public void setIngestionMode(String ingestionMode) {
+            this.ingestionMode = ingestionMode;
+        }
+
+        public long getFolderPollingIntervalMs() {
+            return folderPollingIntervalMs;
+        }
+
+        public void setFolderPollingIntervalMs(long folderPollingIntervalMs) {
+            this.folderPollingIntervalMs = folderPollingIntervalMs;
         }
 
         public int getMaxFilesPerCycle() {

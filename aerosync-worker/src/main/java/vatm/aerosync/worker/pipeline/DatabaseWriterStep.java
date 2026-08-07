@@ -1,6 +1,7 @@
 package vatm.aerosync.worker.pipeline;
 
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 import vatm.aerosync.common.entity.FileRecord;
@@ -24,18 +25,21 @@ public class DatabaseWriterStep {
 
     private final SyncJobRepository syncJobRepository;
     private final FileRecordRepository fileRecordRepository;
-    private final FlightDataRepository flightDataRepository;
+    // Training/flight_data persistence is intentionally disabled in production.
+    // The provider remains only for the legacy test profile; no worker entity or
+    // repository package is scanned by AerosyncWorkerApplication.
+    private final ObjectProvider<FlightDataRepository> trainingRepository;
     private final PermitImportCoordinator permitImportCoordinator;
     private final TransactionTemplate transactionTemplate;
 
     public DatabaseWriterStep(SyncJobRepository syncJobRepository,
                               FileRecordRepository fileRecordRepository,
-                              FlightDataRepository flightDataRepository,
+                              ObjectProvider<FlightDataRepository> trainingRepository,
                               PermitImportCoordinator permitImportCoordinator,
                               PlatformTransactionManager transactionManager) {
         this.syncJobRepository = syncJobRepository;
         this.fileRecordRepository = fileRecordRepository;
-        this.flightDataRepository = flightDataRepository;
+        this.trainingRepository = trainingRepository;
         this.permitImportCoordinator = permitImportCoordinator;
         this.transactionTemplate = new TransactionTemplate(transactionManager);
     }
@@ -48,6 +52,11 @@ public class DatabaseWriterStep {
     }
 
     DatabaseWriteResult writeFlightRows(ProcessingContext context) {
+        FlightDataRepository flightDataRepository = trainingRepository.getIfAvailable();
+        if (flightDataRepository == null) {
+            throw new IllegalStateException(
+                    "Training flight_data persistence is disabled; only Word permit files are supported");
+        }
         DatabaseWriteResult result = transactionTemplate.execute(status -> writeFlightRowsInTransaction(context));
         if (result == null) {
             throw new IllegalStateException("Flight row transaction returned no result");
@@ -60,6 +69,10 @@ public class DatabaseWriterStep {
         SyncJob job = syncJobRepository.findById(syncJobId)
                 .orElseThrow(() -> new IllegalStateException("Sync job not found: " + syncJobId));
 
+        FlightDataRepository flightDataRepository = trainingRepository.getIfAvailable();
+        if (flightDataRepository == null) {
+            throw new IllegalStateException("Training flight_data persistence is disabled");
+        }
         flightDataRepository.deleteBySyncJobId(syncJobId);
 
         List<FlightData> entities = context.getRows().stream()

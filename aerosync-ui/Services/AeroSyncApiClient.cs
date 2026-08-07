@@ -60,8 +60,7 @@ public sealed class AeroSyncApiClient
         var rows = new List<EmailReportRowResponse>();
         var page = 0;
         PagedResponse<EmailReportRowResponse>? response;
-        var hasSenderFilter = !string.IsNullOrWhiteSpace(sender);
-        var senderQuery = !hasSenderFilter
+        var senderQuery = string.IsNullOrWhiteSpace(sender)
             ? ""
             : $"&sender={Uri.EscapeDataString(sender!.Trim())}";
 
@@ -77,7 +76,7 @@ public sealed class AeroSyncApiClient
             }
             rows.AddRange(response.Content);
             page++;
-        } while (response.HasNext && (hasSenderFilter || page < 1));
+        } while (response.HasNext);
 
         return rows;
     }

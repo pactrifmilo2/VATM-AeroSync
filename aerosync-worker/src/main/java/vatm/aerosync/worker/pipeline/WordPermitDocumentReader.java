@@ -89,17 +89,27 @@ class WordPermitDocumentReader {
         try (InputStream input = Files.newInputStream(file);
              HWPFDocument document = new HWPFDocument(input)) {
             Range range = document.getRange();
+            String rangeText = range.text();
+            int rangeStart = range.getStartOffset();
+            int previousTableEnd = rangeStart;
             List<List<List<String>>> tables = new ArrayList<>();
+            List<String> tableContexts = new ArrayList<>();
             TableIterator iterator = new TableIterator(range);
             while (iterator.hasNext()) {
-                tables.add(docTableRows(iterator.next()));
+                Table table = iterator.next();
+                int contextStart = Math.max(0, previousTableEnd - rangeStart);
+                int contextEnd = Math.max(
+                        contextStart,
+                        Math.min(rangeText.length(), table.getStartOffset() - rangeStart));
+                tableContexts.add(cleanMultiline(rangeText.substring(contextStart, contextEnd)));
+                tables.add(docTableRows(table));
+                previousTableEnd = Math.max(previousTableEnd, table.getEndOffset());
             }
             Date created = document.getSummaryInformation() == null
                     ? null
                     : document.getSummaryInformation().getCreateDateTime();
             return document(
-                    cleanMultiline(range.text()), tables,
-                    java.util.Collections.nCopies(tables.size(), ""),
+                    cleanMultiline(rangeText), tables, tableContexts,
                     created == null
                             ? null
                             : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate());
@@ -185,6 +195,7 @@ class WordPermitDocumentReader {
                 .replace('\u0007', ' ')
                 .replace('\uFFFD', ' ')
                 .replace('\u00a0', ' ')
+                .replaceAll("\\p{Cf}+", "")
                 .replaceAll("[\\r\\n\\u000B]+", " ")
                 .replaceAll("[\\p{Cc}&&[^\\t]]", " ")
                 .replaceAll("\\s+", " ")
@@ -196,6 +207,7 @@ class WordPermitDocumentReader {
                 .replace('\u0007', ' ')
                 .replace('\uFFFD', ' ')
                 .replace('\u00a0', ' ')
+                .replaceAll("\\p{Cf}+", "")
                 .replaceAll("[\\r\\n\\u000B]+", "\n")
                 .replaceAll("[\\p{Cc}&&[^\\n\\t]]", " ")
                 .replaceAll("[ \\t]+", " ")

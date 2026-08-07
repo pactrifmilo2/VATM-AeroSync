@@ -1,6 +1,8 @@
 package vatm.aerosync.common.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import vatm.aerosync.common.entity.AuditLog;
 import vatm.aerosync.common.enums.SyncStatus;
@@ -16,4 +18,8 @@ public interface AuditLogRepository extends JpaRepository<AuditLog, Long> {
     List<AuditLog> findByResultStatus(SyncStatus status);
 
     List<AuditLog> findBySyncJobIdOrderByTimestampDesc(Long syncJobId);
+
+    List<AuditLog> findTop500ByOrderByTimestampDesc();
+
+    Page<AuditLog> findByActionStartingWith(String actionPrefix, Pageable pageable);
 }

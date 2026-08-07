@@ -57,10 +57,10 @@ app:
     permit-lock-seconds: ${APP_ATFM_PERMIT_LOCK_SECONDS:600}
     aircraft-cache-ttl-seconds: ${APP_ATFM_AIRCRAFT_CACHE_TTL_SECONDS:300}
   file-paths:
-    incoming: C:/vatm-storage/incoming
-    processed: C:/vatm-storage/processed
-    error: C:/vatm-storage/error
-    quarantine: C:/vatm-storage/quarantine
+    incoming: ${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}
+    processed: ${APP_FILE_PATHS_PROCESSED:D:/vatm-storage/processed}
+    error: ${APP_FILE_PATHS_ERROR:D:/vatm-storage/error}
+    quarantine: ${APP_FILE_PATHS_QUARANTINE:D:/vatm-storage/quarantine}
   worker:
     max-file-size-bytes: 10485760
     processed-retention-days: 60

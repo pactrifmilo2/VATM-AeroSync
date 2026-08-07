@@ -1,6 +1,6 @@
 id: eth-english-landing-revision
 extends: caav-generic-landing-revision
-priority: 250
+priority: 300
 detectionPatterns:
   - '(?iu)REVISION\s+OF\s+LANDING/OVERFLIGHT\s+PERMIT'
   - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*ET\b|ETHIOPIAN\s+AIRLINES)'

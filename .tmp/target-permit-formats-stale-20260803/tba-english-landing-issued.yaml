@@ -1,9 +1,0 @@
-id: tba-english-landing-issued
-extends: caav-generic-landing-issued
-priority: 200
-detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d+'
-  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*TBA\b|\bTBA\d+[A-Z0-9]*\b)'
-  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
-operator:
-  fixedValue: TBA

@@ -29,7 +29,12 @@ public record SchedulePermit(
     private static final Pattern REVISION_MARKER = Pattern.compile(
             "(?iu)(?:\\bREV(?:ISION)?\\s*\\d*\\b|\\bRVS\\s*\\d*\\b|"
                     + "SỬA\\s*ĐỔI|SUA\\s*DOI|LỊCH\\s*BAY\\s*GỐC|LICH\\s*BAY\\s*GOC|"
-                    + "ORIGINAL\\s+SCHEDULE)");
+                    + "(?:BẢNG\\s+)?CHUYẾN\\s+BAY\\s*(?:CŨ|GỐC|BAN\\s+ĐẦU)|"
+                    + "(?:BANG\\s+)?CHUYEN\\s+BAY\\s*(?:CU|GOC|BAN\\s+DAU)|"
+                    + "(?:OLD|ORIGINAL)\\s+(?:FLIGHT\\s+)?SCHEDULES?|"
+                    + "(?:OLD|ORIGINAL)\\s+FLIGHTS?|"
+                    + "(?:NEW|REVISED|AMENDED|REPLACEMENT)\\s+(?:FLIGHT\\s+)?SCHEDULES?|"
+                    + "(?:NEW|REVISED|AMENDED|REPLACEMENT)\\s+FLIGHTS?)");
     private static final Pattern PERMIT_YEAR = Pattern.compile("(?:19|20)\\d{2}");
 
     public SchedulePermit {

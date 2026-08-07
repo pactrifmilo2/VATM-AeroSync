@@ -66,7 +66,7 @@ class EmailReportServiceJpaTest {
         saveFileRecord(
                 failedJob,
                 "permit_update.docx",
-                "C:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit_update.docx");
+                "D:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_100000_email_permit_update.docx");
         savePermitImport(failedJob, "O/F 05199/S/CHK/2026");
         saveEmail(
                 "mail-wrong-job",

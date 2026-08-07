@@ -12,6 +12,16 @@ public record AuditLogResponse(
         SyncStatus resultStatus,
         LocalDateTime timestamp,
         Long durationMs,
-        FileSourceType sourceType
+        FileSourceType sourceType,
+        String message
 ) {
+    public AuditLogResponse(Long id,
+                            Long syncJobId,
+                            String action,
+                            SyncStatus resultStatus,
+                            LocalDateTime timestamp,
+                            Long durationMs,
+                            FileSourceType sourceType) {
+        this(id, syncJobId, action, resultStatus, timestamp, durationMs, sourceType, null);
+    }
 }

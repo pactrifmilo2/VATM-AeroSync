@@ -18,9 +18,13 @@ class WordPermitFormatDetector {
     }
 
     DocxPermitFormatProfile detect(WordPermitDocument document, String fileName) {
-        List<DocxPermitFormatProfile> matches = profiles.stream()
-                .filter(profile -> supports(profile, document))
+        List<DocxPermitFormatProfile> directMatches = profiles.stream()
+                .filter(profile -> supports(profile, document, false))
                 .toList();
+        List<DocxPermitFormatProfile> relaxedMatches = profiles.stream()
+                .filter(profile -> supports(profile, document, true))
+                .toList();
+        List<DocxPermitFormatProfile> matches = preferredMatchSet(directMatches, relaxedMatches);
         if (matches.isEmpty()) {
             throw invalid(fileName, "Unsupported Word permit format; no format profile matched");
         }
@@ -39,7 +43,31 @@ class WordPermitFormatDetector {
         return preferredMatches.getFirst();
     }
 
-    private boolean supports(DocxPermitFormatProfile profile, WordPermitDocument document) {
+    private List<DocxPermitFormatProfile> preferredMatchSet(
+            List<DocxPermitFormatProfile> directMatches,
+            List<DocxPermitFormatProfile> relaxedMatches) {
+        if (directMatches.isEmpty()) {
+            return relaxedMatches;
+        }
+        int directPriority = highestPriority(directMatches);
+        int relaxedPriority = highestPriority(relaxedMatches);
+        // Prefer a carrier-specific profile whose only mismatch is an issued-
+        // document revision guard over a low-priority generic revision profile.
+        // If a dedicated revision profile has equal priority, keep the direct
+        // match and its revision-specific mapping.
+        return relaxedPriority > directPriority ? relaxedMatches : directMatches;
+    }
+
+    private int highestPriority(List<DocxPermitFormatProfile> candidates) {
+        return candidates.stream()
+                .mapToInt(DocxPermitFormatProfile::priority)
+                .max()
+                .orElse(Integer.MIN_VALUE);
+    }
+
+    private boolean supports(DocxPermitFormatProfile profile,
+                             WordPermitDocument document,
+                             boolean ignoreRevisionExclusion) {
         boolean hasIata = Pattern.compile(
                         "(?iu)(?:IATA\\s*(?:CODE)?|M[ÃA]\\s*IATA)(?:\\s*\\([^)]*\\))?"
                                 + "[ \\t]*:[ \\t]*[A-Z0-9]{2}(?![A-Z0-9])")
@@ -50,9 +78,24 @@ class WordPermitFormatDetector {
                                 + "[ \\t]*:[ \\t]*[A-Z0-9]{3}(?![A-Z0-9])")
                 .matcher(document.rawContent())
                 .find();
-        return profile.detectionPatterns().stream()
-                .allMatch(pattern -> Pattern.compile(pattern).matcher(document.rawContent()).find()
+        boolean detectionMatches = profile.detectionPatterns().stream()
+                .allMatch(pattern -> (ignoreRevisionExclusion && isRevisionExclusionPattern(pattern))
+                        || Pattern.compile(pattern).matcher(document.rawContent()).find()
                         || (hasIata && !hasIcao && isIcaoIdentificationPattern(pattern)));
+        return detectionMatches
+                && (!ignoreRevisionExclusion
+                || Pattern.compile(profile.permit().pattern()).matcher(document.rawContent()).find());
+    }
+
+    private boolean isRevisionExclusionPattern(String pattern) {
+        String upper = pattern.toUpperCase(Locale.ROOT);
+        return upper.contains("(?!")
+                && (upper.contains("REV")
+                || upper.contains("RVS")
+                || upper.contains("SỬA")
+                || upper.contains("SUA")
+                || upper.contains("THAY")
+                || upper.contains("AMEND"));
     }
 
     private boolean isIcaoIdentificationPattern(String pattern) {

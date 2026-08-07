@@ -106,7 +106,8 @@ record DocxPermitFormatProfile(
             String auxiliaryTypeColumn,
             String remarkPrefix,
             String defaultType,
-            boolean lastMatchingTable
+            boolean lastMatchingTable,
+            String registrationColumn
     ) {
     }
 

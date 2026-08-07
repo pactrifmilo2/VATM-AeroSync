@@ -1,0 +1,74 @@
+id: kxp-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 310
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}\s*VN\s*/\s*R\d+\b'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*WW\b|ICAO\s*(?:CODE)?\s*:\s*KXP\b|MJETS\s+AIR\s+SDN\.?\s*BHD)'
+  - '(?iu)2\.2\s*REVISED\s+SCHEDULE'
+permit:
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})\s*VN\s*/\s*R\d+\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)HANOI\s*,?\s*(?<date>\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d-MMM-uu, d-MMM-uuuu, d MMM uuuu, d/M/uuuu]
+  locale: en
+operator:
+  source: TABLE
+  pattern: '(?iu)ICAO\s*(?:CODE)?\s*:\s*(?<value>KXP)\b'
+  group: value
+  required: true
+  fixedValue: KXP
+purpose:
+  defaultId: PAX
+  mappings: []
+schedule:
+  columns:
+    flightNumber: [Flt Number, Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services, Day(s) of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD]
+    toAirport: [Arrival airport, Arrival Airport]
+    eta: [ETA]
+    aircraftType: [Aircraft type, Aircraft Type]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta, aircraftType]
+  excludeColumns: []
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\s*REVISED\s+SCHEDULE'
+  supplementalTableContextPatterns: []
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  lastMatchingTable: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: true
+  allowEmpty: false
+  fallbackToFirst: false
+  lastMatchingTable: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns: {}
+  auxiliaryRequiredColumns: []
+  defaultType: B737
+  remarkPrefix: ''
+  lastMatchingTable: true
+validation:
+  # BKI appears in the issued schedule as an IATA airport code and is resolved
+  # through ATFM.M_AERO before persistence.
+  allowIataAirports: true
+  reviewOnly: false

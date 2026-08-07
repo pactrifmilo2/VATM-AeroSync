@@ -25,7 +25,66 @@ public sealed partial class ConfigViewModel : ObservableObject
     public RuntimeConfigModel Config
     {
         get => config;
-        set => SetProperty(ref config, value);
+        set
+        {
+            if (SetProperty(ref config, value))
+            {
+                OnPropertyChanged(nameof(IsEmailMode));
+                OnPropertyChanged(nameof(IsFolderMode));
+                OnPropertyChanged(nameof(IsBothMode));
+            }
+        }
+    }
+
+    public bool IsEmailMode
+    {
+        get => string.Equals(Config.IngestionMode, "EMAIL", StringComparison.OrdinalIgnoreCase);
+        set
+        {
+            if (!value)
+            {
+                OnPropertyChanged();
+                return;
+            }
+            Config.IngestionMode = "EMAIL";
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IsFolderMode));
+            OnPropertyChanged(nameof(IsBothMode));
+        }
+    }
+
+    public bool IsFolderMode
+    {
+        get => string.Equals(Config.IngestionMode, "FOLDER", StringComparison.OrdinalIgnoreCase);
+        set
+        {
+            if (!value)
+            {
+                OnPropertyChanged();
+                return;
+            }
+            Config.IngestionMode = "FOLDER";
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IsEmailMode));
+            OnPropertyChanged(nameof(IsBothMode));
+        }
+    }
+
+    public bool IsBothMode
+    {
+        get => string.Equals(Config.IngestionMode, "BOTH", StringComparison.OrdinalIgnoreCase);
+        set
+        {
+            if (!value)
+            {
+                OnPropertyChanged();
+                return;
+            }
+            Config.IngestionMode = "BOTH";
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IsEmailMode));
+            OnPropertyChanged(nameof(IsFolderMode));
+        }
     }
 
     public string StatusMessage
@@ -110,9 +169,9 @@ public sealed partial class ConfigViewModel : ObservableObject
     {
         Config = new RuntimeConfigModel
         {
-            IncomingDir = "C:/vatm-storage/incoming",
-            ProcessedDir = "C:/vatm-storage/processed",
-            ErrorDir = "C:/vatm-storage/error",
+            IncomingDir = "D:/vatm-storage/incoming",
+            ProcessedDir = "D:/vatm-storage/processed",
+            ErrorDir = "D:/vatm-storage/error",
             EmailHost = "mail.vatm.vn",
             EmailPort = 993,
             EmailProtocol = "IMAP SSL/TLS",
@@ -121,6 +180,8 @@ public sealed partial class ConfigViewModel : ObservableObject
             MaxFilesPerCycle = 100,
             MaxSizePerFileMb = 10,
             SchedulerFixedDelayMs = 300_000,
+            IngestionMode = "EMAIL",
+            FolderPollingIntervalMs = 60_000,
             AutoQuarantine = true,
             SkipDuplicateIdempotency = true
         };

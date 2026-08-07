@@ -8,6 +8,12 @@
 target/
 bin/
 obj/
-.superdesign/tmp/
+
+*.log
+
+## file word
+.doc
+.docx
+.tmp/
 
 *.log

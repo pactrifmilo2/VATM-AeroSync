@@ -12,6 +12,9 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+// @Entity intentionally excluded from the production EntityScan. This legacy
+// training table is currently unused and has been removed from the active
+// worker schema; keep the class only for historical test fixtures.
 @Entity
 @Table(name = "flight_data")
 public class FlightData {

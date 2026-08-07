@@ -43,10 +43,10 @@ spring:
 
 app:
   file-paths:
-    incoming: C:/vatm-storage/incoming
-    processed: C:/vatm-storage/processed
-    error: C:/vatm-storage/error
-    quarantine: C:/vatm-storage/quarantine
+    incoming: ${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}
+    processed: ${APP_FILE_PATHS_PROCESSED:D:/vatm-storage/processed}
+    error: ${APP_FILE_PATHS_ERROR:D:/vatm-storage/error}
+    quarantine: ${APP_FILE_PATHS_QUARANTINE:D:/vatm-storage/quarantine}
   ingest:
     max-files-per-cycle: 100
     scheduler-fixed-delay-ms: 300000
