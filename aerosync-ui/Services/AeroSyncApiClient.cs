@@ -37,11 +37,19 @@ public sealed class AeroSyncApiClient
 
     public async Task<SyncJobDetailResponse> GetJobAsync(long id, CancellationToken cancellationToken = default)
     {
-        return await httpClient.GetFromJsonAsync<SyncJobDetailResponse>(
+        var result = await httpClient.GetFromJsonAsync<SyncJobDetailResponse>(
                 $"/api/jobs/{id}",
                 jsonOptions,
                 cancellationToken)
             ?? new SyncJobDetailResponse();
+        result.LatestLogMessage = VietnameseErrorMessage.FromServerMessage(result.LatestLogMessage);
+        result.PermitImportError = VietnameseErrorMessage.FromServerMessage(result.PermitImportError);
+        foreach (var rowError in result.RowErrors)
+        {
+            rowError.Message = VietnameseErrorMessage.FromServerMessage(rowError.Message)
+                ?? "Dữ liệu tại dòng này không hợp lệ.";
+        }
+        return result;
     }
 
     public async Task RetryJobAsync(long id, CancellationToken cancellationToken = default)
@@ -73,6 +81,10 @@ public sealed class AeroSyncApiClient
             if (response is null)
             {
                 break;
+            }
+            foreach (var row in response.Content)
+            {
+                row.ErrorMessage = VietnameseErrorMessage.FromServerMessage(row.ErrorMessage);
             }
             rows.AddRange(response.Content);
             page++;
@@ -119,11 +131,16 @@ public sealed class AeroSyncApiClient
 
     public async Task<List<AuditLogResponse>> GetAuditLogsAsync(CancellationToken cancellationToken = default)
     {
-        return await httpClient.GetFromJsonAsync<List<AuditLogResponse>>(
+        var logs = await httpClient.GetFromJsonAsync<List<AuditLogResponse>>(
                 "/api/audit-logs",
                 jsonOptions,
                 cancellationToken)
             ?? [];
+        foreach (var log in logs)
+        {
+            log.Message = VietnameseErrorMessage.FromServerMessage(log.Message);
+        }
+        return logs;
     }
 
     public async Task<RuntimeConfigModel> GetConfigAsync(CancellationToken cancellationToken = default)

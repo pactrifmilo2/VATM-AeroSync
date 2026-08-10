@@ -1,11 +1,11 @@
 id: caav-generic-landing-issued
 priority: -100
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bLD(?:\s*-\s*|\s+)\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
   - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b|SỬA\s+ĐỔI)).*$'
 permit:
-  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
+  pattern: '(?iu)\bLD(?:\s*-\s*|\s+)(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN'
   normalizedTemplate: 'LD {number}/S/CHK/{year}'
@@ -83,7 +83,7 @@ schedule:
   # Import operational transfer flights together with the replacement schedule.
   supplementalTableContextPatterns:
     - '(?iu)2\.5\.\s*(?:TRANSFER\s+FLIGHTS|CB\s+CHỞ\s+KHÁCH\s+SANG\s+CHUYẾN\s+SÂN)'
-  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
   purposeId: PAX

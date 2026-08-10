@@ -13,9 +13,12 @@ import java.util.List;
 public class AlertService {
 
     private final DashboardAlertRepository alertRepository;
+    private final VietnameseErrorMessageTranslator errorMessageTranslator;
 
-    public AlertService(DashboardAlertRepository alertRepository) {
+    public AlertService(DashboardAlertRepository alertRepository,
+                        VietnameseErrorMessageTranslator errorMessageTranslator) {
         this.alertRepository = alertRepository;
+        this.errorMessageTranslator = errorMessageTranslator;
     }
 
     @Transactional
@@ -27,14 +30,16 @@ public class AlertService {
         alert.setSyncJobId(event.getSyncJobId());
         alert.setStatus(event.getStatus());
         alert.setAlertLevel(event.getAlertLevel());
-        alert.setMessage(event.getMessage());
+        alert.setMessage(errorMessageTranslator.translate(event.getMessage()));
         alert.setEventTimestamp(event.getTimestamp());
         alertRepository.save(alert);
     }
 
     @Transactional(readOnly = true)
     public List<DashboardAlert> findActive() {
-        return alertRepository.findByResolvedFalseOrderByCreatedAtDesc();
+        List<DashboardAlert> alerts = alertRepository.findByResolvedFalseOrderByCreatedAtDesc();
+        alerts.forEach(alert -> alert.setMessage(errorMessageTranslator.translate(alert.getMessage())));
+        return alerts;
     }
 
     public long countActive() {

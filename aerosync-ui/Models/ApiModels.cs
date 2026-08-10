@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using AeroSync.UI.Services;
 
 namespace AeroSync.UI.Models;
 
@@ -37,6 +38,8 @@ public sealed class SyncJobSummaryResponse
     public string TimeLabel => EmailReceivedAt.HasValue
         ? EmailReceivedAt.Value.ToString("yyyy-MM-dd HH:mm:ss")
         : CreatedAt.ToString("yyyy-MM-dd HH:mm:ss");
+
+    public string StatusLabel => VietnameseErrorMessage.TranslateStatus(Status);
 }
 
 public sealed class SyncJobDetailResponse
@@ -63,6 +66,7 @@ public sealed class SyncJobDetailResponse
     /// </summary>
     public bool HasEmailContent => !string.IsNullOrWhiteSpace(EmailSubject)
                                    || !string.IsNullOrWhiteSpace(EmailBody);
+    public string StatusLabel => VietnameseErrorMessage.TranslateStatus(Status);
 }
 
 public sealed class PagedResponse<T>
@@ -137,6 +141,7 @@ public sealed class FileRecordResponse
     public DateTime CreatedAt { get; set; }
     public string? Sender { get; set; }
     public string? Subject { get; set; }
+    public string SourceLabel => VietnameseErrorMessage.TranslateSource(SourceType);
 }
 
 public sealed class RowValidationError
@@ -159,8 +164,8 @@ public sealed class AuditLogResponse
     public string? SourceType { get; set; }
     public string? Message { get; set; }
     public string DisplayLine => string.IsNullOrWhiteSpace(Message)
-        ? $"[{Timestamp:HH:mm:ss}] [{ResultStatus}] {Action}"
-        : $"[{Timestamp:HH:mm:ss}] [{ResultStatus}] {Message}";
+        ? $"[{Timestamp:HH:mm:ss}] [{VietnameseErrorMessage.TranslateStatus(ResultStatus)}] {VietnameseErrorMessage.TranslateAction(Action)}"
+        : $"[{Timestamp:HH:mm:ss}] [{VietnameseErrorMessage.TranslateStatus(ResultStatus)}] {VietnameseErrorMessage.FromServerMessage(Message)}";
 }
 
 public sealed class RuntimeConfigModel : ObservableObject

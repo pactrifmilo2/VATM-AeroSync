@@ -13,9 +13,12 @@ import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.springframework.stereotype.Component;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -29,6 +32,8 @@ import java.util.stream.Collectors;
 
 @Component
 class WordPermitDocumentReader {
+
+    private static final int FILE_READ_ATTEMPTS = 3;
 
     private static final Pattern HYPHENATED_INLINE_SCHEDULE = Pattern.compile(
             "(?imu)^\\s*(?<flight>[A-Z0-9]{3,10})\\s*-\\s*"
@@ -56,7 +61,7 @@ class WordPermitDocumentReader {
     }
 
     private WordPermitDocument readDocx(Path file) throws IOException {
-        try (InputStream input = Files.newInputStream(file);
+        try (InputStream input = new ByteArrayInputStream(readFileBytes(file));
              XWPFDocument document = new XWPFDocument(input)) {
             List<String> paragraphs = new ArrayList<>();
             List<String> pendingContext = new ArrayList<>();
@@ -86,7 +91,7 @@ class WordPermitDocumentReader {
     }
 
     private WordPermitDocument readDoc(Path file) throws IOException {
-        try (InputStream input = Files.newInputStream(file);
+        try (InputStream input = new ByteArrayInputStream(readFileBytes(file));
              HWPFDocument document = new HWPFDocument(input)) {
             Range range = document.getRange();
             String rangeText = range.text();
@@ -114,6 +119,28 @@ class WordPermitDocumentReader {
                             ? null
                             : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate());
         }
+    }
+
+    private byte[] readFileBytes(Path file) throws IOException {
+        IOException lastFailure = null;
+        for (int attempt = 1; attempt <= FILE_READ_ATTEMPTS; attempt++) {
+            try {
+                return Files.readAllBytes(file);
+            } catch (NoSuchFileException exception) {
+                throw exception;
+            } catch (FileSystemException exception) {
+                lastFailure = exception;
+                if (attempt < FILE_READ_ATTEMPTS) {
+                    try {
+                        Thread.sleep(100L * attempt);
+                    } catch (InterruptedException interrupted) {
+                        Thread.currentThread().interrupt();
+                        throw new IOException("File read was interrupted: " + file, interrupted);
+                    }
+                }
+            }
+        }
+        throw new IOException("File is temporarily locked or unreadable: " + file, lastFailure);
     }
 
     private WordPermitDocument document(String paragraphText,

@@ -89,10 +89,13 @@ class SyncJobServiceTest {
 
         var response = service.getJob(7L);
 
-        assertThat(response.latestLogMessage()).isEqualTo("BR-CALLSIGN: Row 1: Invalid callsign");
+        assertThat(response.latestLogMessage())
+                .isEqualTo("BR-CALLSIGN: Dòng 1: Số hiệu chuyến bay không hợp lệ.");
         assertThat(response.rowErrors())
                 .extracting("rowNumber", "field", "code", "value")
                 .containsExactly(org.assertj.core.groups.Tuple.tuple(1, "callsign", "BR-CALLSIGN", "!"));
+        assertThat(response.rowErrors().getFirst().message())
+                .isEqualTo("Số hiệu chuyến bay không hợp lệ.");
     }
 
     @Test

@@ -1,0 +1,39 @@
+id: mas-english-seasonal-overflight-issued
+extends: mas-english-overflight-issued
+priority: 300
+
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*MH\b|ICAO\s*(?:CODE)?\s*:\s*MAS\b|MALAYSIA\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bR\d+\b|\bORIGINAL\s+SCHEDULE|\bNEW\s+SCHEDULE)).*$'
+
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+
+operator:
+  fixedValue: MAS
+
+schedule:
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+  purposeId: CAR
+  includeEta: true
+
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: A333
+  auxiliaryRequiredColumns: []
+
+validation:
+  reviewOnly: false
+  allowIataAirports: false

@@ -107,7 +107,8 @@ public class SyncJobService {
             emailProcessingStatus = emailMetadata.get().getProcessingStatus();
             emailAcknowledgementStatus = emailMetadata.get().getAcknowledgementStatus();
             emailAcknowledgedAt = emailMetadata.get().getAcknowledgedAt();
-            emailAcknowledgementError = emailMetadata.get().getAcknowledgementError();
+            emailAcknowledgementError = errorMessageTranslator.translate(
+                    emailMetadata.get().getAcknowledgementError());
             mailboxFolder = emailMetadata.get().getMailboxFolder();
             messageUid = emailMetadata.get().getMessageUid();
         }
@@ -121,8 +122,8 @@ public class SyncJobService {
                 job.getCreatedAt(),
                 job.getUpdatedAt(),
                 records,
-                latestLog.rowErrors(),
-                latestLog.message(),
+                translateRowErrors(latestLog.rowErrors()),
+                errorMessageTranslator.translate(latestLog.message()),
                 emailSubject,
                 emailBody,
                 emailProcessingStatus,
@@ -139,6 +140,20 @@ public class SyncJobService {
                 permitImport != null
                         ? errorMessageTranslator.translate(permitImport.getErrorMessage())
                         : null);
+    }
+
+    private List<RowValidationError> translateRowErrors(List<RowValidationError> errors) {
+        if (errors == null || errors.isEmpty()) {
+            return List.of();
+        }
+        return errors.stream()
+                .map(error -> new RowValidationError(
+                        error.rowNumber(),
+                        error.field(),
+                        error.code(),
+                        errorMessageTranslator.translate(error.message()),
+                        error.value()))
+                .toList();
     }
 
     @Transactional

@@ -34,7 +34,7 @@ class AlertServiceTest {
 
     @BeforeEach
     void setUp() {
-        alertService = new AlertService(alertRepository);
+        alertService = new AlertService(alertRepository, new VietnameseErrorMessageTranslator());
     }
 
     @Test
@@ -51,6 +51,8 @@ class AlertServiceTest {
         List<DashboardAlert> saved = alertCaptor.getAllValues();
         assertThat(saved).extracting(DashboardAlert::getAlertLevel)
                 .containsExactly(AlertLevel.WARNING, AlertLevel.CRITICAL);
+        assertThat(saved).extracting(DashboardAlert::getMessage)
+                .allSatisfy(message -> assertThat(message).doesNotContain("retry pending", "email down"));
     }
 
     @Test
@@ -67,9 +69,11 @@ class AlertServiceTest {
     void findActive_returnsUnresolvedWarningAndCritical() {
         DashboardAlert active = new DashboardAlert();
         active.setResolved(false);
+        active.setMessage("Cannot read file size");
         when(alertRepository.findByResolvedFalseOrderByCreatedAtDesc())
                 .thenReturn(List.of(active));
 
         assertThat(alertService.findActive()).containsExactly(active);
+        assertThat(active.getMessage()).contains("Không thể đọc kích thước file");
     }
 }

@@ -22,11 +22,14 @@ public class AuditLogQueryService {
 
     private final AuditLogRepository auditLogRepository;
     private final FileRecordRepository fileRecordRepository;
+    private final VietnameseErrorMessageTranslator errorMessageTranslator;
 
     public AuditLogQueryService(AuditLogRepository auditLogRepository,
-                                FileRecordRepository fileRecordRepository) {
+                                FileRecordRepository fileRecordRepository,
+                                VietnameseErrorMessageTranslator errorMessageTranslator) {
         this.auditLogRepository = auditLogRepository;
         this.fileRecordRepository = fileRecordRepository;
+        this.errorMessageTranslator = errorMessageTranslator;
     }
 
     @Transactional(readOnly = true)
@@ -80,7 +83,7 @@ public class AuditLogQueryService {
                 log.getTimestamp(),
                 log.getDurationMs(),
                 sourceType,
-                incomingNotice ? log.getOutputSummary() : null);
+                incomingNotice ? errorMessageTranslator.translate(log.getOutputSummary()) : null);
     }
 
     private Map<Long, FileSourceType> resolveSourceTypes(List<AuditLog> logs) {

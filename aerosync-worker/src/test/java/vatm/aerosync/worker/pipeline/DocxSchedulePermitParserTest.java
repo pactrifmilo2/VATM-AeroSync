@@ -147,6 +147,20 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void parse_fixedOperatorProfile_allowsBlankOperatorCodeLabels() throws Exception {
+        Path file = createVistaJetPermitWithBlankOperatorCodes();
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.operatorId()).isEqualTo("VJT");
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("VJT123");
+            assertThat(flight.fromAirport()).isEqualTo("VHHH");
+            assertThat(flight.toAirport()).isEqualTo("VDPP");
+        });
+    }
+
+    @Test
     void parse_mapsConfiguredRealPermitDocument() {
         String samplePath = System.getProperty("permit.sample.path");
         Assumptions.assumeTrue(samplePath != null && !samplePath.isBlank(),
@@ -351,6 +365,30 @@ class DocxSchedulePermitParserTest {
             route.getRow(1).getCell(1).setText("W1");
             route.getRow(2).getCell(0).setText("HAN-SGN");
             route.getRow(2).getCell(1).setText("W2");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private Path createVistaJetPermitWithBlankOperatorCodes() throws Exception {
+        Path file = tempDir.resolve("OF-123-VJT123.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("HANOI, 10/8/2026");
+            document.createParagraph().createRun().setText("PERMIT NUMBER OF-123/8/2026VN");
+            document.createParagraph().createRun().setText("VISTAJET LIMITED");
+
+            XWPFTable operator = document.createTable(2, 2);
+            operator.getRow(0).getCell(0).setText("IATA CODE:");
+            operator.getRow(0).getCell(1).setText("ICAO CODE:");
+            operator.getRow(1).getCell(0).setText("POSTAL ADDRESS: MALTA");
+
+            scheduleTable(document, new String[][] {
+                    {"VJT123", "10AUG26", "10AUG26", "1------",
+                            "VHHH", "0100", "VDPP", "0300", "GLEX"}
+            });
 
             try (OutputStream output = Files.newOutputStream(file)) {
                 document.write(output);

@@ -106,7 +106,7 @@ public class EmailReportService {
                 metadata.getAcknowledgementStatus(),
                 metadata.isIngestComplete(),
                 metadata.getAcknowledgedAt(),
-                metadata.getAcknowledgementError(),
+                errorMessageTranslator.translate(metadata.getAcknowledgementError()),
                 job != null ? job.getStatus() : null);
     }
 

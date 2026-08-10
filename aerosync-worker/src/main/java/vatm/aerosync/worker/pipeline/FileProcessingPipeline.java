@@ -20,6 +20,7 @@ import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 import vatm.aerosync.worker.service.AuditLogService;
+import vatm.aerosync.worker.service.VietnameseStoredErrorMessage;
 import vatm.aerosync.worker.service.SyncResultPublisher;
 
 import java.nio.file.Path;
@@ -231,7 +232,7 @@ public class FileProcessingPipeline {
                                             String errorMessage) {
         fileRecordRepository.findBySyncJobId(syncJobId).forEach(record -> {
             record.setProcessingStatus(status);
-            record.setErrorMessage(truncateError(errorMessage));
+            record.setErrorMessage(truncateError(VietnameseStoredErrorMessage.translate(errorMessage)));
             fileRecordRepository.save(record);
         });
     }
@@ -239,7 +240,8 @@ public class FileProcessingPipeline {
     private void markArchiveFailed(Long syncJobId, Exception exception) {
         fileRecordRepository.findBySyncJobId(syncJobId).forEach(record -> {
             record.setArchiveStatus(FileArchiveStatus.FAILED);
-            record.setErrorMessage(truncateError("Archive failed: " + exception.getMessage()));
+            record.setErrorMessage(truncateError(VietnameseStoredErrorMessage.translate(
+                    "Archive failed: " + exception.getMessage())));
             fileRecordRepository.save(record);
         });
     }

@@ -76,7 +76,7 @@ public class IncomingReportService {
                 ? FileProcessingStatus.SKIPPED
                 : record != null ? record.getProcessingStatus() : FileProcessingStatus.DOWNLOADED;
         String errorMessage = duplicate
-                ? event.getOutputSummary()
+                ? errorMessageTranslator.translate(event.getOutputSummary())
                 : record != null ? errorMessageTranslator.translate(record.getErrorMessage()) : null;
         SyncStatus jobStatus = duplicate
                 ? SyncStatus.SKIPPED

@@ -5,6 +5,48 @@ namespace AeroSync.UI.Services;
 
 public static class VietnameseErrorMessage
 {
+    public static string? FromServerMessage(string? message)
+    {
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            return null;
+        }
+
+        return TranslateServerDetail(message);
+    }
+
+    public static string TranslateStatus(string? status) => status?.ToUpperInvariant() switch
+    {
+        "SUCCESS" or "SAVED" => "Thành công",
+        "FAILED" => "Thất bại",
+        "QUARANTINED" => "Đã cách ly",
+        "SKIPPED" => "Đã bỏ qua",
+        "PROCESSING" or "IN_PROGRESS" => "Đang xử lý",
+        "PENDING" or "DOWNLOADED" => "Đang chờ",
+        "BLOCKED" => "Bị chặn",
+        "NO_ATTACHMENT" => "Không có file đính kèm",
+        _ => string.IsNullOrWhiteSpace(status) ? "Không xác định" : status
+    };
+
+    public static string TranslateAction(string? action) => action?.ToUpperInvariant() switch
+    {
+        "INCOMING_FILE_DISCOVERED" => "Đã phát hiện file mới trong thư mục Incoming.",
+        "INCOMING_FILE_ACCEPTED" => "Đã tiếp nhận file từ thư mục Incoming.",
+        "INCOMING_DUPLICATE_SKIPPED" => "File trùng lặp đã được bỏ qua.",
+        "FILE_PROCESSED" => "Đã xử lý file.",
+        "FILE_FAILED" => "Xử lý file thất bại.",
+        "FILE_QUARANTINED" => "File đã được chuyển sang khu vực cách ly.",
+        "JOB_RETRY" => "Đã yêu cầu xử lý lại tác vụ.",
+        _ => "Hoạt động hệ thống đã được ghi nhận."
+    };
+
+    public static string TranslateSource(string? source) => source?.ToUpperInvariant() switch
+    {
+        "EMAIL" => "Email",
+        "FILESYSTEM" or "FOLDER" => "Thư mục",
+        _ => string.IsNullOrWhiteSpace(source) ? "Không xác định" : source
+    };
+
     public static string FromException(Exception exception, string action)
     {
         var error = exception is AggregateException aggregate
@@ -123,6 +165,22 @@ public static class VietnameseErrorMessage
         if (normalized.Contains("no archived attachment"))
         {
             return "Không còn file đính kèm trong kho lưu trữ để gửi lại.";
+        }
+        if (normalized.Contains("failed to parse word")
+            || normalized.Contains("zip end header")
+            || normalized.Contains("invalid header signature"))
+        {
+            return "Không thể đọc tài liệu Word vì file bị hỏng hoặc phần mở rộng không đúng với định dạng thực tế.";
+        }
+        if (normalized.Contains("temporarily locked")
+            || normalized.Contains("access is denied")
+            || normalized.Contains("being used by another process"))
+        {
+            return "File đang bị ứng dụng khác khóa hoặc tài khoản chạy AeroSync không có quyền đọc.";
+        }
+        if (normalized.Contains("archived attachment is no longer available"))
+        {
+            return "File lưu trữ không còn tồn tại nên không thể xử lý lại.";
         }
         if (normalized.Contains("not found"))
         {

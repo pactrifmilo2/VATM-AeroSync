@@ -72,7 +72,7 @@ public partial class App : Application
                 && baseAddress.Scheme != Uri.UriSchemeHttps))
         {
             throw new InvalidOperationException(
-                $"AEROSYNC_API_URL must be an absolute HTTP(S) URL; received '{apiUrl}'.");
+                $"AEROSYNC_API_URL phải là địa chỉ HTTP(S) tuyệt đối; giá trị hiện tại là '{apiUrl}'.");
         }
 
         return baseAddress;

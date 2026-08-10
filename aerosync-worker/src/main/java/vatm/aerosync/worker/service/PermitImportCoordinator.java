@@ -83,7 +83,7 @@ public class PermitImportCoordinator {
             if (!properties.isWriteEnabled()) {
                 attempt.setStatus(PermitImportStatus.DRY_RUN);
                 attempt.setDetailCount(permit.flights().size());
-                attempt.setErrorMessage("ATFM writes are disabled");
+                attempt.setErrorMessage(VietnameseStoredErrorMessage.translate("ATFM writes are disabled"));
                 permitImportRepository.save(attempt);
                 throw new BusinessRuleException(
                         "ATFM-WRITE-DISABLED",
@@ -112,7 +112,7 @@ public class PermitImportCoordinator {
             throw exception;
         } catch (RuntimeException exception) {
             attempt.setStatus(PermitImportStatus.FAILED);
-            attempt.setErrorMessage(truncate(exception.getMessage()));
+            attempt.setErrorMessage(truncate(VietnameseStoredErrorMessage.translate(exception.getMessage())));
             permitImportRepository.save(attempt);
             throw exception;
         } finally {
@@ -130,7 +130,7 @@ public class PermitImportCoordinator {
         if (!properties.isWriteEnabled()) {
             attempt.setStatus(PermitImportStatus.DRY_RUN);
             attempt.setDetailCount(permit.flights().size());
-            attempt.setErrorMessage("ATFM writes are disabled");
+            attempt.setErrorMessage(VietnameseStoredErrorMessage.translate("ATFM writes are disabled"));
             permitImportRepository.save(attempt);
             throw new BusinessRuleException(
                     "ATFM-WRITE-DISABLED",
@@ -176,7 +176,7 @@ public class PermitImportCoordinator {
         if (!properties.isWriteEnabled()) {
             attempt.setStatus(PermitImportStatus.DRY_RUN);
             attempt.setDetailCount(permit.flights().size());
-            attempt.setErrorMessage("ATFM writes are disabled");
+            attempt.setErrorMessage(VietnameseStoredErrorMessage.translate("ATFM writes are disabled"));
             permitImportRepository.save(attempt);
             throw new BusinessRuleException(
                     "ATFM-WRITE-DISABLED",
@@ -243,7 +243,7 @@ public class PermitImportCoordinator {
 
     private void markRevision(PermitImport attempt, String message) {
         attempt.setStatus(PermitImportStatus.REVISION_REVIEW);
-        attempt.setErrorMessage(message);
+        attempt.setErrorMessage(VietnameseStoredErrorMessage.translate(message));
         permitImportRepository.save(attempt);
     }
 

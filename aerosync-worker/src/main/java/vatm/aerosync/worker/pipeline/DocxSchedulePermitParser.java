@@ -199,7 +199,7 @@ public class DocxSchedulePermitParser {
         boolean hasOperatorLabels = hasIataLabel || hasIcaoLabel;
         boolean iataIsNa = IATA_NA_PATTERN.matcher(document.rawContent()).find();
         boolean icaoIsNa = ICAO_NA_PATTERN.matcher(document.rawContent()).find();
-        if (hasIataLabel && hasIcaoLabel) {
+        if (fixedOperator == null && hasIataLabel && hasIcaoLabel) {
             if (iataIsNa && icaoIsNa) {
                 // Explicit N/A for both codes denotes a private/non-scheduled operator.
                 iataCode = null;
@@ -211,7 +211,8 @@ public class DocxSchedulePermitParser {
             } else if (iataCode == null && labeledIcaoCode == null) {
                 throw invalid(fileName, "IATA and ICAO fields are present but both values are blank or invalid");
             }
-        } else if (hasOperatorLabels && iataCode == null && labeledIcaoCode == null) {
+        } else if (fixedOperator == null
+                && hasOperatorLabels && iataCode == null && labeledIcaoCode == null) {
             throw invalid(fileName, "Operator code field is present but its value is blank or invalid");
         }
         if (fixedOperator == null && operatorId == null && iataCode == null) {

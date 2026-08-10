@@ -18,7 +18,7 @@ public sealed partial class DashboardViewModel : ObservableObject
     private long totalJobs;
     private long activeAlerts;
     private bool isLoading;
-    private string statusMessage = "Ready";
+    private string statusMessage = "Sẵn sàng";
     private string incomingNotice = "Chưa có thông báo mới từ thư mục Incoming.";
 
     public ObservableCollection<SyncJobSummaryResponse> Jobs { get; } = [];
@@ -118,14 +118,14 @@ public sealed partial class DashboardViewModel : ObservableObject
             {
                 IncomingNotice = $"{latestIncoming.Timestamp:dd/MM/yyyy HH:mm:ss} - "
                     + (string.IsNullOrWhiteSpace(latestIncoming.Message)
-                        ? latestIncoming.Action
+                        ? VietnameseErrorMessage.TranslateAction(latestIncoming.Action)
                         : latestIncoming.Message);
             }
-            StatusMessage = $"{TotalJobs} jobs tracked · {ProcessingCount} processing · updated {DateTime.Now:HH:mm:ss}";
+            StatusMessage = $"Đang theo dõi {TotalJobs} tác vụ · {ProcessingCount} tác vụ đang xử lý · cập nhật lúc {DateTime.Now:HH:mm:ss}";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"API unavailable: {ex.Message}";
+            StatusMessage = VietnameseErrorMessage.FromException(ex, "Tải dữ liệu bảng điều khiển");
         }
         finally
         {

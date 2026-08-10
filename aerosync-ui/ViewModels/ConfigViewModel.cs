@@ -11,7 +11,7 @@ public sealed partial class ConfigViewModel : ObservableObject
     private readonly AeroSyncApiClient apiClient;
 
     private RuntimeConfigModel config = new();
-    private string statusMessage = "Ready";
+    private string statusMessage = "Sẵn sàng";
     private string newSender = "";
     private bool isBusy;
 
@@ -113,11 +113,11 @@ public sealed partial class ConfigViewModel : ObservableObject
             IsBusy = true;
             Config = await apiClient.GetConfigAsync();
             ReplaceSenders(Config.BlacklistSenders);
-            StatusMessage = "Configuration loaded.";
+            StatusMessage = "Đã tải cấu hình.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"Unable to load config: {ex.Message}";
+            StatusMessage = VietnameseErrorMessage.FromException(ex, "Tải cấu hình");
         }
         finally
         {
@@ -134,11 +134,11 @@ public sealed partial class ConfigViewModel : ObservableObject
             Config.BlacklistSenders = BlacklistSenders.ToList();
             Config = await apiClient.SaveConfigAsync(Config);
             ReplaceSenders(Config.BlacklistSenders);
-            StatusMessage = "Configuration saved.";
+            StatusMessage = "Đã lưu cấu hình.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"Save failed: {ex.Message}";
+            StatusMessage = VietnameseErrorMessage.FromException(ex, "Lưu cấu hình");
         }
         finally
         {
@@ -186,7 +186,7 @@ public sealed partial class ConfigViewModel : ObservableObject
             SkipDuplicateIdempotency = true
         };
         ReplaceSenders(["ops@vatm.local"]);
-        StatusMessage = "Defaults restored locally. Click Save to persist.";
+        StatusMessage = "Đã khôi phục cấu hình mặc định trên giao diện. Hãy bấm Lưu để áp dụng.";
     }
 
     private void ReplaceSenders(IEnumerable<string> senders)

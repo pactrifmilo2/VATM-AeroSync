@@ -108,7 +108,8 @@ class EmailReportServiceTest {
                 .isEqualTo("operator_20260724_100000_email_permit.docx");
         assertThat(service.get(7L).errorMessage())
                 .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
-        assertThat(service.get(7L).acknowledgementError()).isEqualTo("Could not move message");
+        assertThat(service.get(7L).acknowledgementError())
+                .isEqualTo("Không thể chuyển email sang thư mục đích trên máy chủ thư.");
         assertThatThrownBy(() -> service.get(8L))
                 .isInstanceOf(java.util.NoSuchElementException.class)
                 .hasMessage("Email report record not found: 8");

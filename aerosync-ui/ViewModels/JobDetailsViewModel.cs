@@ -14,7 +14,7 @@ public sealed partial class JobDetailsViewModel : ObservableObject
     private readonly long jobId;
 
     private SyncJobDetailResponse? job;
-    private string statusMessage = "Loading...";
+    private string statusMessage = "Đang tải...";
 
     public JobDetailsViewModel(AeroSyncApiClient apiClient, long jobId)
     {
@@ -55,11 +55,12 @@ public sealed partial class JobDetailsViewModel : ObservableObject
         try
         {
             Job = await apiClient.GetJobAsync(jobId);
-            StatusMessage = Job.LatestLogMessage ?? "No detail log available.";
+            StatusMessage = VietnameseErrorMessage.FromServerMessage(Job.LatestLogMessage)
+                ?? "Chưa có nhật ký chi tiết.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"Unable to load job details: {ex.Message}";
+            StatusMessage = VietnameseErrorMessage.FromException(ex, "Tải chi tiết tác vụ");
         }
     }
 
@@ -69,11 +70,11 @@ public sealed partial class JobDetailsViewModel : ObservableObject
         try
         {
             await apiClient.RetryJobAsync(jobId);
-            StatusMessage = "Retry request sent.";
+            StatusMessage = "Đã gửi yêu cầu xử lý lại.";
         }
         catch (Exception ex)
         {
-            StatusMessage = $"Retry failed: {ex.Message}";
+            StatusMessage = VietnameseErrorMessage.FromException(ex, "Gửi yêu cầu xử lý lại");
         }
     }
 

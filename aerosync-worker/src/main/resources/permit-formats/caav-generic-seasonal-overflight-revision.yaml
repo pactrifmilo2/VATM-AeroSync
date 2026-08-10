@@ -1,0 +1,35 @@
+id: caav-generic-seasonal-overflight-revision
+extends: caav-generic-overflight-revision
+priority: -90
+
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\bREVISED\s+ITEM\b|\bORIGINAL\s+SCHEDULE|\bNEW\s+SCHEDULE|Lá»ŠCH\s+BAY\s+(?:CÅ¨|Má»šI))'
+
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?<date>(?<!\d)\d{1,2}/\d{1,2}/20\d{2}|\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}\s+[A-Z]{3}\s+20\d{2}|\d{1,2}[A-Z]{3}20\d{2})'
+  group: date
+  formats: [d/M/uuuu, d-MMM-uu, d-MMM-uuuu, d MMM uuuu, dMMMuuuu]
+  locale: en
+  fallbackToDocumentCreatedDate: true
+
+schedule:
+  preferredTableContextPatterns:
+    - '(?iu)(?:2\.?2\.?\s*)?(?:NEW|REVISED)\s+SCHEDULE'
+    - '(?iu)(?:2\.?2\.?\s*)?Lá»ŠCH\s+BAY\s+Má»šI'
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+  lastMatchingTable: true
+
+validation:
+  reviewOnly: true
+  allowIataAirports: false

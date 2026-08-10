@@ -155,7 +155,8 @@ class FileProcessingPipelineTest {
         assertThat(record.getDatabaseSavedAt()).isNotNull();
         assertThat(record.getArchiveStatus()).isEqualTo(FileArchiveStatus.FAILED);
         assertThat(record.getArchivedAt()).isNull();
-        assertThat(record.getErrorMessage()).contains("archive unavailable");
+        assertThat(record.getErrorMessage())
+                .isEqualTo("Đã xử lý dữ liệu nhưng không thể chuyển file vào thư mục lưu trữ.");
     }
 
     @Test
@@ -187,7 +188,8 @@ class FileProcessingPipelineTest {
 
         assertThat(job.getStatus()).isEqualTo(SyncStatus.QUARANTINED);
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.QUARANTINED);
-        assertThat(record.getErrorMessage()).contains("M_OPER.OPER_ICAO=POS");
+        assertThat(record.getErrorMessage())
+                .isEqualTo("Không xác định được mã ICAO của hãng khai thác.");
         assertThat(record.getStoredPath()).isEqualTo("C:\\archive\\error\\reference.csv");
         verify(syncResultPublisher).publish(
                 org.mockito.ArgumentMatchers.eq(7L),

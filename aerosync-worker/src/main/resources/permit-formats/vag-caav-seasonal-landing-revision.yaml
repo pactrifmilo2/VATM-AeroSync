@@ -1,0 +1,11 @@
+id: vag-caav-seasonal-landing-revision
+extends: caav-generic-seasonal-landing-revision
+# Chỉ cao hơn profile CAAV dự phòng; không lấn át QLB hoặc profile chuyên biệt.
+priority: 40
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*VU\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*VAG\b'
+  - '(?iu)(?:\bREVISE#?\b|\bREVISION\b|\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\bREVISED\s+(?:ITEM|SCHEDULE)\b|\bNEW\s+SCHEDULE\b|(?:/|-)\s*REV\d+\b)'
+operator:
+  fixedValue: VAG
