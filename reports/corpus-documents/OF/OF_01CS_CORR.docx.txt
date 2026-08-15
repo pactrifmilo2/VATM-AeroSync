@@ -1,0 +1,58 @@
+FILE: OF 01CS CORR.docx
+
+PARAGRAPHS
+HA NOI, 22 JUL 2026
+NUMBER OF-01/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE CARGO FLIGHTS
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 22 JUL 2026
+NUMBER OF-01/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: UNITED PARCEL SERVICES ‘UPS’
+IATA code: 5X | ICAO code: UPS
+Postal Address: 1400 North Hurstbourne Parkway, Louisville, Kentucky 40223, U.S.A
+Tel: +800.535.2345 | Email: INFOR@UPS.COM
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: PRIME TRIP SUPPORT
+Postal Address: JUMEIRAH BAY X3 TOWER, SUITE 3701, JLT DUBAI, UAE
+Tel: +1 (888) 209-8190 | Email: AP@PRIMETRIPSUPPORT.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+UPS145 | 04SEP26 | 05OCT26 | 12345-- | VTBS | 1445 | ZGSZ | 1735
+UPS146 | 07SEP26 | 05OCT26 | 1234--- | ZGSZ | 1930 | VTBS | 2220
+UPS146 | 05SEP26 | 03OCT26 | -----6- | ZGSZ | 2140 | VTBS | 0030+1
+UPS166 | 05SEP26 | 03OCT26 | -----6- | VTBS | 1625 | ZGSZ | 1915
+UPS166 | 04SEP26 | 02OCT26 | 12345-- | WSSS | 1345 | ZGSZ | 1750
+UPS167 | 04SEP26 | 02OCT26 | 12345-- | ZGSZ | 1915 | WSSS | 2305
+UPS167 | 05SEP26 | 03OCT26 | -----6- | ZGSZ | 2115 | WSSS | 0105+1
+UPS9 | 07SEP26 | 01OCT26 | 1234--- | ZGSZ | 2100 | VOBL | 0240+1
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE CARGO FLIGHTS
+5. Aircraft:
+Aircraft Type | Registration Mark
+B744 / B748 / B76F OR SUB | N605UP / N301UP / N391UP OR SUB
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways
+VHHH-VOBL | A202
+ZGSZ-VOBL | A202
+Airways: Other permitted airways published in Viet Nam’s AIP.

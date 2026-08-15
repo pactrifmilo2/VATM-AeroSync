@@ -11,6 +11,13 @@ import java.util.stream.Collectors;
 @Component
 class WordPermitFormatDetector {
 
+    private static final Pattern IATA_IDENTITY = Pattern.compile(
+            "(?iu)(?:IATA\\s*(?:CODE)?|M[ÃƒA]\\s*IATA)(?:\\s*\\([^)]*\\))?"
+                    + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
+    private static final Pattern ICAO_IDENTITY = Pattern.compile(
+            "(?iu)(?:ICAO\\s*(?:CODE)?|M[ÃƒA]\\s*ICAO)(?:\\s*\\([^)]*\\))?"
+                    + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
+
     private final List<DocxPermitFormatProfile> profiles;
 
     WordPermitFormatDetector(DocxPermitProfileCatalog profileCatalog) {
@@ -18,6 +25,7 @@ class WordPermitFormatDetector {
     }
 
     DocxPermitFormatProfile detect(WordPermitDocument document, String fileName) {
+        CarrierIdentity carrier = carrierIdentity(document.rawContent());
         List<DocxPermitFormatProfile> directMatches = profiles.stream()
                 .filter(profile -> supports(profile, document, false))
                 .toList();
@@ -25,7 +33,32 @@ class WordPermitFormatDetector {
                 .filter(profile -> supports(profile, document, true))
                 .toList();
         List<DocxPermitFormatProfile> matches = preferredMatchSet(directMatches, relaxedMatches);
+        if (carrier.complete()) {
+            List<DocxPermitFormatProfile> directCarrierMatches = directMatches.stream()
+                    .filter(profile -> !isCaavFallback(profile))
+                    .toList();
+            List<DocxPermitFormatProfile> relaxedCarrierMatches = relaxedMatches.stream()
+                    .filter(profile -> !isCaavFallback(profile))
+                    .toList();
+            List<DocxPermitFormatProfile> carrierMatches = preferredMatchSet(
+                    directCarrierMatches, relaxedCarrierMatches);
+            if (carrierMatches.isEmpty()) {
+                throw invalid(fileName,
+                        "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
+            }
+            matches = carrierMatches.stream()
+                    .filter(profile -> permitIdentityMatches(profile, document.rawContent()))
+                    .toList();
+            if (matches.isEmpty()) {
+                throw invalid(fileName,
+                        "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
+            }
+        }
         if (matches.isEmpty()) {
+            if (carrier.complete()) {
+                throw invalid(fileName,
+                        "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
+            }
             throw invalid(fileName, "Unsupported Word permit format; no format profile matched");
         }
         int highestPriority = matches.stream()
@@ -41,6 +74,24 @@ class WordPermitFormatDetector {
                     .collect(Collectors.joining(", ")));
         }
         return preferredMatches.getFirst();
+    }
+
+    private CarrierIdentity carrierIdentity(String rawContent) {
+        var iata = IATA_IDENTITY.matcher(rawContent);
+        var icao = ICAO_IDENTITY.matcher(rawContent);
+        return new CarrierIdentity(
+                iata.find() ? iata.group("value").toUpperCase(Locale.ROOT) : null,
+                icao.find() ? icao.group("value").toUpperCase(Locale.ROOT) : null);
+    }
+
+    private boolean permitIdentityMatches(DocxPermitFormatProfile profile, String rawContent) {
+        return profile.permit() != null
+                && profile.permit().pattern() != null
+                && Pattern.compile(profile.permit().pattern()).matcher(rawContent).find();
+    }
+
+    private boolean isCaavFallback(DocxPermitFormatProfile profile) {
+        return profile.id().toLowerCase(Locale.ROOT).startsWith("caav-");
     }
 
     private List<DocxPermitFormatProfile> preferredMatchSet(
@@ -104,5 +155,11 @@ class WordPermitFormatDetector {
 
     private FormatValidationException invalid(String fileName, String detail) {
         return new FormatValidationException(fileName, detail);
+    }
+
+    private record CarrierIdentity(String iata, String icao) {
+        boolean complete() {
+            return iata != null && icao != null;
+        }
     }
 }

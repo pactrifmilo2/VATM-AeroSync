@@ -1,0 +1,65 @@
+FILE: LD 62A.docx
+
+PARAGRAPHS
+HANOI, 25th MARCH 2026
+PERMIT No.: LD-62/A/S/2026VN
+IATA SCHEDULE SEASON: Summer 2026
+1. Carrier/Operator:
+2. Schedules: All times in UTC
+3. Purpose of Flight(s): Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong,
+C.c: VATM, SAA,NAA,
+C.c: Bui Minh Dang - DIR of ATD - CAAV, Tran Thanh Son - DEP DIR of ATD - CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 25th MARCH 2026
+PERMIT No.: LD-62/A/S/2026VN
+IATA SCHEDULE SEASON: Summer 2026
+1. Carrier/Operator:
+Name: InterGlobe Aviation Limited (IndiGo)
+IATA code : 6E | ICAO code : IGO
+Address: Level 2, Tower 2, Emaar Capital, MG Road, Gurgaon – 122002, India
+Tel: +91 9891625334 | Email: +91 9891625334
+
+TABLE 3
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+6E1633 | 28Mar26 | 23OCT26 | 1234567 | DEL | 2340 | HAN | 0340+1 | 320/32N/ 321/32Q
+6E1632 | 29Mar26 | 24OCT26 | 1234567 | HAN | 0440 | CCU | 0725 | 
+ |  |  |  |  |  |  |  | 
+6E1631 | 29Mar26 | 24Oct26 | 1234567 | CCU | 0840 | HAN | 1135 | 
+6E1634 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1235 | DEL | 1725 | 
+ |  |  |  |  |  |  |  | 
+6E1641 | 29Mar26 | 24Oct26 | 1234567 | CCU | 1555 | SGN | 1940 | 
+6E1642 | 29Mar26 | 24Oct26 | 1234567 | SGN | 2040 | CCU | 0005+1 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight(s): Passenger
+4. Aircraft
+Aircraft Type | Registration Marks | Nationality
+320/32N | According to the FAOC of 6E | INDIA
+321/32Q | According to the FAOC of 6E | INDIA
+
+TABLE 5
+CONTEXT: 5. Airways
+Sectors | Airways | Entry Point into Vietnamese Airspace | Exit Point from Vietnamese Airspace
+CCU-HAN | B214 W21 | LADON | 
+HAN-CCU | W21 B214 |  | LADON
+DEL-HAN | B214 W21 | LADON | 
+HAN-DEL | W21 B214 |  | LADON
+CCU-SGN | R468 | SAPEN | 
+SGN-CCU | R468 |  | SAPEN

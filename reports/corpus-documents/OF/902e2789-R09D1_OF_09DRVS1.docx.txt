@@ -1,0 +1,60 @@
+FILE: R09D1 OF 09DRVS1.docx
+
+PARAGRAPHS
+Hanoi, 27/4/2026
+REV 1: OF - 09/D/S/2026VN
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+3.1. Old
+3.2. New
+4. Airways
+4.1. Old
+4.2. New
+5.OTHER DETAILS REMAIN UNCHANGED
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/4/2026
+REV 1: OF - 09/D/S/2026VN
+1. Carrier
+Name: SICHUAN AIRLINES CO. LTD
+IATA code: 3U | ICAO code: CSC
+Postal Address: Chengdu Shuangliu International Airport, Chengdu, Sichuan, 610202, China
+Tel: +86 28 8888 8888 | Email: duruizhi@sichuanair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS Building, DAFZA, P.O. Box 54482, Dubai, UAE
+Tel: +971 4 299 6633 | Email: payable@uas.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. Old
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+CSC3985 | 27APR26 | 27APR26 | 1000000 | ZUTF | 0730 | WADD | 1405 | OF - 09/D/S/2026VN
+
+TABLE 4
+CONTEXT: 3.2. New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CSC3985 | 27APR26 | 27APR26 | 1000000 | ZJSY | 1200 | WADD | 1905
+
+TABLE 5
+CONTEXT: 4. Airways
+4.1. Old
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZUTF - WADD | R471 R474 Q1 L644 | KATBO | DUDIS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 4.2. New
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJSY - WADD | A1 Q1 L644 | BUNTA | DUDIS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 7
+CONTEXT: 5.OTHER DETAILS REMAIN UNCHANGED
+ | 
+ | 

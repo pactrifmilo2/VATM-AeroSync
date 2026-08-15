@@ -1,0 +1,35 @@
+FILE: R84A 84A (RVS42).docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+Tham chiếu phép bay số: LD- 84/A/S/2026VN (RVS42)
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ:
+2.2/ Lịch bay mới:
+3/ Ghi chú: các chi tiết khác không thay đổi.
+Phạm Giang gửi thay bà Phạm Thảo, PTP VTHK
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+Tham chiếu phép bay số: LD- 84/A/S/2026VN (RVS42)
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Số phép bay
+VJ986 | 6 | 25Jul26 | 25Jul26 | PQC | HKG | 4:55 | 7:40 | 84/A/S/2026VN
+VJ985 | 6 | 25Jul26 | 25Jul26 | HKG | PQC | 8:40 | 11:25 | 84/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến
+VJ986 | 7 | 26Jul26 | 26Jul26 | PQC | HKG | 10:30 | 13:15
+VJ985 | 7 | 26Jul26 | 26Jul26 | HKG | PQC | 6:45 | 9:30

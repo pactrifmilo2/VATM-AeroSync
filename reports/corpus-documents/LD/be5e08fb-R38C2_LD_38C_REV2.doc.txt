@@ -1,0 +1,57 @@
+FILE: R38C2  LD 38C REV2.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 24/06/2026
+Permit No.: LD-38/C/S/2026VN/REV2
+ 
+Carrier/Operator
+Name: Cathay Pacific Airways Limited IATA code: CX ICAO code: CPA Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD,
+ HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG Tel: +84-24-38865243 Email: HYPERLINK "mailto:duc_dam@cathaypacific.com" duc_dam@cathaypacific.com 
+2. Revised Item or Additional details: Cargo – advance timing 
+2.1. Original schedule(s) (UTC Time)
+Flight
+Number Effective
+from Effective
+To Day(s) of
+services Dep
+Airport ETD
+ Arr
+Airport ETA
+ Aircraft CX3037 01Jul26 31Jul26 --3---- HKG 08:50 HAN 11:00 74Y/74N CX3036 01Jul26 31Jul26 --3---- HAN 12:30 HKG 14:35 74Y/74N 
+2.2. New schedule(s) (UTC Time)
+Flight
+Number Effective
+From Effective
+To Day(s) of
+services Dep
+Airport ETD
+ Arr
+Airport ETA
+ Aircraft CX3037 01Jul26 31Jul26 --3---- HKG 08:15 HAN 10:20 74Y/74N CX3036 01Jul26 31Jul26 --3---- HAN 12:30 HKG 14:35 74Y/74N other details unchanged
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 24/06/2026
+Permit No.: LD-38/C/S/2026VN/REV2
+ 
+Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG
+Tel: +84-24-38865243 | Email: HYPERLINK "mailto:duc_dam@cathaypacific.com" duc_dam@cathaypacific.com
+
+TABLE 2
+CONTEXT: 2. Revised Item or Additional details: Cargo – advance timing 
+2.1. Original schedule(s) (UTC Time)
+Flight Number | Effective from | Effective To | Day(s) of services | Dep Airport | ETD | Arr Airport | ETA | Aircraft
+CX3037 | 01Jul26 | 31Jul26 | --3---- | HKG | 08:50 | HAN | 11:00 | 74Y/74N
+CX3036 | 01Jul26 | 31Jul26 | --3---- | HAN | 12:30 | HKG | 14:35 | 74Y/74N
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight Number | Effective From | Effective To | Day(s) of services | Dep Airport | ETD | Arr Airport | ETA | Aircraft
+CX3037 | 01Jul26 | 31Jul26 | --3---- | HKG | 08:15 | HAN | 10:20 | 74Y/74N
+CX3036 | 01Jul26 | 31Jul26 | --3---- | HAN | 12:30 | HKG | 14:35 | 74Y/74N

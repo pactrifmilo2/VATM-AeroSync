@@ -1,0 +1,54 @@
+FILE: R20B7 OF 20BRVS7.docx
+
+PARAGRAPHS
+HANOI, 27-May-26
+Refer to the permit issued: OF-20/B/S/2026VN/REV7
+1. Carrier/Operator
+2. [Revised timing and rerouting of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Air traffic service routes
+4. Note: Others un-changed
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260525-170356)
+
+TABLE 1
+CONTEXT: HANOI, 27-May-26
+Refer to the permit issued: OF-20/B/S/2026VN/REV7
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Scheduling and Regulatory Affairs MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised timing and rerouting of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+MAS6162 | 31MAY26 | 28JUN26 | …...7 | WMKK | 23:55 | ZSPD | 05:20+1 | 33X | OF-20/B/S/2026VN
+MAS6163 | 01JUN26 | 29JUN26 | 1…… | ZSPD | 07:20 | WMKK | 15:50 | 33X | OF-20/B/S/2026VN
+MAS6170 | 03JUN26 | 24JUN26 | --3---- | WMKK | 03:00 | ZSPD | 08:25 | 33X | OF-20/B/S/2026VN
+MAS6171 | 03JUN26 | 24JUN26 | --3---- | ZSPD | 10:25 | WMKK | 15:55 | 33X | OF-20/B/S/2026VN
+MAS6104 | 06JUN26 | 27JUN26 | -----6- | WMKK | 02:05 | VHHH | 05:55 | 33X | OF-20/B/S/2026VN
+MAS6105 | 06JUN26 | 27JUN26 | -----6- | VHHH | 07:45 | WMKK | 11:25 | 33X | OF-20/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6162 | 01JUN26 | 29JUN26 | 1…… | WMKK | 03:30 | ZSPD | 08:55 | 33X
+MAS6163 | 01JUN26 | 29JUN26 | 1…… | ZSPD | 10:55 | WMKK | 16:25 | 33X
+MAS6170 | 02JUN26 | 23JUN26 | -2----- | WMKK | 20:00 | ZSPD | 01:25+1 | 33X
+MAS6171 | 03JUN26 | 24JUN26 | --3---- | ZSPD | 0325 | WMKK | 08:55 | 33X
+MAS6104 | 05JUN26 | 26JUN26 | ----5-- | WMKK | 21:10 | VHHH | 03:20+1 | 33X
+MAS6105 | 06JUN26 | 27JUN26 | -----6- | VHHH | 05:20 | WMKK | 09:00 | 33X
+ |  |  |  |  |  |  |  | 
+
+TABLE 4
+CONTEXT: 3. Note: Air traffic service routes
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WMKK-ZSPD | M765 M771 | IGARI | DONDA
+ZSPD-WMKK | L642 | EXOTO | ESPOD
+WMKK-VHHH | M771 | DUDIS | DONDA
+VHHH-WMKK | L642 | EXOTO | ESPOD

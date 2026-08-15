@@ -42,8 +42,8 @@ class JdbcPermitOperatorResolverTest {
     }
 
     @Test
-    void resolve_usesTheOnlyIcaoWithoutRequiringCarrierName() {
-        assertThat(resolver.resolve("VN", null)).contains("HVN");
+    void resolve_requiresCarrierNameEvenWhenIataHasOnlyOneIcao() {
+        assertThat(resolver.resolve("VN", null)).isEmpty();
     }
 
     @Test

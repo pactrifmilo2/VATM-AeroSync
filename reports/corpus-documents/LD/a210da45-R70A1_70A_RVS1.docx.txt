@@ -1,0 +1,50 @@
+FILE: R70A1 70A RVS1.docx
+
+PARAGRAPHS
+HANOI, 08MAY2026
+PERMIT NUMBER: LD-70/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Aircraft:
+3.1. Original Aircraft:
+3.2. New Aircraft:
+4. Note: Other details unchanged.
+RGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 08MAY2026
+PERMIT NUMBER: LD-70/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Uzbekistan Airways JSC
+IATA code: HY | ICAO code: UZB
+Postal Address: 41, Amir Temur av, Tashkent, Uzbekistan
+Tel: +998781404623 | Email: Info@uzairways.com, schedule@uzairways.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+HY561 | 09MAY26 | 16MAY26 | -----6- | TAS | 1850 | CXR | 0225+ | 32Q | LD-70/A/S/2026VN
+HY562 | 10MAY26 | 17MAY26 | ------7 | CXR | 0355 | TAS | 1115 | 32Q | LD-70/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HY561 | 09MAY26 | 16MAY26 | -----6- | TAS | 1850 | CXR | 0225+ | 788/32Q
+HY562 | 10MAY26 | 17MAY26 | ------7 | CXR | 0355 | TAS | 1115 | 788/32Q
+
+TABLE 4
+CONTEXT: 3. Aircraft:
+3.1. Original Aircraft:
+Aircraft Type | Registration marks | Nationality
+32Q | As per FAOC of HY | UZBEKISTAN
+
+TABLE 5
+CONTEXT: 3.2. New Aircraft:
+Aircraft Type | Registration marks | Nationality
+788 | As per FAOC of HY | UZBEKISTAN
+32Q | As per FAOC of HY | UZBEKISTAN

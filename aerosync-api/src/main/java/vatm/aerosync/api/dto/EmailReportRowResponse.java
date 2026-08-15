@@ -23,6 +23,7 @@ public record EmailReportRowResponse(
         EmailAcknowledgementStatus acknowledgementStatus,
         boolean ingestComplete,
         LocalDateTime acknowledgedAt,
-        SyncStatus jobStatus
+        SyncStatus jobStatus,
+        boolean requiresFormat
 ) {
 }

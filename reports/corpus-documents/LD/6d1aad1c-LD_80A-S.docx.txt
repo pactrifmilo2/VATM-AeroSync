@@ -1,0 +1,57 @@
+FILE: LD 80A-S.docx
+
+PARAGRAPHS
+Ha Noi, March 27, 2026
+Permit No.: LD-80/A/S/2026VN
+IATA Schedule Season:
+Summer 2026
+1. Carrier
+2. Schedule: All time in UTC
+3. Purpose of Flight: All cargo flights
+4. Aircraft
+5.Airways
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD,CAAV
+C.c: Pham Thao, Deputy Director of ATD, CAAV.
+(Ref. G17.44-260326-0066)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 27, 2026
+Permit No.: LD-80/A/S/2026VN
+IATA Schedule Season:
+Summer 2026
+1. Carrier
+Name: RAYA AIRWAYS
+IATA code: TH | ICAO code: RMY
+Postal Address: Left Wing, Ground Floor, Wisma Shell, 3450 Jalan Teknokrat 3, 63000 Cyberjaya, Selangor Darul Ehsan, Malaysia.
+Tel: +603 7884 9898 | Email: networkplanning@rayaairways.com; mohamadfaisal@rayaairways.com
+
+TABLE 3
+CONTEXT: 2. Schedule: All time in UTC
+Flight Number | Effective from | Effective to | Days of services | Departure Airport | STD | Arrival Airport | STA | Aircraft type
+TH236 | 29MAR26 | 24OCT26 | _______7 | LBU | 1320 | SGN | 1520 | 76X
+TH237 | 29MAR26 | 24OCT26 | _______7 | SGN | 1640 | KUL | 1850 | 76X
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: All cargo flights
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+76X | As per FAOC of TH | MALAYSIA
+
+TABLE 5
+CONTEXT: 5.Airways
+Sectors | ATS Routes | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+LBU-SGN | M768 | AKMON | 
+SGN-KUL | L637-M765 | - | IGARI
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

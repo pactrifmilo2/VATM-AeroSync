@@ -42,6 +42,57 @@ class ReplacementScheduleSelectionTest {
         }
     }
 
+    @Test
+    void broadRevisedHeadingDoesNotTurnTheFollowingOriginalTableIntoReplacementRows() throws Exception {
+        Path file = createMasRevisionDocument();
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.originalFlights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("MAS523");
+        assertThat(permit.flights())
+                .extracting(flight -> flight.flightNumber())
+                .containsExactly("MAS523D");
+    }
+
+    private Path createMasRevisionDocument() throws Exception {
+        Path file = tempDir.resolve("OF-20A-S26-MAS-r1.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            paragraph(document, "HANOI, 14-Aug-26");
+            paragraph(document, "Refer to the issued permit number: OF - 20 / A / S / 2026VN");
+            paragraph(document, "1. Carrier/Operator");
+            table(document,
+                    new String[] {"Name: Malaysia Airlines Berhad", "ICAO code: MAS"},
+                    new String[][] {{"IATA code: MH", "Nationality: Malaysia"}});
+            paragraph(document, "2. Revised Schedule of Cargo flight to earlier");
+            paragraph(document, "2.1. Original schedule(s) (UTC Time)");
+            englishSchedule(document, "MAS523", "13AUG26", "---4---", "ZGSZ", "WMKK", "B738");
+            paragraph(document, "2.2. New schedule(s) (UTC Time)");
+            englishSchedule(document, "MAS523D", "14AUG26", "----5--", "ZGSZ", "WMKK", "B738");
+            paragraph(document, "3. Note: Other details unchanged.");
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private void englishSchedule(XWPFDocument document,
+                                 String flightNumber,
+                                 String date,
+                                 String days,
+                                 String from,
+                                 String to,
+                                 String aircraft) {
+        table(document,
+                new String[] {
+                        "Flight number", "Effective from", "Effective to", "Days of services",
+                        "Departure Airport", "ETD", "Arrival Airport", "ETA", "Aircraft Type"
+                },
+                new String[][] {{flightNumber, date, date, days, from, "1845", to, "2245", aircraft}});
+    }
+
     private Path createVjcDocument(int index, String permitSuffix) throws Exception {
         Path file = tempDir.resolve("LD-900" + index + "-VJC-replacement.docx");
         try (XWPFDocument document = new XWPFDocument()) {

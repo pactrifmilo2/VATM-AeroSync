@@ -1,0 +1,68 @@
+FILE: OF 99AS.doc
+
+PARAGRAPHS
+Ha Noi, 18th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 99/A/S/2026VN
+1. Carrier
+Name: Qingdao Airlines CO., LTD IATA code: QW ICAO code: QDA Postal Address: Building NO.8, Jinhang 12th Road, Jiaozhou, Qingdao, ShandongProvince, China. 
+2. Billing address
+Name: Beijing Star Aviation Services Co.,ltd Postal Address: Room 409,No113,Kaifang Road,Huai Rou District, Beijing, China. Tel: +86 15311937187 Email: HYPERLINK "mailto:sugar_jun@126.com" sugar_jun@126.com 
+ HYPERLINK "mailto:sugar@junstar-aviation.com" sugar@junstar-aviation.com 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type QDA917 29MAR26 24OCT26 1234567 ZSQD 0505 VTBS 1010 A320 QDA918 29MAR26 24OCT26 1234567 VTBS 1110 ZSQD 1555 A320 QDA907 29MAR26 24OCT26 1234567 ZSQD 0100 WMKK 0650 A320 QDA908 29MAR26 24OCT26 1234567 WMKK 0750 ZSQD 1400 A320 QDA929 29MAR26 24OCT26 1234567 ZSQD 0955 WMKK 1610 A320 QDA930 29MAR26 24OCT26 1234567 WMKK 1710 ZSQD 2330 A320 QDA923 29MAR26 24OCT26 1234567 ZSQD 0100 WMKP 0735 A320 QDA924 29MAR26 24OCT26 1234567 WMKP 0835 ZSQD 1455 A320 
+4. Purpose of Flight(s): PASSENGER 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A320 B-302N B-302P B-303V B-304Q B-304R B-308R B-9955 B-9956 B-1617 B-1648 B-1649 B-1693 B-8282 B-1695 B-8283 B-8442 B-8430 B-8443 B-8986 B-8586 OR SUBS CHINA 
+6. Air traffic service routes:
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSQD-VTBS R474 TEBAK LAVOS VTBS-ZSQD R474 LAVOS TEBAK ZSQD-WMKK L642-M765 EXOTO IGARI WMKK-ZSQD M771 DUDIS DONDA ZSQD-WMKP L642-M765 EXOTO IGARI WMKP-ZSQD M771 DUDIS DONDA Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. VALIDITY: -3/+72 HOURS 
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 18th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 99/A/S/2026VN
+1. Carrier
+Name: Qingdao Airlines CO., LTD
+IATA code: QW | ICAO code: QDA
+Postal Address: Building NO.8, Jinhang 12th Road, Jiaozhou, Qingdao, ShandongProvince, China.
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Beijing Star Aviation Services Co.,ltd
+Postal Address: Room 409,No113,Kaifang Road,Huai Rou District, Beijing, China.
+Tel: +86 15311937187 | Email: HYPERLINK "mailto:sugar_jun@126.com" sugar_jun@126.com HYPERLINK "mailto:sugar@junstar-aviation.com" sugar@junstar-aviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QDA917 | 29MAR26 | 24OCT26 | 1234567 | ZSQD | 0505 | VTBS | 1010 | A320
+QDA918 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1110 | ZSQD | 1555 | A320
+ |  |  |  |  |  |  |  | 
+QDA907 | 29MAR26 | 24OCT26 | 1234567 | ZSQD | 0100 | WMKK | 0650 | A320
+QDA908 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 0750 | ZSQD | 1400 | A320
+ |  |  |  |  |  |  |  | 
+QDA929 | 29MAR26 | 24OCT26 | 1234567 | ZSQD | 0955 | WMKK | 1610 | A320
+QDA930 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 1710 | ZSQD | 2330 | A320
+ |  |  |  |  |  |  |  | 
+QDA923 | 29MAR26 | 24OCT26 | 1234567 | ZSQD | 0100 | WMKP | 0735 | A320
+QDA924 | 29MAR26 | 24OCT26 | 1234567 | WMKP | 0835 | ZSQD | 1455 | A320
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): PASSENGER 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | B-302N B-302P B-303V B-304Q B-304R B-308R B-9955 B-9956 B-1617 B-1648 B-1649 B-1693 B-8282 B-1695 B-8283 B-8442 B-8430 B-8443 B-8986 B-8586 OR SUBS | CHINA
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSQD-VTBS | R474 | TEBAK | LAVOS
+VTBS-ZSQD | R474 | LAVOS | TEBAK
+ZSQD-WMKK | L642-M765 | EXOTO | IGARI
+WMKK-ZSQD | M771 | DUDIS | DONDA
+ZSQD-WMKP | L642-M765 | EXOTO | IGARI
+WMKP-ZSQD | M771 | DUDIS | DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

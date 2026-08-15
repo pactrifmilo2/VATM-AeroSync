@@ -1,0 +1,120 @@
+FILE: LD 77_A_S.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: LD - 77/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator:
+- Name: All Nippon Airways 
+- IATA code: NH.; ICAO code: ANA
+- Address: 9 Floor, BIDV Tower, 194 Tran Quang Khai, Hoan Kiem Ward, Hanoi, Vietnam 
+- Tel: (84-24)-39262806 - Fax: (84-24)-39262815
+16 Floor, Sun Wah Tower, 115 Nguyen Hue, Sai Gon Ward, Ho Chi Minh City, Vietnam
+- Tel: (84-28)-38219617 - Fax: (84-28)-38219619 
+- Email: HYPERLINK "mailto:hansg@ana.co.jp" \h hansg@ana.co.jp , HYPERLINK "mailto:hanopslc@ana.co.jp" \h hanopslc@ana.co.jp , sgnsg@ana.co.jp, sgnoo@ana.co.jp.
+2. Schedules: All times in UTC 
+Flight Number1-Eff from-Eff to-Day(s) of Services- Dep Airport2- ETD-Arr Airport3- ETA-Acft Type4
+ 
+No Flight 
+Number Effective from Effective
+ To Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft Type 1 NH833 29MAR26 24OCT26 1234567 NRT 10:50 SGN 17:15 
+788
+789
+781 NH834 29MAR26 30JUN26 1234567 SGN 00:00 NRT 06:05 01JUL26 24OCT26 1234567 SGN 00:00 NRT 06:10 2 NH891 29MAR26 24OCT26 1234567 HND 08:45 SGN 14:55 NH892 29MAR26 24OCT26 1234567 SGN 16:15 HND 22:00 3 NH897 29MAR26 31MAY26 1234567 NRT 09:30 HAN 15:35 788
+789
+781
+ 01JUN26 24OCT26 1234567 NRT 09:30 HAN 15:15 NH1918 28MAR26 28MAR26 6
+ HAN 17:25 NRT 22:35 NH898 29MAR26 31MAY26 1234567 HAN 16:55 NRT 22:05 01JUN26 30JUN26 1234567 HAN 16:35 NRT 21:45 01JUL26 30SEP26 1234567 HAN 16:35 NRT 21:55 01OCT26 24OCT26 1234567 HAN 16:35 NRT 21:45 
+3. Type of services: Passenger
+ 
+4. Air traffic service routes:
+Sectors ATS Routes Entry Point Exit Point NRT-SGN 1. M765. N500
+2. A1. G221. W12.Q1
+3. N892.Q15.W15
+4. L628.Q15.W15 PANDI
+BUNTA
+MIGUG
+ARESI SGN-NRT 1. N500. M765
+2. N500. L625
+3. W12. G221. A1
+4. W15.Q15.L628.L625 ARESI
+PANDI
+BUNTA HND-SGN 1. M765. N500
+2. A1. G221. W12. Q1
+3. N892.Q15.W15
+4. L628.Q15.W15 PANDI
+BUNTA
+MIGUG
+ARESI SGN-HND 1. N500. M765
+2. N500. L625
+3. W12. G221. A1
+4. W15.Q15.L628.L625 ARESI
+PANDI
+BUNTA NRT-HAN 1.TEBAK.R474.NOB
+2.BUNTA.A1.DAN.W2. BIGBO. Q2. BISON TEBAK
+BUNTA HAN-NRT 1.NOB.R474.TEBAK
+2.NOB.Q1.DAN.A1. BUNTA
+3.NOB.W1.DAN.A1.BUNTA TEBAK
+BUNTA 
+5. Aircraft:
+Aircraft type Registration Mark Nationality 788 
+As per FAOC of NH 
+Japan 789 781 
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: LD - 77/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator:
+- Name: All Nippon Airways 
+- IATA code: NH.; ICAO code: ANA
+- Address: 9 Floor, BIDV Tower, 194 Tran Quang Khai, Hoan Kiem Ward, Hanoi, Vietnam 
+- Tel: (84-24)-39262806 - Fax: (84-24)-39262815
+16 Floor, Sun Wah Tower, 115 Nguyen Hue, Sai Gon Ward, Ho Chi Minh City, Vietnam
+- Tel: (84-28)-38219617 - Fax: (84-28)-38219619 
+- Email: HYPERLINK "mailto:hansg@ana.co.jp" \h hansg@ana.co.jp , HYPERLINK "mailto:hanopslc@ana.co.jp" \h hanopslc@ana.co.jp , sgnsg@ana.co.jp, sgnoo@ana.co.jp.
+2. Schedules: All times in UTC 
+Flight Number1-Eff from-Eff to-Day(s) of Services- Dep Airport2- ETD-Arr Airport3- ETA-Acft Type4
+No | Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+1 | NH833 | 29MAR26 | 24OCT26 | 1234567 | NRT | 10:50 | SGN | 17:15 | 788 789 781
+ | NH834 | 29MAR26 | 30JUN26 | 1234567 | SGN | 00:00 | NRT | 06:05 | 
+ |  | 01JUL26 | 24OCT26 | 1234567 | SGN | 00:00 | NRT | 06:10 | 
+2 | NH891 | 29MAR26 | 24OCT26 | 1234567 | HND | 08:45 | SGN | 14:55 | 
+ | NH892 | 29MAR26 | 24OCT26 | 1234567 | SGN | 16:15 | HND | 22:00 | 
+3 | NH897 | 29MAR26 | 31MAY26 | 1234567 | NRT | 09:30 | HAN | 15:35 | 788 789 781
+ |  | 01JUN26 | 24OCT26 | 1234567 | NRT | 09:30 | HAN | 15:15 | 
+ | NH1918 | 28MAR26 | 28MAR26 | 6 | HAN | 17:25 | NRT | 22:35 | 
+ | NH898 | 29MAR26 | 31MAY26 | 1234567 | HAN | 16:55 | NRT | 22:05 | 
+ |  | 01JUN26 | 30JUN26 | 1234567 | HAN | 16:35 | NRT | 21:45 | 
+ |  | 01JUL26 | 30SEP26 | 1234567 | HAN | 16:35 | NRT | 21:55 | 
+ |  | 01OCT26 | 24OCT26 | 1234567 | HAN | 16:35 | NRT | 21:45 | 
+
+TABLE 2
+CONTEXT: 3. Type of services: Passenger
+ 
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+NRT-SGN | 1. M765. N500 2. A1. G221. W12.Q1 3. N892.Q15.W15 4. L628.Q15.W15 | PANDI BUNTA MIGUG ARESI | 
+SGN-NRT | 1. N500. M765 2. N500. L625 3. W12. G221. A1 4. W15.Q15.L628.L625 |  | ARESI PANDI BUNTA
+HND-SGN | 1. M765. N500 2. A1. G221. W12. Q1 3. N892.Q15.W15 4. L628.Q15.W15 | PANDI BUNTA MIGUG ARESI | 
+SGN-HND | 1. N500. M765 2. N500. L625 3. W12. G221. A1 4. W15.Q15.L628.L625 |  | ARESI PANDI BUNTA
+NRT-HAN | 1.TEBAK.R474.NOB 2.BUNTA.A1.DAN.W2. BIGBO. Q2. BISON | TEBAK BUNTA | 
+HAN-NRT | 1.NOB.R474.TEBAK 2.NOB.Q1.DAN.A1. BUNTA 3.NOB.W1.DAN.A1.BUNTA |  | TEBAK BUNTA
+
+TABLE 3
+CONTEXT: 5. Aircraft:
+Aircraft type | Registration Mark | Nationality
+788 | As per FAOC of NH | Japan
+789 |  | 
+781 |  | 

@@ -1,0 +1,63 @@
+FILE: LD 54 B.docx
+
+PARAGRAPHS
+Ha Noi, March 23, 2026
+Permit No.: LD-54/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+Note: AK is authorized to operate 5th freedom right on sector SGN-HKT.
+3. Purpose of Flight: All Cargo
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260313-0147)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 23, 2026
+Permit No.: LD-54/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AirAsia Berhad
+IATA code: AK | ICAO code: AXM
+Postal Address: RedQ, Jalan Pekeliling 5, Terminal 2, 64000 (T2), Selangor
+Tel: +6038660 4333 | Email: regulatoryaffairs@airasia.com, hanhb@airasia.com, ahmadfauzanmansor@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+AK8550 | 02APR26 | 24OCT26 | ___4_6_ | KUL | 1945 | SGN | 2155 | 321
+AK8553 | 02APR26 | 24OCT26 | ___4_6_ | SGN | 2310 | HKT | 0100 +1 | 
+AK8554 | 03APR26 | 25OCT26 | ____5_7 | HKT | 0230 | KUL | 0410 | 
+AK8557 | 03APR26 | 23OCT26 | ____5__ | KUL | 1935 | SGN | 2145 | 
+AK8558 | 03APR26 | 23OCT26 | ____5__ | SGN | 2255 | HKT | 0045+1 | 
+AK8559 | 04APR26 | 24OCT26 | _____6_ | HKT | 0215 | KUL | 0355 | 
+AK8140 | 04APR26 | 24OCT26 | _____6_ | KUL | 1240 | SGN | 1450 | 
+AK8141 | 04APR26 | 24OCT26 | _____6_ | SGN | 1600 | KUL | 1805 | 
+
+TABLE 4
+CONTEXT: Note: AK is authorized to operate 5th freedom right on sector SGN-HKT.
+3. Purpose of Flight: All Cargo
+4. Aircraft
+Aircraft Type (11) | Registration Mark (12) | Nationality(15)
+321 | According to AK’s FAOC | Malaysia
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector(16) | Airways(17) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KUL-SGN | M765 L637 | IGARI | -
+SGN-KUL | L637 M765 | - | IGARI
+SGN-HKT | R468 | - | SAPEN

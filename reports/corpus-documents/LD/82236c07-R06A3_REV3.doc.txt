@@ -1,0 +1,41 @@
+FILE: R06A3  REV3.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 22/04/2026
+Permit No.: LD-06/A/S/2026VN/REV3
+ 
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION IATA code: FX ICAO code: FDX Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA. Tel: (1-901) 606-9983 Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com 
+2. Schedule (UTC Time)
+2.1. Original schedule(s) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit FX6067 01May26 29May26 -2345-- CRK 1035 SGN 1315 767F LD-06/A/S/2026VN FX6067 01May26 29May26 -2345-- SGN 1445 CAN 1740 767F LD-06/A/S/2026VN 
+2.2. New schedule(s) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type FX6067 01May26 29May26 -2345-- SIN 1100 SGN 1315 76F FX6067 01May26 29May26 -2345-- SGN 1445 CAN 1740 76F OTHER MAIN DETAILS IS UNCHANGED.
+ 
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 22/04/2026
+Permit No.: LD-06/A/S/2026VN/REV3
+ 
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX6067 | 01May26 | 29May26 | -2345-- | CRK | 1035 | SGN | 1315 | 767F | LD-06/A/S/2026VN
+FX6067 | 01May26 | 29May26 | -2345-- | SGN | 1445 | CAN | 1740 | 767F | LD-06/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX6067 | 01May26 | 29May26 | -2345-- | SIN | 1100 | SGN | 1315 | 76F
+FX6067 | 01May26 | 29May26 | -2345-- | SGN | 1445 | CAN | 1740 | 76F

@@ -1,0 +1,139 @@
+FILE: LD 44.A.S.2026VN-PR-SGN.HAN.DAD.docx
+
+PARAGRAPHS
+Hanoi, 24th March 2026
+PERMIT NUMBER: LD-44/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger flight
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 24th March 2026
+PERMIT NUMBER: LD-44/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+Carrier
+Name: PHILIPPINE AIRLINES
+IATA code: PR | ICAO code: PAL
+Postal Address: LKTJ Center PAL Gate 5, Andrews Avenue Pasay City 1300
+Tel: +632-8442-7930 | Email: cfd@pal.com.ph
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+PR591 | 29MAR26 | 24OCT26 | 46 | MNL | 2150 | SGN | 0035+ | 320/321/32Q/ 333/359/77W
+PR592 | 29MAR26 | 24OCT26 | 57 | SGN | 0145 | MNL | 0440 | 
+PR591 | 30MAR26 | 24OCT26 | 12357 | MNL | 2245 | SGN | 0130+ | 
+PR592 | 30MAR26 | 24OCT26 | 12346 | SGN | 0255 | MNL | 0530 | 
+PR597 | 29MAR26 | 24OCT26 | 357 | MNL | 0415 | SGN | 0725 | 
+PR598 | 29MAR26 | 24OCT26 | 357 | SGN | 0835 | MNL | 1140 | 
+PR587 | 29MAR26 | 24OCT26 | 1234567 | CEB | 1455 | SGN | 1755 | 
+PR588 | 29MAR26 | 24OCT26 | 1234567 | SGN | 1855 | CEB | 2200 | 
+ |  |  |  |  |  |  |  | 
+PR585 | 30MAR26 | 23OCT26 | 135 | MNL | 0555 | DAD | 0830 | 320/321/32Q/333/359/77W
+PR586 | 30MAR26 | 23OCT26 | 135 | DAD | 0920 | MNL | 1155 | 
+PR585 | 29MAR26 | 28SEP26 | 6 | MNL | 0335 | DAD | 0610 | 
+PR586 | 29MAR26 | 28SEP26 | 6 | DAD | 0710 | MNL | 0940 | 
+PR585 | 29MAR26 | 24OCT26 | 7 | MNL | 0335 | DAD | 0610 | 
+PR586 | 29MAR26 | 24OCT26 | 7 | DAD | 0710 | MNL | 0940 | 
+PR585 | 29MAR26 | 02SEP26 | 4 | MNL | 0335 | DAD | 0610 | 
+PR586 | 29MAR26 | 02SEP26 | 4 | DAD | 0710 | MNL | 0940 | 
+PR585 | 25SEP26 | 24OCT26 | 4 | MNL | 0335 | DAD | 0610 | 
+PR586 | 25SEP26 | 24OCT26 | 4 | DAD | 0710 | MNL | 0940 | 
+PR585 | 29MAR26 | 14SEP26 | 2 | MNL | 0335 | DAD | 0610 | 
+PR586 | 29MAR26 | 14SEP26 | 2 | DAD | 0710 | MNL | 0940 | 
+PR585 | 16SEP26 | 28SEP26 | 2 | MNL | 0335 | DAD | 0610 | 
+PR586 | 16SEP26 | 28SEP26 | 2 | DAD | 0710 | MNL | 0940 | 
+PR585 | 14OCT26 | 24OCT26 | 6 | MNL | 0335 | DAD | 0610 | 
+PR586 | 14OCT26 | 24OCT26 | 6 | DAD | 0710 | MNL | 0940 | 
+PR585 | 14OCT26 | 24OCT26 | 2 | MNL | 0335 | DAD | 0610 | 
+PR586 | 14OCT26 | 24OCT26 | 2 | DAD | 0710 | MNL | 0940 | 
+ |  |  |  |  |  |  |  | 
+PR595 | 29MAR26 | 05SEP26 | 7 | MNL | 1410 | HAN | 1745 | 320/321/32Q/ 333/359/77W
+PR596 | 29MAR26 | 05SEP26 | 7 | HAN | 1845 | MNL | 2215 | 
+PR595 | 29MAR26 | 24OCT26 | 6 | MNL | 1410 | HAN | 1745 | 
+PR596 | 29MAR26 | 24OCT26 | 6 | HAN | 1845 | MNL | 2215 | 
+PR595 | 29MAR26 | 16JUN26 | 3 | MNL | 1410 | HAN | 1745 | 
+PR596 | 29MAR26 | 16JUN26 | 3 | HAN | 1845 | MNL | 2215 | 
+PR595 | 18JUN26 | 29JUN26 | 3 | MNL | 1410 | HAN | 1745 | 
+PR596 | 18JUN26 | 29JUN26 | 3 | HAN | 1845 | MNL | 2215 | 
+PR595 | 29MAR26 | 21JUN26 | 1 | MNL | 1410 | HAN | 1745 | 
+PR596 | 29MAR26 | 21JUN26 | 1 | HAN | 1845 | MNL | 2215 | 
+PR595 | 26JUN26 | 08JUL26 | 1 | MNL | 1410 | HAN | 1745 | 
+PR596 | 26JUN26 | 08JUL26 | 1 | HAN | 1845 | MNL | 2215 | 
+PR595 | 29MAR26 | 21JUN26 | 4 | MNL | 1410 | HAN | 1745 | 
+PR596 | 29MAR26 | 21JUN26 | 4 | HAN | 1845 | MNL | 2215 | 
+PR595 | 26JUN26 | 08JUL26 | 4 | MNL | 1410 | HAN | 1745 | 
+PR596 | 26JUN26 | 08JUL26 | 4 | HAN | 1845 | MNL | 2215 | 
+PR595 | 29MAR26 | 29JUN26 | 5 | MNL | 1410 | HAN | 1745 | 
+PR596 | 29MAR26 | 29JUN26 | 5 | HAN | 1845 | MNL | 2215 | 
+PR595 | 04JUL26 | 23OCT26 | 5 | MNL | 1410 | HAN | 1745 | 
+PR596 | 04JUL26 | 23OCT26 | 5 | HAN | 1845 | MNL | 2215 | 
+PR595 | 29MAR26 | 29JUN26 | 2 | MNL | 1410 | HAN | 1745 | 
+PR596 | 29MAR26 | 29JUN26 | 2 | HAN | 1845 | MNL | 2215 | 
+PR595 | 04JUL26 | 12AUG26 | 2 | MNL | 1410 | HAN | 1745 | 
+PR596 | 04JUL26 | 12AUG26 | 2 | HAN | 1845 | MNL | 2215 | 
+PR595 | 04JUL26 | 28JUL26 | 3 | MNL | 1410 | HAN | 1745 | 
+PR596 | 04JUL26 | 28JUL26 | 3 | HAN | 1845 | MNL | 2215 | 
+PR595 | 17JUL26 | 09AUG26 | 1 | MNL | 1410 | HAN | 1745 | 
+PR596 | 17JUL26 | 09AUG26 | 1 | HAN | 1845 | MNL | 2215 | 
+PR595 | 17JUL26 | 12AUG26 | 4 | MNL | 1410 | HAN | 1745 | 
+PR596 | 17JUL26 | 12AUG26 | 4 | HAN | 1845 | MNL | 2215 | 
+PR595 | 06AUG26 | 23OCT26 | 3 | MNL | 1410 | HAN | 1745 | 
+PR596 | 06AUG26 | 23OCT26 | 3 | HAN | 1845 | MNL | 2215 | 
+PR595 | 11AUG26 | 23OCT26 | 1 | MNL | 1410 | HAN | 1745 | 
+PR596 | 11AUG26 | 23OCT26 | 1 | HAN | 1845 | MNL | 2215 | 
+PR595 | 19AUG26 | 24OCT26 | 2 | MNL | 1410 | HAN | 1745 | 
+PR596 | 19AUG26 | 24OCT26 | 2 | HAN | 1845 | MNL | 2215 | 
+PR595 | 19AUG26 | 24OCT26 | 4 | MNL | 1410 | HAN | 1745 | 
+PR596 | 19AUG26 | 24OCT26 | 4 | HAN | 1845 | MNL | 2215 | 
+PR595 | 28SEP26 | 23OCT26 | 7 | MNL | 1410 | HAN | 1745 | 
+PR596 | 28SEP26 | 23OCT26 | 7 | HAN | 1845 | MNL | 2215 | 
+PR593 | 29MAR26 | 24OCT26 | 46 | MNL | 0325 | HAN | 0615 | 
+PR594 | 29MAR26 | 24OCT26 | 46 | HAN | 0715 | MNL | 1125 | 
+PR593 | 31MAR26 | 25AUG26 | 2 | MNL | 0325 | HAN | 0615 | 
+PR594 | 31MAR26 | 25AUG26 | 2 | HAN | 0715 | MNL | 1125 | 
+PR593 | 29SEP26 | 24OCT26 | 2 | MNL | 0325 | HAN | 0615 | 
+PR594 | 29SEP26 | 24OCT26 | 2 | HAN | 0715 | MNL | 1125 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger flight
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of PR | Philippines
+321 | As per FAOC of PR | Philippines
+32Q | As per FAOC of PR | Philippines
+333 | As per FAOC of PR | Philippines
+359 | As per FAOC of PR | Philippines
+77W | As per FAOC of PR | Philippines
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MNL-SGN | N500 | PANDI | 
+SGN-MNL | N500 |  | PANDI
+CEB-SGN | N500 | PANDI | 
+SGN-CEB | N500 |  | PANDI
+MNL-HAN | L628 G474 Q2 | ARESI | 
+HAN-MNL | Q1 G474 L628 |  | ARESI
+MNL-HAN | R474 | TEBAK | 
+HAN-MNL | R474 |  | TEBAK
+MNL-DAD | L628 W2 | ARESI | 
+DAD-MNL | W2 L628 |  | ARESI

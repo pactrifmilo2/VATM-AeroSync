@@ -1,0 +1,36 @@
+FILE: R36BA  36B REV10.docx
+
+PARAGRAPHS
+HANOI, 18JUN2026
+PERMIT NUMBER : LD-36/B/S/2026VN /REV10
+1. Người vận chuyển/ Người khai thác
+2. Sửa đổi lịch bay:
+2.1 Lịch bay gốc (Giờ UTC)
+2.2 Lịch bay mới (Giờ UTC)
+3. Ghi chú
+Các chi tiết khác không thay đổi.
+RGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 18JUN2026
+PERMIT NUMBER : LD-36/B/S/2026VN /REV10
+1. Người vận chuyển/ Người khai thác
+Tên: PACIFIC AIRLINES
+Mã IATA: BL | Mã ICAO: PIC
+Địa chỉ bưu điện: 112 Hồng Hà, phường Tân Sơn Hòa, Thành phố Hồ Chí Minh, Việt Nam
+Điện thoại: +84 28 7301 7550 | Thư điện tử: slotpermit.occbl@pacificairlines.com.vn
+
+TABLE 2
+CONTEXT: 2. Sửa đổi lịch bay:
+2.1 Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay | Số phép bay đã cấp
+BL6345 | 19Jun26 | 19Jun26 | ----5-- | HAN | 05:30 | VCA | 07:50 | 321 | LD-36/B/S/2026VN
+BL6344 | 19Jun26 | 19Jun26 | ----5-- | VCA | 08:25 | HAN | 10:40 | 321 | 
+
+TABLE 3
+CONTEXT: 2.2 Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay
+BL6551 | 19Jun26 | 19Jun26 | ----5-- | HAN | 05:55 | DAD | 07:25 | 321
+BL6550 | 19Jun26 | 19Jun26 | ----5-- | DAD | 08:45 | HAN | 10:15 | 321

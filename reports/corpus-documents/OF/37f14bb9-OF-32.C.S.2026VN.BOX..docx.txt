@@ -1,0 +1,64 @@
+FILE: OF-32.C.S.2026VN.BOX..docx
+
+PARAGRAPHS
+HA NOI, 16 APR 2026
+NUMBER OF-32/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CARGO CHARTER FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 16 APR 2026
+NUMBER OF-32/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: AeroLogic GmbH
+IATA code: 3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: AeroLogic GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX742 | 22APR26 | 01MAY26 | --3-5-- | OOMS | 1230 | VHHH | 1940
+BOX740 | 23APR26 | 02MAY26 | -2-4-6- | OOMS | 1230 | VHHH | 1940
+BOX534 | 30APP26 | 28MAY26 | ---4--- | WSSS | 1550 | VHHH | 1940
+BOX637 | 19APR26 | 26MAY26 | -2----7 | VHHH | 2200 | VOHS | 0335+1
+BOX637 | 25APR26 | 30MAY26 | -----6- | VHHH | 1150 | VOBL | 1730
+BOX556 | 04MAY26 | 01JUN26 | 1------ | VOBL | 0640 | VHHH | 1225
+BOX556 | 23APR26 | 28MAY26 | ---4--- | VOBL | 0145 | VHHH | 0730
+BOX725 | 01MAY26 | 29MAY26 | 1-3-5-- | VHHH | 1845 | VOBL | 0025+1
+BOX613 | 24APR26 | 29MAY26 | ----5-- | RCTP | 1125 | VOHS | 1740
+BOX613 | 26APR26 | 31MAY26 | ------7 | RCTP | 1100 | VOBL | 1730
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): CARGO CHARTER FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B777F | D-AALA OR SUB | GERMANY
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OOMS-VHHH | A1 | PAPRA | BUNTA
+WSSS-VHHH | M771 | DUDIS | DONDA
+VHHH-VOHS | A202 | ASSAD | VILAO
+VHHH-VOBL | A202 | ASSAD | VILAO
+VOBL-VHHH | A1 | PAPRA | BUNTA
+RCTP-VOBL | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

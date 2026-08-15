@@ -1,0 +1,56 @@
+FILE: OF 90CS.docx
+
+PARAGRAPHS
+HA NOI, 23 MAR 2026
+NUMBER OF-90/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-Cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 23 MAR 2026
+NUMBER OF-90/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG.
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: MR. GEORGE CHAN
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG.
+Tel: +852 2747 8822 | Email: GEORGE_G_CHAN@CATHAYPACIFIC.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CPA3027 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0005 | EGLL | 1410
+CPA3467 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0005 | EDDF | 1335
+CPA3739 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0005 | EGLL | 1410
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A332 | As per the AOC of AHK | Hong Kong, China
+A333 | As per the AOC of AHK | Hong Kong, China
+B744 | As per the AOC of CPA | Hong Kong, China
+B748 | As per the AOC of CPA | Hong Kong, China
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-EDDF | (Pri) BUNTA A1 W2 VIN A206 NALAO (Alt) ASSAD A206 NALAO (Alt) BUNTA A1 PAPRA (Alt) BUTAN A1 DAN W2 HUE R328 TORED (Alt) ASSAD A202 SAV | BUNTA ASSAD BUNTA BUTAN ASSAD | NALAO NALAO PAPRA TORED SAV
+VHHH-EGLL | (Pri) BUNTA A1 W2 VIN A206 NALAO (Alt) ASSAD A206 NALAO (Alt) BUNTA A1 PAPRA (Alt) BUTAN A1 DAN W2 HUE R328 TORED (Alt) ASSAD A202 SAV | BUNTA ASSAD BUNTA BUTAN ASSAD | NALAO NALAO PAPRA TORED SAV
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

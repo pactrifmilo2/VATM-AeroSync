@@ -21,7 +21,7 @@ class VietnameseErrorMessageTranslatorTest {
     @Test
     void translatesCommonPermitErrorsAndPreservesDynamicValues() {
         assertThat(translator.translate("Unsupported Word permit format; no format profile matched"))
-                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
+                .isEqualTo("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.");
         assertThat(translator.translate("Permit number not found for profile vfc-vietnamese-landing-change"))
                 .isEqualTo("Không tìm thấy số phép bay theo format vfc-vietnamese-landing-change.");
         assertThat(translator.translate(
@@ -35,7 +35,7 @@ class VietnameseErrorMessageTranslatorTest {
     @Test
     void replacesUnknownEnglishTechnicalErrorsWithVietnameseFallback() {
         assertThat(translator.translate("Some new internal technical failure"))
-                .isEqualTo("Đã xảy ra lỗi trong quá trình xử lý. Vui lòng xem nhật ký kỹ thuật để biết chi tiết.");
+                .startsWith("Không thể hoàn tất yêu cầu vì nguyên nhân chưa được phân loại. Mã tham chiếu: ");
     }
 
     @Test

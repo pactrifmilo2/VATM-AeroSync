@@ -1,0 +1,59 @@
+FILE: R03A1  REV1.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 27/03/2026
+Permit No.: LD- 03/A/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES IATA code: ET IATA code: ET Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport Tel: +84967743067 Tel: +84967743067 
+2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit ET3792 04Apr26 04Apr26 -----6- LGG 1100 OSL 1315 77F/76F LD- 03/A/S/2026VN ET3792 04Apr26 04Apr26 -----6- OSL 1445 HAN 0000 77F/76F ET3619 05Apr26 05Apr26 ------7 HAN 0130 BKK 0330 77F/76F ET3619 05Apr26 05Apr26 ------7 BKK 0500 ADD 1130 77F/76F 2.2 Revise Schedule
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type ET3742 04Apr26 04Apr26 -----6- MST 0600 HAN 1700 77F/76F ET3619 04Apr26 04Apr26 -----6- HAN 1900 BKK 2100 77F/76F ET3619 04Apr26 04Apr26 -----6- BKK 2230 ADD 0720+ 77F/76F 
+3. Airways
+3.1 Origin Airways
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR OSL-HAN B214 BQ LADON - B465 MC LAPON - 3.2 Revised Airways
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR MST-HAN B214 BQ LADON - B465 MC LAPON - 4. Note: Other detailed UNCHANGED, Sector LGG-HAN ferry
+5. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 27/03/2026
+Permit No.: LD- 03/A/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES
+IATA code: ET | IATA code: ET
+Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport
+Tel: +84967743067 | Tel: +84967743067
+
+TABLE 2
+CONTEXT: 2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+ET3792 | 04Apr26 | 04Apr26 | -----6- | LGG | 1100 | OSL | 1315 | 77F/76F | LD- 03/A/S/2026VN
+ET3792 | 04Apr26 | 04Apr26 | -----6- | OSL | 1445 | HAN | 0000 | 77F/76F | 
+ET3619 | 05Apr26 | 05Apr26 | ------7 | HAN | 0130 | BKK | 0330 | 77F/76F | 
+ET3619 | 05Apr26 | 05Apr26 | ------7 | BKK | 0500 | ADD | 1130 | 77F/76F | 
+
+TABLE 3
+CONTEXT: 2.2 Revise Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ET3742 | 04Apr26 | 04Apr26 | -----6- | MST | 0600 | HAN | 1700 | 77F/76F
+ET3619 | 04Apr26 | 04Apr26 | -----6- | HAN | 1900 | BKK | 2100 | 77F/76F
+ET3619 | 04Apr26 | 04Apr26 | -----6- | BKK | 2230 | ADD | 0720+ | 77F/76F
+
+TABLE 4
+CONTEXT: 3. Airways
+3.1 Origin Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OSL-HAN | B214 BQ | LADON | -
+ | B465 MC | LAPON | -
+
+TABLE 5
+CONTEXT: 3.2 Revised Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MST-HAN | B214 BQ | LADON | -
+ | B465 MC | LAPON | -

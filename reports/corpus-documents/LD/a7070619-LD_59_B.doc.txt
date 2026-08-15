@@ -1,0 +1,81 @@
+FILE: LD 59 B.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: LD - 59/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: Korean Air IATA code: KE ICAO code: KAL Postal Address: 260 Haneul-Gil, Gangseo-Gu, Seoul, Korea Tel:0082226566044 Email: selsps@koreanair.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type KE361 29-Mar-2026 18-Oct-2026 ------7 ICN 1430 HAN 1855 77X KE362 29-Mar-2026 18-Oct-2026 ------7 HAN 2055 ICN 0115+1 KE361 30-Mar-2026 24-Oct-2026 123456- ICN 1430 HAN 1855 74Y/77X KE362 30-Mar-2026 24-Oct-2026 123456- HAN 2055 ICN 0120+1 KE373 03-Apr-2026 23-Oct-2026 ----5-- ICN 1445 HAN 1915 74Y/77X KE373 03-Apr-2026 23-Oct-2026 ----5-- HAN 2115 PEN 0015+1 KE374 04-Apr-2026 24-Oct-2026 -----6- PEN 0215 ICN 0830 KE341 31-Mar-2026 20-Oct-2026 -2----- ICN 1600 PEN 2220 77X KE341 01-Apr-2026 21-Oct-2026 --3---- PEN 0020 SGN 0215 KE342 01-Apr-2026 21-Oct-2026 --3---- SGN 0415 ICN 0940 KE389 02-Apr-2026 22-Oct-2026 ---4--- ICN 1545 KUL 2215 77X KE389 03-Apr-2026 23-Oct-2026 ----5-- KUL 0015 SGN 0225 KE390 03-Apr-2026 23-Oct-2026 ----5-- SGN 0425 ICN 0945 KE8351 03-May-2026 18-Oct-2026 ------7 ICN 1640 BKK 2220 77X KE8351 04-May-2026 19-Oct-2026 1------ BKK 0020 SGN 0205 KE8352 04-May-2026 19-Oct-2026 1------ SGN 0405 ICN 0925 
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark Nationality 74Y As per FAOC of KE Korea 77X As per FAOC of KE 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-HAN R474 TEBAK HAN-ICN R474 TEBAK HAN-PEN R474 LAVOS PEN-SGN M765-L637 IGARI KUL-SGN M765-M755-N639-Q2 IGARI BKK-SGN R468 SAPEN SAPEN SGN-ICN W12-G221 BUNTA N500-L625 ARESI Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. Alternative airways: Other permitted airways published in Viet Nam’s AIP
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: LD - 59/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: Korean Air
+IATA code: KE | ICAO code: KAL
+Postal Address: 260 Haneul-Gil, Gangseo-Gu, Seoul, Korea
+Tel:0082226566044 | Email: selsps@koreanair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+KE361 | 29-Mar-2026 | 18-Oct-2026 | ------7 | ICN | 1430 | HAN | 1855 | 77X
+KE362 | 29-Mar-2026 | 18-Oct-2026 | ------7 | HAN | 2055 | ICN | 0115+1 | 
+KE361 | 30-Mar-2026 | 24-Oct-2026 | 123456- | ICN | 1430 | HAN | 1855 | 74Y/77X
+KE362 | 30-Mar-2026 | 24-Oct-2026 | 123456- | HAN | 2055 | ICN | 0120+1 | 
+ |  |  |  |  |  |  |  | 
+KE373 | 03-Apr-2026 | 23-Oct-2026 | ----5-- | ICN | 1445 | HAN | 1915 | 74Y/77X
+KE373 | 03-Apr-2026 | 23-Oct-2026 | ----5-- | HAN | 2115 | PEN | 0015+1 | 
+KE374 | 04-Apr-2026 | 24-Oct-2026 | -----6- | PEN | 0215 | ICN | 0830 | 
+ |  |  |  |  |  |  |  | 
+KE341 | 31-Mar-2026 | 20-Oct-2026 | -2----- | ICN | 1600 | PEN | 2220 | 77X
+KE341 | 01-Apr-2026 | 21-Oct-2026 | --3---- | PEN | 0020 | SGN | 0215 | 
+KE342 | 01-Apr-2026 | 21-Oct-2026 | --3---- | SGN | 0415 | ICN | 0940 | 
+ |  |  |  |  |  |  |  | 
+KE389 | 02-Apr-2026 | 22-Oct-2026 | ---4--- | ICN | 1545 | KUL | 2215 | 77X
+KE389 | 03-Apr-2026 | 23-Oct-2026 | ----5-- | KUL | 0015 | SGN | 0225 | 
+KE390 | 03-Apr-2026 | 23-Oct-2026 | ----5-- | SGN | 0425 | ICN | 0945 | 
+ |  |  |  |  |  |  |  | 
+KE8351 | 03-May-2026 | 18-Oct-2026 | ------7 | ICN | 1640 | BKK | 2220 | 77X
+KE8351 | 04-May-2026 | 19-Oct-2026 | 1------ | BKK | 0020 | SGN | 0205 | 
+KE8352 | 04-May-2026 | 19-Oct-2026 | 1------ | SGN | 0405 | ICN | 0925 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+74Y | As per FAOC of KE | Korea
+77X | As per FAOC of KE | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-HAN | R474 | TEBAK | 
+HAN-ICN | R474 |  | TEBAK
+HAN-PEN | R474 |  | LAVOS
+PEN-SGN | M765-L637 | IGARI | 
+KUL-SGN | M765-M755-N639-Q2 | IGARI | 
+BKK-SGN | R468 | SAPEN | 
+ |  | SAPEN | 
+SGN-ICN | W12-G221 |  | BUNTA
+ | N500-L625 |  | ARESI
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

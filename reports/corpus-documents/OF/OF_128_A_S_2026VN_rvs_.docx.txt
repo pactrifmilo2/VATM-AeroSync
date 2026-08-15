@@ -1,0 +1,41 @@
+FILE: OF 128 A_S_2026VN (rvs).docx
+
+PARAGRAPHS
+Hanoi, 01/4/2026
+Refer to the issued permit: OF-128/A/S/2026VN(1)
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original ATS routes
+2.2. New ATS routes (additional routes)
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 01/4/2026
+Refer to the issued permit: OF-128/A/S/2026VN(1)
+1. Carrier/Operator
+Name: Japan Airlines
+IATA code: JL | ICAO code: JAL
+Postal Address: #811 08th floor, Daeha building, 360 Kim Ma str,GiangVoward, Hanoi
+Tel:02437872214 | Email:org.hankku.jali@jal.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original ATS routes
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RJTT/RJAA – WSSS | G221-W12-W1-L644-L642 | BUNTA | ESPOB
+ | N892 | MIGUG | MELAS
+RJTT/RJAA – WMKK | N892 | MIGUG | MELAS
+ | G221-W12-W1-W2-L637-M765 | BUNTA | IGARI
+
+TABLE 3
+CONTEXT: 2.2. New ATS routes (additional routes)
+RJTT/RJAA – WSSS | G221-W12-W1-L644-L642 | BUNTA | ESPOB
+ | N892 | MIGUG | MELAS
+ | M765-N892 | PANDI | MELAS
+RJTT/RJAA – WMKK | N892 | MIGUG | MELAS
+ | G221-W12-W1-W2-L637-M765 | BUNTA | IGARI
+ | M765-N892 | PANDI | MELAS

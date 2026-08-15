@@ -1,0 +1,60 @@
+FILE: LD 70A.docx
+
+PARAGRAPHS
+Hanoi, 26th March 2026
+PERMIT NUMBER: LD-70/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Tran Thanh Son - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 26th March 2026
+PERMIT NUMBER: LD-70/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+Name: Uzbekistan Airways JSC
+IATA code:HY | ICAO code:UZB
+Postal Address: 41, Amir Temur av, Tashkent, Uzbekistan
+Tel: +998781404616 | Email:Info@uzairways.com, schedule@uzairways.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HY561 | 06MAY26 | 21OCT26 | --3---- | TAS | 1850 | CXR | 0225+ | 32Q
+HY562 | 07MAY26 | 22OCT26 | ---4--- | CXR | 0355 | TAS | 1125 | 32Q
+HY561 | 09MAY26 | 23MAY26 | -----6- | TAS | 1850 | CXR | 0225+ | 32Q
+HY562 | 10MAY26 | 24MAY26 | ------7 | CXR | 0355 | TAS | 1125 | 32Q
+HY561 | 26MAY26 | 20OCT26 | -2---6- | TAS | 1850 | CXR | 0225+ | 32Q
+HY562 | 27MAY26 | 21OCT26 | --3---7 | CXR | 0355 | TAS | 1125 | 32Q
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+32Q | As per FAOC of HY | Uzbekistan
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TAS-CXR | R468 W1 W15 | SAPEN | 
+CXR-TAS | W15 W1 R468 |  | SAPEN

@@ -1,0 +1,36 @@
+FILE: R12A1 REV1.docx
+
+PARAGRAPHS
+Hanoi, 25 March 2026
+Refer to the permit issued: LD-12/A/S/2026VN/REV1
+1. Carrier/Operator
+2. [Revised Aircraft Type and Retiming of MH753 on 29MAR26]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260320-0099)
+
+TABLE 1
+CONTEXT: Hanoi, 25 March 2026
+Refer to the permit issued: LD-12/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1 MAB Administration building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor Malaysia.
+Tel: +60-0126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised Aircraft Type and Retiming of MH753 on 29MAR26]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MH752 | 29MAR26 | 29MAR26 | ……7 | KUL | 0135 | HAN | 0515 | 7387M8
+MH753 | 29MAR26 | 29MAR26 | ……7 | HAN | 0605 | KUL | 0930 | 7387M8
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MH752 | 29MAR26 | 29MAR26 | ……7 | KUL | 0135 | HAN | 0515 | 330/332/333
+MH753 | 29MAR26 | 29MAR26 | ……7 | HAN | 0615 | KUL | 0940 | 330/332/333

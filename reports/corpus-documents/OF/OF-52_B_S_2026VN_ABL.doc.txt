@@ -1,0 +1,73 @@
+FILE: OF-52_B_S_2026VN_ABL.doc
+
+PARAGRAPHS
+Ha Noi, 16th April 2026
+№: OF - 52/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+1.1 Name: AIR BUSAN
+- ICAO code: ABL
+- Address: 6, Yutongdanji 1-Ro 57Beonga-Gil, Gangseo-Gu, Busan, Korea
+- Tel: +82 51 410 0771, Fax: +82 51 410 0799
+- Email: mjkim@airbusan.com
+1.2 Billing address: Premise no. O-1-7, International Terminal, Danang International Airport, Hoa Thuan Tay ward, Hai Chau District, Danang City, Vietnam
+- Tel: +84 236 382 2626, Fax: +84 236 383 2626
+- Email: ttth@airbusan.com, jcpark@airbusan.com 
+2. Schedules: All times in UTC 
+Flight
+Number Effective
+from Effective
+To Day(s) of
+Service Departure
+Airport ETD Arrival
+Airport ETA Aircraft
+Type ABL7475 29APR26 24OCT26 0034067 RKSI 1055 VTCC 1650 A320/A321/A21N ABL7485 29APR26 24OCT26 0034067 VTCC 1750 RKSI 2315 A320/A321/A21N 
+3. Type of services: Passenger
+4. Air traffic service routes:
+Sectors ATS Routes
+ Entry Point Exit Point RKSI-VTCC R474 TEBAK LAPON VTCC-RKSI R474 LAPON TEBAK Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+5. Aircraft:
+Aircraft Type Registration marks Nationality A320 HL8055, HL8309, HL8328 
+South Korea
+ HL7753 HL7744 A321 HL8365 HL7729, HL7730, HL8257, HL7211, HL7210, HL8099
+HL8256 A21N HL8366, HL8394 HL8357, HL8395, HL8396, HL8504, HL8526, HL8525 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 16th April 2026
+№: OF - 52/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+1.1 Name: AIR BUSAN
+- ICAO code: ABL
+- Address: 6, Yutongdanji 1-Ro 57Beonga-Gil, Gangseo-Gu, Busan, Korea
+- Tel: +82 51 410 0771, Fax: +82 51 410 0799
+- Email: mjkim@airbusan.com
+1.2 Billing address: Premise no. O-1-7, International Terminal, Danang International Airport, Hoa Thuan Tay ward, Hai Chau District, Danang City, Vietnam
+- Tel: +84 236 382 2626, Fax: +84 236 383 2626
+- Email: ttth@airbusan.com, jcpark@airbusan.com 
+2. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of Service | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ABL7475 | 29APR26 | 24OCT26 | 0034067 | RKSI | 1055 | VTCC | 1650 | A320/A321/A21N
+ABL7485 | 29APR26 | 24OCT26 | 0034067 | VTCC | 1750 | RKSI | 2315 | A320/A321/A21N
+
+TABLE 2
+CONTEXT: 3. Type of services: Passenger
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+RKSI-VTCC | R474 | TEBAK | LAPON
+VTCC-RKSI | R474 | LAPON | TEBAK
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 3
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A320 | HL8055, HL8309, HL8328 | South Korea
+ | HL7753 | 
+ | HL7744 | 
+A321 | HL8365 | 
+ | HL7729, HL7730, HL8257, HL7211, HL7210, HL8099 HL8256 | 
+A21N | HL8366, HL8394 | 
+ | HL8357, HL8395, HL8396, HL8504, HL8526, HL8525 | 

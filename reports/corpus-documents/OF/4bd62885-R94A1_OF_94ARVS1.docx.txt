@@ -1,0 +1,44 @@
+FILE: R94A1 OF 94ARVS1.docx
+
+PARAGRAPHS
+Hanoi, 27/3/2026
+REF TO PERMIT OF – 94/A/S/2026VN
+IATA Schedule Season:
+Season W25
+1. Carrier:
+2. Billing address:
+3. Schedule: UTC Time
+3.1. ORIGINAL SCHEDULE
+3.2. UPDATED SCHEDULE
+4. Note: Other details unchanged
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/3/2026
+REF TO PERMIT OF – 94/A/S/2026VN
+IATA Schedule Season:
+Season W25
+1. Carrier:
+Name: SPRING AIRLINES
+IATA Code: 9C | ICAO Code: CQH
+Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG YI ROAD, SHANGHAI, CHINA
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: SPRING AIRLINES
+Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG YI ROAD, SHANGHAI, CHINA
+Tel: + +86 21 323 15885 | Email: xujiali@ch.com
+
+TABLE 3
+CONTEXT: 3. Schedule: UTC Time
+3.1. ORIGINAL SCHEDULE
+Flight number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+CQH8893 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 0855 | VTBS | 1125 | OF-94/A/S/2026VN
+CQH8894 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1225 | ZGGG | 1530 | OF-94/A/S/2026VN
+
+TABLE 4
+CONTEXT: 3.2. UPDATED SCHEDULE
+Flight number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA
+CQH8893 | 28MAR26 | 24OCT26 | 1234567 | ZGGG | 2255 | VTBS | 0200+
+CQH8894 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0300 | ZGGG | 0600

@@ -1,0 +1,41 @@
+FILE: R89B2 89BRVS2 .docx
+
+PARAGRAPHS
+Hanoi, 27/05/2026
+Permit No.: OF - 89/B/S/2026VN/REV2
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/05/2026
+Permit No.: OF - 89/B/S/2026VN/REV2
+1. Carrier/Operator
+Name: QATAR AIRWAYS
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS, IOC- ATM / OVERFLIGHT PERMISSIONS SECTION, FLIGHT OPERATIONS, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 40106617 | Email: OVERFLIGHTS@QATARAIRWAYS.COM.QA
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+QTR8917 | 03JUN26 | 24JUN26 | --3---- | VMMC | 1305 | VECC | 1650 | OF - 89/B/S/2026VN
+QTR8917 | 06JUN26 | 27JUN26 | -----6- | VMMC | 1305 | VECC | 1650 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+QTR8917 | 03JUN26 | 24JUN26 | --3---- | VMMC | 1310 | OTHH | 2110
+QTR8917 | 06JUN26 | 27JUN26 | -----6- | VMMC | 2305 | OTHH | 0705
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VMMC-OTHH | R474 W21 B214 | TEBAK | LADON

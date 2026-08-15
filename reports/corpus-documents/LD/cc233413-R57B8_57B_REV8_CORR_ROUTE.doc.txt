@@ -1,0 +1,64 @@
+FILE: R57B8  57B  REV8 CORR ROUTE.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 29/05/2026
+Permit No.: LD-57/B/S/2026VN/REV8
+ 
+1. Carrier/Operator
+Name: Cargolux Airlines International IATA code: CV ICAO code: CLX Postal Address: Luxembourg Airport L-2990 Luxembourg Tel: +35242113494 Email: opsplanning@cargolux.com 
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original Permit CV7954 01Jun26 30Jun26 0004000 LUX 0415 AMM 0855 74Y/74N LD-57/B/S/2026VN CV7954 01Jun26 30Jun26 0004000 AMM 1040 SGN 1920 74Y/74N LD-57/B/S/2026VN CV7954 01Jun26 30Jun26 0004000 SGN 2120 HKG 0015+1 74Y/74N LD-57/B/S/2026VN CV913 01Jun26 30Jun26 0000500 HKG 0215 GYD 1125 74Y/74N LD-57/B/S/2026VN CV913 01Jun26 30Jun26 0000500 GYD 1225 LUX 1735 74Y/74N LD-57/B/S/2026VN 2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CV7954 01Jun26 30Jun26 0004000 LUX 0720 SGN 1920 74Y/74N CV7954 01Jun26 30Jun26 0004000 SGN 2120 HKG 0015+1 74Y/74N CV913 01Jun26 30Jun26 0000500 HKG 0215 NQZ 0935 74Y/74N CV913 01Jun26 30Jun26 0000500 NQZ 1035 LUX 1810 74Y/74N 3. Note: Other details unchanged.
++ Aircraft:
+Aircraft Type Registration Mark Nationality B747-8F(74N) According to the FAOC of CLX Luxembourg B747-400F(74Y) According to the FAOC of CLX Luxembourg B747-400ERF (74Y) According to the FAOC of CLX Luxembourg + Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR LUX-SGN R468 SAPEN SGN-HKG Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+other details unchanged
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 29/05/2026
+Permit No.: LD-57/B/S/2026VN/REV8
+ 
+1. Carrier/Operator
+Name: Cargolux Airlines International
+IATA code: CV | ICAO code: CLX
+Postal Address: Luxembourg Airport L-2990 Luxembourg
+Tel: +35242113494 | Email: opsplanning@cargolux.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original Permit
+CV7954 | 01Jun26 | 30Jun26 | 0004000 | LUX | 0415 | AMM | 0855 | 74Y/74N | LD-57/B/S/2026VN
+CV7954 | 01Jun26 | 30Jun26 | 0004000 | AMM | 1040 | SGN | 1920 | 74Y/74N | LD-57/B/S/2026VN
+CV7954 | 01Jun26 | 30Jun26 | 0004000 | SGN | 2120 | HKG | 0015+1 | 74Y/74N | LD-57/B/S/2026VN
+CV913 | 01Jun26 | 30Jun26 | 0000500 | HKG | 0215 | GYD | 1125 | 74Y/74N | LD-57/B/S/2026VN
+CV913 | 01Jun26 | 30Jun26 | 0000500 | GYD | 1225 | LUX | 1735 | 74Y/74N | LD-57/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CV7954 | 01Jun26 | 30Jun26 | 0004000 | LUX | 0720 | SGN | 1920 | 74Y/74N
+CV7954 | 01Jun26 | 30Jun26 | 0004000 | SGN | 2120 | HKG | 0015+1 | 74Y/74N
+CV913 | 01Jun26 | 30Jun26 | 0000500 | HKG | 0215 | NQZ | 0935 | 74Y/74N
+CV913 | 01Jun26 | 30Jun26 | 0000500 | NQZ | 1035 | LUX | 1810 | 74Y/74N
+
+TABLE 4
+CONTEXT: 3. Note: Other details unchanged.
++ Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B747-8F(74N) | According to the FAOC of CLX | Luxembourg
+B747-400F(74Y) | According to the FAOC of CLX | Luxembourg
+B747-400ERF (74Y) | According to the FAOC of CLX | Luxembourg
+
+TABLE 5
+CONTEXT: + Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+LUX-SGN | R468 | SAPEN | 
+SGN-HKG |  |  | 

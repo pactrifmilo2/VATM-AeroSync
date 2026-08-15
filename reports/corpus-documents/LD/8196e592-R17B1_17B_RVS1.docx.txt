@@ -1,0 +1,34 @@
+FILE: R17B1 17B RVS1.docx
+
+PARAGRAPHS
+To: VATM Cc: MF
+Refer to №: LD - 17/B/S/2026VN
+1. Carrier
+Schedules (UTC Time)
+Original schedule
+[Specify traffic rights other than 3rd/4th freedom rights for each relevant sector (if granted). Example: XX is authorized to operate 5th freedom rights on sector ICN–SGN.]
+Update schedule
+[Specify traffic rights other than 3rd/4th freedom rights for each relevant sector (if granted). Example: XX is authorized to operate 5th freedom rights on sector ICN–SGN.]
+Note: Others remain unchanged.
+Phạm Thị Hương Giang
+
+TABLE 1
+CONTEXT: To: VATM Cc: MF
+Refer to №: LD - 17/B/S/2026VN
+1. Carrier
+Name: Xiamen Airlines Co., Ltd
+IATA code: MF | ICAO code: CXA
+Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R.China
+Tel: +86-592-5739208 | Email: mfsaigon@xiamenair.com
+
+TABLE 2
+CONTEXT: Schedules (UTC Time)
+Original schedule
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+MF894 | 30Mar26 | 30Mar26 | 1------ | SGN | 0525 | XMN | 0840 | 738
+
+TABLE 3
+CONTEXT: [Specify traffic rights other than 3rd/4th freedom rights for each relevant sector (if granted). Example: XX is authorized to operate 5th freedom rights on sector ICN–SGN.]
+Update schedule
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+MF894A | 30Mar26 | 30Mar26 | 1------ | SGN | 0525 | XMN | 0840 | 738

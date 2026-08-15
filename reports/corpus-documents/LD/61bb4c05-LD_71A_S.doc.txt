@@ -1,0 +1,80 @@
+FILE: LD 71A S.doc
+
+PARAGRAPHS
+Ha Noi, 25/03/2026
+Permit No.: LD-71/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: ETIHAD AIRWAYS IATA code: EY ICAO code: ETD Postal Address: P.O.Box 35566, Abu Dhabi, United Arab Emirates Tel: 00971 2 511 2857 Email: fabdelmutalib@etihad.ae 
+2. Schedules (UTC Time) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type EY430 29MAR26 09SEP26 1234567 AUH 0510 HAN 1145 
+32Q
+351
+789
+781
+77W
+ EY431 29MAR26 09SEP26 1234567 HAN 1340 AUH 2030 EY430 09SEP26 24OCT26 12-4567 AUH 0510 HAN 1145 EY431 09SEP26 24OCT26 12-4567 HAN 1340 AUH 2030 EY432 29MAR26 29MAR26 ------7 AUH 1705 HAN 2340 EY433 30MAR26 30MAR26 1------ HAN 0125 AUH 0815 EY432 01APR26 10MAY26 -23-5-7 AUH 1705 HAN 2340 EY433 01APR26 10MAY26 1-34-6 HAN 0125 AUH 0815 EY432 11MAY26 29AUG26 1234567 AUH 1705 HAN 2340 EY433 11MAY26 29AUG26 1234567 HAN 0125 AUH 0815 EY432 30AUG26 06SEP26 123-5-7 AUH 1705 HAN 2340 EY433 30AUG26 06SEP26 1234-6- HAN 0125 AUH 0815 EY432 07SEP26 28SEP26 123-567 AUH 1705 HAN 2340 EY433 08SEP26 29SEP26 1234-67 HAN 0125 AUH 0815 EY432 29SEP26 23OCT26 -23-567 AUH 1705 HAN 2340 EY433 30SEP26 24OCT26 1-34-67 HAN 0125 AUH 0815 
+3. Purpose of Flight: Passenger
+ 
+4. Aircraft:
+Aircraft Type Registration Marks Nationality 32Q As per FAOC of EY UAE 351 UAE 789 UAE 781 UAE 77W UAE 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR AUH-HAN B214 W21 LADON HAN-AUH W21 B214 LADON Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C.c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 25/03/2026
+Permit No.: LD-71/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: ETIHAD AIRWAYS
+IATA code: EY | ICAO code: ETD
+Postal Address: P.O.Box 35566, Abu Dhabi, United Arab Emirates
+Tel: 00971 2 511 2857 | Email: fabdelmutalib@etihad.ae
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EY430 | 29MAR26 | 09SEP26 | 1234567 | AUH | 0510 | HAN | 1145 | 32Q 351 789 781 77W
+EY431 | 29MAR26 | 09SEP26 | 1234567 | HAN | 1340 | AUH | 2030 | 
+EY430 | 09SEP26 | 24OCT26 | 12-4567 | AUH | 0510 | HAN | 1145 | 
+EY431 | 09SEP26 | 24OCT26 | 12-4567 | HAN | 1340 | AUH | 2030 | 
+EY432 | 29MAR26 | 29MAR26 | ------7 | AUH | 1705 | HAN | 2340 | 
+EY433 | 30MAR26 | 30MAR26 | 1------ | HAN | 0125 | AUH | 0815 | 
+EY432 | 01APR26 | 10MAY26 | -23-5-7 | AUH | 1705 | HAN | 2340 | 
+EY433 | 01APR26 | 10MAY26 | 1-34-6 | HAN | 0125 | AUH | 0815 | 
+EY432 | 11MAY26 | 29AUG26 | 1234567 | AUH | 1705 | HAN | 2340 | 
+EY433 | 11MAY26 | 29AUG26 | 1234567 | HAN | 0125 | AUH | 0815 | 
+EY432 | 30AUG26 | 06SEP26 | 123-5-7 | AUH | 1705 | HAN | 2340 | 
+EY433 | 30AUG26 | 06SEP26 | 1234-6- | HAN | 0125 | AUH | 0815 | 
+EY432 | 07SEP26 | 28SEP26 | 123-567 | AUH | 1705 | HAN | 2340 | 
+EY433 | 08SEP26 | 29SEP26 | 1234-67 | HAN | 0125 | AUH | 0815 | 
+EY432 | 29SEP26 | 23OCT26 | -23-567 | AUH | 1705 | HAN | 2340 | 
+EY433 | 30SEP26 | 24OCT26 | 1-34-67 | HAN | 0125 | AUH | 0815 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+ 
+4. Aircraft:
+Aircraft Type | Registration Marks | Nationality
+32Q | As per FAOC of EY | UAE
+351 |  | UAE
+789 |  | UAE
+781 |  | UAE
+77W |  | UAE
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+AUH-HAN | B214 W21 | LADON | 
+HAN-AUH | W21 B214 |  | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

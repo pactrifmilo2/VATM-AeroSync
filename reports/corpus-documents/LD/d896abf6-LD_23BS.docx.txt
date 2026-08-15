@@ -1,0 +1,65 @@
+FILE: LD 23BS.docx
+
+PARAGRAPHS
+Hanoi, 01 June 2026
+PERMIT NUMBER: LD-23/B/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 01 June 2026
+PERMIT NUMBER: LD-23/B/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: Air Cambodia
+IATA code: K6 | ICAO code: KHV
+Postal Address: #206A, Preah Norodom Blvd, Sangkat Tonle Bassac, Khan Chamkamorn, Phnom Penh 12302, Cambodia.
+Tel: (855) 16 899 007 | Email: sivly.kloung@aircambodia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+K6842 | 17Jun26 | 24Oct26 | _23_5__ | KTI | 0400 | DAD | 0615 | 321/320/AT7
+K6843 | 17Jun26 | 24Oct26 | _23_5__ | DAD | 0650 | KTI | 0910 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6842 | 17Jun26 | 01Aug26 | _____6_ | KTI | 0400 | DAD | 0615 | 321/320/AT7
+K6843 | 17Jun26 | 01Aug26 | _____6_ | DAD | 0650 | KTI | 0910 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6842 | 08Aug26 | 08Aug26 | _____6_ | KTI | 0400 | DAD | 0625 | 321/320/AT7
+K6843 | 08Aug26 | 08Aug26 | _____6_ | DAD | 0700 | KTI | 0910 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6842 | 15Aug26 | 24Oct26 | _____6_ | KTI | 0400 | DAD | 0615 | 321/320/AT7
+K6843 | 15Aug26 | 24Oct26 | _____6_ | DAD | 0650 | KTI | 0910 | 321/320/AT7
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+A320 | According to the FAOC of K6 | Cambodia
+A321 | According to the FAOC of K6 | Cambodia
+AT72 | According to the FAOC of K6 | Cambodia
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KTI-DAD | R588-W1M505-W1A1 | GONLYMULADPAPRA | 
+DAD-KTI | W1-R588W1-M505A1 |  | GONLYMULADPAPRA

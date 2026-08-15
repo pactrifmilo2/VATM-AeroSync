@@ -1,0 +1,105 @@
+FILE: LD 81A.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: LD - 81/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier/Operator: 
+Name: AIRZETA IATA code: KJ ICAO code: AIH Postal Address: 77-65 Gonghangdong-ro, 295 beon –gil, Jung gu, Incheon, Republic of Korea Tel: +82-02-6026-1303 Email: kyh2727@airzetacargo.com, thyanh@airzetacargo.com, lynk@airzetacargo.com 
+Schedules: (All times are UTC)
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft type KJ951 31MAR2026 23OCT2026 -2—5-- ICN 1445 HAN 1920 74Y/76Y KJ952 31MAR2026 23OCT2026 -2—5-- HAN 2120 HKG 2320 74Y/76Y KJ952 01APR2026 24OCT2026 --3—6- HKG 0120 ICN 0450 74Y/76Y KJ953 04APR2026 24OCT2026 -----6- ICN 14:45 HAN 1920 74Y/76Y KJ954 04APR2026 24OCT2026 -----6- HAN 2120 HKG 2320 74Y/76Y KJ954 05APR2026 25OCT2026 ------7 HKG 0120 ICN 0450 74Y/76Y KJ933 30MAR2026 21OCT2026 1-3---- ICN 1540 HAN 2015 74Y/76Y KJ934 30MAR2026 21OCT2026 1-3---- HAN 2215 CAN 0000+1 74Y/76Y KJ934 31MAR2026 22OCT2026 -2-4--- CAN 0200 ICN 0520 74Y/76Y KJ931 02APR2026 22OCT2026 ---4--- ICN 1540 HAN 2015 74Y/76Y KJ932 02APR2026 22OCT2026 ---4--- HAN 2215 CAN 0000+1 74Y/76Y KJ932 03APR2026 23OCT2026 ----5-- CAN 0200 ICN 0520 74Y/76Y KJ391 30MAR2026 19OCT2026 1------ ICN 1530 HAN 2015 74Y/76Y KJ392 30MAR2026 19OCT2026 1------ HAN 2145 ICN 0230+1 74Y/76Y KJ389 31MAR2026 22OCT2026 -2-4---- ICN 1530 HAN 2015 74Y/76Y KJ390 31MAR2026 22OCT2026 -2-4---- HAN 2145 ICN 0230+1 74Y/76Y KJ389 04APR2026 24OCT2026 -----6- ICN 1630 HAN 2115 74Y/76Y KJ390 04APR2026 24OCT2026 -----6- HAN 2315 ICN 0400+1 74Y/76Y KJ387 01APR2026 23OCT2026 --3-5-7 ICN 1530 HAN 2015 74Y/76Y KJ388 01APR2026 23OCT2026 --3-5-7 HAN 2145 ICN 0230+1 74Y/76Y KJ375 30MAR2026 19OCT2026 1------ ICN 1400 HAN 1845 738 KJ376 30MAR2026 19OCT2026 1------ HAN 1945 ICN 0030+1 738 KJ373 31MAR2026 24OCT2026 -2-4-6- ICN 1400 HAN 1845 738 KJ374 31MAR2026 24OCT2026 -2-4-6- HAN 1945 ICN 0030+1 738 KJ371 01APR2026 23OCT2026 --3-5-7 ICN 1400 HAN 1845 738 KJ372 01APR2026 23OCT2026 --3-5-7 HAN 1945 ICN 0030+1 738 
+Type of services: All-cargo
+Air traffic service routes:
+Sectors ATS Routes Entry Point Exit Point ICN-HAN R474 TEBAK - A1-Q2 BUNTA - HAN-ICN R474 - TEBAK Q1-A1 - BUNTA HAN-SIN N639-M755-M753 - VILAO
+IPRIX Q1-L644-L642 - ESPOB HAN-HKG R474 - TEBAK Q1-A1 - BUNTA HAN-CAN R474 - TEBAK Q1-A1 - BUNTA SIN-HAN M753-M755-N639-Q2 IPRIX
+VILAO M753-L637-Q2 IPRIX - M771-L644-M768-Q2 DUDIS - Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+Aircraft: 
+Aircraft Type Registration marks Nationality 738 According to KJ’s FAOC Korea
+ 76Y 74Y 
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: LD - 81/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier/Operator:
+Name: AIRZETA
+IATA code: KJ | ICAO code: AIH
+Postal Address: 77-65 Gonghangdong-ro, 295 beon –gil, Jung gu, Incheon, Republic of Korea
+Tel: +82-02-6026-1303 | Email: kyh2727@airzetacargo.com, thyanh@airzetacargo.com, lynk@airzetacargo.com
+
+TABLE 2
+CONTEXT: Schedules: (All times are UTC)
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+KJ951 | 31MAR2026 | 23OCT2026 | -2—5-- | ICN | 1445 | HAN | 1920 | 74Y/76Y
+KJ952 | 31MAR2026 | 23OCT2026 | -2—5-- | HAN | 2120 | HKG | 2320 | 74Y/76Y
+KJ952 | 01APR2026 | 24OCT2026 | --3—6- | HKG | 0120 | ICN | 0450 | 74Y/76Y
+
+KJ953 | 04APR2026 | 24OCT2026 | -----6- | ICN | 14:45 | HAN | 1920 | 74Y/76Y
+KJ954 | 04APR2026 | 24OCT2026 | -----6- | HAN | 2120 | HKG | 2320 | 74Y/76Y
+KJ954 | 05APR2026 | 25OCT2026 | ------7 | HKG | 0120 | ICN | 0450 | 74Y/76Y
+
+KJ933 | 30MAR2026 | 21OCT2026 | 1-3---- | ICN | 1540 | HAN | 2015 | 74Y/76Y
+KJ934 | 30MAR2026 | 21OCT2026 | 1-3---- | HAN | 2215 | CAN | 0000+1 | 74Y/76Y
+KJ934 | 31MAR2026 | 22OCT2026 | -2-4--- | CAN | 0200 | ICN | 0520 | 74Y/76Y
+
+KJ931 | 02APR2026 | 22OCT2026 | ---4--- | ICN | 1540 | HAN | 2015 | 74Y/76Y
+KJ932 | 02APR2026 | 22OCT2026 | ---4--- | HAN | 2215 | CAN | 0000+1 | 74Y/76Y
+KJ932 | 03APR2026 | 23OCT2026 | ----5-- | CAN | 0200 | ICN | 0520 | 74Y/76Y
+
+KJ391 | 30MAR2026 | 19OCT2026 | 1------ | ICN | 1530 | HAN | 2015 | 74Y/76Y
+KJ392 | 30MAR2026 | 19OCT2026 | 1------ | HAN | 2145 | ICN | 0230+1 | 74Y/76Y
+
+KJ389 | 31MAR2026 | 22OCT2026 | -2-4---- | ICN | 1530 | HAN | 2015 | 74Y/76Y
+KJ390 | 31MAR2026 | 22OCT2026 | -2-4---- | HAN | 2145 | ICN | 0230+1 | 74Y/76Y
+
+KJ389 | 04APR2026 | 24OCT2026 | -----6- | ICN | 1630 | HAN | 2115 | 74Y/76Y
+KJ390 | 04APR2026 | 24OCT2026 | -----6- | HAN | 2315 | ICN | 0400+1 | 74Y/76Y
+
+KJ387 | 01APR2026 | 23OCT2026 | --3-5-7 | ICN | 1530 | HAN | 2015 | 74Y/76Y
+KJ388 | 01APR2026 | 23OCT2026 | --3-5-7 | HAN | 2145 | ICN | 0230+1 | 74Y/76Y
+
+KJ375 | 30MAR2026 | 19OCT2026 | 1------ | ICN | 1400 | HAN | 1845 | 738
+KJ376 | 30MAR2026 | 19OCT2026 | 1------ | HAN | 1945 | ICN | 0030+1 | 738
+
+KJ373 | 31MAR2026 | 24OCT2026 | -2-4-6- | ICN | 1400 | HAN | 1845 | 738
+KJ374 | 31MAR2026 | 24OCT2026 | -2-4-6- | HAN | 1945 | ICN | 0030+1 | 738
+
+KJ371 | 01APR2026 | 23OCT2026 | --3-5-7 | ICN | 1400 | HAN | 1845 | 738
+KJ372 | 01APR2026 | 23OCT2026 | --3-5-7 | HAN | 1945 | ICN | 0030+1 | 738
+
+TABLE 3
+CONTEXT: Type of services: All-cargo
+Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+ICN-HAN | R474 | TEBAK | -
+ | A1-Q2 | BUNTA | -
+HAN-ICN | R474 | - | TEBAK
+ | Q1-A1 | - | BUNTA
+HAN-SIN | N639-M755-M753 | - | VILAO IPRIX
+ | Q1-L644-L642 | - | ESPOB
+HAN-HKG | R474 | - | TEBAK
+ | Q1-A1 | - | BUNTA
+HAN-CAN | R474 | - | TEBAK
+ | Q1-A1 | - | BUNTA
+SIN-HAN | M753-M755-N639-Q2 | IPRIX VILAO | 
+ | M753-L637-Q2 | IPRIX | -
+ | M771-L644-M768-Q2 | DUDIS | -
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 4
+CONTEXT: Aircraft:
+Aircraft Type | Registration marks | Nationality
+738 | According to KJ’s FAOC | Korea
+76Y |  | 
+74Y |  | 

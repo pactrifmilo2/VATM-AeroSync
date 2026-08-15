@@ -23,6 +23,7 @@ public record FileRecordResponse(
         String checksum,
         LocalDateTime createdAt,
         String sender,
-        String subject
+        String subject,
+        boolean requiresFormat
 ) {
 }

@@ -1,0 +1,34 @@
+FILE: R05B1 REV1 SJX.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 09 JUL 2026
+PERMIT NUMBER: LD-05/B/S/2026VN /REV1
+1. Carrier/Operator
+2.Revised flight number and travel schedule due Typhoon.
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+OTHER DETAILS UNCHANGED
+3. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 09 JUL 2026
+PERMIT NUMBER: LD-05/B/S/2026VN /REV1
+1. Carrier/Operator
+Name: STARLUX AIRLINES
+IATA code: JX | ICAO code: SJX
+Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055, Taiwan (R.O.C)
+Tel: +886-2-2791-1000 ext. 6314 | Email: ashleyliu@starlux-airlines.com
+
+TABLE 2
+CONTEXT: 2.Revised flight number and travel schedule due Typhoon.
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+JX716 | 10Jul26 | 10Jul26 | …5.. | HAN | 0410 | TPE | 0700 | 32Q/339/359 | LD-05/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JX3716 | 11Jul26 | 11Jul26 | ….6. | HAN | 1740 | TPE | 2030 | 32Q/339/359

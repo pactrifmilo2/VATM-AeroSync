@@ -1,0 +1,66 @@
+FILE: OF 88 AS.doc
+
+PARAGRAPHS
+Ha Noi, 13th March 2026
+№: OF - 88/A/S/2026VN
+IATA Schedule Season: Summer 2026
+ 1. Carrier/Operator
+Name: NIPPON CARGO AIRLINES CO., LTD. IATA code: KZ ICAO code: NCA Postal Address: NCA Line Maintenance Hangar, Narita International Airport, Narita-shi, Chiba 282-0011, Japan. Tel: +81-476-30-3001 Email: ncapr@nca.aero 
+ 2. Billing address
+ 
+Name: UAS International Trip Support Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE Tel: +971-4-299-6633 Email: HYPERLINK "mailto:PAYABLE@UAS.AERO" \o "mailto:PAYABLE@UAS.AERO" PAYABLE@UAS.AERO 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA NCA235 29MAR26 24OCT26 1234567 RJAA 1340 WSSS 2035 NCA254 29MAR26 24OCT26 1234567 WSSS 2225 VTBS 0100+1 NCA254 29MAR26 24OCT26 1234567 VTBS 0250 RJAA 0910 NCA263 29MAR26 24OCT26 1234567 RJAA 1340 WSSS 2035 NCA263 29MAR26 24OCT26 1234567 WSSS 2225 VTBS 0100+1 NCA262 29MAR26 24OCT26 1234567 VTBS 0250 RJAA 0910 
+ 4. Purpose of Flight(s): CARGO
+ 
+ 5. Aircraft:
+Aircraft Type Registration Mark Seats for passenger flight Payload for All-cargo flight (Tons) MTOW (Tons) Nationality B747-800F As per AOC of NCA N/A 140 448 Japan 
+ 6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RJAA- WSSS N892 MIGUG MELAS L642 EXOTO ESPOB A1-L644-L642 BUNTA ESPOB WSSS- VTBS N891 XONAN IGARI VTBS-RJAA A1 BUNTA PAPRA G474-L628 ANINA ARESI R474 LAVOS TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 13th March 2026
+№: OF - 88/A/S/2026VN
+IATA Schedule Season: Summer 2026
+ 1. Carrier/Operator
+Name: NIPPON CARGO AIRLINES CO., LTD.
+IATA code: KZ | ICAO code: NCA
+Postal Address: NCA Line Maintenance Hangar, Narita International Airport, Narita-shi, Chiba 282-0011, Japan.
+Tel: +81-476-30-3001 | Email: ncapr@nca.aero
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE
+Tel: +971-4-299-6633 | Email: HYPERLINK "mailto:PAYABLE@UAS.AERO" \o "mailto:PAYABLE@UAS.AERO" PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+NCA235 | 29MAR26 | 24OCT26 | 1234567 | RJAA | 1340 | WSSS | 2035
+NCA254 | 29MAR26 | 24OCT26 | 1234567 | WSSS | 2225 | VTBS | 0100+1
+NCA254 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0250 | RJAA | 0910
+NCA263 | 29MAR26 | 24OCT26 | 1234567 | RJAA | 1340 | WSSS | 2035
+NCA263 | 29MAR26 | 24OCT26 | 1234567 | WSSS | 2225 | VTBS | 0100+1
+NCA262 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0250 | RJAA | 0910
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CARGO
+ 
+ 5. Aircraft:
+Aircraft Type | Registration Mark | Seats for passenger flight | Payload for All-cargo flight (Tons) | MTOW (Tons) | Nationality
+B747-800F | As per AOC of NCA | N/A | 140 | 448 | Japan
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RJAA- WSSS | N892 | MIGUG | MELAS
+ | L642 | EXOTO | ESPOB
+ | A1-L644-L642 | BUNTA | ESPOB
+WSSS- VTBS | N891 | XONAN | IGARI
+VTBS-RJAA | A1 | BUNTA | PAPRA
+ | G474-L628 | ANINA | ARESI
+ | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,34 @@
+FILE: R29A1 (LD 29 AS RVS1).docx
+
+PARAGRAPHS
+Hanoi, 10/07/2026
+Permit No.: LD-29/A/S/2026VN /REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+Other details unchanged.
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 10/07/2026
+Permit No.: LD-29/A/S/2026VN /REV1
+1. Carrier/Operator
+Name: Mandarin Airlines LTD.
+IATA code: AE | ICAO code: MDA
+Postal Address: 3, Alley 123, Lane 405, Tunhwa N. Rd., Taipei, Taiwan
+Tel: 84-24-35843581 | Email: hatuyet.tran@china-airlines.com,hanffci@china-airlines.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+AE1857 | 10Jul26 | 10Jul26 | ----5-- | RMQ | 0000 | SGN | 0320 | 738 | LD-29/A/S/2026VN
+AE1858 | 10Jul26 | 10Jul26 | ----5-- | SGN | 0420 | RMQ | 0750 | 738 | LD-29/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AE1857 | 10Jul26 | 10Jul26 | ----5-- | RMQ | 0000 | SGN | 0320 | 738
+AE1858D | 11Jul26 | 11Jul26 | -----6- | SGN | 2100 | RMQ | 0030+1 | 738

@@ -1,0 +1,51 @@
+FILE: R20B5 OF 20BRVS6.docx
+
+PARAGRAPHS
+HANOI, 29-Apr-26
+The permit: OF-20/B/S/2026VN/REV5.
+1. Carrier/Operator
+2. [Revised timing and reroute of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Air traffic service routes for rerouting flight MAS6104.
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 29-Apr-26
+The permit: OF-20/B/S/2026VN/REV5.
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Planning and Scheduling, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised timing and reroute of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6165 | 05MAY26 | 26MAY26 | .2….. | ZSPD | 1315 | WMKK | 1845 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6170 | 06MAY26 | 27MAY26 | ..3…. | WMKK | 0300 | ZSPD | 0825 | 33X
+MAS6171 | 06MAY26 | 27MAY26 | ..3…. | ZSPD | 1025 | WMKK | 1555 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6104 | 09MAY26 | 30MAY26 | …..6. | WMKK | 0205 | VHHH | 0555 | 33X
+MAS6105 | 09MAY26 | 30MAY26 | …..6. | VHHH | 0745 | WMKK | 1125 | 33X
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6165 | 05MAY26 | 26MAY26 | .2….. | ZSPD | 1005 | WMKK | 1535 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6170 | 05MAY26 | 26MAY26 | .2….. | WMKK | 2000 | ZSPD | 0125+1 | 33X
+MAS6171 | 06MAY26 | 27MAY26 | ..3…. | ZSPD | 0325 | WMKK | 0855 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6104 | 09MAY26 | 30MAY26 | …..6. | WBKK | 0120 | VHHH | 0410 | 33X
+MAS6105 | 09MAY26 | 30MAY26 | …..6. | VHHH | 0610 | WMKK | 0950 | 33X
+
+TABLE 4
+CONTEXT: 3. Note: Air traffic service routes for rerouting flight MAS6104.
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WBKK - VHHH | M768 M771 | AKMON | DONDA

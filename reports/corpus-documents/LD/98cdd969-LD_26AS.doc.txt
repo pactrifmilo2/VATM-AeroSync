@@ -1,0 +1,66 @@
+FILE: LD 26AS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 10/03/2026
+Permit No.: LD- 26/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Hong Kong Air Cargo Carrier Limited IATA code: RH ICAO code: HKC Postal Address: R.201, 2nd Floor, Noibai Cargo Terminal, Noi Bai Int'l Airport, Soc Son Dist, Hanoi, Viet Nam Tel: +844 3584 3331 Email: HYPERLINK "mailto:manhlam.hoang@hkaircargo.com" manhlam.hoang@hkaircargo.com ; HYPERLINK "mailto:tommy.fei@hkaircargo.com" tommy.fei@hkaircargo.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Acft Type RH317 29MAR26 24OCT26 2367 HKG 1140 HAN 1340 33X RH318 29MAR26 24OCT26 2367 HAN 1510 HKG 1710 33X RH317 29MAR26 24OCT26 45 HKG 1210 HAN 1410 33X RH318 29MAR26 24OCT26 45 HAN 1540 HKG 1740 33X 
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark Nationality 33X As per FAOC of RH Hong Kong, China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HKG-HAN R474 TEBAK N/A HAN-HKG R474 N/A TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP
+6. Validity: -12/+24H.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 
+2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM.
+Do Hong Cam.
+Deputy Director General.
+C.c: VATM; MAA; NAA; SAA.
+Sent by Le Vu Ha Anh.
+C.c: Bui Minh Dang - Director of ATD/CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 10/03/2026
+Permit No.: LD- 26/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Hong Kong Air Cargo Carrier Limited
+IATA code: RH | ICAO code: HKC
+Postal Address: R.201, 2nd Floor, Noibai Cargo Terminal, Noi Bai Int'l Airport, Soc Son Dist, Hanoi, Viet Nam
+Tel: +844 3584 3331 | Email: HYPERLINK "mailto:manhlam.hoang@hkaircargo.com" manhlam.hoang@hkaircargo.com ; HYPERLINK "mailto:tommy.fei@hkaircargo.com" tommy.fei@hkaircargo.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Acft Type
+RH317 | 29MAR26 | 24OCT26 | 2367 | HKG | 1140 | HAN | 1340 | 33X
+RH318 | 29MAR26 | 24OCT26 | 2367 | HAN | 1510 | HKG | 1710 | 33X
+RH317 | 29MAR26 | 24OCT26 | 45 | HKG | 1210 | HAN | 1410 | 33X
+RH318 | 29MAR26 | 24OCT26 | 45 | HAN | 1540 | HKG | 1740 | 33X
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+33X | As per FAOC of RH | Hong Kong, China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG-HAN | R474 | TEBAK | N/A
+HAN-HKG | R474 | N/A | TEBAK

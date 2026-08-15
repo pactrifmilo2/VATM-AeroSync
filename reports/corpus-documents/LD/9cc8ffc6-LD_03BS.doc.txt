@@ -1,0 +1,73 @@
+FILE: LD 03BS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 24/03/2026
+Permit No.: LD-03/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: ETHIOPIAN AIRLINES IATA code: ET ICAO code: ETH Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport Tel: +84967743067 Email: HYPERLINK LeulsegedD@ethiopianairlines.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type ET608 29Mar26 22Oct26 -2-4--7 ADD 19:40 BKK 05:00+ A351; A359; B77W; B777; B788; B789 ET608 30Mar26 23Oct26 1-3-5-- BKK 06:00 HAN 07:30 ET609 30Mar26 23Oct26 1-3-5-- HAN 16:20 BKK 17:50 ET609 30Mar26 23Oct26 1-3-5-- BKK 18:55 ADD 03:25+ ET is authorised to operate 5th freedom for sector BKK_HAN
+3. Purpose of Flight: Passenger Flight
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality A351; A359; B77W; B777; B788; B789 According to ET’s FAOC Ethiopia 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR BKK-HAN R474 LAVOS B214 BQ W21 LADON W4 LAPON HAN-BKK R474 LAVOS B214 BQ W21 LADON W4 LAPON Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 24/03/2026
+Permit No.: LD-03/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: ETHIOPIAN AIRLINES
+IATA code: ET | ICAO code: ETH
+Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport
+Tel: +84967743067 | Email: HYPERLINK LeulsegedD@ethiopianairlines.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ET608 | 29Mar26 | 22Oct26 | -2-4--7 | ADD | 19:40 | BKK | 05:00+ | A351; A359; B77W; B777; B788; B789
+ET608 | 30Mar26 | 23Oct26 | 1-3-5-- | BKK | 06:00 | HAN | 07:30 | 
+ET609 | 30Mar26 | 23Oct26 | 1-3-5-- | HAN | 16:20 | BKK | 17:50 | 
+ET609 | 30Mar26 | 23Oct26 | 1-3-5-- | BKK | 18:55 | ADD | 03:25+ | 
+
+TABLE 4
+CONTEXT: ET is authorised to operate 5th freedom for sector BKK_HAN
+3. Purpose of Flight: Passenger Flight
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+A351; A359; B77W; B777; B788; B789 | According to ET’s FAOC | Ethiopia
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BKK-HAN | R474 | LAVOS | 
+ | B214 BQ W21 | LADON | 
+ | W4 | LAPON | 
+HAN-BKK | R474 |  | LAVOS
+ | B214 BQ W21 |  | LADON
+ | W4 |  | LAPON

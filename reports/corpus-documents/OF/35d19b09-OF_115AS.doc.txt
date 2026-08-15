@@ -1,0 +1,71 @@
+FILE: OF 115AS.doc
+
+PARAGRAPHS
+Ha Noi, 24th March 2026
+№: OF - 115/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: EASTAR JET IATA code:ZE ICAO code: ESR Postal Address: EASTAR JET OCC, 9F, CUCKOO MAGOK BUILDING, 236, GONGHANG-DAERO, GANGSEO-GU, SEOUL, REPUBLIC OF KOREA Tel: +82-2-3660-7042 Email: ocs@eastarjet.com 
+2. Billing address
+Name: PARK YOUNGGIL/ DIRECTOR/ OPERATIONS CONTROL CENTER Postal Address: EASTAR JET OCC, 9F, CUCKOO MAGOK BUILDING, 236, GONGHANG-DAERO, GANGSEO-GU, SEOUL, REPUBLIC OF KOREA Tel: +82-2-3660-7042 Email: HYPERLINK "mailto:ocs@eastarjet.com/" ocs@eastarjet.com/ HYPERLINK "mailto:hansira@eastarjet.com/" hansira@eastarjet.com/ HYPERLINK "mailto:ksj3@eastarjet.com/" ksj3@eastarjet.com/ HYPERLINK "mailto:shwan.cho@eastarjet.com" shwan.cho@eastarjet.com 
+3. Schedules: UTC Time 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA ESR517 29MAR26 24OCT26 0034067 RKSI 0930 VTCC 1540 ESR518 29MAR26 24OCT26 0034067 VTCC 1655 RKSI 2210 ESR917 29MAR26 22OCT26 0004007 RKPK 0955 VTCC 1510 ESR918 29MAR26 22OCT26 0004007 VTCC 1610 RKPK 2115 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B738 As per AOC of ERS Korea B38M 
+6. Air traffic service routes:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RKSI-VTCC R474/B465 TEBAK LAPON B465/R474 LAPON TEBAK A1/R328 BUNTA TORED VTCC-RKSI R474/B465 TEBAK LAPON B465/R474 LAPON TEBAK R328/A1 TORED BUNTA RKPK-VTCC R474/B465 TEBAK LAPON B465/R474 LAPON TEBAK A1/R328 BUNTA TORED VTCC-RKPK R474/B465 TEBAK LAPON B465/R474 LAPON TEBAK R328/A1 TORED BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 24th March 2026
+№: OF - 115/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: EASTAR JET
+IATA code:ZE | ICAO code: ESR
+Postal Address: EASTAR JET OCC, 9F, CUCKOO MAGOK BUILDING, 236, GONGHANG-DAERO, GANGSEO-GU, SEOUL, REPUBLIC OF KOREA
+Tel: +82-2-3660-7042 | Email: ocs@eastarjet.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: PARK YOUNGGIL/ DIRECTOR/ OPERATIONS CONTROL CENTER
+Postal Address: EASTAR JET OCC, 9F, CUCKOO MAGOK BUILDING, 236, GONGHANG-DAERO, GANGSEO-GU, SEOUL, REPUBLIC OF KOREA
+Tel: +82-2-3660-7042 | Email: HYPERLINK "mailto:ocs@eastarjet.com/" ocs@eastarjet.com/ HYPERLINK "mailto:hansira@eastarjet.com/" hansira@eastarjet.com/ HYPERLINK "mailto:ksj3@eastarjet.com/" ksj3@eastarjet.com/ HYPERLINK "mailto:shwan.cho@eastarjet.com" shwan.cho@eastarjet.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ESR517 | 29MAR26 | 24OCT26 | 0034067 | RKSI | 0930 | VTCC | 1540
+ESR518 | 29MAR26 | 24OCT26 | 0034067 | VTCC | 1655 | RKSI | 2210
+ESR917 | 29MAR26 | 22OCT26 | 0004007 | RKPK | 0955 | VTCC | 1510
+ESR918 | 29MAR26 | 22OCT26 | 0004007 | VTCC | 1610 | RKPK | 2115
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B738 | As per AOC of ERS | Korea
+B38M |  | 
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI-VTCC | R474/B465 | TEBAK | LAPON
+ | B465/R474 | LAPON | TEBAK
+ | A1/R328 | BUNTA | TORED
+VTCC-RKSI | R474/B465 | TEBAK | LAPON
+ | B465/R474 | LAPON | TEBAK
+ | R328/A1 | TORED | BUNTA
+RKPK-VTCC | R474/B465 | TEBAK | LAPON
+ | B465/R474 | LAPON | TEBAK
+ | A1/R328 | BUNTA | TORED
+VTCC-RKPK | R474/B465 | TEBAK | LAPON
+ | B465/R474 | LAPON | TEBAK
+ | R328/A1 | TORED | BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

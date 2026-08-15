@@ -1,0 +1,62 @@
+FILE: OF 84AS.doc
+
+PARAGRAPHS
+Ha Noi, 12th March 2026
+№: OF - 84/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: DONGHAI AIRLINES IATA code: EPA ICAO code: DZ Postal AddressDonghai Aviation Base, 3009 Hangzhan Fourth Road, Bao'an International Airport, Shenzhen, Guangdong, China Tel: 0086 15984922719 Email: HYPERLINK "mailto:yxglc@donghaiair.cn" \t "_blank" yxglc@donghaiair.cn 
+CC: HYPERLINK "mailto:lipengfei@donghaiair.cn" \t "_blank" lipengfei@donghaiair.cn / HYPERLINK "mailto:yanchushen@donghaiair.cn" \t "_blank" yanchushen@donghaiair.cn 
+ 
+2. Billing address:
+Name: DONGHAI AIRLINES ADD: Donghai Airlines, No. 3009, Terminal 4th Road, Baoan International Airport, Baoan District, Shenzhen city, Guangdong Prov. , China Tel: 0086 15984922719 Email: HYPERLINK "mailto:yxglc@donghaiair.cn" \t "_blank" yxglc@donghaiair.cn 
+CC: HYPERLINK "mailto:lipengfei@donghaiair.cn" \t "_blank" lipengfei@donghaiair.cn / HYPERLINK "mailto:yanchushen@donghaiair.cn" \t "_blank" yanchushen@donghaiair.cn 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA EPA6365 29MAR26 14JUN26 1-3-5-- ZGSZ 1025Z VLVT 1240Z EPA6366 29MAR26 14JUN26 1-3-5-- VLVT 1340Z ZGSZ 1700Z EPA6365 04SEP26 24OCT26 1-3-5-- ZGSZ 1020Z VLVT 1240Z EPA6366 04SEP26 24OCT26 1-3-5-- VLVT 1340Z ZGSZ 1700Z 
+4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B738 AS PER THE EPA AOC CHINA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR VLVT- ZGSZ R335 A2026 IDOTA ASSAD ZGSZ -VLVT A206 R335 ASSAD IDOTA Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 12th March 2026
+№: OF - 84/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: DONGHAI AIRLINES
+IATA code: EPA | ICAO code: DZ
+Postal AddressDonghai Aviation Base, 3009 Hangzhan Fourth Road, Bao'an International Airport, Shenzhen, Guangdong, China
+Tel: 0086 15984922719 | Email: HYPERLINK "mailto:yxglc@donghaiair.cn" \t "_blank" yxglc@donghaiair.cn CC: HYPERLINK "mailto:lipengfei@donghaiair.cn" \t "_blank" lipengfei@donghaiair.cn / HYPERLINK "mailto:yanchushen@donghaiair.cn" \t "_blank" yanchushen@donghaiair.cn
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: DONGHAI AIRLINES
+ADD: Donghai Airlines, No. 3009, Terminal 4th Road, Baoan International Airport, Baoan District, Shenzhen city, Guangdong Prov. , China
+Tel: 0086 15984922719 | Email: HYPERLINK "mailto:yxglc@donghaiair.cn" \t "_blank" yxglc@donghaiair.cn CC: HYPERLINK "mailto:lipengfei@donghaiair.cn" \t "_blank" lipengfei@donghaiair.cn / HYPERLINK "mailto:yanchushen@donghaiair.cn" \t "_blank" yanchushen@donghaiair.cn
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+EPA6365 | 29MAR26 | 14JUN26 | 1-3-5-- | ZGSZ | 1025Z | VLVT | 1240Z
+EPA6366 | 29MAR26 | 14JUN26 | 1-3-5-- | VLVT | 1340Z | ZGSZ | 1700Z
+EPA6365 | 04SEP26 | 24OCT26 | 1-3-5-- | ZGSZ | 1020Z | VLVT | 1240Z
+EPA6366 | 04SEP26 | 24OCT26 | 1-3-5-- | VLVT | 1340Z | ZGSZ | 1700Z
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B738 | AS PER THE EPA AOC | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VLVT- ZGSZ | R335 A2026 | IDOTA | ASSAD
+ZGSZ -VLVT | A206 R335 | ASSAD | IDOTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

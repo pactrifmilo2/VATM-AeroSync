@@ -1,0 +1,48 @@
+FILE: OF 41_A_S RVS1.docx
+
+PARAGRAPHS
+Hanoi, 22/4/2026
+ORIGINAL №: OF - 41/A/S/2026VN
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+Air traffic service routes:
+ORIGINAL ROUTE:
+CHANGED ROUTE:
+Notes: Others remain unchanged
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 22/4/2026
+ORIGINAL №: OF - 41/A/S/2026VN
+1. Carrier
+Name: CHINA SOUTHERN AIRLINES
+IATA code:CZ | ICAO code:CSN
+Postal Address:68 QIXIN ROAD GUANGZHOU,GUANGDONG PROVINCE
+Tel:+86 020-86112040 | Email: soc-hw@csair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: ACCOUNTING CENTRE OF CHINA AVIATION
+Postal Address:NO.7,YUMIN STREET, HOUSHAYU,SHUNYI DISTRICT, BEIJING, CHINA( TRAVELSKY HI-TECH PARK, BUILDING A3)
+Tel:+86-10-56896258 | Email: NAVSERVICE@ACCA.COM.CN
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+CSN5049 | 11MAY26 | 24OCT26 | 1234567 | ZGHA | 1220 | WMKK | 1710
+
+TABLE 4
+CONTEXT: Air traffic service routes:
+ORIGINAL ROUTE:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGHA-WMKK | L642 | EXOTO | ESPOB
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+
+TABLE 5
+CONTEXT: CHANGED ROUTE:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGHA-WMKK | L642 | EXOTO | ESPOB
+ZGHA-WMKK | R474 Q1 N639M755 M765 | TEBAK,KISAN | VILAO,IGARI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -70,7 +70,7 @@ class EmailReportServiceTest {
         assertThat(result.content().getFirst().storedFileName())
                 .isEqualTo("operator_20260724_091500_email_permit.docx");
         assertThat(result.content().getFirst().errorMessage())
-                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
+                .isEqualTo("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.");
         assertThat(result.totalElements()).isEqualTo(1);
         assertThat(result.page()).isZero();
     }
@@ -107,7 +107,7 @@ class EmailReportServiceTest {
         assertThat(service.get(7L).storedFileName())
                 .isEqualTo("operator_20260724_100000_email_permit.docx");
         assertThat(service.get(7L).errorMessage())
-                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
+                .isEqualTo("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.");
         assertThat(service.get(7L).acknowledgementError())
                 .isEqualTo("Không thể chuyển email sang thư mục đích trên máy chủ thư.");
         assertThatThrownBy(() -> service.get(8L))

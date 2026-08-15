@@ -1,0 +1,73 @@
+FILE: OF 126AS.docx
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 126/A/S/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE CARGO FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 126/A/S/2026VN
+1. Carrier/Operator
+Name: AIR CHANGAN CO., LTD
+IATA: 9H | ICAO: CGN
+Postal Address: OPERATION CONTROL DEPARTMENT, AIR CHANGAN,Xi'an Xianyang International Airport,Shaanxi province,China,712035
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: OPERATION CONTROL DEPARTMENT, AIR CHANGAN
+Postal Address: OPERATION CONTROL DEPARTMENT, AIR CHANGAN,Xi'an Xianyang International Airport, Shaanxi province,China,712035
+TEL: +86-029-38056003 | EMAIL: jyuan.hu@airchangan.com/ 9haoc_qpfxx@airchangan.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CGN8477 | 29MAR26 | 24OCT26 | 1234567 | ZHYC | 0850 | WBGG | 1400
+CGN8478 | 29MAR26 | 24OCT26 | 1234567 | WBGG | 1500 | ZHYC | 2005
+ |  |  |  |  |  |  | 
+CGN8473 | 29MAR26 | 24OCT26 | 1234567 | ZHYC | 0655 | VLVT | 1005
+CGN8474 | 29MAR26 | 24OCT26 | 1234567 | VLVT | 1105 | ZHYC | 1410
+ |  |  |  |  |  |  | 
+CGN8385 | 29MAR26 | 24OCT26 | 1234567 | ZHYC | 0655 | VTBS | 1005
+CGN8386 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1140 | ZHYC | 1530
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE CARGO FLIGHT
+5. Aircraft:
+A/C REG | A/C TYPE | MTOW (TONS) | NATIONALITY
+B-1902 | B-737-800 | 75.976 | China
+B-1903 | B-737-800 | 75.976 | China
+B-1161 | B-737-800 | 75.976 | China
+B-1162 | B-737-800 | 75.976 | China
+B-1163 | B-737-800 | 75.976 | China
+B-1481 | B-737-800 | 75.976 | China
+B-1482 | B-737-800 | 75.976 | China
+B-1483 | B-737-800 | 75.976 | China
+B-5326 | B-737-800 | 75.976 | China
+B-5328 | B-737-800 | 75.976 | China
+B-5579 | B-737-800 | 75.976 | China
+B-5380 | B-737-800 | 75.976 | China
+B-5381 | B-737-800 | 75.976 | China
+B-5386 | B-737-800 | 75.976 | China
+B-5387 OR SUB | B-737-800 | 75.976 | China
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZHYC-WBGG | A1-Q1-L644 | BUNTA | DUDIS
+WBGG-ZHYC | L644-W1-A202 | DUDIS | ASSAD
+ZHYC-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZHYC | R474 | LAVOS | TEBAK
+ZHYC-VTBS | R474 | TEBAK | LAVOS
+VTBS-ZHYC | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

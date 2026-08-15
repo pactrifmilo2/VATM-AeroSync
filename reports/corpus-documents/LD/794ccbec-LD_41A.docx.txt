@@ -1,0 +1,54 @@
+FILE: LD 41A.docx
+
+PARAGRAPHS
+Ha Noi, March 24, 2026
+Permit No.: LD-41/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260324-0034)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: ww.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 24, 2026
+Permit No.: LD-41/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: PT. Indonesia AirAsia
+IATA code: QZ | ICAO code: AWQ
+Postal Address: Jl.Marsekal Suryadarma No.1, Kebon Sayur RT 01/01, Kel.Selapajang Jaya, Kec.Neglasari, Tangerang, Banten, 15127, Indonesia.
+Tel: +622129850983 | Email: iaa_aagr@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+QZ 480 | 29Mar26 | 24Oct26 | 1_3_5_7 | DPS | 0705 | DAD | 1135 | 320
+QZ 480 | 29Mar26 | 24Oct26 | 1_3_5_7 | DAD | 1205 | DPS | 1640 | 320
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type (11) | Registration Mark (12) | Nationality(15)
+320 | As per FAOC of QZ | Indonesia
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector(16) | Airways(17) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DPS-DAD | M768 - Q2 | AKMON | -
+DAD-DPS | Q1 - L644 - M768 | - | AKMON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

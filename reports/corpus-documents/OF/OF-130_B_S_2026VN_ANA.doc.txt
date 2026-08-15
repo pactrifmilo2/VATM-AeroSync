@@ -1,0 +1,67 @@
+FILE: OF-130_B_S_2026VN_ANA.doc
+
+PARAGRAPHS
+Ha Noi, 28th March 2026
+№: OF - 130/B/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier
+Name: ALL NIPPON AIRWAYS, CO.,LTD. IATA code: NH ICAO code: ANA Postal Address: SHIODOME-CITY CENTER, 1-5-2 HIGASHI-SHIMBASHI, MINATO-KU, TOKYO 105-7140, JAPAN. Tel: +81-70-4874-2996 Email: ar.nakayama@ana.co.jp 
+2. Billing address
+Name: OPERATION MANAGEMENT CENTER, ANA Postal Address: 5F 3-3-2 HANEDA-AIRPORT OTA-KU,TOKYO, 144-8515, JAPAN. Tel: +81-70-4926-1616 Email: hi.hirayama@ana.co.jp 
+3. Schedules: UTC Time 
+Flight number(1) Effective from(2)
+ Effective to(3)
+ Days of services(4) Departure Airport(5) ETD(6) Arrival Airport(7) ETA(8) ANA 8507 29MAR26 24OCT26 1234567 RJAA 1145 VTBS 1840 ANA 8508 29MAR26 24OCT26 1234567 VTBS 2010 RJAA 0245+1 
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type (10) Registration Mark (11)
+ Nationality(14) B77L JA771F, JA772F JAPAN B763 JA601F, JA602F, JA604F, JA605F
+JA8970, JA603A JAPAN 
+6. Air traffic service routes:
+Sector(15) Airways(16) Entry Point into Vietnam FIR Exit Point from Vietnam FIR RJAA / RJTT - VTBS A1 BUNTA PAPRA RJAA / RJTT - VTBS R474 TEBAK LAVOS RJAA / RJTT - VTBS N892 / L628 / G474 MONBO ANINA RJAA / RJTT - VTBS N892 / N500 / R468 MONBO SAPEN RJAA / RJTT - VTBS L628 / G474 ARESI ANINA VTBS - RJAA / RJTT A1 PAPRA BUNTA VTBS - RJAA / RJTT G474 / L628 ANINA ARESI VTBS - RJAA / RJTT R468 / N500 / L625 SAPEN ARESI VTBS - RJAA / RJTT R474 LAVOS TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 28th March 2026
+№: OF - 130/B/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier
+Name: ALL NIPPON AIRWAYS, CO.,LTD.
+IATA code: NH | ICAO code: ANA
+Postal Address: SHIODOME-CITY CENTER, 1-5-2 HIGASHI-SHIMBASHI, MINATO-KU, TOKYO 105-7140, JAPAN.
+Tel: +81-70-4874-2996 | Email: ar.nakayama@ana.co.jp
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: OPERATION MANAGEMENT CENTER, ANA
+Postal Address: 5F 3-3-2 HANEDA-AIRPORT OTA-KU,TOKYO, 144-8515, JAPAN.
+Tel: +81-70-4926-1616 | Email: hi.hirayama@ana.co.jp
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+ANA 8507 | 29MAR26 | 24OCT26 | 1234567 | RJAA | 1145 | VTBS | 1840
+ANA 8508 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 2010 | RJAA | 0245+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type (10) | Registration Mark (11) | Nationality(14)
+B77L | JA771F, JA772F | JAPAN
+B763 | JA601F, JA602F, JA604F, JA605F JA8970, JA603A | JAPAN
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RJAA / RJTT - VTBS | A1 | BUNTA | PAPRA
+RJAA / RJTT - VTBS | R474 | TEBAK | LAVOS
+RJAA / RJTT - VTBS | N892 / L628 / G474 | MONBO | ANINA
+RJAA / RJTT - VTBS | N892 / N500 / R468 | MONBO | SAPEN
+RJAA / RJTT - VTBS | L628 / G474 | ARESI | ANINA
+VTBS - RJAA / RJTT | A1 | PAPRA | BUNTA
+VTBS - RJAA / RJTT | G474 / L628 | ANINA | ARESI
+VTBS - RJAA / RJTT | R468 / N500 / L625 | SAPEN | ARESI
+VTBS - RJAA / RJTT | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -47,7 +47,10 @@ class CaavVietnameseLandingCorrectionProfileTest {
         assertThat(permit.operatorId()).isEqualTo("BAV");
         assertThat(permit.reference())
                 .isEqualTo("LD- 38/B/W/2024VN; LD- 38/A/W/2024VN");
-        assertThat(permit.billingAddress()).contains("SỐ 6 TÂN SƠN");
+        assertThat(permit.billingAddress()).isEqualTo("BAMBOO AIRWAYS/QH");
+        assertThat(permit.rawContent())
+                .contains("SỐ HIỆU CHUYẾN BAY\tHIỆU LỰC TỪ\tHIỆU LỰC ĐẾN")
+                .contains("QH1123\t14-Feb-25\t15-Feb-25");
         assertThat(permit.permitType()).isEqualTo("LD");
         assertThat(permit.version()).isEqualTo("A");
         assertThat(permit.season()).isEqualTo("W");

@@ -1,0 +1,64 @@
+FILE: LD 48A-S26-WW.docx
+
+PARAGRAPHS
+Ha Noi, March 18, 2026
+Permit No.: LD-48/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier:
+- Name: MJETS AIR SDN. BHD.
+- IATA code: WW ; ICAO code: KXP
+- Address: Mezzanine Floor CS1, Cainiao Aeropolis eWTP Hub, FCZ KLIA Cargo Village, Jalan KLIA S3, 64000 Sepang, Selangor, Malaysia
+- Tel: +603 – 8703 3008 ; Fax: +603 – 8703 3005 ; Email: network@mjetsair.com
+2. Schedules: (UTC Time)
+3. Purpose of Flight: All - Cargo
+4. Aircraft
+5. Airways
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260311-0030)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 18, 2026
+Permit No.: LD-48/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier:
+- Name: MJETS AIR SDN. BHD.
+- IATA code: WW ; ICAO code: KXP
+- Address: Mezzanine Floor CS1, Cainiao Aeropolis eWTP Hub, FCZ KLIA Cargo Village, Jalan KLIA S3, 64000 Sepang, Selangor, Malaysia
+- Tel: +603 – 8703 3008 ; Fax: +603 – 8703 3005 ; Email: network@mjetsair.com
+2. Schedules: (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+WW220 | 29Mar26 | 24Oct26 | --3-567 | KUL | 09:40 | HAN | 12:50 | 73K/73P
+WW221 | 29Mar26 | 24Oct26 | --3-567 | HAN | 13:50 | KUL | 17:00 | 
+ | 
+WW601 | 31Mar26 | 20Oct26 | -2----- | KUL | 18:50 | SGN | 20:55 | 
+WW602 | 31Mar26 | 20Oct26 | -2----- | SGN | 21:55 | KUL | 23:55 | 
+WW601 | 01Apr26 | 24Oct26 | --3--6- | KUL | 21:00 | SGN | 23:10 | 
+WW602 | 02Apr26 | 25Oct26 | ---4--7 | SGN | 00:10 | KUL | 02:15 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All - Cargo
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+73K | As per FAOC of WW | Malaysia
+73P | As per FAOC of WW | Malaysia
+
+TABLE 4
+CONTEXT: 5. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KUL-SGN | M765 L637 | IGARI | -
+SGN-KUL | L637 M765 | - | IGARI
+KUL-HAN | M765 M755 N639 | IGARI VLAO | KISAN-
+HAN-KUL | N639 M755 M765 | -KISAN | VILAO IGARI
+Alternate airways: Other permitted airways published in Viet Nam’s AIP.

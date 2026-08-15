@@ -1,0 +1,34 @@
+FILE: R08A1 OF 08ARVS1.docx
+
+PARAGRAPHS
+HANOI, 01May2026
+PERMIT NUMBER: OF-08/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+Change Flight Number to AIQ678
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 01May2026
+PERMIT NUMBER: OF-08/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Thai AirAsia
+IATA code: FD | ICAO code: AIQ
+Postal Address:Postal Address: Thai AirAsia Company Limited, 222, Don Mueang International Airport,3 rd floor, Central Office Building, No.3200, Vibhavadi Rangsit Road, Sanambin, DonMueang, Bangkok, 10120
+Tel:+662-562-5799 | Email: thaiflightops@airasia.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit(3)
+AIQ688 | 1May26 | 24Oct26 | 1234567 | ICN | 0225 | DMK | 0840 | OF-08/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AIQ678 | 1May26 | 24Oct26 | 1234567 | ICN | 0225 | DMK | 0840

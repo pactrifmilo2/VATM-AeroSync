@@ -95,6 +95,22 @@ class ViaResolutionStepTest {
         assertThat(flight.via()).isEqualTo("Q2/Q7/Q1/W11/W1");
     }
 
+    @Test
+    void resolve_keepsViaEmptyWhenNoDatabaseRouteExists() {
+        ProcessingContext context = context("HVN", false);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst();
+        context.setSchedulePermit(context.getSchedulePermit().withFlights(List.of(
+                source.withResolvedRoute("SGN", "VVNB", null))));
+
+        step.resolve(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.fromAirport()).isEqualTo("VVTS");
+        assertThat(flight.toAirport()).isEqualTo("VVNB");
+        assertThat(flight.via()).isEmpty();
+        new BusinessRuleValidatorStep().validate(context);
+    }
+
     private ProcessingContext context() {
         return context("HVN", true);
     }
@@ -103,7 +119,7 @@ class ViaResolutionStepTest {
         ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
                 1L, "LD 2517 HVN.docx", "h", FileSourceType.EMAIL, false));
         ScheduleFlight flight = new ScheduleFlight(
-                "PAX", 1L, null, "VN1466", null, "0000100",
+                "PAX", 1L, null, "VN1466", null, "0000500",
                 "SGN", "VCL", "0905", "1030", null,
                 LocalDate.of(2026, 7, 3), LocalDate.of(2026, 7, 4),
                 "Bay sớm", "321/320");

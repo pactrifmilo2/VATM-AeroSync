@@ -1,0 +1,37 @@
+FILE: LD 68 B bosungduongbay.docx
+
+PARAGRAPHS
+Hà Nội, ngày 31 tháng 3 năm 2026
+Số: 68/B/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Người vận chuyển/ Người khai thác
+2. Bổ sung đường bay:
+Tham chiếu phép LD-68/A/S/2026VN, VN xin bổ sung các đường bay vào các phép: phép bay mùa LD-68/A/S/2026VN, phép bay đã được cấp tăng chuyến, phép bay bổ sung, phép bay sửa đổi lịch bay mùa Hè S26 từ ngày 31/03/26 đến 24/10/26.
+3. Ghi chú: Mọi thông tin khác của phép bay không đổi.
+KT. CỤC TRƯỞNG
+PHÓ CỤC TRƯỞNG
+Đỗ Hồng Cẩm
+Gửi bởi Vũ Thị Thùy Dương
+C/c: Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN
+C/c: Phạm Thị Thảo - Phó Trưởng phòng, PhòngVTHK/Cục HKVN
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (8424) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hà Nội, ngày 31 tháng 3 năm 2026
+Số: 68/B/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Người vận chuyển/ Người khai thác
+Tên: VIETNAM AIRLINES
+Mã IATA: VN | Mã ICAO: HVN
+Địa chỉ bưu điện: 200 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại:0904186949 | Thư điện tử: HUNGDQ@VIETNAMAIELINES.COM
+
+TABLE 3
+CONTEXT: 2. Bổ sung đường bay:
+Tham chiếu phép LD-68/A/S/2026VN, VN xin bổ sung các đường bay vào các phép: phép bay mùa LD-68/A/S/2026VN, phép bay đã được cấp tăng chuyến, phép bay bổ sung, phép bay sửa đổi lịch bay mùa Hè S26 từ ngày 31/03/26 đến 24/10/26.
+Chặng bay | Đường hàng không | Điểm bay vào | Điểm bay ra
+SINSGN | L644 W9 | DUDIS | 
+DPSSGN | L644 W9 | DUDIS | 
+KULSGN | L644 W9 | DUDIS | 

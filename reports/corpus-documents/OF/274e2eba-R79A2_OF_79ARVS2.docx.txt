@@ -1,0 +1,93 @@
+FILE: R79A2 OF 79ARVS2.docx
+
+PARAGRAPHS
+APPLICATION FORM FOR SCHEDULED FLIGHT
+OVERFLIGHT 2026 SUMMER
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 0084438272281; Email: atd@caa.gov.vn; Fax: 0084438272290
+Refer to the original permit number: OF-79/A/S/2026VN
+1. Carrier/Operator:
+1.1 Name: CHINA EASTERN AIRLINES
+- ICAO code: CES
+- Address: NO.35 HONGXIANG ROAD SHANGHAI
+201100 P.R. CHINA
+- Tel: 00862122331656; Fax: 00862162680051; Email: muoverfly@ceair.com
+1.2 Billing address: MS LI YIPING
+CLEARING & SETTLEMENT DEPT.
+ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDING
+XI BA HE BEI LI CHAO YANG DISTRICT
+P.O.BOX 5402
+100028 BEIJING CHINA
+- Tel: +8610-64513489; Fax: +8610-64238723; Email: NAVSERVICE@ACCA.COM.CN;
+LYP@ACCA.COM.CN
+Original Item:
+2. Schedules: All times in UTC
+DUE TO AIRCRAFT MALFUNCTION, THE FOLLOWING SCHEDULED FLIGHTS WILL BE CHANGED.
+Revised Item:
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger 4. Air traffic service routes:
+5. Aircraft:
+6. Applicant:
+- Name: fuyile; Title: CES Operation Center
+- Tel: 00862122331678; Fax: 00862162680051; Email: muoverfly@ceair.com
+- Application is submitted on:25/04/2026.
+7. Note:
+1,2,3,4,5,7: ICAO code.
+6 :Name of ATS route: Example R468, A1, R474….
+
+TABLE 1
+CONTEXT: APPLICATION FORM FOR SCHEDULED FLIGHT
+OVERFLIGHT 2026 SUMMER
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 0084438272281; Email: atd@caa.gov.vn; Fax: 0084438272290
+Refer to the original permit number: OF-79/A/S/2026VN
+1. Carrier/Operator:
+1.1 Name: CHINA EASTERN AIRLINES
+- ICAO code: CES
+- Address: NO.35 HONGXIANG ROAD SHANGHAI
+201100 P.R. CHINA
+- Tel: 00862122331656; Fax: 00862162680051; Email: muoverfly@ceair.com
+1.2 Billing address: MS LI YIPING
+CLEARING & SETTLEMENT DEPT.
+ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDING
+XI BA HE BEI LI CHAO YANG DISTRICT
+P.O.BOX 5402
+100028 BEIJING CHINA
+- Tel: +8610-64513489; Fax: +8610-64238723; Email: NAVSERVICE@ACCA.COM.CN;
+LYP@ACCA.COM.CN
+Original Item:
+2. Schedules: All times in UTC
+DUE TO AIRCRAFT MALFUNCTION, THE FOLLOWING SCHEDULED FLIGHTS WILL BE CHANGED.
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+CES5070 | 24APR26 | 24APR26 | 5 | WIII | 1530 | ZSPD | 2210 | B737/B738/B38M/A319/A320/A20N/A321/A21N/A332/A333/A359/B77W/B789
+
+TABLE 2
+CONTEXT: Revised Item:
+2. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+CES507D | 25APR26 | 25APR26 | 6 | WIII | 0700 | ZSPD | 1340 | B737/B738/B38M/A319/A320/A20N/A321/A21N/A332/A333/A359/B77W/B789
+
+TABLE 3
+CONTEXT: 3. Type of services/ Purpose of Flight(s): Passenger 4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+WIII-ZSPD | M753 L637 Q2 A202/M771/N639 Q1 R474/A202/M753 M755 | IPRIX/DUDIS/VILAO/VILAO/IPRIX | ASSAD/DONDA/TEBAK/ASSAD/KISAN
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 4
+CONTEXT: 5. Aircraft:
+Aircraft Type7 | Registration marks | MTOW (Ton) | Nationality
+B737 | According to the AOC of China Eastern Airlines | 67 | China
+B738 | According to the AOC of China Eastern Airlines | 79 | China
+B38M | According to the AOC of China Eastern Airlines | 82 | China
+A319 | According to the AOC of China Eastern Airlines | 70 | China
+A320 | According to the AOC of China Eastern Airlines | 77 | China
+A20N | According to the AOC of China Eastern Airlines | 79 | China
+A321 | According to the AOC of China Eastern Airlines | 93 | China
+A21N | According to the AOC of China Eastern Airlines | 94 | China
+A332 | According to the AOC of China Eastern Airlines | 238 | China
+A333 | According to the AOC of China Eastern Airlines | 242 | China
+B77W | According to the AOC of China Eastern Airlines | 351 | China
+B789 | According to the AOC of China Eastern Airlines | 247 | China
+A359 | According to the AOC of China Eastern Airlines | 280 | China

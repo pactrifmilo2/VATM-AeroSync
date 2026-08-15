@@ -1,0 +1,86 @@
+FILE: R25BG 25B REV16.docx
+
+PARAGRAPHS
+Hanoi, 24/04/2026 Permit No.: LD - 25/B/S/2026VN/REV16
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+TK is only authorized to operate 5th freedom rights on sector: HAN-DEL.
+2.2. New schedule(s) (UTC Time)
+3. Airways:
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 24/04/2026 Permit No.: LD - 25/B/S/2026VN/REV16
+1. Carrier
+Name: TURKISH AIRLINES CARGO
+IATA code: TK | ICAO code: THY
+Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist. HCMC, Vietnam
+Tel: +84-2839360360 | Email : SGNOPS@THY.COM
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+TK6262 | 04MAY26 | 25MAY26 | 1------ | IST | 1115 | AMM | 1400 | 77X | LD - 25/B/S/2026VN
+TK6262 | 04MAY26 | 25MAY26 | 1------ | AMM | 1600 | HAN | 0050+1 | 77X | 
+TK6263 | 05MAY26 | 26MAY26 | -2----- | HAN | 0250 | IST | 1300 | 77X | 
+ | 
+TK6232 | 03MAY26 | 31MAY26 | ------7 | IST | 1445 | AMM | 1720 | 77X | 
+TK6232 | 03MAY26 | 31MAY26 | ------7 | AMM | 1915 | HAN | 0400+1 | 77X | 
+TK6233 | 04MAY26 | 01JUN26 | 1------ | HAN | 0600 | IST | 1610 | 77X | 
+ | 
+TK6244 | 02MAY26 | 30MAY26 | -----6- | IST | 1910 | BEY | 2115 | 77X | 
+TK6244 | 02MAY26 | 30MAY26 | -----6- | BEY | 2305 | HAN | 0810+1 | 77X | 
+TK6245 | 03MAY26 | 31MAY26 | ------7 | HAN | 1010 | DEL | 1450 | 77X | 
+TK6245 | 03MAY26 | 31MAY26 | ------7 | DEL | 1630 | IST | 2320 | 77X | 
+ | 
+TK6272 | 07MAY26 | 28MAY26 | ---4--- | IST | 1025 | KWI | 1355 | 77X | 
+TK6272 | 07MAY26 | 28MAY26 | ---4--- | KWI | 1545 | HAN | 2345 | 77X | 
+TK6273 | 08MAY26 | 29MAY26 | ----5-- | HAN | 0145 | DEL | 0625 | 77X | 
+TK6273 | 08MAY26 | 29MAY26 | ----5-- | DEL | 0805 | IST | 1500 | 77X | 
+ | 
+TK6308 | 06MAY26 | 27MAY26 | --3---- | IST | 0905 | AMM | 1145 | 77X | 
+TK6308 | 06MAY26 | 27MAY26 | --3---- | AMM | 1345 | HAN | 2230 | 77X | 
+TK6309 | 07MAY26 | 28MAY26 | ---4--- | HAN | 0030 | IST | 1040 | 77X | 
+ | 
+TK6334 | 05MAY26 | 26MAY26 | -2----- | IST | 1035 | KWI | 1405 | 77X | 
+TK6334 | 05MAY26 | 26MAY26 | -2----- | KWI | 1555 | HAN | 2355 | 77X | 
+TK6335 | 06MAY26 | 27MAY26 | --3---- | HAN | 0155 | DEL | 0640 | 77X | 
+TK6335 | 06MAY26 | 27MAY26 | --3---- | DEL | 0810 | IST | 1505 | 77X | 
+
+TABLE 3
+CONTEXT: TK is only authorized to operate 5th freedom rights on sector: HAN-DEL.
+2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TK6042 | 04MAY26 | 25MAY26 | 1------ | IST | 0945 | KUL | 1830 | 77X
+TK6042 | 04MAY26 | 25MAY26 | 1------ | KUL | 2030 | HAN | 0050+1 | 77X
+TK6263 | 05MAY26 | 26MAY26 | -2----- | HAN | 0250 | IST | 1300 | 77X
+
+TK6196 | 03MAY26 | 31MAY26 | ------7 | IST | 1500 | BOM | 2145 | 77X
+TK6196 | 03MAY26 | 31MAY26 | ------7 | BOM | 2345 | HAN | 0400+1 | 77X
+TK6233 | 04MAY26 | 01JUN26 | 1------ | HAN | 0600 | IST | 1610 | 77X
+
+TK6197 | 02MAY26 | 30MAY26 | -----6- | IST | 1910 | BOM | 0145+1 | 77X
+TK6197 | 03MAY26 | 31MAY26 | ------7 | BOM | 0345 | HAN | 0810 | 77X
+TK6245 | 03MAY26 | 31MAY26 | ------7 | HAN | 1010 | DEL | 1450 | 77X
+TK6245 | 03MAY26 | 31MAY26 | ------7 | DEL | 1630 | IST | 2320 | 77X
+
+TK6247 | 07MAY26 | 28MAY26 | ---4--- | IST | 1400 | HAN | 2345 | 77X
+TK6273 | 08MAY26 | 29MAY26 | ----5-- | HAN | 0145 | DEL | 0625 | 77X
+TK6273 | 08MAY26 | 29MAY26 | ----5-- | DEL | 0805 | IST | 1500 | 77X
+
+TK6307 | 06MAY26 | 27MAY26 | --3---- | IST | 1250 | HAN | 2230 | 77X
+TK6309 | 07MAY26 | 28MAY26 | ---4--- | HAN | 0030 | IST | 1040 | 77X
+ |  |  |  |  |  |  |  | 
+TK6333 | 05MAY26 | 26MAY26 | -2----- | IST | 1430 | HAN | 2355 | 77X
+TK6335 | 06MAY26 | 27MAY26 | --3---- | HAN | 0155 | DEL | 0640 | 77X
+TK6335 | 06MAY26 | 27MAY26 | --3---- | DEL | 0810 | IST | 1505 | 77X
+
+TABLE 4
+CONTEXT: 3. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+IST-HAN | B214 W21 | LADON | 
+KUL-HAN | R474 | LAVOS | 

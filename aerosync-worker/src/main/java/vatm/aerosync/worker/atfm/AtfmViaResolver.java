@@ -96,10 +96,10 @@ public class AtfmViaResolver {
         if (!allRoutes.isEmpty()) {
             return selectFirst(allRoutes);
         }
-        throw new AtfmReferenceDataException(
-                "ATFM route not found: M_AIRPORT_ROUTE.FROM_AIRP=" + from
-                        + ", TO_AIRP=" + to
-                        + " (also checked M_VIA for OPER=" + operator + ")");
+        // A route is optional for import. When neither catalogue contains the
+        // airport pair, keep VIA empty so the remaining permit data can still
+        // be inserted into ATFM.
+        return "";
     }
 
     private String selectFirst(Set<String> routes) {

@@ -270,7 +270,8 @@ public class SyncJobService {
                 record.getChecksum(),
                 record.getCreatedAt(),
                 sender,
-                subject);
+                subject,
+                WordFormatRequirement.isRequired(record.getOriginalFileName(), record.getErrorMessage()));
     }
 
     private JobDetailLog latestDetailLog(Long syncJobId) {

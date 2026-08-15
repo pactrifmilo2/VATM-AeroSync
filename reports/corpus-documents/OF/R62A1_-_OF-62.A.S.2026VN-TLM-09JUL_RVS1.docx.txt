@@ -1,0 +1,42 @@
+FILE: R62A1 - OF-62.A.S.2026VN-TLM-09JUL RVS1.docx
+
+PARAGRAPHS
+HANOI, 09JUL2026
+PERMIT NUMBER: OF-62/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note:
+Due to the impact of Typhoon "BAVI" to flights scheduled on 10July2026.
+We are considering processing the following flights earlier
+Other details unchanged.
+BRGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 09JUL2026
+PERMIT NUMBER: OF-62/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: THAI LION MENTARI COMPANY LIMITED
+IATA code: SL | ICAO code: TLM
+Postal Address: 89/46 Vibhavadi Rangsit Road, Sanambin Subdistrict, Don Mueang District, Bangkok 10210, Thailand
+Tel: +66 2535 3710 | Email: Email: KAMOLLUCK.IM@lionair-thai.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+TLM394 | 09JUL26 | 09JUL26 | 0004000 | VTBD | 23:15 | RCTP | 03:10(+1) | B739/B738 | OF-62/A/S/2026VN
+TLM395 | 10JUL26 | 10JUL26 | 0000500 | RCTP | 13:20 | VTBD | 17:15 | B739/B738 | OF-62/A/S/2026VN
+TLM392 | 09JUL26 | 09JUL26 | 0004000 | VTBD | 22:35 | RCKH | 02:05(+1) | B739/B738 | OF-62/A/S/2026VN
+TLM393 | 10JUL26 | 10JUL26 | 0000500 | RCKH | 13:55 | VTBD | 17:20 | B739/B738 | OF-62/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TLM394 | 09JUL26 | 09JUL26 | 0004000 | VTBD | 17:30 | RCTP | 21:25 | B739/B738
+TLM395 | 10JUL26 | 10JUL26 | 0000500 | RCTP | 07:25 | VTBD | 11:20 | B739/B738
+TLM392 | 09JUL26 | 09JUL26 | 0004000 | VTBD | 19:00 | RCKH | 22:30 | B739/B738
+TLM393 | 10JUL26 | 10JUL26 | 0000500 | RCKH | 10:10 | VTBD | 13:35 | B739/B738

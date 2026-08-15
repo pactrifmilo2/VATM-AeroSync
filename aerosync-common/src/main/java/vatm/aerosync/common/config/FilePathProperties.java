@@ -8,6 +8,7 @@ public class FilePathProperties {
     private String incoming;
     private String processed;
     private String error;
+    private String errorFormat;
     private String quarantine;
 
     public String getIncoming() {
@@ -32,6 +33,14 @@ public class FilePathProperties {
 
     public void setError(String error) {
         this.error = error;
+    }
+
+    public String getErrorFormat() {
+        return errorFormat;
+    }
+
+    public void setErrorFormat(String errorFormat) {
+        this.errorFormat = errorFormat;
     }
 
     public String getQuarantine() {

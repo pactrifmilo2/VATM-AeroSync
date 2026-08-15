@@ -1,0 +1,72 @@
+FILE: LD 29A S.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 10/03/2026
+Permit No.: LD-29/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Mandarin Airlines Ltd IATA code: AE ICAO code: MDA Postal Address: 3, Alley 123, Lane 405, Tunhwa N. Rd., Taipei, Taiwan Tel: +886-2-25142020 Email: lin@mandarin-airlines.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type AE1857 29Mar26 24Oct26 1234567 RMQ 0000 SGN 0320 738 AE1858 29Mar26 24Oct26 1234567 SGN 0420 RMQ 0750 738 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality 738 As per FAOC of AE R.O.C 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RMQ-SGN A1/G221/W12/ Q1 BUNTA NIL A1/G221/W12/ W1 BUNTA NIL N892/Q15/W15 MONBO NIL N892/Q15/W2 MONBO NIL N892/N500 MONBO NIL SGN-RMQ Q1/W12/G221/A1 NIL BUNTA W12/G221 NIL BUNTA W15/Q15 NIL MESOX Q1/A1 NIL BUNTA Q2/A1 NIL BUNTA Q1/W1/A1 NIL BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 10/03/2026
+Permit No.: LD-29/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Mandarin Airlines Ltd
+IATA code: AE | ICAO code: MDA
+Postal Address: 3, Alley 123, Lane 405, Tunhwa N. Rd., Taipei, Taiwan
+Tel: +886-2-25142020 | Email: lin@mandarin-airlines.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AE1857 | 29Mar26 | 24Oct26 | 1234567 | RMQ | 0000 | SGN | 0320 | 738
+AE1858 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0420 | RMQ | 0750 | 738
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | As per FAOC of AE | R.O.C
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RMQ-SGN | A1/G221/W12/ Q1 | BUNTA | NIL
+ | A1/G221/W12/ W1 | BUNTA | NIL
+ | N892/Q15/W15 | MONBO | NIL
+ | N892/Q15/W2 | MONBO | NIL
+ | N892/N500 | MONBO | NIL
+SGN-RMQ | Q1/W12/G221/A1 | NIL | BUNTA
+ | W12/G221 | NIL | BUNTA
+ | W15/Q15 | NIL | MESOX
+ | Q1/A1 | NIL | BUNTA
+ | Q2/A1 | NIL | BUNTA
+ | Q1/W1/A1 | NIL | BUNTA

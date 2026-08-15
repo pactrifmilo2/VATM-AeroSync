@@ -1,0 +1,58 @@
+FILE: OF 30 AS.docx
+
+PARAGRAPHS
+HA NOI, 26 FEB 2026
+NUMBER OF-30/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): (Regular Passenger Services)
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 26 FEB 2026
+NUMBER OF-30/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: BRITISH AIRWAYS
+IATA code: | ICAO code: BAW
+Postal Address: British Airways PLC, Waterside, PO Box 365, Harmondsworth, UB7 0GB.
+Tel: +44(0)203 428 0999 | Email: ba.usercharges.invoices@iairgroup.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: International Airlines Group
+Tel: +44(0)203 428 0999 | Email: ba.usercharges.invoices@iairgroup.com
+
+TABLE 4
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport | ETA | Aircraft Type
+BAW31 | 29MAR26 | 24OCT26 | 1234567 | EGLL | 1820 | VHHH | 0725 | A35K/ A388/ B777/ B787
+BAW32 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 1445 | EGLL | 0515 | 
+BAW168 | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 0300 | EGLL | 1745 | 
+BAW169 | 29MAR26 | 24OCT26 | 1234567 | EGLL | 1105 | ZSPD | 2355 | 
+
+TABLE 5
+CONTEXT: 3. Type of services/ Purpose of Flight(s): (Regular Passenger Services)
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+EGLL-VHHH | A206 | NALAO | ASSAD
+VHHH-EGLL | A206 | ASSAD | VILAO
+EGLL-ZSPD | B465 R474 | LAPON | TEBAK
+ZSPD-EGLL | R474 B465 | TEBAK | LAPON
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A388 | As per AOC of BAW | UK
+B777 | As per AOC of BAW | UK
+B787 | As per AOC of BAW | UK
+A35K | As per AOC of BAW | UK

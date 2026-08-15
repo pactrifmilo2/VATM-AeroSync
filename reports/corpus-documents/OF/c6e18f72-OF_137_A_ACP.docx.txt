@@ -1,0 +1,57 @@
+FILE: OF 137 A ACP.docx
+
+PARAGRAPHS
+HA NOI, 01 JUN 2026
+NUMBER OF-137/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): ALL CARGO
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 01 JUN 2026
+NUMBER OF-137/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: Astral Aviation Ltd
+IATA code: 8V | ICAO code: ACP
+Postal Address: P.O. Box 594 – 00606 Nairobi, Kenya
+Tel: +254 722 671 211 | Email: operations@astral-aviation.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Astral Aviation Ltd
+Postal Address: P.O. Box 594 – 00606 Nairobi, Kenya
+Tel: +254 722 671 211 | Email: operations@astral-aviation.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ACP272 | 14Jun26 | 24Oct26 | 1234567 | OMSJ | 0001 | ZJHK | 0800
+ACP273 | 14Jun26 | 24Oct26 | 1234567 | ZJHK | 2000 | VAAH | 0230
+ACP9590 | 14Jun26 | 24Oct26 | 1234567 | VHHH | 0001 | VAAH | 0400
+ACP9790 | 14Jun26 | 24Oct26 | 1234567 | VHHH | 0001 | OMSJ | 0800
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): ALL CARGO
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B767-300F | 5Y-SVR | Kenyan
+B767-200F | 5Y-SNL | Kenyan
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OMSJ-ZJHK | OMSJ IVUR1Q IVURO M428 TARBO Z440 DAMUM B524 VEKAN DCT RASKI L639 BPL A791 CEA B465 LPB A206 ASSAD ASS2XA ZJHK | NALAO | ASSAD
+ZJHK-VAAH | ZJHK ASS2ZD ASSAD A206 LPB B465 CEA A791 BPL L639 AAE VAAH | ASSAD | NALAO
+VHHH - VAAH | V10, A202, A206, B465, A791, L639 | ASSAD | NALAO
+VHHH- OMSJ | V10, A202, A206, B465, A791, L639, L301, N571, N317 | ASSAD | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

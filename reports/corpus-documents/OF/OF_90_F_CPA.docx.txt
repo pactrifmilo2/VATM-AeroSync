@@ -1,0 +1,55 @@
+FILE: OF 90 F CPA.docx
+
+PARAGRAPHS
+HA NOI, 01 JUL 2026
+NUMBER OF-90/F/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-Cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 01 JUL 2026
+NUMBER OF-90/F/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG.
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: MR. GEORGE CHAN
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG.
+Tel: +852 2747 8822 | Email: GEORGE_G_CHAN@CATHAYPACIFIC.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CPA3546 | 11JUL26 | 24OCT26 | 6 | VTBS | 0505 | VHHH | 0750
+CPA3549 | 11JUL26 | 24OCT26 | 6 | VHHH | 0005 | VTBS | 0310
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A332 | As per the AOC of AHK | Hong Kong, China
+A333 | As per the AOC of AHK | Hong Kong, China
+B744 | As per the AOC of CPA | Hong Kong, China
+B748 | As per the AOC of CPA | Hong Kong, China
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-VTBS | (Pri) ASSAD A202 VILAO (Alt) BUNTA A1 PAPRA | ASSAD BUNTA | VILAO PAPRA
+VTBS-VHHH | (Pri) VILAO A202 ASSAD (Alt) PAPRA A1 BUNTA (Alt) ANINA G474 PCA L628 DAMEL M771 DONDA | VILAO PAPRA ANINA | ASSAD BUNTA DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

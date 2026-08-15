@@ -1,0 +1,75 @@
+FILE: LD 38 DS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 16/03/2026
+Permit No.: LD-38/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited IATA code: CX ICAO code: CPA Postal Address: Room 502, 5/F, Centec Tower, 72-74 Nguyen Thi Minh Khai St., Xuan Hoa Ward, HCMC Tel: 84-2838223034 Email: HYPERLINK "mailto:quyen_tran@cathaypacific.com" quyen_tran@cathaypacific.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CX3349 01Apr26 29Apr2026 --3---- HKG 11:45 HAN 13:50 74Y CX3346 01Apr26 29Apr2026 --3---- HAN 15:20 SGN 17:35 74Y CX3346 01Apr26 29Apr2026 --3---- SGN 19:15 HKG 21:50 74Y 
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark 
+ Nationality 74Y According to CX’s FAOC China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HAN-SGN (Pri) Q1 N/A N/A SGN-HKG (Pri) W12, G221 N/A BUNTA (Alt) N500, M771 N/A DONDA (Alt) W12, W1, A1 N/A BUNTA (Alt) Q2, A1 
+(Alt) Q2, W12, G221 N/A
+N/A BUNTA 
+BUNTA HKG-HAN (Pri) R474 TEBAK N/A (Alt) A1, W2, Q2 BUNTA N/A Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM.
+Do Hong Cam.
+Deputy Director General.
+C.c: VATM; MAA; NAA; SAA.
+Sent by Le Vu Ha Anh.
+C.c: Bui Minh Dang - Director of ATD/CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 16/03/2026
+Permit No.: LD-38/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: Room 502, 5/F, Centec Tower, 72-74 Nguyen Thi Minh Khai St., Xuan Hoa Ward, HCMC
+Tel: 84-2838223034 | Email: HYPERLINK "mailto:quyen_tran@cathaypacific.com" quyen_tran@cathaypacific.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CX3349 | 01Apr26 | 29Apr2026 | --3---- | HKG | 11:45 | HAN | 13:50 | 74Y
+CX3346 | 01Apr26 | 29Apr2026 | --3---- | HAN | 15:20 | SGN | 17:35 | 74Y
+CX3346 | 01Apr26 | 29Apr2026 | --3---- | SGN | 19:15 | HKG | 21:50 | 74Y
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+74Y | According to CX’s FAOC | China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HAN-SGN | (Pri) Q1 | N/A | N/A
+SGN-HKG | (Pri) W12, G221 | N/A | BUNTA
+ | (Alt) N500, M771 | N/A | DONDA
+ | (Alt) W12, W1, A1 | N/A | BUNTA
+ | (Alt) Q2, A1 (Alt) Q2, W12, G221 | N/A N/A | BUNTA BUNTA
+HKG-HAN | (Pri) R474 | TEBAK | N/A
+ | (Alt) A1, W2, Q2 | BUNTA | N/A

@@ -1,0 +1,61 @@
+FILE: OF-100_B_S_2026VN_CDC.doc
+
+PARAGRAPHS
+Ha Noi, 03rd July 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 100/B/S/2026VN
+1. Carrier
+Name: ZHEJIANG LOONG AIRLINES CO., LTD IATA code: GJ ICAO code: CDC Postal Address: ZHEJIANG LOONG AIRLINES BUILDING, XIAOSHAN INTERNATIONAL AIRPORT, HANGZHOU CITY, ZHEJIANG PROVINCE, P.R. CHINA 
+2. Billing address
+Name: Beijing Star Aviation Services Co., Ltd Postal Address: Room 409, No113, Kaifang Road, Huai Rou District, Beijing, China. Tel: HYPERLINK "TEL:+86" +86 15311937187 Email: HYPERLINK "mailto:sugar_jun@126.com" sugar_jun@126.com , HYPERLINK "mailto:sugar@junstar-aviation.com" sugar@junstar-aviation.com 
+3. Schedules: UTC Time 
+Flight number Effective from Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CDC8057 04JUL26 24OCT26 1234567 ZSHC 0120 WSSS 0645 CDC8058 04JUL26 24OCT26 1234567 WSSS 0745 ZSHC 1250 
+4. Purpose of Flight(s): COMMERCIAL PASSENGER FLIGHTS
+5. Aircraft:
+Aircraft Type Registration Mark 
+ Nationality A320 B1673, B1675, B1676,
+B1866, B1867, B1868,
+B1869, B8145, B8146, B8147, B8148, B8243
+or subs China A321 A319 
+6. Air traffic service routes:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSHC-WSSS L642 EXOTO ESPOB WSSS-ZSHC M771 DUDIS DONDA Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Validity: -3/+72 Hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 03rd July 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 100/B/S/2026VN
+1. Carrier
+Name: ZHEJIANG LOONG AIRLINES CO., LTD
+IATA code: GJ | ICAO code: CDC
+Postal Address: ZHEJIANG LOONG AIRLINES BUILDING, XIAOSHAN INTERNATIONAL AIRPORT, HANGZHOU CITY, ZHEJIANG PROVINCE, P.R. CHINA
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Beijing Star Aviation Services Co., Ltd
+Postal Address: Room 409, No113, Kaifang Road, Huai Rou District, Beijing, China.
+Tel: HYPERLINK "TEL:+86" +86 15311937187 | Email: HYPERLINK "mailto:sugar_jun@126.com" sugar_jun@126.com , HYPERLINK "mailto:sugar@junstar-aviation.com" sugar@junstar-aviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CDC8057 | 04JUL26 | 24OCT26 | 1234567 | ZSHC | 0120 | WSSS | 0645
+CDC8058 | 04JUL26 | 24OCT26 | 1234567 | WSSS | 0745 | ZSHC | 1250
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): COMMERCIAL PASSENGER FLIGHTS
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | B1673, B1675, B1676, B1866, B1867, B1868, B1869, B8145, B8146, B8147, B8148, B8243 or subs | China
+A321 |  | 
+A319 |  | 
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSHC-WSSS | L642 | EXOTO | ESPOB
+WSSS-ZSHC | M771 | DUDIS | DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -1,0 +1,129 @@
+FILE: LD 23AS CORR.docx
+
+PARAGRAPHS
+Hanoi, 18h March 2026
+PERMIT NUMBER: LD-23/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passengers
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 18h March 2026
+PERMIT NUMBER: LD-23/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: Air Cambodia
+IATA code: K6 | ICAO code: KHV
+Postal Address: #206A, Preah Norodom Blvd, Sangkat Tonle Bassac, Khan Chamkamorn, Phnom Penh 12302, Cambodia.
+Tel: (855) 16 899 007 | Email: sivly.kloung@aircambodia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+K6812 | 29Mar26 | 24Oct26 | 1_34_67 | KTI | 0000 | SGN | 0050 | 321/320/AT7
+K6813 | 29Mar26 | 24Oct26 | 1_34_67 | SGN | 0130 | KTI | 0230 | 321/320/AT7
+K6812 | 29Mar26 | 24Oct26 | _2__5__ | KTI | 0000 | SGN | 0055 | 321/320/AT7
+K6839 | 29Mar26 | 24Oct26 | _2__5__ | SGN | 0430 | KOS | 0550 | 321/320/AT7
+K6816 | 29Mar26 | 24Oct26 | 1__4___ | KTI | 0940 | SGN | 1055 | 321/320/AT7
+K6839 | 29Mar26 | 24Oct26 | 1__4___ | SGN | 1130 | KOS | 1250 | 321/320/AT7
+K6816 | 29Mar26 | 24Oct26 | __3____ | KTI | 0955 | SGN | 1115 | 321/320/AT7
+K6819 | 29Mar26 | 24Oct26 | __3____ | SGN | 1215 | KTI | 1320 | 321/320/AT7
+K6816 | 29Mar26 | 24Oct26 | _2__567 | KTI | 0940 | SGN | 1055 | 321/320/AT7
+K6819 | 29Mar26 | 24Oct26 | _2__567 | SGN | 1130 | KTI | 1235 | 321/320/AT7
+K6818 | 29Mar26 | 24Oct26 | 1_34__7 | KTI | 1400 | SGN | 1510 | 321/320/AT7
+K6817 | 29Mar26 | 24Oct26 | 12_45__ | SGN | 0500 | KTI | 0610 | 321/320/AT7
+K6818 | 29Mar26 | 24Oct26 | _2__56_ | KTI | 1400 | SGN | 1510 | 321/320/AT7
+K6839 | 29Mar26 | 24Oct26 | __3__67 | SGN | 0055 | KOS | 0215 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6838 | 29Mar26 | 24Oct26 | _2__5__ | KOS | 0000 | SGN | 0050 | 321/320/AT7
+K6813 | 29Mar26 | 24Oct26 | _2__5__ | SGN | 0130 | KTI | 0230 | 321/320/AT7
+K6838 | 29Mar26 | 24Oct26 | 1__4___ | KOS | 0000 | SGN | 0055 | 321/320/AT7
+K6819 | 29Mar26 | 24Oct26 | 1__4___ | SGN | 0430 | KTI | 0530 | 321/320/AT7
+K6838 | 29Mar26 | 24Oct26 | __3__67 | KOS | 0250 | SGN | 0430 | 321/320/AT7
+K6817 | 29Mar26 | 24Oct26 | 1__4__7 | SGN | 0500 | KTI | 0610 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6808 | 29Mar26 | 24Oct26 | _2345_7 | SAI | 0245 | SGN | 0410 | 321/320/AT7
+K6825 | 29Mar26 | 24Oct26 | _2345_7 | SGN | 0450 | SAI | 0615 | 321/320/AT7
+K6824 | 29Mar26 | 24Oct26 | 1__4___ | SAI | 0725 | SGN | 0850 | 321/320/AT7
+K6829 | 29Mar26 | 24Oct26 | 1__4___ | SGN | 0950 | SAI | 1200 | 321/320/AT7
+K6824 | 29Mar26 | 24Oct26 | _23__67 | SAI | 1130 | SGN | 1250 | 321/320/AT7
+K6829 | 29Mar26 | 24Oct26 | _23__67 | SGN | 1325 | SAI | 1455 | 321/320/AT7
+K6824 | 29Mar26 | 24Oct26 | ____5__ | SAI | 1035 | SGN | 1205 | 321/320/AT7
+K6829 | 29Mar26 | 24Oct26 | ____5__ | SGN | 1230 | SAI | 1405 | 321/320/AT7
+K6828 | 29Mar26 | 24Oct26 | _23___7 | SAI | 1535 | SGN | 1655 | 321/320/AT7
+K6809 | 29Mar26 | 24Oct26 | 1_34___ | SGN | 0020 | SAI | 0145 | 321/320/AT7
+K6828 | 29Mar26 | 24Oct26 | _____6_ | SAI | 1535 | SGN | 1655 | 321/320/AT7
+K6809 | 29Mar26 | 24Oct26 | ______7 | SGN | 0010 | SAI | 0145 | 321/320/AT7
+K6828 | 29Mar26 | 24Oct26 | ___4___ | SAI | 1245 | SGN | 1410 | 321/320/AT7
+K6809 | 29Mar26 | 24Oct26 | ____5__ | SGN | 0010 | SAI | 0145 | 321/320/AT7
+K6828 | 29Mar26 | 24Oct26 | 1______ | SAI | 1245 | SGN | 1410 | 321/320/AT7
+K6809 | 29Mar26 | 24Oct26 | _2_____ | SGN | 0020 | SAI | 0145 | 321/320/AT7
+K6828 | 29Mar26 | 24Oct26 | 5 | SAI | 1445 | SGN | 1605 | 321/320/AT7
+K6809 | 29Mar26 | 24Oct26 | _____6_ | SGN | 0020 | SAI | 0145 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6840 | 29Mar26 | 24Oct26 | 1234567 | SAI | 0655 | DAD | 0900 | 321/320/AT7
+K6841 | 29Mar26 | 24Oct26 | 1234567 | DAD | 0935 | SAI | 1130 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6850 | 29Mar26 | 24Oct26 | 1234567 | KTI | 0930 | HAN | 1135 | 321/320
+K6851 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1245 | KTI | 1440 | 321/320
+K6854 | 29Mar26 | 24Oct26 | ___4_6_ | KTI | 0105 | HAN | 0255 | 321/320
+K6855 | 29Mar26 | 24Oct26 | ___4_6_ | HAN | 0345 | KTI | 0540 | 321/320
+K6854 | 29Mar26 | 24Oct26 | _2_____ | KTI | 0415 | HAN | 0610 | 321/320
+K6855 | 29Mar26 | 24Oct26 | _2_____ | HAN | 0700 | KTI | 0900 | 321/320
+ |  |  |  |  |  |  |  | 
+K6830 | 29Mar26 | 24Oct26 | _23__67 | KTI | 0645 | PQC | 0755 | 321/320/AT7
+K6831 | 29Mar26 | 24Oct26 | _23__67 | PQC | 0825 | KTI | 0930 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6832 | 29Mar26 | 24Oct26 | _2___6_ | KTI | 0945 | CXR | 1120 | 321/320/AT7
+K6833 | 29Mar26 | 24Oct26 | _2___6_ | CXR | 1150 | KTI | 1330 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6842 | 29Mar26 | 24Oct26 | 1__4___ | KTI | 0945 | DAD | 1200 | 321/320/AT7
+K6843 | 29Mar26 | 24Oct26 | 1__4___ | DAD | 1230 | KTI | 1455 | 321/320/AT7
+K6842 | 29Mar26 | 24Oct26 | ______7 | KTI | 1015 | DAD | 1230 | 321/320/AT7
+K6843 | 29Mar26 | 24Oct26 | ______7 | DAD | 1300 | KTI | 1520 | 321/320/AT7
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passengers
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of K6 | Cambodia
+321 | As per FAOC of K6 | Cambodia
+AT7 | As per FAOC of K6 | Cambodia
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KTI-SGN | R468 | SAPEN | 
+SGN-KTI | R468 |  | SAPEN
+KOS-SGN | R468 | SAPEN | 
+SGN-KOS | R468 |  | SAPEN
+SAI-SGN | R468 | SAPEN | 
+SGN-SAI | R468 |  | SAPEN
+SAI-DAD | A1M505-W1 | PAPRAMULAD | 
+DAD-SAI | A1W1-M505 |  | PAPRAMULAD
+KTI-HAN | N639-Q2A202-W2/W1 | VILAO | 
+HAN-KTI | Q1-N639W1/W2-A202 |  | VILAO
+KTI-DAD | R588-W1M505-W1 | GONLYMULAD | 
+DAD-KTI | W1-R588W1-M505 |  | GONLYMULAD
+KTI-PQC | M753 | OSOTA | 
+PQC-KTI | M753 |  | OSOTA
+KTI-CXR | R468-N500-W2R468-W1-W15 | SAPEN | 
+CXR-KTI | W2-N500-R468W15-W1-R468 |  | SAPEN

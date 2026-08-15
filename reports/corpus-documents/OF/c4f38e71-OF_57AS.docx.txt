@@ -1,0 +1,107 @@
+FILE: OF 57AS.docx
+
+PARAGRAPHS
+HANOI, 09th March 2026
+Permit No.: OF-57/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 09th March 2026
+Permit No.: OF-57/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+Name: Lao Airlines State Enterprise
+IATA code: QV | ICAO code: LAO
+Postal Address: Wattay International Airport, Souphanouvong Rd. Meuangvathong village, Sikottabong District ,Vientiane Lao PDR.
+Tel: (856-21) 513150 | Email: visakhone@laoairlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Lao Airlines State Enterprise
+Postal Address: Wattay International Airport, Souphanouvong Rd. Meuangvathong village, Sikottabong District ,Vientiane Lao PDR.
+Tel: (856-21) 513150 | Email: visakhone@laoairlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+LAO923 | 29MAR26 | 24OCT26 | 1234567 | VLVT | 16:50 | RKSI | 22:05
+LAO924 | 29MAR26 | 24OCT26 | 1234567 | RKSI | 01:50 | VLVT | 05:50
+LAO823 | 29MAR26 | 24OCT26 | -2-4-6- | VLVT | 00:00 | ZSWX | 04:10
+LAO824 | 29MAR26 | 24OCT26 | -2-4-6- | ZSWX | 05:10 | VLVT | 08:00
+LAO881 | 29MAR26 | 24OCT26 | 1234567 | VLVT | 06:10 | ZGGG | 08:10
+LAO882 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 09:10 | VLVT | 11:40
+LAO851 | 29MAR26 | 24OCT26 | --3---- | VLVT | 12:15 | ZSHC | 16:20
+LAO852 | 29MAR26 | 24OCT26 | --3---- | ZSHC | 17:20 | VLVT | 18:30
+LAO853 | 29MAR26 | 24OCT26 | 1-3-5-7 | VLVT | 06:10 | ZSQZ | 08:55
+LAO854 | 29MAR26 | 24OCT26 | 1-3-5-7 | ZSQZ | 10:05 | VLVT | 13:20
+LAO855 | 29MAR26 | 24OCT26 | 1234567 | VLVT | 06:25 | ZGHA | 08:40
+LAO856 | 29MAR26 | 24OCT26 | 1234567 | ZGHA | 09:40 | VLVT | 12:05
+LAO828 | 29MAR26 | 24OCT26 | 1-3-5-7 | VLVT | 00:01 | ZJSY | 01:20
+LAO829 | 29MAR26 | 24OCT26 | 1-3-5-7 | ZJSY | 02:15 | VLVT | 03:30
+LAO861 | 29MAR26 | 24OCT26 | -2-4-6- | VLVT | 09:40 | ZGSZ | 11:15
+LAO862 | 29MAR26 | 24OCT26 | -2-4-6- | ZGSZ | 12:15 | VLVT | 13:55
+LAO863 | 29MAR26 | 24OCT26 | -2-4-6- | VLVT | 09:40 | ZGZJ | 11:15
+LAO864 | 29MAR26 | 24OCT26 | -2-4-6- | ZGZJ | 12:15 | VLVT | 13:55
+LAO867 | 29MAR26 | 24OCT26 | 1-3-5-7 | VLVT | 11:10 | ZGOW | 13:30
+LAO868 | 29MAR26 | 24OCT26 | 1-3-5-7 | ZGOW | 14:20 | VLVT | 16:55
+LAO878 | 29MAR26 | 24OCT26 | 1-3-5-7 | VLVT | 10:10 | ZGNN | 12:30
+LAO879 | 29MAR26 | 24OCT26 | 1-3-5-7 | ZGNN | 13:20 | VLVT | 14:40
+LAO885 | 29MAR26 | 24OCT26 | -2-4567 | VLVT | 01:00 | ZSCG | 04:20
+LAO886 | 29MAR26 | 24OCT26 | -2-4567 | ZSCG | 05:20 | VLVT | 07:40
+LAO888 | 29MAR26 | 24OCT26 | ------7 | VLPS | 16:05 | ZGGG | 18:05
+LAO889 | 29MAR26 | 24OCT26 | ------7 | ZGGG | 19:05 | VLPS | 20:50
+LAO891 | 29MAR26 | 24OCT26 | 1------ | VLVT | 05:30 | ZSNB | 09:00
+LAO892 | 29MAR26 | 24OCT26 | 1------ | ZSNB | 10:00 | VLVT | 13:20
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | As per AOC of LAO | LAO
+C909 | As per AOC of LAO | LAO
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VLVT-RKSI | R474 | LAVOS | TEBAK
+RKSI-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZGZJ | R474 | LAVOS | TEBAK
+ZGZJ-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZGNN | R474 | LAVOS | TEBAK
+ZGNN-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZSNB | R474 | LAVOS | TEBAK
+ZSNB-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZGGG | R474 | LAVOS | TEBAK
+ZGGG-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZSHC | R474 | LAVOS | TEBAK
+ZSHC-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZGHA | R474 | LAVOS | TEBAK
+ZGHA-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZSCG | R474 | LAVOS | TEBAK
+ZSCG-VLVT | R474 | TEBAK | LAVOS
+VLPS-ZGGG | A202 | VILAO | ASSAD
+ZGGG-VLPS | A202 | ASSAD | VILAO
+VLVT-ZSQZ | R335 A206 | IDOTA | ASSAD
+ZSQZ-VLVT | A206 R335 | ASSAD | IDOTA
+VLVT-ZGOW | R474 | LAVOS | TEBAK
+ZGOW-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZGSZ | R474 | LAVOS | TEBAK
+ZGSZ-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZJSY | R474 | LAVOS | TEBAK
+ZJSY-VLVT | R474 | TEBAK | LAVOS
+VLVT-ZSWX | R474 | LAVOS | TEBAK
+ZSWX-VLVT | R474 | TEBAK | LAVOS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

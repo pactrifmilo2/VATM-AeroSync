@@ -1,0 +1,54 @@
+FILE: OF-58.B.S.docx
+
+PARAGRAPHS
+HANOI, 24 JUNE 2026
+Permit No.: OF-58/B/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Operator:
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PASSENGERS
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 24 JUNE 2026
+Permit No.: OF-58/B/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Operator:
+Name: ROYAL BRUNEI AIRLINES
+IATA code: BI | ICAO code: RBA
+Postal Address: RBA CENTRE, JALAN KUSTIN, TERUNJING LAMA, BERAKAS BB2114, BRUNEI
+Tel: (673) 221 2222 | Email: brunei.callcentre@rba.com.bn
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: UAS INTERNATIONAL TRIP SUPPORT
+Postal Address: AS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE
+Tel: +971 4 299 6633 | Email: PAYABLE@UAS.AERO
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+RBA3 | 02JUL26 | 11SEP26 | -2-4-6- | WBSB | 1455 | EGLL | 0525+1
+RBA4 | 02JUL26 | 11SEP26 | --3-5-7 | EGLL | 1615 | WBSB | 0545+1
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): PASSENGERS
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B787-800 | V8-DLA OR SUBS | BRUNEI
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WBSB-EGLL | M786 R468 | AKMON | SAPEN
+EGLL-WBSB | R468 M768 | SAPEN | AKMON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

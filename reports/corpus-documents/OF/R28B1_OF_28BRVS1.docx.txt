@@ -1,0 +1,40 @@
+FILE: R28B1 OF 28BRVS1.docx
+
+PARAGRAPHS
+Hanoi, 05/03/2026
+Permit No.: OF - 28/B/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 05/03/2026
+Permit No.: OF - 28/B/S/2026VN/REV1
+1. Carrier/Operator
+Name: SAUDI ARABIAN AIRLINES (SAUDIA)
+IATA code: SV | ICAO code: SVA
+Postal Address: P.O. BOX 167 JEDDAH 21231 / SAUDI ARABIA
+Tel: 0091-22-66859092/66859089 | Email: BOMOCSV@SAUDIA.COM
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+SV 974 | 31MAR26 | 20OCT26 | -2----- | OERK | 2235 | VHHH | 0750+ | OF - 28/B/S/2026VN
+SV 975 | 01APR26 | 21OCT26 | --3---- | VHHH | 0930 | OEJN | 1940 | 
+ | 
+SV 984 | 29MAR26 | 24OCT26 | ------7 | OEJN | 0410 | VHHH | 1330 | 
+SV 985 | 29MAR26 | 24OCT26 | ------7 | VHHH | 1530 | OERK | 0045+ | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+SV 974 | 31MAR26 | 20OCT26 | -2----- | OEJN | 2220 | VHHH | 0750+
+SV 975 | 01APR26 | 21OCT26 | --3---- | VHHH | 0930 | OEJN | 1940
+
+SV 984 | 29MAR26 | 24OCT26 | ------7 | OERK | 0030 | VHHH | 0945
+SV 985 | 29MAR26 | 24OCT26 | ------7 | VHHH | 1130 | OERK | 2100

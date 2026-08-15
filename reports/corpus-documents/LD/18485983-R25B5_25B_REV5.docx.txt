@@ -1,0 +1,34 @@
+FILE: R25B5 25B REV5.docx
+
+PARAGRAPHS
+Hanoi, 30/03/2026 Permit No.: LD - 25/B/S/2026VN/REV5
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 30/03/2026 Permit No.: LD - 25/B/S/2026VN/REV5
+1. Carrier
+Name: TURKISH AIRLINES CARGO
+IATA code: TK | ICAO code: THY
+Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist. HCMC, Vietnam
+Tel: +84-2839360360 | Email : SGNOPS@THY.COM
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+TK6308 | 01APR26 | 08APR26 | --3---- | IST | 0905 | AMM | 1145 | 77X | LD - 25/B/S/2026VN
+TK6308 | 01APR26 | 08APR26 | --3---- | AMM | 1345 | HAN | 2230 | 77X | 
+TK6309 | 02APR26 | 09APR26 | ---4--- | HAN | 0030 | IST | 1040 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TK6307 | 01APR26 | 08APR26 | --3---- | IST | 1000 | BOM | 1615 | 77X
+TK6307 | 01APR26 | 08APR26 | --3---- | BOM | 1815 | HAN | 2230 | 77X
+TK6309 | 02APR26 | 09APR26 | ---4--- | HAN | 0030 | IST | 1040 | 77X

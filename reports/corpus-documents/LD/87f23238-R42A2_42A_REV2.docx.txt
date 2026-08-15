@@ -1,0 +1,40 @@
+FILE: R42A2  42A  REV2.docx
+
+PARAGRAPHS
+Hanoi, 01/04/2026 Permit No.: LD - 42/A/S/2026VN/REV2
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 01/04/2026 Permit No.: LD - 42/A/S/2026VN/REV2
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 4022 2941 | Email: aeropoliticalsched@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+QR8004 | 02APR26 | 02APR26 | ---4--- | DOH | 1300 | ALA | 1800 | 77X | LD - 42/A/S/2026VN/REV1
+QR8004 | 03APR26 | 03APR26 | ----5-- | ALA | 1725 | HAN | 2225 | 77X | 
+QR8955 | 04APR26 | 04APR26 | -----6- | HAN | 0025 | DOH | 0840 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR8950 | 03APR26 | 03APR26 | ----5-- | DOH | 1540 | HAN | 2225 | 77X
+QR8955 | 04APR26 | 04APR26 | -----6- | HAN | 0025 | DOH | 0840 | 77X
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DOH-HAN | B214 W21 | LADON | 
+HAN-DOH | W21 B214 |  | LADON

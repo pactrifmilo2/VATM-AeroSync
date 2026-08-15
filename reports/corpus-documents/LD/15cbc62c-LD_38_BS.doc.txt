@@ -1,0 +1,77 @@
+FILE: LD 38 BS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 16/03/2026
+Permit No.: LD-38/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited IATA code: CX ICAO code: CPA Postal Address: Room 502, 5/F, Centec Tower, 72-74 Nguyen Thi Minh Khai St. Xuan Hoa Ward, HCMC Tel: 84-2838223034 Email: HYPERLINK "mailto:quyen_tran@cathaypacific.com" quyen_tran@cathaypacific.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CX741 29Mar2026 24Oct2026 .234567 HKG 00:45 HAN 2:55 A21N/A333/ A359/
+A35K/B773/ B77W CX741 30Mar2026 19Oct2026 1...... HKG 00:45 HAN 2:50 CX740 29Mar2026 24Oct2026 .234567 HAN 03:55 HKG 6:05 CX740 30Mar2026 19Oct2026 1...... HAN 04:00 HKG 6:20 CX743 29Mar2026 24Oct2026 1234567 HKG 08:55 HAN 11:10 CX742 29Mar2026 24Oct2026 1234567 HAN 12:10 HKG 14:15 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark 
+ Nationality A21N/ A333/ A359/ A35K/ B773/ B77W According to CX’s FAOC China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HKG – HAN (Pri) R474
+(Alt) A1, W2, Q2 TEBAK
+BUNTA N/A
+N/A HAN – HKG (Pri) R474
+(Alt) W1, A1 N/A
+N/A TEBAK
+BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24H.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM.
+Do Hong Cam.
+Deputy Director General.
+C.c: VATM; MAA; NAA; SAA.
+Sent by Le Vu Ha Anh.
+C.c: Bui Minh Dang - Director of ATD/CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 16/03/2026
+Permit No.: LD-38/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: Room 502, 5/F, Centec Tower, 72-74 Nguyen Thi Minh Khai St. Xuan Hoa Ward, HCMC
+Tel: 84-2838223034 | Email: HYPERLINK "mailto:quyen_tran@cathaypacific.com" quyen_tran@cathaypacific.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CX741 | 29Mar2026 | 24Oct2026 | .234567 | HKG | 00:45 | HAN | 2:55 | A21N/A333/ A359/ A35K/B773/ B77W
+CX741 | 30Mar2026 | 19Oct2026 | 1...... | HKG | 00:45 | HAN | 2:50 | 
+CX740 | 29Mar2026 | 24Oct2026 | .234567 | HAN | 03:55 | HKG | 6:05 | 
+CX740 | 30Mar2026 | 19Oct2026 | 1...... | HAN | 04:00 | HKG | 6:20 | 
+CX743 | 29Mar2026 | 24Oct2026 | 1234567 | HKG | 08:55 | HAN | 11:10 | 
+CX742 | 29Mar2026 | 24Oct2026 | 1234567 | HAN | 12:10 | HKG | 14:15 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+A21N/ A333/ A359/ A35K/ B773/ B77W | According to CX’s FAOC | China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG – HAN | (Pri) R474 (Alt) A1, W2, Q2 | TEBAK BUNTA | N/A N/A
+HAN – HKG | (Pri) R474 (Alt) W1, A1 | N/A N/A | TEBAK BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

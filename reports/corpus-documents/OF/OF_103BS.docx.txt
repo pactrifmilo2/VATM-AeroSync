@@ -1,0 +1,52 @@
+FILE: OF 103BS.docx
+
+PARAGRAPHS
+Hanoi, 22 June 2026
+Permit number: OF-103/B/S/2026VN
+IATA Schedule Season: SUMMER (NS26)
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Airways
+7. Additional information (if any)
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260610-170707)
+
+TABLE 1
+CONTEXT: Hanoi, 22 June 2026
+Permit number: OF-103/B/S/2026VN
+IATA Schedule Season: SUMMER (NS26)
+1. Carrier/Operator
+Name: PT TRANSNUSA AVIATION MANDIRI
+IATA code: N/A | ICAO code: TNU
+Postal Address: Jalan Cideng Timur No.10&10A, RT.5/RW.4, Petojo Utara, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10130, Indonesia.
+Tel: 022-42861000 | Email: deepak.bhat@jsw.in
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS Building, DAFZA, P.O.Box 54482, Dubai, UAE
+Tel: +971 4 299 6633 | Tel: +971 4 299 6633
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+TNU862 | 08JUL26 | 24OCT26 | 1234567 | WIII | 1530 | ZGGG | 2050
+TNU863 | 08JUL26 | 24OCT26 | 1234567 | ZGGG | 2150 | WIII | 0300+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+320/321 | According to AOC of TNH | Indonesia
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WIII -ZGGG | M771 | DUDIS | DONDA
+ZGGG -WIII | L642 | EXOTO | ESPOB
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

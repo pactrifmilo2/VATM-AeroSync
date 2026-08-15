@@ -1,0 +1,65 @@
+FILE: LD 51 A.doc
+
+PARAGRAPHS
+Ha Noi, 19th March 2026
+№: LD - 51/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator:
+Name: Spring Airlines Co., Ltd IATA Code: 9C ICAO Code: CQH Address: No.2550, Hongqiao Road, Changning District, Shanghai, China Tel: +86 (21) 223 525 53 Email: jarupat@ch.com 
+2. Schedules: All times in UTC
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft type 9C7347 29MAR26 23OCT26 1-3-5-7 CAN 0805 SGN 1055 320/321 9C7348 29MAR26 23OCT26 1-3-5-7 SGN 1155 CAN 1515 320/321 9C7557 31MAR26 24OCT26 -2-4-6- PVG 0630 SGN 1055 320/321 9C7558 31MAR26 24OCT26 -2-4-6- SGN 1155 PVG 1625 320/321 
+3. Type of services: Passenger
+4. Aircraft: 
+Aircraft Type Registration marks Nationality Included in AOC/FAOC Not included in AOC/FAOC 320 As per FAOC of 9C China 321 
+5. Airways: 
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR PVG – SGN L642 W15 EXOTO - SGN – PVG W12 G221 - BUNTA SGN – PVG Q2 A1 - BUNTA CAN – SGN L642 W15 EXOTO - SGN – CAN W12 G22 - BUNTA SGN – CAN Q2 A1 - BUNTA Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 19th March 2026
+№: LD - 51/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator:
+Name: Spring Airlines Co., Ltd
+IATA Code: 9C | ICAO Code: CQH
+Address: No.2550, Hongqiao Road, Changning District, Shanghai, China
+Tel: +86 (21) 223 525 53 | Email: jarupat@ch.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+9C7347 | 29MAR26 | 23OCT26 | 1-3-5-7 | CAN | 0805 | SGN | 1055 | 320/321
+9C7348 | 29MAR26 | 23OCT26 | 1-3-5-7 | SGN | 1155 | CAN | 1515 | 320/321
+
+9C7557 | 31MAR26 | 24OCT26 | -2-4-6- | PVG | 0630 | SGN | 1055 | 320/321
+9C7558 | 31MAR26 | 24OCT26 | -2-4-6- | SGN | 1155 | PVG | 1625 | 320/321
+
+TABLE 3
+CONTEXT: 3. Type of services: Passenger
+4. Aircraft:
+Aircraft Type | Registration marks | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+320 | As per FAOC of 9C |  | China
+321 |  |  | 
+
+TABLE 4
+CONTEXT: 5. Airways:
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+PVG – SGN | L642 W15 | EXOTO | -
+SGN – PVG | W12 G221 | - | BUNTA
+SGN – PVG | Q2 A1 | - | BUNTA
+
+CAN – SGN | L642 W15 | EXOTO | -
+SGN – CAN | W12 G22 | - | BUNTA
+SGN – CAN | Q2 A1 | - | BUNTA
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

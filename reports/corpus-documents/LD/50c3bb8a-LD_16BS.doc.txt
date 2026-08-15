@@ -1,0 +1,93 @@
+FILE: LD 16BS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 27/03/2026
+Permit No.: LD-16/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: United Parcel Service Co. IATA code: 5X ICAO code:UPS Postal Address: 1400 N. Hurstborne Parkway, Louisville, Kentucky 40223, United States of America Tel: 84 936 086 082 Email: HYPERLINK "mailto:thinhtohoang@ups.com" thinhtohoang@ups.com ; nhang@ups.com; HYPERLINK "mailto:tchung@ups.com" tchung@ups.com ; 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type 5X72 29MAR26 22OCT26 12345-- SDF 1625 ANC 2310 74Y/74N 5X72 30MAR26 23OCT26 12345-- ANC 0200 HAN 1400 74Y/74N 5X74 30MAR26 23OCT26 12345-- HAN 1635 SZX 1810 74Y/74N 5X99 04APR26 24OCT26 -----6- SIN 1100 HAN 1430 74Y/74N 5X99 04APR26 24OCT26 -----6- HAN 1610 ICN 1955 74Y/74N 5X99 04APR26 24OCT26 -----6- ICN 2145 ANC 0540+1 74Y/74N 5X99 05APR26 25OCT26 ------7 ANC 0750 SDF 1355 74Y/74N 5X168 29MAR26 18OCT26 ------7 SIN 0725 PEN 0845 76F 5X168 29MAR26 18OCT26 ------7 PEN 1025 SGN 1220 76F 5X168 29MAR26 18OCT26 ------7 SGN 1340 HKG 1610 76F 5X68 30MAR26 19OCT26 1------ ANC 0635 SGN 1945 74Y/74N 5X67 30MAR26 19OCT26 1------ SGN 2145 HKG 0005+1 74Y/74N 5X67 31MAR26 20OCT26 -2----- HKG 0500 ANC 1530 74Y/74N 5X68 31MAR26 21OCT26 -23---- HNL 0730 SGN 1945 74Y/74N 5X67 31MAR26 21OCT26 -23---- SGN 2145 HKG 0005+1 74Y/74N 5X67 01APR26 22OCT26 --34--- HKG 0500 ANC 1530 74Y/74N 
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 76F As per FAOC of 5X USA 74Y As per FAOC of 5X USA 74N As per FAOC of 5X USA 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ANC-SGN L642, W15 EXOTO - HNL-SGN L628 Q15 W15 SOSPA - PEN-SGN M765, L637 BITOD - SGN-HKG W15, Q15, M771, W12, G221 - DAMEL/ BUNTA SIN-HAN L637, N639, Q2, M753, M755 BITOD - ANC-HAN R474 TEBAK - HAN-ICN R474 - TEBAK HAN-SZX R474 - TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note: This permit replaces permit LD-16/A/S/2026VN
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General.
+C.c: VATM; MAA; NAA; SAA.
+Sent by Le Vu Ha Anh.
+C.c: Bui Minh Dang - Director of ATD/CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 27/03/2026
+Permit No.: LD-16/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: United Parcel Service Co.
+IATA code: 5X | ICAO code:UPS
+Postal Address: 1400 N. Hurstborne Parkway, Louisville, Kentucky 40223, United States of America
+Tel: 84 936 086 082 | Email: HYPERLINK "mailto:thinhtohoang@ups.com" thinhtohoang@ups.com ; nhang@ups.com; HYPERLINK "mailto:tchung@ups.com" tchung@ups.com ;
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+5X72 | 29MAR26 | 22OCT26 | 12345-- | SDF | 1625 | ANC | 2310 | 74Y/74N
+5X72 | 30MAR26 | 23OCT26 | 12345-- | ANC | 0200 | HAN | 1400 | 74Y/74N
+5X74 | 30MAR26 | 23OCT26 | 12345-- | HAN | 1635 | SZX | 1810 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+5X99 | 04APR26 | 24OCT26 | -----6- | SIN | 1100 | HAN | 1430 | 74Y/74N
+5X99 | 04APR26 | 24OCT26 | -----6- | HAN | 1610 | ICN | 1955 | 74Y/74N
+5X99 | 04APR26 | 24OCT26 | -----6- | ICN | 2145 | ANC | 0540+1 | 74Y/74N
+5X99 | 05APR26 | 25OCT26 | ------7 | ANC | 0750 | SDF | 1355 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+5X168 | 29MAR26 | 18OCT26 | ------7 | SIN | 0725 | PEN | 0845 | 76F
+5X168 | 29MAR26 | 18OCT26 | ------7 | PEN | 1025 | SGN | 1220 | 76F
+5X168 | 29MAR26 | 18OCT26 | ------7 | SGN | 1340 | HKG | 1610 | 76F
+ |  |  |  |  |  |  |  | 
+5X68 | 30MAR26 | 19OCT26 | 1------ | ANC | 0635 | SGN | 1945 | 74Y/74N
+5X67 | 30MAR26 | 19OCT26 | 1------ | SGN | 2145 | HKG | 0005+1 | 74Y/74N
+5X67 | 31MAR26 | 20OCT26 | -2----- | HKG | 0500 | ANC | 1530 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+5X68 | 31MAR26 | 21OCT26 | -23---- | HNL | 0730 | SGN | 1945 | 74Y/74N
+5X67 | 31MAR26 | 21OCT26 | -23---- | SGN | 2145 | HKG | 0005+1 | 74Y/74N
+5X67 | 01APR26 | 22OCT26 | --34--- | HKG | 0500 | ANC | 1530 | 74Y/74N
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+76F | As per FAOC of 5X | USA
+74Y | As per FAOC of 5X | USA
+74N | As per FAOC of 5X | USA
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ANC-SGN | L642, W15 | EXOTO | -
+HNL-SGN | L628 Q15 W15 | SOSPA | -
+PEN-SGN | M765, L637 | BITOD | -
+SGN-HKG | W15, Q15, M771, W12, G221 | - | DAMEL/ BUNTA
+ |  |  | 
+SIN-HAN | L637, N639, Q2, M753, M755 | BITOD | -
+ANC-HAN | R474 | TEBAK | -
+HAN-ICN | R474 | - | TEBAK
+HAN-SZX | R474 | - | TEBAK

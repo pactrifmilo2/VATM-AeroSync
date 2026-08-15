@@ -1,0 +1,55 @@
+FILE: OF 74BS.docx
+
+PARAGRAPHS
+HANOI, 17th MARCH 2026
+Permit No.: OF-74/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 17th MARCH 2026
+Permit No.: OF-74/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Sky Angkor Airlines Co., Ltd
+IATA code: ZA | ICAO code: SWM
+Postal Address: Chip Mong Land, Landmark Project, 60 Meters, House No.45 and 47, Commercial Street, Sangkat Cherng Ek, Khan Dangkor, Phnom Penh, Kingdom of Cambodia
+Tel: +855 99 821 812 | Email: dispatch@skyangkorair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Sky Angkor Airlines Co., Ltd
+Postal Address: Chip Mong Land, Landmark Project, 60 Meters, House No.45 and 47, Commercial Street, Sangkat Cherng Ek, Khan Dangkor, Phnom Penh, Kingdom of Cambodia
+Tel: +855 23 234 567 | Email: dispatch@skyangkorair.com; lysophor@skyangkorair.com; sreymom@skyangkorair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+SWM663 | 29MAR26 | 24OCT26 | 1234567 | VDSV | 0755 | WMKK | 0950
+SWM664 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 1050 | VDSV | 1235
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | XU725,XU726,XU727,XU729 | Cambodia
+A20N | XU730 | Cambodia
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VDSV-WMKK | R334, M753, M765 | NUMDI | IGARI
+WMKK-VDSV | M765, M753, R334 | IGARI | NUMDI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

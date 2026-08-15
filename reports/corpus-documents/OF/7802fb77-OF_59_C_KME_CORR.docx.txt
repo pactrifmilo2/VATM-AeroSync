@@ -1,0 +1,63 @@
+FILE: OF 59 C KME CORR.docx
+
+PARAGRAPHS
+HANOI, 05 JUN 2026
+Permit No.: OF-59/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 05 JUN 2026
+Permit No.: OF-59/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cambodia Airways Co., Ltd.
+IATA code: KR | ICAO code:KME
+Postal Address: #2, Russian Federation BLVD, Sangkat Ka Kab Khan Por Senchey, Phnom Penh, Cambodia
+Tel: +855 96 571 8899 | Email: occ@cambodia-airways.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Cambodia Airways Co., Ltd.
+Postal Address: #2, Russian Federation BLVD, Sangkat Ka Kab Khan Por Senchey, Phnom Penh, Cambodia
+Tel: +855 96 571 8899 | Email: occ@cambodia-airways.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KME753 | 01-Jul-2026 | 24-Oct-2026 | 1234567 | VDSV | 0200 | WSSS | 0355
+KME754 | 01-Jul-2026 | 24-Oct-2026 | 1234567 | WSSS | 0455 | VDSV | 0650
+KME783 | 01-Jul-2026 | 24-Oct-2026 | 1234567 | VDSV | 0750 | WMKK | 0945
+KME784 | 01-Jul-2026 | 24-Oct-2026 | 1234567 | WMKK | 1045 | VDSV | 1240
+KME933 | 01-Jul-2026 | 24-Oct-2026 | 1234567 | VDSV | 0200 | ZGGG | 0510
+KME934 | 01-Jul-2026 | 24-Oct-2026 | 1234567 | ZGGG | 0610 | VDSV | 0915
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A319 | XU-787/878 | CAMBODIA
+A320 | XU-761/762/763 | CAMBODIA
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VDSV-WSSS | M334 | NUMDI | IPRIX
+WSSS-VDSV | M753 | IPRIX | NUMDI
+VDSV-WMKK | M334 | NUMDI | IGARI
+WMKK-VDSV | M765 | IGARI | NUMDI
+VDSV-ZGGG | A1 | PAPRA | BUNTA
+ZGGG-VDSV | A1 | BUNTA | PAPRA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

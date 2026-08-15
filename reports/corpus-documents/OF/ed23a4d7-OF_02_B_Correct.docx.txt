@@ -1,0 +1,59 @@
+FILE: OF 02 B Correct.docx
+
+PARAGRAPHS
+HA NOI, 16 MAR 2026
+NUMBER O/F-02/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SUMMER SCHEDULE FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 16 MAR 2026
+NUMBER O/F-02/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: EGYPTAIR
+IATA code: MSR | ICAO code: MS
+Postal Address: EGYPTAIR Admin. Complex south Bldg. 3rd Floor Finger 4/5 Room 1 - Airport Road Cairo, Egypt
+Tel: +2 0226963449 | Email : miscellaneous@egyptair.com, Planning.Slots@egyptair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: EGYPTAIR
+IATA code: MSR | ICAO code: MS
+Postal Address: EGYPTAIR Admin. Complex south Bldg. 3rd Floor Finger 4/5 Room 1 - Airport Road Cairo, Egypt
+Tel: +2 0226963449 | Email : miscellaneous@egyptair.com, Planning.Slots@egyptair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MSR509 | 29MAR26 | 24OCT26 | 1234567 | HECA | 07:30 | VHHH | 17:15
+MSR510 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 19:15 | VTBS | 22:00
+MSR5099 | 29MAR26 | 24OCT26 | 1234567 | OJAI | 07:00 | VHHH | 17:00
+MSR5080 | 29MAR26 | 24OCT26 | 1234567 | HECA | 07:30 | ZJHK | 16:30
+MSR5081 | 29MAR26 | 24OCT26 | 1234567 | ZJHK | 18:30 | OMDW | 03:05
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SUMMER SCHEDULE FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A332F | SU-GCJ/GCE/GCF/ GCH/GCG | EGYPTIAN
+
+TABLE 6
+CONTEXT: 6. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HECA- VHHH | B214 W21 R474 | LADON | TEBAK
+VHHH -VTBS | A202 | ASSAD | VILAO
+OJAI- VHHH | B214 W21 R474 | LADON | TEBAK
+HECA- ZJHK | A206 | NALAO | ASSAD
+ZJHK-OMDW | A206 | ASSAD | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

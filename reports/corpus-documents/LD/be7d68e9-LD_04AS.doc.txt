@@ -1,0 +1,96 @@
+FILE: LD 04AS.doc
+
+PARAGRAPHS
+Ha Noi, 04MAR2026
+Permit No.: LD - 04/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: JETSTAR AIRWAYS PTY LIMITED IATA code: JQ ICAO code: JST Postal Address: 79 Victoria Parade, Collingwood, Victoria, Australia, 3066 Tel: Email: HYPERLINK "mailto:JQSafetyCompliance@jetstar.com" JQSafetyCompliance@jetstar.com 
+2. Schedules (UTC Time) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type JQ61 29MAR2026 02APR2026 -2-4--7 SYD 0510 SGN 1400 788 JQ61 05APR2026 05JUL2026 -2-4--7 SYD 0510 SGN 1400 788 JQ61 06JUL2026 09AUG2026 12-4--7 SYD 0510 SGN 1400 788 JQ61 11AUG2026 01OCT2026 -2-4--7 SYD 0510 SGN 1400 788 JQ61 04OCT2026 22OCT2026 -2-4--7 SYD 0510 SGN 1400 788 JQ62 29MAR2026 02APR2026 -2-4--7 SGN 1540 SYD 0010 788 JQ62 05APR2026 05JUL2026 -2-4--7 SGN 1540 SYD 0010 788 JQ62 06JUL2026 09AUG2026 12-4--7 SGN 1540 SYD 0010 788 JQ62 11AUG2026 01OCT2026 -2-4--7 SGN 1540 SYD 0010 788 JQ62 04OCT2026 22OCT2026 -2-4--7 SGN 1540 SYD 0010 788 JQ63 30MAR2026 04APR2026 1-3-56- MEL 0525 SGN 1400 788 JQ63 06APR2026 27JUN2026 1-3-56- MEL 0525 SGN 1400 788 JQ63 01JUL2026 03OCT2026 --3-56- MEL 0525 SGN 1400 788 JQ63 07OCT2026 24OCT2026 --3-56- MEL 0525 SGN 1400 788 JQ64 30MAR2026 03APR2026 1-3-5-- SGN 1540 MEL 2350 788 JQ64 04APR2026 27JUN2026 1-3-56- SGN 1540 MEL 2350 788 JQ64 01JUL2026 02OCT2026 --3-56- SGN 1540 MEL 2350 788 JQ64 03OCT2026 24OCT2026 --3-56- SGN 1540 MEL 2350 788 
+3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type Registration marks Nationality 788 As per FAOC of JQ Australia 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR SYD-SGN M768
+M753, L637
+M771, M768
+N500 AKMON
+IPRIX
+DUDIS
+PANDI N/A SGN-SYD M768
+L643, L644
+L643, L642
+N500 N/A AKMON
+DUDIS
+ESPOB
+PANDI MEL-SGN M768
+M753, L637
+M771, M768
+N500 AKMON
+IPRIX
+DUDIS
+PANDI N/A SGN-MEL M768
+L643, L644
+L643, L642
+N500 N/A AKMON
+DUDIS
+ESPOB
+PANDI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C.c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 04MAR2026
+Permit No.: LD - 04/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: JETSTAR AIRWAYS PTY LIMITED
+IATA code: JQ | ICAO code: JST
+Postal Address: 79 Victoria Parade, Collingwood, Victoria, Australia, 3066
+Tel: | Email: HYPERLINK "mailto:JQSafetyCompliance@jetstar.com" JQSafetyCompliance@jetstar.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JQ61 | 29MAR2026 | 02APR2026 | -2-4--7 | SYD | 0510 | SGN | 1400 | 788
+JQ61 | 05APR2026 | 05JUL2026 | -2-4--7 | SYD | 0510 | SGN | 1400 | 788
+JQ61 | 06JUL2026 | 09AUG2026 | 12-4--7 | SYD | 0510 | SGN | 1400 | 788
+JQ61 | 11AUG2026 | 01OCT2026 | -2-4--7 | SYD | 0510 | SGN | 1400 | 788
+JQ61 | 04OCT2026 | 22OCT2026 | -2-4--7 | SYD | 0510 | SGN | 1400 | 788
+JQ62 | 29MAR2026 | 02APR2026 | -2-4--7 | SGN | 1540 | SYD | 0010 | 788
+JQ62 | 05APR2026 | 05JUL2026 | -2-4--7 | SGN | 1540 | SYD | 0010 | 788
+JQ62 | 06JUL2026 | 09AUG2026 | 12-4--7 | SGN | 1540 | SYD | 0010 | 788
+JQ62 | 11AUG2026 | 01OCT2026 | -2-4--7 | SGN | 1540 | SYD | 0010 | 788
+JQ62 | 04OCT2026 | 22OCT2026 | -2-4--7 | SGN | 1540 | SYD | 0010 | 788
+JQ63 | 30MAR2026 | 04APR2026 | 1-3-56- | MEL | 0525 | SGN | 1400 | 788
+JQ63 | 06APR2026 | 27JUN2026 | 1-3-56- | MEL | 0525 | SGN | 1400 | 788
+JQ63 | 01JUL2026 | 03OCT2026 | --3-56- | MEL | 0525 | SGN | 1400 | 788
+JQ63 | 07OCT2026 | 24OCT2026 | --3-56- | MEL | 0525 | SGN | 1400 | 788
+JQ64 | 30MAR2026 | 03APR2026 | 1-3-5-- | SGN | 1540 | MEL | 2350 | 788
+JQ64 | 04APR2026 | 27JUN2026 | 1-3-56- | SGN | 1540 | MEL | 2350 | 788
+JQ64 | 01JUL2026 | 02OCT2026 | --3-56- | SGN | 1540 | MEL | 2350 | 788
+JQ64 | 03OCT2026 | 24OCT2026 | --3-56- | SGN | 1540 | MEL | 2350 | 788
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type | Registration marks | Nationality
+788 | As per FAOC of JQ | Australia
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+SYD-SGN | M768 M753, L637 M771, M768 N500 | AKMON IPRIX DUDIS PANDI | N/A
+SGN-SYD | M768 L643, L644 L643, L642 N500 | N/A | AKMON DUDIS ESPOB PANDI
+MEL-SGN | M768 M753, L637 M771, M768 N500 | AKMON IPRIX DUDIS PANDI | N/A
+SGN-MEL | M768 L643, L644 L643, L642 N500 | N/A | AKMON DUDIS ESPOB PANDI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

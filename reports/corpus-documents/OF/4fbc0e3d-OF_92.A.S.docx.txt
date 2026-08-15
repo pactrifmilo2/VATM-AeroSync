@@ -1,0 +1,59 @@
+FILE: OF 92.A.S.docx
+
+PARAGRAPHS
+HA NOI, 16 MAR 2026
+NUMBER OF-92/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 16 MAR 2026
+NUMBER OF-92/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Cargolux Italia
+IATA code: C8 | ICAO code: ICV
+Postal Address: Strada Provinciale 52 21020 Vizzola Ticino - Italy
+Tel: +390331233811 | Email: opsplanning@cargolux.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Cargolux Italia
+Postal Address: Luxembourg Airport L-2990 Luxembourg
+Tel: +35242113494 | Email: c8invoices@cargolux.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ICV9261 | 29MAR2026 | 24OCT2026 | 1234567 | OMDW | 0110 | VHHH | 0915
+ICV1069 | 29MAR2026 | 24OCT2026 | 1234567 | OMDW | 0010 | VHHH | 0815
+ICV736 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 1020 | OMDW | 1935
+ICV782 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 1200 | OMDW | 2115
+ICV762 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 0925 | OMDW | 1840
+ICV513 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 1115 | OMDW | 2030
+ICV3079 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 0010 | OMDW | 0925
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B747-8F | According to AOC | Luxembourg
+B747-400F | According to AOC | Luxembourg
+B747-400ERF | According to AOC | Luxembourg
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OMDW-VHHH | A1 | PAPRA | BUNTA
+VHHH-OMDW | A1 | BUNTA | PAPRA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -1,0 +1,59 @@
+FILE: OF 62DS.docx
+
+PARAGRAPHS
+HANOI, 10th MARCH 2026
+Permit No.: OF-62/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 10th MARCH 2026
+Permit No.: OF-62/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: THAI LION MENTARI COMPANY LIMITED
+IATA code: SL | ICAO code: TLM
+Postal Address: 89/46 Vibhavadi Rangsit Road, Sanambin Subdistrict, Don Mueang District, Bangkok 10210, Thailand
+Tel: +66 2535 3710 | Email: KAMOLLUCK.IM@lionair-thai.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: THAI LION MENTARI COMPANY LIMITED
+Postal Address: 89/46 Vibhavadi Rangsit Road, Sanambin Subdistrict, Don Mueang District, Bangkok 10210, Thailand
+Tel: +66 2535 3710 | Email: FINANCE@lionair-thai.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+TLM962 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0940 | ZBTJ | 1420
+TLM963 | 29MAR26 | 24OCT26 | 1234567 | ZBTJ | 1550 | VTBD | 2035
+TLM7324 | 29MAR26 | 24OCT26 | 1234567 | VTCC | 0500 | RCKH | 0830
+TLM7325 | 29MAR26 | 24OCT26 | 1234567 | RCKH | 0930 | VTCC | 1305
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B739 | According to AOC of TLM | Thai
+B738 | According to AOC of TLM | Thai
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBD-ZBTJ | R474A202A1 | LAVOSVILAOPAPRA | TEBAKASSADBUNTA
+ZBTJ-VTBD | R474A202A1 | TEBAKASSADBUNTA | LAVOSVILAOPAPRA
+VTCC-RCKH | B465 R474A206A1A202 | LAPONASSADPAPRAVILAO | TEBAKNALAOBUNTAASSAD
+RCKH-VTCC | R474 B465A206A1A202 | TEBAKNALAOBUNTAASSAD | LAPONASSADPAPRAVILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

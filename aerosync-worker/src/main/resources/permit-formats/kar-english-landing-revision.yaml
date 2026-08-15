@@ -8,7 +8,7 @@ permit:
   pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\s*/\s*REV(?<revision>\d+)\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN/REV{revision}'
-  normalizedTemplate: 'LD {number}/S/CHK/{year}'
+  normalizedTemplate: 'LD {number}/CHK/{year}'
   zeroPadGroups:
     number: 5
 permitDate:

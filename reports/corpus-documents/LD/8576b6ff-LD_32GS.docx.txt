@@ -1,0 +1,63 @@
+FILE: LD 32GS.docx
+
+PARAGRAPHS
+Phép bay thường lệ cho chuyến bay cất/hạ cánh tại Việt Nam
+Hà Nội, 24/07/2026
+Số phép bay: LD-32/G/S/2026VN
+Mùa Hè năm 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Vận chuyển hành khách
+4. Tàu bay
+5. Đường hàng không/Airways
+Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+Ghi chú
+- Hãng hàng không được phép khai thác các loại tầu bay nêu tại mục 4. Loại tàu bay, với điều kiện tàu bay đó tương đương hoặc nhỏ hơn loại tàu bay đã được xác nhận slot.
+- Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+*****
+Gửi bởi: Đinh Mạnh Dũng
+To: VATM, SPQ
+Cc: ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+Cc: SAA
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Phép bay thường lệ cho chuyến bay cất/hạ cánh tại Việt Nam
+Hà Nội, 24/07/2026
+Số phép bay: LD-32/G/S/2026VN
+Mùa Hè năm 2026
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com permission@sunphuquocairways.com
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay đi | Giờ dự kiến đi | Sân bay đến | Giờ dự kiến đến
+9G701 | 08-Aug-26 | 24-Oct-26 | 1234567 | PQC | 03:35 | BKK | 04:55
+9G702 | 08-Aug-26 | 24-Oct-26 | 1234567 | BKK | 06:10 | PQC | 07:30
+
+TABLE 4
+CONTEXT: 3. Mục đích chuyến bay: Vận chuyển hành khách
+4. Tàu bay
+Loại tàu bay | Số đăng ký tàu bay
+321 | Theo AOC của 9G
+32Q | Theo AOC của 9G
+32N | Theo AOC của 9G
+
+TABLE 5
+CONTEXT: 5. Đường hàng không/Airways
+Chặng bay | Đường hàng không
+PQC-BKK | R334
+BKK-PQC | R334
+
+TABLE 6
+CONTEXT: Đường hàng không: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+KT. CỤC TRƯỞNGPHÓ CỤC TRƯỞNG | 
+Đỗ Hồng Cẩm | 

@@ -62,10 +62,11 @@ public class FileSystemIngestService {
                 if (ingested >= limit) {
                     break;
                 }
-                if (shouldSkipSeenPath(file)) {
+                String hash = Hashing.sha256Hex(file);
+                if (shouldSkipSeenPath(file, hash)) {
                     continue;
                 }
-                if (ingestFile(file)) {
+                if (ingestFile(file, hash)) {
                     ingested++;
                 }
             }
@@ -75,21 +76,21 @@ public class FileSystemIngestService {
         return ingested;
     }
 
-    private boolean isPathAlreadySeen(Path file) {
+    private boolean isPathAlreadySeen(Path file, String currentHash) {
         String key = PATH_SEEN_PREFIX + file.toAbsolutePath().normalize();
-        return redisTemplate.opsForValue().get(key) != null;
+        return currentHash.equals(redisTemplate.opsForValue().get(key));
     }
 
-    private boolean shouldSkipSeenPath(Path file) {
-        return isPathAlreadySeen(file);
+    private boolean shouldSkipSeenPath(Path file, String currentHash) {
+        return isPathAlreadySeen(file, currentHash);
     }
 
-    private void markPathSeen(Path file) {
-        redisTemplate.opsForValue().set(PATH_SEEN_PREFIX + file.toAbsolutePath().normalize(), "1");
+    private void markPathSeen(Path file, String fileHash) {
+        redisTemplate.opsForValue().set(
+                PATH_SEEN_PREFIX + file.toAbsolutePath().normalize(), fileHash);
     }
 
-    private boolean ingestFile(Path file) {
-        String hash = Hashing.sha256Hex(file);
+    private boolean ingestFile(Path file, String hash) {
         if (deduplicationService.isDuplicate(hash)) {
             DebugSessionLog.log("D", "FileSystemIngestService.java:ingestFile", "duplicate hash skipped",
                     DebugSessionLog.map("file", file.getFileName().toString(), "hash", hash));
@@ -97,14 +98,14 @@ public class FileSystemIngestService {
             saveIncomingNotice(duplicateJob, "INCOMING_DUPLICATE_SKIPPED", SyncStatus.SKIPPED,
                     file, "Đã đọc file từ Incoming nhưng bỏ qua vì nội dung trùng SHA-256: "
                             + file.getFileName());
-            markPathSeen(file);
+            markPathSeen(file, hash);
             return false;
         }
 
         DeduplicationService.JobCreationResult creation = deduplicationService.createPendingJob(hash);
         SyncJob saved = creation.job();
         if (!creation.created()) {
-            markPathSeen(file);
+            markPathSeen(file, hash);
             return false;
         }
 
@@ -118,7 +119,7 @@ public class FileSystemIngestService {
         fileRecordRepository.save(record);
 
         deduplicationService.registerHash(hash);
-        markPathSeen(file);
+        markPathSeen(file, hash);
 
         boolean priority = PriorityDetector.isPriority(file.getFileName().toString(), null);
         FileIngestedEvent event = new FileIngestedEvent(

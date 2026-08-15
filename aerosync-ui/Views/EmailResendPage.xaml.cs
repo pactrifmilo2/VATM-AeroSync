@@ -7,6 +7,8 @@ namespace AeroSync.UI.Views;
 
 public sealed partial class EmailResendPage : Page
 {
+    private bool hasLoaded;
+
     public EmailResendViewModel ViewModel { get; }
 
     public EmailResendPage(AeroSyncApiClient apiClient)
@@ -17,8 +19,16 @@ public sealed partial class EmailResendPage : Page
         Loaded += EmailResendPage_Loaded;
     }
 
-    private async void EmailResendPage_Loaded(object sender, RoutedEventArgs e) =>
+    private async void EmailResendPage_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (hasLoaded)
+        {
+            return;
+        }
+
+        hasLoaded = true;
         await ViewModel.SearchAsync();
+    }
 
     private async void ResendButton_Click(object sender, RoutedEventArgs e)
     {

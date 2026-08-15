@@ -1,0 +1,54 @@
+FILE: R78A1 78A (RVS1) HUY CHUYEN.docx
+
+PARAGRAPHS
+Cancellation form for Scheduled Flight to/from Vietnam – Summer 2026 schedules
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+IATA Schedule Season:
+Summer 2026
+1. Carrier/Operator:
+2. Schedules: Times are in UTC
+3. Type of services: Passenger
+4. Reason of cancellation: Due to fuel supply disruption by military action in middle east
+5. Ref to permit number: LD – 78-A-S-2026VN-TW
+6. Applicant:
+T’WAY AIR DAD STATION
+Tel: +84-236-3538-881
+Mobile: +84-905-470-667 / +84-905-572-052
+E-mail: dadkk@twayair.com
+Name, signature, title: Mr. PARK SUNGWOO (Station Manager)
+7. Note:
+
+TABLE 1
+CONTEXT: Cancellation form for Scheduled Flight to/from Vietnam – Summer 2026 schedules
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+IATA Schedule Season:
+Summer 2026
+1. Carrier/Operator:
+Name: T’way Air Co.,Ltd
+IATA code: TW | ICAO code: TWB
+Postal Address: 10th Floor, KT Daegu Tower, 167, Dongdeok-ro, Jung-gu, Daegu, Republic of Korea
+Tel: +84932 408 828 | Email: dadkkz@twayair.com
+
+TABLE 2
+CONTEXT: 2. Schedules: Times are in UTC
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD(UTC time) | Arrival Airport | ETA(UTC time) | Aircraft type
+TW007 | 07May26 | 20Jul26 | 12__5__ | ICN | 2255 | DAD | 0345+1 | B38M, B73H
+TW008 | 08May26 | 21Jul26 | 12__5__ | DAD | 0445 | ICN | 0925 | 
+TW025 | 01Jun26 | 13Jul26 | 1____5__ | CJJ | 1200 | DAD | 1650 | 
+TW026 | 01Jun26 | 13Jul26 | 1____5__ | DAD | 1750 | CJJ | 2135 | 
+TW029 | 21May26 | 12Jul26 | __34_67 | TAE | 1210 | DAD | 1655 | 
+TW030 | 21May26 | 12Jul26 | __34_67 | DAD | 1830 | TAE | 2315 | 
+TW037 | 13May26 | 23May26 | __3__6_ | TAE | 1050 | CXR | 1550 | 
+TW038 | 13May26 | 23May26 | __3__6_ | CXR | 1705 | TAE | 2205 | 
+TW037 | 28May26 | 12Jul26 | __34_67 | TAE | 1050 | CXR | 1550 | 
+TW038 | 28May26 | 12Jul26 | __34_67 | CXR | 1705 | TAE | 2205 | 
+TW041 | 03Jun26 | 12Jul26 | __34_67 | PUS | 1210 | CXR | 1710 | 
+TW042 | 03Jun26 | 12Jul26 | __34_67 | CXR | 1810 | PUS | 2300 | 
+TW045 | 27May26 | 12Jul26 | __34_67 | CJJ | 1240 | CXR | 1745 | 
+TW046 | 27May26 | 12Jul26 | __34_67 | CXR | 1845 | CJJ | 0005+1 | 
+TW055 | 06May26 | 07Jun26 | 1234567 | ICN | 1050 | PQC | 1635 | 
+TW056 | 06May26 | 07Jun26 | 1234567 | PQC | 1735 | ICN | 2255 | 

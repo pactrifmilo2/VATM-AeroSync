@@ -1,0 +1,57 @@
+FILE: OF 42 B.S.2026VN.SJX.docx
+
+PARAGRAPHS
+HA NOI, 23 JUL 2026
+NUMBER OF-42/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+Airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 23 JUL 2026
+NUMBER OF-42/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: STARLUX AIRLINES
+IATA code: JX | ICAO code: SJX
+Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055
+Tel: +886-3-260-1800 ext. 5550 | Email: jimmylin@starlux-airlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: STARLUX AIRLINES
+Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055
+Tel: +886-3-260-1800 ext. 5538 | Email: ailunhuang@starlux-airlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+SJX102 | 31JUL26 | 24OCT26 | 1234567 | LKPR | 0920 | RCTP | 2110
+SJX1102 | 31JUL26 | 24OCT26 | 1234567 | LKPR | 1040 | RCTP | 2230
+SJX2102 | 31JUL26 | 24OCT26 | 1234567 | LKPR | 1200 | RCTP | 2350
+SJX3102 | 31JUL26 | 24OCT26 | 1234567 | LKPR | 1310 | RCTP | 0100
+SJX5102 | 31JUL26 | 24OCT26 | 1234567 | LKPR | 1520 | RCTP | 0310
+SJX8102 | 31JUL26 | 24OCT26 | 1234567 | LKPR | 1910 | RCTP | 0700
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark
+A35K | As AOC
+A359 | As AOC
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sectors | Airways
+RCTP-LKPR | (Pri)A206(Alt)A1-W2-A206
+LKPR-RCTP | (Pri)A206-W2-A1

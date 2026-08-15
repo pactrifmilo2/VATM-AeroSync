@@ -1,0 +1,40 @@
+FILE: R94A3 (OF 94A RVS3).docx
+
+PARAGRAPHS
+Hanoi, 22/7/2026
+REF TO PERMIT NUMBER OF-94/A/S/2026VN
+1. Carrier:
+2. Billing address:
+3. Schedule: UTC Time
+3.1. OLD SCHEDULE
+3.2. NEW SCHEDULE
+4. Notes: Others remain unchanged
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 22/7/2026
+REF TO PERMIT NUMBER OF-94/A/S/2026VN
+1. Carrier:
+Name: SPRING AIRLINES
+IATA Code: 9C | ICAO Code: CQH
+Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG YI ROAD, SHANGHAI, CHINA
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: SPRING AIRLINES
+Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG YI ROAD, SHANGHAI, CHINA
+Tel: + +86 21 323 15885 | Email: xujiali@ch.com; jszy@ch.com
+
+TABLE 3
+CONTEXT: 3. Schedule: UTC Time
+3.1. OLD SCHEDULE
+Flight number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA
+CQH8521 | 22JUL26 | 22JUL26 | --3---- | ZSPD | 1030 | VTSP | 1540
+CQH8522 | 22JUL26 | 22JUL26 | --3---- | VTSP | 1635 | ZSPD | 2200
+
+TABLE 4
+CONTEXT: 3.2. NEW SCHEDULE
+Flight number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA
+CQH852Y | 22JUL26 | 22JUL26 | --3---- | ZSPD | 1030 | VTSP | 1540
+CQH852X | 22JUL26 | 22JUL26 | --3---- | VTSP | 1635 | ZSPD | 2200

@@ -1,0 +1,110 @@
+FILE: OF 80B S.doc
+
+PARAGRAPHS
+Ha Noi, 10th April 2026
+№: OF - 80/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: SHANGHAI AIRLINES IATA code: FM ICAO code: CSH Postal Address: NO.35 HONGXIANG ROAD SHANGHAI 
+201100 P.R. CHINA Tel: 00862122331678 Email: muoverfly@ceair.com 
+2. Billing address
+Name: MS LI YIPING Postal Address: 
+LEARING & SETTLEMENT DEPT. 
+ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDING
+XI BA HE BEI LI CHAO YANG DISTRICT 
+P.O.BOX 5402
+100028 BEIJING CHINA Tel: +8610-64513489 Email: HYPERLINK "mailto:NAVSERVICE@ACCA.COM.CN" NAVSERVICE@ACCA.COM.CN ; LYP@ACCA.COM.CN 
+3. Schedules: UTC Time 
+Flight 
+Number
+ Effective from
+ Effective
+ To
+ Day(s) of services
+ Departure Airport ETD
+ Arrival Airport3
+ ETA
+ CSH883 01MAY26 24OCT26 1234567 ZSWZ 0005 VTBS 0410 CSH884 01MAY26 24OCT26 1234567 VTBS 0445 ZSWZ 0835 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) Registration Mark (11)
+ Nationality(14) B737 As per AOC of CSH
+ 
+China
+ B738 B38M A319 A320 A20N A321 A21N A332 A333 B77W B789 A359 
+ 6. Air traffic service routes:
+Sector(15) Airways(16) Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSWZ-VTBS A202/
+R474/
+R474 B465/
+R474 Q1 N639/
+R471 R474 Q1 N639 ASSAD/
+TEBAK/
+TEBAK/
+TEBAK/
+KATBO VILAO/
+LAVOS/
+LAPON/
+VILAO/
+VILAO VTBS-ZSWZ A202/
+R474/
+B465 R474/
+N639 Q1 R474/
+N639 Q1 R474 R471 VILAO/
+LAVOS/
+LAPON/
+VILAO/
+VILAO ASSAD/
+TEBAK/
+TEBAK/
+TEBAK/
+KATBO Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 10th April 2026
+№: OF - 80/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: SHANGHAI AIRLINES
+IATA code: FM | ICAO code: CSH
+Postal Address: NO.35 HONGXIANG ROAD SHANGHAI 201100 P.R. CHINA
+Tel: 00862122331678 | Email: muoverfly@ceair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: MS LI YIPING
+Postal Address: LEARING & SETTLEMENT DEPT. ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDING XI BA HE BEI LI CHAO YANG DISTRICT P.O.BOX 5402 100028 BEIJING CHINA
+Tel: +8610-64513489 | Email: HYPERLINK "mailto:NAVSERVICE@ACCA.COM.CN" NAVSERVICE@ACCA.COM.CN ; LYP@ACCA.COM.CN
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport3 | ETA
+CSH883 | 01MAY26 | 24OCT26 | 1234567 | ZSWZ | 0005 | VTBS | 0410
+CSH884 | 01MAY26 | 24OCT26 | 1234567 | VTBS | 0445 | ZSWZ | 0835
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) | Registration Mark (11) | Nationality(14)
+B737 | As per AOC of CSH | China
+B738 |  | 
+B38M |  | 
+A319 |  | 
+A320 |  | 
+A20N |  | 
+A321 |  | 
+A21N |  | 
+A332 |  | 
+A333 |  | 
+B77W |  | 
+B789 |  | 
+A359 |  | 
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSWZ-VTBS | A202/ R474/ R474 B465/ R474 Q1 N639/ R471 R474 Q1 N639 | ASSAD/ TEBAK/ TEBAK/ TEBAK/ KATBO | VILAO/ LAVOS/ LAPON/ VILAO/ VILAO
+VTBS-ZSWZ | A202/ R474/ B465 R474/ N639 Q1 R474/ N639 Q1 R474 R471 | VILAO/ LAVOS/ LAPON/ VILAO/ VILAO | ASSAD/ TEBAK/ TEBAK/ TEBAK/ KATBO
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

@@ -63,7 +63,7 @@ public static class VietnameseErrorMessage
                 $"{action} không thành công. {ForStatus(http.StatusCode.Value)}",
             HttpRequestException => $"{action} không thành công do không kết nối được tới máy chủ.",
             JsonException => $"{action} không thành công vì dữ liệu máy chủ trả về không đúng định dạng.",
-            _ => $"{action} không thành công. Vui lòng thử lại hoặc kiểm tra nhật ký hệ thống."
+            _ => $"{action} không thành công do lỗi chưa được phân loại. Mã tham chiếu: {ErrorReference(error.Message)}."
         };
     }
 
@@ -140,6 +140,21 @@ public static class VietnameseErrorMessage
         }
 
         var normalized = detail.ToLowerInvariant();
+        if (normalized.Contains("đã xảy ra lỗi kỹ thuật trong quá trình xử lý file")
+            || normalized.Contains("đã xảy ra lỗi trong quá trình xử lý"))
+        {
+            return "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể. Hãy gửi lại file để hệ thống kiểm tra và ghi nhận lỗi đầy đủ.";
+        }
+        if (normalized.Contains("cần thêm format yaml")
+            || normalized.Contains("unsupported word permit format")
+            || normalized.Contains("no format profile matched"))
+        {
+            return "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.";
+        }
+        if (normalized.Contains("syncjobid") || normalized.Contains("sync job id"))
+        {
+            return "Bản tin xử lý file thiếu mã tác vụ liên kết.";
+        }
         if (normalized.Contains("replay") && normalized.Contains("disabled"))
         {
             return "Chức năng phát lại đang bị tắt trong cấu hình máy chủ.";
@@ -207,6 +222,19 @@ public static class VietnameseErrorMessage
         const string vietnameseCharacters = "ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ";
         return detail.Any(character => vietnameseCharacters.Contains(char.ToLowerInvariant(character)))
             ? detail
-            : "Máy chủ từ chối yêu cầu. Hãy xem nhật ký hệ thống để biết chi tiết kỹ thuật.";
+            : $"Máy chủ không thể hoàn tất yêu cầu vì lỗi chưa được phân loại. Mã tham chiếu: {ErrorReference(detail)}.";
+    }
+
+    private static string ErrorReference(string? detail)
+    {
+        unchecked
+        {
+            uint hash = 2166136261;
+            foreach (var character in detail ?? "")
+            {
+                hash = (hash ^ character) * 16777619;
+            }
+            return hash.ToString("X8");
+        }
     }
 }

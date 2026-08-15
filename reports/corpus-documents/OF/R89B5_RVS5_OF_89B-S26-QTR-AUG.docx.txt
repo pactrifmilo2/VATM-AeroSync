@@ -1,0 +1,52 @@
+FILE: R89B5 RVS5 OF 89B-S26-QTR-AUG.docx
+
+PARAGRAPHS
+Hanoi, 24/07/2026
+Permit No.: OF - 89/B/S/2026VN/REV5
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Airways: Other permitted airways published in Viet Nam’s AIP.
+4. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 24/07/2026
+Permit No.: OF - 89/B/S/2026VN/REV5
+1. Carrier/Operator
+Name: QATAR AIRWAYS
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS, IOC- ATM / OVERFLIGHT PERMISSIONS SECTION, FLIGHT OPERATIONS, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 40106617 | Email: OVERFLIGHTS@QATARAIRWAYS.COM.QA
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+QTR8408 | 06AUG26 | 27AUG26 | ---4--- | WSSS | 1650 | VHHH | 2040 | OF - 89/B/S/2026VN
+QTR8452 | 22AUG26 | 22AUG26 | -----6- | OTHH | 1815 | YSSY | 0815+ | 
+QTR8906 | 07AUG26 | 28AUG26 | ----5-- | VMMC | 2100 | OTHH | 0555+ | 
+QTR8906 | 03AUG26 | 31AUG26 | 1------ | VMMC | 2100 | OTHH | 0555+ | 
+QTR8910 | 05AUG26 | 26AUG26 | --3---- | VMMC | 0015 | OTHH | 0910 | 
+QTR8913 | 09AUG26 | 09AUG26 | ------7 | VMMC | 0205 | OTHH | 1100 | 
+QTR8913 | 07AUG26 | 28AUG26 | ----5-- | VMMC | 0205 | OTHH | 1100 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+QTR8408 | 06AUG26 | 27AUG26 | ---4--- | OTHH | 1210 | VHHH | 2055
+QTR8452 | 22AUG26 | 22AUG26 | -----6- | OTHH | 1100 | VHHH | 1945
+QTR8906 | 07AUG26 | 28AUG26 | ----5-- | VMMC | 0030 | VECC | 0415
+QTR8906 | 03AUG26 | 31AUG26 | 1------ | VMMC | 2005 | VECC | 2350
+QTR8910 | 05AUG26 | 26AUG26 | --3---- | VMMC | 0030 | VECC | 0415
+QTR8913 | 09AUG26 | 09AUG26 | ------7 | VMMC | 1310 | VECC | 1655
+QTR8913 | 07AUG26 | 28AUG26 | ----5-- | VMMC | 2025 | VECC | 0010+
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OTHH-VHHH | A206 | NALAO | ASSAD
+VMMC-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON

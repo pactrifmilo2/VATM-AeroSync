@@ -1,0 +1,31 @@
+FILE: R76A1 76A  (RVS1).docx
+
+PARAGRAPHS
+Hanoi, 17/4/2026
+Refer to the issued permit: LD- 76/A/S/2026VN (rvs1)
+1. Carrier/Operator
+2. Schedules (All times in UTC)
+3. Aircraft
+4. Notes: Add more aircraft type 738 with registration mark B-1788 for flight MU9633/9634 17Apr26. Other details remain unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 17/4/2026
+Refer to the issued permit: LD- 76/A/S/2026VN (rvs1)
+1. Carrier/Operator
+Name: CHINA EASTERN AIRLINES
+IATA code: MU | ICAO code: CES
+Postal Address: NO.2550 HONGQIAO ROAD, SHANGHAI, P.R. CHINA
+Tel: | Email:
+
+TABLE 2
+CONTEXT: 2. Schedules (All times in UTC)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+MU9633 | 17Apr26 | 17Apr26 | 1234567 | KMG | 0755 | SGN | 1110 | 738 | LD- 76/A/S/2026VN
+MU9634 | 17Apr26 | 17Apr26 | 1234567 | SGN | 1210 | KMG | 1505 | 738 | LD- 76/A/S/2026VN
+
+TABLE 3
+CONTEXT: 3. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | B-1788 | China

@@ -1,0 +1,49 @@
+FILE: R26A5 26A  REV5.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 08/06/2026
+Permit No.: LD- 26/A/S/2026VN /REV5
+1. Carrier/Operator
+Name: Hong Kong Air Cargo Carrier Limited IATA code: RH ICAO code: HKC Postal Address: R.201, 2nd Floor, Noibai Cargo Terminal, Noi Bai Int'l Airport, Soc Son Dist, Hanoi, Viet Nam Tel: +844 3584 3331 Email: HYPERLINK "mailto:manhlam.hoang@hkaircargo.com" manhlam.hoang@hkaircargo.com ; HYPERLINK "mailto:tommy.fei@hkaircargo.com" tommy.fei@hkaircargo.com 
+2. [Revised Item or Additional details(2), e.g. Schedule,]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit RH317 09JUN26 30JUN26 -23—6- HKG 1140 HAN 1340 33X LD- 26/A/S/2026VN RH318 09JUN26 30JUN26 -23—6- HAN 1510 HKG 1710 33X LD- 26/A/S/2026VN RH317 09JUN26 30JUN26 ---45-- HKG 1210 HAN 1410 33X LD- 26/A/S/2026VN RH318 09JUN26 30JUN26 ---45-- HAN 1540 HKG 1740 33X LD- 26/A/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type RH317 09JUN26 30JUN26 -23456- HKG 0700 HAN 0900 33X RH318 09JUN26 30JUN26 -23456- HAN 1030 HKG 1230 33X 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED.
+ 
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 08/06/2026
+Permit No.: LD- 26/A/S/2026VN /REV5
+1. Carrier/Operator
+Name: Hong Kong Air Cargo Carrier Limited
+IATA code: RH | ICAO code: HKC
+Postal Address: R.201, 2nd Floor, Noibai Cargo Terminal, Noi Bai Int'l Airport, Soc Son Dist, Hanoi, Viet Nam
+Tel: +844 3584 3331 | Email: HYPERLINK "mailto:manhlam.hoang@hkaircargo.com" manhlam.hoang@hkaircargo.com ; HYPERLINK "mailto:tommy.fei@hkaircargo.com" tommy.fei@hkaircargo.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule,]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+RH317 | 09JUN26 | 30JUN26 | -23—6- | HKG | 1140 | HAN | 1340 | 33X | LD- 26/A/S/2026VN
+RH318 | 09JUN26 | 30JUN26 | -23—6- | HAN | 1510 | HKG | 1710 | 33X | LD- 26/A/S/2026VN
+RH317 | 09JUN26 | 30JUN26 | ---45-- | HKG | 1210 | HAN | 1410 | 33X | LD- 26/A/S/2026VN
+RH318 | 09JUN26 | 30JUN26 | ---45-- | HAN | 1540 | HKG | 1740 | 33X | LD- 26/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+RH317 | 09JUN26 | 30JUN26 | -23456- | HKG | 0700 | HAN | 0900 | 33X
+RH318 | 09JUN26 | 30JUN26 | -23456- | HAN | 1030 | HKG | 1230 | 33X

@@ -1,0 +1,64 @@
+FILE: OF 83AS.doc
+
+PARAGRAPHS
+Ha Noi, 12th March 2026
+№: OF - 83/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: TIANJIN AIRLINES IATA code: GS ICAO code: GCR Postal Address: Sichuan Airlines Co., Ltd., Aviation Building, Shuangliu International Airport, Chengdu, Sichuan Province, 610202, People's Republic of China. Tel: +86 28 8888 8888 Email: HYPERLINK "mailto:yuyu-jia@hnair.com" \o "mailto:yuyu-jia@hnair.com" yuyu-jia@hnair.com 
+2. Billing address
+Name: UAS International Trip Support Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE. Tel: +971-4-299-6633 Email: HYPERLINK "mailto:PAYABLE@UAS.AERO" \o "mailto:PAYABLE@UAS.AERO" PAYABLE@UAS.AERO 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA GCR7963 29MAR26 24OCT26 1030507 ZGUY 1420 WSSS 1830 GCR7964 29MAR26
+ 24OCT26
+ 1030507
+ WSSS 1940 ZGUY 2350 
+4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A330 B8596, OR SUB, B302D/B1045 China 
+6. Airways
+
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGUY-WSSS R474-Q3-Q1-L644 TEBAK DUDIS R474-Q3-N639-M755-M753 TEBAK-KISAN VILAO-IPRIX WSSS-ZGUY M753-L637-Q2-N639-Q3-R474 IPRIX TEBAK M753-M755-N639-Q3-R474 IPRIX-VILAO KISAN-TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 12th March 2026
+№: OF - 83/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: TIANJIN AIRLINES
+IATA code: GS | ICAO code: GCR
+Postal Address: Sichuan Airlines Co., Ltd., Aviation Building, Shuangliu International Airport, Chengdu, Sichuan Province, 610202, People's Republic of China.
+Tel: +86 28 8888 8888 | Email: HYPERLINK "mailto:yuyu-jia@hnair.com" \o "mailto:yuyu-jia@hnair.com" yuyu-jia@hnair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE.
+Tel: +971-4-299-6633 | Email: HYPERLINK "mailto:PAYABLE@UAS.AERO" \o "mailto:PAYABLE@UAS.AERO" PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GCR7963 | 29MAR26 | 24OCT26 | 1030507 | ZGUY | 1420 | WSSS | 1830
+GCR7964 | 29MAR26 | 24OCT26 | 1030507 | WSSS | 1940 | ZGUY | 2350
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A330 | B8596, OR SUB, B302D/B1045 | China
+
+TABLE 5
+CONTEXT: 6. Airways
+
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGUY-WSSS | R474-Q3-Q1-L644 | TEBAK | DUDIS
+ | R474-Q3-N639-M755-M753 | TEBAK-KISAN | VILAO-IPRIX
+WSSS-ZGUY | M753-L637-Q2-N639-Q3-R474 | IPRIX | TEBAK
+ | M753-M755-N639-Q3-R474 | IPRIX-VILAO | KISAN-TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,41 @@
+FILE: R80A1 80A (RVS1).docx
+
+PARAGRAPHS
+HANOI, 03 JUL 2026
+The issued permit LD-80/A/S/2026VN/REV1
+1. Carrier
+2. Schedule: All time in UTC
+2.1 Old schedule
+2.2 New schedule
+3. Purpose of Flight:
+3.1 Old: All cargo flights
+3.2 New:
+LBU-SGN: All cargo
+SGN-KUL: Ferry
+4. Note: Other details unchanged
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260703-170143)
+
+TABLE 1
+CONTEXT: HANOI, 03 JUL 2026
+The issued permit LD-80/A/S/2026VN/REV1
+1. Carrier
+Name: RAYA AIRWAYS
+IATA code: TH | ICAO code: RMY
+Postal Address: Left Wing, Ground Floor, Wisma Shell, 3450 Jalan Teknokrat 3, 63000 Cyberjaya, Selangor Darul Ehsan, Malaysia.
+Tel: +603 7884 9898 | Email: networkplanning@rayaairways.com; mohamadfaisal@rayaairways.com
+
+TABLE 2
+CONTEXT: 2. Schedule: All time in UTC
+2.1 Old schedule
+Flight Number | Effective from | Effective to | Days of services | Departure Airport | STD | Arrival Airport | STA | Aircraft type
+TH236 | 24MAY26 | 24MAY26 | _______7 | LBU | 1320 | SGN | 1520 | 76X
+TH237 | 24MAY26 | 24MAY26 | _______7 | SGN | 1640 | KUL | 1850 | 76X
+
+TABLE 3
+CONTEXT: 2.2 New schedule
+Flight Number | Effective from | Effective to | Days of services | Departure Airport | STD | Arrival Airport | STA | Aircraft type
+TH236 | 24MAY26 | 24MAY26 | _______7 | LBU | 1320 | SGN | 1520 | 76X
+TH9005 | 03JUL26 | 03JUL26 | _____5__ | SGN | 1200 | KUL | 1410 | 76X

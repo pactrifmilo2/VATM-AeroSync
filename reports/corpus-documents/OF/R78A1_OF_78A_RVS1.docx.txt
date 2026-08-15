@@ -1,0 +1,38 @@
+FILE: R78A1 OF 78A RVS1.docx
+
+PARAGRAPHS
+Hanoi, 27/03/2026
+Permit No.: OF - 78/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/03/2026
+Permit No.: OF - 78/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.Box: 686, Dubai, United Arab Emirates
+Tel: +971 4 7085766 | Email: DL - OVP <eocopscntrl@emirates.com>
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+UAE2637 | 29MAR26 | 29MAR26 | ------7 | RPLL | 1255 | OMDB | 2230 | OF - 78/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+UAE2637 | 29MAR26 | 29MAR26 | ------7 | RPLL | 2130 | OMDW | 0620+1
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR | Sector
+RPLL-OMDW | L628 G474 | ARESI | ANINA

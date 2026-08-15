@@ -1,0 +1,39 @@
+FILE: R10B1 10B REV1.docx
+
+PARAGRAPHS
+HANOI, 21MAY2026
+PERMIT NUMBER LD-10/B/S/2026VN/REV1
+1. Carrier
+2. Schedules (UTC Time)
+2.1 Old schedule
+2.2 New schedule
+3. Note: Other details unchanged
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 21MAY2026
+PERMIT NUMBER LD-10/B/S/2026VN/REV1
+1. Carrier
+Name: PHILIPPINES AIRASIA, INC
+IATA code: Z2 | ICAO code: APG
+Postal Address: 6th floor, Horizon Center, NECC Building, Newport City, Barangay 183, Pasay City, Metro Manila, Philippines
+Tel: (+632) 8294 4383 | Email: paa_regulatory@airasia.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1 Old schedule
+Flight number | Effective from | Effective to | Day(s) of services | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+Z2826 | 23MAY26 | 30JUN26 | -2-4-6- | MNL | 2315 | DAD | 0145 | 320
+Z2827 | 23MAY26 | 30JUN26 | -2-4-6- | DAD | 0400 | MNL | 0645 | 320
+Z2842 | 22MAY26 | 29JUN26 | 1-3-5-7 | MNL | 2315 | HAN | 0240 | 320
+Z2843 | 22MAY26 | 29JUN26 | 1-3-5-7 | HAN | 0505 | MNL | 0745 | 320
+
+TABLE 3
+CONTEXT: 2.2 New schedule
+Flight number | Effective from | Effective to | Day(s) of services | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+Z2826 | 22MAY26 | 29JUN26 | 1-3-5-- | MNL | 2315 | DAD | 0145+1 | 320
+Z2827 | 23MAY26 | 30JUN26 | -2-4-6- | DAD | 0400 | MNL | 0645 | 320
+Z2842 | 21MAY26 | 28JUN26 | -2-4-67 | MNL | 2315 | HAN | 0240+1 | 320
+Z2843 | 22MAY26 | 29JUN26 | 1-3-5-7 | HAN | 0505 | MNL | 0745 | 320

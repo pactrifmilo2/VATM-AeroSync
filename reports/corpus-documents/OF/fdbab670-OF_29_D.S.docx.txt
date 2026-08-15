@@ -1,0 +1,85 @@
+FILE: OF 29 D.S.docx
+
+PARAGRAPHS
+HA NOI, 13 APR 2026
+NUMBER OF-29/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Schedule Cargo Flight
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 13 APR 2026
+NUMBER OF-29/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: CHINA AIRLINES
+IATA code: CI | ICAO code: CAL
+Postal Address: NO. 1, HANGZHAN S. ROAD, DAYUAN DISTRICT, TAOYUAN CITY, 33758, TAIWAN
+Tel: 886-3-3993966 | Email: daisywang @china-airlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: SYSTEM OPERATION CONTROL DIVISION
+Postal Address: 5F NO. 1, HANGZHEN S. ROAD, DAYUAN DISTRICT, TAOYUAN CITY, 33758, TAIWAN
+Tel: 886-3-3993966 | Email: daisywang @china-airlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CAL 5061 | 20APR26 | 24OCT26 | 1234567 | RCTP | 17:50 | EDFH | 09:20/1
+CAL 5062 | 20APR26 | 24OCT26 | 1234567 | EDFH | 11:50 | RCTP | 00:50/1
+CAL 5065 | 20APR26 | 24OCT26 | 1234567 | RCTP | 18:00 | VTBS | 21:50
+CAL 5067 | 20APR26 | 24OCT26 | 1234567 | RCTP | 18:00 | LKPR | 08:00/1
+CAL 5068 | 20APR26 | 24OCT26 | 1234567 | LKPR | 10:30 | RCTP | 22:30
+CAL 5641 | 20APR26 | 24OCT26 | 1234567 | RCTP | 18:00 | ELLX | 09:00/1
+CAL 5785 | 20APR26 | 24OCT26 | 1234567 | RCTP | 17:40 | VANM | 00:40/1
+CAL 5786 | 20APR26 | 24OCT26 | 1234567 | VANM | 02:00 | RCTP | 09:10
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Schedule Cargo Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+77X | As per AOC of CAL | R.O.C
+74Y | As per AOC of CAL | R.O.C
+77W | As per AOC of CAL | R.O.C
+359 | As per AOC of CAL | R.O.C
+789 | As per AOC of CAL | R.O.C
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-VTBS | A1 | BUNTA | PAPRA
+ | N892 L628 G474 | MONBO | ANINA
+ | A206 | ASSAD | NALAO
+ | L628 G474 | ARESI | ANINA
+ | A202 | ASSAD | VILAO
+RCTP-EDFHRCTP-LKPRRCTP-ELLXRCTP-VANM | R474 W21 B214 | TEBAK | LADON
+ | A1 | BUNTA | PAPRA
+ | A1 W2 R328 | BUNTA | TORED
+ | A1 W2 A206 | BUNTA | NALAO
+ | L628 G474 B202 | ARESI | BOMPA
+ | N892 L628 G474 B202 | MONBO | BOMPA
+ | A206 | ASSAD | NALAO
+EDFH-RCTPLKPR-RCTP | G474 L628 | ANINA | ARESI
+ | A206 W2 A1 | NALAO | BUNTA
+ | A206 Q1 A1 | NALAO | BUNTA
+ | R328 W2 A1 | TORED | BUNTA
+ | B214 W21 R474 | LADON | TEBAK
+ | A1 | PAPRA | BUNTA
+VANM-RCTP | G474 L628 | ANINA | ARESI
+ | A1 | PAPRA | BUNTA
+ | R328 W2 A1 | TORED | BUNTA
+ | A206 W2 A1 | NALAO | BUNTA
+ | A206 Q1 A1 | NALAO | BUNTA
+ | A202 | VILAO | ASSAD
+ | R474 | MC | NAKHA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

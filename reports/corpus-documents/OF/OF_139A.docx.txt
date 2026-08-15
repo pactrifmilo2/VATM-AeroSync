@@ -1,0 +1,52 @@
+FILE: OF 139A.docx
+
+PARAGRAPHS
+HA NOI, 24 JUN 2026
+NUMBER OF-139/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE PASSENGERS FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 24 JUN 2026
+NUMBER OF-139/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Operator:
+Name: DELTA AIRLINES USA
+IATA code: DL | ICAO code: DAL
+Postal Address: P.O. Box 20980 Department 980 Atlanta, USA
+Tel: (404) 715-2600 | Email: charter@delta.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: HADID INTERNATIONAL SERVICES FZE
+Postal Address: P.O.BOX 54508, DUBAI, UAE
+Tel: +971 (04) 205 3000 | Email: PERMITS@HADID.AERO
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+DAL0088 | 27JUN26 | 29OCT26 | 1234567 | VHHH | 0125 | KLAX | 1450
+DAL0089 | 27JUN26 | 29OCT26 | 1234567 | KLAX | 0545 | VHHH | 2100
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE PASSENGERS FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A350-900 | N513DZ OR SUB | USA
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-KLAX | R474 | TEBAK | LAVOS
+KLAX-VHHH | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

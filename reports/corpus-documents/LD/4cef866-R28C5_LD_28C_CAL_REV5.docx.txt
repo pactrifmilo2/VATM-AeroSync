@@ -1,0 +1,37 @@
+FILE: R28C5 LD 28C CAL  REV5.docx
+
+PARAGRAPHS
+Hanoi, 10/07/2026
+Permit No.: LD-28/C/S/2026VNVN/REV5
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+REMARK: - CHINA AIRLINES has no 5th freedom traffic right on sector BKK-SGN
+OTHER DETAILS REMAIN UNCHANGED
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 10/07/2026
+Permit No.: LD-28/C/S/2026VNVN/REV5
+1. Carrier/Operator
+Name: China Airlines LTD.
+IATA code: CI | ICAO code: CAL
+Postal Address: 2B Floor 7, Crescent Plaza 105 Ton Dat Tien Street, Tan My Ward, Ho Chi Minh City, Vietnam
+Tel: 84-28-54141031 | Email: hatuyet.tran@china-airlines.com, lan_tran@china-airlines.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+CI6651 | 10Jul26 | 10Jul26 | ----5-- | TPE | 0140 | BKK | 0410 | 74Y/77X | LD-28/C/S/2026VN
+CI6651 | 10Jul26 | 10Jul26 | ----5-- | BKK | 0610 | SGN | 0750 | 74Y/77X | LD-28/C/S/2026VN
+CI6652 | 10Jul26 | 10Jul26 | ----5-- | SGN | 0850 | TPE | 1320 | 74Y/77X | LD-28/C/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CI6651 | 10Jul26 | 10Jul26 | ----5-- | TPE | 1000 | BKK | 1330 | 74Y/77X
+CI6651 | 10Jul26 | 10Jul26 | ----5-- | BKK | 1530 | SGN | 1710 | 74Y/77X
+CI6652 | 11Jul26 | 11Jul26 | -----6- | SGN | 1340 | TPE | 1710 | 74Y/77X

@@ -1,0 +1,78 @@
+FILE: OF 86AS.docx
+
+PARAGRAPHS
+HANOI, 16MARCH2026
+Permit No.: OF-86/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 16MARCH2026
+Permit No.: OF-86/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Philippines AirAsia Inc.
+IATA code: Z2 | ICAO code: APG
+Postal Address: 6th Floor, Horizon Center Building, Andrews Ave., Pasay City, Philippines 1309
+Tel: +639988451963 | Email: paa_dispatch@airasia.com; paa_fotsd@airasia.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Philippines AirAsia Inc.
+Postal Address: 6th Floor, Horizon Center Building, Andrews Ave., Pasay City, Philippines 1309
+Tel: +639988451963 | Email: paa_treasury@airasia.com; paa_airnavcharges@airasia.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+APG285 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0105 | VTBD | 0425
+APG286 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0520 | RPLL | 0855
+APG287 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0730 | VTBD | 1055
+APG288 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1305 | RPLL | 1655
+APG942 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0010 | WMKK | 0415
+APG943 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 0505 | RPLL | 0905
+APG7112 | 29MAR26 | 24OCT26 | 1234567 | RPVM | 1905 | WMKK | 2255
+APG7113 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 2335 | RPVM | 0340
+APG7114 | 29MAR26 | 24OCT26 | 1234567 | RPVM | 0455 | WMKK | 0845
+APG7115 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 0915 | RPVM | 1325
+APG7330 | 01MAY26 | 24OCT26 | 1234567 | RPVM | 2005 | VTBD | 0005
+APG7331 | 01MAY26 | 24OCT26 | 1234567 | VTBD | 0035 | RPVM | 0430
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | According to the AOC of APG | Philippines
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RPLL - VTBD | L628 / G474 | ARESI | ANINA
+VTBD - RPLL | G474 / L628 | ANINA | ARESI
+RPLL - WMKK | M765 / L642 | PANDI | ESPOB
+ | M765 | PANDI | IGARI
+ | M765 / N892 | PANDI | MELAS
+WMKK - RPLL | M765 | IGARI | PANDI
+ | M771 / M765 | DUDIS | PANDI
+RPVM - WMKK | M765 / L642 | PANDI | ESPOB
+ | M765 | PANDI | IGARI
+ | M765 / N892 | PANDI | MELAS
+WMKK - RPVM | M765 | IGARI | PANDI
+ | M771 / M765 | DUDIS | PANDI
+RPVM - VTBD | N500 / R468 | PANDI | SAPEN
+ | L628 / G474 | ARESI | ANINA
+VTBD - RPVM | R468 / N500 | SAPEN | PANDI
+ | G474 / L628 | ANINA | ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

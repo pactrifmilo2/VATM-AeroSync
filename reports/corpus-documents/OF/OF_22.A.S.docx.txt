@@ -1,0 +1,62 @@
+FILE: OF 22.A.S.docx
+
+PARAGRAPHS
+HANOI, 26FEB2026
+Permit No.: OF-22/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+2. Billing address
+3. Schedules: All times in UTC
+4. Purpose of Flight(s): Passenger
+5. Aircrafts:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 26FEB2026
+Permit No.: OF-22/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: Bangkok Airways Public Company Limited
+IATA code: PG | ICAO code: BKP
+Postal Address: 99 Mu 14, Vibhavadirangsit Road, Chom Phon, Chatuchak, Bangkok 10900, Thailand
+Tel: | Email: scheduleplanning@bangkokair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Bangkok Airways Public Company Limited
+IATA code: PG | ICAO code: BKP
+Postal Address: 99 Mu 14, Vibhavadirangsit Road, Chom Phon, Chatuchak, Bangkok 10900, Thailand
+Tel: | Email: scheduleplanning@bangkokair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+BKP807 | 29Mar26 | 24Oct26 | 1234567 | VTSM | 0455 | VHHH | 0820
+BKP806 | 29Mar26 | 24Oct26 | 1234567 | VHHH | 0920 | VTSM | 1240
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircrafts:
+Aircraft Type | Registration marks | Nationality
+A319 | HS-PGN, HS-PGX, HS-PGY, HS-PGZ, HS-PPB, HS-PPC, HS-PPF, HS-PPG | Thai
+A319 | HS-PPS, HS-PPT, HS-PPU | Thai
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sectors | ATS Routes | Entry Point | Exit Point
+VTSM-VHHH | A202 | VILAO | ASSAD
+VHHH-VTSM | A202 | ASSAD | VILAO
+
+TABLE 7
+VTSM-VHHH(1st Alternate route) | A1 | PAPRA | BUNTA
+VHHH-VTSM(1st Alternate route) | A1 | BUNTA | PAPRA
+VTSM-VHHH(2nd Alternate route) | R474 | LAVOS | TEBAK
+VHHH-VTSM(2nd Alternate route) | R474 | TEBAK | LAVOS
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. | 

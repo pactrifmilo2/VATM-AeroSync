@@ -1,0 +1,32 @@
+FILE: R65A2 65A RVS2.docx
+
+PARAGRAPHS
+Hanoi, 15/4/2026
+Refer to the issued permit: №: LD - 65/A/S/2026VN
+1. Carrier/Operator
+2. Schedules
+2.1. Original Schedules
+2.2. New Schedules
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 15/4/2026
+Refer to the issued permit: №: LD - 65/A/S/2026VN
+1. Carrier/Operator
+Name: PARATA AIR. Inc
+IATA code: WE | ICAO code: PTA
+Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea
+Tel: 0935304545 | Email: nle@parataair.com
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original Schedules
+WE207 | 15Apr26 | 15May26 | 0034067 | ICN | 1215 | PQC | 1810 | 330
+WE208 | 15Apr26 | 15May26 | 0034067 | PQC | 1940 | ICN | 0055+1 | 330
+
+TABLE 3
+CONTEXT: 2.2. New Schedules
+WE207 | 15Apr26 | 15May26 | 0034067 | ICN | 1300 | PQC | 1705 | 330
+WE208 | 15Apr26 | 15May26 | 0034067 | PQC | 1825 | ICN | 2350 | 330

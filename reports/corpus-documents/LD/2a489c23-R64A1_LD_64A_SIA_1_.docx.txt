@@ -1,0 +1,33 @@
+FILE: R64A1 LD 64A SIA (1).docx
+
+PARAGRAPHS
+HANOI, 24-Jul-26
+Refer to the issued permit number: LD-64/A/S/2026VN
+1. Carrier/Operator
+2.[Revised Item or Additional details or Cancelled, e.g. Schedule, Aircraft type …]
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 24-Jul-26
+Refer to the issued permit number: LD-64/A/S/2026VN
+1. Carrier/Operator
+Name: SINGAPORE AIRLINES LIMITED (SIA)
+IATA code: SQ | IATA code: SQ
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East SINGAPORE 486652
+Tel: +65 65403410 | Tel: +65 65403410
+
+TABLE 2
+CONTEXT: 2.[Revised Item or Additional details or Cancelled, e.g. Schedule, Aircraft type …]
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+SQ191 | 23Jul26 | 23Jul26 | 4 | HAN | 0540 | SIN | 0910 | 359
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+SQ9191 | 24Jul26 | 24Jul26 | 5 | HAN | 0400 | SIN | 0730 | 359

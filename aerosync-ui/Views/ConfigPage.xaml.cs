@@ -7,6 +7,8 @@ namespace AeroSync.UI.Views;
 
 public sealed partial class ConfigPage : Page
 {
+    private bool hasLoaded;
+
     public ConfigViewModel ViewModel { get; }
 
     public ConfigPage(AeroSyncApiClient apiClient)
@@ -19,6 +21,12 @@ public sealed partial class ConfigPage : Page
 
     private async void ConfigPage_Loaded(object sender, RoutedEventArgs e)
     {
+        if (hasLoaded)
+        {
+            return;
+        }
+
+        hasLoaded = true;
         await ViewModel.LoadAsync();
         EmailPasswordBox.Password = ViewModel.Config.EmailPassword;
     }

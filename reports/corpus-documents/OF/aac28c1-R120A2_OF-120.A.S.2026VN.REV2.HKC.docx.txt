@@ -1,0 +1,36 @@
+FILE: R120A2  OF-120.A.S.2026VN.REV2.HKC.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 26 JUN 2026
+PERMIT NUMBER: OF-120/A/S/2026VN/REV2
+1. Carrier
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+2.1 Original Schedule:
+2.2 New Schedule:
+Other details unchanged
+3. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 26 JUN 2026
+PERMIT NUMBER: OF-120/A/S/2026VN/REV2
+1. Carrier
+Name: HONG KONG AIR CARGO CARRIER LTD
+IATA code: | ICAO code: HKC
+Postal Address: RM 201-207, 2/F, TERMINAL 1, ASIA AIRFREIGHT TERMINAL, 10 CHUN PING ROAD HKIA, LANTAU, HK
+Tel: +85239209299 | Email: occ@hkaircargo.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+2.1 Original Schedule:
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+HKC371 | 25JUN26 | 25JUN26 | 4 | VHHH | 0130 | WSSS | 0530
+HKC372 | 25JUN26 | 25JUN26 | 4 | WSSS | 0700 | VHHH | 1105
+
+TABLE 3
+CONTEXT: 2.2 New Schedule:
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+HKC371D | 26JUN26 | 26JUN26 | 5 | VHHH | 0830 | WSSS | 1230
+HKC372D | 26JUN26 | 26JUN26 | 5 | WSSS | 1400 | VHHH | 1800

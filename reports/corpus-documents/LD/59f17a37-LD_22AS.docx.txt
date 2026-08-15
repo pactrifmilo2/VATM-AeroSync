@@ -1,0 +1,76 @@
+FILE: LD 22AS.docx
+
+PARAGRAPHS
+Hanoi, 12h March 2026
+PERMIT NUMBER: LD-22/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 12h March 2026
+PERMIT NUMBER: LD-22/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+Name: Lao Airlines State Enterprise
+IATA code: QV | ICAO code: LAO
+Postal Address: Address: Wattay International Airport, Souphanouvong Rd. Meuangvathong village, Sikottabong District ,Vientiane Lao PDR.
+Tel: (856-21) 513150 | Email: visakhone@laoairlines.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QV311 | 29Mar26 | 24Oct26 | 1234567 | VTE | 07:50 | HAN | 08:30 | A320,C909,AT75,AT76
+QV312 | 29Mar26 | 24Oct26 | 1234567 | HAN | 09:20 | VTE | 10:40 | 
+QV313 | 29Mar26 | 24Oct26 | 1-3-5-7 | LPQ | 10:20 | HAN | 11:30 | 
+QV314 | 29Mar26 | 24Oct26 | 1-3-5-7 | HAN | 12:10 | LPQ | 13:20 | 
+ |  |  |  |  |  |  |  | 
+QV317 | 29Mar26 | 24Oct26 | ---4--7 | VTE | 07:50 | DAD | 05:40 | A320,C909,AT75,AT76
+QV318 | 29Mar26 | 24Oct26 | ---4--7 | DAD | 06:50 | VTE | 10:40 | 
+QV515 | 29Mar26 | 24Oct26 | -2-4-6- | VTE | 00:30 | PKZ | 01:45 | 
+ |  |  |  |  |  |  |  | 
+QV515 | 29Mar26 | 24Oct26 | -2-4-6- | PKZ | 02:45 | SGN | 04:20 | A320,C909,AT75,AT76
+QV516 | 29Mar26 | 24Oct26 | -2-4-6- | SGN | 05:00 | PKZ | 06:35 | 
+QV516 | 29Mar26 | 24Oct26 | -2-4-6- | PKZ | 07:20 | VTE | 08:35 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+A320 | As per FAOC of QV | LAO
+A320 | As per FAOC of QV | LAO
+C909 | As per FAOC of QV | LAO
+AT75 | As per FAOC of QV | LAO
+AT76 | As per FAOC of QV | LAO
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTE-HAN | R474 | LAVOS | 
+HAN-VTE | R474 |  | LAVOS
+VTE-DAD | R335, W2 | IDOTA | 
+DAD-VTE | W2, R335 |  | IDOTA
+LPQ-HAN | B465, R474 | LAPON | 
+HAN-LPQ | R474, B465 |  | LAPON
+PKZ-SGN | R468 | SAPEN | 
+SGN-PKZ | R468 |  | SAPEN

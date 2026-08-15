@@ -1,0 +1,72 @@
+FILE: LD 25AS.doc
+
+PARAGRAPHS
+Ha Noi, 13/03/2026
+Permit No-: LD - 25/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1- Carrier
+Name: Turkish Airlines IATA code: TK ICAO code: THY Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist- HCMC, Vietnam Tel: 84-28-35208989 Email: HYPERLINK "mailto:sgnops@thy.com" sgnops@thy-com 
+2- Schedules (UTC Time) 
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft type TK162 29MAR26 24OCT26 1234567 IST 2250 SGN 0910+1 77W
+789
+359
+333 TK163 29MAR26 24OCT26 1234567 SGN 1505 IST 0150+1 TK164 29MAR26 29MAR26 1234567 IST 2310 HAN 0825+1 TK164 30MAR26 24OCT26 1234567 IST 2310 HAN 0840+1 TK165 29MAR26 24OCT26 1234567 HAN 1555 IST 0215+1 
+3- Purpose of Flight: Passenger
+4- Aircraft
+Aircraft Type Registration marks Nationality 77W As per FAOC of TK
+ TURKEY 789 TURKEY 359 TURKEY 333 TURKEY 
+5- Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR IST-SGN R468 SAPEN L637 BITOD B202 G474 Q1 BOMPA SGN-IST R468 SAPEN L637-M765 IGARI W12 Q2 A1 PAPRA W12 Q1 G474 B202 BOMPA IST-HAN B214 W21 LADON HAN-IST W21 B214 LADON Alternative airways Other permitted airways published in Viet Nam’s AIP- 
+6- Validity: -12/+24hours
+7- Note
+7-1- The airline is permitted to operate only the aircraft types specified on the respective sector under item 2-Schedules- Any change of aircraft type requires an application for amendment of the flight permit-
+7-2- The airline is responsible for complying with applicable regulations on aircraft operation-
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C-c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 13/03/2026
+Permit No-: LD - 25/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1- Carrier
+Name: Turkish Airlines
+IATA code: TK | ICAO code: THY
+Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist- HCMC, Vietnam
+Tel: 84-28-35208989 | Email: HYPERLINK "mailto:sgnops@thy.com" sgnops@thy-com
+
+TABLE 2
+CONTEXT: 2- Schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+TK162 | 29MAR26 | 24OCT26 | 1234567 | IST | 2250 | SGN | 0910+1 | 77W 789 359 333
+TK163 | 29MAR26 | 24OCT26 | 1234567 | SGN | 1505 | IST | 0150+1 | 
+ | 
+TK164 | 29MAR26 | 29MAR26 | 1234567 | IST | 2310 | HAN | 0825+1 | 
+TK164 | 30MAR26 | 24OCT26 | 1234567 | IST | 2310 | HAN | 0840+1 | 
+TK165 | 29MAR26 | 24OCT26 | 1234567 | HAN | 1555 | IST | 0215+1 | 
+
+TABLE 3
+CONTEXT: 3- Purpose of Flight: Passenger
+4- Aircraft
+Aircraft Type | Registration marks | Nationality
+77W | As per FAOC of TK | TURKEY
+789 |  | TURKEY
+359 |  | TURKEY
+333 |  | TURKEY
+
+TABLE 4
+CONTEXT: 5- Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+IST-SGN | R468 | SAPEN | 
+ | L637 | BITOD | 
+ | B202 G474 Q1 | BOMPA | 
+SGN-IST | R468 |  | SAPEN
+ | L637-M765 |  | IGARI
+ | W12 Q2 A1 |  | PAPRA
+ | W12 Q1 G474 B202 |  | BOMPA
+IST-HAN | B214 W21 | LADON | 
+HAN-IST | W21 B214 |  | LADON
+Alternative airways Other permitted airways published in Viet Nam’s AIP-

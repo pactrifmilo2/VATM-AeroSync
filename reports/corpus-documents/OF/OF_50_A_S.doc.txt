@@ -1,0 +1,73 @@
+FILE: OF 50 A S.doc
+
+PARAGRAPHS
+Ha Noi, 05th March 2026
+Permit number: OF - 50/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: Kuwait Airways IATA code: ICAO code: KAC Postal Address: Kuwait International Airport PO Box 394 Safat,13004 Kuwait Tel: 0096524345555 Email: kwiaaku@kuwaitairways.com 
+2. Billing address
+Name: Kuwait Airways Postal Address: Suvarnabhumi Airport 999 Moo1, AOB Building
+3rd Floor Room Z3-007,Nong Prue, Bang Phi, Samut Prakarn, Thailand 10540 Tel: 006621343155 Email: bkkkaku@kuwaitairways.com 
+3. Schedules: All times in UTC 
+Flight
+Number
+ Effective from
+ Effective
+To
+ Day(s) of services
+ Departure Airport
+ ETD
+ Arrival Airport
+ ETA
+ KAC417 29MAR26 24OCT26 1234567 OKKK 2315 RPLL 0855+1 KAC418 30MAR26 25OCT26 1234567 RPLL 1400 OKKK 2355 KAC419 29MAR26 24OCT26 1234567 OKKK 1045 ZGGG 1920 KAC420 29MAR26 24OCT26 1234567 ZGGG 2050 OKKK 0620+1 
+4. Purpose of Flight(s): Passenger.
+5. Aircraft
+Aircraft Type Registration marks Nationality B77W 9KAOC/9KAOD/9KAOE/9KAOF/9KAOH
+9KAOI/ 9KAOJ/ 9KAOK/ 9KAOL/9KAOM Kuwait A339 9KAPJ/9KAPK/9KAPL/9KAPM/9KAPN A338 9KAPF/9KAPG/9KAPH/9KAPI 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR OKKK-RPLL B202-G474-L628 BOMPA ARESI RPLL-OKKK L628-G474 ARESI ANINA OKKK-ZGGG B214-W21-R474 LADON TEBAK ZGGG-OKKK R474-W21-B214 TEBAK LADON Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 05th March 2026
+Permit number: OF - 50/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: Kuwait Airways
+IATA code: | ICAO code: KAC
+Postal Address: Kuwait International Airport PO Box 394 Safat,13004 Kuwait
+Tel: 0096524345555 | Email: kwiaaku@kuwaitairways.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Kuwait Airways
+Postal Address: Suvarnabhumi Airport 999 Moo1, AOB Building 3rd Floor Room Z3-007,Nong Prue, Bang Phi, Samut Prakarn, Thailand 10540
+Tel: 006621343155 | Email: bkkkaku@kuwaitairways.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+KAC417 | 29MAR26 | 24OCT26 | 1234567 | OKKK | 2315 | RPLL | 0855+1
+KAC418 | 30MAR26 | 25OCT26 | 1234567 | RPLL | 1400 | OKKK | 2355
+KAC419 | 29MAR26 | 24OCT26 | 1234567 | OKKK | 1045 | ZGGG | 1920
+KAC420 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 2050 | OKKK | 0620+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger.
+5. Aircraft
+Aircraft Type | Registration marks | Nationality
+B77W | 9KAOC/9KAOD/9KAOE/9KAOF/9KAOH 9KAOI/ 9KAOJ/ 9KAOK/ 9KAOL/9KAOM | Kuwait
+A339 | 9KAPJ/9KAPK/9KAPL/9KAPM/9KAPN | 
+A338 | 9KAPF/9KAPG/9KAPH/9KAPI | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OKKK-RPLL | B202-G474-L628 | BOMPA | ARESI
+RPLL-OKKK | L628-G474 | ARESI | ANINA
+OKKK-ZGGG | B214-W21-R474 | LADON | TEBAK
+ZGGG-OKKK | R474-W21-B214 | TEBAK | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

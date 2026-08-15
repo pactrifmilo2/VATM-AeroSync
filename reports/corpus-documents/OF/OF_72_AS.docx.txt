@@ -1,0 +1,64 @@
+FILE: OF 72 AS.docx
+
+PARAGRAPHS
+HA NOI, 10 MAR 2026
+NUMBER OF-72/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 10 MAR 2026
+NUMBER OF-72/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: MARTINAIR HOLLAND
+IATA code: | ICAO code: MPH
+Postal Address: Piet Guilonardweg 17, 1117EE Schiphol
+Tel: +31681916976 | Email: gmb.spl.overflypermits@martinair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: MARTINAIR HOLLAND
+Postal Address:p/a FSSC BudapestBudapest 62, pf. 403, 1395 Hungary
+Tel: +31681916976 | Email: gmb.spl.overflypermits@martinair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MPH9411 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 1635 | VHHH | 0035 | B747
+MPH9412 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0235 | OMDW | 1035 | B747
+MPH9421 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 1635 | VHHH | 0035 | B747
+MPH9422 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0235 | OMDW | 1035 | B747
+MPH9431 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 1635 | VHHH | 0035 | B747
+MPH9432 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0235 | OMDW | 1035 | B747
+MPH9441 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 1800 | VHHH | 0200 | B747
+MPH9442 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0425 | OMDW | 1225 | B747
+MPH9451 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 2325 | VHHH | 0525 | B747
+MPH9452 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0725 | OMDW | 1525 | B747
+MPH9461 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 1610 | VHHH | 0010 | B747
+MPH9462 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0315 | OMDW | 1115 | B747
+MPH9471 | 29MAR26 | 24OCT26 | 1234567 | OMDW | 2020 | VHHH | 0420 | B747
+MPH9472 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0620 | OMDW | 1420 | B747
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B747-400 | As per AOC of MHP | The Netherlands
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OMDW-VHHH | A206 | NALAO | ASSAD
+VHHH-OMDW | A206 | ASSAD | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

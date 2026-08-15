@@ -34,7 +34,7 @@ class StoredErrorMessageLocalizationMigrationTest {
                 .run(new DefaultApplicationArguments(new String[0]));
 
         assertThat(fileRecord.getErrorMessage())
-                .isEqualTo("Không hỗ trợ định dạng file Word này vì chưa có format YAML phù hợp.");
+                .isEqualTo("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.");
         assertThat(permitImport.getErrorMessage())
                 .isEqualTo("Chức năng ghi dữ liệu vào ATFM đang bị tắt trong cấu hình.");
         verify(fileRecords).saveAll(List.of(fileRecord));

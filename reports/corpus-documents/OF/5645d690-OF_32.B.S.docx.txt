@@ -1,0 +1,68 @@
+FILE: OF 32.B.S.docx
+
+PARAGRAPHS
+HA NOI, 26 MAR 2026
+NUMBER OF-32/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 26 MAR 2026
+NUMBER OF-32/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: AeroLogic GmbH
+IATA code: 3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: occ@aerologic.aero
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: AeroLogic GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX534 | 31Apr26 | 28Apr26 | .2.,... | WSSS | 1550 | VHHH | 1940
+BOX534 | 30Mar26 | 27Apr24 | 1...... | WSSS | 0130 | VHHH | 1030
+BOX555 | 31Mar26 | 02May26 | .2...6. | RCTP | 2045 | VOBL | 0325
+BOX555 | 05May26 | 24Oct26 | .2...6. | RCTP | 2155 | OMDW | 0640
+BOX556 | 30Mar26 | 27Apr26 | 1...... | VOBL | 0100 | VHHH | 0645
+BOX556 | 01Apr26 | 29Apr26 | ..3.... | VOBL | 2305 | VHHH | 0450
+BOX556 | 03Apr26 | 24Apr26 | ....5.. | VOBL | 1335 | VHHH | 1920
+BOX613 | 29Mar26 | 26Apr26 | ....5.7 | RCTP | 1125 | VOHS | 1740
+BOX637 | 29Mar26 | 28Apr26 | .2....7 | VHHH | 2200 | VOHS | 0335
+BOX637 | 04Apr26 | 25Apr26 | .....6. | VHHH | 1215 | VOHS | 1750
+BOX723 | 31Mar26 | 30Apr26 | .2.4.6. | VHHH | 2145 | VIDP | 0345
+BOX725 | 30Mar26 | 30Apr26 | 123.5.. | VHHH | 2145 | VOBL | 0325
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B777F | D-AALA OR SUB | GERMANY
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WSSS-VHHH | M771 | DUDIS | DONDA
+RCTP-VOBL | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+RCTP-OMDW | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+VOBL-VHHH | A206/W2/A1 | NALAO / PAPRA | ASSAD / BUNTA
+RCTP-VOHS | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+VHHH-VOHS | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+VHHH-VIDP | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+VHHH-VOBL | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

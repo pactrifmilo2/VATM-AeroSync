@@ -1,0 +1,34 @@
+FILE: REV1 LD 68A ĐƯỜNG BAY.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 21/4/2026
+LD-68/A/S/2026VN/REV1
+Lịch bay mùa IATA: Hè 2026
+1. Người khai thác
+2. Đường bay:
+3. Đường bay sửa đổi:
+Ghi chú:
+Tham chiếu phép LD-68/A/S/2026VN, VNA xin bổ sung các đường bay vào các phép: phép bay mùa LD-68/A/S/2026VN, phép bay đã được cấp tăng chuyến, phép bay bổ sung, phép bay sửa đổi lịch bay mùa Hè S26 từ ngày 21/04/26 đến 24/10/26.
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO-PTP VTHK
+C/C. BÙI MINH ĐĂNG – TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 21/4/2026
+LD-68/A/S/2026VN/REV1
+Lịch bay mùa IATA: Hè 2026
+1. Người khai thác
+Tên: VIETNAM AIRLINES
+Mã IATA (nếu có): VN | Mã IATA (nếu có): VN
+Địa chỉ bưu điện: 200 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại:0904186949 | Thư điện tử: HUNGDQ@VIETNAMAIELINES.COM
+
+TABLE 2
+CONTEXT: 2. Đường bay:
+Chặng bay | Đường hàng không | Điểm bay vào | Điểm bay ra
+HANVII | Q2/W2 |  | 
+
+TABLE 3
+CONTEXT: 3. Đường bay sửa đổi:
+Chặng bay | Đường hàng không | Điểm bay vào | Điểm bay ra
+HANVII | Q1/W1 |  | 

@@ -1,0 +1,32 @@
+FILE: R42B5  42B  REV5.docx
+
+PARAGRAPHS
+Hanoi, 08/05/2026 Permit No.: LD - 42/B/S/2026VN/REV5
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 08/05/2026 Permit No.: LD - 42/B/S/2026VN/REV5
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +97440184510 | Email: iocpreops@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+QR976 | 16JUN26 | 16JUN26 | -2---- | DOH | 0025 | HAN | 0655 | 789 | LD - 42/B/S/2026VN
+QR977 | 16JUN26 | 16JUN26 | -2---- | HAN | 1230 | DOH | 1950 | 789 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR976Z | 16JUN26 | 16JUN26 | -2---- | DOH | 0025 | HAN | 0655 | 789
+QR1977 | 16JUN26 | 16JUN26 | -2---- | HAN | 1230 | DOH | 1950 | 789

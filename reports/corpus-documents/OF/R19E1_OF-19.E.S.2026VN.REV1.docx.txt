@@ -1,0 +1,41 @@
+FILE: R19E1 OF-19.E.S.2026VN.REV1.docx
+
+PARAGRAPHS
+Overflight permit for non-scheduled flight
+HA NOI, 08 JUL 2026
+PERMIT NUMBER OF-19/E/S/2026VN/REV1
+1. Operator:
+2. Billing address:
+3. Schedules: All times in UTC
+3.1. OLD:
+3.2. NEW:
+OTHER DETAILS REMAIN UNCHANGED
+4. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Overflight permit for non-scheduled flight
+HA NOI, 08 JUL 2026
+PERMIT NUMBER OF-19/E/S/2026VN/REV1
+1. Operator:
+Name: European Air Transport Leipzig GmbH
+IATA code: QY | ICAO code: BCS
+Postal Address: August-Euler Str-1, 04435 Schkeuditz, Germany
+Tel: +49 341 4499 1958 | Email: eatlej.atsandcharter@dhl.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: European Air Transport Leipzig GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +49 341 4499 1958 | Email: eatlej.invoice@dhl.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+3.1. OLD:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BCS679 | 11JUL26 | 24OCT26 | 1234567 | VHHH | 2050 | OMDW | 0505+1
+
+TABLE 4
+CONTEXT: 3.2. NEW:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BCS679 | 08JUL26 | 24OCT26 | 1234567 | VHHH | 2050 | OMDW | 0505+1

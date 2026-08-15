@@ -1,0 +1,56 @@
+FILE: 97A RVS1   R97A1.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: KAL
+Refer to the issued permit: OF-97/A/S/2026VN
+1. Carrier/Operator
+2. Original schedule(s) and Revised routes
+2.1 Original schedule(s): UTC Time
+Original Airways:
+2.2 New schedule(s) : remain
+New(ADD) Airways
+4. Note: AVOID TYPHOON; Other details unchanged.
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: KAL
+Refer to the issued permit: OF-97/A/S/2026VN
+1. Carrier/Operator
+Name: KOREAN AIR CO.LTD
+IATA code: KE | ICAO code: KAL
+Postal Address: C.P.O.BOX 864, SEOUL, REPUBLIC OF KOREA
+Tel: +82-2-2656-6016 | Email: FLTCNTL2@KOREANAIR.COM
+
+TABLE 2
+CONTEXT: 2. Original schedule(s) and Revised routes
+2.1 Original schedule(s): UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KAL651 | 02JUL26 | 02JUL26 | ----4--- | RKSI | 0905 | VTBS | 1445
+KAL659 | 02JUL26 | 02JUL26 | ----4--- | RKSI | 1045 | VTBS | 1635
+KAL655 | 02JUL26 | 02JUL26 | ----4--- | RKSI | 1215 | VTBS | 1805
+KAL658 | 02JUL26 | 02JUL26 | ----4--- | VTBS | 1440 | RKSI | 2005
+KAL678 | 02JUL26 | 02JUL26 | ----4--- | VTSP | 1625 | RKSI | 2235
+KAL652 | 02JUL26 | 02JUL26 | ----4--- | VTBS | 1630 | RKSI | 2155
+KAL656 | 02JUL26 | 02JUL26 | ----4--- | VTBS | 1935 | RKSI | 0115
+KAL657 | 03JUL26 | 03JUL26 | ----5-- | RKSI | 0045 | VTBS | 0635
+KAL660 | 03JUL26 | 03JUL26 | ----5-- | VTBS | 0250 | RKSI | 0820
+
+TABLE 3
+CONTEXT: Original Airways:
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI/VTBS | A1 | BUNTA | PAPRA
+ | N892 L628 G747 | MONBO | ANINA
+VTBS,VTSP/RKSI | A1 | PAPRA | BUNTA
+ | G474/L628 | ANINA | ARESI
+
+TABLE 4
+CONTEXT: 2.2 New schedule(s) : remain
+New(ADD) Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI/VTBS | A1 | BUNTA | PAPRA
+ | N892 L628 G747 | MONBO | ANINA
+ | R474 | TEBAK | LAVOS
+VTBS,VTSP/RKSI | A1 | PAPRA | BUNTA
+ | G474/L628 | ANINA | ARESI
+ | R474 | LAVOS | TEBAK

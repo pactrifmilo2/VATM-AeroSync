@@ -1,0 +1,83 @@
+FILE: LD 07AS.docx
+
+PARAGRAPHS
+Hanoi, 12th March 2026
+PERMIT NUMBER: LD-07/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 12th March 2026
+PERMIT NUMBER: LD-07/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+Name: Cebu Air In.
+IATA code: 5J | ICAO code: CEB
+Postal Address: Cebu Pacific Air building, Domestic Road, Pasay City, Philippines
+Tel: +63 2 802 700 Local 6141Fax: +63 2 802 7140 | Email: cebnetworkplanning@cebupacificair.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effectiveto | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+5J744 | 28Mar26 | 23Oct26 | 1234567 | MNL | 2105 | HAN | 0040+ | 321/320
+5J745 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0125 | MNL | 0515 | 
+5J746 | 29Mar26 | 24Oct26 | 1234567 | MNL | 1425 | HAN | 1805 | 321/320
+5J747 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1850 | MNL | 2225 | 
+5J5872 | 02May26 | 24Oct26 | _2_4_6_ | CRK | 1520 | HAN | 1910 | 321/320
+5J5873 | 02May26 | 24Oct26 | _2_4_6_ | HAN | 2010 | CRK | 2335 | 
+ |  |  |  |  |  |  |  | 
+5J751 | 29Mar26 | 24Oct26 | 1234567 | MNL | 1410 | SGN | 1705 | 321/320
+5J752 | 29Mar26 | 24Oct26 | 1234567 | SGN | 1750 | MNL | 2040 | 
+5J753 | 29Mar26 | 23Oct26 | 1_3_5__ | MNL | 1110 | SGN | 1405 | 321/320
+5J754 | 29Mar26 | 23Oct26 | 1_3_5__ | SGN | 1450 | MNL | 1745 | 
+ |  |  |  |  |  |  |  | 
+5J5756 | 29Mar26 | 24Oct26 | 1234567 | MNL | 1150 | DAD | 1430 | 321/320
+5J5757 | 29Mar26 | 24Oct26 | 1234567 | DAD | 1530 | MNL | 1810 | 
+5J5758 | 30Mar26 | 23Oct26 | 1_3_5__ | MNL | 2140 | DAD | 0030+ | 321/320
+5J5759 | 31Mar26 | 24Oct26 | _2_4_6_ | DAD | 0130 | MNL | 0420 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+321 | As per FAOC of 5J | Philippines
+320 | As per FAOC of 5J | Philippines
+
+TABLE 5
+CONTEXT: 5. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MNL-HAN | L628 G474 Q2 | MESOX | 
+ | R474 | TEBAK | 
+HAN-MNL | Q1 G474 L628 |  | MESOX
+ | R474 |  | TEBAK
+CRK-HAN | L628 G474 Q2 | MESOX | 
+ | R474 | TEBAK | 
+HAN-CRK | Q1 G474 L628 |  | MESOX
+ | R474 |  | TEBAK
+MNL-SGN | M765-N500 | PANDI | 
+SGN-MNL | N500 |  | PANDI
+MNL-DAD | L628 W2 | MESOX | 
+ | L628 G474 W1 | MESOX | 
+DAD-MNL | W2 L628 |  | ARESI
+ | W1 G474 L628 |  | ARESI
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

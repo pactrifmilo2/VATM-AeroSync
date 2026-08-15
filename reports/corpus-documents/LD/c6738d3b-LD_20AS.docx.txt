@@ -1,0 +1,65 @@
+FILE: LD 20AS.docx
+
+PARAGRAPHS
+Hanoi, 12th March 2026
+PERMIT NUMBER: LD-20/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier/Operator:
+2. Schedules: All times in UTC
+3. Purpose of Flight(s): Passengers
+4. Aircraft
+5. Airways
+ALTERNATE ROUTE: OTHER PERMITTED AIR TRAFFIC SERVICE ROUTES PUBLISHED IN VIETNAM’S AIP
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 12th March 2026
+PERMIT NUMBER: LD-20/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier/Operator:
+Name: THAI AIRWAYS INTERNATIONAL PUBLIC COMPANY LIMITED
+IATA code: TG | ICAO code: THA
+Address: 89 VIBHAVADI-RANGSIT ROAD, BANGKOK 10900 THAILAND
+Tel: +66-2-5452738 | Email: chawarit.t@thaiairways.com; bkkdsb2office@thaiairways.com
+
+TABLE 3
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TG550 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0035 | SGN | 0205 | 772/788/ 789/333/ 320/32A
+TG551 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0305 | BKK | 0430 | 
+TG556 | 29Mar26 | 24Oct26 | 1234567 | BKK | 1035 | SGN | 1205 | 
+TG557 | 29Mar26 | 24Oct26 | 1234567 | SGN | 1310 | BKK | 1435 | 
+ |  |  |  |  |  |  |  | 
+TG560 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0045 | HAN | 0235 | 
+TG561 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0335 | BKK | 0525 | 
+TG564 | 29Mar26 | 24Oct26 | 1234567 | BKK | 1050 | HAN | 1240 | 
+TG565 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1345 | BKK | 1535 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight(s): Passengers
+4. Aircraft
+Aircraft Type | Registration Marks | Nationality
+77278978833332032A | As per FAOC of TG | Thailand
+
+TABLE 5
+CONTEXT: 5. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BKK-SGN | R468A1-Q1M765-L637 | SAPENPAPRAIGARI | 
+SGN-BKK | R468W12-Q2-A1L637-M765 |  | SAPENPAPRAIGARI
+BKK-HAN | R474B465B214-W21R335-W2-W1N639-W1 | LAVOSLAPONLADONIDOTAVILAO | 
+HAN-BKK | R474B465W21-B214W1-W2-R335W1-N639 |  | LAVOSLAPONLADONIDOTAVILAO

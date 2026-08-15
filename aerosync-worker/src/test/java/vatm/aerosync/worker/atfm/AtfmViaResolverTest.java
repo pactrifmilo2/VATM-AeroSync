@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class AtfmViaResolverTest {
 
@@ -90,12 +89,9 @@ class AtfmViaResolverTest {
     }
 
     @Test
-    void resolve_rejectsMissingRouteWhenTheDocumentAlsoHasNone() {
-        assertThatThrownBy(() -> resolver.resolve(
-                connection, "VVNB", "WSSS", "HVN", null))
-                .isInstanceOf(AtfmReferenceDataException.class)
-                .hasMessageContaining("M_AIRPORT_ROUTE.FROM_AIRP=VVNB")
-                .hasMessageContaining("TO_AIRP=WSSS");
+    void resolve_returnsEmptyRouteWhenTheDocumentAndDatabaseHaveNone() throws Exception {
+        assertThat(resolver.resolve(connection, "VVNB", "WSSS", "HVN", null))
+                .isEmpty();
     }
 
     @Test

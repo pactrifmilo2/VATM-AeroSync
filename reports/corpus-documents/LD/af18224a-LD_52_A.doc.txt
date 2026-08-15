@@ -1,0 +1,68 @@
+FILE: LD 52 A.doc
+
+PARAGRAPHS
+Ha Noi, 19th March 2026
+№: LD - 52/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: AIR CHINA IATA code:CA ICAO code: CCA Postal Address: OPERATION CONTRAL CENTER OF AIR CHINA, CAPITAL AIRPORT BEIJING 100621 CHINA Tel: +8610 64537266 Email: overfly@AIRCHINA.COM 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CA407 29MAR26 24OCT26 1234567 CKG 10:40 SGN 14:20 737/738/7M8 CA408 29MAR26 24OCT26 1234567 SGN 16:20 CKG 19:50 CA903 29MAR26 31MAY26 1234567 PEK 12:20 SGN 17:40 CA904 29MAR26 31MAY26 1234567 SGN 22:10 PEK 03:10+ CA903 02JUN26 23OCT26 -2-45-7 PEK 12:20 SGN 17:40 CA904 02JUN26 23OCT26 -2-45-7 SGN 22:10 PEK 03:10+ 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark 
+ Nationality 737 As per FAOC of CA China
+ 738 7M8 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CKG-SGN R474 Q1 TEBAK SGN-CKG Q2 N639 Q1 R474 TEBAK PEK-SGN R474 Q1 TEBAK SGN-PEK Q2 N639 Q1 R474 TEBAK PEK-SGN L642 W15 EXOTO SGN-PEK N500 M771 DAMEL Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 19th March 2026
+№: LD - 52/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: AIR CHINA
+IATA code:CA | ICAO code: CCA
+Postal Address: OPERATION CONTRAL CENTER OF AIR CHINA, CAPITAL AIRPORT BEIJING 100621 CHINA
+Tel: +8610 64537266 | Email: overfly@AIRCHINA.COM
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CA407 | 29MAR26 | 24OCT26 | 1234567 | CKG | 10:40 | SGN | 14:20 | 737/738/7M8
+CA408 | 29MAR26 | 24OCT26 | 1234567 | SGN | 16:20 | CKG | 19:50 | 
+CA903 | 29MAR26 | 31MAY26 | 1234567 | PEK | 12:20 | SGN | 17:40 | 
+CA904 | 29MAR26 | 31MAY26 | 1234567 | SGN | 22:10 | PEK | 03:10+ | 
+CA903 | 02JUN26 | 23OCT26 | -2-45-7 | PEK | 12:20 | SGN | 17:40 | 
+CA904 | 02JUN26 | 23OCT26 | -2-45-7 | SGN | 22:10 | PEK | 03:10+ | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+737 | As per FAOC of CA | China
+738 |  | 
+7M8 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CKG-SGN | R474 Q1 | TEBAK | 
+SGN-CKG | Q2 N639 Q1 R474 |  | TEBAK
+PEK-SGN | R474 Q1 | TEBAK | 
+SGN-PEK | Q2 N639 Q1 R474 |  | TEBAK
+PEK-SGN | L642 W15 | EXOTO | 
+SGN-PEK | N500 M771 |  | DAMEL

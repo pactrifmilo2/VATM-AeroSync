@@ -1,0 +1,54 @@
+FILE: OF 107BS GEC correct.docx
+
+PARAGRAPHS
+HA NOI, 29 MAY 2026
+NUMBER OF-107/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): ALL CARGO
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 29 MAY 2026
+NUMBER OF-107/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Lufthansa Cargo
+IATA code: LH | ICAO code: GEC
+Postal Address: Frankfurt Flughafen, Tor 21, Geb 322, D- 60546 Frankfurt / Germany
+Tel:+49 69696 55715 | Email: fratrafficrights.foc@dlh.de
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Lufthansa Cargo AG
+Postal Address: FRA F/FA-BA Frankfurt Flughafen, Tor21, Geb 322 D- 60546 Frankfurt
+Tel: +49 69 696 55715 | Email: atc@icat.dlh.de
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+GEC8473 | 14JUN26 | 30AUG26 | 0000007 | VHHH | 06:05 | EDDF | 19:30 | B77L
+GEC8470 | 02JUN26 | 24OCT26 | 1234567 | VOBL | 00:50 | VHHH | 06:30 | B77L
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): ALL CARGO
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B77L | DALFA | Germany
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VOBL-VHHH | A1 | BUTRA | PAPRA
+VHHH-EDDF | A1 | PAPRA | BUTRA
+ |  |  | 
+ |  |  | 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

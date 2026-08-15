@@ -1,0 +1,59 @@
+FILE: OF 113_C_S_2026VN_CUA.doc
+
+PARAGRAPHS
+Ha Noi, 26th May 2026
+№: OF-113/C/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: CHINA UNITED AIRLINES IATA code: KN ICAO code: CUA Postal Address: CHINA EASTERN AIRLINES CORE OFFICE AREA, TIANXING 3RD STREET, DAXING DISTRICT, BEIJING, CHINA Tel: +86 10 6797 8899
+ Email: LILINHUA@CEAIR.COM 
+2. Billing address:
+Name: ACCOUNTING CENTRE OF CHINA AVIATION Postal Address: CHINA EASTERN AIRLINES CORE OFFICE AREA, TIANXING 3RD STREET, DAXING DISTRICT, BEIJING, CHINA Tel: +86 138 111 73377
+ Email: HYPERLINK "mailto:CUZHANGY@CEAIR.COM" CUZHANGY@CEAIR.COM , HOUMENG7@CEAIR.COM 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CUA825 11MAR26 27MAR26 --3-5-- ZSWZ 0130 VLVT 0515 CUA826 11MAR26 27MAR26 --3-5-- VLVT 0615 ZSWZ 0930 
+4. Purpose of Flight(s): COMERCIAL PASSENGER
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B737/B738 B7370/B7371/B7372/B1148/B206U/B207Z OR SUBS CHINA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSWZ-VLVT A206 R335 ASSAD IDOTA VLVT-ZSWZ R335 A206 IDOTA ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26th May 2026
+№: OF-113/C/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: CHINA UNITED AIRLINES
+IATA code: KN | ICAO code: CUA
+Postal Address: CHINA EASTERN AIRLINES CORE OFFICE AREA, TIANXING 3RD STREET, DAXING DISTRICT, BEIJING, CHINA
+Tel: +86 10 6797 8899 | Email: LILINHUA@CEAIR.COM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: ACCOUNTING CENTRE OF CHINA AVIATION
+Postal Address: CHINA EASTERN AIRLINES CORE OFFICE AREA, TIANXING 3RD STREET, DAXING DISTRICT, BEIJING, CHINA
+Tel: +86 138 111 73377 | Email: HYPERLINK "mailto:CUZHANGY@CEAIR.COM" CUZHANGY@CEAIR.COM , HOUMENG7@CEAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CUA825 | 11MAR26 | 27MAR26 | --3-5-- | ZSWZ | 0130 | VLVT | 0515
+CUA826 | 11MAR26 | 27MAR26 | --3-5-- | VLVT | 0615 | ZSWZ | 0930
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): COMERCIAL PASSENGER
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737/B738 | B7370/B7371/B7372/B1148/B206U/B207Z OR SUBS | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSWZ-VLVT | A206 R335 | ASSAD | IDOTA
+VLVT-ZSWZ | R335 A206 | IDOTA | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

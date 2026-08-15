@@ -1,0 +1,34 @@
+FILE: R93A1 OF 93ARVS1.docx
+
+PARAGRAPHS
+HANOI, 16MAY2026
+PERMIT NUMBER: OF-93/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+AIRCRAFT AOG AT KIX.
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 16MAY2026
+PERMIT NUMBER: OF-93/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Thai Vietjet Air
+IATA code: VZ | ICAO code: TVJ
+Postal Address: 999 Car Park Building Zone 3, Suvarnabhumi Airport 6th Floor, Moo 1, Nong Prue, Bangpli, Samutprakan 10540,THAILAND
+Tel: +66 21343543 | Email: vz.dutyomc@vietjetair.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+TVJ567 | 16MAY26 | 16MAY26 | -----6- | RCTP | 0715 | VTBS | 1110 | B38M | OF-93/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TVJ9567 | 17MAY26 | 17MAY26 | —---7 | RCTP | 0340 | VTBS | 0725 | B38M

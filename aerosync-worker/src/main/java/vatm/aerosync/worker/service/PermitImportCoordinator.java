@@ -76,7 +76,7 @@ public class PermitImportCoordinator {
         }
 
         try {
-            if (permit.revision()) {
+            if (permit.importRevision()) {
                 return importRevision(attempt, permit);
             }
 

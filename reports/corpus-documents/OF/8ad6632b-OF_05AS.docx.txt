@@ -1,0 +1,68 @@
+FILE: OF 05AS.docx
+
+PARAGRAPHS
+HANOI, 12FEB2026
+Permit No.: OF-05/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE PAX
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 12FEB2026
+Permit No.: OF-05/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier/Operator
+Name: PHILIPPINE AIRLINES
+IATA code: PAL | ICAO code: PR
+Postal Address: PAL GATE1 FOD BLDG., ANDREWS AVE., NICHOLS, PASAY CITY 1300, PHILIPPINES
+Tel: +632 8558000 | Email : LEIZEL_GUINTO@PAL.COM.PH
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: 1FLT AVIATION DMCC
+Postal Address: P.O. BOX 337730, Dubai, United Arab Emirates
+Tel: +971 4 452-9285 | Email: accounts@1flt.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+PAL684 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 1100 | OTHH | 2040
+PAL685 | 29MAR26 | 24OCT26 | 1234567 | OTHH | 2230 | RPLL | 0835+
+PAL658 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0450 | OMBD | 1400
+PAL659 | 29MAR26 | 24OCT26 | 1234567 | OMDB | 1545 | RPLL | 0110+
+PAL654 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0405 | OERK | 1410
+PAL655 | 29MAR26 | 24OCT26 | 1234567 | OERK | 1555 | RPLL | 0235
+PAL730 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0140 | VTBS | 0710
+PAL731 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0625 | RPLL | 1000
+PAL732 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 1200 | VTBS | 1540
+PAL733 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1640 | RPLL | 2005
+PAL736 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0745 | VTBS | 1130
+PAL737 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1230 | RPLL | 1605
+ |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  |  |  |  |  | 
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE PAX
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A350-1041 | RP-C3150 OR SUB | PHILIPPINES
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RPLL- OTHH/ OMBD/ OERK | L628 G474 | MESOX | ANINA
+OTHH/ OMBD/ OERK-RPLL | G474 L628 | ANINA | MESOX
+RPLL-VTBS | L628 G474 | MESOX | ANINA
+VTBS-RPLL | G474 L628 | ANINA | MESOX
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

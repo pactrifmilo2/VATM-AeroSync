@@ -1,0 +1,35 @@
+FILE: R01A5 REV5.docx
+
+PARAGRAPHS
+Hanoi, 10/07/2026
+Permit No.: LD-01/A/S/2026VN/REV5
+1. Carrier/Operator
+2. Revised Schedules: All times in UTC
+2.1 Approved Schedules:
+2.2 New Schedules:
+3. Type of services/ Purpose of Flight(s): IT551/552 PAX FLIGHT
+OTHER DETAILS REMAIN UNCHANGED
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 10/07/2026
+Permit No.: LD-01/A/S/2026VN/REV5
+1. Carrier/Operator
+Name: Tigerair Taiwan Co., Ltd.
+IATA code: IT | ICAO code: N/A
+Postal Address: 5f., no3., alley123, lane405, dunhua n. rd., Taipei city 10548, Taiwan
+Tel: +886 3 279 1811 | Fax: +886 3 393 1633; Email: occ@tigerairtw.com
+
+TABLE 2
+CONTEXT: 2. Revised Schedules: All times in UTC
+2.1 Approved Schedules:
+Flight Number | Effective from | Effective To. | Day(s) of services. | Departure Airport | ETD. | Arrival Airport | ETA. | Aircraft Type.
+IT551 | 10-JUL-26 | 10-JUL-26 | ----5-- | TPE | 09:15 | DAD | 11:55 | A320
+IT552 | 11-JUL-26 | 11-JUL-26 | -----6- | DAD | 12:00 | TPE | 14:40 | A320
+
+TABLE 3
+CONTEXT: 2.2 New Schedules:
+Flight Number | Effective from | Effective To. | Day(s) of services. | Departure Airport | ETD. | Arrival Airport | ETA. | Aircraft Type.
+IT551 | 10-JUL-26 | 10-JUL-26 | ----5-- | TPE | 02:15 | DAD | 04:55 | A320
+IT552 | 12-JUL-26 | 12-JUL-26 | ……7 | DAD | 00:00 | TPE | 02:40 | A320

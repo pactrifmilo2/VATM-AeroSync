@@ -1,0 +1,43 @@
+FILE: R56A6 56A REV6.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 20/04/2026
+Phép bay số: LD-56/A/S/2026VN/REV6
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc (Giờ UTC) trong phép bay số LD-56/A/S/2026VN
+2.2. Lịch bay mới (Giờ UTC)
+3. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 20/04/2026
+Phép bay số: LD-56/A/S/2026VN/REV6
+1. Người vận chuyển
+Tên: BAMBOO AIRWAYS
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc (Giờ UTC) trong phép bay số LD-56/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh | Loại tàu bay
+QH1215 | 22Apr26 | 29Apr26 | 1234567 | HAN | 0920 | UIH | 1100 | 320/32N/321
+QH1215 | 01May26 | 05May26 | 12--5-7 | HAN | 0920 | UIH | 1100 | 320/32N/321
+QH1214 | 22Apr26 | 29Apr26 | 1234567 | UIH | 1130 | HAN | 1310 | 320/32N/321
+QH1214 | 01May26 | 05May26 | 12--5-7 | UIH | 1130 | HAN | 1310 | 320/32N/321
+QH148 | 29Apr26 | 03May26 | --3-5-7 | DAD | 1500 | HAN | 1625 | 320/32N/321
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh | Loại tàu bay
+QH1215 | 22Apr26 | 29Apr26 | 1234567 | HAN | 0440 | UIH | 0620 | 320/32N/321
+QH1215 | 01May26 | 05May26 | 12--5-7 | HAN | 0440 | UIH | 0620 | 320/32N/321
+QH1214 | 22Apr26 | 29Apr26 | 1234567 | UIH | 0650 | HAN | 0830 | 320/32N/321
+QH1214 | 01May26 | 05May26 | 12--5-7 | UIH | 0650 | HAN | 0830 | 320/32N/321
+QH148 | 29Apr26 | 29Apr26 | --3---- | DAD | 1125 | HAN | 1300 | 320/32N/321
+QH148 | 01May26 | 03May26 | ----5-7 | DAD | 1115 | HAN | 1240 | 320/32N/321

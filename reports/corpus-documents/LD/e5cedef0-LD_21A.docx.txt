@@ -1,0 +1,74 @@
+FILE: LD 21A.docx
+
+PARAGRAPHS
+Hanoi, 12th March 2026
+PERMIT NUMBER: LD-21/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 12th March 2026
+PERMIT NUMBER: LD-21/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+Name: Thai Vietjet Air
+IATA code: VZ | ICAO code: TVJ
+Postal Address: ROOM 062, 1ST FLOOR, CONCOURSE A BUILDING, SUVARNABHUMI AIRPORT, NO.999, MOO1, NONGPRUE, BANG PHLI, SAMUTPRAKARN, 10540, THAILAND
+Tel: (+66) 21115999 EXT 3060 | Email: VZ.SKED@VIETJETAIR.COM
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+VZ960 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0345 | DAD | 0530 | 320/321/7M8
+VZ961 | 29Mar26 | 24Oct26 | 1234567 | DAD | 0615 | BKK | 0800 | 320/321/7M8
+VZ962 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0845 | DAD | 1030 | 320/321/7M8
+VZ963 | 29Mar26 | 24Oct26 | 1234567 | DAD | 1110 | BKK | 1255 | 320/321/7M8
+VZ964 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0110 | DAD | 0255 | 320/321/7M8
+VZ965 | 29Mar26 | 24Oct26 | 1234567 | DAD | 0340 | BKK | 0525 | 320/321/7M8
+ |  |  |  |  |  |  |  | 
+VZ980 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0220 | PQC | 0340 | 320/321/7M8
+VZ981 | 29Mar26 | 24Oct26 | 1234567 | PQC | 0445 | BKK | 0605 | 320/321/7M8
+VZ982 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0735 | PQC | 0855 | 320/321/7M8
+VZ983 | 29Mar26 | 24Oct26 | 1234567 | PQC | 0945 | BKK | 1105 | 320/321/7M8
+ |  |  |  |  |  |  |  | 
+VZ968 | 29Mar26 | 24Oct26 | 1234567 | BKK | 0440 | CXR | 0630 | 320/321/7M8
+VZ969 | 29Mar26 | 24Oct26 | 1234567 | CXR | 0720 | BKK | 0920 | 320/321/7M8
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of VZ | Thailand
+321 | As per FAOC of VZ | Thailand
+7M8 | As per FAOC of VZ | Thailand
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BKK-DAD | A1 | PAPRA | 
+DAD-BKK | A1 |  | PAPRA
+BKK-PQC | R334 | NUMDI | 
+PQC-BKK | R334 |  | NUMDI
+BKK-CXR | R468 | SAPEN | 
+CXR-BKK | R468 |  | SAPEN

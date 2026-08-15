@@ -1,0 +1,40 @@
+FILE: R71A1 LD 71A RVS1.docx
+
+PARAGRAPHS
+Hanoi, 28/05/2026 Permit No.: LD - 71/A/S/2026VN/REV1
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 28/05/2026 Permit No.: LD - 71/A/S/2026VN/REV1
+1. Carrier
+Name: ETIHAD AIRWAYS
+IATA code: EY | ICAO code: ETD
+Postal Address: P.O.Box 35566, Abu Dhabi, United Arab Emirates
+Tel: 00971 2 511 2857 | Email: fabdelmutalib@etihad.ae
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+EY432 | 15JUN26 | 29JUN26 | 1234567 | AUH | 1705 | HAN | 2340 | 32Q35178978177W | LD - 71/A/S/2026VN
+EY433 | 16JUN26 | 30JUN26 | 1234567 | HAN | 0125 | AUH | 0815 |  | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EY432 | 15JUN26 | 29JUN26 | 1234567 | AUH | 1705 | HAN | 2340 | 32Q35178978177W
+EY431 | 16JUN26 | 30JUN26 | 1234567 | HAN | 1340 | AUH | 2030 | 
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+AUH-HAN | B214 W21 | LADON | 
+HAN-AUH | W21 B214 |  | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

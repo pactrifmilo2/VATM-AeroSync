@@ -1,0 +1,56 @@
+FILE: LD 19CS.doc
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+№: LD - 19/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Ruili Airlines Co., Ltd. IATA code: DR ICAO code: RLH Postal Address:Ruili Airlines Co.,Ltd. Base,East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China. HYPERLINK "Tel:+8618725009534" Tel:+8618725009534 Email: HYPERLINK "mailto:mail_dr_routeteam@rlair.net" mail_dr_routeteam@rlair.net / HYPERLINK "mailto:saqib@rlair.net" saqib@rlair.net 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type DR5043 31Mar26 24Oct26 -2-4-6- KMG 1200 HPH 1330 737/738 DR5044 31Mar26 24Oct26 -2-4-6- HPH 1420 KMG 1605 737/738 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality B737-700 As per FAOC of DR China
+ B737-800 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR KMG-HPH R471-W22-W3 KATBO HPH-KMG W3-W22-R471 KATBO Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+№: LD - 19/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Ruili Airlines Co., Ltd.
+IATA code: DR | ICAO code: RLH
+Postal Address:Ruili Airlines Co.,Ltd. Base,East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China.
+HYPERLINK "Tel:+8618725009534" Tel:+8618725009534 | Email: HYPERLINK "mailto:mail_dr_routeteam@rlair.net" mail_dr_routeteam@rlair.net / HYPERLINK "mailto:saqib@rlair.net" saqib@rlair.net
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+DR5043 | 31Mar26 | 24Oct26 | -2-4-6- | KMG | 1200 | HPH | 1330 | 737/738
+DR5044 | 31Mar26 | 24Oct26 | -2-4-6- | HPH | 1420 | KMG | 1605 | 737/738
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+B737-700 | As per FAOC of DR | China
+B737-800 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KMG-HPH | R471-W22-W3 | KATBO | 
+HPH-KMG | W3-W22-R471 |  | KATBO

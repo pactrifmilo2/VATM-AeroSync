@@ -51,7 +51,7 @@ class Spa017SeasonalLandingRevisionProfileTest {
         assertThat(permit.flightType()).isEqualTo("SC");
         assertThat(permit.iataAirportsAllowed()).isTrue();
         assertThat(permit.emptyAirwaysAllowed()).isFalse();
-        assertThat(permit.billingAddress()).contains("Sun Grand City");
+        assertThat(permit.billingAddress()).contains("Hàng không Mặt trời Phú Quốc");
 
         assertThat(permit.flights()).hasSize(2);
         assertThat(permit.flights().get(0)).satisfies(flight -> {

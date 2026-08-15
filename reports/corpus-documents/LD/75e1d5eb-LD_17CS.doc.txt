@@ -1,0 +1,58 @@
+FILE: LD 17CS.doc
+
+PARAGRAPHS
+Ha Noi, 11th March 2026
+№: LD - 17/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Xiamen Airlines Co., Ltd IATA code: MF ICAO code: CXA Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R. China Tel: +86-592-5739208 Email: mfsaigon@xiamenair.com 
+2. Schedules: All times in UTC
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type MF8993 29Mar26 20Oct26 -2----7 XMN 1435 SGN 1750 738 MF8994 29Mar26 20Oct26 -2----7 SGN 1900 XMN 2215 738 
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 738 As per FAOC of MF China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR XMN-SGN L642 W15 EXOTO SGN-XMN W12 G221 BUNTA XMN-SGN A1 Q1 BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Notes:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 11th March 2026
+№: LD - 17/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Xiamen Airlines Co., Ltd
+IATA code: MF | ICAO code: CXA
+Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R. China
+Tel: +86-592-5739208 | Email: mfsaigon@xiamenair.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MF8993 | 29Mar26 | 20Oct26 | -2----7 | XMN | 1435 | SGN | 1750 | 738
+MF8994 | 29Mar26 | 20Oct26 | -2----7 | SGN | 1900 | XMN | 2215 | 738
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | As per FAOC of MF | China
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+XMN-SGN | L642 W15 | EXOTO | 
+SGN-XMN | W12 G221 |  | BUNTA
+XMN-SGN | A1 Q1 | BUNTA | 

@@ -17,6 +17,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 class JdbcAtfmScheduleGatewayTest {
 
     @Test
+    void findUsedRevisionNumbers_returnsOnlyRevisionsOfSamePermitFamily() throws Exception {
+        AtfmDatabaseProperties properties = new AtfmDatabaseProperties();
+        properties.setUrl("jdbc:h2:mem:atfm-revisions-" + System.nanoTime()
+                + ";MODE=Oracle;DB_CLOSE_DELAY=-1");
+        properties.setUsername("sa");
+        properties.setPassword("");
+        try (Connection connection = DriverManager.getConnection(properties.getUrl(), "sa", "")) {
+            connection.createStatement().execute(
+                    "CREATE TABLE T_PERMMASTER_SC (PERMNBR_ID VARCHAR2(100))");
+            connection.createStatement().execute("INSERT INTO T_PERMMASTER_SC VALUES ('O/F 00078BR1/S/CHK/2026')");
+            connection.createStatement().execute("INSERT INTO T_PERMMASTER_SC VALUES ('O/F 00078BR2/S/CHK/2026')");
+            connection.createStatement().execute("INSERT INTO T_PERMMASTER_SC VALUES ('O/F 00078BR3/S/CHK/2026')");
+            connection.createStatement().execute("INSERT INTO T_PERMMASTER_SC VALUES ('O/F 00078R5B/S/CHK/2026')");
+            connection.createStatement().execute("INSERT INTO T_PERMMASTER_SC VALUES ('O/F 00079BR4/S/CHK/2026')");
+        }
+        SchedulePermit permit = new SchedulePermit(
+                "OF-78/B/S/2026VN", "O/F 00078B/S/CHK/2026", "78B",
+                "CHK", "O/F", "B", "S", LocalDate.of(2026, 8, 3),
+                "FDX", null, 72, null, "SC", "BẢNG PHÉP BAY MỚI", List.of());
+
+        assertThat(new JdbcAtfmScheduleGateway(properties, new AtfmAirportCodeResolver())
+                .findUsedRevisionNumbers(permit)).containsExactlyInAnyOrder(1, 2, 3, 5);
+    }
+
+    @Test
     void truncateUtf8_limitsOracleVarcharValuesByBytesWithoutSplittingCharacters() {
         String value = "A".repeat(3997) + "Việt Nam";
 
@@ -42,11 +67,12 @@ class JdbcAtfmScheduleGatewayTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
+            connection.createStatement().execute(
+                    "CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
             connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
-            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('RMY')");
+            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('RMY', 'RAYA AIRWAYS')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('CAR')");
             connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
             connection.createStatement().execute("""
@@ -57,7 +83,7 @@ class JdbcAtfmScheduleGatewayTest {
                         SEASON VARCHAR2(20), PERMDATE DATE, OPER_ID VARCHAR2(20),
                         REFERENCE VARCHAR2(4000), VALIDHOURS NUMBER, LASTMODIFY TIMESTAMP,
                         LASTUSER VARCHAR2(50), STATUS VARCHAR2(20), PERMCONTENT VARCHAR2(4000),
-                        BILLINGADDRESS VARCHAR2(4000), FLIGHTTYPE VARCHAR2(20))
+                        PERMCONTENT1 CLOB, BILLINGADDRESS VARCHAR2(4000), FLIGHTTYPE VARCHAR2(20))
                     """);
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMDETAIL_SC (
@@ -93,12 +119,19 @@ class JdbcAtfmScheduleGatewayTest {
 
         JdbcAtfmScheduleGateway gateway = new JdbcAtfmScheduleGateway(
                 properties, new AtfmAirportCodeResolver());
-        ScheduleFlight existing = flight("RMY685", "1140");
-        ScheduleFlight added = flight("RMY686", "1540");
+        ScheduleFlight existing = new ScheduleFlight(
+                "CAR", 1935L, BigDecimal.ZERO, "RMY685", "9M-ABC", "1000000",
+                "WMKK", "VHHH", "1140", "1540", "M765 M771",
+                LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 27),
+                "Nội dung được bổ sung sau");
+        ScheduleFlight added = flight("RMY686", "1540")
+                .withResolvedRoute("WMKK", "VHHH", "");
+        String fullContent = "Header\nFlight\tFrom\tTo\nRMY686\tWMKK\tVHHH\n"
+                + "X".repeat(5000);
         SchedulePermit permit = new SchedulePermit(
-                "OF-5199/7/2026VN", "O/F 05199/S/CHK/2026", "5199",
+                "OF-5199/A/S/2026VN", "O/F 05199/S/CHK/2026", "5199",
                 "CHK", "O/F", "A", "S", LocalDate.of(2026, 7, 17),
-                "RMY", "G17.44", 72, "Cyberjaya", "SC", "raw",
+                "RMY", "G17.44", 72, "Cyberjaya", "SC", fullContent,
                 List.of(existing, added));
 
         AtfmWriteResult result = gateway.update(permit);
@@ -108,10 +141,23 @@ class JdbcAtfmScheduleGatewayTest {
         assertThat(result.detailCount()).isOne();
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword());
+             var master = connection.createStatement().executeQuery("""
+                     SELECT BILLINGADDRESS, PERMCONTENT, PERMCONTENT1
+                       FROM T_PERMMASTER_SC WHERE ID = 4167
+                     """)) {
+            master.next();
+            assertThat(master.getString("BILLINGADDRESS")).isEqualTo("Cyberjaya");
+            assertThat(master.getString("PERMCONTENT").getBytes(StandardCharsets.UTF_8).length)
+                    .isLessThanOrEqualTo(4000);
+            assertThat(master.getString("PERMCONTENT1")).isEqualTo(fullContent);
+        }
+        try (Connection connection = DriverManager.getConnection(
+                properties.getUrl(), properties.getUsername(), properties.getPassword());
              var rows = connection.createStatement().executeQuery("""
                      SELECT COUNT(*) AS TOTAL,
                             SUM(CASE WHEN FLIGHTNBR = 'RMY685' THEN 1 ELSE 0 END) AS OLD_ROWS,
-                            SUM(CASE WHEN FLIGHTNBR = 'RMY686' THEN 1 ELSE 0 END) AS NEW_ROWS
+                            SUM(CASE WHEN FLIGHTNBR = 'RMY686' THEN 1 ELSE 0 END) AS NEW_ROWS,
+                            MAX(CASE WHEN FLIGHTNBR = 'RMY686' THEN VIA END) AS NEW_VIA
                        FROM T_PERMDETAIL_SC
                       WHERE PERM_ID = 9001
                      """)) {
@@ -119,6 +165,7 @@ class JdbcAtfmScheduleGatewayTest {
             assertThat(rows.getInt("TOTAL")).isEqualTo(2);
             assertThat(rows.getInt("OLD_ROWS")).isOne();
             assertThat(rows.getInt("NEW_ROWS")).isOne();
+            assertThat(rows.getString("NEW_VIA")).isNullOrEmpty();
         }
     }
 
@@ -133,11 +180,12 @@ class JdbcAtfmScheduleGatewayTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
+            connection.createStatement().execute(
+                    "CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
             connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
-            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN')");
+            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN', 'VIETNAM AIRLINES')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('PAX')");
             connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
             connection.createStatement().execute("""
@@ -148,7 +196,7 @@ class JdbcAtfmScheduleGatewayTest {
                         SEASON VARCHAR2(20), PERMDATE DATE, OPER_ID VARCHAR2(20),
                         REFERENCE VARCHAR2(4000), VALIDHOURS NUMBER, LASTMODIFY TIMESTAMP,
                         LASTUSER VARCHAR2(50), STATUS VARCHAR2(20), PERMCONTENT VARCHAR2(4000),
-                        BILLINGADDRESS VARCHAR2(4000), FLIGHTTYPE VARCHAR2(20))
+                        PERMCONTENT1 CLOB, BILLINGADDRESS VARCHAR2(4000), FLIGHTTYPE VARCHAR2(20))
                     """);
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMDETAIL_SC (
@@ -234,11 +282,12 @@ class JdbcAtfmScheduleGatewayTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
+            connection.createStatement().execute(
+                    "CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
             connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
-            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN')");
+            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN', 'VIETNAM AIRLINES')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('PAX')");
             connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
             connection.createStatement().execute("""
@@ -268,7 +317,7 @@ class JdbcAtfmScheduleGatewayTest {
                 "VVNB", "VVTS", "0100", "0300", "W1",
                 LocalDate.of(2026, 8, 5), LocalDate.of(2026, 8, 5), "PAX");
         SchedulePermit permit = new SchedulePermit(
-                "LD-2821/8/2026VN", "LD 02821/S/CHK/2026", "2821",
+                "LD-2821/8/2026VN", "LD 02821/CHK/2026", "2821",
                 "CHK", "LD", "A", "S", LocalDate.of(2026, 8, 5),
                 "HVN", null, 24, null, "NO", "raw", List.of(singleDay));
 
@@ -286,6 +335,87 @@ class JdbcAtfmScheduleGatewayTest {
             rows.next();
             assertThat(rows.getString("FLIGHTNBR")).isEqualTo("HVN123");
             assertThat(rows.getString("DAYSFLIGHT")).isEqualTo("05-AUG-2026");
+        }
+    }
+
+    @Test
+    void nonScheduledRevision_appendsReferenceAndContentBelowOriginalMaster() throws Exception {
+        AtfmDatabaseProperties properties = new AtfmDatabaseProperties();
+        properties.setUrl("jdbc:h2:mem:atfm-no-revision-" + System.nanoTime()
+                + ";MODE=Oracle;DB_CLOSE_DELAY=-1");
+        properties.setUsername("sa");
+        properties.setPassword("");
+        try (Connection connection = DriverManager.getConnection(properties.getUrl(), "sa", "")) {
+            connection.createStatement().execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
+            connection.createStatement().execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
+            connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
+            connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
+            connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
+            connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN')");
+            connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('PAX')");
+            connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
+            connection.createStatement().execute("""
+                    CREATE TABLE T_PERMMASTER_NO (
+                        ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL, PERMNBR_ID VARCHAR2(100),
+                        REFERENCE VARCHAR2(4000), PERMCONTENT VARCHAR2(4000), PERMCONTENT1 CLOB,
+                        LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50))
+                    """);
+            connection.createStatement().execute("""
+                    CREATE TABLE T_PERMDETAIL_NO (
+                        ID NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+                        PERM_ID NUMBER NOT NULL, CRAFT_ID NUMBER, MTOW NUMBER,
+                        DAYSFLIGHT VARCHAR2(200), FLIGHTNBR VARCHAR2(30),
+                        REGISTRATION VARCHAR2(100), FROM_AIRP VARCHAR2(10), TO_AIRP VARCHAR2(10),
+                        ETD VARCHAR2(10), ETA VARCHAR2(10), VIA VARCHAR2(4000), STATUS VARCHAR2(20),
+                        LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50), PURPOSE_ID VARCHAR2(20),
+                        MAX_DATE DATE, REMARK VARCHAR2(4000))
+                    """);
+            connection.createStatement().execute("""
+                    INSERT INTO T_PERMMASTER_NO
+                        (ID, PERM_ID, PERMNBR_ID, REFERENCE, PERMCONTENT, PERMCONTENT1)
+                    VALUES (5001, 7001, 'LD 02576A/CHK/2026',
+                            '01/08/2026 GOC', 'NOI DUNG GOC', 'NOI DUNG GOC')
+                    """);
+            connection.createStatement().execute("""
+                    INSERT INTO T_PERMDETAIL_NO
+                        (PERM_ID, CRAFT_ID, MTOW, DAYSFLIGHT, FLIGHTNBR, FROM_AIRP,
+                         TO_AIRP, ETD, PURPOSE_ID, MAX_DATE, REMARK)
+                    VALUES (7001, 1935, 0, '12-AUG-2026', 'HVN123', 'VVNB',
+                            'VVTS', '0100', 'PAX', DATE '2026-08-12', 'PAX 320')
+                    """);
+        }
+
+        ScheduleFlight revised = new ScheduleFlight(
+                "PAX", 1935L, BigDecimal.ZERO, "HVN123", null, "0030000",
+                "VVNB", "VVTS", "0100", null, null,
+                LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 12), "PAX 321", "321");
+        String revisedContent = "RVS1\nREVISED FLIGHT SCHEDULE\nHVN123\tVVNB\tVVTS\t321";
+        SchedulePermit permit = new SchedulePermit(
+                "LD-2576/8/2026VN /RVS1", "LD 02576A/CHK/2026", "2576A",
+                "CHK", "LD", "A", null, LocalDate.of(2026, 8, 13),
+                "HVN", null, 24, "VIETNAM AIRLINES", "NO",
+                false, false, false, revisedContent, List.of(revised), List.of());
+
+        AtfmWriteResult result = new JdbcAtfmScheduleGateway(
+                properties, new AtfmAirportCodeResolver()).update(permit);
+
+        assertThat(result.detailCount()).isOne();
+        try (Connection connection = DriverManager.getConnection(properties.getUrl(), "sa", "");
+             var master = connection.createStatement().executeQuery("""
+                     SELECT REFERENCE, PERMCONTENT, PERMCONTENT1
+                       FROM T_PERMMASTER_NO WHERE ID = 5001
+                     """)) {
+            master.next();
+            assertThat(master.getString("REFERENCE"))
+                    .isEqualTo("01/08/2026 GOC" + System.lineSeparator() + "13/08/2026 RVS(1)");
+            assertThat(master.getString("PERMCONTENT")).contains("NOI DUNG GOC", revisedContent);
+            assertThat(master.getString("PERMCONTENT1")).contains("NOI DUNG GOC", revisedContent);
+        }
+        try (Connection connection = DriverManager.getConnection(properties.getUrl(), "sa", "");
+             var details = connection.createStatement().executeQuery(
+                     "SELECT COUNT(*) TOTAL FROM T_PERMDETAIL_NO WHERE PERM_ID = 7001")) {
+            details.next();
+            assertThat(details.getInt("TOTAL")).isEqualTo(2);
         }
     }
 

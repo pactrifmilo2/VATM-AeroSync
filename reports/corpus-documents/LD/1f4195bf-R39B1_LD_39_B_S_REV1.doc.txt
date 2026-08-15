@@ -1,0 +1,41 @@
+FILE: R39B1  LD 39 B S REV1.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 01/06/2026
+Permit No.: LD-39/B/S/2026VN /REV1
+ 
+1. Carrier
+Name: AIR MACAU COMPANY LIMITED IATA code: NX ICAO code: AMU Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU Tel: 8396 6888 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DEVUNG1N5K9KF1%26View%3DCompose%26New%3DYes%26To%3Dnetwork_planning%2540airmacau.com.mo','Compose',800,600,'yes');" network_planning@airmacau.com.mo 
+2. Schedules (UTC Time)
+2.1. Old:
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type NX978 19JUN26 24OCT26 1234567 MFM 1140 DAD 1330 321/320 NX977 19JUN26 24OCT26 1234567 DAD 1430 MFM 1615 321/320 
+2.2. New:
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type NX9974 19JUN26 24OCT26 1234567 MFM 1140 DAD 1330 321/320 NX9973 19JUN26 24OCT26 1234567 DAD 1430 MFM 1615 321/320 OTHER DETAILS REMAIN UNCHANGED.
+ 
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 01/06/2026
+Permit No.: LD-39/B/S/2026VN /REV1
+ 
+1. Carrier
+Name: AIR MACAU COMPANY LIMITED
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU
+Tel: 8396 6888 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DEVUNG1N5K9KF1%26View%3DCompose%26New%3DYes%26To%3Dnetwork_planning%2540airmacau.com.mo','Compose',800,600,'yes');" network_planning@airmacau.com.mo
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1. Old:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NX978 | 19JUN26 | 24OCT26 | 1234567 | MFM | 1140 | DAD | 1330 | 321/320
+NX977 | 19JUN26 | 24OCT26 | 1234567 | DAD | 1430 | MFM | 1615 | 321/320
+
+TABLE 3
+CONTEXT: 2.2. New:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NX9974 | 19JUN26 | 24OCT26 | 1234567 | MFM | 1140 | DAD | 1330 | 321/320
+NX9973 | 19JUN26 | 24OCT26 | 1234567 | DAD | 1430 | MFM | 1615 | 321/320

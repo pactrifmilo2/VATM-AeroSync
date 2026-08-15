@@ -1,0 +1,121 @@
+FILE: OF 60AS.docx
+
+PARAGRAPHS
+HANOI, 09th MARCH 2026
+Permit No.: OF-60/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier:
+1.1 Name: Thai AirAsia X Co., Ltd.
+- ICAO code: TAX
+- Address: Thai AirAsia X Co., Ltd.
+No.222 Don Mueang International Airport,Passenger Terminal 2,
+4th Floor,Room No.4005, Vibhavadi-Rangsit Road, Sanambin,
+Don Mueang, Bangkok 10210, Thailand
+TEL:+666-4408-2447
+Email: worawits@airasia.com or tax_accounting@airasia.com
+2. Billing address:
+Name: Thai AirAsia X Co., Ltd.
+Address: Thai AirAsia X Co., Ltd.
+No.222 Don Mueang International Airport,Passenger Terminal 2,
+4th Floor,Room No.4005, Vibhavadi-Rangsit Road, Sanambin,
+Don Mueang, Bangkok 10210, Thailand
+TEL:+666-4408-2447
+Email: worawits@airasia.com or tax_accounting@airasia.com
+3. Schedules: All times in UTC
+Purpose of Flight(s): Passenger
+4. Aircraft:
+5. Airways:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 09th MARCH 2026
+Permit No.: OF-60/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier:
+1.1 Name: Thai AirAsia X Co., Ltd.
+- ICAO code: TAX
+- Address: Thai AirAsia X Co., Ltd.
+No.222 Don Mueang International Airport,Passenger Terminal 2,
+4th Floor,Room No.4005, Vibhavadi-Rangsit Road, Sanambin,
+Don Mueang, Bangkok 10210, Thailand
+TEL:+666-4408-2447
+Email: worawits@airasia.com or tax_accounting@airasia.com
+2. Billing address:
+Name: Thai AirAsia X Co., Ltd.
+Address: Thai AirAsia X Co., Ltd.
+No.222 Don Mueang International Airport,Passenger Terminal 2,
+4th Floor,Room No.4005, Vibhavadi-Rangsit Road, Sanambin,
+Don Mueang, Bangkok 10210, Thailand
+TEL:+666-4408-2447
+Email: worawits@airasia.com or tax_accounting@airasia.com
+3. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TAX620 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1750 | RJCC | 0040+1 | A330
+TAX621 | 29MAR26 | 24OCT26 | 1234567 | RJCC | 0155 | VTBD | 1000 | A330
+TAX600 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1625 | RJAA | 2300 | A330
+TAX601 | 29MAR26 | 24OCT26 | 1234567 | RJAA | 0015 | VTBD | 0705 | A330
+TAX602 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1740 | RJAA | 2345 | A330
+TAX603 | 29MAR26 | 24OCT26 | 1234567 | RJAA | 0110 | VTBD | 0835 | A330
+TAX606 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0350 | RJAA | 1000 | A330
+TAX607 | 29MAR26 | 24OCT26 | 1234567 | RJAA | 1115 | VTBD | 1840 | A330
+TAX610 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0245 | RJBB | 0830 | A330
+TAX611 | 29MAR26 | 24OCT26 | 1234567 | RJBB | 1000 | VTBD | 1700 | A330
+TAX612 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1655 | RJBB | 2140 | A330
+TAX613 | 29MAR26 | 24OCT26 | 1234567 | RJBB | 0015 | VTBD | 0600 | A330
+TAX614 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0015 | RJBB | 0645 | A330
+TAX615 | 29MAR26 | 24OCT26 | 1234567 | RJBB | 0715 | VTBD | 1345 | A330
+TAX638 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1645 | RJGG | 2230 | A330
+TAX639 | 29MAR26 | 24OCT26 | 1234567 | RJGG | 0030 | VTBD | 0715 | A330
+TAX630 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1815 | RJSS | 0050+1 | A330
+TAX631 | 29MAR26 | 24OCT26 | 1234567 | RJSS | 0220 | VTBD | 0905 | A330
+TAX700 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1830 | RKSI | 0005+1 | A330
+TAX701 | 29MAR26 | 24OCT26 | 1234567 | RKSI | 0120 | VTBD | 0730 | A330
+TAX760 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 1705 | ZSPD | 2130 | A330
+TAX761 | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 2250 | VTBD | 0330+1 | A330
+TAX20 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0005 | ZGGG | 0205 | A330
+TAX21 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 0300 | VTBD | 0505 | A330
+TAX30 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0015 | ZJHK | 0215 | A330
+TAX31 | 29MAR26 | 24OCT26 | 1234567 | ZJHK | 0300 | VTBD | 0505 | A330
+TAX40 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0005 | RPLL | 0305 | A330
+TAX41 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 0400 | VTBD | 0700 | A330
+TAX50 | 29MAR26 | 24OCT26 | 1234567 | VTBD | 0005 | RPLC | 0350 | A330
+TAX51 | 29MAR26 | 24OCT26 | 1234567 | RPLC | 0450 | VTBD | 0750 | A330
+
+TABLE 3
+CONTEXT: Purpose of Flight(s): Passenger
+4. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A330 | HS-XTA or sub | Thai
+
+TABLE 4
+CONTEXT: 5. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBD-RJCC | A1 | PAPRA | BUNTA
+RJCC-VTBD | A1 | BUNTA | PAPRA
+VTBD-RJBB | A1 | PAPRA | BUNTA
+RJBB-VTBD | A1 | BUNTA | PAPRA
+VTBD-RKSI | A1 | PAPRA | BUNTA
+RKSI-VTBD | A1 | BUNTA | PAPRA
+VTBD-RJAA | A1 | PAPRA | BUNTA
+RJAA-VTBD | A1 | BUNTA | PAPRA
+VTBD-ZSPD | R474 | LAVOS | TEBAK
+ZSPD-VTBD | A202 | ASSAD | VILAO
+VTBD-RJGG | A1 | PAPRA | BUNTA
+RJGG-VTBD | A1 | BUNTA | PAPRA
+VTBD-RJSS | A1 | PAPRA | BUNTA
+RJSS-VTBD | A1 | BUNTA | PAPRA
+VTBD-ZGGG | R474 | LAVOS | TEBAK
+ZGGG-VTBD | R474 | TEBAK | LAVOS
+VTBD-RPLL | G474 | ANINA | MESOX
+RPLL-VTBD | G474 | MESOX | ANINA
+VTBD-RPLC | G474 | ANINA | MESOX
+RPLC-VTBD | G474 | MESOX | ANINA
+VTBD-ZJHK | A202 | VILAO | ASSAD |  | 
+ZJHK-VTBD | A202 | ASSAD | VILAO
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

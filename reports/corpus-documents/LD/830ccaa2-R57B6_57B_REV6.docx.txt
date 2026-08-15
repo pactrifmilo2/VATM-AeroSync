@@ -1,0 +1,57 @@
+FILE: R57B6  57B  REV6.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+Hanoi, 09/05/2026
+Permit No.: LD-57/B/S/2026VN/REV6
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+Note: Other details unchanged.
+3. Aircraft
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+Hanoi, 09/05/2026
+Permit No.: LD-57/B/S/2026VN/REV6
+1. Carrier/Operator
+Name: Cargolux Airlines International S.A.
+IATA code: CV | ICAO code: CLX
+Postal Address: Luxembourg Airport L-2990 Luxembourg
+Tel: +35242113494 | Email: opsplanning@cargolux.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CV7855 | 22MAY2026 | 22MAY2026 | 0000500 | LUX | 2100 | ASB | 0230 | 74Y
+CV7855 | 23MAY2026 | 23MAY2026 | 0000060 | ASB | 0905 | SGN | 1625 | 74Y
+CV7855 | 23MAY2026 | 23MAY2026 | 0000060 | SGN | 1825 | HKG | 2120 | 74Y
+CV708 | 23MAY2026 | 23MAY2026 | 0000060 | HKG | 2320 | GYD | 0835+1 | 74Y
+CV708 | 24MAY2026 | 24MAY2026 | 0000007 | GYD | 0935 | BUD | 1335 | 74Y
+CV708 | 24MAY2026 | 24MAY2026 | 0000007 | BUD | 1505 | LUX | 1705 | 74Y
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CV61 | 22MAY2026 | 22MAY2026 | 0000500 | LUX | 1930 | MXP | 2050 | 74Y
+CV61 | 22MAY2026 | 22MAY2026 | 0000500 | MXP | 2320 | ASB | 0420+1 | 74Y
+CV7005 | 23MAY2026 | 23MAY2026 | 0000060 | ASB | 0520 | HAK | 1220 | 74Y
+CV7006 | 23MAY2026 | 23MAY2026 | 0000060 | HAK | 1450 | SGN | 1630 | 74Y
+CV7855 | 23MAY2026 | 23MAY2026 | 0000060 | SGN | 1825 | HKG | 2120 | 74Y
+CV708 | 23MAY2026 | 23MAY2026 | 0000060 | HKG | 2320 | GYD | 0835+1 | 74Y
+CV708 | 24MAY2026 | 24MAY2026 | 0000007 | GYD | 0935 | BUD | 1335 | 74Y
+CV708 | 24MAY2026 | 24MAY2026 | 0000007 | BUD | 1505 | LUX | 1705 | 74Y
+
+TABLE 4
+CONTEXT: Note: Other details unchanged.
+3. Aircraft
+Aircraft Type | Registration Mark | Nationality
+B747-400F(74Y) | According to the FAOC of CLX | Luxembourg
+B747-400ERF (74Y) | According to the FAOC of CLX | 

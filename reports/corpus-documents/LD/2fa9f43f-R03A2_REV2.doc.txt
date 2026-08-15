@@ -1,0 +1,59 @@
+FILE: R03A2  REV2.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 03/04/2026
+Permit No.: LD- 03/A/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES IATA code: ET IATA code: ET Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport Tel: +84967743067 Tel: +84967743067 
+2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit ET3742 04Apr26 04Apr26 -----6- MST 0600 HAN 1700 77F/76F LD- 03/A/S/2026VN/REV1 ET3619 04Apr26 04Apr26 -----6- HAN 1900 BKK 2100 77F/76F ET3619 04Apr26 04Apr26 -----6- BKK 2230 ADD 0720+ 77F/76F 2.2 Revise Schedule
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type ET3732 04Apr26 04Apr26 -----6- ADD 0430 MCT 0830 77F/76F ET3732 04Apr26 04Apr26 -----6- MCT 1000 HAN 1700 77F/76F ET3619 04Apr26 04Apr26 -----6- HAN 1900 BKK 2100 77F/76F ET3619 04Apr26 04Apr26 -----6- BKK 2230 ADD 0720+ 77F/76F Note: Technical stop in MCT for re-fuel only, ET will not uplift any cargo from MCT to HAN.
+3. Airways
+3.1 Origin Airways
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR MST-HAN B214 BQ LADON - B465 MC LAPON - 3.2 Revised Airways
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR MCT-HAN B214 LADON ------ Other details unchanged
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 03/04/2026
+Permit No.: LD- 03/A/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES
+IATA code: ET | IATA code: ET
+Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport
+Tel: +84967743067 | Tel: +84967743067
+
+TABLE 2
+CONTEXT: 2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+ET3742 | 04Apr26 | 04Apr26 | -----6- | MST | 0600 | HAN | 1700 | 77F/76F | LD- 03/A/S/2026VN/REV1
+ET3619 | 04Apr26 | 04Apr26 | -----6- | HAN | 1900 | BKK | 2100 | 77F/76F | 
+ET3619 | 04Apr26 | 04Apr26 | -----6- | BKK | 2230 | ADD | 0720+ | 77F/76F | 
+
+TABLE 3
+CONTEXT: 2.2 Revise Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ET3732 | 04Apr26 | 04Apr26 | -----6- | ADD | 0430 | MCT | 0830 | 77F/76F
+ET3732 | 04Apr26 | 04Apr26 | -----6- | MCT | 1000 | HAN | 1700 | 77F/76F
+ET3619 | 04Apr26 | 04Apr26 | -----6- | HAN | 1900 | BKK | 2100 | 77F/76F
+ET3619 | 04Apr26 | 04Apr26 | -----6- | BKK | 2230 | ADD | 0720+ | 77F/76F
+
+TABLE 4
+CONTEXT: Note: Technical stop in MCT for re-fuel only, ET will not uplift any cargo from MCT to HAN.
+3. Airways
+3.1 Origin Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MST-HAN | B214 BQ | LADON | -
+ | B465 MC | LAPON | -
+
+TABLE 5
+CONTEXT: 3.2 Revised Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MCT-HAN | B214 | LADON | ------

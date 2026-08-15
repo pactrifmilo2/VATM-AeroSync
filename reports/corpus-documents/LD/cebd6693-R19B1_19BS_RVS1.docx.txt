@@ -1,0 +1,46 @@
+FILE: R19B1  19BS RVS1.docx
+
+PARAGRAPHS
+Hanoi, 24/4/2026
+REVISE #1 LD-19/B/S/2026VN
+1. Carrier
+2. Revised Schedules (UTC Time)
+2.1. Old Schedules (UTC Time)
+2. New: Schedules (UTC Time)
+3. NOTE: OTHER DETAILS REMAIN UNCHANGED
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 24/4/2026
+REVISE #1 LD-19/B/S/2026VN
+1. Carrier
+Name: Ruili Airlines Co., Ltd.
+IATA code: DR | ICAO code: RLH
+Postal Address:Ruili Airlines Co.,Ltd. Base,East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China.
+Tel:+8618725009534 | Email: mail_dr_routeteam@rlair.net / saqib@rlair.net
+
+TABLE 2
+CONTEXT: 2. Revised Schedules (UTC Time)
+2.1. Old Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Approved permit
+DR5045 | 24APR26 | 24APR26 | ----5-- | KMG | 1535 | PQC | 1845 | LD-19/B/S/2026VN
+DR5046 | 24APR26 | 24APR26 | ----5-- | PQC | 1945 | KMG | 2305 | LD-19/B/S/2026VN
+ |  |  |  |  |  |  |  | 
+DR5045 | 29APR26 | 29APR26 | --3---- | KMG | 1535 | PQC | 1845 | LD-19/B/S/2026VN
+DR5046 | 29APR26 | 29APR26 | --3---- | PQC | 1945 | KMG | 2305 | LD-19/B/S/2026VN
+ |  |  |  |  |  |  |  | 
+DR5045 | 04MAY26 | 04MAY26 | 1------ | KMG | 1535 | PQC | 1845 | LD-19/B/S/2026VN
+DR5046 | 04MAY26 | 04MAY26 | 1------ | PQC | 1945 | KMG | 2305 | LD-19/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2. New: Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+DR5045 | 24APR26 | 24APR26 | ----5-- | KMG | 1410 | PQC | 1720 | 737/738
+DR5046 | 24APR26 | 24APR26 | ----5-- | PQC | 1810 | KMG | 2125 | 737/738
+ |  |  |  |  |  |  |  | 
+DR5045 | 29APR26 | 29APR26 | --3---- | KMG | 1315 | PQC | 1615 | 737/738
+DR5046 | 29APR26 | 29APR26 | --3---- | PQC | 1715 | KMG | 2030 | 737/738
+ |  |  |  |  |  |  |  | 
+DR5045 | 04MAY26 | 04MAY26 | 1------ | KMG | 1315 | PQC | 1555 | 737/738
+DR5046 | 04MAY26 | 04MAY26 | 1------ | PQC | 1655 | KMG | 2030 | 737/738

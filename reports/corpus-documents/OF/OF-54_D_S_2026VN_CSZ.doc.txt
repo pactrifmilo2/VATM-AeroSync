@@ -1,0 +1,74 @@
+FILE: OF-54_D_S_2026VN_CSZ.doc
+
+PARAGRAPHS
+Ha Noi, 07th July 2026
+№: OF - 54/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Shenzhen Airlines IATA code: ZH ICAO code: CSZ Postal Address: 2033 Hangzhan Si Lu, Shenzhen Bao’an International Airport, Bao’an District, Shenzhen, Guangdong, China. HYPERLINK "Tel:+86" Tel:+86 755 23162760 Email: A25770@shenzhenair.com 
+2. Billing address
+Name: Shenzhen Airlines Postal Address: 2033 Hangzhan Si Lu, Shenzhen Bao’an International Airport, Bao’an District, Shenzhen, Guangdong, China. Tel: +86 755 23165262 Email: X00229@shenzhenair.com 
+3. Schedules: UTC Time 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CSZ333 13 JUN 26 24 OCT 26 1234567 ZGSZ 1400 WMKK 1805 CSZ334 13 JUN 26 24 OCT 26 1234567 WMKK 1905 ZGSZ 2320 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (9) Registration Mark (10)
+ Seats for passenger flight(11) Payload for All-cargo flight (Tons) (12) MTOW (Ton) Nationality(13) B737-800 As per AOC of ZH
+ 167 74.615
+79.015 China
+ A320 157 73.5
+77 China
+ A320neo 174 79 China
+ A321neo 184 93.5 China A330-300 309 242 China B737-8 162 82.190
+81.374
+ 
+China 
+6. Air traffic service routes:
+Sector(15) Airways(16) Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGSZ-WMKK L642 CN M765 EXOTO IGARI ZGSZ-WMKK A202 XONUS Q1 AC L644 CN M765 ASSAD IGARI WMKK-ZGSZ M771 DUDIS DONDA WMKK-ZGSZ L644 LOSON M768 TSH Q2 NIVEN A202 DUDIS ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 07th July 2026
+№: OF - 54/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Shenzhen Airlines
+IATA code: ZH | ICAO code: CSZ
+Postal Address: 2033 Hangzhan Si Lu, Shenzhen Bao’an International Airport, Bao’an District, Shenzhen, Guangdong, China.
+HYPERLINK "Tel:+86" Tel:+86 755 23162760 | Email: A25770@shenzhenair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Shenzhen Airlines
+Postal Address: 2033 Hangzhan Si Lu, Shenzhen Bao’an International Airport, Bao’an District, Shenzhen, Guangdong, China.
+Tel: +86 755 23165262 | Email: X00229@shenzhenair.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CSZ333 | 13 JUN 26 | 24 OCT 26 | 1234567 | ZGSZ | 1400 | WMKK | 1805
+CSZ334 | 13 JUN 26 | 24 OCT 26 | 1234567 | WMKK | 1905 | ZGSZ | 2320
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (9) | Registration Mark (10) | Seats for passenger flight(11) | Payload for All-cargo flight (Tons) (12) | MTOW (Ton) | Nationality(13)
+B737-800 | As per AOC of ZH | 167 |  | 74.615 79.015 | China
+A320 |  | 157 |  | 73.5 77 | China
+A320neo |  | 174 |  | 79 | China
+A321neo |  | 184 |  | 93.5 | China
+A330-300 |  | 309 |  | 242 | China
+B737-8 |  | 162 |  | 82.190 81.374 | China
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGSZ-WMKK | L642 CN M765 | EXOTO | IGARI
+ZGSZ-WMKK | A202 XONUS Q1 AC L644 CN M765 | ASSAD | IGARI
+WMKK-ZGSZ | M771 | DUDIS | DONDA
+WMKK-ZGSZ | L644 LOSON M768 TSH Q2 NIVEN A202 | DUDIS | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

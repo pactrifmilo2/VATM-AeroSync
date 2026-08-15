@@ -1,0 +1,55 @@
+FILE: OF 110AS.docx
+
+PARAGRAPHS
+HA NOI, 20 MAR 2026
+NUMBER OF-110/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 20 MAR 2026
+NUMBER OF-110/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: TIGERAIR TAIWAN CO., LTD
+IATA code: IT | ICAO code: TTW
+Postal Address: No.3, Alley. 123, Lane. 405, Tunghwa n. rd., Taipei city 10548, Taiwan
+Tel: +866-3-2731811 | Email: OCC@tigerairtw.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: TIGERAIR TAIWAN CO., LTD
+Postal Address: No.3, Alley. 123, Lane. 405, Tunghwa n. rd., Taipei city 10548, Taiwan
+Tel: +886-3-2731851 | Email: mini.chen@tigerairtw.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+TTW503 | 29MAR26 | 24OCT26 | -2----- | RCTP | 0555 | VTSP | 1020
+TTW503 | 29MAR26 | 24OCT26 | -----6- | RCTP | 0815 | VTSP | 1250
+TTW504 | 29MAR26 | 24OCT26 | -2----- | VTSP | 1110 | RCTP | 1525
+TTW504 | 29MAR26 | 24OCT26 | -----6- | VTSP | 1340 | RCTP | 1755
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | As per AOC of TTW | Republic of China (R.O.C)
+A20N | As per AOC of TTW | Republic of China (R.O.C)
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-VTSP | A1 | BUNTA | PAPRA
+VTSP-RCTP | A1 | PAPRA | BUNTA
+Alternative airways: TTW503 RCTP-VTSPOR VIA VVHN/ASSAD-A202-VILAOOR VIA VVHM/MONBO-N892-MESOX-L628-PCA-G474-ANINAOR VIA VVHM/MONBO-N892-MESOX-L628-PCA-G474-PLK-R588-GONLYTTW504 VTSP-RCTPOR VIA VVHN/VILAO-A202-ASSADOR VIA VVHM/ANINA-G474-PCA-L628-FIROR VIA VVHM/GONLY-R588-PLK-G474-PCA-L628-FIRAlternative airways: Other permitted airways published in Viet Nam’s AIP

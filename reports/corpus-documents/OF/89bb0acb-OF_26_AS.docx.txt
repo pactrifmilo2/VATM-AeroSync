@@ -1,0 +1,56 @@
+FILE: OF 26 AS.docx
+
+PARAGRAPHS
+HA NOI, 26 FEB 2026
+NUMBER OF-26/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 26 FEB 2026
+NUMBER OF-26/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: CONDOR FLUGDIENST GMBH
+IATA code: DE | ICAO code: CFG
+Postal Address: Condor Flugdienst GmbH, An der Gehespitz 50, 63263 Neu Isenburg, GERMANY
+Tel: +49 (0) 6171 6988988 | Email: datenschutz@condor.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE.
+Tel: +971-4-299-6633 | Email: PAYABLE@UAS.AERO
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CFG2360 | 28MAR26 | 24OCT26 | 1234567 | VTBS | 0735 | ZJHK | 0935
+CFG2361 | 28MAR26 | 24OCT26 | 1234567 | ZJHK | 1135 | VTBS | 1335
+CFG2366 | 28MAR26 | 24OCT26 | 1234567 | VTBS | 0735 | ZJSY | 0935
+CFG2367 | 28MAR26 | 24OCT26 | 1234567 | ZJSY | 1135 | VTBS | 1335
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+AIRBUS A330-941 | As per AOC of CFG | Germany
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS - ZJHK | A1 | PAPRA | BUNTA
+ZJHK- VTBS | A1 | BUNTA | PAPRA
+VTBS-ZJSY | A1 | PAPRA | BUNTA
+ZJSY-VTBS | A1 | BUNTA | PAPRA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,52 @@
+FILE: OF 19B BCS.docx
+
+PARAGRAPHS
+HA NOI, 01 JUN 2026
+NUMBER OF-19/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: All times in UTC
+3. Purpose of Flight(s): GENERAL CARGO FLIGHT
+4. Airways:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 01 JUN 2026
+NUMBER OF-19/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: European Air Transport Leipzig GmbH
+IATA code: QY | ICAO code: BCS
+Postal Address: August-Euler Str-1, 04435 Schkeuditz, Germany
+Tel: +49 341 4499 1958 | Email: eatlej.atsandcharter@dhl.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: European Air Transport Leipzig GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +49 341 4499 1958 | Email: eatlej.invoice@dhl.com
+
+TABLE 4
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BCS694 | 22JUN26 | 23OCT26 | 1-3-5-- | VOBL | 1655 | VHHH | 2300
+BCS692 | 22JUN26 | 22OCT26 | -2-4--- | VOBL | 1655 | VHHH | 2300
+BCS698 | 27JUN26 | 24OCT26 | -----6- | LLBG | 0840 | VHHH | 1850
+
+TABLE 5
+CONTEXT: 3. Purpose of Flight(s): GENERAL CARGO FLIGHT
+4. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+LLBG/ VOBL-VHHH | A1 | PAPRA | BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A330 | D-ALMA OR SUB | GERMANY

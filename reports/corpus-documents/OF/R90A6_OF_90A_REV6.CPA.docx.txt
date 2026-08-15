@@ -1,0 +1,32 @@
+FILE: R90A6 OF 90A REV6.CPA.docx
+
+PARAGRAPHS
+HA NOI, 20 JUL 2026
+PERMIT NUMBER OF-90/A/S/2026VN/REV6
+Carrier/Operator
+2. Revised Item or Additional details : Flight delay and change callsign
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+OTHER MAIN DETAILS IS UNCHANGED.
+3. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 20 JUL 2026
+PERMIT NUMBER OF-90/A/S/2026VN/REV6
+Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 2
+CONTEXT: 2. Revised Item or Additional details : Flight delay and change callsign
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CPA634 | 19Jul2026 | 19Jul2026 | 7 | WMKP | 0500Z | VHHH | 0910Z | A333 | OF-90/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CPA634D | 20Jul2026 | 20Jul2026 | 1 | WMKP | 0300Z | VHHH | 0710Z | A333

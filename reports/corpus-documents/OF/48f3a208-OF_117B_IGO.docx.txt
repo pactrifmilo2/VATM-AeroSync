@@ -1,0 +1,56 @@
+FILE: OF 117B IGO.docx
+
+PARAGRAPHS
+HANOI, 12 JUNE 2026
+Permit No.: OF-117/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. Validity: -3/+72 HOURS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DEP DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 12 JUNE 2026
+Permit No.: OF-117/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: InterGlobe Aviation Limited (IndiGo)
+IATA code: 6E | ICAO code: IGO
+Postal Address: InterGlobe Aviation Limited (IndiGo) Emaar Capital Tower -II, Sector 26, Sikanderpur Ghosi, MG Road, Gurugram- 122002
+Tel: +91 0124 4352500 | Email: RNSP@GOINDIGO.IN
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: InterGlobe Aviation Limited (IndiGo)
+Postal Address: InterGlobe Aviation Limited (IndiGo) Emaar Capital Tower -II, Sector 26, Sikanderpur Ghosi, MG Road, Gurugram- 122002
+Tel: +91 0124 4352500 | Email: RNSP@GOINDIGO.IN
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+IGO1923 | 15-Jun-26 | 24-Oct-26 | 1234567 | VECC | 1610 | ZGGG | 1945
+IGO1924 | 15-Jun-26 | 24-Oct-26 | 1234567 | ZGGG | 2115 | VECC | 0200(+1)
+IGO1841 | 15-Jun-26 | 24-Oct-26 | 1234567 | VECC | 1605 | ZSPD | 2040
+IGO1842 | 15-Jun-26 | 24-Oct-26 | 1234567 | ZSPD | 2140 | VECC | 0340(+1)
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A20N/A21N | As per AOC of IGO | INDIAN
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VECC-ZGGG | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZGGG-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON
+VECC-ZSPD | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZSPD-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON

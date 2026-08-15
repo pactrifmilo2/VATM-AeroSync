@@ -1,0 +1,40 @@
+FILE: OF R111A1.docx
+
+PARAGRAPHS
+HANOI, 25-Jun-26
+THE PERMIT NUMBER OF-111/A/S/2026VN/REV1
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+Old schedule
+New schedule
+4. Note: Other details unchanged
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260623-170820)
+
+TABLE 1
+CONTEXT: HANOI, 25-Jun-26
+THE PERMIT NUMBER OF-111/A/S/2026VN/REV1
+1. Carrier/Operator:
+Name: RAYA AIRWAYS
+IATA Code: TH | ICAO Code: RMY
+Postal address: Left Wing, Ground Floor, Wisma Shell, 3450 Jalan Teknokrat 3, 63000 Cyberjaya, Selangor Darul Ehsan, Malaysia.
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: RAYA AIRWAYS
+Postal address: Left Wing, Ground Floor, Wisma Shell, 3450 Jalan Teknokrat 3, 63000 Cyberjaya, Selangor Darul Ehsan, Malaysia.
+Tel: + 60 3 82139000 | Email: mohamadfaisal@rayaairways.com; networkplanning@rayaairways.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Old schedule
+Flight number | Eff from | Eff to | Day(s) of services | Dep airport | ETD | Arr airport | ETA
+RMY737 | 30JUN26 | 24OCT26 | 246 | ZSNJ | 2000 | WMKK | 0130+
+
+TABLE 4
+CONTEXT: New schedule
+Flight number | Eff from | Eff to | Day(s) of services | Dep airport | ETD | Arr airport | ETA
+RMY739 | 30JUN26 | 24OCT26 | 246 | ZSNJ | 2040 | WMKK | 0210+

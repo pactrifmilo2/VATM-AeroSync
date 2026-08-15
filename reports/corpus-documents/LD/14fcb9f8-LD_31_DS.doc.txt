@@ -1,0 +1,66 @@
+FILE: LD 31 DS.doc
+
+PARAGRAPHS
+Ha Noi, 07th April 2026
+№: LD - 31/D/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier
+Name: CHINA SOUTHERN AIRLINES IATA code: CZ ICAO code: CSN Postal Address: Daeha Business Center - 360 Kim Ma st., Giang Vo Ward, Hanoi City, Vietnam Tel: 024.37716611; 0396856768 Email: HYPERLINK "mailto:phepbay@csair.com," phepbay@csair.com, haile@csair.com 
+Schedules: (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CZ8177 02MAY26 24OCT26 1234.67 CAN 09:30 HAN 11:40 319/320/321/
+73G/738 CZ8178 02MAY26 24OCT26 1234.67 HAN 12:45 CAN 14:45 
+Purpose of Flight: Passenger
+Aircraft
+Aircraft
+Type Registration Mark 
+ Nationality 321 According to CZ’s FAOC
+ 
+China
+ 320 319 73G 738 
+Airways 
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CAN-HAN R474 TEBAK HAN-CAN R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 07th April 2026
+№: LD - 31/D/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier
+Name: CHINA SOUTHERN AIRLINES
+IATA code: CZ | ICAO code: CSN
+Postal Address: Daeha Business Center - 360 Kim Ma st., Giang Vo Ward, Hanoi City, Vietnam
+Tel: 024.37716611; 0396856768 | Email: HYPERLINK "mailto:phepbay@csair.com," phepbay@csair.com, haile@csair.com
+
+TABLE 2
+CONTEXT: Schedules: (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CZ8177 | 02MAY26 | 24OCT26 | 1234.67 | CAN | 09:30 | HAN | 11:40 | 319/320/321/ 73G/738
+CZ8178 | 02MAY26 | 24OCT26 | 1234.67 | HAN | 12:45 | CAN | 14:45 | 
+
+TABLE 3
+CONTEXT: Purpose of Flight: Passenger
+Aircraft
+Aircraft Type | Registration Mark | Nationality
+321 | According to CZ’s FAOC | China
+320 |  | 
+319 |  | 
+73G |  | 
+738 |  | 
+
+TABLE 4
+CONTEXT: Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CAN-HAN | R474 | TEBAK | 
+HAN-CAN | R474 |  | TEBAK

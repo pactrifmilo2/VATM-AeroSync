@@ -1,0 +1,40 @@
+FILE: R76A1 OF 56ARVS1.docx
+
+PARAGRAPHS
+Hanoi, 20/3/2026 Revised #1: OF - 76/A/S/2026VN 1. Carrier
+2. Billing address
+3. Schedules: UTC Time 3.1 Old
+3.1 New
+4. OTHER DETAILS REMAIN UNCHANGED
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+C/c: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 20/3/2026 Revised #1: OF - 76/A/S/2026VN 1. Carrier
+Name: GUANGXI BEIBU GULF AIRLINES CO., LTD
+ICAO CODE: CBG | IATA CODE: GX
+Postal Address: No.332 Yong'an Road,Jiangnan District, Nanning, Guangxi, China
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: FINANCIAL DEPARTMENT, GUANGXI BEIBU GULF AIRLINES CO., LTD
+NO.332, YONGAN ROAD, JIANGNAN DISTRICT, NANNING, GUANGXI ZHUANG AUTONOMOUS REGION,530048, P. R. CHINA
+Tel: +86-771-809-1805 | Email: RONGJ.WU@HNAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time 3.1 Old
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original Permit
+CBG8907 | 29MAR26 | 24OCT26 | 1234567 | ZGNN | 1100 | VTBS | 1315 | OF - 76/A/S/2026VN
+CBG8908 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1415 | ZGNN | 1625 | 
+ |  |  |  |  |  |  |  | 
+CBG8927 | 29MAR26 | 24OCT26 | 1234567 | ZGNN | 0910 | VLVT | 1040 | 
+CBG8928 | 29MAR26 | 24OCT26 | 1234567 | VLVL | 1140 | ZGNN | 1255 | 
+
+TABLE 4
+CONTEXT: 3.1 New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CBG8907 | 29MAR26 | 24OCT26 | 1234567 | ZGNN | 1100 | VTBS | 1315
+CBG8908 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1415 | ZGNN | 1625
+ |  |  |  |  |  |  | 
+CBG8927 | 29MAR26 | 24OCT26 | 1234567 | ZGNN | 0910 | VLVT | 1040
+CBG8928 | 29MAR26 | 24OCT26 | 1234567 | VLVT | 1140 | ZGNN | 1255

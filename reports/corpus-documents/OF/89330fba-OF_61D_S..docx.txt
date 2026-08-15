@@ -1,0 +1,68 @@
+FILE: OF 61D S..docx
+
+PARAGRAPHS
+HANOI, 29th APRIL 2026
+Permit No.: OF-61/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 29th APRIL 2026
+Permit No.: OF-61/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: K-Mile Air
+IATA code: 8K | ICAO code: KMI
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: K-Mile Air Company Ltd.
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: Netchanok.T@k-mile.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KMI251 | 03MAY26 | 24Oct26 | 1234567 | VTCT | 1550 | ZGSZ | 1835
+KMI251 | 03MAY26 | 24Oct26 | 1234567 | ZGSZ | 1950 | WMKK | 2350
+KMI252 | 03MAY26 | 24Oct26 | 1234567 | WMKK | 1350 | ZGSZ | 1800
+KMI252 | 03MAY26 | 24Oct26 | 1234567 | ZGSZ | 1940 | VTCT | 2225
+KMI261 | 03MAY26 | 24Oct26 | 1234567 | VTCC | 1520 | ZGSZ | 1810
+KMI261 | 03MAY26 | 24Oct26 | 1234567 | ZGSZ | 1950 | WMKK | 2350
+KMI262 | 03MAY26 | 24Oct26 | 1234567 | WMKK | 1350 | ZGSZ | 1800
+KMI262 | 03MAY26 | 24Oct26 | 1234567 | ZGSZ | 1940 | VTCC | 2235
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+734 | As per FAOC of KMI | Thailand
+738 | As per FAOC of KMI | Thailand
+738 | As per FAOC of KMI | Thailand
+763 | As per FAOC of KMI | Thailand
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTCT-ZGSZ | B465, R474 | LAPON | TEBAK
+VTCC-ZGSZ |  |  | 
+ZGSZ-WMKK | A202, Q1, W1, L637, M765 | ASSAD | BITOD – (IGARI)
+WMKK-ZGSZ | M765, L644, M768, Q2, A202 | IGARI | ASSAD
+ |  | DUDIS | ASSAD
+ZGSZ-VTCT | R474, B465 | TEBAK | LAPON
+ZGSZ-VTCC |  |  | 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

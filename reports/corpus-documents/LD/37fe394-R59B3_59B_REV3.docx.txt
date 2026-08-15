@@ -1,0 +1,44 @@
+FILE: R59B3  59B REV3.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: KE
+Refer to the issued permit: LD - 59/B/S/2026VN(1)
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Notes: Others remain unchanged
+
+TABLE 1
+From: | Phạm Giang <phamgiang.caav@gmail.com>
+To: | HOANG DUC ANH TU[HANSF - HOANG DUC ANH TU] <dathoang@koreanair.com>, TT Thông Bao Hiep Dong Bay <hiepdongbay@vatm.vn>, To quan ly phep bay KHB <phepbaykhb@vatm.vn>, dang dinh dinh <dinhdangdinhdpkt@gmail.com>, gsvctm@naa.gov.vn, dieuphoikhaithacnoibai@gmail.com
+Date: | 26/04/2026 05:02 PM
+Subject: | LD - 59/B/S/2026VN(rvs)
+
+TABLE 2
+CONTEXT: To: Vatm
+Cc: KE
+Refer to the issued permit: LD - 59/B/S/2026VN(1)
+1. Carrier/Operator
+Name: Korean Air
+IATA code: KE | ICAO code: KAL
+Postal Address: 260 Haneul-Gil, Gangseo-Gu, Seoul, Korea
+Tel:0082226566044 | Email: selsps@koreanair.com
+
+TABLE 3
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number (1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9) | Original permit
+KE361 | 26-Apr-2026 | 26-Apr-2026 | ------7 | ICN | 1430 | HAN | 1855 | 74Y/77X | LD - 59/B/S/2026VN
+KE362 | 26-Apr-2026 | 26-Apr-2026 | ------7 | HAN | 2055 | ICN | 0120+1 |  | 
+
+TABLE 4
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number (1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9) | Original permit
+KE361 | 26-Apr-2026 | 26-Apr-2026 | ------7 | ICN | 1430 | HAN | 1855 | 74Y/77X | LD - 59/B/S/2026VN
+KE362D | 26-Apr-2026 | 26-Apr-2026 | ------7 | HAN | 2055 | ICN | 0120+1 |  | 

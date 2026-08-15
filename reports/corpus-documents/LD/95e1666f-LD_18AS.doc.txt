@@ -1,0 +1,60 @@
+FILE: LD 18AS.doc
+
+PARAGRAPHS
+Ha Noi, 06th March 2026
+№: LD - 18/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: CHONGQING AIRLINES IATA code: OQ ICAO code: CQN Postal Address: No.6 Lingang Road, Lianglu Street,Yubei District, Chongqing, P.R. China 401120 Tel: +86 23 88358252 Email: phepbay@csair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA(8) Aircraft Type(9) OQ2395 09APR26 24OCT26 _2_4_6_ CKG 1300 SGN 1640 320/321 OQ2396 09APR26 24OCT26 _2_4_6_ SGN 1740 CKG 2100 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 320 As per FAOC of OQ 
+China
+ 321 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CKG-SGN R474 Q3 Q1 W1 TEBAK SGN-CKG Q2 N639 Q3 R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 06th March 2026
+№: LD - 18/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: CHONGQING AIRLINES
+IATA code: OQ | ICAO code: CQN
+Postal Address: No.6 Lingang Road, Lianglu Street,Yubei District, Chongqing, P.R. China 401120
+Tel: +86 23 88358252 | Email: phepbay@csair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA(8) | Aircraft Type(9)
+OQ2395 | 09APR26 | 24OCT26 | _2_4_6_ | CKG | 1300 | SGN | 1640 | 320/321
+OQ2396 | 09APR26 | 24OCT26 | _2_4_6_ | SGN | 1740 | CKG | 2100 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of OQ | China
+321 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CKG-SGN | R474 Q3 Q1 W1 | TEBAK | 
+SGN-CKG | Q2 N639 Q3 R474 |  | TEBAK

@@ -1,0 +1,56 @@
+FILE: OF 27 D.S.docx
+
+PARAGRAPHS
+HA NOI, 21 APR 2026
+NUMBER OF-27/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules (UTC Time)
+4. Purpose of Flight: Passenger
+5. Aircraft
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 21 APR 2026
+NUMBER OF-27/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Greater Bay Airlines Company Limited
+IATA code: HB | ICAO code: HGB
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: airlineplanning@greaterbay-airlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Greater Bay Airlines Company Limited
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: occ@greaterbay-airlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HGB281 | 01MAY26 | 24OCT26 | 1234567 | VHHH | 0005 | VTBS | 0300 | B738/B79M
+HGB282 | 01MAY26 | 24OCT26 | 1234567 | VTBS | 0355 | VHHH | 0650 | B738/B79M
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight: Passenger
+5. Aircraft
+Aircraft Type | Registration Mark | Nationality
+B738 | B-KJA/B-KJB/B-KJC/BKJH | Hong Kong, China
+B738 | B-KJD | Hong Kong, Chin
+B738 | B-KJE/B-KJF | Hong Kong, Chin
+B39M | B-KWA | Hong Kong, China
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-VTBS | A1 | BUNTA | 
+ | A202 | ASSAD | 
+VTBS-VHHH | A1 |  | PAPRA
+ | A202 |  | VILAO

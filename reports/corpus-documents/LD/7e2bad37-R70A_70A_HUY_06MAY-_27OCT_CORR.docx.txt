@@ -1,0 +1,40 @@
+FILE: R70A 70A HUY 06MAY- 27OCT CORR.docx
+
+PARAGRAPHS
+HANOI, 29Apr2026
+Refer to the issued permit: LD-70/A/S/2026VN
+THE CAAV CONFIRMS CANCEL AS FLWS:
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. CANCEL schedule(s) (UTC Time)
+BRGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 29Apr2026
+Refer to the issued permit: LD-70/A/S/2026VN
+THE CAAV CONFIRMS CANCEL AS FLWS:
+1. Carrier/Operator
+Name: Uzbekistan Airways JSC
+IATA code: HY | ICAO code: UZB
+Postal Address: 41, Amir Temur av, Tashkent, Uzbekistan
+Tel: +998781404623 | Email: Info@uzairways.com, schedule@uzairways.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+HY561 | 06MAY26 | 21OCT26 | --3---- | TAS | 1835 | CXR | 0225+ | 32Q | LD-70/A/S/2026VN
+HY562 | 07MAY26 | 22OCT26 | ---4--- | CXR | 0355 | PQC | 1125 | 32Q | LD-70/A/S/2026VN
+HY561 | 26MAY26 | 26OCT26 | -2----- | TAS | 1835 | CXR | 0225+ | 32Q | LD-70/A/S/2026VN
+HY562 | 27MAY26 | 27OCT26 | --3---- | CXR | 0355 | PQC | 1125 | 32Q | LD-70/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. CANCEL schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HY561 | 06MAY26 | 21OCT26 | --3---- | TAS | 1835 | CXR | 0225+ | 32Q
+HY562 | 07MAY26 | 22OCT26 | ---4--- | CXR | 0355 | PQC | 1125 | 32Q
+HY561 | 26MAY26 | 26OCT26 | -2----- | TAS | 1835 | CXR | 0225+ | 32Q
+HY562 | 27MAY26 | 27OCT26 | --3---- | CXR | 0355 | PQC | 1125 | 32Q

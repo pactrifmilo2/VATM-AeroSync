@@ -13,6 +13,7 @@ app:
     incoming: ${java.io.tmpdir}/aerosync-test-incoming
     processed: ${java.io.tmpdir}/aerosync-test-processed
     error: ${java.io.tmpdir}/aerosync-test-error
+    error-format: ${java.io.tmpdir}/aerosync-test-error-format
     quarantine: ${java.io.tmpdir}/aerosync-test-quarantine
   ingest:
     max-files-per-cycle: 100

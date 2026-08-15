@@ -1,0 +1,70 @@
+FILE: LD 39BS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 17/03/2026
+Permit No.: LD-39/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AIR MACAU COMPANY LIMITED IATA code: NX ICAO code: AMU Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU Tel: 8396 6888 Email: HYPERLINK "mailto:network_planning@airmacau.com.mo" network_planning@airmacau.com.mo 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type NX978 29MAR26 24OCT26 1234567 MFM 1140 DAD 1330 321/320 NX977 29MAR26 24OCT26 1234567 DAD 1430 MFM 1615 321/320 NX986 29MAR26 24OCT26 1234567 MFM 1325 DAD 1505 321/320 NX985 29MAR26 24OCT26 1234567 DAD 1635 MFM 1820 321/320 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality Included in AOC/FAOC 321 As per FAOC of NX CHINA 320 As per FAOC of NX CHINA 
+5. Airways 
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR MFM-DAD A1 BUNTA MFM-DAD R474-Q1 TEBAK DAD-MFM A1 BUNTA DAD-MFM W1-R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 17/03/2026
+Permit No.: LD-39/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AIR MACAU COMPANY LIMITED
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU
+Tel: 8396 6888 | Email: HYPERLINK "mailto:network_planning@airmacau.com.mo" network_planning@airmacau.com.mo
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NX978 | 29MAR26 | 24OCT26 | 1234567 | MFM | 1140 | DAD | 1330 | 321/320
+NX977 | 29MAR26 | 24OCT26 | 1234567 | DAD | 1430 | MFM | 1615 | 321/320
+ |  |  |  |  |  |  |  | 
+NX986 | 29MAR26 | 24OCT26 | 1234567 | MFM | 1325 | DAD | 1505 | 321/320
+NX985 | 29MAR26 | 24OCT26 | 1234567 | DAD | 1635 | MFM | 1820 | 321/320
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+ | Included in AOC/FAOC | 
+321 | As per FAOC of NX | CHINA
+320 | As per FAOC of NX | CHINA
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MFM-DAD | A1 | BUNTA | 
+MFM-DAD | R474-Q1 | TEBAK | 
+DAD-MFM | A1 |  | BUNTA
+DAD-MFM | W1-R474 |  | TEBAK

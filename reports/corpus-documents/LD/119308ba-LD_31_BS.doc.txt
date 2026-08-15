@@ -1,0 +1,97 @@
+FILE: LD 31 BS.doc
+
+PARAGRAPHS
+Ha Noi, 19th March 2026
+№: LD - 31/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: CHINA SOUTHERN AIRLINES IATA code: CZ ICAO code: CSN Postal Address: 21-23 Nguyen Thi Minh Khai st., Saigon Ward, HCM City, Vietnam Tel: 028-38235588 Email: phepbay@csair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CZ367 29mar26 24oct26 1234567 CAN 12:15 SGN 15:00 319/320/ 321/73G/ 738 CZ368 29mar26 24oct26 1234567 SGN 01:00 CAN 03:40 CZ373 29mar26 24oct26 1234567 CAN 04:45 SGN 07:40 CZ374 29mar26 24oct26 1234567 SGN 08:50 CAN 11:45 CZ8159 29mar26 24oct26 1234567 CAN 00:50 SGN 03:40 CZ8160 29mar26 24oct26 1234567 SGN 04:55 CAN 08:00 CZ6089 29mar26 24oct26 1234567 CAN 15:40 SGN 18:35 CZ6090 29mar26 24oct26 1234567 SGN 19:35 CAN 22:30 CZ8465 29mar26 24oct26 1234567 SZX 03:30 SGN 06:30 CZ8466 29mar26 24oct26 1234567 SGN 07:30 SZX 10:20 CZ8473 29mar26 24oct26 1234567 SZX 14:55 SGN 18:25 CZ8474 29mar26 24oct26 1234567 SGN 19:25 SZX 22:10 CZ6077 29mar26 24oct26 1234567 PVG 00:45 SGN 05:00 CZ6078 29mar26 24oct26 1234567 SGN 05:55 PVG 10:20 CZ6095 30mar26 24oct26 1234567 PVG 14:10 SGN 18:35 CZ6096 30mar26 24oct26 1234567 SGN 19:35 PVG 23:40 CZ8317 30mar26 24oct26 1_3_56_ WUH 14:10 SGN 18:05 CZ8318 30mar26 24oct26 1_3_56_ SGN 19:05 WUH 23:15 CZ6049 29mar26 24oct26 1234567 CAN 05:40 CXR 08:10 319/320/ 321/73G/ 738 CZ6050 29mar26 24oct26 1234567 CXR 9:00 CAN 11:50 CZ8475 29mar26 24oct26 1234567 CAN 00:35 CXR 03:05 CZ8476 29mar26 24oct26 1234567 CXR 04:05 CAN 06:50 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 319 According to CZ’s AOC China
+ 320 321 73G 738 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CAN-SGN L642 W15 W1 EXOTO SGN-CAN Q2 A202 ASSAD SGN-CAN W12 G221 BUNTA PVG-SGN L642 W15 W1 EXOTO SGN-PVG W12 G221 BUNTA SZX-SGN L642 W15 W1 EXOTO SGN-SZX Q2 A202 ASSAD SGN-SZX W12 G221 BUNTA WUH-SGN L642 W15 W1 EXOTO SGN-WUH Q2 N639 Q1 R474 TEBAK SGN-WUH W12 G221 BUNTA CAN-CXR L642 W15 EXOTO CXR-CAN W15 W7 W1 A1 BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 19th March 2026
+№: LD - 31/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: CHINA SOUTHERN AIRLINES
+IATA code: CZ | ICAO code: CSN
+Postal Address: 21-23 Nguyen Thi Minh Khai st., Saigon Ward, HCM City, Vietnam
+Tel: 028-38235588 | Email: phepbay@csair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CZ367 | 29mar26 | 24oct26 | 1234567 | CAN | 12:15 | SGN | 15:00 | 319/320/ 321/73G/ 738
+CZ368 | 29mar26 | 24oct26 | 1234567 | SGN | 01:00 | CAN | 03:40 | 
+CZ373 | 29mar26 | 24oct26 | 1234567 | CAN | 04:45 | SGN | 07:40 | 
+CZ374 | 29mar26 | 24oct26 | 1234567 | SGN | 08:50 | CAN | 11:45 | 
+CZ8159 | 29mar26 | 24oct26 | 1234567 | CAN | 00:50 | SGN | 03:40 | 
+CZ8160 | 29mar26 | 24oct26 | 1234567 | SGN | 04:55 | CAN | 08:00 | 
+CZ6089 | 29mar26 | 24oct26 | 1234567 | CAN | 15:40 | SGN | 18:35 | 
+CZ6090 | 29mar26 | 24oct26 | 1234567 | SGN | 19:35 | CAN | 22:30 | 
+CZ8465 | 29mar26 | 24oct26 | 1234567 | SZX | 03:30 | SGN | 06:30 | 
+CZ8466 | 29mar26 | 24oct26 | 1234567 | SGN | 07:30 | SZX | 10:20 | 
+CZ8473 | 29mar26 | 24oct26 | 1234567 | SZX | 14:55 | SGN | 18:25 | 
+CZ8474 | 29mar26 | 24oct26 | 1234567 | SGN | 19:25 | SZX | 22:10 | 
+CZ6077 | 29mar26 | 24oct26 | 1234567 | PVG | 00:45 | SGN | 05:00 | 
+CZ6078 | 29mar26 | 24oct26 | 1234567 | SGN | 05:55 | PVG | 10:20 | 
+CZ6095 | 30mar26 | 24oct26 | 1234567 | PVG | 14:10 | SGN | 18:35 | 
+CZ6096 | 30mar26 | 24oct26 | 1234567 | SGN | 19:35 | PVG | 23:40 | 
+CZ8317 | 30mar26 | 24oct26 | 1_3_56_ | WUH | 14:10 | SGN | 18:05 | 
+CZ8318 | 30mar26 | 24oct26 | 1_3_56_ | SGN | 19:05 | WUH | 23:15 | 
+CZ6049 | 29mar26 | 24oct26 | 1234567 | CAN | 05:40 | CXR | 08:10 | 319/320/ 321/73G/ 738
+CZ6050 | 29mar26 | 24oct26 | 1234567 | CXR | 9:00 | CAN | 11:50 | 
+CZ8475 | 29mar26 | 24oct26 | 1234567 | CAN | 00:35 | CXR | 03:05 | 
+CZ8476 | 29mar26 | 24oct26 | 1234567 | CXR | 04:05 | CAN | 06:50 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+319 | According to CZ’s AOC | China
+320 |  | 
+321 |  | 
+73G |  | 
+738 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CAN-SGN | L642 W15 W1 | EXOTO | 
+SGN-CAN | Q2 A202 |  | ASSAD
+SGN-CAN | W12 G221 |  | BUNTA
+ |  |  | 
+PVG-SGN | L642 W15 W1 | EXOTO | 
+SGN-PVG | W12 G221 |  | BUNTA
+ |  |  | 
+SZX-SGN | L642 W15 W1 | EXOTO | 
+SGN-SZX | Q2 A202 |  | ASSAD
+SGN-SZX | W12 G221 |  | BUNTA
+ |  |  | 
+WUH-SGN | L642 W15 W1 | EXOTO | 
+SGN-WUH | Q2 N639 Q1 R474 |  | TEBAK
+SGN-WUH | W12 G221 |  | BUNTA
+ |  |  | 
+CAN-CXR | L642 W15 | EXOTO | 
+CXR-CAN | W15 W7 W1 A1 |  | BUNTA

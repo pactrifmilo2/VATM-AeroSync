@@ -1,0 +1,48 @@
+FILE: R72B3 72B RVS3.docx
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Ha Noi, 13/04/2026
+Permit No-: LD - 72/B/S/2026VN/REV3
+Carrier Tel (8424) 38272281
+Fax (8424) 38272290
+E-mail atd@caa-gov-vn Website www-caa-gov-vn
+Schedules (UTC Time)
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C-c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Ha Noi, 13/04/2026
+Permit No-: LD - 72/B/S/2026VN/REV3
+Carrier Tel (8424) 38272281
+Fax (8424) 38272290
+E-mail atd@caa-gov-vn Website www-caa-gov-vn
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.Box:686, Dubai, United Arab Emirates;
+Tel: +97147083415 | Email : cao.duong@emirates.com
+
+TABLE 2
+CONTEXT: Schedules (UTC Time)
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+EK9814 | 01MAY26 | 19OCT26 | 1------ | DWC | 0930 | HAN | 1340 | 77X | LD - 72/B/S/2026VN
+EK9815 | 01MAY26 | 19OCT26 | 1------ | HAN | 1600 | DWC | 0050+1 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EK9814 | 01MAY26 | 19OCT26 | 1------ | DWC | 1145 | HAN | 1555 | 77X
+EK9815 | 01MAY26 | 19OCT26 | 1------ | HAN | 1755 | DWC | 0245+1 | 77X

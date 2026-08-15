@@ -1,0 +1,32 @@
+FILE: R04A2  RVS2.docx
+
+PARAGRAPHS
+Hanoi, 17/04/2026 Permit No.: LD – 04/A/S/2026VN/REV2
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 17/04/2026 Permit No.: LD – 04/A/S/2026VN/REV2
+1. Carrier
+Name: JETSTAR AIRWAYS
+IATA code: JQ | ICAO code: JST
+Postal Address: 79 Victoria Parade, Collingwood, Victoria, Australia, 3066
+Tel: +61 3 86283552 | Email: JQSafetyCompliance@jetstar.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+JQ63 | 17APR26 | 17APR26 | ----5-- | MEL | 0525 | SGN | 1400 | 788 | LD - 04/A/S/2026VN
+JQ64 | 17APR26 | 17APR26 | ----5-- | SGN | 1540 | MEL | 2350 | 788 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JQ1063 | 18APR26 | 18APR26 | -----6- | MEL | 0055 | SGN | 0930 | 788
+JQ1064 | 19APR26 | 19APR26 | ------7 | SGN | 0500 | MEL | 1310 | 788

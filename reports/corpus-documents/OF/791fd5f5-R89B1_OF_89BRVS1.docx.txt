@@ -1,0 +1,39 @@
+FILE: R89B1 OF 89BRVS1.docx
+
+PARAGRAPHS
+Hanoi, 26/03/2026
+Permit No.: OF - 89/B/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 26/03/2026
+Permit No.: OF - 89/B/S/2026VN/REV1
+1. Carrier/Operator
+Name: QATAR AIRWAYS
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS, IOC- ATM / OVERFLIGHT PERMISSIONS SECTION, FLIGHT OPERATIONS, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 40106617 | Email: OVERFLIGHTS@QATARAIRWAYS.COM.QA
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+QTR8918 | 31MAR26 | 14APR26 | -2----- | OTHH | 2300 | VMMC | 0700+ | OF - 89/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+QTR8918 | 31MAR26 | 14APR26 | -2----- | WMKK | 0320 | VMMC | 0700
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WMKK-VMMC | M765 M755 | IGARI | KISAN

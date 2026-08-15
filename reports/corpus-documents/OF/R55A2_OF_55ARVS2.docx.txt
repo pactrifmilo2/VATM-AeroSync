@@ -1,0 +1,41 @@
+FILE: R55A2 OF 55ARVS2.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: CXA
+Hanoi, 10/4/2026
+OF - 55/A/S/2026VN (rvs2)
+1. Carrier/Operator:
+1.1 Name: Xiamen Airlines
+- ICAO code: CXA
+- Adress:321 Donghuang Road, Xiamen, Fujian Province, P.R. China
+- Tel:86-592-5739208; Email: aoc_oss@xiamenair.com
+1.2 Billing address: Planning and Financial Department of Xiamen Airlines, 321 Donghuang Road, Xiamen, Fujian Province, P.R.China
+- Tel:86-592-5739877; Fax:86-592-5739081; Email: cost_cbc@xiamenair.com
+Schedules: All times in UTC
+ORIGINAL SCHEDULE
+UPDATED SCHEDULE
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: CXA
+Hanoi, 10/4/2026
+OF - 55/A/S/2026VN (rvs2)
+1. Carrier/Operator:
+1.1 Name: Xiamen Airlines
+- ICAO code: CXA
+- Adress:321 Donghuang Road, Xiamen, Fujian Province, P.R. China
+- Tel:86-592-5739208; Email: aoc_oss@xiamenair.com
+1.2 Billing address: Planning and Financial Department of Xiamen Airlines, 321 Donghuang Road, Xiamen, Fujian Province, P.R.China
+- Tel:86-592-5739877; Fax:86-592-5739081; Email: cost_cbc@xiamenair.com
+Schedules: All times in UTC
+ORIGINAL SCHEDULE
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CXA844 | 9Apr26 | 9Apr26 | ...4... | VTBS | 1850 | ZSAM | 2215 | B737/B738/B38M/B788/B789/A21N/A20N
+
+TABLE 2
+CONTEXT: UPDATED SCHEDULE
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CXA844D | 10Apr26 | 10Apr26 | ....5.. | VTBS | 0700 | ZSAM | 1025 | B737/B738/B38M/B788/B789/A21N/A20N

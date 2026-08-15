@@ -1,0 +1,56 @@
+FILE: OF 101AS.doc
+
+PARAGRAPHS
+Ha Noi, 18th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 101/A/S/2026VN
+1. Carrier
+Name: URUMQI AIRLINES CO IATA code: UQ ICAO code: CUH Postal Address: No.1341 Yingbin Road, Xinshi District, Urumqi City, Xinjang Uygur Autonomous Region, 83000, P.R.China 
+2. Billing address
+Name: OPERATIONAL CONTROL DEPARTMENT, URUMQI AIRLINES CO., LTD Postal Address: NO.1341, YINGBIN ROAD, XINSHI DISTRICT, URUMQI, XINJIANG UYGUR AUTONOMOUS REGION, P. R. CHINA, ZIP CODE 830000 Tel: +86-991-6787276 Email: HYPERLINK "mailto:xr.xu@urumqi-air.com、yao_yu@urumqi-air.com" xr.xu@urumqi-air.com、yao_yu@urumqi-air.com 
+3. Schedules: UTC Time 
+Flight number Effective from Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CUH2641 29MAR26 24OCT26 1234567 ZHLY 0415 VTBS 0835 CUH2642 29MAR26 24OCT26 1234567 VTBS 1010 ZHLY 1420 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark 
+ Nationality B738 B-7198/ B-6995/ B-1322/ B-1323/ B-1325/ B-1568/ B-1569/ B-1570/ B-205T/ B-205U/ B-205V/ B-206P/ B-6268/ B-2157/ B-2159/ B-5407/ B-5429 OR SUB China 
+6. Air traffic service routes:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZHLY-VTBS R474 TEBAK LAVOS VTBS-ZHLY R474 LAVOS TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. VALIDITY: -3/+72 HOURS 
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 18th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 101/A/S/2026VN
+1. Carrier
+Name: URUMQI AIRLINES CO
+IATA code: UQ | ICAO code: CUH
+Postal Address: No.1341 Yingbin Road, Xinshi District, Urumqi City, Xinjang Uygur Autonomous Region, 83000, P.R.China
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: OPERATIONAL CONTROL DEPARTMENT, URUMQI AIRLINES CO., LTD
+Postal Address: NO.1341, YINGBIN ROAD, XINSHI DISTRICT, URUMQI, XINJIANG UYGUR AUTONOMOUS REGION, P. R. CHINA, ZIP CODE 830000
+Tel: +86-991-6787276 | Email: HYPERLINK "mailto:xr.xu@urumqi-air.com、yao_yu@urumqi-air.com" xr.xu@urumqi-air.com、yao_yu@urumqi-air.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CUH2641 | 29MAR26 | 24OCT26 | 1234567 | ZHLY | 0415 | VTBS | 0835
+CUH2642 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1010 | ZHLY | 1420
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B738 | B-7198/ B-6995/ B-1322/ B-1323/ B-1325/ B-1568/ B-1569/ B-1570/ B-205T/ B-205U/ B-205V/ B-206P/ B-6268/ B-2157/ B-2159/ B-5407/ B-5429 OR SUB | China
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZHLY-VTBS | R474 | TEBAK | LAVOS
+VTBS-ZHLY | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -1,0 +1,37 @@
+FILE: R66B1 66B RV1.docx
+
+PARAGRAPHS
+HANOI, 05MAY2026
+PERMIT NUMBER LD- 66/B/S/2026VN/REV1
+IATA Season: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time).
+2.1 Original schedule (s) ( UTC time )
+2.2 New schedule(s) ( UTC Time)
+3. Other details unchanged
+RGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 05MAY2026
+PERMIT NUMBER LD- 66/B/S/2026VN/REV1
+IATA Season: SUMMER 2026
+1. Carrier
+Name: AIR INDIA LIMITED
+IATA code: AI | ICAO code: AIC
+Postal Address: Vatika One on One, Industrial Development Area, IDC, Sec 16, Gurugram – 122007, Haryana, India
+Tel: +91 124-6320507 | Email: intl.relations@airindia.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time).
+2.1 Original schedule (s) ( UTC time )
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+AI2390 | 01May26 | 24Oct 26 | 13567 | DEL | 19:50 | HAN | 00:20 | 32N/32Q/320/321
+AI2391 | 01May26 | 24Oct 26 | 13567 | HAN | 01:20 | DEL | 06:00 | 32N/32Q/320/321
+
+TABLE 3
+CONTEXT: 2.2 New schedule(s) ( UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+AI2390 | 30Apr26 | 24Oct 26 | 24567 | DEL | 19:50 | HAN | 00:20+1 | 32N/32Q/320/321
+AI2391 | 01May26 | 24Oct 26 | 13567 | HAN | 01:20 | DEL | 06:00 | 32N/32Q/320/321

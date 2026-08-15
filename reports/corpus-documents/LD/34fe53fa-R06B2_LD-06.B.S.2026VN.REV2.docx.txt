@@ -1,0 +1,50 @@
+FILE: R06B2   LD-06.B.S.2026VN.REV2.docx
+
+PARAGRAPHS
+LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 22/07/2026
+Permit No.: LD-06/B/S/2026VN/REV2
+1. Carrier/Operator
+2. Schedule (UTC Time)
+2.1. Original schedule(s)
+2.2. New schedule(s)
+3. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED.
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV _CAAV
+
+TABLE 1
+CONTEXT: LANDING PERMIT FOR NON-SCHEDULED FLIGHT
+Hanoi, 22/07/2026
+Permit No.: LD-06/B/S/2026VN/REV2
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX9001 | 07Aug26 | 25Sep26 | ----5-- | ANC | 1005 | HAN | 2300 | 77F | LD-06/B/S/2026VN /REV1
+FX9002 | 08Aug26 | 26Sep26 | -----6- | HAN | 0025 | ANC | 1115 | 77F | LD-06/B/S/2026VN /REV1
+FX9005 | 10Aug26 | 07Sep26 | 1------ | ANC | 1015 | HAN | 2310 | 77F | LD-06/B/S/2026VN /REV1
+FX9007 | 11Aug26 | 08Sep26 | -2----- | HAN | 0045 | ANC | 1135 | 77F | LD-06/B/S/2026VN /REV1
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX6401 | 07Aug26 | 25Sep26 | ----5-- | ANC | 1005 | HAN | 2300 | 77F
+FX6402 | 08Aug26 | 26Sep26 | -----6- | HAN | 0025 | ANC | 1115 | 77F
+FX6405 | 10Aug26 | 07Sep26 | 1------ | ANC | 1015 | HAN | 2310 | 77F
+FX6407 | 11Aug26 | 08Sep26 | -2----- | HAN | 0045 | ANC | 1135 | 77F
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways
+RMS-HAN | B214
+HAN-ANC | R474
+ANC-HAN | R474
+SIN – HAN | M753 N639

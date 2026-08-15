@@ -1,0 +1,43 @@
+FILE: OF 128 R128A2  RVS2 .docx
+
+PARAGRAPHS
+To: Vatm
+Cc: JAL
+Refer to the issued permit: OF-128/A/S/2026VN (1)
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s)　REV 2 (UTC Time)
+3. Note: Other details unchanged.
+Pham Giang for Pham Thao Dep Dir of Atd, Caav
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: JAL
+Refer to the issued permit: OF-128/A/S/2026VN (1)
+1. Carrier/Operator
+Name: Japan Airlines
+IATA code:JL | ICAO code:JAL
+Postal Address:#811 08th floor, Daeha building, 360 Kim Ma str, Giang Vo ward, Hanoi
+Tel:02437872214 | Email: org.hankku.jali@jal.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+JAL30 | 02JUN26 | 02JUN26 | -2----- | VIDP | 1335 | RJTT | 2145 | B773,B788,B789,B763,A350 | OF-128/A/S/2026VN
+JAL34 | 02JUN26 | 02JUN26 | -2----- | VTBS | 1440 | RJTT | 2055 | B773,B788,B789,B763,A350 | OF-128/A/S/2026VN
+JAL31 | 03JUN26 | 03JUN26 | --3---- | RJTT | 0140 | VTBS | 0810 | B773,B788,B789,B763,A350 | OF-128/A/S/2026VN
+JAL34 | 03JUN26 | 03JUN26 | --3---- | VTBS | 1440 | RJTT | 2055 | B773,B788,B789,B763,A350 | OF-128/A/S/2026VN
+JAL38 | 02JUN26 | 02JUN26 | -2----- | WSSS | 1755 | RJTT | 0050+1 | B773,B788,B789,B763,A350 | OF-128/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)　REV 2 (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA37D | Aircraft Type
+JAL30D | 03JUN26 | 03JUN26 | --3---- | VIDP | 0320 | RJTT | 1130 | B773,B788,B789,B763,A350
+JAL34D | 03JUN26 | 03JUN26 | --3---- | VTBS | 0445 | RJTT | 1100 | B773,B788,B789,B763,A350
+JAL31D | 03JUN26 | 03JUN26 | --3---- | RJTT | 1240 | VTBS | 1910 | B773,B788,B789,B763,A350
+JAL34D | 04JUN26 | 04JUN26 | ---4--- | VTBS | 0000 | RJTT | 0615 | B773,B788,B789,B763,A350
+JAL38D | 03JUN26 | 03JUN26 | --3---- | WSSS | 0225 | RJTT | 0920 | B773,B788,B789,B763,A350

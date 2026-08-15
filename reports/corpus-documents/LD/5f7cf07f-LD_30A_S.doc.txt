@@ -1,0 +1,78 @@
+FILE: LD 30A S.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 10/03/2026
+Permit No.: LD-30/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: United Airlines, Inc. IATA code: UA ICAO code: UAL Postal Address: 233 South Wacker Drive, Chicago, Illinois 60606 U.S.A. Tel: +81-3-6732-5420 Email: Tadakazu.ito@united.com 2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type UA152 28Mar26 23Oct26 1234567 LAX 1855 HKG 1030+1 789/788/78X
+772/77W UA152 29Mar26 24Oct26 1234567 HKG 1230 SGN 1505 UA153 29Mar26 24Oct26 1234567 SGN 0000 HKG 0240 UA153 29Mar26 24Oct26 1234567 HKG 0440 LAX 1755 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark 
+ Nationality 789 As per FAOC of UA U.S.A. 788 As per FAOC of UA U.S.A. 78X As per FAOC of UA U.S.A. 772 As per FAOC of UA U.S.A. 77W As per FAOC of UA U.S.A. 5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR 
+HKG-SGN (Pri) L642-W15 EXOTO (Alt) G221-W12-Q1 BUNTA (Alt) R468 SAPEN (Alt) N500 PANDI 
+SGN-HKG (Pri) W12-G221 BUNTA (Alt) W15-Q15-M771 DOSUT (Alt) R468 SAPEN (Alt) N500 PANDI Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 10/03/2026
+Permit No.: LD-30/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: United Airlines, Inc.
+IATA code: UA | ICAO code: UAL
+Postal Address: 233 South Wacker Drive, Chicago, Illinois 60606 U.S.A.
+Tel: +81-3-6732-5420 | Email: Tadakazu.ito@united.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+UA152 | 28Mar26 | 23Oct26 | 1234567 | LAX | 1855 | HKG | 1030+1 | 789/788/78X 772/77W
+UA152 | 29Mar26 | 24Oct26 | 1234567 | HKG | 1230 | SGN | 1505 | 
+UA153 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0000 | HKG | 0240 | 
+UA153 | 29Mar26 | 24Oct26 | 1234567 | HKG | 0440 | LAX | 1755 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+789 | As per FAOC of UA | U.S.A.
+788 | As per FAOC of UA | U.S.A.
+78X | As per FAOC of UA | U.S.A.
+772 | As per FAOC of UA | U.S.A.
+77W | As per FAOC of UA | U.S.A.
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG-SGN | (Pri) L642-W15 | EXOTO | 
+ | (Alt) G221-W12-Q1 | BUNTA | 
+ | (Alt) R468 | SAPEN | 
+ | (Alt) N500 | PANDI | 
+SGN-HKG | (Pri) W12-G221 |  | BUNTA
+ | (Alt) W15-Q15-M771 |  | DOSUT
+ | (Alt) R468 |  | SAPEN
+ | (Alt) N500 |  | PANDI

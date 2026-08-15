@@ -1,0 +1,56 @@
+FILE: R46A2 46A RVS2 (HUY).docx
+
+PARAGRAPHS
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: JIN AIR CO.,LTD
+- IATA code: LJ
+- Address: 3F, 453 Gonghangdae-ro, Gangseo-gu, Seoul, Korea 07570
+Tel. 84-236-3664-565, email: dadkk@jinair.com
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger
+4. Reason of cancellation: Due to Operation reason
+5. Ref to permit number: LD - 46/A/S/2026VN
+6. Applicant:
+JIN AIR DAD STATION
+Tel: +84-236-3664-565
+Mobile: +84-989-427-488
+E-mail: yphong@jinair.com
+Name, signature, title: Hong Yoon Pyo Mr. (Regional Manager)
+6. Note:
+1,2,3,4,5,7 IATA code
+6 Name of ATS route: Example R468, A1, R474….
+
+TABLE 1
+CONTEXT: CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: JIN AIR CO.,LTD
+- IATA code: LJ
+- Address: 3F, 453 Gonghangdae-ro, Gangseo-gu, Seoul, Korea 07570
+Tel. 84-236-3664-565, email: dadkk@jinair.com
+2. Schedules: All times in UTC
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+LJ081 | 06May26 | 13May26 | --3---- | ICN | 1130 | DAD | 1615 | 738/739/7M8
+LJ082 | 06May26 | 13May26 | --3---- | DAD | 1715 | ICN | 2210 | 738/739/7M8
+LJ081 | 16May26 | 16May26 | -----6- | ICN | 1130 | DAD | 1615 | 738/739/7M8
+LJ082 | 16May26 | 16May26 | -----6- | DAD | 1715 | ICN | 2210 | 738/739/7M8
+LJ081 | 28May26 | 31May26 | ---4--7 | ICN | 1130 | DAD | 1615 | 738/739/7M8
+LJ082 | 28May26 | 31May26 | ---4--7 | DAD | 1715 | ICN | 2210 | 738/739/7M8
+LJ087 | 06May26 | 06May26 | --3---- | ICN | 1140 | CXR | 1645 | 738/739/7M8
+LJ088 | 06May26 | 06May26 | --3---- | CXR | 1755 | ICN | 2300 | 738/739/7M8
+LJ087 | 07May26 | 18May26 | 1--4--7 | ICN | 1140 | CXR | 1645 | 738/739/7M8
+LJ088 | 07May26 | 18May26 | 1--4--7 | CXR | 1755 | ICN | 2300 | 738/739/7M8
+LJ087 | 25May26 | 31May26 | 1--4--7 | ICN | 1140 | CXR | 1645 | 738/739/7M8
+LJ088 | 25May26 | 31May26 | 1--4--7 | CXR | 1755 | ICN | 2300 | 738/739/7M8
+LJ091 | 08May26 | 18May26 | 1---5-- | ICN | 805 | PQC | 1400 | 738/739/7M8
+LJ092 | 08May26 | 18May26 | 1---5-- | PQC | 1500 | ICN | 2035 | 738/739/7M8
+LJ091 | 26May26 | 31May26 | -2-4--7 | ICN | 805 | PQC | 1400 | 738/739/7M8
+LJ092 | 26May26 | 31May26 | -2-4--7 | PQC | 1500 | ICN | 2035 | 738/739/7M8

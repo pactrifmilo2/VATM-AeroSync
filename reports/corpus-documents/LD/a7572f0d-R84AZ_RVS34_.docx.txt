@@ -1,0 +1,45 @@
+FILE: R84AZ (RVS34).docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+LD-84/A/S2026VN.RVS34
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Lý do:
+Giải tỏa khách do bão Ba Vì.
+4. Ghi chú: Nội dung khác của phép bay không đổi.
+Phạm Giang gửi thay bà Phạm Thảo, PTP VTHK, Cục HKVN
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+LD-84/A/S2026VN.RVS34
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ942 | 10-Jul-26 | 10-Jul-26 | 5 | HAN | 07:25 | TPE | 10:00 | 320/321/32Q
+VJ943 | 10-Jul-26 | 10-Jul-26 | 5 | TPE | 11:00 | HAN | 14:05 | 320/321/32Q
+VJ842 | 10-Jul-26 | 10-Jul-26 | 5 | SGN | 06:30 | TPE | 10:00 | 320/321/32Q
+VJ843 | 10-Jul-26 | 10-Jul-26 | 5 | TPE | 11:00 | SGN | 14:25 | 320/321/32Q
+VJ948 | 10-Jul-26 | 10-Jul-26 | 5 | HAN | 06:30 | RMQ | 09:00 | 320/321/32Q
+VJ949 | 10-Jul-26 | 10-Jul-26 | 5 | RMQ | 10:00 | HAN | 12:50 | 320/321/32Q
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ942 | 10-Jul-26 | 10-Jul-26 | 5 | HAN | 04:00 | TPE | 07:30 | 320/321/32Q
+VJ943 | 10-Jul-26 | 10-Jul-26 | 5 | TPE | 08:30 | HAN | 10:25 | 320/321/32Q
+VJ842 | 10-Jul-26 | 10-Jul-26 | 5 | SGN | 03:00 | TPE | 07:30 | 320/321/32Q
+VJ843 | 10-Jul-26 | 10-Jul-26 | 5 | TPE | 08:30 | SGN | 11:00 | 320/321/32Q
+VJ948 | 10-Jul-26 | 10-Jul-26 | 5 | HAN | 02:55 | RMQ | 06:30 | 320/321/32Q
+VJ949 | 10-Jul-26 | 10-Jul-26 | 5 | RMQ | 07:30 | HAN | 10:00 | 320/321/32Q

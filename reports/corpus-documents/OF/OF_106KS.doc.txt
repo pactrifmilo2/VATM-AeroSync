@@ -1,0 +1,81 @@
+FILE: OF 106KS.doc
+
+PARAGRAPHS
+Ha Noi, 20th March 2026
+№: OF - 106/K/S/2026VN
+IATA Seasons: Summer 2026
+Carrier:
+Name: Hainan Airlines IATA code: HU ICAO code: CHH Postal Address: 10F, HNA PLAZA, NO.7 GUOXING ROAD, HAIKOU CITY, HAINAN PROVINCE, 570206, CHINA Tel: 86-898-6887-5251 Email: HYPERLINK "mailto:presidentmailbox@hnair.com" \h presidentmailbox@hnair.com 
+Billing address:
+Name: HAINAN AIRLINES HOLDING COMPANY LIMITED Postal Address: 10F, HNA PLAZA, NO.7 GUOXING ROAD, HAIKOU CITY, HAINAN PROVINCE, 570206, CHINA Tel: 86-898-6887-5251 Email: HYPERLINK "mailto:OCDCOST@HNAIR.COM" OCDCOST@HNAIR.COM ; HYPERLINK "mailto:CHSH_FU@HNAIR.COM" CHSH_FU@HNAIR.COM 
+3. Schedules: UTC Time
+ 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CHH755 29MAR2026 24OCT2026 .2…6. ZJHK 2330 WMKK 0310+1 CHH756 29MAR2026 24OCT2026 ..3…7 WMKK 1305 ZJHK 1640 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B737-800 As per AOC of CHH 
+China B737-8 A330-200 A330-300 A330-900 B787-8 B787-9 A320neo A321neo Or SUBS 
+Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZJHK-WMKK A1 Q1 L644 M765 BUNTA IGARI R474 TEBAK LAVOS L642 M755 EXOTO IGARI A202 Q1 L644 M765 ASSAD IGARI A202
+M755 M765 ASSAD
+KISAN VILAO
+IGARI WMKK-ZJHK M765 L637 Q2 A202 IGARI ASSAD M765 M755
+A202 IGARI
+VILAO KISAN
+ASSAD M765 M771 IGARI DONDA Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Validity: -3/+72 hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+C/c: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 20th March 2026
+№: OF - 106/K/S/2026VN
+IATA Seasons: Summer 2026
+Carrier:
+Name: Hainan Airlines
+IATA code: HU | ICAO code: CHH
+Postal Address: 10F, HNA PLAZA, NO.7 GUOXING ROAD, HAIKOU CITY, HAINAN PROVINCE, 570206, CHINA
+Tel: 86-898-6887-5251 | Email: HYPERLINK "mailto:presidentmailbox@hnair.com" \h presidentmailbox@hnair.com
+
+TABLE 2
+CONTEXT: Billing address:
+Name: HAINAN AIRLINES HOLDING COMPANY LIMITED
+Postal Address: 10F, HNA PLAZA, NO.7 GUOXING ROAD, HAIKOU CITY, HAINAN PROVINCE, 570206, CHINA
+Tel: 86-898-6887-5251 | Email: HYPERLINK "mailto:OCDCOST@HNAIR.COM" OCDCOST@HNAIR.COM ; HYPERLINK "mailto:CHSH_FU@HNAIR.COM" CHSH_FU@HNAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CHH755 | 29MAR2026 | 24OCT2026 | .2…6. | ZJHK | 2330 | WMKK | 0310+1
+CHH756 | 29MAR2026 | 24OCT2026 | ..3…7 | WMKK | 1305 | ZJHK | 1640
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-800 | As per AOC of CHH | China
+B737-8 |  | 
+A330-200 |  | 
+A330-300 |  | 
+A330-900 |  | 
+B787-8 |  | 
+B787-9 |  | 
+A320neo |  | 
+A321neo |  | 
+Or SUBS |  | 
+
+TABLE 5
+CONTEXT: Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJHK-WMKK | A1 Q1 L644 M765 | BUNTA | IGARI
+ | R474 | TEBAK | LAVOS
+ | L642 M755 | EXOTO | IGARI
+ | A202 Q1 L644 M765 | ASSAD | IGARI
+ | A202 M755 M765 | ASSAD KISAN | VILAO IGARI
+WMKK-ZJHK | M765 L637 Q2 A202 | IGARI | ASSAD
+ | M765 M755 A202 | IGARI VILAO | KISAN ASSAD
+ | M765 M771 | IGARI | DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

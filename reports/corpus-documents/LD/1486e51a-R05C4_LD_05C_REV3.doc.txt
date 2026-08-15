@@ -1,0 +1,41 @@
+FILE: R05C4  LD 05C REV3.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 22/06/2026
+Permit No.: LD-05/C/S/2026VN /REV3
+ 
+1. Carrier/Operator
+Name: STARLUX AIRLINES IATA code: JX ICAO code: SJX Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055, Taiwan (R.O.C) Tel: +886-2-2791-1000 ext. 6314 Email: ashleyliu@starlux-airlines.com 
+2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit JX705 1-AUG-26 31-AUG-26 1-3---- TPE 0515 PQC 0905 32Q/339/359 LD-05/C/S/2026VN JX706 1-AUG-26 31-AUG-26 1-3---- PQC 1005 TPE 1400 32Q/339/359 LD-05/C/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type JX705 1-AUG-26 31-AUG-26 1-3---- TPE 0645 PQC 1035 32Q/339/359 JX706 1-AUG-26 31-AUG-26 1-3---- PQC 1135 TPE 1525 32Q/339/359 
+other details unchanged
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 22/06/2026
+Permit No.: LD-05/C/S/2026VN /REV3
+ 
+1. Carrier/Operator
+Name: STARLUX AIRLINES
+IATA code: JX | ICAO code: SJX
+Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055, Taiwan (R.O.C)
+Tel: +886-2-2791-1000 ext. 6314 | Email: ashleyliu@starlux-airlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+JX705 | 1-AUG-26 | 31-AUG-26 | 1-3---- | TPE | 0515 | PQC | 0905 | 32Q/339/359 | LD-05/C/S/2026VN
+JX706 | 1-AUG-26 | 31-AUG-26 | 1-3---- | PQC | 1005 | TPE | 1400 | 32Q/339/359 | LD-05/C/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JX705 | 1-AUG-26 | 31-AUG-26 | 1-3---- | TPE | 0645 | PQC | 1035 | 32Q/339/359
+JX706 | 1-AUG-26 | 31-AUG-26 | 1-3---- | PQC | 1135 | TPE | 1525 | 32Q/339/359

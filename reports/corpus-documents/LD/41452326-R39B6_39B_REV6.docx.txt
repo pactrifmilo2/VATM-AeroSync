@@ -1,0 +1,27 @@
+FILE: R39B6 39B REV6.docx
+
+PARAGRAPHS
+Hanoi, 26/07/2026
+Permit No.: LD-39/B/S/2026VN/REV6
+2. Schedules (UTC Time)
+2.1. ORIGINAL SCHEDULE:
+2.2. NEW SCHEDULE:
+3. Purpose of Flight: Passenger (Delay due to Typhoon Noul at MFM)
+OTHER DETAILS REMAIN UNCHANGED
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 26/07/2026
+Permit No.: LD-39/B/S/2026VN/REV6
+2. Schedules (UTC Time)
+2.1. ORIGINAL SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+NX986 | 25JUL26 | 25JUL26 | -----6- | MFM | 1325 | DAD | 1505
+NX985 | 25JUL26 | 25JUL26 | -----6- | DAD | 1635 | MFM | 1820
+
+TABLE 2
+CONTEXT: 2.2. NEW SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+NX986 | 25JUL26 | 25JUL26 | -----6- | MFM | 1325 | DAD | 1505
+NX985D | 26JUL26 | 26JUL26 | ------7 | DAD | 0715 | MFM | 0900

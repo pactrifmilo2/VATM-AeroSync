@@ -1,0 +1,80 @@
+FILE: OF 51BS.doc
+
+PARAGRAPHS
+Ha Noi, 09th March 2026
+Permit number: OF - 51/B/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: Oman Air IATA code: ICAO code: OMA Postal Address: MUSCAT INT’L AIRPORT, P.O.BOX 58 CODE 111, SULTANATE OF OMAN Tel: +96824258729 Email: navigation@omanair.com. 
+2. Billing address
+Name: Oman Air Postal Address: 30, Exhibtion Road, Complex 209
+P.O.BOX 58 CODE 111, SULTANATE OF OMAN Tel: +968919881288499 Email: HYPERLINK "mailto:manisha.choudhari@omanair.com" manisha.choudhari@omanair.com 
+3. Schedules: All times in UTC 
+Flight
+Number
+ Effective from
+ Effective
+To
+ Day(s) of services
+ Departure Airport
+ ETD
+ Arrival Airport
+ ETA
+ OMA2849 29MAR26 30OCT26 1234567 OOMS 2150 WIII 0555+ OMA2850 29MAR26 30OCT26 1234567 WIII 0725 OOMS 1505 OMA2851 29MAR26 30OCT26 1234567 OOMS 0535 ZGGG 1310 OMA2852 29MAR26 30OCT26 1234567 ZGGG 2225 VTBS 0110+ OMA2852 29MAR26 30OCT26 1234567 ZGGG 2225 OOMS 0610 OMA2891 29MAR26 30OCT26 1234567 OOMS 0400 WSSS 1150 OMA2892 29MAR26 30OCT26 1234567 WSSS 1250 OOMS 2010 
+4. Purpose of Flight(s): Passenger.
+5. Aircraft
+Aircraft Type Registration marks Nationality A332 A4O-DC Oman B789 A4O-SC, A4O-SD, A4O-SE, A4O-SH, A4O-SI, A4O-SF, A4O-SG, A4O-SK,A4O-SJ, A4O-SK B38M A4O-MA, A4O-MB, A4O-MC, A4O-MD, A4O-ME, A4O-MF, A4O-MG, A40-MH, A4O-MI, A4O-MJ, A4O-MK, A4O-ML, A4O-MM, A4O-MN, A4O-MR, A4O-MS, A4O-MT 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR OOMS-RPLL G474 L628 ANINA ARESI RPLL-OOMS L628 G474 ARESI ANINA OOMS-ZGGG A202 VILAO ASSAD ZGGG-VTBS A202 ASSAD VILAO ZGGG-OOMS A202 ASSAD VILAO OOMS-WIII G474 L628 ANINA ARESI WIII-OOMS L628 G474 ARESI ANINA OOMS-WSSS G474 L628 ANINA ARESI WSSS-OOMS L628 G474 ARESI ANINA Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 09th March 2026
+Permit number: OF - 51/B/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: Oman Air
+IATA code: | ICAO code: OMA
+Postal Address: MUSCAT INT’L AIRPORT, P.O.BOX 58 CODE 111, SULTANATE OF OMAN
+Tel: +96824258729 | Email: navigation@omanair.com.
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Oman Air
+Postal Address: 30, Exhibtion Road, Complex 209 P.O.BOX 58 CODE 111, SULTANATE OF OMAN
+Tel: +968919881288499 | Email: HYPERLINK "mailto:manisha.choudhari@omanair.com" manisha.choudhari@omanair.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+OMA2849 | 29MAR26 | 30OCT26 | 1234567 | OOMS | 2150 | WIII | 0555+
+OMA2850 | 29MAR26 | 30OCT26 | 1234567 | WIII | 0725 | OOMS | 1505
+OMA2851 | 29MAR26 | 30OCT26 | 1234567 | OOMS | 0535 | ZGGG | 1310
+OMA2852 | 29MAR26 | 30OCT26 | 1234567 | ZGGG | 2225 | VTBS | 0110+
+OMA2852 | 29MAR26 | 30OCT26 | 1234567 | ZGGG | 2225 | OOMS | 0610
+OMA2891 | 29MAR26 | 30OCT26 | 1234567 | OOMS | 0400 | WSSS | 1150
+OMA2892 | 29MAR26 | 30OCT26 | 1234567 | WSSS | 1250 | OOMS | 2010
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger.
+5. Aircraft
+Aircraft Type | Registration marks | Nationality
+A332 | A4O-DC | Oman
+B789 | A4O-SC, A4O-SD, A4O-SE, A4O-SH, A4O-SI, A4O-SF, A4O-SG, A4O-SK,A4O-SJ, A4O-SK | 
+B38M | A4O-MA, A4O-MB, A4O-MC, A4O-MD, A4O-ME, A4O-MF, A4O-MG, A40-MH, A4O-MI, A4O-MJ, A4O-MK, A4O-ML, A4O-MM, A4O-MN, A4O-MR, A4O-MS, A4O-MT | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OOMS-RPLL | G474 L628 | ANINA | ARESI
+RPLL-OOMS | L628 G474 | ARESI | ANINA
+OOMS-ZGGG | A202 | VILAO | ASSAD
+ZGGG-VTBS | A202 | ASSAD | VILAO
+ZGGG-OOMS | A202 | ASSAD | VILAO
+OOMS-WIII | G474 L628 | ANINA | ARESI
+WIII-OOMS | L628 G474 | ARESI | ANINA
+OOMS-WSSS | G474 L628 | ANINA | ARESI
+WSSS-OOMS | L628 G474 | ARESI | ANINA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

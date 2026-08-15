@@ -1,0 +1,46 @@
+FILE: R17B1 OF 17BRVS1.docx
+
+PARAGRAPHS
+HA NOI, 01 APR 2026
+PERMIT NUMBER: OF-17/B/S/2026VN /REV1
+1. Carrier/Operator
+2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+2.2 Revise Schedule
+3. Airways
+3.1 Origin Airways
+3.2 Revised Airways
+OTHER MAIN DETAILS IS UNCHANGED.
+4. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 01 APR 2026
+PERMIT NUMBER: OF-17/B/S/2026VN /REV1
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES
+IATA code: ET | IATA code: ET
+Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport
+Tel: +84967743067 | Tel: +84967743067
+
+TABLE 2
+CONTEXT: 2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+ET3039 | 01Apr26 | 01Apr26 | --3---- | VHHH | 22:30 | HAAB | 08:20 | 77F/76F | OF-17/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2 Revise Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ET3039 | 01Apr26 | 01Apr26 | --3---- | VHHH | 11:35 | OMDW | 1940 | 77F/76F
+
+TABLE 4
+CONTEXT: 3. Airways
+3.1 Origin Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-HAAB | A1 | BUNTA | PAPRA
+
+TABLE 5
+CONTEXT: 3.2 Revised Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH- OMDW | L642, M765 | ASAD | NALAO

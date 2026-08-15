@@ -1,0 +1,8 @@
+id: airline-generic-seasonal-landing-revision
+extends: airline-generic-seasonal-landing-issued
+priority: -60
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?\s*:\s*[A-Z0-9]{2}\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*[A-Z0-9]{3}\b'
+  - '(?iu)(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)'

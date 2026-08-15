@@ -1,0 +1,60 @@
+FILE: OF 70C S.doc
+
+PARAGRAPHS
+Ha Noi, 02nd July 2026
+№: OF - 70/C/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Operator:
+Name: SHANDONG AIRLINES IATA code: SC ICAO code: CDG Postal address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA Tel: 0086-531-85698928 Email: HYPERLINK "mailto:liy73@sda.cn" liy73@sda.cn , suqh@sda.cn 
+2. Billing address:
+Name: ACCOUNT DEP OF SHANDONG AIRLINES Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA Tel: 0086-531-85698928
+ Email: HYPERLINK "mailto:liy73@sda.cn" liy73@sda.cn , suqh@sda.cn 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CDG2467 10JUL2026 24OCT2026 1234567 ZSAM 1430 VTBS 1800 CDG2468 10JUL2026 24OCT2026 1234567 VTBS 1930 ZSAM 2300 
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B737-800 OR SUB AS PER THE CDG AOC CHINA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSAM-VTBS A202 ASSAD VILAO ZSAM-VTBS A1 BUNTA PAPRA ZSAM-VTBS R474 TEBAK LAVOS VTBS-ZSAM A202 VILAO ASSAD VTBS-ZSAM A1 PAPRA BUNTA VTBS-ZSAM G474 L628 M771 ANINA DONDA Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 02nd July 2026
+№: OF - 70/C/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Operator:
+Name: SHANDONG AIRLINES
+IATA code: SC | ICAO code: CDG
+Postal address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA
+Tel: 0086-531-85698928 | Email: HYPERLINK "mailto:liy73@sda.cn" liy73@sda.cn , suqh@sda.cn
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: ACCOUNT DEP OF SHANDONG AIRLINES
+Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA
+Tel: 0086-531-85698928 | Email: HYPERLINK "mailto:liy73@sda.cn" liy73@sda.cn , suqh@sda.cn
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CDG2467 | 10JUL2026 | 24OCT2026 | 1234567 | ZSAM | 1430 | VTBS | 1800
+CDG2468 | 10JUL2026 | 24OCT2026 | 1234567 | VTBS | 1930 | ZSAM | 2300
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-800 OR SUB | AS PER THE CDG AOC | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSAM-VTBS | A202 | ASSAD | VILAO
+ZSAM-VTBS | A1 | BUNTA | PAPRA
+ZSAM-VTBS | R474 | TEBAK | LAVOS
+VTBS-ZSAM | A202 | VILAO | ASSAD
+VTBS-ZSAM | A1 | PAPRA | BUNTA
+VTBS-ZSAM | G474 L628 M771 | ANINA | DONDA
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

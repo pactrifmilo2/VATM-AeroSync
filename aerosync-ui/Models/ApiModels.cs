@@ -99,6 +99,7 @@ public sealed class EmailReportRowResponse
     public bool IngestComplete { get; set; }
     public DateTime? AcknowledgedAt { get; set; }
     public string? JobStatus { get; set; }
+    public bool RequiresFormat { get; set; }
 }
 
 public sealed class EmailResendRequestModel
@@ -141,6 +142,10 @@ public sealed class FileRecordResponse
     public DateTime CreatedAt { get; set; }
     public string? Sender { get; set; }
     public string? Subject { get; set; }
+    public string ProcessingStatus { get; set; } = "";
+    public string? ErrorMessage { get; set; }
+    public bool RequiresFormat { get; set; }
+    public string FormatStatusLabel => RequiresFormat ? "CẦN THÊM FORMAT YAML" : "";
     public string SourceLabel => VietnameseErrorMessage.TranslateSource(SourceType);
 }
 

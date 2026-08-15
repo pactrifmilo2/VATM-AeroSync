@@ -1,0 +1,78 @@
+FILE: OF 15 A S.docx
+
+PARAGRAPHS
+HA NOI, 24 FEB 2026
+NUMBER OF-15/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 24 FEB 2026
+NUMBER OF-15/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: AHK Air Hong Kong Limited
+IATA code: LD | ICAO code: AHK
+Postal Address: 2/F, Cathay House, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong
+Tel: +852 27618588 | Email: AHK.HQ@airhongkong.com.hk
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Finance Department
+Postal Address: 2/F, Cathay House, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong
+Tel: +852 27618449 | Email: finance@airhongkong.com.hk
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AHK327 | 29MAR26 | 24OCT26 | 1234… | VHHH | 1925 | WSSS | 2310
+AHK317 | 29MAR26 | 24OCT26 | ....5.. | VHHH | 2035 | WSSS | 0020+1
+AHK327 | 29MAR26 | 24OCT26 | …..6. | VHHH | 1955 | WSSS | 2345
+ |  |  |  |  |  |  | 
+AHK326 | 29MAR26 | 24OCT26 | 1234.6. | WSSS | 1330 | VHHH | 1725
+AHK316 | 29MAR26 | 24OCT26 | ….5.. | WSSS | 1430 | VHHH | 1835
+ |  |  |  |  |  |  | 
+AHK591 | 29MAR26 | 24OCT26 | ….5.. | VHHH | 1945 | WMKP | 2330
+ |  |  |  |  |  |  | 
+AHK831 | 29MAR26 | 24OCT26 | 1234.6. | VHHH | 1940 | VTBS | 2245
+AHK831 | 29MAR26 | 24OCT26 | ….5.. | VHHH | 2005 | VTBS | 2255
+AHK842 | 29MAR26 | 24OCT26 | 1234.6. | VTBS | 1445 | VHHH | 1730
+AHK842 | 29MAR26 | 24OCT26 | ….5.. | VTBS | 1525 | VHHH | 1815
+ |  |  |  |  |  |  | 
+AHK8075 | 29MAR26 | 24OCT26 | …..6. | VHHH | 2100 | YSSY | 0620+1
+AHK8076 | 29MAR26 | 24OCT26 | ……7 | YSSY | 2020 | VHHH | 0600+1
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A333 | As per AOC of AHK | HKSAR
+A332 | As per AOC of AHK | HKSAR
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-WSSS | L642 | EXOTO | ESPOB
+WSSS-VHHH | M771 | DUDIS | DONDA
+ |  |  | 
+VHHH-WMKP | L642 | EXOTO | IGARI
+ |  |  | 
+VHHH-VTBS | A202 | ASSAD | VILAO
+VHHH-VTBS | A1 | BUNTA | PAPRA
+VTBS-VHHH | A202 | VILAO | ASSAD
+VTBS-VHHH | A1 | PAPRA | BUNTA
+ |  |  | 
+VHHH-YSSY | L642 | EXOTO | AKMON
+YSSY-VHHH | M768 | AKMON | DONDA
+ |  |  | 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

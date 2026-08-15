@@ -20,6 +20,29 @@ $root = Split-Path -Parent $PSScriptRoot
 $envFile = Join-Path $root ".env"
 $example = Join-Path $root ".env.example"
 $mvnw = Join-Path $root "aerosync-worker\mvnw.cmd"
+$managedServiceNames = @("AeroSyncApi", "AeroSyncIngest", "AeroSyncWorker")
+
+function Test-Administrator {
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal($identity)
+    return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+}
+
+if (-not (Test-Administrator)) {
+    $resolvedScriptPath = (Resolve-Path $PSCommandPath).Path
+    $elevatedArguments = @(
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File", "`"$resolvedScriptPath`""
+    )
+    if ($SkipBuild) { $elevatedArguments += "-SkipBuild" }
+    if ($Stop) { $elevatedArguments += "-Stop" }
+    Write-Host "AeroSync needs administrator access to stop existing Windows services." -ForegroundColor Yellow
+    # Do not use -Wait here: on Windows PowerShell it waits for the complete
+    # elevated process tree, including the three intentionally long-lived apps.
+    Start-Process -FilePath "powershell.exe" -Verb RunAs -ArgumentList $elevatedArguments | Out-Null
+    exit 0
+}
 
 
 function Write-Step {
@@ -48,14 +71,16 @@ function Ensure-StorageDirs {
     $incoming = Read-DotEnvValue -Name "APP_FILE_PATHS_INCOMING"
     $processed = Read-DotEnvValue -Name "APP_FILE_PATHS_PROCESSED"
     $errorsPath = Read-DotEnvValue -Name "APP_FILE_PATHS_ERROR"
+    $formatErrorsPath = Read-DotEnvValue -Name "APP_FILE_PATHS_ERROR_FORMAT"
     $quarantine = Read-DotEnvValue -Name "APP_FILE_PATHS_QUARANTINE"
 
     if (-not $incoming) { $incoming = "D:/vatm-storage/incoming" }
     if (-not $processed) { $processed = "D:/vatm-storage/processed" }
     if (-not $errorsPath) { $errorsPath = "D:/vatm-storage/error" }
+    if (-not $formatErrorsPath) { $formatErrorsPath = "D:/vatm-storage/error-format" }
     if (-not $quarantine) { $quarantine = "D:/vatm-storage/quarantine" }
 
-    foreach ($dir in @($incoming, $processed, $errorsPath, $quarantine)) {
+    foreach ($dir in @($incoming, $processed, $errorsPath, $formatErrorsPath, $quarantine)) {
         if (-not (Test-Path $dir)) {
             New-Item -ItemType Directory -Path $dir -Force | Out-Null
             Write-Host "Created $dir"
@@ -145,7 +170,12 @@ EXIT
 
 function Test-JarsPresent {
     foreach ($name in @("aerosync-worker", "aerosync-ingest", "aerosync-api")) {
-        $jar = Join-Path $root "$name\target\$name-0.0.1-SNAPSHOT.jar"
+        $jarFile = if ($name -eq "aerosync-worker") {
+            "$name-0.0.1-SNAPSHOT-deploy.jar"
+        } else {
+            "$name-0.0.1-SNAPSHOT.jar"
+        }
+        $jar = Join-Path $root "$name\target\$jarFile"
         if (-not (Test-Path $jar)) { return $false }
     }
     return $true
@@ -163,6 +193,14 @@ function Start-AppWindow {
 
 function Stop-AerosyncApps {
     $stopped = 0
+    foreach ($serviceName in $managedServiceNames) {
+        $service = Get-Service -Name $serviceName -ErrorAction SilentlyContinue
+        if ($service -and $service.Status -ne "Stopped") {
+            Write-Host "Stopping Windows service $serviceName"
+            Stop-Service -Name $serviceName -Force -ErrorAction Stop
+            $service.WaitForStatus("Stopped", [TimeSpan]::FromSeconds(20))
+        }
+    }
     Get-Process java -ErrorAction SilentlyContinue | ForEach-Object {
         try {
             $cmd = (Get-CimInstance Win32_Process -Filter "ProcessId=$($_.Id)").CommandLine
@@ -178,6 +216,22 @@ function Stop-AerosyncApps {
     if ($stopped -gt 0) {
         Start-Sleep -Seconds 2
     }
+}
+
+function Wait-AppProcess {
+    param(
+        [string] $JarName,
+        [int] $TimeoutSeconds = 30
+    )
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        $match = Get-CimInstance Win32_Process -Filter "Name='java.exe'" |
+            Where-Object { $_.CommandLine -match [regex]::Escape("$JarName\target\$JarName-") } |
+            Select-Object -First 1
+        if ($match) { return $match.ProcessId }
+        Start-Sleep -Seconds 1
+    }
+    return $null
 }
 
 Set-Location $root
@@ -249,14 +303,26 @@ if ((-not $SkipBuild) -or (-not (Test-JarsPresent))) {
 
 Write-Step -Message "Starting Java applications in new windows"
 Start-AppWindow -ScriptName "start-worker.ps1"
-Start-Sleep -Seconds 8
+$workerPid = Wait-AppProcess -JarName "aerosync-worker"
+if (-not $workerPid) { throw "Worker did not start. Check the worker window for details." }
+Write-Host "Worker OK (PID $workerPid)"
 Start-AppWindow -ScriptName "start-ingest.ps1"
-Start-Sleep -Seconds 3
+$ingestPid = Wait-AppProcess -JarName "aerosync-ingest"
+if (-not $ingestPid) { throw "Ingest did not start. Check the ingest window for details." }
+Write-Host "Ingest OK (PID $ingestPid)"
 Start-AppWindow -ScriptName "start-api.ps1"
+$apiPid = Wait-AppProcess -JarName "aerosync-api"
+if (-not $apiPid) { throw "API did not start. Check the API window for details." }
+$serverPortValue = Read-DotEnvValue -Name "SERVER_PORT"
+$serverPort = if ($serverPortValue) { [int] $serverPortValue } else { 8080 }
+if (-not (Wait-TcpPort -TargetHost "localhost" -Port $serverPort -TimeoutSeconds 30)) {
+    throw "API PID $apiPid started but did not open port $serverPort. Check the API window for details."
+}
+Write-Host "API OK (PID $apiPid, port $serverPort)"
 
 Write-Host ""
 Write-Host "Done." -ForegroundColor Green
-Write-Host "  API dashboard:  http://localhost:8080/api/dashboard/stats"
+Write-Host "  API dashboard:  http://localhost:$serverPort/api/dashboard/stats"
 Write-Host "  RabbitMQ UI:    http://localhost:15672  (guest / guest)"
 Write-Host "  Test file:      copy aerosync-worker\src\test\resources\samples\valid-flights.csv to incoming folder"
 Write-Host ""

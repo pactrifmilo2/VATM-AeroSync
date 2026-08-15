@@ -1,0 +1,64 @@
+FILE: OF 61 AS.docx
+
+PARAGRAPHS
+HANOI, 09th MARCH 2026
+Permit No.: OF-61/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 09th MARCH 2026
+Permit No.: OF-61/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: K-Mile Air
+IATA code: 8K | ICAO code: KMI
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: K-Mile Air Company Ltd.
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: Netchanok.T@k-mile.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KMI526 | 29Mar26 | 24Oct26 | 123456- | VHHH | 1930 | VTBS | 2210
+KMI201 | 29Mar26 | 24Oct26 | 1234567 | VTBS | 1530 | ZGSZ | 1815
+KMI201 | 29Mar26 | 24Oct26 | 1234567 | ZGSZ | 2000 | WMKK | 2350
+KMI202 | 29Mar26 | 24Oct26 | 1234567 | WMKK | 1350 | ZGSZ | 1800
+KMI202 | 29Mar26 | 24Oct26 | 1234567 | ZGSZ | 1935 | VTBS | 2230
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+734 | HSKMA, HSKMB | Thailand
+738 | HSKMD | Thailand
+738 | HSKME | Thailand
+763 | HSKSA, HSKSB | Thailand
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-VTBS | A202 | ASSAD | VILAO
+VTBS-ZGSZ | A202 | VILAO | ASSAD
+ZGSZ-WMKK | A202, Q1, W1, L637, M765 | ASSAD | BITOD – (IGARI)
+WMKK-ZGSZ | M765, L644, M768, Q2, A202 | IGARI | ASSAD
+ |  | DUDIS | ASSAD
+ZGSZ-VTBS | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

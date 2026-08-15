@@ -3,12 +3,14 @@ package vatm.aerosync.ingest.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.io.TempDir;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.config.FilePathProperties;
 import vatm.aerosync.common.entity.EmailMetadata;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
@@ -25,6 +27,7 @@ import vatm.aerosync.ingest.email.EmailMessage;
 import vatm.aerosync.ingest.email.EmailAttachment;
 
 import java.nio.file.Path;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +43,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 class EmailIngestServiceTest {
+
+    @TempDir
+    Path tempDir;
 
     @Mock
     private EmailClient emailClient;
@@ -195,6 +201,47 @@ class EmailIngestServiceTest {
         verify(deduplicationService, never()).createPendingJob(anyString());
         verify(ingestPublisher, never()).publish(any());
         verify(emailAcknowledgementService).markIngestComplete(message.reference());
+    }
+
+    @Test
+    void ingestUpToPreservesUnsupportedAndBlockedAttachmentsInIncomingArchive() throws Exception {
+        FilePathProperties paths = new FilePathProperties();
+        paths.setIncoming(tempDir.resolve("incoming").toString());
+        emailIngestService = new EmailIngestService(
+                emailClient,
+                emailProperties,
+                deduplicationService,
+                ingestPublisher,
+                fileRecordRepository,
+                emailMetadataRepository,
+                emailFailureTracker,
+                emailAcknowledgementService,
+                paths);
+
+        EmailMessage unsupported = new EmailMessage(
+                "msg-unsupported-archive", "ops@vatm.local", "Images", LocalDateTime.now(),
+                List.of(new EmailAttachment("signature.png", "png-data".getBytes())),
+                false, "", "INBOX", 100L, 401L);
+        EmailMessage blocked = new EmailMessage(
+                "msg-blocked-archive", "blocked@spam.com", "Blocked", LocalDateTime.now(),
+                List.of(new EmailAttachment("permit.docx", "docx-data".getBytes())),
+                false, "", "INBOX", 100L, 402L);
+        when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(unsupported, blocked));
+        when(emailMetadataRepository
+                .findByMailboxFolderAndUidValidityAndMessageUidAndAttachmentIndex(
+                        eq("INBOX"), eq(100L), eq(401L), eq(0)))
+                .thenReturn(Optional.empty());
+
+        assertThat(emailIngestService.ingestUpTo(10)).isZero();
+
+        try (var files = Files.walk(tempDir.resolve("incoming").resolve("email-attachments"))) {
+            var names = files.filter(Files::isRegularFile)
+                    .map(path -> path.getFileName().toString())
+                    .toList();
+            assertThat(names)
+                    .anyMatch(name -> name.contains("401") && name.endsWith("signature.png"))
+                    .anyMatch(name -> name.contains("402") && name.endsWith("permit.docx"));
+        }
     }
 
     @Test

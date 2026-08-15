@@ -34,6 +34,7 @@ public class RetentionCleanupJob {
         deleteOlderThan(Path.of(filePathProperties.getProcessed()), workerProperties.getProcessedRetentionDays());
         int errorDays = workerProperties.getErrorRetentionDays();
         deleteOlderThan(Path.of(filePathProperties.getError()), errorDays);
+        deleteOlderThan(Path.of(filePathProperties.getErrorFormat()), errorDays);
         deleteOlderThan(Path.of(filePathProperties.getQuarantine()), errorDays);
     }
 

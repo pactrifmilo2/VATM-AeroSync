@@ -1,0 +1,69 @@
+FILE: LD 36B XAC NHAN THAY DOI MUC DICH.docx
+
+PARAGRAPHS
+VATM XÁC NHẬN CHO BL THAY ĐỔI MỤC ĐÍCH CHUYẾN BAY THEO ĐƠN ĐÍNH KÈM, MỌI CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+BRGDS/VATM
+From: OCC Department <occpa.fo@pacificairlines.com.vn> To: TT Thông Bao Hiep Dong Bay <hiepdongbay@vatm.vn> Date: Thu, 30 Apr 2026 16:41:20 +0700 Subject: FW: BL - ĐƠN ĐỀ NGHỊ CẤP SỬA ĐỔI PHÉP BAY CHO CHUYẾN BAY CHUYỂN SÂN NỘI ĐỊA (FERRY) NGÀY 01MAY2026
+From: BL Slot & Permission Group <slotpermit.occbl@pacificairlines.com.vn> Sent: Wednesday, 29 April, 2026 18:51 To: 'TT Thông Bao Hiep Dong Bay' <hiepdongbay@vatm.vn> Cc: 'Kieu Oanh Doan Thi' <oanh.doan@pacificairlines.com.vn>; 'OCC Department' <occpa.fo@pacificairlines.com.vn> Subject: BL - ĐƠN ĐỀ NGHỊ CẤP SỬA ĐỔI PHÉP BAY CHO CHUYẾN BAY CHUYỂN SÂN NỘI ĐỊA (FERRY) NGÀY 01MAY2026 Importance: High
+Kính gửi: TRUNG TÂM HIỆP ĐỒNG BAY VÀ ĐIỀU PHỐI LUỒNG KHÔNG LƯU – TỔNG CÔNG TY QUẢN LÝ BAY VIỆT NAM
+Địa chỉ: 5/200 Nguyễn Sơn, phường Bồ Đề, Hà Nội
+Điện thoại: +842438271840/+842438271513; Thư điện tử: hiepdongbay@vatm.vn;
+Tham chiếu phép bay số: LD-36/B/S/2026VN
+1. Người vận chuyển/ Người khai thác
+2. Sửa đổi mục đích chuyến bay:
+2.1 Mục đích gốc (Giờ UTC)
+Mục đích chuyến bay gốc: Vận chuyển hành khách
+2.2 Mục đích mới (Giờ UTC)
+Mục đích chuyến bay mới: Chuyến bay nội địa chuyển sân (ferry)
+3. Ghi chú
+Các chi tiết khác không thay đổi.
+4. Người đề nghị cấp phép bay
+Thanks & Best regards,
+Pham Thành Công (Mr)
+Scheduling/Slot Coordinator & Flight Permission Executive
+Operation Control Center - FOD
+T +84968131863 / +842873017550
+F +84838487168
+AFTN/SITA VVTSPICX/SGNPABL
+E slotpermit.occbl@pacificairlines.com.vn
+W www.pacificairlines.com/
+A 3rd Floor, Vietnam Airlines Building, Tan Son Nhat International Airport
+Tan Son Hoa Ward, Ho Chi Minh City, Vietnam
+
+TABLE 1
+CONTEXT: VATM XÁC NHẬN CHO BL THAY ĐỔI MỤC ĐÍCH CHUYẾN BAY THEO ĐƠN ĐÍNH KÈM, MỌI CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+BRGDS/VATM
+From: OCC Department <occpa.fo@pacificairlines.com.vn> To: TT Thông Bao Hiep Dong Bay <hiepdongbay@vatm.vn> Date: Thu, 30 Apr 2026 16:41:20 +0700 Subject: FW: BL - ĐƠN ĐỀ NGHỊ CẤP SỬA ĐỔI PHÉP BAY CHO CHUYẾN BAY CHUYỂN SÂN NỘI ĐỊA (FERRY) NGÀY 01MAY2026
+From: BL Slot & Permission Group <slotpermit.occbl@pacificairlines.com.vn> Sent: Wednesday, 29 April, 2026 18:51 To: 'TT Thông Bao Hiep Dong Bay' <hiepdongbay@vatm.vn> Cc: 'Kieu Oanh Doan Thi' <oanh.doan@pacificairlines.com.vn>; 'OCC Department' <occpa.fo@pacificairlines.com.vn> Subject: BL - ĐƠN ĐỀ NGHỊ CẤP SỬA ĐỔI PHÉP BAY CHO CHUYẾN BAY CHUYỂN SÂN NỘI ĐỊA (FERRY) NGÀY 01MAY2026 Importance: High
+Kính gửi: TRUNG TÂM HIỆP ĐỒNG BAY VÀ ĐIỀU PHỐI LUỒNG KHÔNG LƯU – TỔNG CÔNG TY QUẢN LÝ BAY VIỆT NAM
+Địa chỉ: 5/200 Nguyễn Sơn, phường Bồ Đề, Hà Nội
+Điện thoại: +842438271840/+842438271513; Thư điện tử: hiepdongbay@vatm.vn;
+Tham chiếu phép bay số: LD-36/B/S/2026VN
+1. Người vận chuyển/ Người khai thác
+Tên: PACIFIC AIRLINES
+Mã IATA: BL | Mã ICAO: PIC
+Địa chỉ bưu điện: 112 Hồng Hà, phường Tân Sơn Hòa, Thành phố Hồ Chí Minh, Việt Nam
+Điện thoại: +84 28 7301 7550 | Thư điện tử: slotpermit.occbl@pacificairlines.com.vn
+
+TABLE 2
+CONTEXT: 2. Sửa đổi mục đích chuyến bay:
+2.1 Mục đích gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay | Số phép bay đã cấp
+BL6160 | 01May26 | 01May26 | ----5-- | SGN | 09:05 | HUI | 10:40 | 321 | LD-36/B/S/2026VN
+
+TABLE 3
+CONTEXT: Mục đích chuyến bay gốc: Vận chuyển hành khách
+2.2 Mục đích mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay
+BL6160 | 01May26 | 01May26 | ----5-- | SGN | 09:05 | HUI | 10:40 | 321
+
+TABLE 4
+CONTEXT: Mục đích chuyến bay mới: Chuyến bay nội địa chuyển sân (ferry)
+3. Ghi chú
+Các chi tiết khác không thay đổi.
+4. Người đề nghị cấp phép bay
+Tên tổ chức: Công ty CPHK Pacific Airlines – Trung tâm Kiểm soát Khai thác (OCC)
+Cá nhân gửi đơn: Phạm Thành Công | Chức vụ: Chuyên viên Slot & Phép bay
+Địa chỉ bưu điện: 112 Hồng Hà, phường Tân Sơn Hòa, Thành phố Hồ Chí Minh, Việt Nam
+Điện thoại: +84 28 7301 7550 | Thư điện tử: slotpermit.occbl@pacificairlines.com.vn
+Ngày gửi đơn: 29/04/2026

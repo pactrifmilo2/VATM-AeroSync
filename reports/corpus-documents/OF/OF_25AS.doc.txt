@@ -1,0 +1,62 @@
+FILE: OF 25AS.doc
+
+PARAGRAPHS
+Ha Noi, 26/02/2026
+Permit number: OF - 25/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator: 
+Name: AIR CALIN IATA code: ICAO code: Postal Address: 47 RUE DE SEBASTOPOL, BP 3736-98846, NOUMEA, NEW CALEDONIA Tel: Email: 
+2. Billing address:
+Name: FLIGHT-ASSIST (UK) LTD Postal Address: The Laurels, Chalvington Road, Chalvington, East Sussex, BN27 3TB, United Kingdom. Tel: +44 (0)7827 444 065 Email: HYPERLINK "mailto:ops@flight-assist.com" \o "mailto:ops@flight-assist.com" ops@flight-assist.com 
+3. Schedules: UTC Time
+Flight 
+Number Effective from EffectiveTo Day(s) of services Departure Airport ETD Arrival Airport ETA ACI500 31MAR26 20OCT26 -2----- NWWW 1430 VTBS 0040+1 ACI501 02APR26 22OCT26 ---4--- VTBS 0925 NWWW 1930 ACI500 03APR26 23OCT26 ----5-- NWWW 1430 VTBS 0040+1 ACI501 29MAR26 25OCT26 ------7 VTBS 0925 NWWW 1930 ACI500 05APR26 11OCT26 ------7 NWWW 1430 VTBS 0040+1 ACI501 07APR26 13OCT26 -2----- VTBS 0925 NWWW 1930 
+4. Purpose of Flight(s): PAX CHARTER FLIGHT
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A339 F-ONET, F-ONEO OR SUB FRANCE 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR NWWW-VTBS M768-R468 AKMON SAPEN VTBS-NWWW R468-M768 SAPEN AKMON Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26/02/2026
+Permit number: OF - 25/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator:
+Name: AIR CALIN
+IATA code: | ICAO code:
+Postal Address: 47 RUE DE SEBASTOPOL, BP 3736-98846, NOUMEA, NEW CALEDONIA
+Tel: | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: FLIGHT-ASSIST (UK) LTD
+Postal Address: The Laurels, Chalvington Road, Chalvington, East Sussex, BN27 3TB, United Kingdom.
+Tel: +44 (0)7827 444 065 | Email: HYPERLINK "mailto:ops@flight-assist.com" \o "mailto:ops@flight-assist.com" ops@flight-assist.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+ACI500 | 31MAR26 | 20OCT26 | -2----- | NWWW | 1430 | VTBS | 0040+1
+ACI501 | 02APR26 | 22OCT26 | ---4--- | VTBS | 0925 | NWWW | 1930
+ACI500 | 03APR26 | 23OCT26 | ----5-- | NWWW | 1430 | VTBS | 0040+1
+ACI501 | 29MAR26 | 25OCT26 | ------7 | VTBS | 0925 | NWWW | 1930
+ACI500 | 05APR26 | 11OCT26 | ------7 | NWWW | 1430 | VTBS | 0040+1
+ACI501 | 07APR26 | 13OCT26 | -2----- | VTBS | 0925 | NWWW | 1930
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): PAX CHARTER FLIGHT
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A339 | F-ONET, F-ONEO OR SUB | FRANCE
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+NWWW-VTBS | M768-R468 | AKMON | SAPEN
+VTBS-NWWW | R468-M768 | SAPEN | AKMON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

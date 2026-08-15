@@ -1,0 +1,68 @@
+FILE: OF 116A CORR .docx
+
+PARAGRAPHS
+HANOI, 26 MARCH 2026
+PERMIT NUMBER: OF-116/A/S/2026VN
+IATA Schedule Season: Northern Summer [2026]
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PASSENGER AND CARGO
+5. Aircraft:
+6. Air traffic service routes:
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260325-0024)
+
+TABLE 1
+CONTEXT: HANOI, 26 MARCH 2026
+PERMIT NUMBER: OF-116/A/S/2026VN
+IATA Schedule Season: Northern Summer [2026]
+1. Carrier
+Name: PT GARUDA INDONESIA (PERSERO) TBK
+IATA code: GA | ICAO code: GIA
+Postal Address: Operation Center II Building 3rd Floor Garuda City, Soekarno-Hatta International Airport Cengkareng-19120,Indonesia
+Tel: +628112807807 | Email: customer@garuda-indonesia.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS Building, DAFZA, P.O.Box 54482, Dubai, UAE
+Tel: +971 4 299 6633 | Email: PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+GIA860 | 29MAR26 | 24OCT26 | 1234567 | WIII | 1650 | VHHH | 2145
+GIA870 | 29MAR26 | 24OCT26 | 1234567 | WADD | 1650 | RKSI | 2350
+GIA878 | 29MAR26 | 24OCT26 | 1234567 | WIII | 1615 | RKSI | 2330
+GIA894 | 29MAR26 | 24OCT26 | 1234567 | WIII | 1655 | ZSPD | 2305
+GIA898 | 29MAR26 | 24OCT26 | 1234567 | WIII | 0115 | ZGGG | 0625
+GIA863 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0140 | WIII | 0625
+GIA871 | 29MAR26 | 24OCT26 | 1234567 | RKSI | 0225 | WADD | 0920
+GIA879 | 29MAR26 | 24OCT26 | 1234567 | RKSI | 0135 | WIII | 0840
+GIA895 | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 0205 | WIII | 0825
+GIA899 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 0745 | WIII | 1310
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): PASSENGER AND CARGO
+5. Aircraft:
+Aircraft Type (10) | Registration Mark (11) | MTOW (Ton) | Nationality(14)
+332/339/738/77W | As per AOC of GIA | 217 | Indonesia
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WIII-VHHH | M771 | DUDIS | DONDA
+WADD-RKSI | M768 | AKMON | DONDA
+WIII-RKSI | M771 | DUDIS | DONDA
+WIII-ZSPD | M771 | DUDIS | DONDA
+WIII-ZGGG | M771 | DUDIS | DONDA
+VHHH-WIII | L642 | EXOTO | ESPOB
+RKSI-WADD | L642 | EXOTO | ESPOB
+RKSI-WIII | L642 | EXOTO | ESPOB
+ZSPD-WIII | L642 | EXOTO | ESPOB
+ZGGG-WIII | L642 | EXOTO | ESPOB
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

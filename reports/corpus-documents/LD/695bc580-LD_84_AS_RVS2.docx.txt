@@ -1,0 +1,35 @@
+FILE: LD 84 AS RVS2.docx
+
+PARAGRAPHS
+Hà Nội, ngày 02/4/2026
+LD-84/A/S/2026VN.RVS2
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Ghi chú:
+Các nội dung khác theo phép bay 84/A/S/2026VN không thay đổi.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 02/4/2026
+LD-84/A/S/2026VN.RVS2
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ787 | 02Apr26 | 02Apr26 | 4 | HAN | 6:10 | CXR | 7:55 | 320/321/32Q
+VJ774 | 02Apr26 | 02Apr26 | 4 | CXR | 8:25 | HAN | 9:55 | 320/321/32Q
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ787 | 02Apr26 | 02Apr26 | 4 | HAN | 6:10 | CXR | 7:55 | 333
+VJ774 | 02Apr26 | 02Apr26 | 4 | CXR | 8:25 | HAN | 9:55 | 333

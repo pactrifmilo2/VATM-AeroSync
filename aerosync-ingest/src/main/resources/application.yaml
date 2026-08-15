@@ -46,6 +46,7 @@ app:
     incoming: ${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}
     processed: ${APP_FILE_PATHS_PROCESSED:D:/vatm-storage/processed}
     error: ${APP_FILE_PATHS_ERROR:D:/vatm-storage/error}
+    error-format: ${APP_FILE_PATHS_ERROR_FORMAT:D:/vatm-storage/error-format}
     quarantine: ${APP_FILE_PATHS_QUARANTINE:D:/vatm-storage/quarantine}
   ingest:
     max-files-per-cycle: 100
@@ -64,6 +65,7 @@ app:
     acknowledgement-enabled: ${APP_EMAIL_ACKNOWLEDGEMENT_ENABLED:false}
     blacklist-senders: []
     connection-timeout-ms: 10000
+    staging-dir: ${APP_EMAIL_STAGING_DIR:${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}/email-staging}
   rabbit:
     file-ingested-exchange: file.ingested
     file-processing-routing-key: file.processing

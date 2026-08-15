@@ -1,0 +1,110 @@
+FILE: LD 56 AS.docx
+
+PARAGRAPHS
+Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 20/3/2026
+Số phép bay: LD-56/A/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Chở khách và hàng hóa
+4. Tàu bay
+5. Đường hàng không:
+6. Hiệu lực: -12/+24 giờ.
+7. Ghi chú
+7.1. Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+7.2. Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+Gửi bởi Khuất Duy Anh;
+C.c. Đào Ngọc Dũng - Phó trưởng phòng, Phòng Vận tải hàng không;
+C.c. Bùi Minh Đăng - Trưởng phòng, Phòng Vận tải hàng không;
+C.c. VATM; NAA; MAA; SAA.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 20/3/2026
+Số phép bay: LD-56/A/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Hãng hàng không
+Tên: BAMBOO AIRWAYS
+Mã IATA (nếu có): QH | Mã IATA (nếu có): QH
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+QH1415 | 29Mar26 | 24Oct26 | ..3.5.7 | HAN | 08:55 | CXR | 10:55 | 320/32N/321
+QH1415 | 30Mar26 | 24Oct26 | 12.4.6. | HAN | 05:55 | CXR | 07:55 | 320/32N/321
+QH1416 | 30Mar26 | 24Oct26 | 12.4.6. | CXR | 08:25 | HAN | 10:25 | 320/32N/321
+QH1416 | 29Mar26 | 24Oct26 | ..3.5.7 | CXR | 11:25 | HAN | 13:25 | 320/32N/321
+QH150 | 29Mar26 | 24Oct26 | .23.567 | SGN | 22:55 | DAD | 00:40+ | 320/32N/321
+QH150 | 30Mar26 | 24Oct26 | 1..4… | SGN | 23:15 | DAD | 00:40+ | 320/32N/321
+QH151 | 29Mar26 | 24Oct26 | 1234567 | DAD | 01:10 | SGN | 02:40 | 320/32N/321
+QH104 | 30Mar26 | 24Oct26 | 1..4… | DAD | 02:40 | HAN | 04:10 | 320/32N/321
+QH104 | 31Mar26 | 24Oct26 | .2…6. | DAD | 02:40 | HAN | 04:05 | 320/32N/321
+QH146 | 30Mar26 | 24Oct26 | 12.4.6. | DAD | 11:15 | HAN | 12:40 | 320/32N/321
+QH154 | 29Mar26 | 24Oct26 | ..3.567 | SGN | 03:05 | DAD | 04:30 | 320/32N/321
+QH154 | 29Mar26 | 24Oct26 | 12.4… | SGN | 02:55 | DAD | 04:30 | 320/32N/321
+QH103 | 30Mar26 | 24Oct26 | 12.4.6. | HAN | 00:35 | DAD | 02:00 | 320/32N/321
+QH104 | 29Mar26 | 24Oct26 | ..3.5.7 | DAD | 00:40 | HAN | 02:05 | 320/32N/321
+QH135 | 29Mar26 | 24Oct26 | 1234567 | HAN | 04:50 | DAD | 06:15 | 320/32N/321
+QH148 | 29Mar26 | 24Oct26 | ..3.5.7 | DAD | 15:00 | HAN | 16:25 | 320/32N/321
+QH136 | 30Mar26 | 24Oct26 | 12.4.6. | DAD | 06:45 | HAN | 08:10 | 320/32N/321
+QH173 | 29Mar26 | 24Oct26 | 1234567 | DAD | 11:40 | SGN | 13:10 | 320/32N/321
+QH147 | 29Mar26 | 24Oct26 | 12.4.6. | HAN | 09:10 | DAD | 10:35 | 320/32N/321
+QH101 | 31Mar26 | 24Oct26 | .2.4.6. | HAN | 22:40 | DAD | 00:10+ | 320/32N/321
+QH153 | 31Mar26 | 15Aug26 | .2…6. | DAD | 00:20 | SGN | 01:50 | 320/32N/321
+QH224 | 29Mar26 | 24Oct26 | 1234567 | SGN | 03:25 | HAN | 05:30 | 320/32N/321
+QH211 | 29Mar26 | 24Oct26 | 1234567 | HAN | 03:10 | SGN | 05:25 | 320/32N/321
+QH242 | 29Mar26 | 24Oct26 | 1234567 | SGN | 06:15 | HAN | 08:25 | 320/32N/321
+QH268 | 29Mar26 | 24Oct26 | 1234567 | SGN | 13:55 | HAN | 16:05 | 320/32N/321
+QH283 | 29Mar26 | 24Oct26 | 1234567 | HAN | 16:45 | SGN | 19:10 | 320/32N/321
+QH203 | 29Mar26 | 24Oct26 | 1…5.. | HAN | 00:05 | SGN | 02:25 | 320/32N/321
+QH203 | 29Mar26 | 24Oct26 | .234.67 | HAN | 00:05 | SGN | 02:20 | 320/32N/321
+QH201 | 29Mar26 | 24Oct26 | 1.34567 | HAN | 22:45 | SGN | 01:05+ | 320/32N/321
+QH281 | 29Mar26 | 24Oct26 | 1234567 | HAN | 14:15 | SGN | 16:20 | 320/32N/321
+QH286 | 29Mar26 | 24Oct26 | 1234567 | SGN | 13:50 | HAN | 16:10 | 320/32N/321
+QH273 | 29Mar26 | 24Oct26 | 12.4.6. | HAN | 13:30 | SGN | 15:45 | 320/32N/321
+QH282 | 29Mar26 | 24Oct26 | 12.4.6. | SGN | 16:25 | HAN | 18:35 | 320/32N/321
+QH271 | 30Mar26 | 24Oct26 | 12.4.6. | HAN | 11:10 | SGN | 13:25 | 320/32N/321
+QH280 | 29Mar26 | 24Oct26 | 12.4.6. | SGN | 14:10 | HAN | 16:20 | 320/32N/321
+QH1215 | 29Mar26 | 24Oct26 | 1234567 | HAN | 09:20 | UIH | 11:00 | 320/32N/321
+QH1214 | 29Mar26 | 24Oct26 | 1234567 | UIH | 11:30 | HAN | 13:10 | 320/32N/321
+QH1124 | 29Mar26 | 24Oct26 | 1234567 | SGN | 10:15 | UIH | 11:30 | 320/32N/321
+QH1125 | 29Mar26 | 24Oct26 | 1234567 | UIH | 12:00 | SGN | 13:15 | 320/32N/321
+
+TABLE 4
+CONTEXT: 3. Mục đích chuyến bay: Chở khách và hàng hóa
+4. Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+32N | Theo AOC của QH | Vietnam
+321 | Theo AOC của QH | Vietnam
+320 | Theo FAOC của Mongolian Airways Cargo LLC | Mongolia
+
+TABLE 5
+CONTEXT: 5. Đường hàng không:
+Chặng bay | Đường hàng không
+HAN-CXR | Q1 W2
+CXR-HAN | W2 Q2
+SGN-DAD | Q2/ Q2 A1 / W1
+DAD-SGN | Q1 / W1
+DAD-HAN | Q2 / Q1 Q5 Q2
+HAN-DAD | Q1
+SGN-HAN | Q2 / W2 / W1
+HAN-SGN | Q1 / Q1 W12 /W1
+HAN-UIH | Q1 W2
+UIH-HAN | W2 Q2
+SGN-UIH | W12 / Q2 W12
+UIH-SGN | W12 Q1 / W12 W1
+
+TABLE 6
+CONTEXT: 6. Hiệu lực: -12/+24 giờ.
+7. Ghi chú
+7.1. Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+7.2. Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+KT. CỤC TRƯỞNGPHÓ CỤC TRƯỞNG | 
+ | 
+Đỗ Hồng Cẩm | 

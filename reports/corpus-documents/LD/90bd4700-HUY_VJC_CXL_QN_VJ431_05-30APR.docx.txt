@@ -1,0 +1,37 @@
+FILE: HUY VJC_CXL_QN_VJ431_05-30APR.docx
+
+PARAGRAPHS
+Đơn đề nghị hủy phép bay
+Kính gửi: Cục Hàng không Việt Nam
+Địa chỉ: 119 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại: 84 4 38272281; Thư điện tử: atd@caa.gov.vn
+1. Người vận chuyển:
+2. Lịch bay hủy (Giờ UTC):
+3. Ghi chú: Các chi tiết khác không thay đổi.
+4. Người đề nghị cấp phép bay:
+_____________________________________
+
+TABLE 1
+CONTEXT: Đơn đề nghị hủy phép bay
+Kính gửi: Cục Hàng không Việt Nam
+Địa chỉ: 119 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại: 84 4 38272281; Thư điện tử: atd@caa.gov.vn
+1. Người vận chuyển:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay hủy (Giờ UTC):
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay | Số phép
+VJ431 | 05Apr26 | 30Apr26 | -2-4-6- | HAN | 23:05 | UIH | 0:40 | 320/321/32Q | LD-84/A/S/2026VN
+
+TABLE 3
+CONTEXT: 3. Ghi chú: Các chi tiết khác không thay đổi.
+4. Người đề nghị cấp phép bay:
+Tên tổ chức: CÔNG TY CPHK VIETJET | 
+Cá nhân gửi đơn: Trần Công Nghĩa | Chức vụ (nếu có): Chuyên viên lịch bay
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 96 236 9927 | Thư điện tử: nghiatc@vietjetair.com
+Ngày gửi đơn: 03/04/2026.

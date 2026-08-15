@@ -1,0 +1,58 @@
+FILE: OF 29 CS.docx
+
+PARAGRAPHS
+HA NOI, 05 MAR 2026
+NUMBER OF-29/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Cargo Flight
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 05 MAR 2026
+NUMBER OF-29/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: CHINA AIRLINES
+IATA code: CI | ICAO code: CAL
+Postal Address: NO. 1, HANGZHAN S. ROAD, DAYUAN DISTRICT, TAOYUAN CITY, 33758, TAIWAN
+Tel: 886-3-3993966 | Email: daisywang @china-airlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: SYSTEM OPERATION CONTROL DIVISION
+Postal Address: 5F NO. 1, HANGZHEN S. ROAD, DAYUAN DISTRICT, TAOYUAN CITY, 33758, TAIWAN
+Tel: 886-3-3993966 | Email: daisywang @china-airlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CAL 5023 | 29MAR26 | 24OCT26 | 1234567 | RCTP | 17:50 | VTBS | 21:40
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Cargo Flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+77X | As per AOC of CAL | R.O.C
+74Y | As per AOC of CAL | R.O.C
+77W | As per AOC of CAL | R.O.C
+359 | As per AOC of CAL | R.O.C
+789 | As per AOC of CAL | R.O.C
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-VTBS | A1 | BUNTA | PAPRA
+ | N892 L628 G474 | MONBO | ANINA
+ | A206 | ASSAD | NALAO
+ | L628 G474 | ARESI | ANINA
+ | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

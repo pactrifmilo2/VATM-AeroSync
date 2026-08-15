@@ -1,0 +1,82 @@
+FILE: OF 58 AS.docx
+
+PARAGRAPHS
+HANOI, 09th March 2026
+Permit No.: OF-58/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 09th March 2026
+Permit No.: OF-58/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+Name: ROYAL BRUNEI AIRLINES
+IATA code: BI | ICAO code: RBA
+Postal Address: Royal Brunei Airlines Sdn Bhd RB Campus Jalan Kustin P.O.Box 737 BB2114.
+Tel:+6732367670 | Email: rbap.invoiceprocessing@rba.com.bn
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Royal Brunei Airlines
+Postal Address: Royal Brunei Airlines Finance department account payable RB Campus Rose building Jalan Kustin Terunjing Lama Berakas BB2114, Brunei Darussalam.
+Tel: +6732367670 | Email: rbap.invoiceprocessing@rba.com.bn
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+RBA 1 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 0315 | OEJN | 1315
+RBA 2 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | OEJN | 1515 | WBSB | 0145+1
+RBA 97 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 1045 | OMDB | 1930
+RBA 98 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | OMDB | 0115 | WBSB | 0950
+RBA 513 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 0255 | VTBS | 0540
+RBA 514 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | VTBS | 0630 | WBSB | 0915
+RBA 519 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 1025 | VTBS | 1310
+RBA 520 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | VTBS | 1400 | WBSB | 1645
+RBA 627 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 0715 | ZGNN | 1050
+RBA 628 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | ZGNN | 1150 | WBSB | 1530
+RBA 639 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 0410 | ZSHC | 0850
+RBA 640 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | ZSHC | 1010 | WBSB | 1430
+RBA 151 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 1345 | VGHS | 1825
+RBA 152 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | VGHS | 1915 | WBSB | 2350
+RBA 121 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | WBSB | 1200 | VOMM | 1720
+RBA 122 | 29 MAR 26 | 24 OCT 26 | 1/2/3/4/5/6/7 | VOMM | 1820 | WBSB | 2355
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320N | V8-RBA/RBC/RBD/RBE/RBF/RBG | BRUNEIAN
+B787 | V8-DLA/DLB/DLC/DLC/DLE | BRUNEIAN
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WBSB-VOMM | M768,R468 | AKMON | SAPEN
+VOMM-WBSB | M768,R468 | SAPEN | AKMON
+WBSB-VGHS | M768,R468 | AKMON | SAPEN
+VGHS-WBSB | M768,R468 | SAPEN | AKMON
+WBSB-OEJN | M768,R468 | AKMON | SAPEN
+OEJN-WBSB | M768,R468 | SAPEN | AKMON
+WBSB-OMDB | M768,R468 | AKMON | SAPEN
+OMDB-WBSB | M768,R468 | SAPEN | AKMON
+WBSB-VTBS | M768,R468 | AKMON | SAPEN
+VTBS-WBSB | M768,R468 | SAPEN | AKMON
+WBSB-ZGNN | M768 | AKMON | BUNTA
+ZGNN-WBSB | G221,W12,W1,L644,M768 | BUNTA | AKMON
+WBSB-ZSHC | M768,L644,W1,W12 | AKMON | BUNTA
+ZSHC-WBSB | L642,M768 | EXOTO | AKMON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+

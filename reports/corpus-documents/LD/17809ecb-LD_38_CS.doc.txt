@@ -1,0 +1,111 @@
+FILE: LD 38 CS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 16/03/2026
+Permit No.: LD-38/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited IATA code: CX ICAO code: CPA Postal Address: Room 502, 5/F, Centec Tower, 72-74 Nguyen Thi Minh Khai St. Xuan Hoa Ward, HCMC Tel: 84-2838223034 Email: HYPERLINK "mailto:quyen_tran@cathaypacific.com" quyen_tran@cathaypacific.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CX2049 29Mar26 26Apr26 ------7 HKG 23:20 HAN 01:25/+1 74Y/74N CX2048 30Mar26 27Apr26 1------ HAN 03:35 HKG 5:40 74Y/74N CX2049 01May26 18Oct26 ------7 HKG 23:15 HAN 1:20/+1 74Y/74N CX2048 01May26 19Oct26 1------ HAN 03:20 HKG 5:25 74Y/74N CX 049 31Mar26 24Oct26 -2---6- HKG 05:15 DAC 9:15 74Y/74N CX 048 31Mar26 24Oct26 -2---6- DAC 11:30 HAN 14:10 74Y/74N CX 048 31Mar26 24Oct26 -2---6- HAN 15:40 HKG 17:45 74Y/74N CX3037 06May26 21Oct26 --3---- HKG 08:50 HAN 11:00 74Y/74N CX3036 06May26 21Oct26 --3---- HAN 12:30 HKG 14:35 74Y/74N CX3243 02Apr26 22Oct26 ---4--- HKG 08:05 HAN 10:10 74Y/74N CX 048 02Apr26 22Oct26 ---4--- HAN 12:15 HKG 14:10 74Y/74N CX2049 29Mar26 24Oct26 ----5-- HKG 08:55 HAN 11:00 74Y/74N CX2048 29Mar26 24Oct26 ----5-- HAN 13:00 HKG 15:05 74Y/74N CX3147 03Apr26 23Oct26 ----5-- HKG 13:00 HAN 15:05 74Y/74N CX3046 03Apr26 23Oct26 ----5-- HAN 17:05 HKG 19:10 74Y/74N CX3249 29Mar26 18Oct26 ------7 HKG 01:50 CGK 6:30 74Y/74N CX3348 29Mar26 18Oct26 ------7 CGK 08:00 HAN 12:30 74Y/74N CX3348 29Mar26 18Oct26 ------7 HAN 15:00 HKG 17:05 74Y/74N CX3349 06May26 21Oct26 --3---- HKG 10:40 BKK 13:35 74Y CX3346 06May26 21Oct26 --3---- BKK 15:45 SGN 17:35 74Y CX3346 06May26 21Oct26 --3---- SGN 19:15 HKG 21:50 74Y No 5th freedom traffic rights for sector CGK-HAN, DAC-HAN, BKK-SGN
+3. Purpose of Flight: All-cargo 
+4. Aircraft
+Aircraft Type Registration Mark 
+ Nationality 74Y According to CX’s FAOC China 74N According to CX’s FAOC China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CGK-HAN (Pri) L644, W1, W2, Q2 DUDIS N/A (Alt) M753, L637, Q2 IPRIX N/A (Alt) M753, M755, N639, Q2 IPRIX, VILAO LEKOB DAC-HAN (Pri) B214, W21 LADON N/A (Alt) B465 LAPON N/A HKG-HAN (Pri) R474 TEBAK N/A (Alt) A1, W2, Q2 BUNTA N/A HAN-HKG (Pri) R474 N/A TEBAK (Alt) W1, A1 N/A BUNTA HAN-SGN (Pri) Q1 N/A N/A BKK-SGN
+ (Pri) N/A SAPEN N/A (Alt) R468 SAPEN N/A SGN-HKG (Pri) W12, G221 N/A BUNTA (Alt) N500, M771 N/A DONDA (Alt) W12, W1, A1 N/A BUNTA (Alt) Q2, A1 N/A BUNTA (Alt) Q2, W12, G221 N/A BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM.
+Do Hong Cam.
+Deputy Director General.
+C.c: VATM; MAA; NAA; SAA.
+Sent by Le Vu Ha Anh.
+C.c: Bui Minh Dang - Director of ATD/CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 16/03/2026
+Permit No.: LD-38/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: Room 502, 5/F, Centec Tower, 72-74 Nguyen Thi Minh Khai St. Xuan Hoa Ward, HCMC
+Tel: 84-2838223034 | Email: HYPERLINK "mailto:quyen_tran@cathaypacific.com" quyen_tran@cathaypacific.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CX2049 | 29Mar26 | 26Apr26 | ------7 | HKG | 23:20 | HAN | 01:25/+1 | 74Y/74N
+CX2048 | 30Mar26 | 27Apr26 | 1------ | HAN | 03:35 | HKG | 5:40 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX2049 | 01May26 | 18Oct26 | ------7 | HKG | 23:15 | HAN | 1:20/+1 | 74Y/74N
+CX2048 | 01May26 | 19Oct26 | 1------ | HAN | 03:20 | HKG | 5:25 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX 049 | 31Mar26 | 24Oct26 | -2---6- | HKG | 05:15 | DAC | 9:15 | 74Y/74N
+CX 048 | 31Mar26 | 24Oct26 | -2---6- | DAC | 11:30 | HAN | 14:10 | 74Y/74N
+CX 048 | 31Mar26 | 24Oct26 | -2---6- | HAN | 15:40 | HKG | 17:45 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX3037 | 06May26 | 21Oct26 | --3---- | HKG | 08:50 | HAN | 11:00 | 74Y/74N
+CX3036 | 06May26 | 21Oct26 | --3---- | HAN | 12:30 | HKG | 14:35 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX3243 | 02Apr26 | 22Oct26 | ---4--- | HKG | 08:05 | HAN | 10:10 | 74Y/74N
+CX 048 | 02Apr26 | 22Oct26 | ---4--- | HAN | 12:15 | HKG | 14:10 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX2049 | 29Mar26 | 24Oct26 | ----5-- | HKG | 08:55 | HAN | 11:00 | 74Y/74N
+CX2048 | 29Mar26 | 24Oct26 | ----5-- | HAN | 13:00 | HKG | 15:05 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX3147 | 03Apr26 | 23Oct26 | ----5-- | HKG | 13:00 | HAN | 15:05 | 74Y/74N
+CX3046 | 03Apr26 | 23Oct26 | ----5-- | HAN | 17:05 | HKG | 19:10 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX3249 | 29Mar26 | 18Oct26 | ------7 | HKG | 01:50 | CGK | 6:30 | 74Y/74N
+CX3348 | 29Mar26 | 18Oct26 | ------7 | CGK | 08:00 | HAN | 12:30 | 74Y/74N
+CX3348 | 29Mar26 | 18Oct26 | ------7 | HAN | 15:00 | HKG | 17:05 | 74Y/74N
+ |  |  |  |  |  |  |  | 
+CX3349 | 06May26 | 21Oct26 | --3---- | HKG | 10:40 | BKK | 13:35 | 74Y
+CX3346 | 06May26 | 21Oct26 | --3---- | BKK | 15:45 | SGN | 17:35 | 74Y
+CX3346 | 06May26 | 21Oct26 | --3---- | SGN | 19:15 | HKG | 21:50 | 74Y
+
+TABLE 4
+CONTEXT: No 5th freedom traffic rights for sector CGK-HAN, DAC-HAN, BKK-SGN
+3. Purpose of Flight: All-cargo 
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+74Y | According to CX’s FAOC | China
+74N | According to CX’s FAOC | China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CGK-HAN | (Pri) L644, W1, W2, Q2 | DUDIS | N/A
+ | (Alt) M753, L637, Q2 | IPRIX | N/A
+ | (Alt) M753, M755, N639, Q2 | IPRIX, VILAO | LEKOB
+DAC-HAN | (Pri) B214, W21 | LADON | N/A
+ | (Alt) B465 | LAPON | N/A
+HKG-HAN | (Pri) R474 | TEBAK | N/A
+ | (Alt) A1, W2, Q2 | BUNTA | N/A
+HAN-HKG | (Pri) R474 | N/A | TEBAK
+ | (Alt) W1, A1 | N/A | BUNTA
+HAN-SGN | (Pri) Q1 | N/A | N/A
+BKK-SGN | (Pri) N/A | SAPEN | N/A
+ | (Alt) R468 | SAPEN | N/A
+SGN-HKG | (Pri) W12, G221 | N/A | BUNTA
+ | (Alt) N500, M771 | N/A | DONDA
+ | (Alt) W12, W1, A1 | N/A | BUNTA
+ | (Alt) Q2, A1 | N/A | BUNTA
+ | (Alt) Q2, W12, G221 | N/A | BUNTA

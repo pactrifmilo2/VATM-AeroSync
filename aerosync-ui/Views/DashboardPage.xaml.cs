@@ -15,6 +15,7 @@ public sealed partial class DashboardPage : Page
 {
     private readonly AeroSyncApiClient apiClient;
     private readonly DispatcherTimer refreshTimer = new();
+    private bool hasLoaded;
 
     public DashboardViewModel ViewModel { get; }
 
@@ -32,7 +33,11 @@ public sealed partial class DashboardPage : Page
 
     private async void DashboardPage_Loaded(object sender, RoutedEventArgs e)
     {
-        await ViewModel.RefreshAsync();
+        if (!hasLoaded)
+        {
+            hasLoaded = true;
+            await ViewModel.RefreshAsync();
+        }
         refreshTimer.Start();
     }
 

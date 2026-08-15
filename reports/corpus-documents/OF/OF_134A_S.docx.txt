@@ -1,0 +1,60 @@
+FILE: OF 134A S.docx
+
+PARAGRAPHS
+HA NOI, 29 APR 2026
+NUMBER OF-134/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger & Cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 29 APR 2026
+NUMBER OF-134/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: KENYA AIRWAYS
+IATA code: KQ | ICAO code: KQA
+Postal Address: P.O BOX 19002-00501, NAIROBI, KENYA
+Tel: +254 20 642 2327 3785/3720 | Email: FltOps.Engineering@kenya-airways.com; AccountsPayable@kenya-airways.com; Gladys.nyandiri@kenya-airways.com; Lucy.Wangui@kenya-airways.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: LUCY WANGUI
+Postal Address: P. O BOX 19002-00501, NAIROBI, KENYA
+Tel: +254 20 642 2327 3785/3720 | Email: AccountsPayable@kenya-airways.com; Gladys.nyandiri@kenya-airways.com; Lucy.Wangui@kenya-airways.com; FltOps.Engineering@kenya-airways.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KQA 886 | 20/Jul/2026 | 22/Oct/2026 | 1…… | VTBS | 08:05 | ZGGG | 11:05
+KQA 887 | 20/July/2026 | 24/Oct/2026 | 1....... | ZGGG | 14:10 | VTBS | 16:35
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger & Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B787 | 5Y-KZA | Kenya
+B787 | 5Y-KZB | Kenya
+B787 | 5Y-KZC | Kenya
+B787 | 5Y-KZD | Kenya
+B787 | 5Y-KZE | Kenya
+B787 | 5Y-KZF | Kenya
+B787 | 5Y-KZG | Kenya
+B787 | 5Y-KZH | Kenya
+B787 | 5Y-KZJ | Kenya
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS-ZGGG | A202R474 | VILAOLAVOS | ASSADTEBAK
+ZGGG-VTBS | A202R474 | ASSADTEBAK | VILAOLAVOS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

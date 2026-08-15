@@ -148,6 +148,12 @@ class DocxPermitProfileCatalog {
         if (blank(profile.permit().numberGroup()) || blank(profile.permit().normalizedTemplate())) {
             throw invalid(profile, "permit number group and normalized template are required");
         }
+        if (Pattern.compile("(?i)/(?:S|W)/")
+                .matcher(profile.permit().normalizedTemplate()).find()
+                && !profile.permit().pattern().contains("?<season>")) {
+            throw invalid(profile,
+                    "normalized permit must not invent /S/ or /W/ without a season group");
+        }
         validateDateField(profile, profile.permitDate(), "permit date");
         validateTextField(profile, profile.operator(), "operator");
         validateTextField(profile, profile.billingAddress(), "billing address");

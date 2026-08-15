@@ -100,7 +100,12 @@ public sealed partial class DashboardViewModel : ObservableObject
         try
         {
             IsLoading = true;
-            var stats = await apiClient.GetDashboardStatsAsync();
+            var statsTask = apiClient.GetDashboardStatsAsync();
+            var jobsTask = apiClient.GetJobsAsync();
+            var auditLogsTask = apiClient.GetAuditLogsAsync();
+            await Task.WhenAll(statsTask, jobsTask, auditLogsTask);
+
+            var stats = await statsTask;
             SuccessCount = Count(stats, "SUCCESS");
             ErrorCount = Count(stats, "FAILED");
             WarnCount = Count(stats, "QUARANTINED");
@@ -109,8 +114,8 @@ public sealed partial class DashboardViewModel : ObservableObject
             TotalJobs = stats.TotalJobs > 0 ? stats.TotalJobs : SuccessCount + ErrorCount + WarnCount + SkippedCount + ProcessingCount;
             ActiveAlerts = stats.ActiveAlerts;
 
-            Replace(Jobs, await apiClient.GetJobsAsync());
-            var auditLogs = await apiClient.GetAuditLogsAsync();
+            Replace(Jobs, await jobsTask);
+            var auditLogs = await auditLogsTask;
             Replace(Logs, auditLogs.Take(20));
             var latestIncoming = auditLogs.FirstOrDefault(log =>
                 log.Action.StartsWith("INCOMING_", StringComparison.OrdinalIgnoreCase));

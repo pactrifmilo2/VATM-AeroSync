@@ -1,0 +1,55 @@
+FILE: OF 104AS.docx
+
+PARAGRAPHS
+HANOI, 19th March 2026
+Permit No.: OF-104/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 19th March 2026
+Permit No.: OF-104/A/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+Name: Uzbekistan Airways JSC
+IATA code: HY | ICAO code: UZB
+Postal Address: 41, Amir Temur avenue, GSP 100060, Tashkent, Uzbekistan
+Tel: +998 78-140-46-58 | Email: schedule@uzairways.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Uzbekistan Airways JSC
+Postal Address: 41, Amir Temur avenue, GSP 100060, Tashkent, Uzbekistan
+Tel: +998 78-140-46-58 | Tel: +998 78-140-46-58
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+UZB510 | 29MAR26 | 24OCT26 | 1--4--- | ZJSY | 2220 | UZTT | 0600+
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A20N | UK32021/UK32022/UK32023 | Uzbekistan
+A21N | UK32101/UK32102/UK32103 | Uzbekistan
+B763 | UK67003/UK67004/UK67005/UK67006/UK67007 | Uzbekistan
+B788 | UK78701/UK78702/UK78703/UK78704/UK78705/UK78706 | Uzbekistan
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJSY-UZTT | A1 W1 A206 | BUNTA | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

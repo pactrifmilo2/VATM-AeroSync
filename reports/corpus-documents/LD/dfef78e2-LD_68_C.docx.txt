@@ -1,0 +1,41 @@
+FILE: LD 68 C.docx
+
+PARAGRAPHS
+Hà Nội, ngày 22 tháng 6 năm 2026
+Số: LD-68/C/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Chở hành khách, hàng hoá
+4. Tàu bay: Theo phép bay mùa số LD-68/A/S/2026VN
+5. Đường hàng không: Theo phép bay mùa số LD-68/A/S/2026VN
+Đường bay dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực phép bay: -12/+24 giờ
+7. Ghi chú:
+7.1. Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+7.2. Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+KT. CỤC TRƯỞNG
+PHÓ CỤC TRƯỞNG
+Đỗ Hồng Cẩm
+Gửi bởi Phạm Thị Hương Giang
+C/c: Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN
+C/c: Phạm Thị Thảo - Phó Trưởng phòng, PhòngVTHK/Cục HKVN
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (8424) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hà Nội, ngày 22 tháng 6 năm 2026
+Số: LD-68/C/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Hãng hàng không
+Tên: VIETNAM AIRLINES
+Mã IATA: VN | Mã ICAO:HVN
+Địa chỉ bưu điện: 200 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại:0904186949 | Thư điện tử: HUNGDQ@VIETNAMAIRLINES.COM
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+VN63 | 05Jul26 | 18Oct26 | ------7 | HAN | 02:30 | SVO | 12:00 | 787/350/321/320
+VN62 | 05Jul26 | 18Oct26 | ------7 | SVO | 13:30 | HAN | 22:20 | 787/350/321/320

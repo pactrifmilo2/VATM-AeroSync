@@ -1,0 +1,50 @@
+FILE: OF 109AS.docx
+
+PARAGRAPHS
+Hanoi, 20 March 2026
+Permit number: OF-109/A/S/2026VN
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): COMMERCIAL PASSENGER FLIGHT
+5. Aircraft:
+6. Airways:
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260317-0026)
+
+TABLE 1
+CONTEXT: Hanoi, 20 March 2026
+Permit number: OF-109/A/S/2026VN
+1. Carrier/Operator:
+Name: LION AIR
+IATA code: JT | ICAO code: LNI
+Postal Address: Lion Air Tower, Jalan KH. Hasyim Ashari, Jakarta, Indonesia
+Tel: (62-21) 631 4303 | Email: customercare@lionairgroup.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: CHARTERLINK DMCC (D.B.A JUST AVIATION)
+Postal Address: OFFICE 702, JUMEIRAH BAY X3, CLUSTER X, JUMEIRAH LAKE TOWERS, DUBAI, UAE
+Tel: +971-50-571-2659 | Email: PAYABLES@JUSTAVIATION.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+LNI2781 | 29MAR26 | 24OCT26 | 1234567 | WIII | 0950 | ZJSY | 1405
+LNI2780 | 29MAR26 | 24OCT26 | 1234567 | ZJSY | 1505 | WIII | 1910
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): COMMERCIAL PASSENGER FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A330 & B737 OR SUBS | AS PER LNI AOC | INDONESIA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WIII-ZJSY | M753 M755…A1 | IPRIX/PAPRA | KISAN/BUNTA
+ZJSY-WIII | A1…M755 M753 | BUNTA/KISAN | PAPRA/IPRIX
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

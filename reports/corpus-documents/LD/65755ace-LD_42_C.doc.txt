@@ -1,0 +1,55 @@
+FILE: LD 42 C.doc
+
+PARAGRAPHS
+Ha Noi, 08/7/2026
+Permit No.: LD - 42/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C. IATA code: QR ICAO code: QTR Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR Tel: +974 4022 2941 Email: HYPERLINK "mailto:aeropoliticalsched@qatarairways.com.qa" aeropoliticalsched@qatarairways.com.qa 
+2. Schedules (UTC Time) 
+Flight Number Effective from Effective To Day(s) of services Departure Airport
+ ETD Arrival Airport ETA Aircraft Type QR8972 02AUG26 18OCT26 ------7 DOH 1355 SGN 2145 77X QR8973 02AUG26 18OCT26 ------7 SGN 2345 DOH 0700+ 77X 
+3. Purpose of Flight: All-Cargo
+4. Aircraft:
+Aircraft Type Registration marks Nationality 77X As per FAOC of QR QATAR 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR DOH-SGN R468 SAPEN SGN-DOH R468 SAPEN Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C.c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 08/7/2026
+Permit No.: LD - 42/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 4022 2941 | Email: HYPERLINK "mailto:aeropoliticalsched@qatarairways.com.qa" aeropoliticalsched@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR8972 | 02AUG26 | 18OCT26 | ------7 | DOH | 1355 | SGN | 2145 | 77X
+QR8973 | 02AUG26 | 18OCT26 | ------7 | SGN | 2345 | DOH | 0700+ | 77X
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All-Cargo
+4. Aircraft:
+Aircraft Type | Registration marks | Nationality
+77X | As per FAOC of QR | QATAR
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DOH-SGN | R468 | SAPEN | 
+SGN-DOH | R468 |  | SAPEN
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,34 @@
+FILE: R36B6  36B REV6.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 28/4/2026
+Phép bay số: LD-36/B/S/2026VN/REV6
+1. Người vận chuyển/ Người khai thác
+2. Sửa đổi lịch bay:
+2.1 Lịch bay gốc (Giờ UTC)
+2.2 Lịch bay mới (Giờ UTC)
+3. Ghi chú
+Các chi tiết khác không thay đổi.
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 28/4/2026
+Phép bay số: LD-36/B/S/2026VN/REV6
+1. Người vận chuyển/ Người khai thác
+Tên: PACIFIC AIRLINES
+Mã IATA: BL | Mã ICAO: PIC
+Địa chỉ bưu điện: 112 Hồng Hà, phường Tân Sơn Hòa, Thành phố Hồ Chí Minh, Việt Nam
+Điện thoại: +84 28 7301 7550 | Thư điện tử: slotpermit.occbl@pacificairlines.com.vn
+
+TABLE 2
+CONTEXT: 2. Sửa đổi lịch bay:
+2.1 Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay | Số phép bay đã cấp
+BL6210 | 28Apr26 | 28Apr26 | -2----- | SGN | 23:30 | PXU | 00:40 | 321 | LD-36/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2 Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay
+BL6212 | 29Apr26 | 29Apr26 | --3---- | SGN | 04:45 | PXU | 05:55 | 321

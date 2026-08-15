@@ -1,0 +1,58 @@
+FILE: OF 135 AS.doc
+
+PARAGRAPHS
+Ha Noi, 28th May 2026
+№: OF - 135/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: CHINA POSTAL AIRLINES CO., LTD IATA code: CF ICAO code: CYZ Postal Address: Room 409, No 113, Kaifang Road, Huai Rou district, Beijing, China 
+2. Billing address
+Name: Beijing Star Aviation Services Co., Ltd Postal Address: Room 409, No113, Kaifang Road, Huai Rou District, Beijing, China. Tel: HYPERLINK "tel:+86" \t "_blank" +86 15311937187 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DBGUITITHGJS9M%26View%3DCompose%26New%3DYes%26To%3Dsugar_jun%2540126.com','Compose',800,600,'yes');" sugar_jun@126.com , HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DBGUITITHGJS9M%26View%3DCompose%26New%3DYes%26To%3Dsugar%2540junstar-aviation.com','Compose',800,600,'yes');" sugar@junstar-aviation.com 
+3. Schedules: UTC Time
+Flight number Effective from Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CYZ281 09JUN26 24OCT26 1234567 ZGGG 0300 VTBS 0550 CYZ282 09JUN26 24OCT26 1234567 VTBS 0650 ZGGG 0935 
+4. Purpose of Flight(s): CARGO FLIGHTS
+ 
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B738 B-5156; B-5157; B-5130; B-5131; B-5132; B-5550; B-5576; B-5179; B-5160; B-5161; B-5162; B-5301; B-5302; B-5303; B-5305; B-5306; B-5307; B-222T OR SUBS China 
+6. Air traffic service routes:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGGG-VTBS A202 ASSAD VILAO VTBS-ZGGG A202 VILAO ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Validity: -3/+72 Hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 28th May 2026
+№: OF - 135/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: CHINA POSTAL AIRLINES CO., LTD
+IATA code: CF | ICAO code: CYZ
+Postal Address: Room 409, No 113, Kaifang Road, Huai Rou district, Beijing, China
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Beijing Star Aviation Services Co., Ltd
+Postal Address: Room 409, No113, Kaifang Road, Huai Rou District, Beijing, China.
+Tel: HYPERLINK "tel:+86" \t "_blank" +86 15311937187 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DBGUITITHGJS9M%26View%3DCompose%26New%3DYes%26To%3Dsugar_jun%2540126.com','Compose',800,600,'yes');" sugar_jun@126.com , HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DBGUITITHGJS9M%26View%3DCompose%26New%3DYes%26To%3Dsugar%2540junstar-aviation.com','Compose',800,600,'yes');" sugar@junstar-aviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CYZ281 | 09JUN26 | 24OCT26 | 1234567 | ZGGG | 0300 | VTBS | 0550
+CYZ282 | 09JUN26 | 24OCT26 | 1234567 | VTBS | 0650 | ZGGG | 0935
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CARGO FLIGHTS
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B738 | B-5156; B-5157; B-5130; B-5131; B-5132; B-5550; B-5576; B-5179; B-5160; B-5161; B-5162; B-5301; B-5302; B-5303; B-5305; B-5306; B-5307; B-222T OR SUBS | China
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGGG-VTBS | A202 | ASSAD | VILAO
+VTBS-ZGGG | A202 | VILAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

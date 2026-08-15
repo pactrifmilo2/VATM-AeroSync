@@ -106,7 +106,7 @@ class EmailReportServiceJpaTest {
         assertThat(result.content().getFirst().storedFileName())
                 .isEqualTo("operator_20260724_100000_email_permit_update.docx");
         assertThat(result.content().getFirst().errorMessage())
-                .isEqualTo("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.");
+                .isEqualTo("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.");
         assertThat(result.content().getFirst().jobStatus()).isEqualTo(SyncStatus.FAILED);
     }
 

@@ -1,0 +1,33 @@
+FILE: LD 84 RVS4.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+LD-84/A/S/2026VN.RVS4
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay LD-84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Ghi chú:
+Các nội dung khác theo phép bay 84/A/S/2026VN không thay đổi.
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+LD-84/A/S/2026VN.RVS4
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay LD-84/A/S/2026VN
+Số hiệuchuyến bay | Hiệu lực từ | Hiệu lựcđến | Ngày trongtuần | Sân bay cấtcánh | Giờ khởihành dựkiến | Sân bay hạcánh | Giờ hạcánh dựkiến | Loại tàu bay
+VJ563 | 05Apr26 | 05Apr26 | 7 | HAN | 2:20 | HUI | 3:35 | 320/321/32Q
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệuchuyến bay | Hiệu lực từ | Hiệu lựcđến | Ngày trongtuần | Sân bay cấtcánh | Giờ khởihành dựkiến | Sân bay hạcánh | Giờ hạcánh dựkiến | Loại tàu bay
+VJ563 | 05Apr26 | 05Apr26 | 7 | HAN | 1:20 | HUI | 2:35 | 320/321/32Q

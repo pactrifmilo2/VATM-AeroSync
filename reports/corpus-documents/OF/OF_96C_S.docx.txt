@@ -1,0 +1,66 @@
+FILE: OF 96C S.docx
+
+PARAGRAPHS
+HA NOI, 29 APR 2026
+NUMBER OF-96/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier:
+2. Billing address:
+3. Schedules: All times in UTC
+4. Purpose of Flight(s): All Cargo scheduled flight
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 29 APR 2026
+NUMBER OF-96/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier:
+Name: EVA Airways Corporation
+IATA code: BR | ICAO code: EVA
+Postal Address: No.376, Sec. 1, Xinnan Rd., Luzhu Dist., Taoyuan City 338, Taiwan
+Tel: +886-3-3516396 | Email: lanwang@evaair.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: EVA Airways Corporation
+Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi.
+Tel: +84-24-39361607 | Email: thuhieuvu@evaair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+EVA6213 | 01MAY26 | 24OCT26 | 1234567 | RCTP | 0100 | VTBS | 0445
+EVA6214 | 01MAY26 | 24OCT26 | 1234567 | VTBS | 0925 | RCTP | 1305
+EVA6177 | 01MAY26 | 24OCT26 | 1234567 | RCTP | 1150 | VTBS | 1535
+EVA6178 | 01MAY26 | 24OCT26 | 1234567 | VTBS | 2010 | RCTP | 2350
+EVA6647 | 01MAY26 | 24OCT26 | 1234567 | RCTP | 0100 | OMDW | 0945
+EVA6648 | 01MAY26 | 24OCT26 | 1234567 | OMDW | 0455 | RCTP | 1330
+EVA6631 | 01MAY26 | 24OCT26 | 1234567 | RCTP | 1200 | OMDW | 2045
+EVA6632 | 01MAY26 | 24OCT26 | 1234567 | OMDW | 1350 | RCTP | 2225
+EVA6255 | 01MAY26 | 24OCT26 | 1234567 | RCTP | 0100 | VIDP | 0730
+EVA6256 | 01MAY26 | 24OCT26 | 1234567 | VIDP | 0750 | RCTP | 1340
+EVA6601 | 01MAY26 | 24OCT26 | 1234567 | RCTP | 1220 | VIDP | 1850
+EVA6602 | 01MAY26 | 24OCT26 | 1234567 | VIDP | 1700 | RCTP | 2250
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All Cargo scheduled flight
+5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B77L | As per AOC of EVA | Republic of China
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-VTBS | A1 | BUNTA | PAPRA
+VTBS-RCTP | A1 | PAPRA | BUNTA
+RCTP-VIDP | A206 | ASSAD | NALAO
+VIDP-RCTP | A206 | NALAO | ASSAD
+RCTP-OMDW | A206 | ASSAD | NALAO
+OMDW-RCTP | A206 | NALAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

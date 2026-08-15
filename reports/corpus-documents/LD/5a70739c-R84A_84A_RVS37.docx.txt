@@ -1,0 +1,36 @@
+FILE: R84A 84A RVS37.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+LD-84/A/S/2026VN.RVS37
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Lý do:
+Tàu bay AOG tại ICN đã hoàn tất kiểm tra kỹ thuật.
+4. Ghi chú:
+Các nội dung khác theo phép bay 84/A/S/2026VN không thay đổi.
+Phạm Giang gửi thay bà Phạm Thảo, PTP VTHK
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+LD-84/A/S/2026VN.RVS37
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ963 | 15-Jul-26 | 15-Jul-26 | 3 | ICN | 21:25 | HAN | 01:55+ | 320/321/32Q
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ9963 | 16-Jul-26 | 16-Jul-26 | 4 | ICN | 11:00 | HAN | 16:05 | 320/321/32Q

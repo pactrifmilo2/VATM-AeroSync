@@ -1,0 +1,182 @@
+FILE: LD 36AS.docx
+
+PARAGRAPHS
+Hà Nội, ngày 18 tháng 3 năm 2026
+Số phép bay: LD-36/A/S/2026VN
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Vận chuyển hành khách
+4. Tàu bay
+5. Đường hàng không
+Đường bay dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+7. Ghi chú
+7.1. Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+7.2. Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+KT. CỤC TRƯỞNG
+PHÓ CỤC TRƯỞNG
+Đỗ Hồng Cẩm
+C.c: VATM; MAA; NAA; SAA
+Gửi bởi: Bà Vũ Thị Thùy Dương - Chuyên viên Phòng Vận tải hàng không
+C.c: Bà Phạm Thị Thảo – Phó Trưởng phòng Vận tải hàng không
+C.c: Ông Bùi Minh Đăng- Trưởng phòng Vận tải hàng không
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hà Nội, ngày 18 tháng 3 năm 2026
+Số phép bay: LD-36/A/S/2026VN
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Hãng hàng không
+Tên: PACIFIC AIRLINES
+Mã IATA: BL | Mã ICAO: PIC
+Địa chỉ bưu điện: 112 Hồng Hà, phường Tân Sơn Hòa, Thành phố Hồ Chí Minh, Việt Nam
+Điện thoại: +84 28 7301 7550 | Thư điện tử: slotpermit.occbl@pacificairlines.com.vn
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | CHK cất cánh | Giờ khởi hành dự kiến | CHK hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay
+BL6070 | 29Mar26 | 24Oct26 | 1234567 | DAD | 13:25 | HAN | 14:55 | 321
+BL6071 | 29Mar26 | 24Oct26 | 1234567 | HAN | 11:20 | DAD | 12:50 | 
+BL6080 | 29Mar26 | 24Oct26 | 1234567 | DAD | 03:20 | HAN | 04:50 | 
+BL6081 | 29Mar26 | 24Oct26 | 1234567 | HAN | 01:15 | DAD | 02:45 | 
+ |  |  |  |  |  |  |  | 
+BL6400 | 29Mar26 | 24Oct26 | 1234567 | PQC | 08:15 | HAN | 10:30 | 
+BL6401 | 29Mar26 | 24Oct26 | 1234567 | HAN | 05:30 | PQC | 07:40 | 
+ |  |  |  |  |  |  |  | 
+BL6150 | 29Mar26 | 24Oct26 | 1234567 | SGN | 12:10 | CXR | 13:20 | 
+BL6151 | 29Mar26 | 24Oct26 | 1234567 | CXR | 13:55 | SGN | 15:05 | 
+ |  |  |  |  |  |  |  | 
+BL6036 | 29Mar26 | 24Oct26 | 1234567 | SGN | 04:45 | DAD | 06:15 | 
+BL6037 | 29Mar26 | 24Oct26 | 1234567 | DAD | 06:50 | SGN | 08:25 | 
+BL6528 | 21May26 | 16Aug26 | 1234567 | SGN | 15:45 | DAD | 17:15 | 
+BL6529 | 21May26 | 16Aug26 | 1234567 | DAD | 17:50 | SGN | 19:25 | 
+ |  |  |  |  |  |  |  | 
+BL6002 | 29Mar26 | 24Oct26 | 1234567 | SGN | 22:00 | HAN | 00:10 | 
+BL6025 | 29Mar26 | 24Oct26 | 1234567 | HAN | 15:55 | SGN | 18:10 | 
+ |  |  |  |  |  |  |  | 
+BL6440 | 29Mar26 | 24Oct26 | 1234567 | SGN | 06:35 | HPH | 08:45 | 
+BL6441 | 29Mar26 | 24Oct26 | 1234567 | HPH | 09:20 | SGN | 11:30 | 
+BL6520 | 21May26 | 16Aug26 | 1234567 | SGN | 13:30 | HPH | 15:40 | 
+BL6521 | 21May26 | 16Aug26 | 1234567 | HPH | 16:15 | SGN | 18:25 | 
+ |  |  |  |  |  |  |  | 
+BL6160 | 29Mar26 | 24Oct26 | 1234567 | SGN | 09:05 | HUI | 10:40 | 
+BL6161 | 29Mar26 | 24Oct26 | 1234567 | HUI | 11:15 | SGN | 12:50 | 
+BL6103 | 29Mar26 | 24Oct26 | 1234567 | SGN | 03:05 | PQC | 04:10 | 
+BL6104 | 29Mar26 | 24Oct26 | 1234567 | PQC | 04:45 | SGN | 05:55 | 
+ |  |  |  |  |  |  |  | 
+BL6210 | 29Mar26 | 24Oct26 | 1234567 | SGN | 23:30 | PXU | 00:40 | 
+BL6211 | 29Mar26 | 24Oct26 | 1234567 | PXU | 01:15 | SGN | 02:25 | 
+ |  |  |  |  |  |  |  | 
+BL6420 | 29Mar26 | 24Oct26 | 1234567 | SGN | 23:40 | VII | 01:35 | 
+BL6421 | 29Mar26 | 24Oct26 | 1234567 | VII | 02:10 | SGN | 04:05 | 
+
+TABLE 4
+CONTEXT: 3. Mục đích chuyến bay: Vận chuyển hành khách
+4. Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+321 | Theo AOC của BL | Việt Nam
+
+TABLE 5
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không | Điểm bay vào vùng trời Việt Nam | Điểm bay ra vùng trời Việt Nam
+HAN-DAD | + Q1 |  | 
+ | + W1 |  | 
+DAD-HAN | + Q2 |  | 
+ | + W1 |  | 
+ | + Q1 |  | 
+ | + W2 Q2 |  | 
+ | + Q5 Q2 |  | 
+HAN-PQC | + N639 M753 | VILAO | OSOTA
+ | + Q1 W12 W16 W8 |  | 
+ | + Q1 W1 W17 W8 |  | 
+ | + W1 W17 W8 |  | 
+ | + W1 W12 W16 W8 |  | 
+PQC-HAN | + M753 N639 | OSOTA | VILAO
+ | + W8 W16 W12 Q2 |  | 
+ | + W8 W17 Q2 |  | 
+ | + W8 W16 W12 W1 |  | 
+ | + W8 W17 W1 |  | 
+SGN-CXR | + W15 |  | 
+ | + W2 W15 |  | 
+CXR-SGN | + W15 |  | 
+ | + W15 W2 |  | 
+SGN-DAD | + Q2 |  | 
+ | + Q1 |  | 
+ | + W1 |  | 
+ | + W12 Q2 Q7 Q1 |  | 
+ | + W1 Q1 |  | 
+DAD-SGN | + Q1 |  | 
+ | + W1 |  | 
+ | + Q1 W1 |  | 
+SGN-DLI | + W15 |  | 
+ | + W1 W15 |  | 
+DLI-SGN | + W15 |  | 
+ | + W15 W1 |  | 
+SGN-HAN | + Q2 |  | 
+ | + Q1 |  | 
+ | + W1 Q1 |  | 
+ | + W12 Q2 |  | 
+ | + W1 |  | 
+HAN-SGN | + Q1 |  | 
+ | + W1 |  | 
+ | + Q1 W1 |  | 
+SGN-HPH | + Q2 Q4 |  | 
+ | + Q2 Q4 W20 |  | 
+ | + Q1 |  | 
+ | + Q1 W20 |  | 
+ | + W1 |  | 
+ | + W1 W20 |  | 
+ | + W1 Q1 |  | 
+ | + W12 Q2 Q4 W20 |  | 
+ | + W1 Q1 W20 |  | 
+HPH-SGN | + W20 Q1 |  | 
+ | + W20 Q1 W1 |  | 
+ | + W20 W1 |  | 
+ | + Q10 Q1 |  | 
+ | + Q10 Q1 W1 |  | 
+ | + Q10 W1 |  | 
+SGN-HUI | + Q2 |  | 
+ | + Q1 W2 |  | 
+ | + Q1 |  | 
+ | + W1 Q1 W2 |  | 
+ | + W1 Q1 |  | 
+ | + W1 |  | 
+ | + W12 Q2 |  | 
+ | + W12 Q1 |  | 
+ | + W12 W1 |  | 
+ | + W1 W2 |  | 
+HUI-SGN | + W2 Q1 |  | 
+ | + Q1 |  | 
+ | + W1 |  | 
+ | + W2 Q1 W1 |  | 
+ | + Q1 W1 |  | 
+ | +W2 W1 |  | 
+SGN-PQC | + W17 W8 |  | 
+ | + W8 |  | 
+ | + W17 |  | 
+ | + W16 W8 |  | 
+PQC-SGN | + W8 W16 |  | 
+ | + W8 |  | 
+ | +W8 W17 |  | 
+SGN-VII | + Q2 W2 |  | 
+ | + Q1 W2 |  | 
+ | + W1 W2 |  | 
+ | + W12 Q2 W2 |  | 
+ | + W1 Q1 W2 |  | 
+VII-SGN | + W2 Q1 |  | 
+ | + W2 W1 |  | 
+ | + W2 Q1 W1 |  | 
+SGN-PXU | + W12 |  | 
+ | + W12 Q2 |  | 
+ | + W12 Q1 |  | 
+ | + W12 W1 |  | 
+ | + Q2 |  | 
+ | + Q2 W12 |  | 
+ | + Q2 W12 W1 |  | 
+ | + Q2 W12 Q1 |  | 
+PXU-SGN | + Q1 |  | 
+ | + Q1 W1 |  | 
+ | + W1 |  | 

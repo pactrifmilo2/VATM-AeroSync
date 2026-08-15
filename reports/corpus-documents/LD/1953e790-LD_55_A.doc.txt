@@ -1,0 +1,117 @@
+FILE: LD 55 A.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 20/03/2026
+Permit No.: LD-55/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Aerologic GmbH IATA code:3S ICAO code: BOX Postal Address: Josef-von-Copertino-Straße 2, 04435 Schkeuditz, Germany Tel: +49 (0) 34204 443 140 Email: HYPERLINK "mailto:3S-schedule-slot@aerologic.aero" 3S-schedule-slot@aerologic.aero 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type 3S620 30Mar26 19Oct26 1000000 FRA 20:15 SGN 08:05 +1 77X 3S621 31Mar26 20Oct26 0200000 SGN 11:05 HAN 13:25 77X 3S621 31Mar26 20Oct26 0200000 HAN 15:25 FRA 03:25 +1 77X 3S620 03Apr26 23Oct26 0000500 FRA 05:15 SGN 17:05 77X 3S621 03Apr26 23Oct26 0000500 SGN 20:05 HAN 22:25 77X 3S621 04Apr26 24Oct26 0000060 HAN 00:25 FRA 12:25 77X 3S618 04Apr26 17Oct26 0000060 FRA 20:15 SGN 08:05 +1 77X 3S618 05Apr26 18Oct26 0000007 SGN 12:20 PVG 17:00 77X 3S619 05Apr26 18Oct26 0000007 PVG 19:30 LAX 07:25 +1 77X 3S617 06Apr26 19Oct26 1000000 LAX 09:25 FRA 20:15 77X 3S618 01Apr26 27May26 0030000 FRA 20:15 SGN 08:05 +1 77X 3S618 02Apr26 28May26 0004000 SGN 12:55 PVG 17:05 77X 3S619 02Apr26 28May26 0004000 PVG 20:30 LAX 08:25 +1 77X 3S617 03Apr26 29May26 0000500 LAX 16:35 FRA 03:25 +1 77X 3S722 29Mar26 18Oct26 0000007 LEJ 22:25 DEL 06:00 +1 77X 3S722 30Mar26 19Oct26 1000000 DEL 08:20 HAN 12:30 77X 3S722 30Mar26 19Oct26 1000000 HAN 14:30 HKG 16:30 77X 3S709 30Mar26 19Oct26 1000000 HKG 21:45 BAH 06:15 +1 77X 3S709 31Mar26 20Oct26 0200000 BAH 08:15 LEJ 14:05 77X 3S736 01Apr26 21Oct26 0030000 LEJ 01:40 HAN 12:30 77X 3S736 01Apr26 21Oct26 0030000 HAN 14:30 HKG 16:30 77X 3S709 01Apr26 21Oct26 0030000 HKG 21:45 BAH 06:15 +1 77X 3S709 02Apr26 22Oct26 0004000 BAH 08:15 LEJ 14:05 77X 3S736 03Apr26 23Oct26 0000500 LEJ 01:40 HAN 12:30 77X 3S736 03Apr26 23Oct26 0000500 HAN 14:30 HKG 16:30 77X 3S709 03Apr26 23Oct26 0000500 HKG 22:50 BAH 07:20 +1 77X 3S709 04Apr26 24Oct26 0000060 BAH 09:20 LEJ 15:10 77X 3S738 04Apr26 24Oct26 0000060 LEJ 01:40 HAN 12:30 77X 3S738 04Apr26 24Oct26 0000060 HAN 14:30 HKG 16:30 77X 3S707 04Apr26 24Oct26 0000060 HKG 21:45 BAH 06:15 +1 77X 3S707 05Apr26 25Oct26 0000007 BAH 08:15 LEJ 14:05 77X 3S738 31Mar26 20Oct26 0200000 LEJ 01:40 HAN 12:30 77X 3S738 31Mar26 20Oct26 0200000 HAN 14:30 HKG 16:30 77X 3S707 31Mar26 20Oct26 0200000 HKG 21:45 BAH 06:15 +1 77X 3S707 01Apr26 21Oct26 0030000 BAH 08:15 LEJ 14:05 77X 3S738 02Apr26 22Oct26 0004000 LEJ 01:40 HAN 12:30 77X 3S738 02Apr26 22Oct26 0004000 HAN 14:30 HKG 16:30 77X 3S707 02Apr26 22Oct26 0004000 HKG 21:45 BAH 06:15 +1 77X 3S707 03Apr26 23Oct26 0000500 BAH 08:15 LEJ 14:05 77X 3S is authorized to operate 5th freedom rights on sector HAN-HKG, SGN-PVG, SGN–LAX.
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark Nationality 77X As per FAOC of 3S German 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR FRA-SGN R468 SAPEN SGN-HAN Q2 HAN-FRA B465 LAPON HAN-FRA W21-B214 LADON SGN-PVG W1-W12-G221 BUNTA DEL-HAN B214-W21 LADON HAN-HKG R474 TEBAK LEJ-HAN B214-W21 LADON LEJ-HAN B465 LAPON Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 20/03/2026
+Permit No.: LD-55/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Aerologic GmbH
+IATA code:3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Straße 2, 04435 Schkeuditz, Germany
+Tel: +49 (0) 34204 443 140 | Email: HYPERLINK "mailto:3S-schedule-slot@aerologic.aero" 3S-schedule-slot@aerologic.aero
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+3S620 | 30Mar26 | 19Oct26 | 1000000 | FRA | 20:15 | SGN | 08:05 +1 | 77X
+3S621 | 31Mar26 | 20Oct26 | 0200000 | SGN | 11:05 | HAN | 13:25 | 77X
+3S621 | 31Mar26 | 20Oct26 | 0200000 | HAN | 15:25 | FRA | 03:25 +1 | 77X
+ |  |  |  |  |  |  |  | 
+3S620 | 03Apr26 | 23Oct26 | 0000500 | FRA | 05:15 | SGN | 17:05 | 77X
+3S621 | 03Apr26 | 23Oct26 | 0000500 | SGN | 20:05 | HAN | 22:25 | 77X
+3S621 | 04Apr26 | 24Oct26 | 0000060 | HAN | 00:25 | FRA | 12:25 | 77X
+ |  |  |  |  |  |  |  | 
+3S618 | 04Apr26 | 17Oct26 | 0000060 | FRA | 20:15 | SGN | 08:05 +1 | 77X
+3S618 | 05Apr26 | 18Oct26 | 0000007 | SGN | 12:20 | PVG | 17:00 | 77X
+3S619 | 05Apr26 | 18Oct26 | 0000007 | PVG | 19:30 | LAX | 07:25 +1 | 77X
+3S617 | 06Apr26 | 19Oct26 | 1000000 | LAX | 09:25 | FRA | 20:15 | 77X
+ |  |  |  |  |  |  |  | 
+3S618 | 01Apr26 | 27May26 | 0030000 | FRA | 20:15 | SGN | 08:05 +1 | 77X
+3S618 | 02Apr26 | 28May26 | 0004000 | SGN | 12:55 | PVG | 17:05 | 77X
+3S619 | 02Apr26 | 28May26 | 0004000 | PVG | 20:30 | LAX | 08:25 +1 | 77X
+3S617 | 03Apr26 | 29May26 | 0000500 | LAX | 16:35 | FRA | 03:25 +1 | 77X
+ |  |  |  |  |  |  |  | 
+3S722 | 29Mar26 | 18Oct26 | 0000007 | LEJ | 22:25 | DEL | 06:00 +1 | 77X
+3S722 | 30Mar26 | 19Oct26 | 1000000 | DEL | 08:20 | HAN | 12:30 | 77X
+3S722 | 30Mar26 | 19Oct26 | 1000000 | HAN | 14:30 | HKG | 16:30 | 77X
+3S709 | 30Mar26 | 19Oct26 | 1000000 | HKG | 21:45 | BAH | 06:15 +1 | 77X
+3S709 | 31Mar26 | 20Oct26 | 0200000 | BAH | 08:15 | LEJ | 14:05 | 77X
+ |  |  |  |  |  |  |  | 
+3S736 | 01Apr26 | 21Oct26 | 0030000 | LEJ | 01:40 | HAN | 12:30 | 77X
+3S736 | 01Apr26 | 21Oct26 | 0030000 | HAN | 14:30 | HKG | 16:30 | 77X
+3S709 | 01Apr26 | 21Oct26 | 0030000 | HKG | 21:45 | BAH | 06:15 +1 | 77X
+3S709 | 02Apr26 | 22Oct26 | 0004000 | BAH | 08:15 | LEJ | 14:05 | 77X
+ |  |  |  |  |  |  |  | 
+3S736 | 03Apr26 | 23Oct26 | 0000500 | LEJ | 01:40 | HAN | 12:30 | 77X
+3S736 | 03Apr26 | 23Oct26 | 0000500 | HAN | 14:30 | HKG | 16:30 | 77X
+3S709 | 03Apr26 | 23Oct26 | 0000500 | HKG | 22:50 | BAH | 07:20 +1 | 77X
+3S709 | 04Apr26 | 24Oct26 | 0000060 | BAH | 09:20 | LEJ | 15:10 | 77X
+ |  |  |  |  |  |  |  | 
+3S738 | 04Apr26 | 24Oct26 | 0000060 | LEJ | 01:40 | HAN | 12:30 | 77X
+3S738 | 04Apr26 | 24Oct26 | 0000060 | HAN | 14:30 | HKG | 16:30 | 77X
+3S707 | 04Apr26 | 24Oct26 | 0000060 | HKG | 21:45 | BAH | 06:15 +1 | 77X
+3S707 | 05Apr26 | 25Oct26 | 0000007 | BAH | 08:15 | LEJ | 14:05 | 77X
+ |  |  |  |  |  |  |  | 
+3S738 | 31Mar26 | 20Oct26 | 0200000 | LEJ | 01:40 | HAN | 12:30 | 77X
+3S738 | 31Mar26 | 20Oct26 | 0200000 | HAN | 14:30 | HKG | 16:30 | 77X
+3S707 | 31Mar26 | 20Oct26 | 0200000 | HKG | 21:45 | BAH | 06:15 +1 | 77X
+3S707 | 01Apr26 | 21Oct26 | 0030000 | BAH | 08:15 | LEJ | 14:05 | 77X
+ |  |  |  |  |  |  |  | 
+3S738 | 02Apr26 | 22Oct26 | 0004000 | LEJ | 01:40 | HAN | 12:30 | 77X
+3S738 | 02Apr26 | 22Oct26 | 0004000 | HAN | 14:30 | HKG | 16:30 | 77X
+3S707 | 02Apr26 | 22Oct26 | 0004000 | HKG | 21:45 | BAH | 06:15 +1 | 77X
+3S707 | 03Apr26 | 23Oct26 | 0000500 | BAH | 08:15 | LEJ | 14:05 | 77X
+
+TABLE 4
+CONTEXT: 3S is authorized to operate 5th freedom rights on sector HAN-HKG, SGN-PVG, SGN–LAX.
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+77X | As per FAOC of 3S | German
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+FRA-SGN | R468 | SAPEN | 
+SGN-HAN | Q2 |  | 
+HAN-FRA | B465 |  | LAPON
+HAN-FRA | W21-B214 |  | LADON
+SGN-PVG | W1-W12-G221 |  | BUNTA
+DEL-HAN | B214-W21 | LADON | 
+HAN-HKG | R474 |  | TEBAK
+LEJ-HAN | B214-W21 | LADON | 
+LEJ-HAN | B465 | LAPON | 

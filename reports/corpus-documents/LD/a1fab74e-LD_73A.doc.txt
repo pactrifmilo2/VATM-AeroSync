@@ -1,0 +1,67 @@
+FILE: LD 73A.doc
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+№: LD - 73/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: AIR SEOUL IATA code: RS ICAO code: ASV Postal Address: Tel: +84374054018 Email: phanthi@flyairseoul.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type RS511 29MAR26 24OCT26 1234567 ICN 1155 DAD 1640 321 RS512 29MAR26 24OCT26 1234567 DAD 1740 ICN 2215 321 RS527 29MAR26 24OCT26 1234567 ICN 1050 CXR 1555 321 RS528 29MAR26 24OCT26 1234567 CXR 1705 ICN 2210 321 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 321 As per AOC of RS KOREA 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-CXR N892 L628 L642 W15 MONBO A1 Q1 W7 W15 BUNTA CXR-ICN M771 L628 ARESI W15 W7 W1 A1 BUNTA W15 W7 Q1 A1 BUNTA ICN-DAD A1 BUNTA R474 Q1 TEBAK DAD-ICN A1 BUNTA Q2 N639 Q3 R474 TEBAK Q1 G474 L628 ARESI Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+№: LD - 73/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: AIR SEOUL
+IATA code: RS | ICAO code: ASV
+Postal Address:
+Tel: +84374054018 | Email: phanthi@flyairseoul.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+RS511 | 29MAR26 | 24OCT26 | 1234567 | ICN | 1155 | DAD | 1640 | 321
+RS512 | 29MAR26 | 24OCT26 | 1234567 | DAD | 1740 | ICN | 2215 | 321
+RS527 | 29MAR26 | 24OCT26 | 1234567 | ICN | 1050 | CXR | 1555 | 321
+RS528 | 29MAR26 | 24OCT26 | 1234567 | CXR | 1705 | ICN | 2210 | 321
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+321 | As per AOC of RS | KOREA
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-CXR | N892 L628 L642 W15 | MONBO | 
+ | A1 Q1 W7 W15 | BUNTA | 
+CXR-ICN | M771 L628 |  | ARESI
+ | W15 W7 W1 A1 |  | BUNTA
+ | W15 W7 Q1 A1 |  | BUNTA
+ICN-DAD | A1 | BUNTA | 
+ | R474 Q1 | TEBAK | 
+DAD-ICN | A1 |  | BUNTA
+ | Q2 N639 Q3 R474 |  | TEBAK
+ | Q1 G474 L628 |  | ARESI

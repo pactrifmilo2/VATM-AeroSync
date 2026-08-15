@@ -1,0 +1,48 @@
+FILE: R03B3  REV3.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 26/05/2026
+Permit No.: LD-03/B/S/2026VN/REV3
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES IATA code: ET IATA code: ET Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport Tel: +84967743067 Tel: +84967743067 
+2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit ET608 07Jun26 02Jul26 -2-4--7 ADD 19:40 BKK 05:00+ A351; A359; B77W; B777; B788; B789 LD-03/B/S/2026VN ET608 08Jun26 03Jul26 1-3-5-- BKK 06:00 HAN 07:30 ET609 08Jun26 03Jul26 1-3-5-- HAN 16:20 BKK 17:50 ET609 08Jun26 03Jul26 1-3-5-- BKK 18:55 ADD 03:25+ 
+2.2 Revise Schedule
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type ET608 07Jun26 02Jul26 -2-4--7 ADD 19:35 BKK 04:55+ A351; A359; B77W; B777; B788; B789 ET608 08Jun26 03Jul26 1-3-5-- BKK 05:55 HAN 07:55 ET609 08Jun26 03Jul26 1-3-5-- HAN 15:50 BKK 17:50 ET609 08Jun26 03Jul26 1-3-5-- BKK 18:50 ADD 03:20+ 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 26/05/2026
+Permit No.: LD-03/B/S/2026VN/REV3
+1. Carrier/Operator
+Name: ETHIOPIAN AIRLINES
+IATA code: ET | IATA code: ET
+Postal Address: P.O.BOX: 1755 Ethiopian Airlines, Headquarters, Bole International Airport
+Tel: +84967743067 | Tel: +84967743067
+
+TABLE 2
+CONTEXT: 2. Flight schedule(s) (UTC Time)
+2.1 Origin Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+ET608 | 07Jun26 | 02Jul26 | -2-4--7 | ADD | 19:40 | BKK | 05:00+ | A351; A359; B77W; B777; B788; B789 | LD-03/B/S/2026VN
+ET608 | 08Jun26 | 03Jul26 | 1-3-5-- | BKK | 06:00 | HAN | 07:30 |  | 
+ET609 | 08Jun26 | 03Jul26 | 1-3-5-- | HAN | 16:20 | BKK | 17:50 |  | 
+ET609 | 08Jun26 | 03Jul26 | 1-3-5-- | BKK | 18:55 | ADD | 03:25+ |  | 
+
+TABLE 3
+CONTEXT: 2.2 Revise Schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ET608 | 07Jun26 | 02Jul26 | -2-4--7 | ADD | 19:35 | BKK | 04:55+ | A351; A359; B77W; B777; B788; B789
+ET608 | 08Jun26 | 03Jul26 | 1-3-5-- | BKK | 05:55 | HAN | 07:55 | 
+ET609 | 08Jun26 | 03Jul26 | 1-3-5-- | HAN | 15:50 | BKK | 17:50 | 
+ET609 | 08Jun26 | 03Jul26 | 1-3-5-- | BKK | 18:50 | ADD | 03:20+ | 

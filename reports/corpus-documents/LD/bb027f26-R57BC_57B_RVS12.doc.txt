@@ -1,0 +1,50 @@
+FILE: R57BC  57B RVS12.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 13/06/2026
+Permit No.: LD-57/B/S/2026VN/REV12
+ 
+2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit(3) CV7956 13Jun26 30Jun26 0000060 LUX 2030 HAN 1000+1 74Y/ 74N LD-57/B/S/2026VN CV7956 13Jun26 30Jun26 0000007 HAN 1250 HKG 1440 74Y/ 74N LD-57/B/S/2026VN CV915 13Jun26 30Jun26 0000007 HKG 1640 NQZ 2355 74Y/ 74N LD-57/B/S/2026VN CV915 13Jun26 30Jun26 1000000 NQZ 0055 LUX 0830 74Y/ 74N LD-57/B/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CV8S 13Jun26 30Jun26 0000060 LUX 2000 ASB 0140+1 74Y/ 74N CV7956 13Jun26 30Jun26 0000007 ASB 0330 HAN 1000 74Y/ 74N CV7956 13Jun26 30Jun26 0000007 HAN 1250 HKG 1440 74Y/ 74N CV7957 13Jun26 30Jun26 0000007 HKG 1640 NQZ 2355 74Y/ 74N CV7957 13Jun26 30Jun26 1000000 NQZ 0125 LUX 0900 74Y/ 74N 
+3. Note: Other details unchanged.
+4. Air traffic service routes:
+Sectors ATS Routes Entry Point Exit Point ASB-HAN B214 LADON Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+other details unchanged
+5. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 13/06/2026
+Permit No.: LD-57/B/S/2026VN/REV12
+ 
+2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CV7956 | 13Jun26 | 30Jun26 | 0000060 | LUX | 2030 | HAN | 1000+1 | 74Y/ 74N | LD-57/B/S/2026VN
+CV7956 | 13Jun26 | 30Jun26 | 0000007 | HAN | 1250 | HKG | 1440 | 74Y/ 74N | LD-57/B/S/2026VN
+CV915 | 13Jun26 | 30Jun26 | 0000007 | HKG | 1640 | NQZ | 2355 | 74Y/ 74N | LD-57/B/S/2026VN
+CV915 | 13Jun26 | 30Jun26 | 1000000 | NQZ | 0055 | LUX | 0830 | 74Y/ 74N | LD-57/B/S/2026VN
+
+TABLE 2
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CV8S | 13Jun26 | 30Jun26 | 0000060 | LUX | 2000 | ASB | 0140+1 | 74Y/ 74N
+CV7956 | 13Jun26 | 30Jun26 | 0000007 | ASB | 0330 | HAN | 1000 | 74Y/ 74N
+CV7956 | 13Jun26 | 30Jun26 | 0000007 | HAN | 1250 | HKG | 1440 | 74Y/ 74N
+CV7957 | 13Jun26 | 30Jun26 | 0000007 | HKG | 1640 | NQZ | 2355 | 74Y/ 74N
+CV7957 | 13Jun26 | 30Jun26 | 1000000 | NQZ | 0125 | LUX | 0900 | 74Y/ 74N
+ |  |  |  |  |  |  |  | 
+
+TABLE 3
+CONTEXT: 3. Note: Other details unchanged.
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+ASB-HAN | B214 | LADON | 
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

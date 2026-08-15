@@ -1,0 +1,56 @@
+FILE: R06A6  REV6.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+Hanoi, 02/05/2026
+Permit No.: LD-06/A/S/2026VN/REV6
+1. Carrier/Operator
+2. Schedule (UTC Time)
+2.1. Original schedule(s)
+2.2. New schedule(s)
+*HAN-CRK and CRK-HAN: ferry flights
+3. Note: OTHER DETAILS REMAIN UNCHANGED
+4. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED
+5. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+Hanoi, 02/05/2026
+Permit No.: LD-06/A/S/2026VN/REV6
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX6001 | 03May26 | 03May26 | ------7 | CAN | 2155 | HAN | 2350 | 767F | LD-06/A/S/2026VN/REV5
+FX6001 | 04May26 | 04May26 | 1------ | HAN | 0155 | CRK | 0425 | 767F | LD-06/A/S/2026VN/REV5
+ |  |  |  |  |  |  |  |  | LD-06/A/S/2026VN/REV5
+FX6013 | 04May26 | 04May26 | 1------ | CRK | 1210 | HAN | 1435 | 767F | LD-06/A/S/2026VN/REV5
+FX6013 | 04May26 | 04May26 | 1------ | HAN | 1605 | CAN | 1750 | 767F | LD-06/A/S/2026VN/REV5
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX6001 | 03May26 | 03May26 | ------7 | CAN | 2035 | HAN | 2230 | 767F
+FX6001 | 04May26 | 04May26 | 1------ | HAN | 0005 | CRK | 0235 | 767F
+ |  |  |  |  |  |  |  | 
+FX6013 | 04May26 | 04May26 | 1------ | CRK | 1725 | HAN | 1950 | 767F
+FX6013 | 04May26 | 04May26 | 1------ | HAN | 2120 | CAN | 2305 | 767F
+
+TABLE 4
+CONTEXT: *HAN-CRK and CRK-HAN: ferry flights
+3. Note: OTHER DETAILS REMAIN UNCHANGED
+4. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CAN-HAN | R474 | TEBAK | 
+HAN-CRK | R474 |  | TEBAK
+CRK-HAN | R474 | TEBAK | 
+HAN-CAN | R474 |  | TEBAK

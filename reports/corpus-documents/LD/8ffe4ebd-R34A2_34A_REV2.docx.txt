@@ -1,0 +1,35 @@
+FILE: R34A2  34A REV2.docx
+
+PARAGRAPHS
+HANOI, 25MAY2026
+PERMIT NUMBER LD-34/A/S/2026VN/REV2
+1. Carrier
+2. Old Schedules (UTC Time)
+New Schedules (UTC Time)
+Other details unchanged
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 25MAY2026
+PERMIT NUMBER LD-34/A/S/2026VN/REV2
+1. Carrier
+Name: K-Mile Air
+IATA code: 8K | ICAO code: KMI
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 2
+CONTEXT: 2. Old Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+8K528 | 30MAY26 | 30MAY26 | -----6- | BKK | 2355 | HAN | 0145+1 | 734/738
+8K528 | 01JUN26 | 01JUN26 | 1------ | HAN | 1530 | HKG | 1730 | 734/738
+
+TABLE 3
+CONTEXT: New Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+8K528 | 30MAY26 | 30MAY26 | -----6- | BKK | 2355 | HAN | 0145+1 | 734/738
+8K524 | 31MAY26 | 31MAY26 | ------7 | HAN | 1530 | BKK | 1720 | 734/738
+8K525 | 31MAY26 | 31MAY26 | ------7 | BKK | 1820 | HAN | 2010 | 734/738
+8K528 | 01JUN26 | 01JUN26 | 1------ | HAN | 1530 | HKG | 1730 | 734/738

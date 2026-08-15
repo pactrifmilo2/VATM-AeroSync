@@ -1,0 +1,55 @@
+FILE: OF 33 A.S.docx
+
+PARAGRAPHS
+HA NOI, 27 FEB 2026
+NUMBER OF-33/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of flight(s): Cargo flights
+5. Aircraft
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 27 FEB 2026
+NUMBER OF-33/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier:
+Name: ONE AIR LIMITED
+IATA Code: HC | ICAO Code: HGO
+Postal address: 1 BECKETTS PLACE HAMPTON WICK KINGSTON UPON THAMES ENGLAND KT1 4EQ UNITED KINGDOM
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: ONE AIR LIMITED
+Postal address: 1 BECKETTS PLACE HAMPTON WICK KINGSTON UPON THAMES ENGLAND KT1 4EQ UNITED KINGDOM
+Tel: +44 (0)7908 473030 | Email: accountspayable@oneair.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Eff from | Eff to | Day(s) of services | Dep airport | ETD | Arr airport | ETA
+HGO772 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0005 | OMDW | 0800
+HGO773 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0130 | OMDW | 0930
+HGO775 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0300 | OMDW | 1100
+HGO781 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0500 | OMDW | 1300
+
+TABLE 5
+CONTEXT: 4. Purpose of flight(s): Cargo flights
+5. Aircraft
+Aircraft type | Registration marks | Nationality
+B777 | G-ONEE; G-ONEF; G-UNET; G-ONEG OR SUB | UK
+B744 |  | 
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry point into Vietnam FIR | Exit point from Vietnam FIR
+VHHH-OMDW | A1 | BUNTA | PAPRA
+VHHH-OMDW | A202-A206 | ASSAD | NALAO
+VHHH-OMDW | R474-W21-B214 | TEBAK | LADON
+Alternate Airways: Other Permitted Airways Published In Vietnam’s AIP

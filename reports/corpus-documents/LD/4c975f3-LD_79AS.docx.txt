@@ -1,0 +1,81 @@
+FILE: LD 79AS.docx
+
+PARAGRAPHS
+Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 27/3/2026
+Số phép bay: LD-79/A/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Chở khách và hàng hóa
+4. Tàu bay
+5. Đường hàng không:
+Đường bay dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+7. Ghi chú
+7.1. Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+7.2. Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+Gửi bởi Khuất Duy Anh;
+C.c. Đào Ngọc Dũng - Phó trưởng phòng, Phòng Vận tải hàng không;
+C.c. Bùi Minh Đăng - Trưởng phòng, Phòng Vận tải hàng không;
+C.c. VATM; NAA; MAA; SAA.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 27/3/2026
+Số phép bay: LD-79/A/S/2026VN
+Lịch bay mùa IATA: Mùa Hè 2026
+1. Hãng hàng không
+Tên: VIETRAVEL AIRLINES
+Mã IATA: VU | Mã ICAO: VAG
+Địa chỉ bưu điện: Số 172 Ngọc Khánh, Phường Giảng Võ, Thành phố Hà Nội, Việt Nam.
+Điện thoại: 1900.6686 | Thư điện tử: customercare@vietravelairlines.vn
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay
+VU672 | 01Jun26 | 24Oct26 | 1234567 | SGN | 0200 | DAD | 0325 | 321/320
+VU673 | 01Jun26 | 24Oct26 | 1234567 | DAD | 0400 | SGN | 0535 | 321/320
+VU635 | 31May26 | 23Oct26 | 1234567 | HAN | 2325 | DAD | 0050+1 | 321/320
+VU638 | 01Jun26 | 24Oct26 | 1234567 | DAD | 0125 | HAN | 0255 | 321/320
+VU137 | 01Jun26 | 24Oct26 | 1234567 | HAN | 0355 | BKK | 0555 | 321/320
+VU136 | 01Jun26 | 24Oct26 | 1234567 | BKK | 0705 | HAN | 0905 | 321/320
+VU750 | 31May26 | 23Oct26 | 1234567 | SGN | 2245 | HAN | 0055+1 | 321/320
+VU751 | 01Jun26 | 15Aug26 | 1234567 | HAN | 0135 | SGN | 0345 | 321/320
+VU131 | 01Jun26 | 15Aug26 | 1234567 | SGN | 0450 | BKK | 0625 | 321/320
+VU130 | 01Jun26 | 24Oct26 | 1234567 | BKK | 0725 | SGN | 0910 | 321/320
+VU780 | 01Jun26 | 24Oct26 | 1234567 | SGN | 1010 | HAN | 1220 | 321/320
+
+TABLE 4
+CONTEXT: 3. Mục đích chuyến bay: Chở khách và hàng hóa
+4. Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+320 | Theo AOC của VU | Vietnam
+321 | Theo AOC của VU | Vietnam
+
+TABLE 5
+CONTEXT: 5. Đường hàng không:
+Chặng bay | Đường hàng không | Điểm bay vàovùng trời Việt Nam | Điểm bay ravùng trời Việt Nam
+SGN – HAN | W12 Q2 |  | 
+HAN – SGN | Q1 |  | 
+HAN – DAD | Q1 |  | 
+DAD – HAN | Q2 |  | 
+SGN – DAD | Q2 |  | 
+DAD – SGN | Q1 |  | 
+SGN – BKK | R468 |  | SAPEN
+BKK – SGN | R468 | SAPEN | 
+HAN – BKK | R474 |  | LAVOS
+BKK – HAN | R474 | LAVOS | 
+
+TABLE 6
+CONTEXT: Đường bay dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ.
+7. Ghi chú
+7.1. Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+7.2. Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+KT. CỤC TRƯỞNGPHÓ CỤC TRƯỞNG | 
+ | 
+Đỗ Hồng Cẩm | 

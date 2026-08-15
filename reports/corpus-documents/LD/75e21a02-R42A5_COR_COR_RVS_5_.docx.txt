@@ -1,0 +1,42 @@
+FILE: R42A5 COR (COR RVS 5).docx
+
+PARAGRAPHS
+Hanoi, 15/07/2026 Permit No.: LD - 42/A/S/2026VN/REV5
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+QR is NOT authorized to operate 5th freedom rights on sector: BWN-SGN.
+3. Airways
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 15/07/2026 Permit No.: LD - 42/A/S/2026VN/REV5
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 4022 2941 | Email: aeropoliticalsched@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+QR8970 | 19JUL26 | 19JUL26 | ------7 | DOH | 1240 | SGN | 1945 | 77X | LD - 42/A/S/2026VN
+QR8971 | 19JUL26 | 19JUL26 | ------7 | SGN | 2145 | DOH | 0545+1 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR8822 | 19JUL26 | 19JUL26 | ------7 | DOH | 0610 | BWN | 1450 | 77X
+QR8822 | 19JUL26 | 19JUL26 | ------7 | BWN | 1650 | SGN | 1945 | 77X
+QR8971 | 19JUL26 | 19JUL26 | ------7 | SGN | 2145 | DOH | 0500+1 | 77X
+
+TABLE 4
+CONTEXT: QR is NOT authorized to operate 5th freedom rights on sector: BWN-SGN.
+3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BWN-SGN | M765 M768 | PANDI | 
+Airways: Other permitted airways published in Viet Nam’s AIP.

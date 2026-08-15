@@ -1,0 +1,40 @@
+FILE: LD 84B RVS2.doc
+
+PARAGRAPHS
+Hà Nội, ngày 08 tháng 5 năm 2026
+Số: LD-84/B/S/2026VN.RVS
+1. Người vận chuyển/ Người khai thác:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air). Mã IATA: VJ Mã ICAO: VJC Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam. Điện thoại: +84 1900 1886 Thư điện tử: 
+2. Nội dung sửa đổi
+2.1 Bổ sung tàu bay mới vào phép bay
+Số phép bay Hiệu lực từ Hiệu lực đến LD-84/B/S/2026VN 24-May-2026 24-Oct-2026 
+2.2 Thông tin tàu bay bổ sung
+Loại tàu bay Số đăng ký Quốc tịch 32Q VN-A200 Việt Nam 
+ 3. Ghi chú: Các chi tiết khác không thay đổi.
+KT. CỤC TRƯỞNG
+PHÓ CỤC TRƯỞNG
+Đỗ Hồng Cẩm
+Gửi bởi Phạm Thị Hương Giang
+C/c: Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN
+C/c: Phạm Thị Thảo - Phó Trưởng phòng, PhòngVTHK/Cục HKVN
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 08 tháng 5 năm 2026
+Số: LD-84/B/S/2026VN.RVS
+1. Người vận chuyển/ Người khai thác:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Nội dung sửa đổi
+2.1 Bổ sung tàu bay mới vào phép bay
+Số phép bay | Hiệu lực từ | Hiệu lực đến
+LD-84/B/S/2026VN | 24-May-2026 | 24-Oct-2026
+
+TABLE 3
+CONTEXT: 2.2 Thông tin tàu bay bổ sung
+Loại tàu bay | Số đăng ký | Quốc tịch
+32Q | VN-A200 | Việt Nam
+ |  | 

@@ -1,0 +1,54 @@
+FILE: OF 08.D.S.2026.docx
+
+PARAGRAPHS
+HANOI, 30th MARCH 2026
+Permit No.: OF-08/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 30th MARCH 2026
+Permit No.: OF-08/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Thai AirAsia
+IATA code: FD | ICAO code: AIQ
+Postal Address: Thai AirAsia Company Limited, 222, Don Mueang International Airport,3 rd floor, Central Office Building, No.3200, Vibhavadi Rangsit Road, Sanambin, DonMueang, Bangkok, 10120
+Tel:+662-562-5799 | Email: thaiflightops@airasia.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Thai AirAsia
+Postal Address: Thai AirAsia Company Limited, 222, Don Mueang International Airport,3 rd floor, Central Office Building, No.3200, Vibhavadi Rangsit Road, Sanambin, DonMueang, Bangkok, 10120
+Tel: +662-562-5799 | Email: thaiflightops@airasia.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AIQ517 | 07MAY26 | 24OCT26 | 1234567 | VHHH | 0455 | VTBD | 0750
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | As per FAOC of FD | Thailand
+A20N | As per FAOC of FD | Thailand
+A21N | As per FAOC of FD | Thailand
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-VTBD | A202A1R474 | ASSADBUNTATEBAK | VILAOPAPRALAVOS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

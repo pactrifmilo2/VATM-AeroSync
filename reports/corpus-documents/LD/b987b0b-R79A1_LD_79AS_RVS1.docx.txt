@@ -1,0 +1,36 @@
+FILE: R79A1 LD 79AS RVS1.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 30/5/2026
+Phép bay số: LD-79/A/S/2026VN/REV1
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc (Giờ UTC)
+2.2. Lịch bay mới (Giờ UTC)
+3. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 30/5/2026
+Phép bay số: LD-79/A/S/2026VN/REV1
+1. Người vận chuyển:
+Tên: VIETRAVEL AIRLINES
+Mã IATA: VU | Mã ICAO: VAG
+Địa chỉ bưu điện: Số 172 Ngọc Khánh, Phường Giảng Võ, Thành phố Hà Nội, Việt Nam.
+Điện thoại: 1900.6686 | Thư điện tử: customercare@vietravelairlines.vn
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân baycất cánh | Giờdự kiến cất cánh | Sânbayhạ cánh | Giờ dự kiếnhạ cánh | Loại tàu bay | Số phép bay đã cấp)
+VU672 | 04Jun26 | 04Jun26 | ---4--- | SGN | 0200 | DAD | 0325 | 321/320 | LD-79/A/S/2026VN
+VU673 | 04Jun26 | 04Jun26 | ---4--- | DAD | 0400 | SGN | 0535 | 321/320 | LD-79/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân baycất cánh | Giờdự kiến cất cánh | Sânbayhạ cánh | Giờ dự kiếnhạ cánh | Loại tàu bay
+VU672 | 04Jun26 | 04Jun26 | ---4--- | SGN | 0010 | DAD | 0135 | 321/320
+VU673 | 04Jun26 | 04Jun26 | ---4--- | DAD | 0215 | SGN | 0350 | 321/320

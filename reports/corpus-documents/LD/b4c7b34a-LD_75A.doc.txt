@@ -1,0 +1,70 @@
+FILE: LD 75A.doc
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+№: LD - 75/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Sichuan Airlines IATA code:3U ICAO code: CSC Postal Address: Sichuan Airlines Mansion, Shuangliu International Airport, Chengdu 610202, P.R. China Tel:86-28-65392701 Email: duruizhi@sichuanair.com 
+2. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type 3U3903 29MAR26 24OCT26 123.567 TFU 1135 SGN 1520 320/32A/32N/321/32B/32Q 3U3903 29MAR26 24OCT26 4 TFU 1205 SGN 1550 320/32A/32N/321/32B/32Q 3U3904 29MAR26 24OCT26 1234567 SGN 0050 TFU 0425 320/32A/32N/321/32B/32Q 3U3905 29MAR26 24OCT26 1234567 TFU 1310 HAN 1520 320/32A/32N/321/32B/32Q 3U3906 29MAR26 24OCT26 1234567 HAN 0200 TFU 0350 320/32A/32N/321/32B/32Q 3U3939 29MAR26 24OCT26 1.3.5.7 TFU 0755 CXR 1135 320/32A/32N/321/32B/32Q 3U3940 29MAR26 24OCT26 1.3.5.7 CXR 1235 TFU 1555 320/32A/32N/321/32B/32Q 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality 32N 
+As per FAOC of 3U China
+ 32A 320 32B 32Q 321 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TFU-SGN R471 R474 Q1 KATBO SGN-TFU Q2 N639 Q3 R471 KATBO TFU-HAN R471 KATBO HAN-TFU R471 KATBO TFU-CXR R471 R474 Q1 W7 W15 KATBO CXR-TFU W15 W7 W1 Q3 R471 KATBO Alternativeairways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+№: LD - 75/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Sichuan Airlines
+IATA code:3U | ICAO code: CSC
+Postal Address: Sichuan Airlines Mansion, Shuangliu International Airport, Chengdu 610202, P.R. China
+Tel:86-28-65392701 | Email: duruizhi@sichuanair.com
+
+TABLE 2
+CONTEXT: 2. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+3U3903 | 29MAR26 | 24OCT26 | 123.567 | TFU | 1135 | SGN | 1520 | 320/32A/32N/321/32B/32Q
+3U3903 | 29MAR26 | 24OCT26 | 4 | TFU | 1205 | SGN | 1550 | 320/32A/32N/321/32B/32Q
+3U3904 | 29MAR26 | 24OCT26 | 1234567 | SGN | 0050 | TFU | 0425 | 320/32A/32N/321/32B/32Q
+3U3905 | 29MAR26 | 24OCT26 | 1234567 | TFU | 1310 | HAN | 1520 | 320/32A/32N/321/32B/32Q
+3U3906 | 29MAR26 | 24OCT26 | 1234567 | HAN | 0200 | TFU | 0350 | 320/32A/32N/321/32B/32Q
+3U3939 | 29MAR26 | 24OCT26 | 1.3.5.7 | TFU | 0755 | CXR | 1135 | 320/32A/32N/321/32B/32Q
+3U3940 | 29MAR26 | 24OCT26 | 1.3.5.7 | CXR | 1235 | TFU | 1555 | 320/32A/32N/321/32B/32Q
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+32N | As per FAOC of 3U | China
+32A |  | 
+320 |  | 
+32B |  | 
+32Q |  | 
+321 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TFU-SGN | R471 R474 Q1 | KATBO | 
+SGN-TFU | Q2 N639 Q3 R471 |  | KATBO
+TFU-HAN | R471 | KATBO | 
+HAN-TFU | R471 |  | KATBO
+TFU-CXR | R471 R474 Q1 W7 W15 | KATBO | 
+CXR-TFU | W15 W7 W1 Q3 R471 |  | KATBO

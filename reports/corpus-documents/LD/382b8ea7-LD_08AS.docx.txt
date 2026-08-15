@@ -1,0 +1,56 @@
+FILE: LD 08AS.docx
+
+PARAGRAPHS
+Hanoi, 05th March 2026
+PERMIT NUMBER: LD-08/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. CARRIER
+2. SCHEDULES: ALL TIMES UTC
+3. TYPE OF SERVICES: PASSENGER
+4. AIRCRAFT
+5. AIRWAYS
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong,
+C.c: VATM, SAA,
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Tran Thanh Son - DEP DIR of ATD - CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 05th March 2026
+PERMIT NUMBER: LD-08/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. CARRIER
+Name: TURKMENISTAN AIRLINES
+IATA code: T5 | ICAO code: TUA
+Address: Ashgabat International Airport, Ashgabat, Turkmenistan
+Tel: +84 943 448 898 | Email: operations@havaviation.com
+
+TABLE 3
+CONTEXT: 2. SCHEDULES: ALL TIMES UTC
+Flight number | Effective from | Effective to | Day(s) of service | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+T5651 | 29MAR26 | 24OCT26 | 2 | ASB | 1030 | SGN | 1830 | 77W/77L
+T5652 | 29MAR26 | 24OCT26 | 2 | SGN | 2030 | ASB | 0450+1 | 77W/77L
+T5653 | 02APR26 | 22OCT26 | 4 | ASB | 0220 | SGN | 1020 | 77W/77L
+T5654 | 02APR26 | 22OCT26 | 4 | SGN | 1220 | ASB | 2040 | 77W/77L
+
+TABLE 4
+CONTEXT: 3. TYPE OF SERVICES: PASSENGER
+4. AIRCRAFT
+Aircraft Type | Registration marks | Nationality
+77W/77L | As per FAOC of T5 | Turkmenistan
+
+TABLE 5
+CONTEXT: 5. AIRWAYS
+Sector | Airways | Entry Point Into Vietnam FIR | Exit Point From Vietnam FIR
+ASB-SGN | R468 | SAPEN | -
+SGN-ASB | R468 | - | SAPEN
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

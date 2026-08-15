@@ -1,0 +1,22 @@
+FILE: 64A ADD TAU.docx
+
+PARAGRAPHS
+FROM: VIETNAM AIR TRAFFIC MANAGEMENT CORPORATION ON BEHALF OF CAAV REF : PMSN L/D 0064A/S/CHK/2026VN
+PLS BE ADVISED TT YR REQ IS ACCEPTED WZ FLWG DTLS:
+1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+PLS ACK RCVD
+BRGDS, VATM/ NGUYEN QUANG VINH FOR MAI THANH ATD
+
+TABLE 1
+CONTEXT: FROM: VIETNAM AIR TRAFFIC MANAGEMENT CORPORATION ON BEHALF OF CAAV REF : PMSN L/D 0064A/S/CHK/2026VN
+PLS BE ADVISED TT YR REQ IS ACCEPTED WZ FLWG DTLS:
+1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit( 3)
+SQ191 | 24Jul26 | 24Jul26 | 5 | VVNB | 0540 | WSSS | 0910 | A359M | LD-64/A/S/2026VN
+
+TABLE 2
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+SQ191 | 24Jul26 | 24Jul26 | 5 | VVNB | 0540 | WSSS | 0910 | B787 | LD-64/A/S/2026VN

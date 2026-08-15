@@ -1,0 +1,34 @@
+FILE: LD35A4 RVS 4.docx
+
+PARAGRAPHS
+Hanoi, 30/6/2026
+Refer to the issued permit: LD- 35/A/S/2026VN
+1. Carrier
+2. Revised Item: Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 30/6/2026
+Refer to the issued permit: LD- 35/A/S/2026VN
+1. Carrier
+Name: AIRBUSAN Co., Ltd.
+IATA code: BX | ICAO code: ABL
+Postal Address: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea
+Tel: 82-51-410-0703 | Email: jcpark@airbusan.com
+
+TABLE 2
+CONTEXT: 2. Revised Item: Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+BX787 | 01Jul26 | 31Jul26 | 1234567 | ICN | 0810 | CXR | 1340 | 32A/32S/32Q | LD-35/A/S/2026VN
+BX788 | 01Jul26 | 31Jul26 | 1234567 | CXR | 1450 | ICN | 2005 | 32A/32S/32Q | LD-35/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BX787 | 01Jul26 | 31Jul26 | 1234567 | ICN | 0810 | CXR | 1320 | 32A/32S/32Q
+BX788 | 01Jul26 | 31Jul26 | 1234567 | CXR | 1450 | ICN | 2005 | 32A/32S/32Q

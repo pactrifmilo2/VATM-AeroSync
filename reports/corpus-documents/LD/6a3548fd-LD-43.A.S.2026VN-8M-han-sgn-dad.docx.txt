@@ -1,0 +1,71 @@
+FILE: LD-43.A.S.2026VN-8M-han-sgn-dad.docx
+
+PARAGRAPHS
+Hanoi, 18th March 2026
+PERMIT NUMBER: LD-43/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 18th March 2026
+PERMIT NUMBER: LD-43/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: Myanmar Airways International
+IATA code: 8M | ICAO code: MMA
+Postal Address: No. 88, 11 Qtr, Pyay Road, Hlaing Township, Yangon, Myanmar
+Tel: +95-1-9670007 | Email: admin.fltops@maiair.aero
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+8M450 | 29Mar26 | 24Oct26 | 1234567 | RGN | 1055 | HAN | 1255 | AT72, E190, A319, A320
+8M451 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1355 | RGN | 1555 | AT72, E190, A319, A320
+ |  |  |  |  |  |  |  | 
+8M452 | 31Mar26 | 15Aug26 | -2-4-6- | RGN | 1000 | SGN | 1230 | AT72, E190, A319, A320
+8M453 | 31Mar26 | 15Aug26 | -2-4-6- | SGN | 1330 | RGN | 1600 | AT72, E190, A319, A320
+8M452 | 18Aug26 | 24Oct26 | -2-4--- | RGN | 1130 | SGN | 1400 | AT72, E190, A319, A320
+8M453 | 18Aug26 | 24Oct26 | -2-4--- | SGN | 1455 | RGN | 1725 | AT72, E190, A319, A320
+8M452 | 22Aug26 | 24Oct26 | -----6- | RGN | 0920 | SGN | 1150 | AT72, E190, A319, A320
+8M453 | 22Aug26 | 24Oct26 | -----6- | SGN | 1250 | RGN | 1520 | AT72, E190, A319, A320
+ |  |  |  |  |  |  |  | 
+8M454 | 30Mar26 | 24Oct26 | 1-3-56- | RGN | 1000 | DAD | 1200 | AT72, E190, A319, A320
+8M455 | 30Mar26 | 24Oct26 | 1-3-56- | DAD | 1300 | RGN | 1500 | AT72, E190, A319, A320
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+A320 | As per FAOC of 8M | Myanmar
+A319 | As per FAOC of 8M | Myanmar
+E190 | As per FAOC of 8M | Myanmar
+AT72 | As per FAOC of 8M | Myanmar
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RGN-HAN | B465 | LAPON | 
+HAN-RGN | B465 |  | LAPON
+RGN-SGN | R468 | SAPEN | 
+SGN-RGN | R468 |  | SAPEN
+RGN-DAD | R328 | TORED | 
+DAD-RGN | R328 |  | TORED

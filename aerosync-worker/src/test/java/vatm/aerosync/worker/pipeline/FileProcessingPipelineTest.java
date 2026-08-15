@@ -13,6 +13,7 @@ import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
+import vatm.aerosync.common.exception.FormatValidationException;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
@@ -160,18 +161,58 @@ class FileProcessingPipelineTest {
     }
 
     @Test
-    void process_archivesSkippedDatabaseWriteInErrorDirectory() throws Exception {
-        Path archived = Path.of("C:/archive/error/duplicate.csv");
+    void process_archivesSkippedDatabaseWriteInProcessedDirectory() throws Exception {
+        Path archived = Path.of("C:/archive/processed/duplicate.csv");
         when(databaseWriterStep.write(any())).thenReturn(new DatabaseWriteResult(
                 SyncStatus.SKIPPED, 1, "Permit already exists; target write skipped"));
-        when(fileArchiverStep.archiveError(any(), any(), any(), any())).thenReturn(archived);
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);
 
         pipeline.process(event);
 
-        verify(fileArchiverStep).archiveError(
-                any(), any(), org.mockito.ArgumentMatchers.contains("target write skipped"), any());
+        verify(fileArchiverStep).archiveProcessed(any(), any(), any());
         assertThat(record.getStoredPath()).isEqualTo(archived.toString());
         assertThat(record.getArchiveStatus()).isEqualTo(FileArchiveStatus.ARCHIVED);
+    }
+
+    @Test
+    void processArchivesNonPermitAttachmentAsSkipped() throws Exception {
+        SyncJob job = new SyncJob();
+        job.setFileHash("a".repeat(64));
+        Path archived = Path.of("C:/archive/processed/application.docx");
+        when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);
+        doThrow(new NonPermitDocumentException("Tài liệu đề nghị, không phải phép bay đã cấp"))
+                .when(parserStep).parse(any());
+
+        pipeline.process(event);
+
+        assertThat(job.getStatus()).isEqualTo(SyncStatus.SKIPPED);
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SKIPPED);
+        assertThat(record.getStoredPath()).isEqualTo(archived.toString());
+        verify(fileArchiverStep).archiveProcessed(any(), any(), any());
+    }
+
+    @Test
+    void processArchivesMissingWordYamlFormatInDedicatedDirectory() throws Exception {
+        event = new FileIngestedEvent(
+                7L,
+                "C:/staging/permit.docx",
+                "a".repeat(64),
+                FileSourceType.EMAIL,
+                false);
+        record.setOriginalFileName("permit.docx");
+        record.setStoredPath("C:/staging/permit.docx");
+        Path archived = Path.of("C:/archive/error-format/permit.docx");
+        doThrow(new FormatValidationException(
+                "permit.docx", "Unsupported Word permit format; no format profile matched"))
+                .when(parserStep).parse(any());
+        when(fileArchiverStep.archiveFormatError(any(), any(), any(), any())).thenReturn(archived);
+
+        pipeline.process(event);
+
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.FAILED);
+        assertThat(record.getStoredPath()).isEqualTo(archived.toString());
+        verify(fileArchiverStep).archiveFormatError(any(), any(), any(), any());
     }
 
     @Test
@@ -179,8 +220,8 @@ class FileProcessingPipelineTest {
         SyncJob job = new SyncJob();
         job.setFileHash("a".repeat(64));
         when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
-        when(fileArchiverStep.archiveError(any(), any(), any(), any()))
-                .thenReturn(Path.of("C:/archive/error/reference.csv"));
+        when(fileArchiverStep.archiveQuarantine(any(), any(), any()))
+                .thenReturn(Path.of("C:/archive/quarantine/reference.csv"));
         doThrow(new AtfmReferenceDataException("ATFM lookup not found: M_OPER.OPER_ICAO=POS"))
                 .when(databaseWriterStep).write(any());
 
@@ -190,7 +231,7 @@ class FileProcessingPipelineTest {
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.QUARANTINED);
         assertThat(record.getErrorMessage())
                 .isEqualTo("Không xác định được mã ICAO của hãng khai thác.");
-        assertThat(record.getStoredPath()).isEqualTo("C:\\archive\\error\\reference.csv");
+        assertThat(record.getStoredPath()).isEqualTo("C:\\archive\\quarantine\\reference.csv");
         verify(syncResultPublisher).publish(
                 org.mockito.ArgumentMatchers.eq(7L),
                 org.mockito.ArgumentMatchers.eq(SyncStatus.QUARANTINED),

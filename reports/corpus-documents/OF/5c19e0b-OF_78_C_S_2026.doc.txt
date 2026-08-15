@@ -1,0 +1,53 @@
+FILE: OF 78 C_S_2026.doc
+
+PARAGRAPHS
+Ha Noi, 18/06/2026
+Permit number: OF - 78/C/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: EMIRATES AIRLINES IATA code: EK ICAO code: UAE Postal Address: P.O.BOX 686, DUBAI, U.A. E Tel: +971-4-7085766 Email: eocopscntrl@emirates.com 
+2. Billing address
+Name: EMIRATES AIRLINES Postal Address: P.O.BOX 686, DUBAI, U.A. E Tel: +971-4-7085766 Email: eocopscntrl@emirates.com 
+3. Schedules: All times in UTC 
+Flight Number Effective from Effective to Days of Services Departure Airport ETD Arrival Airport ETA UAE9729
+ 20JUN26 24OCT26 1234567 RCTP 1320 VOHS 1945 
+4. Purpose of Flight(s): Cargo.
+5. Aircraft/s
+Aircraft Type Registration marks Nationality B77F A6-EFU OR SUB UAE 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RCTP-VOHS A1 BUNTA PAPRA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+ C/C BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 18/06/2026
+Permit number: OF - 78/C/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: EMIRATES AIRLINES
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.BOX 686, DUBAI, U.A. E
+Tel: +971-4-7085766 | Email: eocopscntrl@emirates.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: EMIRATES AIRLINES
+Postal Address: P.O.BOX 686, DUBAI, U.A. E
+Tel: +971-4-7085766 | Email: eocopscntrl@emirates.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number | Effective from | Effective to | Days of Services | Departure Airport | ETD | Arrival Airport | ETA
+UAE9729 | 20JUN26 | 24OCT26 | 1234567 | RCTP | 1320 | VOHS | 1945
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Cargo.
+5. Aircraft/s
+Aircraft Type | Registration marks | Nationality
+B77F | A6-EFU OR SUB | UAE
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-VOHS | A1 | BUNTA | PAPRA

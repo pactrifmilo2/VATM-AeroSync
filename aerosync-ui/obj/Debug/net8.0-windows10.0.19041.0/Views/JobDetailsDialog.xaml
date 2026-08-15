@@ -12,13 +12,13 @@
                 <TextBlock Text="{Binding Job.FileHash}" Foreground="#0B4EA2" FontWeight="SemiBold" />
             </StackPanel>
             <Border HorizontalAlignment="Right" BorderBrush="#FECACA" BorderThickness="1" CornerRadius="6" Padding="14,8">
-                <TextBlock Text="{Binding Job.Status}" Foreground="#DC2626" FontWeight="Bold" />
+                <TextBlock Text="{Binding Job.StatusLabel}" Foreground="#DC2626" FontWeight="Bold" />
             </Border>
         </Grid>
 
         <!-- FILE RECORDS -->
         <StackPanel Spacing="6">
-            <TextBlock Text="FILES:" Foreground="#0B4EA2" FontWeight="Bold" />
+            <TextBlock Text="DANH SÁCH FILE:" Foreground="#0B4EA2" FontWeight="Bold" />
             <controls:DataGrid
                 AutoGenerateColumns="False"
                 GridLinesVisibility="All"
@@ -27,17 +27,18 @@
                 ItemsSource="{Binding FileRecords}"
                 MaxHeight="140">
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Header="FILE NAME" Binding="{Binding StoredFileName}" Width="*" />
-                    <controls:DataGridTextColumn Header="SOURCE" Binding="{Binding SourceType}" Width="80" />
-                    <controls:DataGridTextColumn Header="SENDER" Binding="{Binding Sender}" Width="160" />
-                    <controls:DataGridTemplateColumn Header="ACTIONS" Width="180">
+                    <controls:DataGridTextColumn Header="TÊN FILE" Binding="{Binding StoredFileName}" Width="*" />
+                    <controls:DataGridTextColumn Header="NGUỒN" Binding="{Binding SourceLabel}" Width="80" />
+                    <controls:DataGridTextColumn Header="NGƯỜI GỬI" Binding="{Binding Sender}" Width="160" />
+                    <controls:DataGridTextColumn Header="FORMAT" Binding="{Binding FormatStatusLabel}" Width="190" />
+                    <controls:DataGridTemplateColumn Header="THAO TÁC" Width="180">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <Button Content="Open Folder"
+                                    <Button Content="Mở thư mục"
                                             Command="{Binding ElementName=DialogHost, Path=DataContext.OpenFolderCommand}"
                                             CommandParameter="{Binding StoredPath}" />
-                                    <Button Content="Copy Path"
+                                    <Button Content="Sao chép đường dẫn"
                                             Command="{Binding ElementName=DialogHost, Path=DataContext.CopyPathCommand}"
                                             CommandParameter="{Binding StoredPath}" />
                                 </StackPanel>
@@ -83,10 +84,10 @@
                 ItemsSource="{Binding Job.RowErrors}"
                 MaxHeight="220">
                 <controls:DataGrid.Columns>
-                    <controls:DataGridTextColumn Header="ROW" Binding="{Binding RowNumber}" Width="80" />
-                    <controls:DataGridTextColumn Header="FIELD" Binding="{Binding Field}" Width="160" />
-                    <controls:DataGridTextColumn Header="VALUE" Binding="{Binding Value}" Width="160" />
-                    <controls:DataGridTextColumn Header="ERROR" Binding="{Binding Message}" Width="*" />
+                    <controls:DataGridTextColumn Header="DÒNG" Binding="{Binding RowNumber}" Width="80" />
+                    <controls:DataGridTextColumn Header="TRƯỜNG" Binding="{Binding Field}" Width="160" />
+                    <controls:DataGridTextColumn Header="GIÁ TRỊ" Binding="{Binding Value}" Width="160" />
+                    <controls:DataGridTextColumn Header="LỖI" Binding="{Binding Message}" Width="*" />
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </StackPanel>

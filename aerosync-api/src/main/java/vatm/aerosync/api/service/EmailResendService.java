@@ -111,7 +111,7 @@ public class EmailResendService {
                 headers));
 
         if (cleanupService != null) {
-            cleanupService.cleanup(selected, request.messageId());
+            cleanupService.cleanup(selected);
         }
 
         return new EmailResendResponse(

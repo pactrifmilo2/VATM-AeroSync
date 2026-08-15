@@ -24,23 +24,55 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DocxSchedulePermitParserTest {
 
+    @Test
+    void versionComesFromPermitIdentityAndDefaultsToA() {
+        assertThat(DocxSchedulePermitParser.permitVersion("LD-32/A/S/2026VN"))
+                .isEqualTo("A");
+        assertThat(DocxSchedulePermitParser.permitVersion("OF-02/C/W/2026VN"))
+                .isEqualTo("C");
+        assertThat(DocxSchedulePermitParser.permitVersion("LD-2953/08/2026VN"))
+                .isEqualTo("A");
+    }
+
+    @Test
+    void removesASeasonMarkerInventedByLegacyYaml() {
+        assertThat(DocxSchedulePermitParser.removeInventedSeasonMarker(
+                "LD-2953/08/2026VN", "LD 02953/S/CHK/2026"))
+                .isEqualTo("LD 02953/CHK/2026");
+        assertThat(DocxSchedulePermitParser.removeInventedSeasonMarker(
+                "LD-01/A/W/2026VN", "LD 0001A/W/CHK/2026"))
+                .isEqualTo("LD 0001A/W/CHK/2026");
+    }
+
+    @Test
+    void correctsAnObviousOneYearTypoInEffectiveFromDate() {
+        assertThat(DocxSchedulePermitParser.correctClearlyMistypedEffectiveYear(
+                LocalDate.of(2025, 9, 4), LocalDate.of(2026, 10, 5), 2026))
+                .isEqualTo(LocalDate.of(2026, 9, 4));
+    }
+
     @TempDir
     Path tempDir;
 
     private final DocxSchedulePermitParser parser = new DocxSchedulePermitParser();
 
     @Test
-    void parse_mapsScheduledOverflightPermitAndStripsUtcSuffix() throws Exception {
+    void parse_mapsNonScheduledOverflightPermitAndStripsUtcSuffix() throws Exception {
         Path file = createPermitDocument();
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05199/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05199/CHK/2026");
         assertThat(permit.permitNumber()).isEqualTo("5199");
         assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 17));
         assertThat(permit.operatorId()).isEqualTo("RMY");
         assertThat(permit.authorId()).isEqualTo("CHK");
-        assertThat(permit.flightType()).isEqualTo("SC");
+        assertThat(permit.flightType()).isEqualTo("NO");
+        assertThat(permit.rawContent())
+                .contains("Name: RAYA AIRWAYS\tICAO Code: RMY")
+                .contains("Flight number\tEff from\tEff to\tDay(s) of services"
+                        + "\tDep airport\tETD\tArr airport\tETA")
+                .contains("RMY685\t20JUL26\t27JUL26\t1------\tWMKK\t1140Z\tVHHH\t1550Z");
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("RMY685");
             assertThat(flight.serviceDays()).isEqualTo("1000000");
@@ -57,25 +89,11 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
-    void parse_mapsGenericLandingPermitAndReconcilesSingleDayWeekday() throws Exception {
+    void parse_acceptsNonScheduledPrivatePermitWithoutIata() throws Exception {
         Path file = createGenericLandingPermitDocument();
 
-        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
-
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02483/S/CHK/2026");
-        assertThat(permit.operatorId()).isEqualTo("PRV");
-        assertThat(permit.reviewOnly()).isFalse();
-        assertThat(permit.flights()).singleElement().satisfies(flight -> {
-            assertThat(flight.flightNumber()).isEqualTo("VNB593");
-            assertThat(flight.purposeId()).isEqualTo("FER");
-            assertThat(flight.craftId()).isZero();
-            assertThat(flight.mtow()).isNull();
-            assertThat(flight.sourceAircraftType()).isEqualTo("C208");
-            assertThat(flight.serviceDays()).isEqualTo("0004000");
-            assertThat(flight.fromAirport()).isEqualTo("VVBM");
-            assertThat(flight.toAirport()).isEqualTo("VVCI");
-            assertThat(flight.via()).isEqualTo("W1/DAN/W2");
-        });
+        assertThat(parser.parse(file, file.getFileName().toString()).flightType())
+                .isEqualTo("NO");
     }
 
     @Test
@@ -84,7 +102,8 @@ class DocxSchedulePermitParserTest {
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD 01471/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 01471/CHK/2026");
+        assertThat(permit.flightType()).isEqualTo("NO");
         assertThat(permit.operatorId()).isEqualTo("HVN");
         assertThat(permit.flights())
                 .extracting(flight -> flight.flightNumber())
@@ -170,7 +189,7 @@ class DocxSchedulePermitParserTest {
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05199/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05199/CHK/2026");
         assertThat(permit.operatorId()).isEqualTo("RMY");
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("RMY685");

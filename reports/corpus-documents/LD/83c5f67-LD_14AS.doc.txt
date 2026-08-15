@@ -1,0 +1,70 @@
+FILE: LD 14AS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 05/03/2026
+Permit No.: LD-14/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Hong Kong Express Airways Limited IATA code: UO ICAO code: HKE Postal Address: 1/F, Cathay House, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong Tel: +852 3151 1961 Email: HYPERLINK "mailto:anthony.chan@hkexpress.com" anthony.chan@hkexpress.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type UO552 29MAR26 24OCT26 1234567 HKG 0025 DAD 0220 32Q/321 UO553 29MAR26 24OCT26 1234567 DAD 0305 HKG 0505 32Q/321 UO558 29MAR26 24OCT26 1234567 HKG 0830 DAD 1025 32Q/321 UO559 29MAR26 24OCT26 1234567 DAD 1110 HKG 1310 32Q/321 UO566 29MAR26 24OCT26 1234567 HKG 0210 DAD 0405 32Q/321 UO563 29MAR26 24OCT26 1234567 DAD 0450 HKG 0650 32Q/321 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality 32Q As per FAOC of UO Hong Kong, China 321 As per FAOC of UO Hong Kong, China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HKG-DAD A1 BUNTA - DAD-HKG A1 - BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 05/03/2026
+Permit No.: LD-14/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Hong Kong Express Airways Limited
+IATA code: UO | ICAO code: HKE
+Postal Address: 1/F, Cathay House, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong
+Tel: +852 3151 1961 | Email: HYPERLINK "mailto:anthony.chan@hkexpress.com" anthony.chan@hkexpress.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+UO552 | 29MAR26 | 24OCT26 | 1234567 | HKG | 0025 | DAD | 0220 | 32Q/321
+UO553 | 29MAR26 | 24OCT26 | 1234567 | DAD | 0305 | HKG | 0505 | 32Q/321
+ |  |  |  |  |  |  |  | 
+UO558 | 29MAR26 | 24OCT26 | 1234567 | HKG | 0830 | DAD | 1025 | 32Q/321
+UO559 | 29MAR26 | 24OCT26 | 1234567 | DAD | 1110 | HKG | 1310 | 32Q/321
+ |  |  |  |  |  |  |  | 
+UO566 | 29MAR26 | 24OCT26 | 1234567 | HKG | 0210 | DAD | 0405 | 32Q/321
+UO563 | 29MAR26 | 24OCT26 | 1234567 | DAD | 0450 | HKG | 0650 | 32Q/321
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+32Q | As per FAOC of UO | Hong Kong, China
+321 | As per FAOC of UO | Hong Kong, China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG-DAD | A1 | BUNTA | -
+DAD-HKG | A1 | - | BUNTA

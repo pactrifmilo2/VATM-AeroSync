@@ -1,0 +1,33 @@
+FILE: R104A1 RVS1 UZB510.docx
+
+PARAGRAPHS
+HANOI, 08JUN2026
+PERMIT NUMBER OF-104/A/S/2026VN /REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged
+RGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 08JUN2026
+PERMIT NUMBER OF-104/A/S/2026VN /REV1
+1. Carrier/Operator
+Name: Uzbekistan Airways JSC
+IATA code: HY | ICAO code: UZB
+Postal Address: 41, Amir Temur avenue, GSP 100060, Tashkent, Uzbekistan
+Tel: +998 78-1404658 | Email:
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit(3)
+UZB510 | 15JUN26 | 24OCT26 | 1--4--- | ZJSY | 2220 | UZTT | 0600+ | OF-104/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+UZB510 | 17JUN26 | 21OCT26 | --3---- | ZJSY | 2320 | UZTT | 0700+

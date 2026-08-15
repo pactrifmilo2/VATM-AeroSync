@@ -1,0 +1,35 @@
+FILE: R48A2  LD-48A-S26-WW-r1.docx
+
+PARAGRAPHS
+HANOI, 27-Jul-26
+The issued permit number: LD-48/A/S/2026VN/R1
+1. Carrier/Operator
+2. Flight Schedule
+2.1 Origin Schedule
+2.2 Revised Schedule
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT) (Ref. G17.44-260727-170103)
+
+TABLE 1
+CONTEXT: HANOI, 27-Jul-26
+The issued permit number: LD-48/A/S/2026VN/R1
+1. Carrier/Operator
+Name: MJETS AIR SDN.BHD
+IATA code: WW | ICAO code: KXP
+Postal Address: Mezzanine Floor CS1, Cainiao Aeropolis Ewtp Hub, FCZ KLIA Cargo Village, Jalan KLIA S3, 64000 Sepang, Selangor, Malaysia
+Tel:+603-8703 3008 | Tel:+603-8703 3008
+
+TABLE 2
+CONTEXT: 2. Flight Schedule
+2.1 Origin Schedule
+Flt Number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival airport | ETA | Aircraft type
+WW601 | 25Jul26 | 25Jul26 | -----6- | KUL | 21:00 | SGN | 23:10 | 73K/73P
+WW602 | 26Jul26 | 26Jul26 | ------7 | SGN | 00:10 | KUL | 02:15 | 73K/73P
+
+TABLE 3
+CONTEXT: 2.2 Revised Schedule
+Flt Number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival airport | ETA | Aircraft type
+WW601 | 27Jul26 | 27Jul26 | 1------ | KUL | 04:10 | SGN | 06:10 | 73K/73P
+WW602 | 27Jul26 | 27Jul26 | 1------ | SGN | 07:10 | KUL | 09:15 | 73K/73P

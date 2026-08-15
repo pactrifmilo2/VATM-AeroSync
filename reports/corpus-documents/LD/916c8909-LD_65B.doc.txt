@@ -1,0 +1,62 @@
+FILE: LD 65B.doc
+
+PARAGRAPHS
+Ha Noi, 07th July 2026
+№: LD - 65/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: PARATA AIR. Inc IATA code: WE ICAO code: PTA Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea Tel: 0935304545 Email: nle@parataair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type WE271 13Jul26 24Oct26 1234567 ICN 1055 HAN 1550 320/330 WE272 13Jul26 24Oct26 1234567 HAN 1720 ICN 2140 320/330 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark 
+ Nationality 320 As per FAOC of WE 
+Korea
+ 330 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-HAN R474 TEBAK A1-Q2 BUNTA HAN-ICN R474 TEBAK Q1-A1 BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 07th July 2026
+№: LD - 65/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: PARATA AIR. Inc
+IATA code: WE | ICAO code: PTA
+Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea
+Tel: 0935304545 | Email: nle@parataair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+WE271 | 13Jul26 | 24Oct26 | 1234567 | ICN | 1055 | HAN | 1550 | 320/330
+WE272 | 13Jul26 | 24Oct26 | 1234567 | HAN | 1720 | ICN | 2140 | 320/330
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of WE | Korea
+330 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-HAN | R474 | TEBAK | 
+ | A1-Q2 | BUNTA | 
+HAN-ICN | R474 |  | TEBAK
+ | Q1-A1 |  | BUNTA

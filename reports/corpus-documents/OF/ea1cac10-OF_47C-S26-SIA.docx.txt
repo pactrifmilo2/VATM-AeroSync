@@ -1,0 +1,54 @@
+FILE: OF 47C-S26-SIA.docx
+
+PARAGRAPHS
+Hanoi, 27 March 2026
+Permit number: OF-47/C/S/2026VN
+IATA Schedule Season: Season: SUMMER (NS26)
+1. Carrier
+2. Billing address
+3. Schedules: All times in UTC
+4. Purpose of Flight(s): [Passenger(9) or All-cargo]
+5. Aircraft:
+6. Air traffic service routes:
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260325-0029)
+
+TABLE 1
+CONTEXT: Hanoi, 27 March 2026
+Permit number: OF-47/C/S/2026VN
+IATA Schedule Season: Season: SUMMER (NS26)
+1. Carrier
+Name: SINGAPORE AIRLINES LIMITED
+IATA code:SQ | ICAO code: SIA
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: SINGAPORE AIRLINES LIMITED
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email: ans_charges@singaporeair.com.sg
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+SIA314 | 29-Mar-26 | 24-Oct-26 | 1234567 | WSSS | 18:30 | EGKK | 08:30
+SIA313 | 29-Mar-26 | 24-Oct-26 | 1234567 | EGKK | 12:00 | WSSS | 01:20
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): [Passenger(9) or All-cargo]
+5. Aircraft:
+Aircraft Type (10) | RegLTFMration Mark (11) | Nationality(14)
+B77W | According to SQ’s AOC | SINGAPORE
+A359 | According to SQ’s AOC | SINGAPORE
+A388 | According to SQ’s AOC | SINGAPORE
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+WSSS-EGKK | M765, M753, R334 | IGARI | NUMDI
+EGKK-WSSS | R334, M753, M765 | NUMDI | IGARI
+Alternate route : Other permitted airways published in Viet Nam’s AIP

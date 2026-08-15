@@ -1,0 +1,58 @@
+FILE: OF 05BS.docx
+
+PARAGRAPHS
+HANOI, 03Mar2026
+Permit No.: OF-05/B/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PAX FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 03Mar2026
+Permit No.: OF-05/B/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier/Operator
+Name: PHILIPPINE AIRLINES
+IATA code: PAL | ICAO code: PR
+Postal Address: PAL GATE1 FOD BLDG., ANDREWS AVE., NICHOLS, PASAY CITY 1300, PHILIPPINES
+Tel: +632 8558000 | Email : LEIZEL_GUINTO@PAL.COM.PH
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: 1FLT AVIATION DMCC
+Postal Address: P.O. BOX 337730, Dubai, United Arab Emirates
+Tel: +971 4 452-9285 | Email: accounts@1flt.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+PAL5684 | 29Mar2026 | 24Oct2026 | 1234567 | RPLL | 11:00 Z | OTHH | 20:40 Z
+PAL5685 | 29Mar2026 | 24Oct2026 | 1234567 | OTHH | 22:30 Z | RPLL | 0835+
+PAL5658 | 29Mar2026 | 24Oct2026 | 1234567 | RPLL | 04:50 Z | OMDB | 1400Z
+PAL5659 | 29Mar2026 | 24Oct2026 | 1234567 | OMDB | 1545 | RPLL | 0110+
+PAL5654 | 29Mar2026 | 24Oct2026 | 1234567 | RPLL | 04:05 | OERK | 1410
+PAL5655 | 29Mar2026 | 24Oct2026 | 1234567 | OERK | 15:55 | RPLL | 0235+
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): PAX FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | MTOW (Ton) | Nationality
+A350-1041 | RP-C3501 OR SUB | 322.000 | PHILIPPINES
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RPLL- OTHH RPLL-OMDB RPLL-OERK | L628 G474 | MESOX | ANINA
+OTHH-RPLL OMDB-RPLL OERK-RPLL | G474 L628 | ANINA | MESOX
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

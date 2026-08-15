@@ -1,0 +1,57 @@
+FILE: OF 66 BS.docx
+
+PARAGRAPHS
+Hanoi, 28 March 2026
+Permit number: OF-66/B/S/2026VN
+IATA Schedule Season: NORTHERN SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260328-0007)
+
+TABLE 1
+CONTEXT: Hanoi, 28 March 2026
+Permit number: OF-66/B/S/2026VN
+IATA Schedule Season: NORTHERN SUMMER 2026
+1. Carrier
+Name: Batik Air Malaysia
+IATA code: OD | ICAO code: MXD
+Postal Address: 1st FLOOR, MERITUS @OASIS CORPORATE PARK, B2-1-01, BLOCK B, NO.2 JALAN PJU 1A/2, ARA DAMANSARA 47301, PETALING JAYA, SELANGOR, MALAYSIA
+Tel: +603 2035 6699; Fax: +603 2035 6699 | Email: rani@batikair.com.my
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Batik Air Malaysia
+Postal Address: 1st FLOOR, MERITUS @OASIS CORPORATE PARK, B2-1-01, BLOCK B, NO.2 JALAN PJU 1A/2, ARA DAMANSARA 47301, PETALING JAYA, SELANGOR, MALAYSIA
+Tel: +603 2035 6699; Fax: +603 2035 6699 | Email: diana.omar@batikair.com.my
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+MXD860 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 1835 | RJBB | 0100
+MXD861 | 29MAR26 | 24OCT26 | 1234567 | RJBB | 0430 | WMKK | 1140
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B737-800LG | As per AOC of MXD | Malaysia
+B737-800HG | As per AOC of MXD | Malaysia
+B737 MAX | As per AOC of MXD | Malaysia
+A330 | As per AOC of MXD | Malaysia
+A330 WET LEASE | PK-LEL, PK-LDW | Indonesia
+B737-800 WET LEASE | PK-LZZ,PK-LBS,PK-LBK,PK-LDO,PK-LDM,PK-LBZ,PK-LZV, PK-LZM, PK-LZO | Indonesia
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+WMKK-RJBB | M771/M765/L625 | DUDIS | ANOKI
+RJBB-WMKK | N892 | MONBO | MELAS
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

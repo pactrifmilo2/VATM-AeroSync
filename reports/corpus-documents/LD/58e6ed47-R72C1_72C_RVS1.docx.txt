@@ -1,0 +1,36 @@
+FILE: R72C1 72C RVS1.docx
+
+PARAGRAPHS
+Hanoi, 03/07/2026 Permit No.: LD - 72/C/S/2026VN/REV1
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 03/07/2026 Permit No.: LD - 72/C/S/2026VN/REV1
+1. Carrier
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.Box: 686, Dubai, United Arab Emirates;
+Tel: +97147083415 | Email : cao.duong@emirates.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+EK9984 | 05JUL26 | 19JUL26 | ------7 | DWC | 0835 | HAN | 1500 | 77X | LD - 72/C/S/2026VN
+EK9985 | 05JUL26 | 19JUL26 | ------7 | HAN | 1640 | DWC | 0325+1 | 77X | 
+EK9985 | 06JUL26 | 20JUL26 | 1------ | ANC | 0505 | ORD | 1120 | 77X | 
+EK9986 | 06JUL26 | 20JUL26 | 1------ | ORD | 1420 | DWC | 0410+1 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EK9984 | 05JUL26 | 19JUL26 | ------7 | DWC | 0755 | HAN | 1420 | 77X
+EK9985 | 05JUL26 | 19JUL26 | ------7 | HAN | 1600 | DWC | 0245+1 | 77X
+EK9985 | 06JUL26 | 20JUL26 | 1------ | ANC | 0425 | ORD | 1040 | 77X
+EK9986 | 06JUL26 | 20JUL26 | 1------ | ORD | 1340 | DWC | 0330+1 | 77X

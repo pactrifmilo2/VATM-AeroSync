@@ -1,0 +1,62 @@
+FILE: LD 71B S.doc
+
+PARAGRAPHS
+Ha Noi, 25/03/2026
+Permit No.: LD -71/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: ETIHAD AIRWAYS IATA code: EY ICAO code: ETD Postal Address: P.O.Box 35566, Abu Dhabi, United Arab Emirates Tel: 00971 2 511 2857 Email: fabdelmutalib@etihad.ae 
+2. Schedules (UTC Time) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type EY971 31MAR26 20OCT26 _2_____ AUH 1715 HAN 2355 
+77X
+ EY972 01APR26 21OCT26 __3____ HAN 0155 AUH 0900 EY979 02APR26 22OCT26 ___4___ AUH 2150 HAN 0430+1 EY980 03APR26 23OCT26 ____5__ HAN 0630 AUH 1335 EY971 03APR26 23OCT26 ____5__ AUH 1600 HAN 2240 EY972 04APR26 24OCT26 _____6_ HAN 0040 AUH 0745 EY979 04APR26 23OCT26 _____6_ AUH 1815 HAN 0055+1 EY980 29MAR26 24OCT26 ______7 HAN 0255 AUH 1000 
+3. Purpose of Flight: All – Cargo
+4. Aircraft:
+Aircraft Type Registration MARks Nationality 77X As per FAOC of EY UAE 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR AUH-HAN B214 W21 LADON HAN-AUH W21 B214 LADON Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C.c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 25/03/2026
+Permit No.: LD -71/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: ETIHAD AIRWAYS
+IATA code: EY | ICAO code: ETD
+Postal Address: P.O.Box 35566, Abu Dhabi, United Arab Emirates
+Tel: 00971 2 511 2857 | Email: fabdelmutalib@etihad.ae
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EY971 | 31MAR26 | 20OCT26 | _2_____ | AUH | 1715 | HAN | 2355 | 77X
+EY972 | 01APR26 | 21OCT26 | __3____ | HAN | 0155 | AUH | 0900 | 
+EY979 | 02APR26 | 22OCT26 | ___4___ | AUH | 2150 | HAN | 0430+1 | 
+EY980 | 03APR26 | 23OCT26 | ____5__ | HAN | 0630 | AUH | 1335 | 
+EY971 | 03APR26 | 23OCT26 | ____5__ | AUH | 1600 | HAN | 2240 | 
+EY972 | 04APR26 | 24OCT26 | _____6_ | HAN | 0040 | AUH | 0745 | 
+EY979 | 04APR26 | 23OCT26 | _____6_ | AUH | 1815 | HAN | 0055+1 | 
+EY980 | 29MAR26 | 24OCT26 | ______7 | HAN | 0255 | AUH | 1000 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All – Cargo
+4. Aircraft:
+Aircraft Type | Registration MARks | Nationality
+77X | As per FAOC of EY | UAE
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+AUH-HAN | B214 W21 | LADON | 
+HAN-AUH | W21 B214 |  | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

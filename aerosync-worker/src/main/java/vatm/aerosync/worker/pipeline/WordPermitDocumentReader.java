@@ -64,6 +64,7 @@ class WordPermitDocumentReader {
         try (InputStream input = new ByteArrayInputStream(readFileBytes(file));
              XWPFDocument document = new XWPFDocument(input)) {
             List<String> paragraphs = new ArrayList<>();
+            List<String> contentBlocks = new ArrayList<>();
             List<String> pendingContext = new ArrayList<>();
             List<List<List<String>>> tables = new ArrayList<>();
             List<String> tableContexts = new ArrayList<>();
@@ -72,10 +73,13 @@ class WordPermitDocumentReader {
                     String text = clean(paragraph.getText());
                     if (!text.isBlank()) {
                         paragraphs.add(text);
+                        contentBlocks.add(text);
                         pendingContext.add(text);
                     }
                 } else if (element instanceof XWPFTable table) {
-                    tables.add(docxTableRows(table));
+                    List<List<String>> rows = docxTableRows(table);
+                    tables.add(rows);
+                    contentBlocks.add(formatTable(rows));
                     tableContexts.add(String.join("\n", pendingContext));
                     pendingContext.clear();
                 }
@@ -86,7 +90,9 @@ class WordPermitDocumentReader {
             LocalDate authoredDate = created == null
                     ? null
                     : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate();
-            return document(String.join("\n", paragraphs), tables, tableContexts, authoredDate);
+            return document(
+                    String.join("\n", paragraphs), tables, tableContexts, authoredDate,
+                    String.join("\n", contentBlocks));
         }
     }
 
@@ -97,6 +103,7 @@ class WordPermitDocumentReader {
             String rangeText = range.text();
             int rangeStart = range.getStartOffset();
             int previousTableEnd = rangeStart;
+            List<String> contentBlocks = new ArrayList<>();
             List<List<List<String>>> tables = new ArrayList<>();
             List<String> tableContexts = new ArrayList<>();
             TableIterator iterator = new TableIterator(range);
@@ -106,9 +113,20 @@ class WordPermitDocumentReader {
                 int contextEnd = Math.max(
                         contextStart,
                         Math.min(rangeText.length(), table.getStartOffset() - rangeStart));
-                tableContexts.add(cleanMultiline(rangeText.substring(contextStart, contextEnd)));
-                tables.add(docTableRows(table));
+                String context = cleanMultiline(rangeText.substring(contextStart, contextEnd));
+                tableContexts.add(context);
+                if (!context.isBlank()) {
+                    contentBlocks.add(context);
+                }
+                List<List<String>> rows = docTableRows(table);
+                tables.add(rows);
+                contentBlocks.add(formatTable(rows));
                 previousTableEnd = Math.max(previousTableEnd, table.getEndOffset());
+            }
+            int tailStart = Math.max(0, Math.min(rangeText.length(), previousTableEnd - rangeStart));
+            String tail = cleanMultiline(rangeText.substring(tailStart));
+            if (!tail.isBlank()) {
+                contentBlocks.add(tail);
             }
             Date created = document.getSummaryInformation() == null
                     ? null
@@ -117,7 +135,8 @@ class WordPermitDocumentReader {
                     cleanMultiline(rangeText), tables, tableContexts,
                     created == null
                             ? null
-                            : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate());
+                            : created.toInstant().atZone(ZoneOffset.UTC).toLocalDate(),
+                    String.join("\n", contentBlocks));
         }
     }
 
@@ -146,7 +165,8 @@ class WordPermitDocumentReader {
     private WordPermitDocument document(String paragraphText,
                                         List<List<List<String>>> tables,
                                         List<String> tableContexts,
-                                        LocalDate authoredDate) {
+                                        LocalDate authoredDate,
+                                        String orderedContent) {
         List<List<List<String>>> resolvedTables = new ArrayList<>(tables);
         List<String> resolvedContexts = new ArrayList<>(tableContexts);
         if (resolvedTables.isEmpty()) {
@@ -157,16 +177,26 @@ class WordPermitDocumentReader {
             }
         }
         String tableText = resolvedTables.stream()
-                .flatMap(List::stream)
-                .flatMap(List::stream)
+                .map(this::formatTable)
                 .filter(text -> !text.isBlank())
                 .collect(Collectors.joining("\n"));
-        String rawContent = paragraphText.isBlank()
-                ? tableText
-                : tableText.isBlank() ? paragraphText : paragraphText + "\n" + tableText;
+        String rawContent = orderedContent == null || orderedContent.isBlank()
+                ? paragraphText.isBlank()
+                        ? tableText
+                        : tableText.isBlank() ? paragraphText : paragraphText + "\n" + tableText
+                : orderedContent;
         return new WordPermitDocument(
                 paragraphText, tableText, rawContent,
                 List.copyOf(resolvedTables), List.copyOf(resolvedContexts), authoredDate);
+    }
+
+    /** Keeps every table row horizontal in PERMCONTENT: cells use tabs, rows use new lines. */
+    private String formatTable(List<List<String>> rows) {
+        return rows.stream()
+                .map(row -> row.stream()
+                        .map(this::clean)
+                        .collect(Collectors.joining("\t")))
+                .collect(Collectors.joining("\n"));
     }
 
     private List<List<String>> inlineSchedule(String paragraphText) {

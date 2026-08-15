@@ -1,0 +1,57 @@
+FILE: OF 71A S.doc
+
+PARAGRAPHS
+Ha Noi, 09th March 2026
+№: OF - 71/A/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator
+Name: Tianjin Air Cargo Co., Ltd. IATA code: HT ICAO code: CTJ Postal Address: 3 / F, Office Building II, Huayu Air Cargo Terminal, No.8 Third Street, Airport International Logistics Zone, Dongli District, Tianjin China Tel: +862258209282 Email: HYPERLINK "mailto:tjacocio@hnair.com" \t "_blank" tjacocio@hnair.com , HYPERLINK "mailto:hzheng.liu@hnair.com" \t "_blank" hzheng.liu@hnair.com 
+2. Billing address:
+Name: Tianjin Air Cargo Co., Ltd. Postal Address: 3/F, Office Building II, Huayu Air Cargo Terminal, No.8 Third Street, Airport International Logistics Zone, Dongli District, Tianjin China Tel: +862258209282 Email: HYPERLINK "mailto:tjacocio@hnair.com" \t "_blank" tjacocio@hnair.com , HYPERLINK "mailto:hzheng.liu@hnair.com" \t "_blank" hzheng.liu@hnair.com 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CTJ3827 15MAR26 24OCT26 1234567 ZJHK 2240 WMKK 0210+ CTJ3828 15MAR26 24OCT26 1234567 WMKK 0310 ZJHK 0635 
+4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B737-800 B-2676 OR SUB CHINA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZJHK-WMKK A1 Q1 L644 M765 BUNTA IGARI WMKK- ZJHK M765 L637 Q2 A202 IGARI ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 09th March 2026
+№: OF - 71/A/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator
+Name: Tianjin Air Cargo Co., Ltd.
+IATA code: HT | ICAO code: CTJ
+Postal Address: 3 / F, Office Building II, Huayu Air Cargo Terminal, No.8 Third Street, Airport International Logistics Zone, Dongli District, Tianjin China
+Tel: +862258209282 | Email: HYPERLINK "mailto:tjacocio@hnair.com" \t "_blank" tjacocio@hnair.com , HYPERLINK "mailto:hzheng.liu@hnair.com" \t "_blank" hzheng.liu@hnair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Tianjin Air Cargo Co., Ltd.
+Postal Address: 3/F, Office Building II, Huayu Air Cargo Terminal, No.8 Third Street, Airport International Logistics Zone, Dongli District, Tianjin China
+Tel: +862258209282 | Email: HYPERLINK "mailto:tjacocio@hnair.com" \t "_blank" tjacocio@hnair.com , HYPERLINK "mailto:hzheng.liu@hnair.com" \t "_blank" hzheng.liu@hnair.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CTJ3827 | 15MAR26 | 24OCT26 | 1234567 | ZJHK | 2240 | WMKK | 0210+
+CTJ3828 | 15MAR26 | 24OCT26 | 1234567 | WMKK | 0310 | ZJHK | 0635
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-800 | B-2676 OR SUB | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJHK-WMKK | A1 Q1 L644 M765 | BUNTA | IGARI
+WMKK- ZJHK | M765 L637 Q2 A202 | IGARI | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

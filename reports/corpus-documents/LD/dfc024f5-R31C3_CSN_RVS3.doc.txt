@@ -1,0 +1,87 @@
+FILE: R31C3 CSN RVS3.doc
+
+PARAGRAPHS
+Ha Noi, 14th July 2026
+№: LD - 31/C/S/2026VN.RVS3
+Carrier/Operator
+Name: CHINA SOUTHERN AIRLINES IATA code: CZ ICAO code: CSN Postal Address: Daeha Business Center - 360 Kim Ma st., Giang Vo Ward, Hanoi City, Vietnam Tel: 024.37716611; 0396856768 Email: HYPERLINK "mailto:phepbay@csair.com," phepbay@csair.com, haile@csair.com 2. Aircraft Type
+2.1. Original Aircraft 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CZ3049 01AUG26 23OCT26 .2.45.7 CAN 00:55 HAN 03:05 319/31N/320/32N/ 321/32Q/ 73G/738/7M8 CZ3050 01AUG26 23OCT26 .2.45.7 HAN 04:05 CAN 06:05 2.2. New Aircraft 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CZ3049 01AUG26 23OCT26 .2.45.7 CAN 00:55 HAN 03:05 319/31N/320/32N/ 321/32Q/ 73G/738/7M8/788/789/77W/ 332/333/359/78Z CZ3050 01AUG26 23OCT26 .2.45.7 HAN 04:15 CAN 06:15 
+3. Aircraft
+2.2. Original Aircraft
+Aircraft Type
+ Registration marks Nationality 319 According to CZ’s FAOC
+ China
+ 31N 320 32N 321 32Q 73G 738 7M8 3.2. New Aircraft 
+Aircraft Type
+ Registration marks Nationality 319 According to CZ’s FAOC
+ China
+ 31N 320 32N 321 32Q 73G 738 7M8 788 789 77W 332 333 359 78Z 4. Notes: Others remain unchanged
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 14th July 2026
+№: LD - 31/C/S/2026VN.RVS3
+Carrier/Operator
+Name: CHINA SOUTHERN AIRLINES
+IATA code: CZ | ICAO code: CSN
+Postal Address: Daeha Business Center - 360 Kim Ma st., Giang Vo Ward, Hanoi City, Vietnam
+Tel: 024.37716611; 0396856768 | Email: HYPERLINK "mailto:phepbay@csair.com," phepbay@csair.com, haile@csair.com
+
+TABLE 2
+CONTEXT: 2. Aircraft Type
+2.1. Original Aircraft
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CZ3049 | 01AUG26 | 23OCT26 | .2.45.7 | CAN | 00:55 | HAN | 03:05 | 319/31N/320/32N/ 321/32Q/ 73G/738/7M8
+CZ3050 | 01AUG26 | 23OCT26 | .2.45.7 | HAN | 04:05 | CAN | 06:05 | 
+
+TABLE 3
+CONTEXT: 2.2. New Aircraft
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CZ3049 | 01AUG26 | 23OCT26 | .2.45.7 | CAN | 00:55 | HAN | 03:05 | 319/31N/320/32N/ 321/32Q/ 73G/738/7M8/788/789/77W/ 332/333/359/78Z
+CZ3050 | 01AUG26 | 23OCT26 | .2.45.7 | HAN | 04:15 | CAN | 06:15 | 
+
+TABLE 4
+CONTEXT: 3. Aircraft
+2.2. Original Aircraft
+Aircraft Type | Registration marks | Nationality
+319 | According to CZ’s FAOC | China
+31N |  | 
+320 |  | 
+32N |  | 
+321 |  | 
+32Q |  | 
+73G |  | 
+738 |  | 
+7M8 |  | 
+
+TABLE 5
+CONTEXT: 3.2. New Aircraft
+Aircraft Type | Registration marks | Nationality
+319 | According to CZ’s FAOC | China
+31N |  | 
+320 |  | 
+32N |  | 
+321 |  | 
+32Q |  | 
+73G |  | 
+738 |  | 
+7M8 |  | 
+788 |  | 
+789 |  | 
+77W |  | 
+332 |  | 
+333 |  | 
+359 |  | 
+78Z |  | 

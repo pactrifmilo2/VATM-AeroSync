@@ -1,0 +1,48 @@
+FILE: R20B1 OF 20BRVS1.docx
+
+PARAGRAPHS
+Hanoi, 09 Apr 2026
+The permit: OF-20/B/S/2026VN/REV1
+1. Carrier/Operator
+2. [Revised timing and rerouting of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Additional Air traffic service routes
+4. Note: Others un-changed
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260408-0084)
+
+TABLE 1
+CONTEXT: Hanoi, 09 Apr 2026
+The permit: OF-20/B/S/2026VN/REV1
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Planning and Scheduling, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised timing and rerouting of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6112 | 10APR26 | 17APR26 | ….5.. | WBKL | 0810 | VHHH | 1110 | 33X
+MAS6113 | 10APR26 | 17APR26 | ….5.. | VHHH | 1310 | WMKK | 1650 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6104 | 14APR26 | 14APR26 | .2….. | WBKL | 0245 | VHHH | 0545 | 33X
+MAS6105 | 14APR26 | 14APR26 | .2….. | VHHH | 0745 | WMKK | 1125 | 33X
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6112 | 10APR26 | 17APR26 | ….5.. | WBGG | 0030 | VHHH | 0430 | 33X
+MAS6113 | 10APR26 | 17APR26 | ….5.. | VHHH | 0630 | WMKK | 1010 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6104 | 13APR26 | 13APR26 | 1...... | WBKL | 2340 | VHHH | 0240+1 | 33X
+MAS6105 | 14APR26 | 14APR26 | .2….. | VHHH | 0440 | WMKK | 0820 | 33X
+
+TABLE 4
+CONTEXT: 3. Additional Air traffic service routes
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WBGG - VHHH | M768 | AKMON | DOSUT

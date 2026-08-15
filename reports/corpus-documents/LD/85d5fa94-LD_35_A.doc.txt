@@ -1,0 +1,103 @@
+FILE: LD 35 A.doc
+
+PARAGRAPHS
+Ha Noi, 12th March 2026
+№: LD - 35/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: AIRBUSAN Co., Ltd. IATA code: BX ICAO code: ABL Postal Address: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea Tel: 82-51-410-0703 Email: jcpark@airbusan.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type BX773 29Mar26 24Oct26 1234567 PUS 1150 DAD 1650 32A/32S/32Q
+ BX774 29Mar26 24Oct26 1234567 DAD 1745 PUS 2220 BX7315 29Mar26 24Oct26 1------ PUS 1305 DAD 1810 BX7325 29Mar26 24Oct26 1------ DAD 1910 PUS 2325 BX7315 29Mar26 24Oct26 -23-567 PUS 1305 DAD 1810 BX7325 29Mar26 24Oct26 -23-567 DAD 1910 PUS 0005+1 BX7315 29Mar26 24Oct26 ---4--- PUS 1305 DAD 1810 BX7325 29Mar26 24Oct26 ---4--- DAD 1910 PUS 0000+1 BX781 29Mar26 24Oct26 -234567 PUS 1020 CXR 1520 BX782 29Mar26 24Oct26 -234567 CXR 1620 PUS 2120 BX781 29Mar26 31May26 1------ PUS 0955 CXR 1520 BX782 29Mar26 31May26 1------ CXR 1620 PUS 2120 BX781 01Jun26 24Oct26 1------ PUS 1020 CXR 1520 BX782 01Jun26 24Oct26 1------ CXR 1620 PUS 2120 BX787 29Mar26 24Oct26 1234567 ICN 0810 CXR 1340 BX788 29Mar26 24Oct26 1234567 CXR 1450 ICN 2005 
+3. Purpose of Flight: Passenger
+4. Aircraft: 
+Aircraft Type Registration Mark 
+ Nationality 32A As per FAOC of BX 
+Korea
+ 32S 32Q 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR PUS - CXR N892, L628, L642, W15 MIGUG … A1, Q1, W7, W15 BUNTA … R474, Q1, W7, W15 TEBAK … L628, L642, W15 ARESI … CXR - PUS M771, L628 ARESI W15, W7, W1, A1 … BUNTA W15, W7, Q1, R474 … TEBAK W15, W7, W1, R474 … TEBAK W15, W7, Q1, G474, L628 … ARESI W15, W7, W1, G474, L628 … ARESI PUS - DAD A1 BUNTA … R474, Q1 TEBAK L628, G474, Q1 ARESI N892, L628, G474, Q1 MIGUG DAD - PUS A1 … BUNTA Q1, R474 … TEBAK W1, R474 TEBAK Q1, G474, L628 … ARESI ICN - CXR N892, L628, L642, W15 MIGUG … A1, Q1, W7, W15 BUNTA … R474, Q1, W7, W15 TEBAK … L628, L642, W15 ARESI … CXR - ICN W15, W7, W1, A1 … BUNTA W15, W7, Q1, R474 … TEBAK W15, W7, W1, R474 … TEBAK W15, W7, Q1, G474, L628 … ARESI W15, W7, W1, G474, L628 … ARESI M771, L628 … ARESI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 12th March 2026
+№: LD - 35/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: AIRBUSAN Co., Ltd.
+IATA code: BX | ICAO code: ABL
+Postal Address: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea
+Tel: 82-51-410-0703 | Email: jcpark@airbusan.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BX773 | 29Mar26 | 24Oct26 | 1234567 | PUS | 1150 | DAD | 1650 | 32A/32S/32Q
+BX774 | 29Mar26 | 24Oct26 | 1234567 | DAD | 1745 | PUS | 2220 | 
+BX7315 | 29Mar26 | 24Oct26 | 1------ | PUS | 1305 | DAD | 1810 | 
+BX7325 | 29Mar26 | 24Oct26 | 1------ | DAD | 1910 | PUS | 2325 | 
+BX7315 | 29Mar26 | 24Oct26 | -23-567 | PUS | 1305 | DAD | 1810 | 
+BX7325 | 29Mar26 | 24Oct26 | -23-567 | DAD | 1910 | PUS | 0005+1 | 
+BX7315 | 29Mar26 | 24Oct26 | ---4--- | PUS | 1305 | DAD | 1810 | 
+BX7325 | 29Mar26 | 24Oct26 | ---4--- | DAD | 1910 | PUS | 0000+1 | 
+BX781 | 29Mar26 | 24Oct26 | -234567 | PUS | 1020 | CXR | 1520 | 
+BX782 | 29Mar26 | 24Oct26 | -234567 | CXR | 1620 | PUS | 2120 | 
+BX781 | 29Mar26 | 31May26 | 1------ | PUS | 0955 | CXR | 1520 | 
+BX782 | 29Mar26 | 31May26 | 1------ | CXR | 1620 | PUS | 2120 | 
+BX781 | 01Jun26 | 24Oct26 | 1------ | PUS | 1020 | CXR | 1520 | 
+BX782 | 01Jun26 | 24Oct26 | 1------ | CXR | 1620 | PUS | 2120 | 
+BX787 | 29Mar26 | 24Oct26 | 1234567 | ICN | 0810 | CXR | 1340 | 
+BX788 | 29Mar26 | 24Oct26 | 1234567 | CXR | 1450 | ICN | 2005 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+32A | As per FAOC of BX | Korea
+32S |  | 
+32Q |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+PUS - CXR | N892, L628, L642, W15 | MIGUG | …
+ | A1, Q1, W7, W15 | BUNTA | …
+ | R474, Q1, W7, W15 | TEBAK | …
+ | L628, L642, W15 | ARESI | …
+CXR - PUS | M771, L628 |  | ARESI
+ | W15, W7, W1, A1 | … | BUNTA
+ | W15, W7, Q1, R474 | … | TEBAK
+ | W15, W7, W1, R474 | … | TEBAK
+ | W15, W7, Q1, G474, L628 | … | ARESI
+ | W15, W7, W1, G474, L628 | … | ARESI
+PUS - DAD | A1 | BUNTA | …
+ | R474, Q1 | TEBAK | 
+ | L628, G474, Q1 | ARESI | 
+ | N892, L628, G474, Q1 | MIGUG | 
+DAD - PUS | A1 | … | BUNTA
+ | Q1, R474 | … | TEBAK
+ | W1, R474 |  | TEBAK
+ | Q1, G474, L628 | … | ARESI
+ICN - CXR | N892, L628, L642, W15 | MIGUG | …
+ | A1, Q1, W7, W15 | BUNTA | …
+ | R474, Q1, W7, W15 | TEBAK | …
+ | L628, L642, W15 | ARESI | …
+CXR - ICN | W15, W7, W1, A1 | … | BUNTA
+ | W15, W7, Q1, R474 | … | TEBAK
+ | W15, W7, W1, R474 | … | TEBAK
+ | W15, W7, Q1, G474, L628 | … | ARESI
+ | W15, W7, W1, G474, L628 | … | ARESI
+ | M771, L628 | … | ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

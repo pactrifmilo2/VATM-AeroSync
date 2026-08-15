@@ -1,0 +1,57 @@
+FILE: OF 119D JYH.doc
+
+PARAGRAPHS
+Ha Noi, 13th July 2026
+№: OF - 119/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: NINE AIR CO., LTD IATA code: AQ ICAO code: JYH Postal Address: No 1501 Fanghua Road, Renhe Town, Baiyun District, Guangzhou City, China 
+2. Billing address
+Name: Beijing Star Aviation Services Co.,ltd Postal Address: Room 409,No 113,Kaifang Road,Huai Rou District,Beijing,China. HYPERLINK "tel:+86" \t "_blank" \o "TEL:+86" TEL: +86 15311937187 EMAIL: sugar_jun@126.com sugar@junstar-aviation.com 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA JYH1281 18JUL26 24OCT26 1234567 ZGGG 1320 VTBS 1625 JYH1282 18JUL26 24OCT26 1234567 VTBS 1725 ZGGG 2025 
+4. Purpose of Flight(s): PASSENGER FLIGHT
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B737-800 B-1172, B-1233, B-1472, B-1473, B-1551, B-1552, B-1553, B-1556, B-1592, B-1715, B-1716, B-1719, B-208K, B-220S, B-220Y，B-221M，B-6989, B-6990, B-6991, B-6992，B-7105，B-7113 or SUBS China B737-8 B-206J, B-224V, B-208H or SUBS China 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGGG-VTBS A202 ASSAD VILAO VTBS-ZGGG A202 VILAO ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 Hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 13th July 2026
+№: OF - 119/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: NINE AIR CO., LTD
+IATA code: AQ | ICAO code: JYH
+Postal Address: No 1501 Fanghua Road, Renhe Town, Baiyun District, Guangzhou City, China
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Beijing Star Aviation Services Co.,ltd
+Postal Address: Room 409,No 113,Kaifang Road,Huai Rou District,Beijing,China.
+HYPERLINK "tel:+86" \t "_blank" \o "TEL:+86" TEL: +86 15311937187 | EMAIL: sugar_jun@126.com sugar@junstar-aviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+JYH1281 | 18JUL26 | 24OCT26 | 1234567 | ZGGG | 1320 | VTBS | 1625
+JYH1282 | 18JUL26 | 24OCT26 | 1234567 | VTBS | 1725 | ZGGG | 2025
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): PASSENGER FLIGHT
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-800 | B-1172, B-1233, B-1472, B-1473, B-1551, B-1552, B-1553, B-1556, B-1592, B-1715, B-1716, B-1719, B-208K, B-220S, B-220Y，B-221M，B-6989, B-6990, B-6991, B-6992，B-7105，B-7113 or SUBS | China
+B737-8 | B-206J, B-224V, B-208H or SUBS | China
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGGG-VTBS | A202 | ASSAD | VILAO
+VTBS-ZGGG | A202 | VILAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,71 @@
+FILE: LD 17AS.doc
+
+PARAGRAPHS
+Ha Noi, 06th March 2026
+№: LD - 17/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Xiamen Airlines Co., Ltd IATA code: MF ICAO code: CXA Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R. China Tel: +86-592-5739208, +86-592-5739877 Email: HYPERLINK "mailto:sgn@xiamenair.com" hanoi@xiamenair.com and HYPERLINK "mailto:hbzy@xiamenair.com" hbzy@xiamenair.com 
+ 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETD Aircraft Type MF869 29Mar26 24Oct26 1234567 XMN 0500 HAN 0740 
+73H
+73W MF870 29Mar26 24Oct26 1234567 HAN 0840 XMN 1040 MF8697 29Mar26 23Oct26 1-3-5-7 TAO 0045 FOC 0310 MF8697 29Mar26 23Oct26 1-3-5-7 FOC 0515 HAN 0820 MF8697 31Mar26 24Oct26 -2-4-6- TAO 0045 FOC 0310 MF8697 31Mar26 24Oct26 -2-4-6- FOC 0515 HAN 0820 MF8698 29Mar26 23Oct26 1-3-5-7 HAN 0920 FOC 1145 MF8698 29Mar26 23Oct26 1-3-5-7 FOC 1345 TAO 1555 MF8698 31Mar26 24Oct26 -2-4-6- HAN 0920 FOC 1145 MF8698 31Mar26 24Oct26 -2-4-6- FOC 1345 TAO 1555 
+3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type Registration Mark
+ Nationality 73H
+73W According to MF’s AOC China 
+5. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR XMN-HAN R474 TEBAK HAN-XMN R474 TEBAK FOC-HAN R474 TEBAK HAN-FOC R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 06th March 2026
+№: LD - 17/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Xiamen Airlines Co., Ltd
+IATA code: MF | ICAO code: CXA
+Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R. China
+Tel: +86-592-5739208, +86-592-5739877 | Email: HYPERLINK "mailto:sgn@xiamenair.com" hanoi@xiamenair.com and HYPERLINK "mailto:hbzy@xiamenair.com" hbzy@xiamenair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETD | Aircraft Type
+MF869 | 29Mar26 | 24Oct26 | 1234567 | XMN | 0500 | HAN | 0740 | 73H 73W
+MF870 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0840 | XMN | 1040 | 
+MF8697 | 29Mar26 | 23Oct26 | 1-3-5-7 | TAO | 0045 | FOC | 0310 | 
+MF8697 | 29Mar26 | 23Oct26 | 1-3-5-7 | FOC | 0515 | HAN | 0820 | 
+MF8697 | 31Mar26 | 24Oct26 | -2-4-6- | TAO | 0045 | FOC | 0310 | 
+MF8697 | 31Mar26 | 24Oct26 | -2-4-6- | FOC | 0515 | HAN | 0820 | 
+MF8698 | 29Mar26 | 23Oct26 | 1-3-5-7 | HAN | 0920 | FOC | 1145 | 
+MF8698 | 29Mar26 | 23Oct26 | 1-3-5-7 | FOC | 1345 | TAO | 1555 | 
+MF8698 | 31Mar26 | 24Oct26 | -2-4-6- | HAN | 0920 | FOC | 1145 | 
+MF8698 | 31Mar26 | 24Oct26 | -2-4-6- | FOC | 1345 | TAO | 1555 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+73H 73W | According to MF’s AOC | China
+
+TABLE 4
+CONTEXT: 5. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+XMN-HAN | R474 | TEBAK | 
+HAN-XMN | R474 |  | TEBAK
+FOC-HAN | R474 | TEBAK | 
+HAN-FOC | R474 |  | TEBAK

@@ -1,0 +1,62 @@
+FILE: OF 09IS.doc
+
+PARAGRAPHS
+Ha Noi, 26th June 2026
+№: OF - 09/I/S/2026VN
+IATA Seasons: Summer 2026
+1. Carrier/Operator
+Name: SICHUAN AIRLINES CO. LTD IATA code: 3U ICAO code: CSC Postal Address: Sichuan Airlines Co., Ltd., Aviation Building, Shuangliu International Airport, Chengdu, Sichuan Province, 610202, People's Republic of China. Tel: +86 28 8888 8888 Email: HYPERLINK "https://www.airwise.com/airlines/info/sichuan" \o "https://www.airwise.com/airlines/info/sichuan" e-bookingservice@sichuanair.com 
+2. Billing address
+Name: UAS International Trip Support Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE. Tel: +971-4-299-6633 Email: HYPERLINK "mailto:PAYABLE@UAS.AERO" \o "mailto:PAYABLE@UAS.AERO" PAYABLE@UAS.AERO 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CSC9399 30JUN26 24OCT26 1234567 ZGNN 1800 VTBS 2000 CSC9400 30JUN26 24OCT26 1234567 VTBS 2110 ZGNN 2315 
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality A319 As per AOC of Sichuan Airlines 
+China
+ A320 A321 
+A330 A350 6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGNN - VTBS R474 TEBAK LAVOS VTBS - ZGNN R474 LAVOS TEBK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+C/c: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26th June 2026
+№: OF - 09/I/S/2026VN
+IATA Seasons: Summer 2026
+1. Carrier/Operator
+Name: SICHUAN AIRLINES CO. LTD
+IATA code: 3U | ICAO code: CSC
+Postal Address: Sichuan Airlines Co., Ltd., Aviation Building, Shuangliu International Airport, Chengdu, Sichuan Province, 610202, People's Republic of China.
+Tel: +86 28 8888 8888 | Email: HYPERLINK "https://www.airwise.com/airlines/info/sichuan" \o "https://www.airwise.com/airlines/info/sichuan" e-bookingservice@sichuanair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE.
+Tel: +971-4-299-6633 | Email: HYPERLINK "mailto:PAYABLE@UAS.AERO" \o "mailto:PAYABLE@UAS.AERO" PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CSC9399 | 30JUN26 | 24OCT26 | 1234567 | ZGNN | 1800 | VTBS | 2000
+CSC9400 | 30JUN26 | 24OCT26 | 1234567 | VTBS | 2110 | ZGNN | 2315
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A319 | As per AOC of Sichuan Airlines | China
+A320 |  | 
+A321 |  | 
+A330 |  | 
+A350 |  | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGNN - VTBS | R474 | TEBAK | LAVOS
+VTBS - ZGNN | R474 | LAVOS | TEBK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

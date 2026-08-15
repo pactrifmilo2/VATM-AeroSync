@@ -1,0 +1,126 @@
+FILE: OF 124_A_S.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: OF - 124/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+1.1 Name: Peach Aviation Limited
+- ICAO code: APJ, IATA code: MM
+- Address: Aero Plaza 3F, 1 Senshu-kuko-naka, Tajiri-cho, Sen-nan-gun, Osaka, Japan
+- Tel: 81-72-456-0801; Fax: 81-72-456-8017; Email: HYPERLINK "mailto:flightstandards@flypeach.com" \h HYPERLINK "mailto:flightstandards@flypeach.com" \h flightoperationsintegrationmanagement @flypeach.com .
+1.2 Billing address: Operation Control Center Peach Aviation
+Aero Plaza 3F, 1 Senshu-kuko-naka, Tajiri-cho, Sen-nan-gun, Osaka 549-0011 Japan.
+- Tel: 81-72-456-0801; Fax: 81-72-456-8017;
+ Email: operationsplanning&administration@flypeach.com
+2. Schedules: All times in UTC 
+Flight 
+Number1 Effective from Effective
+ To Day(s) of services Departure Airport ETD Arrival Airport3 ETA Aircraft Type4 APJ91 29MAR26 17MAY26 1234567 RJBB 1030 VTBS 1655 A320
+A20N
+A21N 19MAY26 22JUN26 1234567 24JUN26 28JUN26 ..34567 30JUN26 30JUN26 .2….. 01OCT26 04OCT26 …4567 06OCT26 10OCT26 .23456. 12OCT26 16OCT26 12345.. 18OCT26 22OCT26 1234..7 24OCT26 24OCT26 …..6. 01JUL26 04JUL26 ..3456. 1045 1655 06JUL26 10JUL26 12345.. 12JUL26 28AUG26 1234567 30AUG26 03SEP26 1234..7 05SEP26 09SEP26 123..67 11SEP26 15SEP26 12..567 17SEP26 30SEP26 1234567 APJ92 29MAR26 17MAY26 1234567 VTBS 1815 RJBB 0020 A320
+A20N
+A21N 19MAY26 22JUN26 1234567 24JUN26 28JUN26 ..34567 30JUN26 04JUL26 .23456. 06JUL26 10JUL26 12345.. 12JUL26 28AUG26 1234567 30AUG26 03SEP26 1234..7 05SEP26 09SEP26 123..67 11SEP26 15SEP26 12..567 17SEP26 04OCT26 1234567 06OCT26 10OCT26 .23456. 12OCT26 16OCT26 12345.. 18OCT26 22OCT26 1234..7 APJ773 29MAR26 20MAY26 1234567 RJBB 0920 WSSS 1605 A320
+A20N
+A21N 22MAY26 31MAY26 1234567 01JUN26 25JUN26 1234567 0925 1605 27JUN26 01JUL26 123..67 03JUL26 07JUL26 12..567 09JUL26 13JUL26 1..4567 15JUL26 25AUG26 1234567 27AUG26 31AUG26 1..4567 02SEP26 06SEP26 ..34567 08SEP26 12SEP26 .23456. 14SEP26 07OCT26 1234567 09OCT26 13OCT26 12..567 15OCT26 19OCT26 1..4567 21OCT26 24OCT26 ..3456. APJ774 29MAR26 20MAY26 1234567 WSSS 1725 RJBB 0005 A320
+A20N
+A21N 22MAY26 25JUN26 1234567 27JUN26 29JUN26 1….67 30SEP26 07OCT26 1234567 09OCT26 13OCT26 12..567 15OCT26 19OCT26 1..4567 21OCT26 23OCT26 ..345.. 30JUN26 01JUL26 .23…. 1725 0010 03JUL26 07JUL26 12..567 09JUL26 13JUL26 1..4567 15JUL26 25AUG26 1234567 27AUG26 31AUG26 1…4567 02SEP26 06SEP26 ..34567 08SEP26 12SEP26 .23456. 14SEP26 29SEP26 1234567 
+3. Type of services: Passenger
+4. Air traffic service routes:
+Sectors 5 ATS Routes 6 Entry Point Exit Point RJBB-VTBS A1 BUNTA PAPRA VTBS-RJBB A1 PAPRA BUNTA RJBB-WSSS N892 MONBO MELAS WSSS-RJBB L625 AKMON ARESI Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+5. Aircraft:
+Aircraft Type Registration marks Nationality A320 According to the AOC of Peach Aviation Japan A20N A21N 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: OF - 124/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+1.1 Name: Peach Aviation Limited
+- ICAO code: APJ, IATA code: MM
+- Address: Aero Plaza 3F, 1 Senshu-kuko-naka, Tajiri-cho, Sen-nan-gun, Osaka, Japan
+- Tel: 81-72-456-0801; Fax: 81-72-456-8017; Email: HYPERLINK "mailto:flightstandards@flypeach.com" \h HYPERLINK "mailto:flightstandards@flypeach.com" \h flightoperationsintegrationmanagement @flypeach.com .
+1.2 Billing address: Operation Control Center Peach Aviation
+Aero Plaza 3F, 1 Senshu-kuko-naka, Tajiri-cho, Sen-nan-gun, Osaka 549-0011 Japan.
+- Tel: 81-72-456-0801; Fax: 81-72-456-8017;
+ Email: operationsplanning&administration@flypeach.com
+2. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport3 | ETA | Aircraft Type4
+APJ91 | 29MAR26 | 17MAY26 | 1234567 | RJBB | 1030 | VTBS | 1655 | A320 A20N A21N
+ | 19MAY26 | 22JUN26 | 1234567 |  |  |  |  | 
+ | 24JUN26 | 28JUN26 | ..34567 |  |  |  |  | 
+ | 30JUN26 | 30JUN26 | .2….. |  |  |  |  | 
+ | 01OCT26 | 04OCT26 | …4567 |  |  |  |  | 
+ | 06OCT26 | 10OCT26 | .23456. |  |  |  |  | 
+ | 12OCT26 | 16OCT26 | 12345.. |  |  |  |  | 
+ | 18OCT26 | 22OCT26 | 1234..7 |  |  |  |  | 
+ | 24OCT26 | 24OCT26 | …..6. |  |  |  |  | 
+ | 01JUL26 | 04JUL26 | ..3456. |  | 1045 |  | 1655 | 
+ | 06JUL26 | 10JUL26 | 12345.. |  |  |  |  | 
+ | 12JUL26 | 28AUG26 | 1234567 |  |  |  |  | 
+ | 30AUG26 | 03SEP26 | 1234..7 |  |  |  |  | 
+ | 05SEP26 | 09SEP26 | 123..67 |  |  |  |  | 
+ | 11SEP26 | 15SEP26 | 12..567 |  |  |  |  | 
+ | 17SEP26 | 30SEP26 | 1234567 |  |  |  |  | 
+APJ92 | 29MAR26 | 17MAY26 | 1234567 | VTBS | 1815 | RJBB | 0020 | A320 A20N A21N
+ | 19MAY26 | 22JUN26 | 1234567 |  |  |  |  | 
+ | 24JUN26 | 28JUN26 | ..34567 |  |  |  |  | 
+ | 30JUN26 | 04JUL26 | .23456. |  |  |  |  | 
+ | 06JUL26 | 10JUL26 | 12345.. |  |  |  |  | 
+ | 12JUL26 | 28AUG26 | 1234567 |  |  |  |  | 
+ | 30AUG26 | 03SEP26 | 1234..7 |  |  |  |  | 
+ | 05SEP26 | 09SEP26 | 123..67 |  |  |  |  | 
+ | 11SEP26 | 15SEP26 | 12..567 |  |  |  |  | 
+ | 17SEP26 | 04OCT26 | 1234567 |  |  |  |  | 
+ | 06OCT26 | 10OCT26 | .23456. |  |  |  |  | 
+ | 12OCT26 | 16OCT26 | 12345.. |  |  |  |  | 
+ | 18OCT26 | 22OCT26 | 1234..7 |  |  |  |  | 
+APJ773 | 29MAR26 | 20MAY26 | 1234567 | RJBB | 0920 | WSSS | 1605 | A320 A20N A21N
+ | 22MAY26 | 31MAY26 | 1234567 |  |  |  |  | 
+ | 01JUN26 | 25JUN26 | 1234567 |  | 0925 |  | 1605 | 
+ | 27JUN26 | 01JUL26 | 123..67 |  |  |  |  | 
+ | 03JUL26 | 07JUL26 | 12..567 |  |  |  |  | 
+ | 09JUL26 | 13JUL26 | 1..4567 |  |  |  |  | 
+ | 15JUL26 | 25AUG26 | 1234567 |  |  |  |  | 
+ | 27AUG26 | 31AUG26 | 1..4567 |  |  |  |  | 
+ | 02SEP26 | 06SEP26 | ..34567 |  |  |  |  | 
+ | 08SEP26 | 12SEP26 | .23456. |  |  |  |  | 
+ | 14SEP26 | 07OCT26 | 1234567 |  |  |  |  | 
+ | 09OCT26 | 13OCT26 | 12..567 |  |  |  |  | 
+ | 15OCT26 | 19OCT26 | 1..4567 |  |  |  |  | 
+ | 21OCT26 | 24OCT26 | ..3456. |  |  |  |  | 
+APJ774 | 29MAR26 | 20MAY26 | 1234567 | WSSS | 1725 | RJBB | 0005 | A320 A20N A21N
+ | 22MAY26 | 25JUN26 | 1234567 |  |  |  |  | 
+ | 27JUN26 | 29JUN26 | 1….67 |  |  |  |  | 
+ | 30SEP26 | 07OCT26 | 1234567 |  |  |  |  | 
+ | 09OCT26 | 13OCT26 | 12..567 |  |  |  |  | 
+ | 15OCT26 | 19OCT26 | 1..4567 |  |  |  |  | 
+ | 21OCT26 | 23OCT26 | ..345.. |  |  |  |  | 
+ | 30JUN26 | 01JUL26 | .23…. |  | 1725 |  | 0010 | 
+ | 03JUL26 | 07JUL26 | 12..567 |  |  |  |  | 
+ | 09JUL26 | 13JUL26 | 1..4567 |  |  |  |  | 
+ | 15JUL26 | 25AUG26 | 1234567 |  |  |  |  | 
+ | 27AUG26 | 31AUG26 | 1…4567 |  |  |  |  | 
+ | 02SEP26 | 06SEP26 | ..34567 |  |  |  |  | 
+ | 08SEP26 | 12SEP26 | .23456. |  |  |  |  | 
+ | 14SEP26 | 29SEP26 | 1234567 |  |  |  |  | 
+
+TABLE 2
+CONTEXT: 3. Type of services: Passenger
+4. Air traffic service routes:
+Sectors 5 | ATS Routes 6 | Entry Point | Exit Point
+RJBB-VTBS | A1 | BUNTA | PAPRA
+VTBS-RJBB | A1 | PAPRA | BUNTA
+RJBB-WSSS | N892 | MONBO | MELAS
+WSSS-RJBB | L625 | AKMON | ARESI
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 3
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A320 | According to the AOC of Peach Aviation | Japan
+A20N |  | 
+A21N |  | 

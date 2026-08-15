@@ -1,0 +1,124 @@
+FILE: LD 54 A.docx
+
+PARAGRAPHS
+Ha Noi, March 23, 2026
+Permit No.: LD-54/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight
+4. Aircraft
+5. Airways
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref.G17.44-260317-0017)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 23, 2026
+Permit No.: LD-54/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AirAsia Berhad
+IATA code: AK | ICAO code: AXM
+Postal Address: RedQ, Jalan Pekeliling 5, Terminal 2, 64000 (T2), Selangor
+Tel: +6038660 4333 | Email: regulatoryaffairs@airasia.com, hanhb@airasia.com, ahmadfauzanmansor@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+AK 204 | 30Mar26 | 24Oct26 | 12-4-6- | KUL | 02:10 | CXR | 04:30 | 32032N 32Q
+AK 205 | 30Mar26 | 24Oct26 | 12-4-6- | CXR | 05:00 | KUL | 07:25 | 
+
+AK 640 | 29Mar26 | 24Oct26 | 1234567 | KUL | 06:00 | DAD | 08:35 | 32032N 32Q
+AK 641 | 29Mar26 | 24Oct26 | 1234567 | DAD | 09:05 | KUL | 11:55 | 
+AK 642 | 29Mar26 | 24Oct26 | 1234567 | KUL | 01:15 | DAD | 03:50 | 
+AK 643 | 29Mar26 | 24Oct26 | 1234567 | DAD | 04:20 | KUL | 07:10 | 
+AK 648 | 29Mar26 | 24Oct26 | 1234567 | KUL | 02:15 | DAD | 04:50 | 
+AK 649 | 29Mar26 | 24Oct26 | 1234567 | DAD | 05:20 | KUL | 08:10 | 
+AK 644 | 15Jun26 | 24Oct26 | 1234567 | KUL | 07:35 | DAD | 10:10 | 
+AK 645 | 15Jun26 | 24Oct26 | 1234567 | DAD | 10:40 | KUL | 13:30 | 
+
+AK 512 | 29Mar26 | 24Oct26 | 1234567 | KUL | 04:10 | HAN | 07:20 | 32032N 32Q
+AK 513 | 29Mar26 | 24Oct26 | 1234567 | HAN | 07:50 | KUL | 11:05 | 
+AK 516 | 28Mar26 | 24Oct26 | 1234567 | KUL | 22:05 | HAN | 01:25+1 | 
+AK 517 | 29Mar26 | 24Oct26 | 1234567 | HAN | 01:55 | KUL | 05:15 | 
+
+AK 545 | 29Mar26 | 24Oct26 | 1234567 | KUL | 04:50 | PQC | 06:35 | 32032N 32Q
+AK 546 | 29Mar26 | 24Oct26 | 1234567 | PQC | 07:10 | KUL | 09:00 | 
+AK 543 | 29Mar26 | 24Oct26 | 1234567 | KUL | 00:40 | PQC | 02:30 | 
+AK 544 | 29Mar26 | 24Oct26 | 1234567 | PQC | 03:05 | KUL | 04:50 | 
+AK 547 | 16Jun26 | 24Oct26 | -2-4-6- | KUL | 06:25 | PQC | 08:30 | 
+AK 548 | 16Jun26 | 24Oct26 | -2-4-6- | PQC | 09:00 | KUL | 10:50 | 
+
+AK 1490 | 28Mar26 | 24Oct26 | 1234567 | JHB | 23:05 | SGN | 01:00+1 | 32032N32Q
+AK 1491 | 29Mar26 | 24Oct26 | 1234567 | SGN | 01:30 | JHB | 03:20 | 
+AK 1492 | 29Mar26 | 23Oct26 | 1-3-5-7 | JHB | 03:55 | SGN | 05:55 | 
+AK 1493 | 29Mar26 | 23Oct26 | 1-3-5-7 | SGN | 06:25 | JHB | 08:20 | 
+AK 520 | 28Mar26 | 24Oct26 | 1234567 | KUL | 23:05 | SGN | 01:05+1 | 32032N32Q
+AK 521 | 29Mar26 | 24Oct26 | 1234567 | SGN | 01:35 | KUL | 03:35 | 
+AK 522 | 29Mar26 | 24Oct26 | 1234567 | KUL | 06:40 | SGN | 08:40 | 
+AK 523 | 29Mar26 | 24Oct26 | 1234567 | SGN | 09:10 | KUL | 11:10 | 
+AK 524 | 29Mar26 | 24Oct26 | 1234567 | KUL | 11:40 | SGN | 13:40 | 
+AK 525 | 29Mar26 | 23Oct26 | –3-5-7 | SGN | 14:10 | KUL | 17:00 | 
+AK 525 | 30Mar26 | 24Oct26 | 12-4-6- | SGN | 15:05 | KUL | 17:00 | 
+AK 528 | 29Mar26 | 24Oct26 | 1234567 | KUL | 03:05 | SGN | 05:10 | 
+AK 529 | 29Mar26 | 24Oct26 | 1234567 | SGN | 05:40 | KUL | 07:40 | 
+
+AK 1502 | 29Mar26 | 24Oct26 | 1234567 | PEN | 04:10 | SGN | 06:00 | 32032N32Q
+AK 1503 | 29Mar26 | 24Oct26 | 1234567 | SGN | 06:30 | PEN | 08:10 | 
+
+AK 1630 | 31Mar26 | 24Oct26 | -2-4-6- | BKI | 03:45 | SGN | 05:55 | 32032N32Q
+AK 1631 | 31Mar26 | 24Oct26 | -2-4-6- | SGN | 06:25 | BKI | 08:35 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight
+Passenger
+
+TABLE 5
+CONTEXT: 4. Aircraft
+Aircraft Type (11) | Registration Mark (12) | Nationality(15)
+320 | According to AK’s FAOC | Malaysia
+32N | According to AK’s FAOC | Malaysia
+32Q | According to AK’s FAOC | Malaysia
+
+TABLE 6
+CONTEXT: 5. Airways
+Sector(16) | Airways(17) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KUL-DAD | M765 L637 Q2 | IGARI | -
+DAD-KUL | Q1 W1 L637 M765 | - | IGARI
+ | Q1 W2 L637 M765 | - | IGARI
+KUL-PQC | M765 M753 | IGARI | -
+PQC-KUL | M753 M765 | - | IGARI
+KUL-HAN | M765 M755N639 | IGARIVILAO | KISAN-
+ | M765 L637 Q2 | IGARI | -
+ | R474 | LAVOS | -
+ | B465 | LAPON | -
+HAN-KUL | N639M755 M765 | -KISAN | VILAOIGARI
+ | Q1 L644 M765 | - | IGARI
+ | Q1 W2 L637 M765 | - | IGARI
+ | R474 | - | LAVOS
+ | B465 | - | LAPON
+PEN-SGN | M765 L637 | IGARI | -
+SGN-PEN | L637 M765 | - | IGARI
+JHB-SGN | L644 W9 | DUDIS | -
+SGN-JHB | L643 L642 | - | ESPOB
+KUL-SGN | M765 L637 | IGARI | -
+SGN-KUL | L637 M765 | - | IGARI
+KUL-CXR | M765 L637 W1 W15 | IGARI | -
+ | M765 L637 W2 W15 | IGARI | -
+CXR-KUL | W15 W1 L637 M765 | - | IGARI
+ | W15 W2 L637 M765 | - | IGARI
+BKI-SGN | M768 | MOXON | -
+SGN-BKI | M768 | - | MOXON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

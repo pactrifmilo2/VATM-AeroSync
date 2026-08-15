@@ -13,7 +13,6 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CaavEnglishOverflightRevisionProfileTest {
 
@@ -24,9 +23,7 @@ class CaavEnglishOverflightRevisionProfileTest {
 
     @Test
     void parse_mapsOnlyTheNewOverflightSchedule() throws Exception {
-        assertThatThrownBy(() -> parser.parse(createDocument(), "OF-5277 (REV1).docx"))
-                .hasMessageContaining("IATA and ICAO fields")
-                .hasMessageContaining("blank or invalid");
+        assertPermit(parser.parse(createDocument(), "OF-5277 (REV1).docx"));
     }
 
     @Test
@@ -42,11 +39,12 @@ class CaavEnglishOverflightRevisionProfileTest {
 
     private void assertPermit(SchedulePermit permit) {
         assertThat(permit.sourcePermitNumber()).isEqualTo("OF-5277/07/2026VN /REV1");
-        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05277/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05277/CHK/2026");
+        assertThat(permit.flightType()).isEqualTo("NO");
         assertThat(permit.permitNumber()).isEqualTo("5277");
         assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 7, 21));
         assertThat(permit.operatorId()).isEqualTo("VJT");
-        assertThat(permit.billingAddress()).contains("P.O BOX: 54698 DUBAI, UAE");
+        assertThat(permit.billingAddress()).isEqualTo("VISTAJET LIMITED");
         assertThat(permit.reference()).isNull();
         assertThat(permit.permitType()).isEqualTo("O/F");
         assertThat(permit.version()).isEqualTo("A");

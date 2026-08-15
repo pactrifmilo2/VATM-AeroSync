@@ -1,0 +1,52 @@
+FILE: R56Ab  56A REV11.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 01/6/2026
+Phép bay số: LD-56/A/S/2026VN/REV11
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc (Giờ UTC) trong phép bay số LD-56/A/S/2026VN
+2.2. Lịch bay mới (Giờ UTC)
+3. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 01/6/2026
+Phép bay số: LD-56/A/S/2026VN/REV11
+1. Người vận chuyển
+Tên: BAMBOO AIRWAYS
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc (Giờ UTC) trong phép bay số LD-56/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh | Loại tàu bay
+QH268 | 02Jun26 | 25Jun26 | -2-4--- | SGN | 1355 | HAN | 1605 | 320/32N/321
+QH268 | 06Jun26 | 06Jun26 | -----6- | SGN | 1355 | HAN | 1605 | 320/32N/321
+QH268 | 20Jun26 | 27Jun26 | -----6- | SGN | 1355 | HAN | 1605 | 320/32N/321
+QH283 | 02Jun26 | 06Jun26 | -2---6- | HAN | 1645 | SGN | 1910 | 320/32N/321
+QH283 | 04Jun26 | 25Jun26 | ---4--- | HAN | 1645 | SGN | 1910 | 320/32N/321
+QH283 | 20Jun26 | 27Jun26 | -----6- | HAN | 1645 | SGN | 1910 | 320/32N/321
+QH173 | 03Jun26 | 28Jun26 | --3-5-7 | DAD | 1140 | SGN | 1310 | 320/32N/321
+QH148 | 03Jun26 | 24Jun26 | --3---- | DAD | 1500 | HAN | 1625 | 320/32N/321
+QH148 | 05Jun26 | 05Jun26 | ----5-- | DAD | 1500 | HAN | 1625 | 320/32N/321
+QH148 | 26Jun26 | 26Jun26 | ----5-- | DAD | 1500 | HAN | 1625 | 320/32N/321
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh | Loại tàu bay
+QH268 | 02Jun26 | 25Jun26 | -2-4--- | SGN | 1220 | HAN | 1430 | 320/32N/321
+QH268 | 06Jun26 | 06Jun26 | -----6- | SGN | 1220 | HAN | 1430 | 320/32N/321
+QH268 | 20Jun26 | 27Jun26 | -----6- | SGN | 1220 | HAN | 1430 | 320/32N/321
+QH283 | 02Jun26 | 06Jun26 | -2---6- | HAN | 1510 | SGN | 1725 | 320/32N/321
+QH283 | 04Jun26 | 25Jun26 | ---4--- | HAN | 1510 | SGN | 1725 | 320/32N/321
+QH283 | 20Jun26 | 27Jun26 | -----6- | HAN | 1510 | SGN | 1725 | 320/32N/321
+QH173 | 03Jun26 | 28Jun26 | --3-5-7 | DAD | 0740 | SGN | 0910 | 320/32N/321
+QH148 | 03Jun26 | 24Jun26 | --3---- | DAD | 1115 | HAN | 1240 | 320/32N/321
+QH148 | 05Jun26 | 05Jun26 | ----5-- | DAD | 1115 | HAN | 1240 | 320/32N/321
+QH148 | 26Jun26 | 26Jun26 | ----5-- | DAD | 1115 | HAN | 1240 | 320/32N/321

@@ -1,0 +1,39 @@
+FILE: H0106 VNA_HUY CHUYEN 01JUN_24OCT(CHUYỂN 0V).docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 01/6/2026
+CỤC HKVN XÁC NHẬN HỦY CHUYẾN NHƯ SAU:
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Hành khách & hàng hoá
+4. Lý do hủy: Do các tầu ATR VNA khai thác đã chuyển về Vasco khai thác theo AOC VASCO
+5. Tham chiếu số giấy phép: Theo phép bay LD-68/A/S/2026VN;
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+Mã số hồ sơ: G17.44-260601-170437
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 01/6/2026
+CỤC HKVN XÁC NHẬN HỦY CHUYẾN NHƯ SAU:
+1. Hãng hàng không
+Tên: VIETNAM AIRLINES
+Mã IATA: VN | Mã ICAO:HVN
+Địa chỉ bưu điện: 200 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại:0904186949 | Thư điện tử: HUNGDQ@VIETNAMAIRLINES.COM
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay(1) | Hiệu lực từ(2) | Hiệu lực đến(3) | Ngày trong tuần(4) | Sân bay cất cánh(5) | Giờ khởi hành dự kiến (6) | Sân bay hạ cánh(7) | Giờ dự kiến hạcánh(8) | Loại tàu bay(9)
+VN1853 | 01Jun26 | 23Oct26 | 1234567 | SGN | 23:20 | VCS | 0:10+1 | ATR
+VN1854 | 02Jun26 | 24Oct26 | 1234567 | VCS | 00:30 | SGN | 1:35 | ATR
+VN1856 | 02Jun26 | 24Oct26 | .23..6. | VCS | 03:25 | SGN | 4:30 | ATR
+VN1857 | 02Jun26 | 24Oct26 | .23..6. | SGN | 02:10 | VCS | 3:05 | ATR
+VN1858 | 02Jun26 | 30Aug26 | 1234567 | VCS | 06:35 | SGN | 7:40 | ATR
+VN1858 | 31Aug26 | 24Oct26 | 12.4567 | VCS | 06:35 | SGN | 7:40 | ATR
+VN1859 | 02Jun26 | 30Aug26 | 1234567 | SGN | 05:10 | VCS | 6:05 | ATR
+VN1859 | 31Aug26 | 24Oct26 | 12.4567 | SGN | 05:10 | VCS | 6:05 | ATR
+VN1884 | 02Jun26 | 28Jun26 | 1234567 | VCS | 09:30 | SGN | 10:35 | ATR
+VN1884 | 30Jun26 | 24Oct26 | .234567 | VCS | 09:30 | SGN | 10:35 | ATR
+VN1885 | 02Jun26 | 28Jun26 | 1234567 | SGN | 08:15 | VCS | 9:10 | ATR
+VN1885 | 30Jun26 | 24Oct26 | .234567 | SGN | 08:15 | VCS | 9:10 | ATR

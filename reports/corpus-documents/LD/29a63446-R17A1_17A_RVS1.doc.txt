@@ -1,0 +1,47 @@
+FILE: R17A1 17A RVS1.doc
+
+PARAGRAPHS
+Ha Noi, 11th May 2026
+№: LD - 17/A/S/2026VN.RVS1
+1. Carrier
+Name: Xiamen Airlines Co., Ltd IATA code: MF ICAO code: CXA Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R. China Tel:+86-592-5739208, +86-592-5739877 Email: HYPERLINK "mailto:sgn@xiamenair.com" hanoi@xiamenair.com and HYPERLINK "mailto:hbzy@xiamenair.com" hbzy@xiamenair.com 
+ 
+Schedules: All times in UTC
+ORIGINAL SCHEDULES
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type MF869 25May26 24Oct26 1234567 XMN 0500 HAN 0740 73H MF870 25May26 24Oct26 1234567 HAN 0840 XMN 1040 
+UPDATED SCHEDULES
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type MF859 25May26 24Oct26 1234567 XMN 0510 HAN 0740 73H MF860 25May26 24Oct26 1234567 HAN 0840 XMN 1030 
+Note: Others remain unchanged
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 11th May 2026
+№: LD - 17/A/S/2026VN.RVS1
+1. Carrier
+Name: Xiamen Airlines Co., Ltd
+IATA code: MF | ICAO code: CXA
+Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R. China
+Tel:+86-592-5739208, +86-592-5739877 | Email: HYPERLINK "mailto:sgn@xiamenair.com" hanoi@xiamenair.com and HYPERLINK "mailto:hbzy@xiamenair.com" hbzy@xiamenair.com
+
+TABLE 2
+CONTEXT: Schedules: All times in UTC
+ORIGINAL SCHEDULES
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MF869 | 25May26 | 24Oct26 | 1234567 | XMN | 0500 | HAN | 0740 | 73H
+MF870 | 25May26 | 24Oct26 | 1234567 | HAN | 0840 | XMN | 1040 | 
+
+TABLE 3
+CONTEXT: UPDATED SCHEDULES
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MF859 | 25May26 | 24Oct26 | 1234567 | XMN | 0510 | HAN | 0740 | 73H
+MF860 | 25May26 | 24Oct26 | 1234567 | HAN | 0840 | XMN | 1030 | 

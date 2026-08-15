@@ -1,0 +1,55 @@
+FILE: OF 93 CS.docx
+
+PARAGRAPHS
+HANOI, 31st MARCH 2026
+Permit No.: OF-93/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Schedule Passenger flight
+5. Aircraft:
+6. Air traffic service routes:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 31st MARCH 2026
+Permit No.: OF-93/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Thai Vietjet Air
+IATA code: VZ | ICAO code: TVJ
+Postal Address: 999 Car Park Building Zone 3, Suvarnabhumi Airport 6th Floor, Moo 1, Nong Prue, Bangpli, Samutprakan 10540,THAILAND
+Tel: +66 21343543 | Email: vz.dutyomc@vietjetair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Thai Vietjet Air
+Postal Address: 999 Car Park Building Zone 3, Suvarnabhumi Airport 6th Floor, Moo 1, Nong Prue, Bangpli, Samutprakan 10540,THAILAND
+Tel: +66 21343543 | Email: vz.dutyomc@vietjetair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+TVJ3718 | 31MAR26 | 24OCT26 | .2.4.6. | VTBS | 1140 | ZBAD | 1615
+TVJ3719 | 31MAR26 | 24OCT26 | .2.4.6. | ZBAD | 1715 | VTBS | 2225
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Schedule Passenger flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320/321 | As per AOC of TVJ | Thailand
+B38M | As per AOC of TVJ | Thailand
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS-ZBAD | R474 | LAVOS | TEBAK
+ZBAD-VTBS | R474 | TEBAK | LAVOS

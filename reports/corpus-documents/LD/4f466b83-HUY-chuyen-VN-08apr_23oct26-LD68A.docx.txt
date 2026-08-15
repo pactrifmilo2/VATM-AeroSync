@@ -1,0 +1,45 @@
+FILE: HUY-chuyen-VN-08apr_23oct26-LD68A.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 07/3/2026
+Căn cứ phép bay LD-68/A/S/2026VN
+CỤC HKVN XÁC NHẬN HỦY CÁC CHUYẾN BAY SAU:
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay
+4. Lý do hủy: Do diễn biến tình hình chiến sự Trung Đông, giá nhiên liệu bay và nguồn cung ứng nhiên liệu
+5. Tham chiếu số giấy phép: Theo phép bay LD-68/A/S/2026VN;
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 07/3/2026
+Căn cứ phép bay LD-68/A/S/2026VN
+CỤC HKVN XÁC NHẬN HỦY CÁC CHUYẾN BAY SAU:
+1. Hãng hàng không
+Tên: VIETNAM AIRLINES
+Mã IATA: VN | Mã ICAO:HVN
+Địa chỉ bưu điện: 200 Phố Nguyễn Sơn, Phường Bồ Đề, Hà Nội, Việt Nam
+Điện thoại:0904186949 | Thư điện tử: HUNGDQ@VIETNAMAIRLINES.COM
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cán) | Giờ dự kiến hạcánh | Loại tàu bay
+VCA-HPH-VCA |  |  |  |  |  |  | 
+VN1226 | 08Apr26 | 29Jun26 | 1.3.5.7 | VCA | 04:45 | HPH | 7:00 | 321/320/ATR
+VN1227 | 08Apr26 | 29Jun26 | 1.3.5.7 | HPH | 01:45 | VCA | 4:00 | 321/320/ATR
+BMV-HPH-BMV |  |  |  |  |  |  | 
+VN1518 | 08Apr26 | 29Jun26 | 1.3.5.7 | BMV | 15:15 | HPH | 17:00 | 321/320/ATR
+VN1519 | 08Apr26 | 29Jun26 | 1.3.5.7 | HPH | 12:45 | BMV | 14:30 | 321/320/ATR
+CXR-HPH-CXR |  |  |  |  |  |  | 
+VN1608 | 08Apr26 | 30Jun26 | 1234567 | CXR | 10:15 | HPH | 12:00 | 321/320/ATR
+VN1609 | 08Apr26 | 30Jun26 | 1234567 | HPH | 07:45 | CXR | 9:35 | 321/320/ATR
+SGN-VDO |  |  |  |  |  |  | 
+VN1286 | 08Apr26 | 23Oct26 | 1.3.5.. | SGN | 22:50 | VDO | 0:55+1 | 321/320/ATR
+SGN-DIN |  |  |  |  |  |  | 
+VN1160 | 08Apr26 | 12Aug26 | 1.3.... | SGN | 02:35 | DIN | 4:45 | 321/320/ATR
+
+TABLE 3
+CONTEXT: 3. Mục đích chuyến bay
+hành khách & hàng hoá

@@ -1,0 +1,30 @@
+id: airline-generic-seasonal-landing-issued
+extends: caav-generic-landing-issued
+priority: -70
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:LANDING\s+PERMIT|PHÉP\s+BAY\s+ĐI/ĐẾN)'
+  - '(?iu)(?:SCHEDULES?|LỊCH\s+BAY)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+permit:
+  pattern: '(?iu)\bLD\s*[-/]?\s*(?<number>\d{1,5})\s*/?\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>(?<!\d)\d{1,2}(?:ST|ND|RD|TH)?(?:/\d{1,2}/20\d{2}|-[A-Z]{3,9}-\d{2,4}|\s+[A-Z]{3,9}\s+20\d{2})|(?<!\d)\d{1,2}[A-Z]{3,9}20\d{2})'
+  group: date
+  formats: [d/M/uuuu, d-MMM-uu, d-MMM-uuuu, d-MMMM-uuuu, d MMM uuuu, d MMMM uuuu, dMMMuuuu, dMMMMuuuu]
+  locale: en
+  fallbackToDocumentCreatedDate: true
+schedule:
+  includeEta: true
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false

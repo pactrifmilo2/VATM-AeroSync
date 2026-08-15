@@ -15,7 +15,7 @@
         <Grid Grid.Row="0">
             <StackPanel Spacing="3">
                 <TextBlock Text="QUẢN LÝ RESEND EMAIL" FontSize="26" FontWeight="Bold" Foreground="#102A56" />
-                <TextBlock Text="Tìm, chọn một hoặc tất cả email đang hiển thị và gửi lại tuần tự qua Gmail." Foreground="#64748B" />
+                <TextBlock Text="Tìm trên toàn bộ dữ liệu, lọc theo trạng thái chung và loại file, chọn một hoặc tất cả email và gửi lại tuần tự qua Gmail." Foreground="#64748B" />
             </StackPanel>
             <Border HorizontalAlignment="Right" VerticalAlignment="Center" Background="#E8F7EE" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="18" Padding="12,7">
                 <StackPanel Orientation="Horizontal" Spacing="7">
@@ -28,17 +28,19 @@
         <Border Grid.Row="1" Background="White" BorderBrush="#D9E2EF" BorderThickness="1" CornerRadius="12" Padding="16,12">
             <Grid ColumnSpacing="12">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.2*" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1.2*" />
                     <ColumnDefinition Width="1.2*" />
-                    <ColumnDefinition Width="1.4*" />
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="1.2*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0" Header="Tên hoặc địa chỉ email người gửi" PlaceholderText="Ví dụ: tu1412000@gmail.com" Text="{Binding SenderFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNotLoading}" />
                 <DatePicker Grid.Column="1" Header="Từ ngày" Date="{Binding FromDate, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
                 <DatePicker Grid.Column="2" Header="Đến ngày" Date="{Binding ToDate, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
                 <ComboBox Grid.Column="3" Header="Trạng thái chung" ItemsSource="{Binding OverallStatuses}" SelectedItem="{Binding SelectedOverallStatus, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
-                <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Bottom" Spacing="8">
+                <ComboBox Grid.Column="4" Header="Loại file" ItemsSource="{Binding AttachmentFileTypes}" SelectedItem="{Binding SelectedAttachmentFileType, Mode=TwoWay}" IsEnabled="{Binding IsNotLoading}" />
+                <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Bottom" Spacing="8">
                     <Button Command="{Binding SearchCommand}" IsEnabled="{Binding IsNotLoading}" Background="#0B5CAD" Foreground="White" Padding="18,8">
                         <StackPanel Orientation="Horizontal" Spacing="7">
                             <SymbolIcon Symbol="Find" />
@@ -130,6 +132,7 @@
                         <controls:DataGridTextColumn Header="THỜI GIAN" Binding="{Binding ReceivedLabel}" Width="155" />
                         <controls:DataGridTextColumn Header="FILES" Binding="{Binding TotalAttachments}" Width="70" />
                         <controls:DataGridTextColumn Header="PHÂN BỔ TRẠNG THÁI" Binding="{Binding StatusBreakdown}" Width="2.4*" />
+                        <controls:DataGridTextColumn Header="FORMAT WORD" Binding="{Binding FormatStatus}" Width="190" />
                         <controls:DataGridTemplateColumn Header="TỔNG THỂ" Width="120">
                             <controls:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate><Border Background="#EEF4FF" BorderBrush="#BFDBFE" BorderThickness="1" CornerRadius="12" Padding="10,4" HorizontalAlignment="Left"><TextBlock Text="{Binding OverallStatus}" Foreground="#174A8B" FontWeight="Bold" FontSize="11" /></Border></DataTemplate>

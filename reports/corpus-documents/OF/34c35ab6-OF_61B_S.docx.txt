@@ -1,0 +1,57 @@
+FILE: OF 61B S.docx
+
+PARAGRAPHS
+HANOI, 20th APRIL 2026
+Permit No.: OF-61/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 20th APRIL 2026
+Permit No.: OF-61/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: K-Mile Air
+IATA code: 8K | ICAO code: KMI
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: K-Mile Air Company Ltd.
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: Netchanok.T@k-mile.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KMI218 | 04May26 | 24Oct26 | 1234567 | VTBS | 1400 | ZGSZ | 1650
+KMI219 | 04May26 | 24Oct26 | 1234567 | ZGSZ | 1820 | VTBS | 2150
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+734 | As per FAOC of KMI | Thailand
+738 | As per FAOC of KMI | Thailand
+738 | As per FAOC of KMI | Thailand
+763 | As per FAOC of KMI | Thailand
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS-ZGSZ | A202 | VILAO | ASSAD
+ZGSZ-VTBS | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

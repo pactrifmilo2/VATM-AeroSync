@@ -1,0 +1,41 @@
+FILE: R78A6 OF 78ARVS6.docx
+
+PARAGRAPHS
+Hanoi, 28/04/2026
+Permit No.: OF - 78/A/S/2026VN/REV6
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 28/04/2026
+Permit No.: OF - 78/A/S/2026VN/REV6
+1. Carrier/Operator
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.Box: 686, Dubai, United Arab Emirates
+Tel: +971 4 7085766 | Email: DL - OVP <eocopscntrl@emirates.com>
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+UAE2578 | 28APR26 | 28APR26 | -2----- | OMDB | 1645 | VHHH | 2355 | OF - 78/A/S/2026VN
+UAE2579 | 28APR26 | 28APR26 | -2------ | VHHH | 1800 | OMDB | 0100+1 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+UAE2578 | 28APR26 | 28APR26 | -2----- | OMDW | 1200 | VHHH | 1905
+UAE2579 | 28APR26 | 28APR26 | -2------ | VHHH | 2100 | OMDW | 0535+1
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OMDW-VHHH | A1 | PAPRA | BUNTA
+VHHH-OMDW | A206 | ASSAD | NALAO

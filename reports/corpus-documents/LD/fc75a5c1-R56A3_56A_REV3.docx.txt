@@ -1,0 +1,70 @@
+FILE: R56A3 56A REV3.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 30/03/2026
+Phép bay số: LD-56/A/S/2026VN/REV3
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+3. Tàu bay bổ sung:
+4. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 30/03/2026
+Phép bay số: LD-56/A/S/2026VN/REV3
+1. Người vận chuyển
+Tên: BAMBOO AIRWAYS
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+QH1415 | 1Apr26 | 30Apr26 | --3-5-7 | HAN | 0855 | CXR | 1055 | 320/32N/321
+QH1415 | 1Apr26 | 30Apr26 | 12-4-6- | HAN | 0555 | CXR | 0755 | 320/32N/321
+QH1416 | 1Apr26 | 30Apr26 | 12-4-6- | CXR | 0825 | HAN | 1025 | 320/32N/321
+QH1416 | 1Apr26 | 30Apr26 | --3-5-7 | CXR | 1125 | HAN | 1325 | 320/32N/321
+QH150 | 1Apr26 | 30Apr26 | -23-567 | SGN | 2255 | DAD | 0040+ | 320/32N/321
+QH150 | 1Apr26 | 30Apr26 | 1--4--- | SGN | 2315 | DAD | 0040+ | 320/32N/321
+QH151 | 1Apr26 | 30Apr26 | 1234567 | DAD | 0110 | SGN | 0240 | 320/32N/321
+QH104 | 1Apr26 | 30Apr26 | 1--4--- | DAD | 0240 | HAN | 0410 | 320/32N/321
+QH104 | 1Apr26 | 30Apr26 | -2---6- | DAD | 0240 | HAN | 0405 | 320/32N/321
+QH146 | 1Apr26 | 30Apr26 | 12-4-6- | DAD | 1115 | HAN | 1240 | 320/32N/321
+QH154 | 1Apr26 | 30Apr26 | --3-567 | SGN | 0305 | DAD | 0430 | 320/32N/321
+QH154 | 1Apr26 | 30Apr26 | 12-4--- | SGN | 0255 | DAD | 0430 | 320/32N/321
+QH103 | 1Apr26 | 30Apr26 | 12-4-6- | HAN | 0035 | DAD | 0200 | 320/32N/321
+QH104 | 1Apr26 | 30Apr26 | --3-5-7 | DAD | 0040 | HAN | 0205 | 320/32N/321
+QH135 | 1Apr26 | 30Apr26 | 1234567 | HAN | 0450 | DAD | 0615 | 320/32N/321
+QH148 | 1Apr26 | 30Apr26 | --3-5-7 | DAD | 1500 | HAN | 1625 | 320/32N/321
+QH136 | 1Apr26 | 30Apr26 | 12-4-6- | DAD | 0645 | HAN | 0810 | 320/32N/321
+QH173 | 1Apr26 | 30Apr26 | 1234567 | DAD | 1140 | SGN | 1310 | 320/32N/321
+QH147 | 1Apr26 | 30Apr26 | 12-4-6- | HAN | 0910 | DAD | 1035 | 320/32N/321
+QH101 | 1Apr26 | 30Apr26 | -2-4-6- | HAN | 2240 | DAD | 0010+ | 320/32N/321
+QH153 | 1Apr26 | 30Apr26 | -2---6- | DAD | 0020 | SGN | 0150 | 320/32N/321
+QH224 | 1Apr26 | 30Apr26 | 1234567 | SGN | 0325 | HAN | 0530 | 320/32N/321
+QH211 | 1Apr26 | 30Apr26 | 1234567 | HAN | 0310 | SGN | 0525 | 320/32N/321
+QH242 | 1Apr26 | 30Apr26 | 1234567 | SGN | 0615 | HAN | 0825 | 320/32N/321
+QH268 | 1Apr26 | 30Apr26 | 1234567 | SGN | 1355 | HAN | 1605 | 320/32N/321
+QH283 | 1Apr26 | 30Apr26 | 1234567 | HAN | 1645 | SGN | 1910 | 320/32N/321
+QH203 | 1Apr26 | 30Apr26 | 1----5-- | HAN | 0005 | SGN | 0225 | 320/32N/321
+QH203 | 1Apr26 | 30Apr26 | -234-67 | HAN | 0005 | SGN | 0220 | 320/32N/321
+QH201 | 1Apr26 | 30Apr26 | 1-34567 | HAN | 2245 | SGN | 0105+ | 320/32N/321
+QH281 | 1Apr26 | 30Apr26 | 1234567 | HAN | 1415 | SGN | 1620 | 320/32N/321
+QH286 | 1Apr26 | 30Apr26 | 1234567 | SGN | 1350 | HAN | 1610 | 320/32N/321
+QH273 | 1Apr26 | 30Apr26 | 12-4-6- | HAN | 1330 | SGN | 1545 | 320/32N/321
+QH282 | 1Apr26 | 30Apr26 | 12-4-6- | SGN | 1625 | HAN | 1835 | 320/32N/321
+QH271 | 1Apr26 | 30Apr26 | 12-4-6- | HAN | 1110 | SGN | 1325 | 320/32N/321
+QH280 | 1Apr26 | 30Apr26 | 12-4-6- | SGN | 1410 | HAN | 1620 | 320/32N/321
+QH1215 | 1Apr26 | 30Apr26 | 1234567 | HAN | 0920 | UIH | 1100 | 320/32N/321
+QH1214 | 1Apr26 | 30Apr26 | 1234567 | UIH | 1130 | HAN | 1310 | 320/32N/321
+QH1124 | 1Apr26 | 30Apr26 | 1234567 | SGN | 1015 | UIH | 1130 | 320/32N/321
+QH1125 | 1Apr26 | 30Apr26 | 1234567 | UIH | 1200 | SGN | 1315 | 320/32N/321
+
+TABLE 3
+CONTEXT: 3. Tàu bay bổ sung:
+Loại tàu bay | Số đăng ký | Quốc tịch
+320 | Theo FAOC của Fly One Airlines S.R.L | Moldova

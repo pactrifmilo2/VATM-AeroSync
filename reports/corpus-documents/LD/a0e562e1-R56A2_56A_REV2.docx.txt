@@ -1,0 +1,70 @@
+FILE: R56A2 56A REV2.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 28/03/2026
+Phép bay số: LD-56/A/S/2026VN/REV2
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+3. Tàu bay bổ sung:
+4. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 28/03/2026
+Phép bay số: LD-56/A/S/2026VN/REV2
+1. Người vận chuyển
+Tên: BAMBOO AIRWAYS
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+QH1415 | 29Mar26 | 29Mar26 | ……7 | HAN | 08:55 | CXR | 10:55 | 320/32N/321
+QH1415 | 30Mar26 | 31Mar26 | 12….. | HAN | 05:55 | CXR | 07:55 | 320/32N/321
+QH1416 | 30Mar26 | 31Mar26 | 12….. | CXR | 08:25 | HAN | 10:25 | 320/32N/321
+QH1416 | 29Mar26 | 29Mar26 | ……7 | CXR | 11:25 | HAN | 13:25 | 320/32N/321
+QH150 | 29Mar26 | 31Mar26 | .2….7 | SGN | 22:55 | DAD | 00:40+ | 320/32N/321
+QH150 | 30Mar26 | 30Mar26 | 1…… | SGN | 23:15 | DAD | 00:40+ | 320/32N/321
+QH151 | 29Mar26 | 31Mar26 | 12….7 | DAD | 01:10 | SGN | 02:40 | 320/32N/321
+QH104 | 30Mar26 | 30Mar26 | 1…… | DAD | 02:40 | HAN | 04:10 | 320/32N/321
+QH104 | 31Mar26 | 31Mar26 | .2….. | DAD | 02:40 | HAN | 04:05 | 320/32N/321
+QH146 | 30Mar26 | 31Mar26 | 12….. | DAD | 11:15 | HAN | 12:40 | 320/32N/321
+QH154 | 29Mar26 | 29Mar26 | ……7 | SGN | 03:05 | DAD | 04:30 | 320/32N/321
+QH154 | 30Mar26 | 31Mar26 | 12..… | SGN | 02:55 | DAD | 04:30 | 320/32N/321
+QH103 | 30Mar26 | 31Mar26 | 12..… | HAN | 00:35 | DAD | 02:00 | 320/32N/321
+QH104 | 29Mar26 | 29Mar26 | ……7 | DAD | 00:40 | HAN | 02:05 | 320/32N/321
+QH135 | 29Mar26 | 31Mar26 | 12….7 | HAN | 04:50 | DAD | 06:15 | 320/32N/321
+QH148 | 29Mar26 | 29Mar26 | …...7 | DAD | 15:00 | HAN | 16:25 | 320/32N/321
+QH136 | 30Mar26 | 31Mar26 | 12..... | DAD | 06:45 | HAN | 08:10 | 320/32N/321
+QH173 | 29Mar26 | 31Mar26 | 12….7 | DAD | 11:40 | SGN | 13:10 | 320/32N/321
+QH147 | 30Mar26 | 30Mar26 | 12..... | HAN | 09:10 | DAD | 10:35 | 320/32N/321
+QH101 | 31Mar26 | 31Mar26 | .2….. | HAN | 22:40 | DAD | 00:10+ | 320/32N/321
+QH153 | 31Mar26 | 31Mar26 | .2….. | DAD | 00:20 | SGN | 01:50 | 320/32N/321
+QH224 | 29Mar26 | 31Mar26 | 12….7 | SGN | 03:25 | HAN | 05:30 | 320/32N/321
+QH211 | 29Mar26 | 31Mar26 | 12….7 | HAN | 03:10 | SGN | 05:25 | 320/32N/321
+QH242 | 29Mar26 | 31Mar26 | 12….7 | SGN | 06:15 | HAN | 08:25 | 320/32N/321
+QH268 | 29Mar26 | 31Mar26 | 12….7 | SGN | 13:55 | HAN | 16:05 | 320/32N/321
+QH283 | 29Mar26 | 31Mar26 | 12….7 | HAN | 16:45 | SGN | 19:10 | 320/32N/321
+QH203 | 30Mar26 | 30Mar26 | 1…... | HAN | 00:05 | SGN | 02:25 | 320/32N/321
+QH203 | 29Mar26 | 29Mar26 | .2….7 | HAN | 00:05 | SGN | 02:20 | 320/32N/321
+QH201 | 29Mar26 | 30Mar26 | 1…..7 | HAN | 22:45 | SGN | 01:05+ | 320/32N/321
+QH281 | 29Mar26 | 31Mar26 | 12….7 | HAN | 14:15 | SGN | 16:20 | 320/32N/321
+QH286 | 29Mar26 | 31Mar26 | 12….7 | SGN | 13:50 | HAN | 16:10 | 320/32N/321
+QH273 | 30Mar26 | 31Mar26 | 12….. | HAN | 13:30 | SGN | 15:45 | 320/32N/321
+QH282 | 30Mar26 | 31Mar26 | 12….. | SGN | 16:25 | HAN | 18:35 | 320/32N/321
+QH271 | 30Mar26 | 31Mar26 | 12….. | HAN | 11:10 | SGN | 13:25 | 320/32N/321
+QH280 | 30Mar26 | 31Mar26 | 12….. | SGN | 14:10 | HAN | 16:20 | 320/32N/321
+QH1215 | 29Mar26 | 31Mar26 | 12….7 | HAN | 09:20 | UIH | 11:00 | 320/32N/321
+QH1214 | 29Mar26 | 31Mar26 | 12….7 | UIH | 11:30 | HAN | 13:10 | 320/32N/321
+QH1124 | 29Mar26 | 31Mar26 | 12….7 | SGN | 10:15 | UIH | 11:30 | 320/32N/321
+QH1125 | 29Mar26 | 31Mar26 | 12….7 | UIH | 12:00 | SGN | 13:15 | 320/32N/321
+
+TABLE 3
+CONTEXT: 3. Tàu bay bổ sung:
+Loại tàu bay | Số đăng ký | Quốc tịch
+320 | Theo FAOC của Fly One Airlines S.R.L | Moldova

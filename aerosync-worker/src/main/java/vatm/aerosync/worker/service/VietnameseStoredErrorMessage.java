@@ -20,11 +20,12 @@ public final class VietnameseStoredErrorMessage {
         String value = message.trim();
         String lower = value.toLowerCase(Locale.ROOT);
 
-        if (containsVietnamese(value) && !looksEnglish(lower)) {
-            return value;
+        if (lower.contains("đã xảy ra lỗi kỹ thuật trong quá trình xử lý file")
+                || lower.contains("đã xảy ra lỗi trong quá trình xử lý")) {
+            return "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể. Hãy gửi lại file để hệ thống kiểm tra và ghi nhận lỗi đầy đủ.";
         }
-        if (lower.contains("unsupported word permit format") || lower.contains("no format profile matched")) {
-            return "Không hỗ trợ định dạng file Word này vì chưa có format YAML phù hợp.";
+        if (isMissingWordFormat(lower)) {
+            return "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.";
         }
         if (lower.contains("ambiguous word permit format")) {
             return "File Word khớp với nhiều format YAML nên hệ thống không thể tự chọn.";
@@ -75,6 +76,12 @@ public final class VietnameseStoredErrorMessage {
         if (lower.contains("permit date not found") || lower.contains("invalid permit date")) {
             return "Không tìm thấy hoặc ngày cấp phép bay không hợp lệ.";
         }
+        if (lower.contains("invalid effective-from date")) {
+            return "Ngày bắt đầu hiệu lực không hợp lệ: " + detailAfterColon(value) + ".";
+        }
+        if (lower.contains("invalid effective-to date")) {
+            return "Ngày kết thúc hiệu lực không hợp lệ: " + detailAfterColon(value) + ".";
+        }
         if (lower.contains("carrier icao") || lower.contains("missing icao code")
                 || lower.contains("oper_icao")) {
             return "Không xác định được mã ICAO của hãng khai thác.";
@@ -124,13 +131,45 @@ public final class VietnameseStoredErrorMessage {
         if (lower.contains("duplicate") || lower.contains("already exists")) {
             return "Dữ liệu đã tồn tại nên file được bỏ qua để tránh nhập trùng.";
         }
+        if (lower.contains("sync job not found")) {
+            return "Không tìm thấy tác vụ xử lý tương ứng trong cơ sở dữ liệu.";
+        }
+        if (lower.contains("syncjobid") || lower.contains("sync job id")) {
+            return "Bản tin xử lý file thiếu mã tác vụ liên kết.";
+        }
+        if (lower.contains("nullpointerexception") || lower.contains("cannot invoke")
+                || lower.contains("must not be null")) {
+            return "Dữ liệu xử lý bị thiếu một trường bắt buộc nên không thể hoàn tất.";
+        }
+        if (lower.contains("parser") || lower.contains("parse")) {
+            return "Bộ phân tích không thể đọc cấu trúc nội dung của file.";
+        }
+        if (containsVietnamese(value) && !looksEnglish(lower)) {
+            return value;
+        }
 
-        return "Đã xảy ra lỗi kỹ thuật trong quá trình xử lý file. Vui lòng kiểm tra nhật ký hệ thống.";
+        return "Không thể hoàn tất xử lý file vì nguyên nhân chưa được phân loại. Mã tham chiếu: "
+                + Integer.toUnsignedString(value.hashCode(), 16).toUpperCase(Locale.ROOT) + ".";
+    }
+
+    private static boolean isMissingWordFormat(String lower) {
+        return lower.contains("unsupported word permit format")
+                || lower.contains("no format profile matched")
+                || lower.contains("không hỗ trợ định dạng file word này vì chưa có format yaml phù hợp")
+                || lower.contains("không hỗ trợ định dạng giấy phép bay word này; không có format yaml nào phù hợp")
+                || lower.contains("file word chưa có format yaml phù hợp");
     }
 
     private static String withRow(String value, String detail) {
         Matcher matcher = ROW_NUMBER.matcher(value);
         return matcher.find() ? "Dòng lịch bay " + matcher.group(1) + ": " + detail : detail;
+    }
+
+    private static String detailAfterColon(String value) {
+        int colon = value.lastIndexOf(':');
+        return colon >= 0 && colon + 1 < value.length()
+                ? value.substring(colon + 1).trim()
+                : value;
     }
 
     private static boolean containsVietnamese(String value) {

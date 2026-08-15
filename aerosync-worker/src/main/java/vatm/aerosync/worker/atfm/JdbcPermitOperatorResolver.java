@@ -33,6 +33,18 @@ public class JdbcPermitOperatorResolver implements PermitOperatorResolver {
               FROM M_OPER
              WHERE UPPER(TRIM(OPER_IATA)) = ?
             """;
+    private static final String FIND_BY_ICAO_SQL = """
+            SELECT OPER_ICAO
+              FROM M_OPER
+             WHERE UPPER(TRIM(OPER_ICAO)) = ?
+             FETCH FIRST 1 ROW ONLY
+            """;
+    private static final String HAS_IATA_SQL = """
+            SELECT COUNT(*)
+              FROM M_OPER
+             WHERE UPPER(TRIM(OPER_ICAO)) = ?
+               AND LENGTH(TRIM(OPER_IATA)) = 2
+            """;
     private static final Set<String> LEGAL_SUFFIXES = Set.of(
             "CO", "COMPANY", "CORP", "CORPORATION", "INC", "INCORPORATED",
             "JSC", "JOINT", "STOCK", "LTD", "LIMITED", "LLC", "LLP",
@@ -63,16 +75,21 @@ public class JdbcPermitOperatorResolver implements PermitOperatorResolver {
             return Optional.empty();
         }
 
+        String normalizedCarrierName = normalizeName(carrierName);
+        // IATA codes are not globally unique enough for this import rule; the
+        // document's airline name must also match M_OPER.OPER_NAME.
+        if (normalizedCarrierName.isBlank()) {
+            return Optional.empty();
+        }
+
         Set<String> distinctIcaoCodes = candidates.stream()
                 .map(OperatorCandidate::icaoCode)
                 .collect(Collectors.toSet());
         if (distinctIcaoCodes.size() == 1) {
-            return Optional.of(distinctIcaoCodes.iterator().next());
-        }
-
-        String normalizedCarrierName = normalizeName(carrierName);
-        if (normalizedCarrierName.isBlank()) {
-            return Optional.empty();
+            OperatorCandidate only = candidates.getFirst();
+            return similarityScore(normalizedCarrierName, normalizeName(only.operatorName())) > 0
+                    ? Optional.of(distinctIcaoCodes.iterator().next())
+                    : Optional.empty();
         }
 
         Map<String, Integer> bestScoreByIcao = new HashMap<>();
@@ -91,6 +108,50 @@ public class JdbcPermitOperatorResolver implements PermitOperatorResolver {
                 .map(Map.Entry::getKey)
                 .toList();
         return bestMatches.size() == 1 ? Optional.of(bestMatches.getFirst()) : Optional.empty();
+    }
+
+    @Override
+    public Optional<String> resolveFromCallsign(String callsign, String carrierName) {
+        String compact = code(callsign);
+        if (compact.length() >= 3) {
+            String icaoPrefix = compact.substring(0, 3);
+            try (Connection connection = DriverManager.getConnection(
+                    properties.getUrl(), properties.getUsername(), properties.getPassword());
+                 PreparedStatement statement = connection.prepareStatement(FIND_BY_ICAO_SQL)) {
+                statement.setString(1, icaoPrefix);
+                try (ResultSet rows = statement.executeQuery()) {
+                    if (rows.next()) {
+                        return Optional.of(icaoPrefix);
+                    }
+                }
+            } catch (SQLException exception) {
+                LOGGER.warn("Could not resolve ATFM operator for callsign {}: {}",
+                        compact, exception.getMessage());
+            }
+        }
+        return compact.length() >= 2
+                ? resolve(compact.substring(0, 2), carrierName)
+                : Optional.empty();
+    }
+
+    @Override
+    public boolean hasIata(String icaoCode) {
+        String normalizedIcao = code(icaoCode);
+        if (!normalizedIcao.matches("[A-Z0-9]{3}") || "PRV".equals(normalizedIcao)) {
+            return false;
+        }
+        try (Connection connection = DriverManager.getConnection(
+                properties.getUrl(), properties.getUsername(), properties.getPassword());
+             PreparedStatement statement = connection.prepareStatement(HAS_IATA_SQL)) {
+            statement.setString(1, normalizedIcao);
+            try (ResultSet rows = statement.executeQuery()) {
+                return rows.next() && rows.getInt(1) > 0;
+            }
+        } catch (SQLException exception) {
+            LOGGER.warn("Could not verify IATA code for ICAO {}: {}",
+                    normalizedIcao, exception.getMessage());
+            return false;
+        }
     }
 
     private List<OperatorCandidate> findCandidates(String iataCode) throws SQLException {

@@ -1,0 +1,40 @@
+FILE: R31C1 31C  REV1.docx
+
+PARAGRAPHS
+Hanoi, 07/4/2026
+Refer to the issued permit: LD - 31/C/S/2026VN
+Carrier/Operator
+2. Changing Aircraft Type
+2.1. Original Aircraft
+2.2. New Aircraft
+Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 07/4/2026
+Refer to the issued permit: LD - 31/C/S/2026VN
+Carrier/Operator
+Name: CHINA SOUTHERN AIRLINES
+IATA code: CZ | ICAO code: CSN
+Postal Address: Daeha Business Center - 360 Kim Ma st., Giang Vo Ward, Hanoi City, Vietnam
+Tel: 024.37716611; 0396856768 | Email: phepbay@csair.com, haile@csair.com
+
+TABLE 2
+CONTEXT: 2. Changing Aircraft Type
+2.1. Original Aircraft
+Flight Number | Effective from | EffectiveTo | Days of services | Departure Airport | ETD | Arrival Airport3 | ETA | Aircraft Type | Original permit(3)
+CZ3049 | 11APR26 | 11APR26 | -----6- | CAN | 00:55 | HAN | 03:05 | 320 | LD - 31/C/S/2026VN
+CZ3050 | 11APR26 | 11APR26 | -----6- | HAN | 04:05 | CAN | 06:05 | 320 | 
+
+TABLE 3
+CZ8315 | 18APR26 | 18APR26 | -----6- | CAN | 05:45 | HAN | 07:45 | 320 | LD - 31/C/S/2026VN
+CZ8316 | 18APR26 | 18APR26 | -----6- | HAN | 08:45 | CAN | 10:30 | 320 | 
+
+TABLE 4
+CONTEXT: 2.2. New Aircraft
+Flight Number1 | Effective from | EffectiveTo | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+CZ3049 | 11APR26 | 11APR26 | -----6- | CAN | 00:55 | HAN | 03:05 | 789
+CZ3050 | 11APR26 | 11APR26 | -----6- | HAN | 04:05 | CAN | 06:05 | 789
+CZ8315 | 18APR26 | 18APR26 | -----6- | CAN | 05:45 | HAN | 07:45 | 789
+CZ8316 | 18APR26 | 18APR26 | -----6- | HAN | 08:45 | CAN | 10:30 | 789

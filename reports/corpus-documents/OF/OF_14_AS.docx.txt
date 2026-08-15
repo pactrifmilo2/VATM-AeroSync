@@ -1,0 +1,54 @@
+FILE: OF 14 AS.docx
+
+PARAGRAPHS
+HANOI, 24FEB2026
+Permit No.: OF-14/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE PASSENGERS FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 24FEB2026
+Permit No.: OF-14/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: Air Philippines Corporation (PAL Express)
+IATA code: 2P | ICAO code: GAP
+Postal Address: Integrated Operations Control Center, 2F CMD Bldg., PAL Gate 4, Andrews Ave., Nichols, Pasay City 1300, Philippines
+Tel: +632 8855 8000 | Email: rprivamonte@pal.com.ph
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: 1FLT AVIATION DMCC
+Postal Address: P.O. BOX 337730, Dubai, United Arab Emirates
+Tel: +971 4 452-9285 | Email: accounts@1flt.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GAP2621 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 1415 | VDTI | 1710
+GAP2622 | 29MAR26 | 24OCT26 | 1234567 | VDTI | 1815 | RPLL | 2105
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE PASSENGERS FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 / A321 OR SUB | RP-C8393 / RP-C9921 OR SUB | PHILIPPINES
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RPLL-VDTI | L628 G474 R588 | ARESI | GONLY
+VDTI-RPLL | R588 G474 L628 | GONLY | ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

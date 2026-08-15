@@ -3,13 +3,13 @@ priority: -100
 detectionPatterns:
   - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
   - '(?iu)(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b)'
-  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?|SỐ\s+HIỆU\s+CHUYẾN\s+BAY|LỊCH\s+BAY)'
   - '(?isu)^(?!.*PHÉP\s+BAY\s+KHÔNG\s+THƯỜNG\s+LỆ\s+ĐI/ĐẾN\s+VIỆT\s+NAM).*$'
 permit:
   pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN'
-  normalizedTemplate: 'LD {number}/S/CHK/{year}'
+  normalizedTemplate: 'LD {number}/CHK/{year}'
   zeroPadGroups:
     number: 5
 permitDate:

@@ -1,0 +1,61 @@
+FILE: OF 19 A S.docx
+
+PARAGRAPHS
+HA NOI, 25 FEB 2026
+NUMBER OF-19/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 25 FEB 2026
+NUMBER OF-19/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: European Air Transport Leipzig GmbH
+IATA code: QY | ICAO code: BCS
+Postal Address: August-Euler Str-1, 04435 Schkeuditz, Germany
+Tel: +49 341 4499 1958 | Email: eatlej.atsandcharter@dhl.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: European Air Transport Leipzig GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +49 341 4499 1958 | Email: eatlej.invoice@dhl.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BCS516 | 31Mar26 | 23Oct26 | -2345-- | OMDW | 1640 | VHHH | 2355
+BCS516 | 30Mar26 | 24Oct26 | 1----67 | OMDW | 1050 | VHHH | 1805
+BCS517 | 31Mar26 | 23Oct26 | -2345-- | VHHH | 0200 | OMDW | 1030
+BCS517 | 30Mar26 | 24Oct26 | 1----67 | VHHH | 2300 | OMDW | 0730+1
+BCS548 | 29Mar26 | 24Oct26 | -----67 | VIDP | 1345 | VHHH | 1925
+BCS651 | 29Mar26 | 25Oct26 | -----67 | VHHH | 2230 | OBBI | 0740+1
+BCS673 | 29Mar26 | 24Oct26 | 1234567 | OBBI | 0825 | VHHH | 1645
+BCS674 | 31Mar26 | 24Oct26 | 1234567 | VHHH | 1830 | OBBI | 0335+1
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B747 OR A330 | AS PER BCS AOC | GERMANY
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OMDW-VHHH | A206 | NALAO | ASSAD
+VHHH-OMDW | R474 W21 B214 | TEBAK | LADON
+VIDP-VHHH | A206 | NALAO | ASSAD
+VHHH-OBBI | R474 W21 B214 | TEBAK | LADON
+OBBI-VHHH | A206 | NALAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

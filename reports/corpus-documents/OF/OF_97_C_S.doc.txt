@@ -1,0 +1,64 @@
+FILE: OF 97 C S.doc
+
+PARAGRAPHS
+Ha Noi, 26th May2026
+№: OF - 97/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: KOREAN AIR CO.LTD IATA code: KE ICAO code: KAL Postal Address: C.P.O.BOX 864, SEOUL, REPUBLIC OF KOREA Tel: +82-2-2656-6087 Email: SELSPS@KOREANAIR.COM 
+2. Billing address
+Name: KOREAN AIR CO.LTD Postal Address: C.P.O.BOX 864, SEOUL, REPUBLIC OF KOREA Tel: +82-2-2656-6065 Email: KALOFG AT KOREANAIR.COM 
+3. Schedules: UTC Time
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETD KAL8374 01JUN26 24OCT26 ---4--- WMKP 0415 RKSI 1035 KAL9357 01JUN26 24OCT26 --3---- RKSI 1640 WSSS 2255 KAL9358 01JUN26 24OCT26 ---4--- VTBS 0550 RKSI 1105 
+4. Purpose of Flight(s): EXTRA CARGO FLIGHTS
+5. Aircraft:
+Aircraft Type Registration Mark Nationality 747-400F B748 KOREA 747-8F B744 777-200F B77L 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RKSI/WSSS N892 MONBO MELAS L642 EXOTO ESPOB VTBS/RKSI A1 PAPRA BUNTA G474 L628 ANINA ARESI WMKP/RKSI M765 L625 IGARI ARESI M765 IGARI PANDI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26th May2026
+№: OF - 97/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: KOREAN AIR CO.LTD
+IATA code: KE | ICAO code: KAL
+Postal Address: C.P.O.BOX 864, SEOUL, REPUBLIC OF KOREA
+Tel: +82-2-2656-6087 | Email: SELSPS@KOREANAIR.COM
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: KOREAN AIR CO.LTD
+Postal Address: C.P.O.BOX 864, SEOUL, REPUBLIC OF KOREA
+Tel: +82-2-2656-6065 | Email: KALOFG AT KOREANAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETD
+KAL8374 | 01JUN26 | 24OCT26 | ---4--- | WMKP | 0415 | RKSI | 1035
+KAL9357 | 01JUN26 | 24OCT26 | --3---- | RKSI | 1640 | WSSS | 2255
+KAL9358 | 01JUN26 | 24OCT26 | ---4--- | VTBS | 0550 | RKSI | 1105
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): EXTRA CARGO FLIGHTS
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+747-400F | B748 | KOREA
+747-8F | B744 | 
+777-200F | B77L | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI/WSSS | N892 | MONBO | MELAS
+ | L642 | EXOTO | ESPOB
+VTBS/RKSI | A1 | PAPRA | BUNTA
+ | G474 L628 | ANINA | ARESI
+WMKP/RKSI | M765 L625 | IGARI | ARESI
+ | M765 | IGARI | PANDI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

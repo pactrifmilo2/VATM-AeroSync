@@ -1,0 +1,41 @@
+FILE: R40A1  LD 40.A.S.2026VN.REV1.BR.docx
+
+PARAGRAPHS
+Hanoi, 10/07/2026
+Permit No.: LD-40/A/S/2026VN /REV1
+1. Carrier/Operator
+2. CHANGE SCHEDULE
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+[Due to the typhoon, our BR396 PAX flight will change flight number to BR382 with ETD on 12JUL26]
+Other details unchanged.
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 10/07/2026
+Permit No.: LD-40/A/S/2026VN /REV1
+1. Carrier/Operator
+Name: EVA AIRWAYS CORPORATION
+IATA code: BR | ICAO code: EVA
+Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi.
+Tel: 00842439361600 | Email: hongnhung@evaair.com
+
+TABLE 2
+CONTEXT: 2. CHANGE SCHEDULE
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+BR395 | 09JUL26 | 09JUL26 | 0004000 | TPE | 23:40 | SGN | 02:55+1 | 777 | LD-40/A/S/2026VN
+BR396 | 10JUL26 | 10JUL26 | 0000500 | SGN | 08:45 | TPE | 12:10 | 777 | LD-40/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+BR385 | 10JUL26 | 10JUL26 | 0000500 | TPE | 06:40 | HAN | 09:50 | 321 | LD-40/A/S/2026VN
+BR386 | 10JUL26 | 10JUL26 | 0000500 | HAN | 11:00 | TPE | 13:55 | 321 | LD-40/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BR395 | 09JUL26 | 09JUL26 | 0004000 | TPE | 23:40 | SGN | 02:55+1 | 777
+BR382 | 11JUL26 | 11JUL26 | 0000060 | SGN | 18:50 | TPE | 22:15 | 777
+ |  |  |  |  |  |  |  | 
+BR385 | 10JUL26 | 10JUL26 | 0000500 | TPE | 06:40 | HAN | 09:50 | 321
+BR386 | 12JUL26 | 12JUL26 | 0000007 | HAN | 11:00 | TPE | 13:55 | 321

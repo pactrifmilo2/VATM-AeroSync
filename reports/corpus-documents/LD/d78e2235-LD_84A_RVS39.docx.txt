@@ -1,0 +1,36 @@
+FILE: LD 84A RVS39.docx
+
+PARAGRAPHS
+Hà Nội, ngày 22/7/2026
+Tham chiếu phép bay số: LD-84/A/S/2026VN.RVS39
+1/ Người khai thác: VIETJET
+MÃ IATA: VJ MÃ ICAO: VJC
+ĐỊA CHỈ: 302/3 KIM MÃ, PHƯỜNG NGỌC KHÁNH, QUẬN BA ĐÌNH, HÀ NỘI, VIỆT NAM.
+LIÊN HỆ: +84 1900 1886
+2/ Đường bay không lưu:
+2.1/ Đường bay không lưu cũ:
+2.2/ Đường bay không lưu bổ sung:
+3. Ghi chú: Nội dung khác của phép bay không đổi.
+PHẠM GIANG GỬI THAY PHẠM THẢO-PTP VTHK, CỤC HKVN
+C/c: BÙI MINH ĐĂNG-TP VTHK (để b/c)
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 22/7/2026
+Tham chiếu phép bay số: LD-84/A/S/2026VN.RVS39
+1/ Người khai thác: VIETJET
+MÃ IATA: VJ MÃ ICAO: VJC
+ĐỊA CHỈ: 302/3 KIM MÃ, PHƯỜNG NGỌC KHÁNH, QUẬN BA ĐÌNH, HÀ NỘI, VIỆT NAM.
+LIÊN HỆ: +84 1900 1886
+2/ Đường bay không lưu:
+2.1/ Đường bay không lưu cũ:
+STT | HÀNH TRÌNH | ĐƯỜNG BAY KHÔNG LƯU
+1 | SGN-VTE | R468
+2 | VTE-SGN | R468
+3 | HKT-SGN | R468
+
+TABLE 2
+CONTEXT: 2.2/ Đường bay không lưu bổ sung:
+STT | HÀNH TRÌNH | ĐƯỜNG BAY KHÔNG LƯU
+1 | SGN-VTE | R468 HOẶC W12 W1 B202
+2 | VTE-SGN | R468 HOẶC B202 G474 Q1
+3 | HKT-SGN | R468 HOẶC R334 W8 W16

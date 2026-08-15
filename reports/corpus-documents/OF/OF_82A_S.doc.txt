@@ -1,0 +1,72 @@
+FILE: OF 82A S.doc
+
+PARAGRAPHS
+Ha Noi, 12th March 2026
+№: OF - 82/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name:Ruili Airlines Co., Ltd. IATA code: DR ICAO code: RLH Postal Address: Yunnan Branch of Ruili Airlines Co.,Ltd. Base, East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China. Tel: +86 13889622862, +86 0871-67087114 Email: liuxinyang@rlair.net, liangxinyi@rlair.net
+ 
+2. Billing address
+Name: Ruili Airlines Co.,Ltd. Postal Address: Yunnan Branch of Ruili Airlines Co.,Ltd. Base, East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China. Tel:+86 13889622862, +86 0871-67087114 Email: liuxinyang@rlair.net, liangxinyi@rlair.net
+ 
+3. Schedules: UTC Time 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA 
+RLH5029 28MAR26 31OCT26 0204060 ZPPP 0930 VDSV 1210 RLH5030 28MAR26 31OCT26 0204060 VDSV 1310 ZPPP 1620 RLH5031 28MAR26 31OCT26 0000007 ZSWX 0825 VDSV 1255 RLH5032 28MAR26 31OCT26 0000007 VDSV 1345 ZSWX 1755 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark 
+ Nationality B737-700 B-5811, B-5812, B-6109, B-6110, B-5829, B-5830, B-7088 China B737-800 B-1960, B-7865, B-7866, B-7867, B-1593, B-1595, B-1596, B-1597, B-1598, B-1186, B-1188, B-1189, B-1185, B-222A, B-5731, B-5839, B-6989, B-1541, B-1548 China 
+6. Air traffic service routes:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZPPP-VDSV R471-R474-Q1-N639 KATBO VILAO R471-R474-Q1-W11-R588 KATBO GONLY VDSV-ZPPP N639-Q3-R471 VILAO KATBO R468-Q2-N639-Q3-R471 SAPEN KATBO ZSWX-VDSV R474-Q1-N639 TEBAK VILAO A202 ASSAD VILAO VDSV-ZSWX N639-Q3-R474 VILAO TEBAK A202 VILAO ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 12th March 2026
+№: OF - 82/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name:Ruili Airlines Co., Ltd.
+IATA code: DR | ICAO code: RLH
+Postal Address: Yunnan Branch of Ruili Airlines Co.,Ltd. Base, East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China.
+Tel: +86 13889622862, +86 0871-67087114 | Email: liuxinyang@rlair.net, liangxinyi@rlair.net
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Ruili Airlines Co.,Ltd.
+Postal Address: Yunnan Branch of Ruili Airlines Co.,Ltd. Base, East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China.
+Tel:+86 13889622862, +86 0871-67087114 | Email: liuxinyang@rlair.net, liangxinyi@rlair.net
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+
+TABLE 4
+RLH5029 | 28MAR26 | 31OCT26 | 0204060 | ZPPP | 0930 | VDSV | 1210
+RLH5030 | 28MAR26 | 31OCT26 | 0204060 | VDSV | 1310 | ZPPP | 1620
+RLH5031 | 28MAR26 | 31OCT26 | 0000007 | ZSWX | 0825 | VDSV | 1255
+RLH5032 | 28MAR26 | 31OCT26 | 0000007 | VDSV | 1345 | ZSWX | 1755
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-700 | B-5811, B-5812, B-6109, B-6110, B-5829, B-5830, B-7088 | China
+B737-800 | B-1960, B-7865, B-7866, B-7867, B-1593, B-1595, B-1596, B-1597, B-1598, B-1186, B-1188, B-1189, B-1185, B-222A, B-5731, B-5839, B-6989, B-1541, B-1548 | China
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZPPP-VDSV | R471-R474-Q1-N639 | KATBO | VILAO
+ | R471-R474-Q1-W11-R588 | KATBO | GONLY
+VDSV-ZPPP | N639-Q3-R471 | VILAO | KATBO
+ | R468-Q2-N639-Q3-R471 | SAPEN | KATBO
+ZSWX-VDSV | R474-Q1-N639 | TEBAK | VILAO
+ | A202 | ASSAD | VILAO
+VDSV-ZSWX | N639-Q3-R474 | VILAO | TEBAK
+ | A202 | VILAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

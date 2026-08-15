@@ -1,0 +1,89 @@
+FILE: LD 32FS.docx
+
+PARAGRAPHS
+Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 23/06/2026
+Phép bay số: LD-32/F/S/2026VN
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+3. Mục đích chuyến bay: Vận chuyển hành khách
+4. Tàu bay
+5. Đường hàng không
+Đường hàng không dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ
+Ghi chú
+- Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+- Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+*****
+Gửi bởi: Đinh Mạnh Dũng
+To: VATM, SPQ
+Cc: ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+Cc: SAA
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 23/06/2026
+Phép bay số: LD-32/F/S/2026VN
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+9G720 | 25-Jul-26 | 25-Jul-26 | -----6- | SIN | 06:20 | PQC | 09:00 | 321/32Q/32N
+9G720 | 26-Jul-26 | 31-Jul-26 | 12345-7 | SIN | 06:20 | PQC | 07:55 | 321/32Q/32N
+9G720 | 1-Aug-26 | 24-Oct-26 | 1234567 | SIN | 06:20 | PQC | 08:05 | 321/32Q/32N
+9G721 | 25-Jul-26 | 29-Jul-26 | 123--67 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 30-Jul-26 | 27-Aug-26 | ---4--- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 31-Jul-26 | 26-Aug-26 | 123-567 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 28-Aug-26 | 31-Aug-26 | 1---567 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 1-Sep-26 | 1-Sep-26 | -2----- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 2-Sep-26 | 2-Sep-26 | --3---- | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 3-Sep-26 | 3-Sep-26 | ---4--- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 4-Sep-26 | 4-Sep-26 | ----5-- | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 5-Sep-26 | 5-Sep-26 | -----6- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 6-Sep-26 | 7-Sep-26 | 1-----7 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 8-Sep-26 | 8-Sep-26 | -2----- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 9-Sep-26 | 9-Sep-26 | --3---- | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 10-Sep-26 | 10-Sep-26 | ---4--- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 11-Sep-26 | 11-Sep-26 | ----5-- | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 12-Sep-26 | 12-Sep-26 | -----6- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 13-Sep-26 | 14-Sep-26 | 1-----7 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 15-Sep-26 | 15-Sep-26 | -2----- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 16-Sep-26 | 16-Sep-26 | --3---- | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 17-Sep-26 | 17-Sep-26 | ---4--- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 18-Sep-26 | 18-Sep-26 | ----5-- | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 19-Sep-26 | 19-Sep-26 | -----6- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 20-Sep-26 | 23-Sep-26 | 123---7 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+9G721 | 24-Sep-26 | 24-Sep-26 | ---4--- | PQC | 03:35 | SIN | 05:20 | 321/32Q/32N
+9G721 | 25-Sep-26 | 24-Oct-26 | 1234567 | PQC | 02:55 | SIN | 05:20 | 321/32Q/32N
+
+TABLE 4
+CONTEXT: 3. Mục đích chuyến bay: Vận chuyển hành khách
+4. Tàu bay
+Loại tàu bay | Số đăng ký | Quốc tịch
+ | Có trong AOC/FAOC | Không có trong AOC/FAOC | 
+321 | Theo AOC của 9G |  | Vietnam
+32Q | Theo AOC của 9G |  | Vietnam
+32N | Theo AOC của 9G |  | Vietnam
+
+TABLE 5
+CONTEXT: 5. Đường hàng không
+Chặng bay | Đường hàng không | Điểm bay vàovùng trời Việt Nam | Điểm bay ravùng trời Việt Nam
+PQC-SIN | M753 |  | IPRIX
+SIN-PQC | M753 | IPRIX | 
+
+TABLE 6
+CONTEXT: Đường hàng không dự bị: Các đường hàng không khác được phép sử dụng theo công bố tại AIP Việt Nam.
+6. Hiệu lực: -12/+24 giờ
+KT. CỤC TRƯỞNGPHÓ CỤC TRƯỞNG | 
+Đỗ Hồng Cẩm | 

@@ -1,0 +1,65 @@
+FILE: LD 24AS.docx
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Tel: (8424) 38272281
+Fax: (8424) 38272290
+E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+Ha Noi, 10th March 2026
+№: LD - 24/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier/Operator:
+Schedules: All times in UTC
+Type of services: Passenger
+Aircraft:
+Airways:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+Window: -12/+24hours
+2
+Notes:
+The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+2
+
+TABLE 1
+CONTEXT: CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Tel: (8424) 38272281
+Fax: (8424) 38272290
+E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+Ha Noi, 10th March 2026
+№: LD - 24/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier/Operator:
+Name: QINGDAO AIRLINES CO., LTD
+IATA code: QW | ICAO code: QDA
+Postal Address: Building No.8, Jinhang 12th Road, Jiaozhou, Qingdao, Shandong Province, China.
+Tel: +86 532 66181739 | Email: lijing2@qdairlines.com; dongxiaozhi@qdairlines.com
+
+TABLE 2
+CONTEXT: Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QW925 | 29MAR26 | 23OCT26 | 1-3-5-7 | TAO | 1300 | SGN | 1810 | 320/32N/32Q
+QW926 | 29MAR26 | 23OCT26 | 1-3-5-7 | SGN | 1910 | TAO | 0015+1 | 320/32N/32Q
+
+TABLE 3
+CONTEXT: Type of services: Passenger
+Aircraft:
+Aircraft Type | Registration Mark | Nationality
+320/32N/32Q | According to the FAOC of QW | China
+
+TABLE 4
+CONTEXT: Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TAO-SGN | L642-N500 | EXOTO | 
+SGN-TAO | N500-M771 |  | DONDA

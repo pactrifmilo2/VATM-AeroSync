@@ -1,0 +1,76 @@
+FILE: OF 28CS.doc
+
+PARAGRAPHS
+Ha Noi, 05/03/2026
+Permit number: OF - 28/C/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator: 
+Name: SAUDI ARABIAN AIRLINES (SAUDIA) IATA code: SV ICAO code: SVA Postal Address: P.O. BOX 167 JEDDAH 21231 / SAUDI ARABIA Tel: 0091-22-66859092/66859089 Email: HYPERLINK "mailto:BOMOCSV@SAUDIA.COM" \t "_blank" BOMOCSV@SAUDIA.COM 
+2. Billing address:
+Name: OVER FLYING CHARGES SECTION
+SAUDI ARABIAN AIRLINES / C.C. 921 LOC 130 Postal Address: P.O. BOX 167 JEDDAH 21231 Tel: +966 12 684 2529 Email: overflyfees@saudia.com 
+3. Schedules: UTC Time
+Flight
+Number
+ Effective from
+ Effective
+To
+ Day(s) of services
+ Departure Airport
+ ETD
+ Arrival Airport
+ ETA
+ SV968 29MAR26 24OCT26 ------7 OEJN 0215 VHHH 1135 SV969 29MAR26 24OCT26 ------7 VHHH 1335 VABB 1920 
+4. Purpose of Flight(s): CARGO
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B77F HZAK71, HZAK72, HZAK73, HZAK74 SAUDIA B74F 9HAKA, 9HAKF, 9HAKJ, 9HAKK SAUDIA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from
+ Vietnam FIR OEJN- VHHH 1. A1 PAPRA BUNTA 2. A202 VILAO ASSAD 3. B214-W21-R474 LADON TEBAK 4. G474-Q1/W1-A1 ANINA BUNTA VHHH– VABB 1. A1 BUNTA PAPRA 2. A202 ASSAD VILAO 3. R474-W21-B214 TEBAK LADON 4. A1-Q1/W1-G474 BUNTA ANINA Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 05/03/2026
+Permit number: OF - 28/C/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator:
+Name: SAUDI ARABIAN AIRLINES (SAUDIA)
+IATA code: SV | ICAO code: SVA
+Postal Address: P.O. BOX 167 JEDDAH 21231 / SAUDI ARABIA
+Tel: 0091-22-66859092/66859089 | Email: HYPERLINK "mailto:BOMOCSV@SAUDIA.COM" \t "_blank" BOMOCSV@SAUDIA.COM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: OVER FLYING CHARGES SECTION SAUDI ARABIAN AIRLINES / C.C. 921 LOC 130
+Postal Address: P.O. BOX 167 JEDDAH 21231
+Tel: +966 12 684 2529 | Email: overflyfees@saudia.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+SV968 | 29MAR26 | 24OCT26 | ------7 | OEJN | 0215 | VHHH | 1135
+SV969 | 29MAR26 | 24OCT26 | ------7 | VHHH | 1335 | VABB | 1920
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CARGO
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B77F | HZAK71, HZAK72, HZAK73, HZAK74 | SAUDIA
+B74F | 9HAKA, 9HAKF, 9HAKJ, 9HAKK | SAUDIA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OEJN- VHHH | 1. A1 | PAPRA | BUNTA
+ | 2. A202 | VILAO | ASSAD
+ | 3. B214-W21-R474 | LADON | TEBAK
+ | 4. G474-Q1/W1-A1 | ANINA | BUNTA
+VHHH– VABB | 1. A1 | BUNTA | PAPRA
+ | 2. A202 | ASSAD | VILAO
+ | 3. R474-W21-B214 | TEBAK | LADON
+ | 4. A1-Q1/W1-G474 | BUNTA | ANINA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

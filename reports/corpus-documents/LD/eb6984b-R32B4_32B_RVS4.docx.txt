@@ -1,0 +1,45 @@
+FILE: R32B4 32B RVS4.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 04/05/2026
+To: VATM, SPA
+Cc: NAA, SAA
+Phép bay số: LD-32/B/S/2026VN/REV4
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+2.2. Lịch bay mới (sửa đổi)
+CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+*****
+Đinh Mạnh Dũng gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 04/05/2026
+To: VATM, SPA
+Cc: NAA, SAA
+Phép bay số: LD-32/B/S/2026VN/REV4
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay | Số phép bay đã cấp
+9G1208 | 15-May-26 | 15-May-26 | ----5-- | PQC | 04:00 | HAN | 06:05 | 9G1208 | LD-32/B/S/2026VN
+9G1229 | 15-May-26 | 15-May-26 | ----5-- | HAN | 07:15 | PQC | 09:20 | 9G1229 | 
+9G1984 | 09-May-26 | 13-May-26 | 1-3--6- | PQC | 13:00 | SGN | 14:00 | 9G1984 | 
+9G1984 | 16-May-26 | 30-May-26 | 1-3--6- | PQC | 13:00 | SGN | 14:00 | 9G1984 | 
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (sửa đổi)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+9G1208 | 15-May-26 | 15-May-26 | ----5-- | PQC | 03:55 | HAN | 06:05 | 321/32Q/32N
+9G1229 | 15-May-26 | 15-May-26 | ----5-- | HAN | 06:45 | PQC | 09:00 | 321/32Q/32N
+9G1984 | 09-May-26 | 13-May-26 | 1-3--6- | PQC | 11:55 | SGN | 13:45 | 321/32Q/32N
+9G1984 | 16-May-26 | 30-May-26 | 1-3--6- | PQC | 11:55 | SGN | 14:00 | 321/32Q/32N

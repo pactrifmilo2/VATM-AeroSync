@@ -1,0 +1,36 @@
+FILE: LD 84 A RVS1.docx
+
+PARAGRAPHS
+Hà Nội, ngày 31/3/2026
+Tham chiếu phép bay số: LD-84/A/S/2026VN
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC):
+2.1. Lịch bay gốc (Giờ UTC)
+2.2. Lịch bay mới (Giờ UTC)
+3. Ghi chú: Các chi tiết khác không thay đổi.
+PHẠM GIANG GỬI THAY PHẠM THẢO-PTP VTHK, CỤC HKVN
+C/c: BÙI MINH ĐĂNG-TP VTHK (để b/c)
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 31/3/2026
+Tham chiếu phép bay số: LD-84/A/S/2026VN
+1. Người vận chuyển:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC):
+2.1. Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay | Số phép
+HAN - CXR - HAN | 
+VJ776 | 01Apr26 | 01Apr26 | --3---- | CXR | 11:20 | HAN | 13:10 | 320/321/32Q | LD-84/A/S/2026VN
+VJ771 | 31Mar26 | 31Mar26 | -2----- | HAN | 22:45 | CXR | 0:35 | 320/321/32Q | LD-84/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+HAN - CXR - HAN
+VJ776 | 01Apr26 | 01Apr26 | --3---- | CXR | 13:15 | HAN | 15:05 | 320/321/32Q/333
+VJ771 | 31Mar26 | 31Mar26 | -2----- | HAN | 22:45 | CXR | 0:35 | 320/321/32Q/333

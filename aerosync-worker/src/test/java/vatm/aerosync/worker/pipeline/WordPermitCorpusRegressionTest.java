@@ -69,10 +69,11 @@ class WordPermitCorpusRegressionTest {
         Path reportDirectory = reportDirectory();
 
         List<Path> files;
-        try (var paths = Files.list(directory)) {
+        try (var paths = Files.walk(directory)) {
             files = paths
                     .filter(Files::isRegularFile)
                     .filter(this::isWordDocument)
+                    .filter(path -> !isTemporaryWordDocument(path))
                     .sorted(Comparator.comparing(path -> path.getFileName().toString()))
                     .toList();
         }
@@ -85,10 +86,18 @@ class WordPermitCorpusRegressionTest {
         List<String> nonPermitDocuments = new ArrayList<>();
         for (Path file : files) {
             DocxPermitFormatProfile detectedProfile = null;
+            String carrierIdentity = "IATA=-,ICAO=-";
             try {
                 WordPermitDocument document = reader.read(file);
+                carrierIdentity = carrierIdentity(document.rawContent());
                 writeDocumentReport(reportDirectory, file, document);
                 if (!containsPermitIdentity(document.rawContent())) {
+                    nonPermitDocuments.add(file.getFileName().toString());
+                    continue;
+                }
+                if (Pattern.compile("(?iu)(?:PASSENGER\\s+LIST|DANH\\s+SÁCH\\s+HÀNH\\s+KHÁCH|"
+                                + "APPLICATION\\s+FORM|ĐƠN\\s+(?:XIN|ĐỀ NGHỊ))")
+                        .matcher(document.rawContent()).find()) {
                     nonPermitDocuments.add(file.getFileName().toString());
                     continue;
                 }
@@ -116,10 +125,13 @@ class WordPermitCorpusRegressionTest {
                         permit.normalizedPermitId(),
                         permit.flights().size(),
                         permit.reviewOnly() ? "review-only" : "import-ready"));
+            } catch (NonPermitDocumentException exception) {
+                nonPermitDocuments.add(file.getFileName().toString());
             } catch (Exception exception) {
-                failures.add("%s | %s | %s".formatted(
+                failures.add("%s | %s | %s | %s".formatted(
                         file.getFileName(),
                         detectedProfile == null ? "<no-profile>" : detectedProfile.id(),
+                        carrierIdentity,
                         rootMessage(exception)));
             }
         }
@@ -141,6 +153,23 @@ class WordPermitCorpusRegressionTest {
                         "(?iu)\\b(?:LD|OF|O\\s*/\\s*F|QLB)\\s*[-:/ ]*\\d")
                 .matcher(content)
                 .find();
+    }
+
+    private String carrierIdentity(String content) {
+        String folded = java.text.Normalizer.normalize(
+                        content.replace('\u0110', 'D').replace('\u0111', 'd'),
+                        java.text.Normalizer.Form.NFD)
+                .replaceAll("\\p{M}+", "");
+        java.util.regex.Matcher iata = Pattern.compile(
+                "(?iu)(?:IATA\\s*(?:CODE)?|MA\\s*IATA)(?:\\s*\\([^)]*\\))?"
+                        + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{2})(?![A-Z0-9])")
+                .matcher(folded);
+        java.util.regex.Matcher icao = Pattern.compile(
+                "(?iu)(?:ICAO\\s*(?:CODE)?|MA\\s*ICAO)(?:\\s*\\([^)]*\\))?"
+                        + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])")
+                .matcher(folded);
+        return "IATA=" + (iata.find() ? iata.group("value").toUpperCase(Locale.ROOT) : "-")
+                + ",ICAO=" + (icao.find() ? icao.group("value").toUpperCase(Locale.ROOT) : "-");
     }
 
     private AtfmDatabaseProperties liveAtfmProperties() {
@@ -166,6 +195,10 @@ class WordPermitCorpusRegressionTest {
     private boolean isWordDocument(Path path) {
         String name = path.getFileName().toString().toLowerCase(Locale.ROOT);
         return name.endsWith(".doc") || name.endsWith(".docx");
+    }
+
+    private boolean isTemporaryWordDocument(Path path) {
+        return path.getFileName().toString().startsWith("~$");
     }
 
     private String rootMessage(Throwable throwable) {
@@ -216,7 +249,10 @@ class WordPermitCorpusRegressionTest {
                 report.append(String.join(" | ", row)).append('\n');
             }
         }
-        String safeName = source.getFileName().toString().replaceAll("[^A-Za-z0-9._-]+", "_");
+        String sourceKey = source.toAbsolutePath().normalize().toString();
+        String safeName = Integer.toUnsignedString(sourceKey.hashCode(), 16)
+                + "-"
+                + source.getFileName().toString().replaceAll("[^A-Za-z0-9._-]+", "_");
         Files.writeString(
                 reportDirectory.resolve(safeName + ".txt"),
                 report,

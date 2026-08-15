@@ -1,0 +1,59 @@
+FILE: OF-59.B.S.2026VN-KME3507.docx
+
+PARAGRAPHS
+HANOI, 26th MARCH 2026
+Permit No.: OF-59/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 26th MARCH 2026
+Permit No.: OF-59/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Cambodia Airways Co., Ltd.
+IATA code: KR | ICAO code:KME
+Postal Address: #2, Russian Federation BLVD, Sangkat Ka Kab Khan Por Senchey, Phnom Penh, Cambodia
+Tel: +855 96 571 8899 | Email: occ@cambodia-airways.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Cambodia Airways Co., Ltd.
+Postal Address: #2, Russian Federation BLVD, Sangkat Ka Kab Khan Por Senchey, Phnom Penh, Cambodia
+Tel: +855 96 571 8899 | Email: occ@cambodia-airways.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+KME3507 | 06Apr2026 | 24Oct2026 | 1234567 | VDTI | 0815 | VHHH | 1040
+KME3508 | 06Apr2026 | 24Oct2026 | 1234567 | VHHH | 1140 | VDTI | 1420
+KME3781 | 06Apr2026 | 24Oct2026 | 1234567 | VDTI | 0205 | WMKK | 0415
+KME3782 | 06Apr2026 | 24Oct2026 | 1234567 | WMKK | 0515 | VDTI | 0715
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A319 | XU-787/878 | CAMBODIA
+A320 | XU-761/762/763 | CAMBODIA
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VDTI-VHHH | A1 | PAPRA | BUNTA
+VHHH-VDTI | A1 | BUNTA | GONLY
+VDTI-WMKK | M755 M765 | KISAN | BITOD
+WMKK-VDTI | M765 M755 | IGARI | KISAN
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

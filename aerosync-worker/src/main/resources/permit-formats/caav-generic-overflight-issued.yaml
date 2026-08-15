@@ -2,14 +2,14 @@ id: caav-generic-overflight-issued
 priority: -100
 detectionPatterns:
   - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
-  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?|SỐ\s+HIỆU\s+CHUYẾN\s+BAY|LỊCH\s+BAY)'
   - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b)).*$'
   - '(?isu)(?:NON[-\s]+SCHEDULED|^(?!.*\bCARGO\s+FLIGHT\b).*$)'
 permit:
   pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   sourceTemplate: 'OF-{number}/{month}/{year}VN'
-  normalizedTemplate: 'O/F {number}/S/CHK/{year}'
+  normalizedTemplate: 'O/F {number}/CHK/{year}'
   zeroPadGroups:
     number: 5
 permitDate:
@@ -89,11 +89,11 @@ route:
     sector: [Sector]
     airways: [Airways]
   requiredColumns: [sector, airways]
-  tableRequired: true
-  allowEmpty: false
+  tableRequired: false
+  allowEmpty: true
   fallbackToFirst: false
   lastMatchingTable: false
-  filterSchedule: true
+  filterSchedule: false
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:

@@ -1,0 +1,60 @@
+FILE: OF 107 A S.docx
+
+PARAGRAPHS
+HA NOI, 20 MAR 2026
+NUMBER OF-107/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): ALL CARGO
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 20 MAR 2026
+NUMBER OF-107/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Lufthansa Cargo
+IATA code: LH | ICAO code: GEC
+Postal Address: Frankfurt Flughafen, Tor 21, Geb 322, D- 60546 Frankfurt / Germany
+Tel:+49 69696 55715 | Email: fratrafficrights.foc@dlh.de
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Lufthansa Cargo AG
+Postal Address: FRA F/FA-BA Frankfurt Flughafen, Tor21, Geb 322 D- 60546 Frankfurt
+Tel: +49 69 696 55715 | Email: atc@icat.dlh.de
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GEC8427 | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 20:30 | OMDW | 06:20
+GEC8443 | 29MAR26 | 24OCT26 | 1234567 | ZGSZ | 21:30 | OMDW | 05:40
+GEC8460 | 29MAR26 | 24OCT26 | 1234567 | EDDF | 12:00 | VHHH | 23:50
+GEC8462 | 29MAR26 | 24OCT26 | …..6. | EDDF | 09:40 | VHHH | 21:30
+GEC8464 | 29MAR26 | 24OCT26 | ….5.. | EDDF | 09:40 | VHHH | 21:30
+GEC8465 | 29MAR26 | 24OCT26 | …..6. | VHHH | 00:30 | EDDF | 13:30
+GEC8466 | 29MAR26 | 24OCT26 | 1234567 | VABB | 01:00 | VHHH | 08:30
+GEC8467 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 06:05 | EDDF | 19:10
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): ALL CARGO
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B777F | DALFA | Germany
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSPD-OMDW | A206 R335 | ASSAD | IDOTA
+ZGSZ-OMDW | A206 R335 | ASSAD | IDOTA
+VHHH-EDDF | A1 W2 R328 | BUNTA | TORED
+EDDF-VHHH, VABB-VHHH | A1 | PAPRA | BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -1,0 +1,61 @@
+FILE: OF 125BS.docx
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 125/B/S/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE CARGO FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 125/B/S/2026VN
+1. Carrier/Operator
+Name: Jiangsu Jingdong Cargo Airlines Co.,Ltd.
+IATA: JG | ICAO: JDL
+Postal Address: 15th Floor, Jianghaiyuanmenggu, New Century Avenue, Tongzhou District, Nantong, Jiangsu
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Jiangsu Jingdong Cargo Airlines Co., Ltd
+Postal Address: Jianghai Dream Space,NO.998 New Century Avenue, Tongzhou District, Nantong City, Jiangsu Province
+Email: luoguohong6@jd.com / lixin201@jd.com / xueruichen1@jd.com / lixiaorui20@jd.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+JDL2767 | 29MAR26 | 24OCT26 | 1234567 | ZHHH | 0100 | VTBS | 0500
+JDL2768 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0610 | ZHHH | 1000
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE CARGO FLIGHT
+5. Aircraft:
+A/C REG | A/C TYPE | NATIONALITY
+B-221L | B-737-800 | China
+B-221Q | B-737-800 | China
+B-224N | B-737-800 | China
+B-225M | B-737-800 | China
+B-5113 | B-737-800 | China
+B-5333 | B-737-800 | China
+B-5335 | B-737-800 | China
+B-226R | B-737-800 | China
+B-226S | B-737-800 | China
+B227Y | B-737-800 | China
+B-226T OR SUB | B-737-800 | China
+B-227Z | B-737-800 | China
+B-32Q8 | A330-243 | China
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZHHH-VTBS | R474 | LAVOS | TEBAK
+VTBS-ZHHH | R474 | TEBAK | LAVOS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

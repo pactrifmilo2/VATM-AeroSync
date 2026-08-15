@@ -1,0 +1,73 @@
+FILE: OF 27AS.docx
+
+PARAGRAPHS
+HA NOI, 26 FEB 2026
+NUMBER OF-27/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules (UTC Time)
+4. Purpose of Flight: Passenger
+5. Aircraft
+6. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 26 FEB 2026
+NUMBER OF-27/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Greater Bay Airlines Company Limited
+IATA code: HB | ICAO code: HGB
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: airlineplanning@greaterbay-airlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Greater Bay Airlines Company Limited
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: occ@greaterbay-airlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HGB295 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 1315 | VTBS | 1615 | B738/B79M
+HGB296 | 29MAR2026 | 24OCT2026 | 1234567 | VTBS | 1830 | VHHH | 2130 | B738/B79M
+HGB500 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 0550 | VRMM | 1230 | B738/B79M
+HGB501 | 29MAR2026 | 24OCT2026 | 1234567 | VRMM | 1445 | VHHH | 2200 | B738/B79M
+HGB270 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 1125 | VTSP | 1510 | B738
+HGB271 | 29MAR2026 | 24OCT2026 | 1234567 | VTSP | 1610 | VHHH | 2000 | B738
+HGB2526 | 29MAR2026 | 24OCT2026 | 1234567 | VHHH | 1515 | VLPS | 1750 | B738
+HGB2527 | 29MAR2026 | 24OCT2026 | 1234567 | VLPS | 1950 | VHHH | 2210 | B738
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight: Passenger
+5. Aircraft
+Aircraft Type | Registration Mark | Nationality
+B738 | As per AOC of HGB | Hong Kong, China
+B39M | As per AOC of HGB | Hong Kong, China
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-VTBS | A1 | BUNTA | 
+ | A202 | ASSAD | 
+VTBS-VHHH | A1 |  | PAPRA
+ | A202 |  | VILAO
+VHHH-VRMM | A1 | BUNTA | 
+ | A202 | ASSAD | 
+VRMM-VHHH | A1 |  | PAPRA
+ | A202 |  | VILAO
+VHHH-VTSP | A1 | BUNTA | 
+ | A202 | ASSAD | 
+VTSP-VHHH | A1 |  | PAPRA
+ | A202 |  | VILAO
+VHHH-VLPS | A1 | BUNTA | 
+ | A202 | ASSAD | 
+VLPS-VHHH | A1 |  | PAPRA
+ | A202 |  | VILAO

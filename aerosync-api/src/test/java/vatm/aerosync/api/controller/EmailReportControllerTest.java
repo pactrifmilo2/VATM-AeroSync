@@ -69,12 +69,13 @@ class EmailReportControllerTest {
                 0,
                 "permit.docx",
                 "operator_20260724_091600_email_permit.docx",
-                "Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.",
+                "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.",
                 EmailProcessingStatus.FAILED,
                 EmailAcknowledgementStatus.MOVED_ERROR,
                 true,
                 receivedAt.plusMinutes(1),
-                SyncStatus.FAILED);
+                SyncStatus.FAILED,
+                true);
         PagedResponse<EmailReportRowResponse> response = new PagedResponse<>(
                 List.of(row), 1, 10, 11, 2, false, true);
         when(emailReportService.search(filter, 1, 10)).thenReturn(response);
@@ -96,7 +97,8 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.content[0].storedFileName")
                         .value("operator_20260724_091600_email_permit.docx"))
                 .andExpect(jsonPath("$.content[0].errorMessage")
-                        .value("Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp."))
+                        .value("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp."))
+                .andExpect(jsonPath("$.content[0].requiresFormat").value(true))
                 .andExpect(jsonPath("$.content[0].processingStatus").value("FAILED"))
                 .andExpect(jsonPath("$.content[0].jobStatus").value("FAILED"))
                 .andExpect(jsonPath("$.page").value(1))

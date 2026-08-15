@@ -1,0 +1,68 @@
+FILE: LD 72B.doc
+
+PARAGRAPHS
+Ha Noi, 25/03/2026
+Permit No.: LD-72/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Emirates Airline IATA code: EK ICAO code: UAE Postal Address: P. O. Box: 686, Dubai United Arab Emirates Tel: +97147084231 Email: SGNAPT@emirates.com 
+2. Schedules (UTC Time) 
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft type EK9814 30MAR26 19OCT26 1------ DWC 0930 HAN 1340 
+77X
+ EK9815 30MAR26 19OCT26 1------ HAN 1600 DWC 0050+1 EK9814 04APR26 24OCT26 -----6- DWC 1630 HAN 2255 EK9815 05APR26 25OCT26 ------7 HAN 0055 DWC 0750 EK9816 29MAR26 18OCT26 ------7 DWC 1235 HAN 1900 EK9817 29MAR26 18OCT26 ------7 HAN 2100 DWC 0355+1 EK9868 02APR26 22OCT26 ---4--- DWC 0350 TPE 1135 EK9869 02APR26 22OCT26 ---4--- TPE 1335 HAN 1645 EK9869 02APR26 22OCT26 ---4--- HAN 1845 DWC 0140+1 Note: EK has no traffic right between TPE and HAN.
+3. Purpose of Flight: All- cargo
+4. Aircraft:
+Aircraft Type Registration MARks Nationality 77X As per FAOC of EK UAE 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TPE-HAN R474 TEBAK DWC-HAN B465 LAPON HAN-DWC W21 B214 LADON Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C.c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 25/03/2026
+Permit No.: LD-72/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P. O. Box: 686, Dubai United Arab Emirates
+Tel: +97147084231 | Email: SGNAPT@emirates.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+EK9814 | 30MAR26 | 19OCT26 | 1------ | DWC | 0930 | HAN | 1340 | 77X
+EK9815 | 30MAR26 | 19OCT26 | 1------ | HAN | 1600 | DWC | 0050+1 | 
+ |  |  |  |  |  |  |  | 
+EK9814 | 04APR26 | 24OCT26 | -----6- | DWC | 1630 | HAN | 2255 | 
+EK9815 | 05APR26 | 25OCT26 | ------7 | HAN | 0055 | DWC | 0750 | 
+ | 
+EK9816 | 29MAR26 | 18OCT26 | ------7 | DWC | 1235 | HAN | 1900 | 
+EK9817 | 29MAR26 | 18OCT26 | ------7 | HAN | 2100 | DWC | 0355+1 | 
+ | 
+EK9868 | 02APR26 | 22OCT26 | ---4--- | DWC | 0350 | TPE | 1135 | 
+EK9869 | 02APR26 | 22OCT26 | ---4--- | TPE | 1335 | HAN | 1645 | 
+EK9869 | 02APR26 | 22OCT26 | ---4--- | HAN | 1845 | DWC | 0140+1 | 
+
+TABLE 3
+CONTEXT: Note: EK has no traffic right between TPE and HAN.
+3. Purpose of Flight: All- cargo
+4. Aircraft:
+Aircraft Type | Registration MARks | Nationality
+77X | As per FAOC of EK | UAE
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TPE-HAN | R474 | TEBAK | 
+DWC-HAN | B465 | LAPON | 
+HAN-DWC | W21 B214 |  | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

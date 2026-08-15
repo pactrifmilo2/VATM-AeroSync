@@ -1,0 +1,63 @@
+FILE: R25BL 25B REV21.docx
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Ha Noi, 27/05/2026
+Permit No-: LD - 25/B/S/2026VN/REV21
+Carrier Tel: (8424) 38272281
+Fax: (8424) 38272290
+E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+Schedules (UTC Time)
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Aircraft:
+4. Airways:
+5. Note: Other details unchanged.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C-c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Ha Noi, 27/05/2026
+Permit No-: LD - 25/B/S/2026VN/REV21
+Carrier Tel: (8424) 38272281
+Fax: (8424) 38272290
+E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+Name: TURKISH AIRLINES CARGO
+IATA code: TK | ICAO code: THY
+Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist. HCMC, Vietnam
+Tel: +84-2839360360 | Email : SGNOPS@THY.COM
+
+TABLE 2
+CONTEXT: Schedules (UTC Time)
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+TK6254 | 01JUN26 | 19OCT26 | 1------ | IST | 0150 | BOM | 0810 | 77X | LD - 25/B/S/2026VN
+TK6254 | 01JUN26 | 19OCT26 | 1------ | BOM | 1010 | HAN | 1515 | 77X | 
+TK6255 | 01JUN26 | 19OCT26 | 1------ | HAN | 1715 | IST | 0325+1 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TK6340 | 01JUN26 | 19OCT26 | 1------ | IST | 0235 | MAA | 1215 | 77X/33X
+TK6340 | 01JUN26 | 19OCT26 | 1------ | MAA | 1415 | HAN | 1515 | 77X/33X
+TK6255 | 01JUN26 | 19OCT26 | 1------ | HAN | 1715 | IST | 0610+1 | 77X/33X
+
+TABLE 4
+CONTEXT: 3. Aircraft:
+Aircraft Type | Registration marks | Nationality
+77X | As per FAOC of TK | TURKEY
+33X | As per FAOC of TK | TURKEY
+
+TABLE 5
+CONTEXT: 4. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MAA-HAN | B214 W21 | LADON | 

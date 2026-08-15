@@ -22,17 +22,20 @@ class FileArchiverStepTest {
     private FileArchiverStep fileArchiverStep;
     private Path processedDir;
     private Path errorDir;
+    private Path errorFormatDir;
     private Path quarantineDir;
 
     @BeforeEach
     void setUp() {
         processedDir = tempDir.resolve("processed");
         errorDir = tempDir.resolve("error");
+        errorFormatDir = tempDir.resolve("error-format");
         quarantineDir = tempDir.resolve("quarantine");
 
         FilePathProperties paths = new FilePathProperties();
         paths.setProcessed(processedDir.toString());
         paths.setError(errorDir.toString());
+        paths.setErrorFormat(errorFormatDir.toString());
         paths.setQuarantine(quarantineDir.toString());
 
         Clock fixed = Clock.fixed(Instant.parse("2026-06-04T10:15:30Z"), ZoneId.of("UTC"));
@@ -99,6 +102,30 @@ class FileArchiverStepTest {
         Path log = archived.resolveSibling(archived.getFileName() + ".log");
         assertThat(log.getParent()).isEqualTo(archived.getParent());
         assertThat(Files.readString(log)).contains("Invalid encoding");
+    }
+
+    @Test
+    void archiveFormatError_movesWordWithoutYamlProfileToDedicatedDirectory() throws Exception {
+        Path source = tempDir.resolve("permit.docx");
+        Files.writeString(source, "word");
+
+        Path archived = fileArchiverStep.archiveFormatError(source, FileSourceType.EMAIL,
+                "Unsupported Word permit format; no format profile matched", "ops@vatm.local");
+
+        assertThat(archived.getParent()).isEqualTo(errorFormatDir.resolve("2026").resolve("06").resolve("04"));
+        assertThat(Files.readString(archived.resolveSibling(archived.getFileName() + ".log")))
+                .contains("no format profile matched");
+    }
+
+    @Test
+    void archiveFormatError_keepsOtherWordErrorsInCurrentErrorDirectory() throws Exception {
+        Path source = tempDir.resolve("broken.docx");
+        Files.writeString(source, "word");
+
+        Path archived = fileArchiverStep.archiveFormatError(source, FileSourceType.EMAIL,
+                "Failed to parse Word permit: invalid header signature", "ops@vatm.local");
+
+        assertThat(archived.getParent()).isEqualTo(errorDir.resolve("2026").resolve("06").resolve("04"));
     }
 
     @Test

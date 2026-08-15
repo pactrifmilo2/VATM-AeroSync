@@ -1,0 +1,89 @@
+FILE: LD_61_A_S_2026VN_OZ.doc
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+№: LD - 61/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: ASIANA AIRLINES IATA code: OZ ICAO code: AAR Postal Address: Asiana Town; Gangseo P.O. Box98, #47 Osea-Dong, Gangseo-Gu, Seoul, Korea 157-600 Tel: 82-2-2669-3114 Email: Email: thuy@flyasiana.com/ phuong@flyasiana.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type OZ729 29MAR26 24OCT26 1234567 ICN 00:15 HAN 05:15 359/333/772/321/32Q OZ730 29MAR26 24OCT26 1234567 HAN 6:25 ICN 10:35 359/333/772/321/32Q OZ733 29MAR26 24OCT26 1234567 ICN 10:30 HAN 15:00 359/333/772/321/32Q OZ734 29MAR26 24OCT26 1234567 HAN 16:30 ICN 20:50 359/333/772/321/32Q OZ755 29MAR26 24OCT26 1234567 ICN 09:50 DAD 14:35 333/321/32Q OZ756 29MAR26 24OCT26 1234567 DAD 16:00 ICN 20:55 333/321/32Q OZ731 29MAR26 24OCT26 1234567 ICN 22:30 SGN 04:00+1 359/333/772/321/32Q OZ732 29MAR26 24OCT26 1234567 SGN 05:05 ICN 10:25 359/333/772/321/32Q OZ735 29MAR26 24OCT26 1234567 ICN 10:30 SGN 15:40 359/333/772/321/32Q OZ736 29MAR26 24OCT26 1234567 SGN 17:10 ICN 22:20 359/333/772/321/32Q 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 772 As per FAOC of OZ Korea
+ 321 32Q 333 359 
+5. Airways
+Sector Airways Entry Point into 
+Vietnam FIR Exit Point from 
+Vietnam FIR ICN-HAN R474 TEBAK - A1-Q2 BUNTA - HAN-ICN R474 - TEBAK Q1-A1 - BUNTA ICN-DAD A1 BUNTA - N892-L628-G474-W1 MONBO - R474-Q1 TEBAK - DAD-ICN A1 - BUNTA Q1-G474-L628 - ARESI Q2-N639-Q3-R474 - TEBAK ICN-SGN N892-N500 MONBO - A1-Q1 BUNTA - R474-Q1 TEBAK - SGN-ICN W12-G221 - BUNTA Q2-Q7-G474-L628 - ARESI N500-L625 - ARESI N500 - PANDI Q2-N639-Q3-R474 - TEBAK 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+№: LD - 61/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: ASIANA AIRLINES
+IATA code: OZ | ICAO code: AAR
+Postal Address: Asiana Town; Gangseo P.O. Box98, #47 Osea-Dong, Gangseo-Gu, Seoul, Korea 157-600
+Tel: 82-2-2669-3114 | Email: Email: thuy@flyasiana.com/ phuong@flyasiana.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+OZ729 | 29MAR26 | 24OCT26 | 1234567 | ICN | 00:15 | HAN | 05:15 | 359/333/772/321/32Q
+OZ730 | 29MAR26 | 24OCT26 | 1234567 | HAN | 6:25 | ICN | 10:35 | 359/333/772/321/32Q
+OZ733 | 29MAR26 | 24OCT26 | 1234567 | ICN | 10:30 | HAN | 15:00 | 359/333/772/321/32Q
+OZ734 | 29MAR26 | 24OCT26 | 1234567 | HAN | 16:30 | ICN | 20:50 | 359/333/772/321/32Q
+OZ755 | 29MAR26 | 24OCT26 | 1234567 | ICN | 09:50 | DAD | 14:35 | 333/321/32Q
+OZ756 | 29MAR26 | 24OCT26 | 1234567 | DAD | 16:00 | ICN | 20:55 | 333/321/32Q
+OZ731 | 29MAR26 | 24OCT26 | 1234567 | ICN | 22:30 | SGN | 04:00+1 | 359/333/772/321/32Q
+OZ732 | 29MAR26 | 24OCT26 | 1234567 | SGN | 05:05 | ICN | 10:25 | 359/333/772/321/32Q
+OZ735 | 29MAR26 | 24OCT26 | 1234567 | ICN | 10:30 | SGN | 15:40 | 359/333/772/321/32Q
+OZ736 | 29MAR26 | 24OCT26 | 1234567 | SGN | 17:10 | ICN | 22:20 | 359/333/772/321/32Q
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+772 | As per FAOC of OZ | Korea
+321 |  | 
+32Q |  | 
+333 |  | 
+359 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-HAN | R474 | TEBAK | -
+ | A1-Q2 | BUNTA | -
+HAN-ICN | R474 | - | TEBAK
+ | Q1-A1 | - | BUNTA
+ICN-DAD | A1 | BUNTA | -
+ | N892-L628-G474-W1 | MONBO | -
+ | R474-Q1 | TEBAK | -
+DAD-ICN | A1 | - | BUNTA
+ | Q1-G474-L628 | - | ARESI
+ | Q2-N639-Q3-R474 | - | TEBAK
+ICN-SGN | N892-N500 | MONBO | -
+ | A1-Q1 | BUNTA | -
+ | R474-Q1 | TEBAK | -
+SGN-ICN | W12-G221 | - | BUNTA
+ | Q2-Q7-G474-L628 | - | ARESI
+ | N500-L625 | - | ARESI
+ | N500 | - | PANDI
+ | Q2-N639-Q3-R474 | - | TEBAK

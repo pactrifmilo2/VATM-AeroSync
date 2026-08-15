@@ -1,0 +1,112 @@
+FILE: OF 80D CSH.doc
+
+PARAGRAPHS
+Ha Noi, 01st July2026
+№: OF - 80/D/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: SHANGHAI AIRLINES IATA code: FM ICAO code: CSH Postal Address: NO.35 HONGXIANG ROAD SHANGHAI 
+201100 P.R. CHINA Tel: 00862122331689 Email: muoverfly@ceair.com 
+2. Billing address
+Name: MS LI YIPING Postal Address: 
+LEARING & SETTLEMENT DEPT. 
+ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDING
+XI BA HE BEI LI CHAO YANG DISTRICT 
+P.O.BOX 5402
+100028 BEIJING CHINA Tel: +8610-64513489 Email: NAVSERVICE@ACCA.COM.CN;LYP@ACCA.COM.CN 
+3. Schedules: UTC Time 
+Flight 
+Number
+ Effective from
+ Effective
+ To
+ Day(s) of services
+ Departure Airport ETD
+ Arrival Airport3
+ ETA
+ CSH7251 09JUL26 24OCT26 1234567 ZSPD 2230 WBKK 0300+ CSH7252 09JUL26 24OCT26 1234567 WBKK 0400 ZSPD 0830 CSH7253 09JUL26 24OCT26 1234567 ZSPD 0820 WMKK 1355 CSH7254 09JUL26 24OCT26 1234567 WMKK 1455 ZSPD 2030 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) Registration Mark (11)
+ Nationality(14) B737 As per AOC of CSH China B738 As per AOC of CSH China B38M As per AOC of CSH China A319 As per AOC of CSH China A320 As per AOC of CSH China A20N As per AOC of CSH China A321 As per AOC of CSH China A21N As per AOC of CSH China A332 As per AOC of CSH China A333 As per AOC of CSH China B77W As per AOC of CSH China B789 As per AOC of CSH China A359 As per AOC of CSH China 
+ 
+6. Air traffic service routes:
+Sector(15) Airways(16) Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSPD-WBKK A202 Q1 L644 M768 ASSAD AKMON WBKK-ZSPD M768 Q2 A202 AKMON ASSAD ZSPD-WMKK L642/
+W10 Q1 L644 L642/
+R474 Q1 N639/
+M755 M765/
+A202 EXOTO/
+ASSAD/
+TEBAK/
+KISAN/
+ASSAD ESPOB/
+ESPOB/
+VILAO/
+IGARI/
+VILAO WMKK-ZSPD M771/
+M765 L637 Q2 A202/
+M765 M755/
+N639 Q1 R474/
+A202 DUDIS/
+IGARI/
+IGARI/
+VILAO/
+VILAO DONDA/
+ASSAD/
+KISAN/
+TEBAK/
+ASSAD Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 01st July2026
+№: OF - 80/D/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: SHANGHAI AIRLINES
+IATA code: FM | ICAO code: CSH
+Postal Address: NO.35 HONGXIANG ROAD SHANGHAI 201100 P.R. CHINA
+Tel: 00862122331689 | Email: muoverfly@ceair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: MS LI YIPING
+Postal Address: LEARING & SETTLEMENT DEPT. ACCOUNTING CENTRE OF CHINA AVIATION 12 BUILDING XI BA HE BEI LI CHAO YANG DISTRICT P.O.BOX 5402 100028 BEIJING CHINA
+Tel: +8610-64513489 | Email: NAVSERVICE@ACCA.COM.CN;LYP@ACCA.COM.CN
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport3 | ETA
+CSH7251 | 09JUL26 | 24OCT26 | 1234567 | ZSPD | 2230 | WBKK | 0300+
+CSH7252 | 09JUL26 | 24OCT26 | 1234567 | WBKK | 0400 | ZSPD | 0830
+CSH7253 | 09JUL26 | 24OCT26 | 1234567 | ZSPD | 0820 | WMKK | 1355
+CSH7254 | 09JUL26 | 24OCT26 | 1234567 | WMKK | 1455 | ZSPD | 2030
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) | Registration Mark (11) | Nationality(14)
+B737 | As per AOC of CSH | China
+B738 | As per AOC of CSH | China
+B38M | As per AOC of CSH | China
+A319 | As per AOC of CSH | China
+A320 | As per AOC of CSH | China
+A20N | As per AOC of CSH | China
+A321 | As per AOC of CSH | China
+A21N | As per AOC of CSH | China
+A332 | As per AOC of CSH | China
+A333 | As per AOC of CSH | China
+B77W | As per AOC of CSH | China
+B789 | As per AOC of CSH | China
+A359 | As per AOC of CSH | China
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSPD-WBKK | A202 Q1 L644 M768 | ASSAD | AKMON
+WBKK-ZSPD | M768 Q2 A202 | AKMON | ASSAD
+ZSPD-WMKK | L642/ W10 Q1 L644 L642/ R474 Q1 N639/ M755 M765/ A202 | EXOTO/ ASSAD/ TEBAK/ KISAN/ ASSAD | ESPOB/ ESPOB/ VILAO/ IGARI/ VILAO
+WMKK-ZSPD | M771/ M765 L637 Q2 A202/ M765 M755/ N639 Q1 R474/ A202 | DUDIS/ IGARI/ IGARI/ VILAO/ VILAO | DONDA/ ASSAD/ KISAN/ TEBAK/ ASSAD
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

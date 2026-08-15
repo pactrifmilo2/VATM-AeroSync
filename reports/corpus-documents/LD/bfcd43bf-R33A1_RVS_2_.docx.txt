@@ -1,0 +1,47 @@
+FILE: R33A1 (RVS 2).docx
+
+PARAGRAPHS
+Kính gửi: Tổ phép bay,
+Lịch hủy các chuyến bay trong phép bay mùa LD33A giai đoạn 01/9/2026-24/10/2026 (chi tiết bên dưới)
+Trân trọng,
+TL PTP Phạm Thị Thảo
+--------------------------
+Vu Thi Thuy Duong (Ms) Air Transport Department, Civil Aviation Authority of Vietnam
+Cell phone: (+84) 946045399 Email: duongvtt@caa.gov.vn; vuthuyduong80@gmail.com
+From: Pimporn Tanmanee - <pimpornt@airasia.com> To: atd@caa.gov.vn, duongvtt@caa.gov.vn Cc: Bui Duc Hanh - <hanhb@airasia.com>, taa_regulatory <taa_regulatory@airasia.com> Date: Thu, 9 Jul 2026 10:52:58 +0700 Subject: Thai AirAsia's Vietnam Flight Cancellation for Summer 2026 (01 Sep - 24 Oct 2026)
+Dear Sir/Madam,
+Thai AirAsia would like to inform you that the following Vietnam flights between 01 September - 24 October 2026 will be cancelled. To: Civil Aviation Authority of Vietnam Address : 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam Tel : 00842438272281; Fax: 00824438272290 Email : atd@caa.gov.vn , duongvtt@caa.gov.vn 1. Carrier/Operator: - Name : THAI AIRASIA - IATA code : FD; ICAO code: AIQ - Address : THAI AIRASIA Company Limited, 222, Don Mueang International Airport, 3rd floor, Central Office Building, No. 3200, Vibhavadi Rangsit Road, Sanambin, Don Mueang, Bangkok, 10120; - Tel : +662-562-5799; Fax: NIL; Email: thaiflightops@airasia.com
+2. Schedules (UTC Time)
+3. Purpose of Flight : Passenger
+Thank you and kind regards.
+Best Regards,
+Pimporn Tanmanee (Bow) TAA FD - Regulatory Affairs
+Thai AirAsia Co., Ltd. No. 222, Don Mueang International Airport, 3rd Floor, Central Office Building, Room No. 3200, Vibhavadi Rangsit Road, Sanambin, Don Mueang, Bangkok 10210 Thailand
+Disclaimer:
+
+TABLE 1
+CONTEXT: Kính gửi: Tổ phép bay,
+Lịch hủy các chuyến bay trong phép bay mùa LD33A giai đoạn 01/9/2026-24/10/2026 (chi tiết bên dưới)
+Trân trọng,
+TL PTP Phạm Thị Thảo
+--------------------------
+Vu Thi Thuy Duong (Ms) Air Transport Department, Civil Aviation Authority of Vietnam
+Cell phone: (+84) 946045399 Email: duongvtt@caa.gov.vn; vuthuyduong80@gmail.com
+From: Pimporn Tanmanee - <pimpornt@airasia.com> To: atd@caa.gov.vn, duongvtt@caa.gov.vn Cc: Bui Duc Hanh - <hanhb@airasia.com>, taa_regulatory <taa_regulatory@airasia.com> Date: Thu, 9 Jul 2026 10:52:58 +0700 Subject: Thai AirAsia's Vietnam Flight Cancellation for Summer 2026 (01 Sep - 24 Oct 2026)
+Dear Sir/Madam,
+Thai AirAsia would like to inform you that the following Vietnam flights between 01 September - 24 October 2026 will be cancelled. To: Civil Aviation Authority of Vietnam Address : 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam Tel : 00842438272281; Fax: 00824438272290 Email : atd@caa.gov.vn , duongvtt@caa.gov.vn 1. Carrier/Operator: - Name : THAI AIRASIA - IATA code : FD; ICAO code: AIQ - Address : THAI AIRASIA Company Limited, 222, Don Mueang International Airport, 3rd floor, Central Office Building, No. 3200, Vibhavadi Rangsit Road, Sanambin, Don Mueang, Bangkok, 10120; - Tel : +662-562-5799; Fax: NIL; Email: thaiflightops@airasia.com
+2. Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+Refer to Approval No: LD-33/A/S/2026VN
+FD642 | 01-Sep-26 | 30-Sep-26 | 1234567 | DMK | 23:40 | HAN | 01:30 | 320/32N/32Q
+FD643 | 01-Sep-26 | 30-Sep-26 | 1234567 | HAN | 02:05 | DMK | 03:55 | 
+Refer to Approval No: LD-33/A/S/2026VN
+FD646 | 01-Sep-26 | 24-Oct-26 | 2 4 6 | DMK | 01:00 | CXR | 03:00 | 320/32N/32Q
+FD647 | 01-Sep-26 | 24-Oct-26 | 2 4 6 | CXR | 03:30 | DMK | 05:25 | 
+Refer to Approval No: LD-33/A/S/2026VN
+FD662 | 01-Sep-26 | 30-Sep-26 | 1234567 | DMK | 08:40 | PQC | 10:00 | 320/32N/32Q
+FD662 | 04-Sep-26 | 25-Sep-26 | 5 | DMK | 08:40 | PQC | 10:00 | 
+FD662 | 02-Oct-26 | 23-Oct-26 | 1 3 5 7 | DMK | 08:40 | PQC | 10:00 | 
+FD663 | 01-Sep-26 | 30-Sep-26 | 1234567 | PQC | 10:30 | DMK | 11:55 | 
+FD663 | 04-Sep-26 | 25-Sep-26 | 5 | PQC | 10:30 | DMK | 11:55 | 
+FD663 | 02-Oct-26 | 23-Oct-26 | 1 3 5 7 | PQC | 10:30 | DMK | 11:55 | 

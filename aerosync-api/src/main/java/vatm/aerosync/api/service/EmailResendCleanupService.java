@@ -67,7 +67,7 @@ public class EmailResendCleanupService {
     }
 
     @Transactional
-    public CleanupResult cleanup(List<EmailMetadata> selectedMetadata, String messageId) {
+    public CleanupResult cleanup(List<EmailMetadata> selectedMetadata) {
         Set<Long> syncJobIds = selectedMetadata.stream()
                 .map(EmailMetadata::getSyncJob)
                 .filter(Objects::nonNull)
@@ -82,13 +82,12 @@ public class EmailResendCleanupService {
             SyncJob job = syncJobRepository.findById(syncJobId)
                     .orElseThrow(() -> new IllegalStateException("Sync job not found during resend cleanup: " + syncJobId));
             List<EmailMetadata> jobMetadata = emailMetadataRepository.findBySyncJobId(syncJobId);
-            boolean shared = jobMetadata.stream()
-                    .anyMatch(metadata -> !Objects.equals(messageId, metadata.getMessageId()));
-            if (shared) {
-                throw new IllegalStateException(
-                        "Cannot reset sync job " + syncJobId
-                                + " because its SHA-256 is shared by another email");
-            }
+
+            // Duplicate/forwarded emails can legitimately share one SyncJob
+            // because deduplication is based on the attachment SHA-256. Reset
+            // every metadata row owned by that job; retaining any one of them
+            // would also retain the unique file hash and make the newly resent
+            // attachment get skipped as a duplicate again.
 
             PermitImport permitImport = permitImportRepository.findBySyncJobId(syncJobId).orElse(null);
             if (permitImport != null) {

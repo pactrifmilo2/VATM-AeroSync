@@ -1,0 +1,59 @@
+FILE: OF 24D .doc
+
+PARAGRAPHS
+Ha Noi, 07/04/2026
+Permit number: OF - 24/D/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator: 
+Name: QANTAS AIRWAYS LTD IATA code: QF ICAO code: QFA Postal Address: 10 BOURKE ROAD MASCOT NSW 2020 AUSTRALIA Tel: +61296911205 Email: HYPERLINK "mailto:navdata@qantas.com.au" navdata@qantas.com.au 
+2. Billing address:
+Name: QANTAS AIRWAYS LTD Postal Address: QCB3 10 Bourke Road Mascot NSW 2020 Australia. Tel: +61296911205 Email: HYPERLINK "mailto:finesse.invoices@qantas.com.au" finesse.invoices@qantas.com.au ; HYPERLINK "mailto:atm@qantas.com.au" atm@qantas.com.au ; HYPERLINK "mailto:accounts@aeroadapt.com" accounts@aeroadapt.com 
+3. Schedules: UTC Time
+Flight 
+Number Effective from EffectiveTo Day(s) of services Departure Airport ETD Arrival Airport ETA QFA6042 15APR26 24OCT26 1234567 VOBL 0715 YBBN 1930 
+4. Purpose of Flight(s): Passengers
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A321 VH-OGA TO OGZ Australia 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR VOBL-YBBN R468 M768
+N891 SAPEN
+XONAN AKMON
+IGARI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 07/04/2026
+Permit number: OF - 24/D/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator:
+Name: QANTAS AIRWAYS LTD
+IATA code: QF | ICAO code: QFA
+Postal Address: 10 BOURKE ROAD MASCOT NSW 2020 AUSTRALIA
+Tel: +61296911205 | Email: HYPERLINK "mailto:navdata@qantas.com.au" navdata@qantas.com.au
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: QANTAS AIRWAYS LTD
+Postal Address: QCB3 10 Bourke Road Mascot NSW 2020 Australia.
+Tel: +61296911205 | Email: HYPERLINK "mailto:finesse.invoices@qantas.com.au" finesse.invoices@qantas.com.au ; HYPERLINK "mailto:atm@qantas.com.au" atm@qantas.com.au ; HYPERLINK "mailto:accounts@aeroadapt.com" accounts@aeroadapt.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+QFA6042 | 15APR26 | 24OCT26 | 1234567 | VOBL | 0715 | YBBN | 1930
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passengers
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A321 | VH-OGA TO OGZ | Australia
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VOBL-YBBN | R468 M768 N891 | SAPEN XONAN | AKMON IGARI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

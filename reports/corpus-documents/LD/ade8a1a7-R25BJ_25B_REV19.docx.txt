@@ -1,0 +1,37 @@
+FILE: R25BJ 25B REV19.docx
+
+PARAGRAPHS
+Hanoi, 14/05/2026 Permit No.: LD - 25/B/S/2026VN/REV19
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+TK is only authorized to operate 5th freedom rights on sector: HAN-DEL.
+3. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 14/05/2026 Permit No.: LD - 25/B/S/2026VN/REV19
+1. Carrier
+Name: TURKISH AIRLINES CARGO
+IATA code: TK | ICAO code: THY
+Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist. HCMC, Vietnam
+Tel: +84-2839360360 | Email : SGNOPS@THY.COM
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+TK6197 | 23MAY26 | 30MAY26 | -----6- | IST | 1910 | BOM | 0145+1 | 77X | LD - 25/B/S/2026VN/REV16
+TK6197 | 24MAY26 | 31MAY26 | ------7 | BOM | 0345 | HAN | 0810 | 77X | 
+TK6245 | 24MAY26 | 31MAY26 | ------7 | HAN | 1010 | DEL | 1450 | 77X | 
+TK6245 | 24MAY26 | 31MAY26 | ------7 | DEL | 1630 | IST | 2320 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TK6232 | 23MAY26 | 30MAY26 | -----6- | IST | 1930 | AMM | 2205 | 77X
+TK6232 | 24MAY26 | 31MAY26 | ------7 | AMM | 0005 | HAN | 0810 | 77X
+TK6245 | 24MAY26 | 31MAY26 | ------7 | HAN | 1010 | DEL | 1450 | 77X
+TK6245 | 24MAY26 | 31MAY26 | ------7 | DEL | 1630 | IST | 2320 | 77X

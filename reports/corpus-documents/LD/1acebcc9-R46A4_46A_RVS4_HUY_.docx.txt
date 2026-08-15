@@ -1,0 +1,88 @@
+FILE: R46A4 46A RVS4 (HUY).docx
+
+PARAGRAPHS
+To: VATM
+Cc: LJ
+Đề nghị VATM cập nhật lịch hủy theo file đính kèm.
+Trân trọng.
+Phạm Thị Hương Giang
+Official, Air Transport Dept
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Long Bien District, Ha Noi
+Socialist Republic of Viet Nam
+Website: www.caa.gov.vn
+E-mail: giangpth@caa.gov.vn
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: JIN AIR CO.,LTD
+- IATA code: LJ
+- Address: 3F, 453 Gonghangdae-ro, Gangseo-gu, Seoul, Korea 07570
+Tel. 84-236-3664-565, email: dadkk@jinair.com
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger
+4. Reason of cancellation: Due to Operation reason
+5. Ref to permit number: LD - 46/A/S/2026VN
+6. Applicant:
+JIN AIR DAD STATION
+Tel: +84-236-3664-565
+Mobile: +84-989-427-488
+E-mail: yphong@jinair.com
+Name, signature, title: Hong Yoon Pyo Mr. (Regional Manager)
+6. Note:
+1,2,3,4,5,7 IATA code
+6 Name of ATS route: Example R468, A1, R474….
+
+TABLE 1
+from: | Pham Thi Huong Giang <giangpth@caa.gov.vn>
+date: | 17/06/2026 04:57 PM
+to: | hiepdongbay@vatm.vn <hiepdongbay@vatm.vn>, To quan ly phep bay KHB <phepbaykhb@vatm.vn>
+cc: | Pham Thi Thao <thaopt@caa.gov.vn>, 부이 황 이옌[BUI HOANG YEN] <hoangyen@jinair.com>
+
+TABLE 2
+CONTEXT: To: VATM
+Cc: LJ
+Đề nghị VATM cập nhật lịch hủy theo file đính kèm.
+Trân trọng.
+Phạm Thị Hương Giang
+Official, Air Transport Dept
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Long Bien District, Ha Noi
+Socialist Republic of Viet Nam
+Website: www.caa.gov.vn
+E-mail: giangpth@caa.gov.vn
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: JIN AIR CO.,LTD
+- IATA code: LJ
+- Address: 3F, 453 Gonghangdae-ro, Gangseo-gu, Seoul, Korea 07570
+Tel. 84-236-3664-565, email: dadkk@jinair.com
+2. Schedules: All times in UTC
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+LJ081 | 02Jul26 | 12Jul26 | ---4--7 | ICN | 1130 | DAD | 1615 | 738/739/7M8
+LJ082 | 02Jul26 | 12Jul26 | ---4--7 | DAD | 1715 | ICN | 2210 | 738/739/7M8
+LJ087 | 02Jul26 | 13Jul26 | 1--4--7 | ICN | 1140 | CXR | 1645 | 738/739/7M8
+LJ088 | 02Jul26 | 13Jul26 | 1--4--7 | CXR | 1755 | ICN | 2300 | 738/739/7M8
+LJ091 | 02Jul26 | 08Jul26 | --34--7 | ICN | 0805 | PQC | 1400 | 738/739/7M8
+LJ092 | 02Jul26 | 08Jul26 | --34--7 | PQC | 1500 | ICN | 2035 | 738/739/7M8
+LJ091 | 11Jul26 | 11Jul26 | -----6- | ICN | 0805 | PQC | 1400 | 738/739/7M8
+LJ092 | 11Jul26 | 11Jul26 | -----6- | PQC | 1500 | ICN | 2035 | 738/739/7M8
+LJ111 | 02Jul26 | 08Jul26 | --34--7 | PUS | 1215 | DAD | 1655 | 738/739/7M8
+LJ112 | 02Jul26 | 08Jul26 | --34--7 | DAD | 1800 | PUS | 2215 | 738/739/7M8
+LJ111 | 11Jul26 | 17Jul26 | -2--56- | PUS | 1215 | DAD | 1655 | 738/739/7M8
+LJ112 | 11Jul26 | 17Jul26 | -2--56- | DAD | 1800 | PUS | 2215 | 738/739/7M8
+LJ115 | 01Jul26 | 15Jul26 | --3--6- | PUS | 1105 | CXR | 1555 | 738/739/7M8
+LJ116 | 01Jul26 | 15Jul26 | --3--6- | CXR | 1655 | PUS | 2140 | 738/739/7M8
+LJ119 | 03Jul26 | 06Jul26 | 1---5-- | PUS | 1055 | PQC | 1625 | 738/739/7M8
+LJ120 | 03Jul26 | 06Jul26 | 1---5-- | PQC | 1725 | PUS | 2245 | 738/739/7M8
+LJ119 | 09Jul26 | 12Jul26 | ---4--7 | PUS | 1105 | PQC | 1625 | 738/739/7M8
+LJ120 | 09Jul26 | 12Jul26 | ---4--7 | PQC | 1725 | PUS | 2245 | 738/739/7M8

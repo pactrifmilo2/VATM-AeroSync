@@ -1,0 +1,35 @@
+FILE: R54A3  54A  REV3.docx
+
+PARAGRAPHS
+HANOI, 22-Apr-26
+The issued permit: LD-54/A/S/2026VN/REV3
+1. Carrier/Operator
+2. [Revised Item Schedule Flight Timing]
+[Original and Revised item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Others un-changed
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 22-Apr-26
+The issued permit: LD-54/A/S/2026VN/REV3
+1. Carrier/Operator
+Name: AirAsia Berhad
+IATA code: AK | ICAO code: AXM
+Postal Address: RedQ, Jalan Pekeliling 5, Terminal 2, 64000 (T2), Selango
+Tel: +6038660 4333 | Email: ahmadfauzanmansor@airasia.com regulatoryaffairs@airasia.com, hanhb@airasia.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item Schedule Flight Timing]
+[Original and Revised item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AK525 | 21 Apr26 | 21 Apr 26 | 2 | SGN | 15:05 | KUL | 17:00 | 32032N32Q
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AK525P | 22 Apr26 | 22 Apr 26 | 3 | SGN | 1400 | KUL | 1555 | 32032N32Q

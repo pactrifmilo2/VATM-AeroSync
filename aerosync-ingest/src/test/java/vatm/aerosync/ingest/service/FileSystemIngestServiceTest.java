@@ -124,8 +124,9 @@ class FileSystemIngestServiceTest {
     void ingestUpTo_skipsAlreadySeenPath() throws Exception {
         Path file = tempDir.resolve("seen.csv");
         Files.writeString(file, "already-processed");
+        String hash = Hashing.sha256Hex(file);
         String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
-        when(valueOperations.get(pathKey)).thenReturn("1");
+        when(valueOperations.get(pathKey)).thenReturn(hash);
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
 
@@ -138,12 +139,32 @@ class FileSystemIngestServiceTest {
         Path file = tempDir.resolve("seen-retry.csv");
         Files.writeString(file, "callsign,from,to,dateflight\nVN123,HAN,SGN,2026-01-01");
         String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
-        when(valueOperations.get(pathKey)).thenReturn("1");
+        when(valueOperations.get(pathKey)).thenReturn(Hashing.sha256Hex(file));
 
         int ingested = fileSystemIngestService.ingestUpTo(10);
 
         assertThat(ingested).isZero();
         verify(ingestPublisher, never()).publish(any());
+    }
+
+    @Test
+    void ingestUpTo_reprocessesSamePathWhenFileBytesChange() throws Exception {
+        Path file = tempDir.resolve("changed.docx");
+        Files.writeString(file, "original-word-bytes");
+        String oldHash = Hashing.sha256Hex(file);
+        Files.writeString(file, "original-word-bytes-with-a-small-mark");
+        String newHash = Hashing.sha256Hex(file);
+        String pathKey = "aerosync:ingest:fs-path:" + file.toAbsolutePath().normalize();
+        when(valueOperations.get(pathKey)).thenReturn(oldHash);
+        when(deduplicationService.isDuplicate(newHash)).thenReturn(false);
+        stubNewPendingJob();
+
+        int ingested = fileSystemIngestService.ingestUpTo(10);
+
+        assertThat(newHash).isNotEqualTo(oldHash);
+        assertThat(ingested).isOne();
+        verify(ingestPublisher).publish(any(FileIngestedEvent.class));
+        verify(valueOperations).set(pathKey, newHash);
     }
 
     @Test

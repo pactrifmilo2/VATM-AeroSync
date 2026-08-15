@@ -1,0 +1,87 @@
+FILE: LD 42 A.doc
+
+PARAGRAPHS
+Ha Noi, 13/03/2026
+Permit No.: LD - 42/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C. IATA code: QR ICAO code: QTR Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR Tel: +974 4022 2941 Email: HYPERLINK "mailto:aeropoliticalsched@qatarairways.com.qa" aeropoliticalsched@qatarairways.com.qa 
+2. Schedules (UTC Time) 
+Flight Number Effective from Effective To Day(s) of services Departure Airport
+ ETD Arrival Airport ETA Aircraft Type QR 8950 31MAR26 20OCT26 -2----- DOH 1515 HAN 2145 77X QR 8951 31MAR26 20OCT26 -2----- HAN 2345 DOH 0735+ 77X QR 8950 03APR26 23OCT26 ----5-- DOH 1810 HAN 0045+ 77X QR 8951 04APR26 24OCT26 -----6- HAN 0250 DOH 1010 77X QR 8952 29MAR26 18OCT26 ------7 DOH 0440 HAN 1110 77X QR 8953 29MAR26 18OCT26 ------7 HAN 1310 DOH 2100 77X QR 8954 30MAR26 19OCT26 1------ DOH 1705 HAN 2335 77X QR 8955 31MAR26 20OCT26 -2----- HAN 0135 DOH 0925 77X QR 8954 01APR26 21OCT26 --3---- DOH 1900 HAN 0135+ 77X QR 8955 02APR26 22OCT26 ---4--- HAN 0335 DOH 1055 77X QR 8954 03APR26 23OCT26 ----5-- DOH 1535 HAN 2210 77X QR 8955 04APR26 24OCT26 -----6- HAN 0010 DOH 0730 77X QR 8956 04APR26 24OCT26 -----6- DOH 1700 HAN 2335 77X QR 8957 05APR26 18OCT26 ------7 HAN 0135 DOH 0855 77X QR 8968 02APR26 22OCT26 ---4--- DOH 1235 SGN 1945 77X QR 8969 02APR26 22OCT26 ---4--- SGN 2145 DOH 0525+ 77X QR 8968 04APR26 24OCT26 -----6- DOH 1215 SGN 1925 77X QR 8969 04APR26 24OCT26 -----6- SGN 2125 DOH 0505+ 77X QR 8970 01APR26 21OCT26 --3---- DOH 1155 SGN 1905 77X QR 8971 01APR26 21OCT26 --3---- SGN 2105 DOH 0445+ 77X QR 8970 29MAR26 18OCT26 ------7 DOH 1240 SGN 1945 77X QR 8971 29MAR26 18OCT26 ------7 SGN 2145 DOH 0545+ 77X 
+3. Purpose of Flight: All-Cargo
+4. Aircraft:
+Aircraft Type Registration marks Nationality 77X As per FAOC of QR QATAR 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR DOH-SGN R468 SAPEN SGN-DOH R468 SAPEN DOH-HAN B214 W21 LADON HAN-DOH W21 B214 LADON Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C.c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 13/03/2026
+Permit No.: LD - 42/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 4022 2941 | Email: HYPERLINK "mailto:aeropoliticalsched@qatarairways.com.qa" aeropoliticalsched@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR 8950 | 31MAR26 | 20OCT26 | -2----- | DOH | 1515 | HAN | 2145 | 77X
+QR 8951 | 31MAR26 | 20OCT26 | -2----- | HAN | 2345 | DOH | 0735+ | 77X
+
+QR 8950 | 03APR26 | 23OCT26 | ----5-- | DOH | 1810 | HAN | 0045+ | 77X
+QR 8951 | 04APR26 | 24OCT26 | -----6- | HAN | 0250 | DOH | 1010 | 77X
+
+QR 8952 | 29MAR26 | 18OCT26 | ------7 | DOH | 0440 | HAN | 1110 | 77X
+QR 8953 | 29MAR26 | 18OCT26 | ------7 | HAN | 1310 | DOH | 2100 | 77X
+
+QR 8954 | 30MAR26 | 19OCT26 | 1------ | DOH | 1705 | HAN | 2335 | 77X
+QR 8955 | 31MAR26 | 20OCT26 | -2----- | HAN | 0135 | DOH | 0925 | 77X
+
+QR 8954 | 01APR26 | 21OCT26 | --3---- | DOH | 1900 | HAN | 0135+ | 77X
+QR 8955 | 02APR26 | 22OCT26 | ---4--- | HAN | 0335 | DOH | 1055 | 77X
+
+QR 8954 | 03APR26 | 23OCT26 | ----5-- | DOH | 1535 | HAN | 2210 | 77X
+QR 8955 | 04APR26 | 24OCT26 | -----6- | HAN | 0010 | DOH | 0730 | 77X
+
+QR 8956 | 04APR26 | 24OCT26 | -----6- | DOH | 1700 | HAN | 2335 | 77X
+QR 8957 | 05APR26 | 18OCT26 | ------7 | HAN | 0135 | DOH | 0855 | 77X
+
+QR 8968 | 02APR26 | 22OCT26 | ---4--- | DOH | 1235 | SGN | 1945 | 77X
+QR 8969 | 02APR26 | 22OCT26 | ---4--- | SGN | 2145 | DOH | 0525+ | 77X
+
+QR 8968 | 04APR26 | 24OCT26 | -----6- | DOH | 1215 | SGN | 1925 | 77X
+QR 8969 | 04APR26 | 24OCT26 | -----6- | SGN | 2125 | DOH | 0505+ | 77X
+
+QR 8970 | 01APR26 | 21OCT26 | --3---- | DOH | 1155 | SGN | 1905 | 77X
+QR 8971 | 01APR26 | 21OCT26 | --3---- | SGN | 2105 | DOH | 0445+ | 77X
+
+QR 8970 | 29MAR26 | 18OCT26 | ------7 | DOH | 1240 | SGN | 1945 | 77X
+QR 8971 | 29MAR26 | 18OCT26 | ------7 | SGN | 2145 | DOH | 0545+ | 77X
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All-Cargo
+4. Aircraft:
+Aircraft Type | Registration marks | Nationality
+77X | As per FAOC of QR | QATAR
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DOH-SGN | R468 | SAPEN | 
+SGN-DOH | R468 |  | SAPEN
+DOH-HAN | B214 W21 | LADON | 
+HAN-DOH | W21 B214 |  | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

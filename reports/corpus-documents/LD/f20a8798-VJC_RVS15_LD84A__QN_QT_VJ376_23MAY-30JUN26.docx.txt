@@ -1,0 +1,98 @@
+FILE: VJC_RVS15_LD84A_ QN & QT_VJ376_23MAY-30JUN26.docx
+
+PARAGRAPHS
+Hà Nội, ngày 22/5/2026
+LD-84/A/S/2026VN.RVS15
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC):
+2.1. Lịch bay gốc (Giờ UTC)
+2.2. Lịch bay mới (Giờ UTC)
+3. Ghi chú: Các chi tiết khác không thay đổi.
+PHẠM GIANG GỬI THAY PHẠM THẢO-PTP VTHK, CỤC HKVN
+C/c: BÙI MINH ĐĂNG-TP VTHK (để b/c)
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 22/5/2026
+LD-84/A/S/2026VN.RVS15
+1. Người vận chuyển:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC):
+2.1. Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay | Số Phép Bay
+1 - SGN - VCL - SGN | 
+VJ376 | 26May26 | 31May26 | -234567 | SGN | 11:25 | VCL | 12:45 | 320/321/32Q | LD-84/A/S/2026VN
+VJ377 | 26May26 | 31May26 | -234-67 | VCL | 13:15 | SGN | 14:35 | 320/321/32Q | LD-84/A/S/2026VN
+VJ377 | 26May26 | 31May26 | ----5-- | VCL | 13:15 | SGN | 14:35 | 320/321/32Q | LD-84/A/S/2026VN
+2 - HAN - DAD - HAN | 
+VJ1501 | 23May26 | 23May26 | -----6- | HAN | 5:30 | DAD | 6:50 | 320/321/32Q/333 | LD-84/A/S/2026VN
+3 - CXR - OVB - CXR | 
+VJ5060 | 01Jun26 | 30Jun26 | 1------ | CXR | 5:05 | OVB | 12:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5060 | 02Jun26 | 30Jun26 | -2----- | CXR | 5:05 | OVB | 12:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5060 | 05Jun26 | 30Jun26 | ----5-- | CXR | 5:05 | OVB | 12:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5061 | 01Jun26 | 01Jun26 | 1------ | OVB | 14:55 | CXR | 22:35 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5061 | 08Jun26 | 08Jun26 | 1------ | OVB | 14:55 | CXR | 22:35 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5061 | 15Jun26 | 15Jun26 | 1------ | OVB | 14:55 | CXR | 22:35 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5061 | 22Jun26 | 22Jun26 | 1------ | OVB | 14:55 | CXR | 22:35 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5061 | 29Jun26 | 29Jun26 | 1------ | OVB | 14:55 | CXR | 22:35 | 320/321/32Q/333 | LD-84/A/S/2026VN
+4 - CXR - KJA - CXR | 
+VJ5062 | 04Jun26 | 04Jun26 | ---4--- | CXR | 6:35 | KJA | 13:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5062 | 07Jun26 | 07Jun26 | ------7 | CXR | 6:35 | KJA | 13:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5062 | 11Jun26 | 11Jun26 | ---4--- | CXR | 6:35 | KJA | 13:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5062 | 14Jun26 | 14Jun26 | ------7 | CXR | 6:35 | KJA | 13:55 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5063 | 04Jun26 | 04Jun26 | ---4--- | KJA | 15:45 | CXR | 22:50 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5063 | 07Jun26 | 07Jun26 | ------7 | KJA | 15:45 | CXR | 22:50 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5063 | 11Jun26 | 11Jun26 | ---4--- | KJA | 15:45 | CXR | 22:50 | 320/321/32Q/333 | LD-84/A/S/2026VN
+VJ5063 | 14Jun26 | 14Jun26 | ------7 | KJA | 15:45 | CXR | 22:50 | 320/321/32Q/333 | LD-84/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+1 - SGN - VCL - SGN
+VJ376 | 26May26 | 26May26 | -2----- | SGN | 8:40 | VCL | 10:00 | 320/321/32Q
+VJ376 | 27May26 | 27May26 | --3---- | SGN | 8:40 | VCL | 10:00 | 320/321/32Q
+VJ376 | 28May26 | 28May26 | ---4--- | SGN | 8:40 | VCL | 10:00 | 320/321/32Q
+VJ376 | 29May26 | 29May26 | ----5-- | SGN | 7:55 | VCL | 10:00 | 320/321/32Q
+VJ376 | 30May26 | 30May26 | -----6- | SGN | 8:40 | VCL | 10:00 | 320/321/32Q
+VJ376 | 31May26 | 31May26 | ------7 | SGN | 8:40 | VCL | 10:00 | 320/321/32Q
+VJ377 | 26May26 | 26May26 | -2----- | VCL | 10:30 | SGN | 11:50 | 320/321/32Q
+VJ377 | 27May26 | 27May26 | --3---- | VCL | 10:30 | SGN | 11:50 | 320/321/32Q
+VJ377 | 28May26 | 28May26 | ---4--- | VCL | 10:30 | SGN | 11:50 | 320/321/32Q
+VJ377 | 29May26 | 29May26 | ----5-- | VCL | 10:30 | SGN | 11:50 | 320/321/32Q
+VJ377 | 30May26 | 30May26 | -----6- | VCL | 10:30 | SGN | 11:50 | 320/321/32Q
+VJ377 | 31May26 | 31May26 | ------7 | VCL | 10:30 | SGN | 11:50 | 320/321/32Q
+2 - HAN - DAD - HAN
+VJ1501 | 23May26 | 23May26 | -----6- | HAN | 3:50 | DAD | 5:10 | 320/321/32Q
+3 - CXR - OVB - CXR
+VJ5060 | 01Jun26 | 01Jun26 | 1------ | CXR | 12:10 | OVB | 20:00 | 320/321/32Q/333
+VJ5060 | 02Jun26 | 02Jun26 | -2----- | CXR | 14:10 | OVB | 22:00 | 320/321/32Q/333
+VJ5060 | 05Jun26 | 05Jun26 | ----5-- | CXR | 11:05 | OVB | 18:55 | 320/321/32Q/333
+VJ5060 | 08Jun26 | 08Jun26 | 1------ | CXR | 12:10 | OVB | 20:00 | 320/321/32Q/333
+VJ5060 | 09Jun26 | 09Jun26 | -2----- | CXR | 14:10 | OVB | 22:00 | 320/321/32Q/333
+VJ5060 | 12Jun26 | 12Jun26 | ----5-- | CXR | 11:05 | OVB | 18:55 | 320/321/32Q/333
+VJ5060 | 15Jun26 | 15Jun26 | 1------ | CXR | 12:10 | OVB | 20:00 | 320/321/32Q/333
+VJ5060 | 16Jun26 | 16Jun26 | -2----- | CXR | 14:10 | OVB | 22:00 | 320/321/32Q/333
+VJ5060 | 19Jun26 | 19Jun26 | ----5-- | CXR | 11:05 | OVB | 18:55 | 320/321/32Q/333
+VJ5060 | 22Jun26 | 22Jun26 | 1------ | CXR | 12:10 | OVB | 20:00 | 320/321/32Q/333
+VJ5060 | 23Jun26 | 23Jun26 | -2----- | CXR | 14:10 | OVB | 22:00 | 320/321/32Q/333
+VJ5060 | 26Jun26 | 26Jun26 | ----5-- | CXR | 11:05 | OVB | 18:55 | 320/321/32Q/333
+VJ5060 | 29Jun26 | 29Jun26 | 1------ | CXR | 12:10 | OVB | 20:00 | 320/321/32Q/333
+VJ5060 | 30Jun26 | 30Jun26 | -2----- | CXR | 14:10 | OVB | 22:00 | 320/321/32Q/333
+VJ5061 | 01Jun26 | 01Jun26 | 1------ | OVB | 22:00 | CXR | 5:40 | 320/321/32Q/333
+VJ5061 | 08Jun26 | 08Jun26 | 1------ | OVB | 22:00 | CXR | 5:40 | 320/321/32Q/333
+VJ5061 | 15Jun26 | 15Jun26 | 1------ | OVB | 22:00 | CXR | 5:40 | 320/321/32Q/333
+VJ5061 | 22Jun26 | 22Jun26 | 1------ | OVB | 22:00 | CXR | 5:40 | 320/321/32Q/333
+VJ5061 | 29Jun26 | 29Jun26 | 1------ | OVB | 22:00 | CXR | 5:40 | 320/321/32Q/333
+4 - CXR - KJA - CXR
+VJ5062 | 04Jun26 | 04Jun26 | ---4--- | CXR | 4:10 | KJA | 11:30 | 320/321/32Q/333
+VJ5062 | 07Jun26 | 07Jun26 | ------7 | CXR | 4:20 | KJA | 11:40 | 320/321/32Q/333
+VJ5062 | 11Jun26 | 11Jun26 | ---4--- | CXR | 4:10 | KJA | 11:30 | 320/321/32Q/333
+VJ5062 | 14Jun26 | 14Jun26 | ------7 | CXR | 4:20 | KJA | 11:40 | 320/321/32Q/333
+VJ5063 | 04Jun26 | 04Jun26 | ---4--- | KJA | 13:20 | CXR | 20:25 | 320/321/32Q/333
+VJ5063 | 07Jun26 | 07Jun26 | ------7 | KJA | 13:30 | CXR | 20:35 | 320/321/32Q/333
+VJ5063 | 11Jun26 | 11Jun26 | ---4--- | KJA | 13:20 | CXR | 20:25 | 320/321/32Q/333
+VJ5063 | 14Jun26 | 14Jun26 | ------7 | KJA | 13:30 | CXR | 20:35 | 320/321/32Q/333

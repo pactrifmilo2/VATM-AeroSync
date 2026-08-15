@@ -1,0 +1,36 @@
+FILE: R77A1 LD 77A RV1.docx
+
+PARAGRAPHS
+Hanoi, 05/6/2026
+Refer to the issued permit: LD - 77/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedules
+2.1 Old schedules
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 05/6/2026
+Refer to the issued permit: LD - 77/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: ALL NIPPON AIRWAYS
+IATA code: NH | ICAO code: ANA
+Postal Address: 9 Floor, BIDV Tower, 194 Tran Quang Khai, Hoan Kiem Ward, Hanoi, Vietnam (Hanoi Branch)
+Tel: (84-24)-39262806 | Email: hansg@ana.co.jp, hanopslc@ana.co.jp
+Postal Address: 16 Floor, Sun Wah Tower, 115 Nguyen Hue, Sai Gon Ward, Ho Chi Minh City, Vietnam (Ho Chi Minh Branch)
+Tel: (84-28)-38219617 | Email: sgnsg@ana.co.jp, sgnoo@ana.co.jp
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1 Old schedules
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+NH898 | 04JUN26 | 04JUN26 | ---4--- | HAN | 16:35 | NRT | 21:45 | 788789 781 | LD - 77/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NH898D | 06JUN26 | 06JUN26 | -----6- | HAN | 02:00 | NRT | 07:10 | 788789781
+ |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  | 

@@ -1,0 +1,59 @@
+FILE: R25A1 25A REV1.docx
+
+PARAGRAPHS
+Hanoi, 22/06/2026 Permit No.: LD - 25/A/S/2026VN/REV1
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Aircraft
+3.1. Old:
+3.2. New:
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 22/06/2026 Permit No.: LD - 25/A/S/2026VN/REV1
+1. Carrier
+Name: TURKISH AIRLINES CARGO
+IATA code: TK | ICAO code: THY
+Postal Address: AB Tower, Rm04, Floor 08, 76A Lelai str, 01 Dist. HCMC, Vietnam
+Tel: +84-2839360360 | Email : SGNOPS@THY.COM
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+TK162 | 22JUN26 | 24OCT26 | 1234567 | IST | 2250 | SGN | 0910+1 | 77W789359333 | LD - 25/A/S/2026VN
+TK163 | 22JUN26 | 24OCT26 | 1234567 | SGN | 1505 | IST | 0150+1 |  | 
+ |  | 
+TK164 | 22JUN26 | 24OCT26 | 1234567 | IST | 2310 | HAN | 0840+1 |  | 
+TK165 | 22JUN26 | 24OCT26 | 1234567 | HAN | 1555 | IST | 0215+1 |  | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TK162 | 22JUN26 | 24OCT26 | 1234567 | IST | 2250 | SGN | 0910+1 | 77W789359333332
+TK163 | 22JUN26 | 24OCT26 | 1234567 | SGN | 1505 | IST | 0150+1 | 
+ | 
+TK164 | 22JUN26 | 24OCT26 | 1234567 | IST | 2310 | HAN | 0840+1 | 
+TK165 | 22JUN26 | 24OCT26 | 1234567 | HAN | 1555 | IST | 0215+1 | 
+
+TABLE 4
+CONTEXT: 3. Aircraft
+3.1. Old:
+Aircraft Type | Registration marks | Nationality
+77W | As per FAOC of TK | TURKEY
+789 |  | TURKEY
+359 |  | TURKEY
+333 |  | TURKEY
+
+TABLE 5
+CONTEXT: 3.2. New:
+Aircraft Type | Registration marks | Nationality
+77W | As per FAOC of TK | TURKEY
+789 |  | TURKEY
+359 |  | TURKEY
+333 |  | TURKEY
+332 |  | TURKEY

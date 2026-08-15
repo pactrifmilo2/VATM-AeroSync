@@ -1,0 +1,66 @@
+FILE: LD_45_B_S_2026VN_HU.doc
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+№: LD - 45/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Hainan Airlines Holding Co., Ltd. IATA code: HU ICAO code: CHH Postal Address: Comprehensive Office Building No.21, Hainan Airlines Haikou Meilan Base, No.9, Meilan Airport Road, Meilan District, Haikou City, Hainan Province, China Tel: 8610+13070172198 Email: qn-zhang@hnair.com 
+2. Schedules: All times in UTC
+Flight number
+ Effective from
+ Effective to
+ Days of services
+ Departure Airport ETD Arrival Airport
+ ETA Aircraft Type
+ HU767 30MAR26 14AUG26 1-3-5-- HAK 10:50 SGN 12:50 738/7M8 HU768 30MAR26 14AUG26 1-3-5-- SGN 13:50 HAK 16:10 HU767 17AUG26 19OCT26 1------ HAK 12:00 SGN 14:15 HU768 17AUG26 19OCT26 1------ SGN 15:15 HAK 17:35 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 738 
+As per FAOC of Hainan Airlines Holding Co., Ltd China
+ 7M8 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HAK-SGN A1-Q1 BUNTA / SGN-HAK W12-G221 / BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Notes:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+№: LD - 45/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Hainan Airlines Holding Co., Ltd.
+IATA code: HU | ICAO code: CHH
+Postal Address: Comprehensive Office Building No.21, Hainan Airlines Haikou Meilan Base, No.9, Meilan Airport Road, Meilan District, Haikou City, Hainan Province, China
+Tel: 8610+13070172198 | Email: qn-zhang@hnair.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HU767 | 30MAR26 | 14AUG26 | 1-3-5-- | HAK | 10:50 | SGN | 12:50 | 738/7M8
+HU768 | 30MAR26 | 14AUG26 | 1-3-5-- | SGN | 13:50 | HAK | 16:10 | 
+HU767 | 17AUG26 | 19OCT26 | 1------ | HAK | 12:00 | SGN | 14:15 | 
+HU768 | 17AUG26 | 19OCT26 | 1------ | SGN | 15:15 | HAK | 17:35 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | As per FAOC of Hainan Airlines Holding Co., Ltd | China
+7M8 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HAK-SGN | A1-Q1 | BUNTA | /
+SGN-HAK | W12-G221 | / | BUNTA

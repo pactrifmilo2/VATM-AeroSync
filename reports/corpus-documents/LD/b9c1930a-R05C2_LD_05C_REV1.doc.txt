@@ -1,0 +1,45 @@
+FILE: R05C2 LD 05C REV1.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 22/04/2026
+Permit No.: LD-05/C/S/2026VN /REV1
+ 
+1. Carrier/Operator
+Name: STARLUX AIRLINES IATA code: JX ICAO code: SJX Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055, Taiwan (R.O.C) Tel: +886-2-2791-1000 ext. 6314 Email: ashleyliu@starlux-airlines.com 
+2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit JX705 30-Mar-26 23-Oct-26 1-3-5-- TPE 0515 PQC 0905 32Q/339/359 LD-05/C/S/2026VN JX706 30-Mar-26 23-Oct-26 1-3-5-- PQC 1005 TPE 1400 32Q/339/359 LD-05/C/S/2026VN JX333 30-Mar-26 23-Oct-26 1----5-- RMQ 2305 PQC 0240+1 32Q/339/359 LD-05/C/S/2026VN JX334 31-Mar-26 24-Oct-26 -2---6- PQC 0340 RMQ 0725 32Q/339/359 LD-05/C/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type JX705 1-May-26 31-May-26 1-3-5-- TPE 0600 PQC 0950 32Q/339/359 JX706 1-May-26 31-May-26 1-3-5-- PQC 1050 TPE 1445 32Q/339/359 JX705 1-Jun-26 30-Jun-26 1-3-5-- TPE 0605 PQC 0955 32Q/339/359 JX706 1-Jun-26 30-Jun-26 1-3-5-- PQC 1135 TPE 1525 32Q/339/359 
+other details unchanged
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 22/04/2026
+Permit No.: LD-05/C/S/2026VN /REV1
+ 
+1. Carrier/Operator
+Name: STARLUX AIRLINES
+IATA code: JX | ICAO code: SJX
+Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055, Taiwan (R.O.C)
+Tel: +886-2-2791-1000 ext. 6314 | Email: ashleyliu@starlux-airlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+JX705 | 30-Mar-26 | 23-Oct-26 | 1-3-5-- | TPE | 0515 | PQC | 0905 | 32Q/339/359 | LD-05/C/S/2026VN
+JX706 | 30-Mar-26 | 23-Oct-26 | 1-3-5-- | PQC | 1005 | TPE | 1400 | 32Q/339/359 | LD-05/C/S/2026VN
+JX333 | 30-Mar-26 | 23-Oct-26 | 1----5-- | RMQ | 2305 | PQC | 0240+1 | 32Q/339/359 | LD-05/C/S/2026VN
+JX334 | 31-Mar-26 | 24-Oct-26 | -2---6- | PQC | 0340 | RMQ | 0725 | 32Q/339/359 | LD-05/C/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JX705 | 1-May-26 | 31-May-26 | 1-3-5-- | TPE | 0600 | PQC | 0950 | 32Q/339/359
+JX706 | 1-May-26 | 31-May-26 | 1-3-5-- | PQC | 1050 | TPE | 1445 | 32Q/339/359
+JX705 | 1-Jun-26 | 30-Jun-26 | 1-3-5-- | TPE | 0605 | PQC | 0955 | 32Q/339/359
+JX706 | 1-Jun-26 | 30-Jun-26 | 1-3-5-- | PQC | 1135 | TPE | 1525 | 32Q/339/359

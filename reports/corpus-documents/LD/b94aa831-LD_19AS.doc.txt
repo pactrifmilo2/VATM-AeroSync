@@ -1,0 +1,95 @@
+FILE: LD 19AS.doc
+
+PARAGRAPHS
+Ha Noi, 06th March 2026
+№: LD - 19/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier:
+Name: Ruili Airlines Co., Ltd. IATA code: DR ICAO code: RLH Postal Address: Ruili Airlines Co., Ltd. Base, East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China. Tel: +8618725009534 Email: HYPERLINK "mailto:mail_dr_routeteam@rlair.net" mail_dr_routeteam@rlair.net / HYPERLINK "mailto:saqib@rlair.net" saqib@rlair.net 
+2. Schedules: All times in UTC
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type DR5051 31Mar26 28Apr26 -2----- JHG 0005 LJG 0110 737 DR5051 31Mar26 28Apr26 -2----- LJG 0240 SGN 0605 737 DR5052 31Mar26 28Apr26 -2----- SGN 0705 LJG 1035 737 DR5052 31Mar26 28Apr26 -2----- LJG 1205 JHG 1310 737 DR5051 05May26 02Jun26 -2----- JHG 0005 LJG 0110 737 DR5051 05May26 02Jun26 -2----- LJG 0240 SGN 0555 737 DR5052 05May26 02Jun26 -2----- SGN 0705 LJG 1035 737 DR5052 05May26 02Jun26 -2----- LJG 1205 JHG 1310 737 DR5051 09Jun26 25Aug26 -2----- JHG 0005 LJG 0110 737 DR5051 09Jun26 25Aug26 -2----- LJG 0240 SGN 0550 737 DR5052 09Jun26 25Aug26 -2----- SGN 0705 LJG 1035 737 DR5052 09Jun26 25Aug26 -2----- LJG 1205 JHG 1310 737 DR5051 01Sep26 20Oct26 -2----- JHG 0005 LJG 0110 737 DR5051 01Sep26 20Oct26 -2----- LJG 0240 SGN 0555 737 DR5052 01Sep26 20Oct26 -2----- SGN 0705 LJG 1035 737 DR5052 01Sep26 20Oct26 -2----- LJG 1205 JHG 1310 737 DR5051 02Apr26 18Jun26 ---4--- JHG 0005 LJG 0110 737 DR5051 02Apr26 18Jun26 ---4--- LJG 0240 SGN 0605 737 DR5052 02Apr26 18Jun26 ---4--- SGN 0705 LJG 1035 737 DR5052 02Apr26 18Jun26 ---4--- LJG 1205 JHG 1310 737 DR5051 25Jun26 02Jul26 ---4--- JHG 0005 LJG 0110 737 DR5051 25Jun26 02Jul26 ---4--- LJG 0240 SGN 0555 737 DR5052 25Jun26 02Jul26 ---4--- SGN 0705 LJG 1035 737 DR5052 25Jun26 02Jul26 ---4--- LJG 1205 JHG 1310 737 DR5051 09Jul26 22Oct26 ---4--- JHG 0005 LJG 0110 737 DR5051 09Jul26 22Oct26 ---4--- LJG 0240 SGN 0605 737 DR5052 09Jul26 22Oct26 ---4--- SGN 0705 LJG 1035 737 DR5052 09Jul26 22Oct26 ---4--- LJG 1205 JHG 1310 737 DR5051 04Apr26 24Oct26 -----6- JHG 0005 LJG 0110 737 DR5051 04Apr26 24Oct26 -----6- LJG 0240 SGN 0610 737 DR5052 04Apr26 24Oct26 -----6- SGN 0715 LJG 1035 737 DR5052 04Apr26 24Oct26 -----6- LJG 1205 JHG 1310 737 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality 737 As per FAOC of DR China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR LJG-SGN R471 R474 Q1 KATBO LJG-SGN A206 W2 Q1 NALAO LJG-SGN R471 R474 Q1 N639 R468 KATBO SGN-LJG Q2 N639 Q3 R471 KATBO SGN-LJG Q2 W2 A206 NALAO SGN-LJG R468 N639 Q3 R471 KATBO Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 06th March 2026
+№: LD - 19/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier:
+Name: Ruili Airlines Co., Ltd.
+IATA code: DR | ICAO code: RLH
+Postal Address: Ruili Airlines Co., Ltd. Base, East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China.
+Tel: +8618725009534 | Email: HYPERLINK "mailto:mail_dr_routeteam@rlair.net" mail_dr_routeteam@rlair.net / HYPERLINK "mailto:saqib@rlair.net" saqib@rlair.net
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+DR5051 | 31Mar26 | 28Apr26 | -2----- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 31Mar26 | 28Apr26 | -2----- | LJG | 0240 | SGN | 0605 | 737
+DR5052 | 31Mar26 | 28Apr26 | -2----- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 31Mar26 | 28Apr26 | -2----- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 05May26 | 02Jun26 | -2----- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 05May26 | 02Jun26 | -2----- | LJG | 0240 | SGN | 0555 | 737
+DR5052 | 05May26 | 02Jun26 | -2----- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 05May26 | 02Jun26 | -2----- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 09Jun26 | 25Aug26 | -2----- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 09Jun26 | 25Aug26 | -2----- | LJG | 0240 | SGN | 0550 | 737
+DR5052 | 09Jun26 | 25Aug26 | -2----- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 09Jun26 | 25Aug26 | -2----- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 01Sep26 | 20Oct26 | -2----- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 01Sep26 | 20Oct26 | -2----- | LJG | 0240 | SGN | 0555 | 737
+DR5052 | 01Sep26 | 20Oct26 | -2----- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 01Sep26 | 20Oct26 | -2----- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 02Apr26 | 18Jun26 | ---4--- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 02Apr26 | 18Jun26 | ---4--- | LJG | 0240 | SGN | 0605 | 737
+DR5052 | 02Apr26 | 18Jun26 | ---4--- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 02Apr26 | 18Jun26 | ---4--- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 25Jun26 | 02Jul26 | ---4--- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 25Jun26 | 02Jul26 | ---4--- | LJG | 0240 | SGN | 0555 | 737
+DR5052 | 25Jun26 | 02Jul26 | ---4--- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 25Jun26 | 02Jul26 | ---4--- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 09Jul26 | 22Oct26 | ---4--- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 09Jul26 | 22Oct26 | ---4--- | LJG | 0240 | SGN | 0605 | 737
+DR5052 | 09Jul26 | 22Oct26 | ---4--- | SGN | 0705 | LJG | 1035 | 737
+DR5052 | 09Jul26 | 22Oct26 | ---4--- | LJG | 1205 | JHG | 1310 | 737
+ |  |  |  |  |  |  |  | 
+DR5051 | 04Apr26 | 24Oct26 | -----6- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 04Apr26 | 24Oct26 | -----6- | LJG | 0240 | SGN | 0610 | 737
+DR5052 | 04Apr26 | 24Oct26 | -----6- | SGN | 0715 | LJG | 1035 | 737
+DR5052 | 04Apr26 | 24Oct26 | -----6- | LJG | 1205 | JHG | 1310 | 737
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+737 | As per FAOC of DR | China
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+LJG-SGN | R471 R474 Q1 | KATBO | 
+LJG-SGN | A206 W2 Q1 | NALAO | 
+LJG-SGN | R471 R474 Q1 N639 R468 | KATBO | 
+SGN-LJG | Q2 N639 Q3 R471 |  | KATBO
+SGN-LJG | Q2 W2 A206 |  | NALAO
+SGN-LJG | R468 N639 Q3 R471 |  | KATBO

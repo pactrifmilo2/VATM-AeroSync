@@ -12,7 +12,7 @@ public sealed partial class EmailResendViewModel : ObservableObject
     private readonly AeroSyncApiClient apiClient;
     private string senderFilter = "";
     private string selectedOverallStatus = "Tất cả";
-    private string selectedAttachmentStatus = "Tất cả";
+    private string selectedAttachmentFileType = "Tất cả";
     private DateTimeOffset? fromDate;
     private DateTimeOffset? toDate;
     private bool isLoading;
@@ -29,8 +29,8 @@ public sealed partial class EmailResendViewModel : ObservableObject
     public ObservableCollection<EmailGroupRow> Emails { get; } = [];
     public IReadOnlyList<string> OverallStatuses { get; } =
         ["Tất cả", "FAILED", "QUARANTINED", "PROCESSING", "SUCCESS", "SKIPPED"];
-    public IReadOnlyList<string> AttachmentStatuses { get; } =
-        ["Tất cả", "FAILED", "QUARANTINED", "SAVED", "SKIPPED", "PROCESSING", "NO_ATTACHMENT", "BLOCKED"];
+    public IReadOnlyList<string> AttachmentFileTypes { get; } =
+        ["Tất cả", "Word", "Excel", "PDF", "Hình ảnh", "Khác", "Không có file"];
 
     public EmailResendViewModel(AeroSyncApiClient apiClient)
     {
@@ -49,10 +49,10 @@ public sealed partial class EmailResendViewModel : ObservableObject
         set => SetProperty(ref selectedOverallStatus, value);
     }
 
-    public string SelectedAttachmentStatus
+    public string SelectedAttachmentFileType
     {
-        get => selectedAttachmentStatus;
-        set => SetProperty(ref selectedAttachmentStatus, value);
+        get => selectedAttachmentFileType;
+        set => SetProperty(ref selectedAttachmentFileType, value);
     }
 
     public DateTimeOffset? FromDate
@@ -166,7 +166,7 @@ public sealed partial class EmailResendViewModel : ObservableObject
         {
             IsLoading = true;
             StatusMessage = "Đang tải và nhóm email theo Message-ID...";
-            var rows = await apiClient.GetEmailReportsAsync(SenderFilter);
+            var rows = await apiClient.GetEmailReportsAsync(SenderFilter, FromDate, ToDate);
             var groups = await Task.Run(() => rows
                 .Where(row => !string.IsNullOrWhiteSpace(row.MessageId))
                 .GroupBy(row => row.MessageId, StringComparer.OrdinalIgnoreCase)
@@ -198,7 +198,7 @@ public sealed partial class EmailResendViewModel : ObservableObject
     {
         SenderFilter = "";
         SelectedOverallStatus = "Tất cả";
-        SelectedAttachmentStatus = "Tất cả";
+        SelectedAttachmentFileType = "Tất cả";
         FromDate = null;
         ToDate = null;
         await SearchAsync();
@@ -260,8 +260,8 @@ public sealed partial class EmailResendViewModel : ObservableObject
         {
             return false;
         }
-        return SelectedAttachmentStatus == "Tất cả"
-               || group.HasDisplayStatus(SelectedAttachmentStatus);
+        return SelectedAttachmentFileType == "Tất cả"
+               || group.HasFileType(SelectedAttachmentFileType);
     }
 
     private void ReplaceEmails(IReadOnlyList<EmailGroupRow> groups)
@@ -325,6 +325,7 @@ public sealed class EmailGroupRow : ObservableObject
         SkippedCount = Count("SKIPPED");
         NoAttachmentCount = Count("NO_ATTACHMENT");
         ProcessingCount = Count("PROCESSING") + Count("DOWNLOADED") + Count("DISCOVERED");
+        RequiresFormatCount = attachments.Count(row => row.RequiresFormat);
         OverallStatus = FailedCount > 0 ? "FAILED"
             : QuarantinedCount > 0 ? "QUARANTINED"
             : ProcessingCount > 0 ? "PROCESSING"
@@ -348,6 +349,10 @@ public sealed class EmailGroupRow : ObservableObject
     public int SkippedCount { get; }
     public int NoAttachmentCount { get; }
     public int ProcessingCount { get; }
+    public int RequiresFormatCount { get; }
+    public string FormatStatus => RequiresFormatCount > 0
+        ? $"CẦN THÊM FORMAT YAML ({RequiresFormatCount})"
+        : "";
     public string OverallStatus { get; }
     public string StatusBreakdown =>
         $"SAVED {SavedCount}  ·  FAILED {FailedCount}  ·  QUARANTINED {QuarantinedCount}  ·  SKIPPED {SkippedCount}  ·  PROCESSING {ProcessingCount}";
@@ -381,11 +386,28 @@ public sealed class EmailGroupRow : ObservableObject
     public bool HasAnyStatus(IEnumerable<string> statuses) =>
         statuses.Any(status => CountStatus(status) > 0);
 
-    public bool HasDisplayStatus(string status) => status switch
+    public bool HasFileType(string fileType) => Attachments.Any(row =>
+        string.Equals(ClassifyFileType(row), fileType, StringComparison.OrdinalIgnoreCase));
+
+    private static string ClassifyFileType(EmailReportRowResponse attachment)
     {
-        "PROCESSING" => ProcessingCount > 0,
-        _ => CountStatus(status) > 0
-    };
+        var fileName = string.IsNullOrWhiteSpace(attachment.AttachmentName)
+            ? attachment.StoredFileName
+            : attachment.AttachmentName;
+        if (string.IsNullOrWhiteSpace(fileName))
+        {
+            return "Không có file";
+        }
+
+        return Path.GetExtension(fileName).ToLowerInvariant() switch
+        {
+            ".doc" or ".docx" or ".docm" or ".dot" or ".dotx" => "Word",
+            ".xls" or ".xlsx" or ".xlsm" or ".xlsb" or ".csv" => "Excel",
+            ".pdf" => "PDF",
+            ".jpg" or ".jpeg" or ".png" or ".gif" or ".bmp" or ".tif" or ".tiff" or ".webp" or ".heic" => "Hình ảnh",
+            _ => "Khác"
+        };
+    }
 
     private int Count(string status) => Attachments.Count(row =>
         string.Equals(row.ProcessingStatus, status, StringComparison.OrdinalIgnoreCase));

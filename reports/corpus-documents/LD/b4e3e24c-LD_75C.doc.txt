@@ -1,0 +1,59 @@
+FILE: LD 75C.doc
+
+PARAGRAPHS
+Ha Noi, 24th June 2026
+№: LD - 75/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Sichuan Airlines Co., Ltd. IATA code: 3U ICAO code: CSC Postal Address: Sichuan Airlines Co., Ltd., Shuangliu International Airport, Chengdu 610202, P.R.China Tel: 86-28-65397418 Email: wanglinc@sichuanair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type 3U9347 26Jun26 23Oct26 ----5-- NNG 0255 SGN 0515 321
+ 3U9348 26Jun26 23Oct26 ----5-- SGN 0645 NNG 0855 
+3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 321 As per FAOC of 3U 
+China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR NNG-SGN R474 Q3 Q1 TEBAK SGN-NNG Q2 N639 Q3 R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 24th June 2026
+№: LD - 75/C/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Sichuan Airlines Co., Ltd.
+IATA code: 3U | ICAO code: CSC
+Postal Address: Sichuan Airlines Co., Ltd., Shuangliu International Airport, Chengdu 610202, P.R.China
+Tel: 86-28-65397418 | Email: wanglinc@sichuanair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+3U9347 | 26Jun26 | 23Oct26 | ----5-- | NNG | 0255 | SGN | 0515 | 321
+3U9348 | 26Jun26 | 23Oct26 | ----5-- | SGN | 0645 | NNG | 0855 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: All-cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+321 | As per FAOC of 3U | China
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+NNG-SGN | R474 Q3 Q1 | TEBAK | 
+SGN-NNG | Q2 N639 Q3 R474 |  | TEBAK

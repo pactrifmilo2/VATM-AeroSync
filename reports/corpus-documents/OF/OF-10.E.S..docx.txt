@@ -1,0 +1,61 @@
+FILE: OF-10.E.S..docx
+
+PARAGRAPHS
+HA NOI, 13 APR 2026
+NUMBER O/F-10/E/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 13 APR 2026
+NUMBER O/F-10/E/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Air Macau Co Ltd
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 ALAMEDA DR.CARLOS D’ASSUMPCAO, EDIF CNAC. 13-18 ANDAR, MACAU
+Tel: +(853) 88983132 | Email: fin cost@airmacau.com.mo
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Air Macau Co Ltd
+Postal Address: 398 ALAMEDA DR.CARLOS D’ASSUMPCAO, EDIF CNAC. 13-18 ANDAR, MACAU
+Tel: +(853) 88983132 | Tel: +(853) 88983132
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AMU9402 | 01JUL26 | 29AUG26 | 1-3-56- | VMMC | 2100 | VTBS | 0005+1
+AMU9401 | 02JUL26 | 30AUG26 | -2-4-67 | VTBS | 0055 | VMMC | 0325
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | B-MBC, B-MCB, B-MCH, B-MCI, B-MCJ | Macau
+A320 | B-MCF | Macau
+A321 | B-MCC, B-MCD, B-MCE, B-MCG, B-MBM, B-MCA | Macau
+A321 | B-MBA, B-MBB | Macau
+A320NEO | B-MBO, B-MCK, B-MCL, B-MBP | Macau
+A321NEO | B-MBQ, B-MBR, B-MBS, B-MBT, B-MBU | Macau
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VMMC-VTBS | A202 | ASSAD | VILAO
+VTBS-VMMC | A202 | VILAO | ASSAD
+VMMC-VTBS | A1 | BUNTA | PAPRA
+VTBS-VMMC | A1 | PAPRA | BUNTA
+VMMC-VTBS | R474 | TEBAK | LAVOS
+VTBS-VMMC | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

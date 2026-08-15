@@ -93,6 +93,7 @@ public class EmailIngestService {
                 if (ingested >= limit) {
                     break;
                 }
+                preserveAllAttachments(message);
                 if (isBlockedByBlacklist(message.sender())) {
                     persistTerminalMessage(message, EmailProcessingStatus.BLOCKED);
                     emailAcknowledgementService.markIngestComplete(message.reference());
@@ -146,12 +147,6 @@ public class EmailIngestService {
             Path storedFile = messageStagingDir.resolve(
                     "%03d_%s".formatted(attachmentIndex, sanitizeFileName(attachment.fileName())));
             Files.write(storedFile, attachment.content());
-            // Keep a durable copy of every supported email attachment.  The worker
-            // moves the staging copy to processed/error/quarantine; duplicate
-            // attachments used to be deleted here and therefore appeared to be
-            // missing even though the email had been downloaded successfully.
-            preserveEmailDownload(message, attachment, attachmentIndex);
-
             Optional<EmailMetadata> existingAttachment = emailMetadataRepository
                     .findByMailboxFolderAndUidValidityAndMessageUidAndAttachmentIndex(
                             message.mailboxFolder(),
@@ -251,6 +246,17 @@ public class EmailIngestService {
         Path target = archiveDir.resolve(name);
         if (!Files.exists(target)) {
             Files.write(target, attachment.content());
+        }
+    }
+
+    private void preserveAllAttachments(EmailMessage message) {
+        for (int attachmentIndex = 0; attachmentIndex < message.attachments().size(); attachmentIndex++) {
+            try {
+                preserveEmailDownload(message, message.attachments().get(attachmentIndex), attachmentIndex);
+            } catch (IOException exception) {
+                throw new IllegalStateException(
+                        "Không thể lưu bản gốc file đính kèm email vào thư mục incoming", exception);
+            }
         }
     }
 

@@ -1,0 +1,55 @@
+FILE: OF 47ES CORR.docx
+
+PARAGRAPHS
+Hanoi, 22 June 2026
+Permit number: OF-47/E/S/2026VN
+IATA Schedule Season: Season: SUMMER (NS26)
+1. Carrier
+2. Billing address
+3. Schedules: All times in UTC
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260616-170291)
+
+TABLE 1
+CONTEXT: Hanoi, 22 June 2026
+Permit number: OF-47/E/S/2026VN
+IATA Schedule Season: Season: SUMMER (NS26)
+1. Carrier
+Name: SINGAPORE AIRLINES LIMITED
+IATA code: SQ | ICAO code: SIA
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: SINGAPORE AIRLINES LIMITED
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email: ans_charges@singaporeair.com.sg
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+SIA334 | 01-AUG-26 | 24-Oct-26 | 1234567 | WSSS | 03:10 | EHAM | 16:35
+SIA333 | 01-AUG-26 | 24-Oct-26 | 1234567 | EHAM | 18:35 | WSSS | 07:40
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) | RegLTFMration Mark (11) | KKSEAts for passenger flight(12) | Payload for All-cargo flight (Tons) (13) | MTOW (Ton) | Nationality(14)
+B77W | According to SQ’s AOC | 263 | 51.6 | 351.5 | SINGAPORE
+A359 | According to SQ’s AOC | 253161303 | 41.922.846.0 | 275.0280.0250.0 | SINGAPORE
+A388 | According to SQ’s AOC | 471 | 59.7 | 569.0 | SINGAPORE
+B78X | According to SQ’s AOC | 337 | 50.0 | 242.6 | SINGAPORE
+B38M/B738 | According to SQ’s AOC | 162154 | 18.117.4 | 79.082.1 | SINGAPORE
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WSSS-EHAM | M765, M753, R334 | IGARI | NUMDI
+EHAM-WSSS | R334, M753, M765 | NUMDI | IGARI

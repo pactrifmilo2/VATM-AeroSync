@@ -1,0 +1,62 @@
+FILE: OF 63 AS.doc
+
+PARAGRAPHS
+Ha Noi, 09th March 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 63/A/S/2026VN
+1. Carrier
+Name: JIANGXI AIR CO.,LTD. IATA code: RY ICAO code: CJX Postal Address:Changbei International Airport, Xinjian District, Nanchang, Jiangxi. P.R. China Tel:86-592-2533999 Email: ry_database@xiamenair.com 
+2. Billing address
+Name: JIANGXI AIR CO.,LTD. Postal Address: Building 5, South Area, Nanchang Base, Nanchang Changbei 
+Airport, Nanchang, Jiangxi. P.R. China Tel:86-791-82062368 Email: guobanghe@xiamenair.com 
+3. Schedules: UTC Time 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CJX6607 29MAR26 24OCT26 12567 ZSCN 0200 WMKK 0710 CJX6607 29MAR26 24OCT26 34 ZSCN 0200 WMKK 0720 CJX6608 29MAR26 24OCT26 1234567 WMKK 0820 ZSCN 1250 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B738 As per AOC of Jiangxi Air China 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZSCN-WMKK L642 EXOTO ESPOB ZSCN-WMKK G221,W12,Q1,L644,L642 BUNTA ESPOB WMKK-ZSCN M771 DUDIS DONDA WMKK-ZSCN M765,L637,Q2,W12,G221 IGARI BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 09th March 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 63/A/S/2026VN
+1. Carrier
+Name: JIANGXI AIR CO.,LTD.
+IATA code: RY | ICAO code: CJX
+Postal Address:Changbei International Airport, Xinjian District, Nanchang, Jiangxi. P.R. China
+Tel:86-592-2533999 | Email: ry_database@xiamenair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: JIANGXI AIR CO.,LTD.
+Postal Address: Building 5, South Area, Nanchang Base, Nanchang Changbei Airport, Nanchang, Jiangxi. P.R. China
+Tel:86-791-82062368 | Email: guobanghe@xiamenair.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CJX6607 | 29MAR26 | 24OCT26 | 12567 | ZSCN | 0200 | WMKK | 0710
+CJX6607 | 29MAR26 | 24OCT26 | 34 | ZSCN | 0200 | WMKK | 0720
+CJX6608 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 0820 | ZSCN | 1250
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B738 | As per AOC of Jiangxi Air | China
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSCN-WMKK | L642 | EXOTO | ESPOB
+ZSCN-WMKK | G221,W12,Q1,L644,L642 | BUNTA | ESPOB
+WMKK-ZSCN | M771 | DUDIS | DONDA
+WMKK-ZSCN | M765,L637,Q2,W12,G221 | IGARI | BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

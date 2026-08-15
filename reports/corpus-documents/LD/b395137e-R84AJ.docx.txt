@@ -1,0 +1,41 @@
+FILE: R84AJ.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: VJC
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay LD-84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Ghi chú:
+Các nội dung khác theo phép bay 84/A/S/2026VN không thay đổi.
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: VJC
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay LD-84/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ439 | 09Jun26 | 09Jun26 | 2 | HAN | 8:40 | UIH | 10:15 | 320/321/32Q
+VJ438 | 09Jun26 | 09Jun26 | 2 | UIH | 10:45 | HAN | 12:25 | 320/321/32Q
+VJ1431 | 09Jun26 | 09Jun26 | 2 | HAN | 9:45 | UIH | 11:20 | 320/321/32Q
+VJ1432 | 09Jun26 | 09Jun26 | 2 | UIH | 11:50 | HAN | 14:15 | 320/321/32Q
+VJ384 | 09Jun26 | 09Jun26 | 2 | SGN | 9:35 | UIH | 10:45 | 320/321/32Q
+VJ385 | 09Jun26 | 09Jun26 | 2 | UIH | 11:15 | SGN | 12:20 | 320/321/32Q
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ439 | 09Jun26 | 09Jun26 | 2 | HAN | 3:50 | UIH | 5:25 | 320/321/32Q
+VJ438 | 09Jun26 | 09Jun26 | 2 | UIH | 05:55 | HAN | 7:40 | 320/321/32Q
+VJ1431 | 09Jun26 | 09Jun26 | 2 | HAN | 06:45 | UIH | 08:25 | 320/321/32Q
+VJ1432 | 09Jun26 | 09Jun26 | 2 | UIH | 09:00 | HAN | 10:40 | 320/321/32Q
+VJ384 | 09Jun26 | 09Jun26 | 2 | SGN | 6:45 | UIH | 08:25 | 320/321/32Q
+VJ385 | 09Jun26 | 09Jun26 | 2 | UIH | 09:00 | SGN | 9:25 | 320/321/32Q

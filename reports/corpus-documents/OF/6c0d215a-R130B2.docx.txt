@@ -1,0 +1,32 @@
+FILE: R130B2.docx
+
+PARAGRAPHS
+Hanoi, 13/07/2026
+Refer to the issued permit: OF-130/B/S/2026VN.RV2
+1. Carrier/Operator
+2. Schedules
+2.1 Old schedules
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 13/07/2026
+Refer to the issued permit: OF-130/B/S/2026VN.RV2
+1. Carrier/Operator
+Name: ALL NIPPON AIRWAYS
+IATA code: NH | ICAO code: ANA
+Postal Address: SHIODOME-CITY CENTER, 1-5-2 HIGASHI-SHIMBASHI,MINATO-KU, TOKYO 105-7140, JAPAN
+Tel: Tel: : +81-70-4926-1616FAX: +81-3-6732-9962 | Email: hi.hirayama@ana.co.jp
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1 Old schedules
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+ANA850D | 12JUL26 | 12JUL26 | ------7 | VTBS | 0200 | RJAA | 0835 | 76F | O/F-130/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+ANA850D | 13JUL26 | 13JUL26 | 1------ | VTBS | 0745 | RJAA | 1420 | 76F

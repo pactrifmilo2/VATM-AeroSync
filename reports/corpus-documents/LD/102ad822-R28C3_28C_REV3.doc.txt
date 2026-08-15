@@ -1,0 +1,78 @@
+FILE: R28C3 28C  REV3.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 25/06/2026
+Permit No.: LD-28/C/S/2026VN /REV3
+ 
+1. Carrier/Operator
+Name: China Airlines LTD. IATA code: CI ICAO code: CAL Postal Address: 2B Floor 7, Crescent Plaza 105 Ton Dat Tien Street, Tan My Ward, Ho Chi Minh City, Vietnam Tel: 84-28-54141031 Email: HYPERLINK "mailto:hatuyet.tran@china-airlines.com" hatuyet.tran@china-airlines.com , HYPERLINK "mailto:lan_tran@china-airlines.com" lan_tran@china-airlines.com 
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit(3) CI5885 02Jul26 30Jul26 ---4--- TPE 2320 PEN 0350+1 74Y/77X LD-28/C/S/2026VN CI5886 03Jul26 31Jul26 ----5-- PEN 0550 SGN 0750 74Y/77X LD-28/C/S/2026VN CI5886 03Jul26 31Jul26 ----5-- SGN 0850 TPE 1320 74Y/77X LD-28/C/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CI6651 03Jul26 31Jul26 ----5-- TPE 0140 BKK 0410 74Y/77X CI6651 03Jul26 31Jul26 ----5-- BKK 0610 SGN 0750 74Y/77X CI6652 03Jul26 31Jul26 ----5-- SGN 0850 TPE 1320 74Y/77X REMARK: - China Airlines has no 5th freedom traffic right on sector BKK-SGN
+3. Note: Air traffic service routes
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TPE-BKK
+(CI6651) A1
+N892 L628 G474
+A202
+A206
+L628 G474 BUNTA
+MONBO
+ASSAD
+ASSAD
+ARESI PAPRA
+ANINA
+VILAO
+NALAO
+ANINA BKK-SGN (CI6651) R468 SAPEN SGN-TPE (CI6652) W12 G221
+W15 Q15 L628
+Q1 A1
+Q2 A1 BUNTA
+ARESI
+BUNTA
+BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+Other details unchanged
+ 
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 25/06/2026
+Permit No.: LD-28/C/S/2026VN /REV3
+ 
+1. Carrier/Operator
+Name: China Airlines LTD.
+IATA code: CI | ICAO code: CAL
+Postal Address: 2B Floor 7, Crescent Plaza 105 Ton Dat Tien Street, Tan My Ward, Ho Chi Minh City, Vietnam
+Tel: 84-28-54141031 | Email: HYPERLINK "mailto:hatuyet.tran@china-airlines.com" hatuyet.tran@china-airlines.com , HYPERLINK "mailto:lan_tran@china-airlines.com" lan_tran@china-airlines.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CI5885 | 02Jul26 | 30Jul26 | ---4--- | TPE | 2320 | PEN | 0350+1 | 74Y/77X | LD-28/C/S/2026VN
+CI5886 | 03Jul26 | 31Jul26 | ----5-- | PEN | 0550 | SGN | 0750 | 74Y/77X | LD-28/C/S/2026VN
+CI5886 | 03Jul26 | 31Jul26 | ----5-- | SGN | 0850 | TPE | 1320 | 74Y/77X | LD-28/C/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CI6651 | 03Jul26 | 31Jul26 | ----5-- | TPE | 0140 | BKK | 0410 | 74Y/77X
+CI6651 | 03Jul26 | 31Jul26 | ----5-- | BKK | 0610 | SGN | 0750 | 74Y/77X
+CI6652 | 03Jul26 | 31Jul26 | ----5-- | SGN | 0850 | TPE | 1320 | 74Y/77X
+
+TABLE 4
+CONTEXT: REMARK: - China Airlines has no 5th freedom traffic right on sector BKK-SGN
+3. Note: Air traffic service routes
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TPE-BKK (CI6651) | A1 N892 L628 G474 A202 A206 L628 G474 | BUNTA MONBO ASSAD ASSAD ARESI | PAPRA ANINA VILAO NALAO ANINA
+BKK-SGN (CI6651) | R468 | SAPEN | 
+SGN-TPE (CI6652) | W12 G221 W15 Q15 L628 Q1 A1 Q2 A1 |  | BUNTA ARESI BUNTA BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

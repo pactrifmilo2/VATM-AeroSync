@@ -1,0 +1,60 @@
+FILE: R30A1 0A  REV1.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 02/06/2026
+Permit No.: LD-30/A/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: United Airlines, Inc. IATA code: UA ICAO code: UAL Postal Address: 233 South Wacker Drive, Chicago, Illinois 60606 U.S.A. Tel: +81-3-6732-5420 Email: Tadakazu.ito@united.com 
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[2.1. Original Airways]
+Sector Airways(17) Entry Point into Vietnam FIR Exit Point from Vietnam FIR Original permit 
+HKG-SGN (Pri) L642-W15 EXOTO LD-30/A/S/2026VN (Alt) G221-W12-Q1 BUNTA LD-30/A/S/2026VN (Alt) R468 SAPEN LD-30/A/S/2026VN (Alt) N500 PANDI LD-30/A/S/2026VN 
+SGN-HKG (Pri) W12-G221 BUNTA LD-30/A/S/2026VN (Alt) W15-Q15-M771 DOSUT LD-30/A/S/2026VN (Alt) R468 SAPEN LD-30/A/S/2026VN (Alt) N500 PANDI LD-30/A/S/2026VN Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+[2.2. New Airways]
+Sector(16) Airways(17) Entry Point into Vietnam FIR Exit Point from Vietnam FIR 
+HKG-SGN (Pri) L642-W15 EXOTO (Alt) G221-W12-Q1 BUNTA (Alt) R468 SAPEN (Alt) N500 PANDI (Alt)A202-VILAO-N639-Y24-R468 1.SIKOU 3.SAPEN 2.VILAO 
+SGN-HKG (Pri) W12-G221 BUNTA (Alt) W15-Q15-M771 DOSUT (Alt) R468 SAPEN (Alt) N500 PANDI (Alt) R468-Y24-N639-VILAO-A202 2.VILAO 1.SAPEN 3.SIKOU Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 02/06/2026
+Permit No.: LD-30/A/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: United Airlines, Inc.
+IATA code: UA | ICAO code: UAL
+Postal Address: 233 South Wacker Drive, Chicago, Illinois 60606 U.S.A.
+Tel: +81-3-6732-5420 | Email: Tadakazu.ito@united.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[2.1. Original Airways]
+Sector | Airways(17) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR | Original permit
+HKG-SGN | (Pri) L642-W15 | EXOTO |  | LD-30/A/S/2026VN
+ | (Alt) G221-W12-Q1 | BUNTA |  | LD-30/A/S/2026VN
+ | (Alt) R468 | SAPEN |  | LD-30/A/S/2026VN
+ | (Alt) N500 | PANDI |  | LD-30/A/S/2026VN
+SGN-HKG | (Pri) W12-G221 |  | BUNTA | LD-30/A/S/2026VN
+ | (Alt) W15-Q15-M771 |  | DOSUT | LD-30/A/S/2026VN
+ | (Alt) R468 |  | SAPEN | LD-30/A/S/2026VN
+ | (Alt) N500 |  | PANDI | LD-30/A/S/2026VN
+
+TABLE 3
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+[2.2. New Airways]
+Sector(16) | Airways(17) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG-SGN | (Pri) L642-W15 | EXOTO | 
+ | (Alt) G221-W12-Q1 | BUNTA | 
+ | (Alt) R468 | SAPEN | 
+ | (Alt) N500 | PANDI | 
+ | (Alt)A202-VILAO-N639-Y24-R468 | 1.SIKOU 3.SAPEN | 2.VILAO
+SGN-HKG | (Pri) W12-G221 |  | BUNTA
+ | (Alt) W15-Q15-M771 |  | DOSUT
+ | (Alt) R468 |  | SAPEN
+ | (Alt) N500 |  | PANDI
+ | (Alt) R468-Y24-N639-VILAO-A202 | 2.VILAO | 1.SAPEN 3.SIKOU

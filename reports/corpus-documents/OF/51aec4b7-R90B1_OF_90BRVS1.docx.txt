@@ -1,0 +1,61 @@
+FILE: R90B1 OF 90BRVS1.docx
+
+PARAGRAPHS
+Application for Revision of landing/overflight permit
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Refer to the issued permit: OF-90/B/S/2026VN(1)
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+]
+3. Note: Other details unchanged.
+[Other information (if any)]
+4. Applicant
+__________________________
+NOTES:
+(1) In case of amendment or addition of the contents in a single flight permit, indicate the permit number already issued (e.g., LD-01/01/2025VN). In case of amendment or addition of the contents in more than one flight permits, only the information specified in Note (3) is required.
+(2) In case of amendment of the flight schedule only, both the original and the revised schedules must be specified. In case of amendment or addition of other contents, the original and the amended contents, together with the related information, must be specified.
+(3) If the amendment or addition involves more than one flight permits, indicate the permit numbers already issued.
+
+TABLE 1
+CONTEXT: Application for Revision of landing/overflight permit
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+Refer to the issued permit: OF-90/B/S/2026VN(1)
+1. Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG.
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CPA037 | 26APR26 | 30MAY26 | ----5-- | HKG | 0010 | DWC | 0810 | 74N/74Y | OF-90/B/S/2026VN
+CPA061 | 26APR26 | 30MAY26 | ----5-- | HKG | 2145 | DWC | 0545+1 | 74N/74Y | OF-90/B/S/2026VN
+CPA067 | 26APR26 | 30MAY26 | -----6- | HKG | 1300 | DWC | 2100 | 74N/74Y | OF-90/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CPA037 | 26APR26 | 30MAY26 | ---4--- | HKG | 2305 | MAA | 0420+1 | 74N/74Y
+CPA061 | 26APR26 | 30MAY26 | ----5-- | HKG | 2255 | DEL | 0445+1 | 74N/74Y
+CPA067 | 26APR26 | 30MAY26 | -----6- | HKG | 1225 | MAA | 1735 | 74N/74Y
+
+TABLE 4
+CONTEXT: ]
+3. Note: Other details unchanged.
+[Other information (if any)]
+4. Applicant
+Company | Cathay Pacific Airways Limited
+Individual: NICOLAS MASSE | Title (If any): COUNTRY MANAGER VIETNAM & CAMBODIA, CATHAY PACIFIC AIRWAYS
+Postal Address: CATHAY PACIFIC CITY, 8 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG
+Tel: +84-2838223034 | Email: NICOLAS_K_MASSE@cathaypacific.com
+Submitted date: 24/04/2026

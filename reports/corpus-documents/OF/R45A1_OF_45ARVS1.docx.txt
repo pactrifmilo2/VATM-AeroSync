@@ -1,0 +1,39 @@
+FILE: R45A1 OF 45ARVS1.docx
+
+PARAGRAPHS
+HA NOI, 09 MAY 2026
+PERMIT NUMBER OF-45/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+3.1. Old
+3.2. New
+OTHER MAIN DETAILS IS UNCHANGED.
+4. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 09 MAY 2026
+PERMIT NUMBER OF-45/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Federal Express Corporation
+IATA code: JD | ICAO code: FDX
+Postal Address: 3131 Democrat Road Bldg. C Memphis, TN 38118 USA
+Tel: +86 28 8888 8888 | Email: Overflyinvoices@corp.ds.fedex.com.
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS BUILDING, DAFZA, P.O BOX 54482, DUBAI, UAE.
+Tel: +971-4-299-6633 | Email: PAYABLE@UAS.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. Old
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+FDX169 | 08MAY26 | 08MAY26 | 0000500 | PANC | 0345 | WSSS | 1745 | OF-45/A/S/2026VN
+
+TABLE 4
+CONTEXT: 3.2. New
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+FDX169D | 09MAY26 | 09MAY26 | 0000060 | PANC | 0530 | WSSS | 1940

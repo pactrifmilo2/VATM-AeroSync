@@ -1,0 +1,35 @@
+FILE: R20B4 OF 20BRVS4.docx
+
+PARAGRAPHS
+HANOI, 28-Apr-26
+The permit: OF-20/B/S/2026VN/REV4.
+1. Carrier/Operator
+2. Schedule revision.
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 28-Apr-26
+The permit: OF-20/B/S/2026VN/REV4.
+1. Carrier/Operator
+Name: MALAYSIA AIRLINES BERHAD
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Planning and Scheduling, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. Schedule revision.
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6106 | 03MAY26 | 03MAY26 | …...7 | WMKK | 0615 | VHHH | 1005 | 33X
+MAS6107 | 03MAY26 | 03MAY26 | …...7 | VHHH | 1205 | WMKK | 1545 | 33X
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6106 | 02MAY26 | 02MAY26 | 6 | WMKK | 2330 | VHHH | 0320 | 33X
+MAS6107 | 03MAY26 | 03MAY26 | 7 | VHHH | 0520 | WMKK | 0900 | 33X

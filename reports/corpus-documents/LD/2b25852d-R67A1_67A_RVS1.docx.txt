@@ -1,0 +1,90 @@
+FILE: R67A1 67A RVS1.docx
+
+PARAGRAPHS
+HANOI, 17APR2026
+PERMIT NUMBER LD-67/A/S/2026VN /REV1
+(Add Airways)
+1. Carrier
+2. Schedules (UTC Time):
+4. Airways
+4.1. OLD:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4.2. NEW:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+5. Notes: other details remain unchanged
+RGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 17APR2026
+PERMIT NUMBER LD-67/A/S/2026VN /REV1
+(Add Airways)
+1. Carrier
+Name: Air Astana
+IATA code: KC | ICAO code: KZR
+Postal Address: 4А Zakarpatskaya St., Alrnaty, Republic of Kazakhstan
+Tel: +77027022372 | Email: Flight.Dispatch.Supervisors@airastana.com; Control.centre@airastana.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time):
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+KC161 | 18APR26 | 18APR26 | -----6- | ALA | 1805 | PQC | 0115+1 | 32Q/32N | LD-67/A/S/2026VN
+KC162 | 19APR26 | 19APR26 | ------7 | PQC | 0255 | ALA | 1100 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC173 | 17APR26 | 19APR26 | ----5-7 | NQZ | 1635 | PQC | 0340+1 | 32Q/32N | LD-67/A/S/2026VN
+KC174 | 18APR26 | 20APR26 | 1----6- | PQC | 0500 | NQZ | 1315 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC193 | 19APR26 | 24APR26 | -2-45-7 | ALA | 1520 | CXR | 2245 | 32Q/32N | LD-67/A/S/2026VN
+KC1384 | 20APR26 | 25APR26 | 1-3-56- | CXR | 0015 | PQC | 0115 | 32Q/32N | LD-67/A/S/2026VN
+KC162 | 20APR26 | 25APR26 | 1-3-56- | PQC | 0300 | ALA | 1100 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC157 | 20APR26 | 20APR26 | 1------ | NQZ | 1800 | CXR | 0220+1 | 32Q/32N | LD-67/A/S/2026VN
+KC1385 | 21APR26 | 21APR26 | -2----- | CXR | 0350 | PQC | 0450 | 32Q/32N | LD-67/A/S/2026VN
+KC174 | 21APR26 | 21APR26 | -2----- | PQC | 0635 | NQZ | 1450 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC157 | 22APR26 | 25APR26 | --3--6- | NQZ | 1810 | CXR | 0220+1 | 32Q/32N | LD-67/A/S/2026VN
+KC1385 | 23APR26 | 26APR26 | ---4--7 | CXR | 0350 | PQC | 0450 | 32Q/32N | LD-67/A/S/2026VN
+KC174 | 23APR26 | 26APR26 | ---4--7 | PQC | 0635 | NQZ | 1450 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC173 | 18OCT26 | 23OCT26 | -2--5-7 | NQZ | 1635 | PQC | 0045+1 | 32Q/32N | LD-67/A/S/2026VN
+KC1387 | 19OCT26 | 24OCT26 | 1-3--6- | PQC | 0215 | CXR | 0315 | 32Q/32N | LD-67/A/S/2026VN
+KC158 | 19OCT26 | 24OCT26 | 1-3--6- | CXR | 0430 | NQZ | 1300 | 332Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC161 | 19OCT26 | 23OCT26 | 1-34--- | ALA | 1805 | PQC | 0115+1 | 32Q/32N | LD-67/A/S/2026VN
+KC1386 | 20OCT26 | 24OCT26 | -2-45-- | PQC | 0245 | CXR | 0345 | 32Q/32N | LD-67/A/S/2026VN
+KC194 | 20OCT26 | 24OCT26 | -2-45-- | CXR | 0500 | ALA | 1250 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC645 | 20APR26 | 04MAY26 | 1------ | ALA | 0115 | PQC | 0855 | 32Q/32N | LD-67/A/S/2026VN
+KC646 | 20APR26 | 04MAY26 | 1------ | PQC | 1100 | ALA | 1900 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC645 | 22APR26 | 27MAY26 | --3---- | ALA | 0115 | PQC | 0855 | 32Q/32N | LD-67/A/S/2026VN
+KC646 | 22APR26 | 27MAY26 | --3---- | PQC | 1100 | ALA | 1900 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC645 | 10MAY26 | 17MAY26 | ------7 | ALA | 2210 | PQC | 0550+1 | 32Q/32N | LD-67/A/S/2026VN
+KC646 | 11MAY26 | 18MAY26 | 1------ | PQC | 0750 | ALA | 1550 | 32Q/32N | LD-67/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+KC645 | 25MAY26 | 25MAY26 | 1------ | ALA | 0115 | PQC | 0855 | 32Q/32N | LD-67/A/S/2026VN
+KC646 | 25MAY26 | 25MAY26 | 1------ | PQC | 1100 | ALA | 1900 | 32Q/32N | LD-67/A/S/2026VN
+
+TABLE 3
+CONTEXT: 4. Airways
+4.1. OLD:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ALA-PQC | R334 | NUMDI | 
+PQC-ALA | R334 |  | NUMDI
+NQZ-PQC | R334 | NUMDI | 
+PQC-NQZ | R334 |  | NUMDI
+
+TABLE 4
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4.2. NEW:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ALA-PQC | R334 | NUMDI | 
+ALA-PQC | A206-W2-N639-M753 | NALAO-OSOTA | 
+PQC-ALA | R334 |  | NUMDI
+PQC-ALA | M753-N639-W2-A206 |  | OSOTA-NALAO
+NQZ-PQC | R334 | NUMDI | 
+NQZ-PQC | A206-W2-N639-M753 | NALAO AND OSOTA | 
+PQC-NQZ | R334 |  | NUMDI
+PQC-NQZ | M753-N639-W2-A206 |  | OSOTA-NALAO

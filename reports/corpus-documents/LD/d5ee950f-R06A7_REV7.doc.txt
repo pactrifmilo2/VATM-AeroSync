@@ -1,0 +1,69 @@
+FILE: R06A7  REV7.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 05/06/2026
+Permit No.: LD-06/A/S/2026VN/REV7
+ 
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION IATA code: FX ICAO code: FDX Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA. Tel: (1-901) 606-9983 Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com 
+2. Schedule (UTC Time)
+2.1. Original schedule(s) 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit FX6002 05Jun26 05Jun26 ----5-- BKK 1250 HAN 1455 767F LD-06/A/S/2026VN FX6002 05Jun26 05Jun26 ----5-- HAN 1615 CAN 1800 767F LD-06/A/S/2026VN FX5775 07Jun26 28Jun26 ------7 CAN 1755 HAN 1950 767F LD-06/A/S/2026VN FX5775 07Jun26 28Jun26 ------7 HAN 2120 SGN 2315 767F LD-06/A/S/2026VN FX6065 08Jun26 29Jun26 1------ SGN 1355 CAN 1650 767F LD-06/A/S/2026VN 
+2.2. New schedule(s) 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type FX600D 05Jun26 05Jun26 ----5-- BKK 1250 HAN 1445 767F FX600D 05Jun26 05Jun26 ----5-- HAN 1615 CAN 1800 767F FX6003 06Jun26 27Jun26 -----6- CAN 1800 HAN 2000 767F FX6003 06Jun26 27Jun26 -----6- HAN 2130 KIX 0145+1 767F FX5775 07Jun26 28Jun26 ------7 CAN 2035 SGN 2315 767F FX6065 08Jun26 29Jun26 1------ SGN 1355 CAN 1650 767F 
+3. Note: OTHER DETAILS REMAIN UNCHANGED
+4. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CAN-HAN R474 TEBAK HAN-KIX R474 TEBAK CAN-SGN L642 EXOTO SGN-CAN N500 M771 DONDA BKK-HAN R474 LAVOS HAN-CAN R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED
+5. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 05/06/2026
+Permit No.: LD-06/A/S/2026VN/REV7
+ 
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX6002 | 05Jun26 | 05Jun26 | ----5-- | BKK | 1250 | HAN | 1455 | 767F | LD-06/A/S/2026VN
+FX6002 | 05Jun26 | 05Jun26 | ----5-- | HAN | 1615 | CAN | 1800 | 767F | LD-06/A/S/2026VN
+ |  |  |  |  |  |  |  |  | 
+FX5775 | 07Jun26 | 28Jun26 | ------7 | CAN | 1755 | HAN | 1950 | 767F | LD-06/A/S/2026VN
+FX5775 | 07Jun26 | 28Jun26 | ------7 | HAN | 2120 | SGN | 2315 | 767F | LD-06/A/S/2026VN
+FX6065 | 08Jun26 | 29Jun26 | 1------ | SGN | 1355 | CAN | 1650 | 767F | LD-06/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX600D | 05Jun26 | 05Jun26 | ----5-- | BKK | 1250 | HAN | 1445 | 767F
+FX600D | 05Jun26 | 05Jun26 | ----5-- | HAN | 1615 | CAN | 1800 | 767F
+ |  |  |  |  |  |  |  | 
+FX6003 | 06Jun26 | 27Jun26 | -----6- | CAN | 1800 | HAN | 2000 | 767F
+FX6003 | 06Jun26 | 27Jun26 | -----6- | HAN | 2130 | KIX | 0145+1 | 767F
+ |  |  |  |  |  |  |  | 
+FX5775 | 07Jun26 | 28Jun26 | ------7 | CAN | 2035 | SGN | 2315 | 767F
+FX6065 | 08Jun26 | 29Jun26 | 1------ | SGN | 1355 | CAN | 1650 | 767F
+
+TABLE 4
+CONTEXT: 3. Note: OTHER DETAILS REMAIN UNCHANGED
+4. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CAN-HAN | R474 | TEBAK | 
+HAN-KIX | R474 |  | TEBAK
+CAN-SGN | L642 | EXOTO | 
+SGN-CAN | N500 M771 |  | DONDA
+BKK-HAN | R474 | LAVOS | 
+HAN-CAN | R474 |  | TEBAK

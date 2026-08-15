@@ -1,0 +1,55 @@
+FILE: R78A2 78A (RVS2) HUY CHUYEN.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: TW
+Đề nghị Vatm cập nhật lại lịch huỷ của TW cho chuyến TW007/008 vì nhầm thời gian khai thác của TW007. Lịch huỷ được gửi kèm cùng mail này.
+Trân trọng cảm ơn.
+Cancellation form for Scheduled Flight to/from Vietnam – Summer 2026 schedules
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+IATA Schedule Season:
+Summer 2026
+1. Carrier/Operator:
+2. Schedules: Times are in UTC
+3. Type of services: Passenger
+4. Reason of cancellation: Due to fuel supply disruption by military action in middle east
+5. Ref to permit number: LD – 78-A-S-2026VN-TW
+6. Applicant:
+T’WAY AIR DAD STATION
+Tel: +84-236-3538-881
+Mobile: +84-905-470-667 / +84-905-572-052
+E-mail: dadkk@twayair.com
+Name, signature, title: Mr. PARK SUNGWOO (Station Manager)
+7. Note:
+
+TABLE 1
+from: | Phạm Giang <phamgiang.caav@gmail.com>
+date: | 09/05/2026 07:13 AM
+to: | To quan ly phep bay KHB <phepbaykhb@vatm.vn>, TT Thông Bao Hiep Dong Bay <hiepdongbay@vatm.vn>, <gscldv@maa.gov.vn>, <quanlysando.vvdn@gmail.com>
+cc: | THAO PHAM <thaopt@caa.gov.vn>, <dtpthanh@twayair.com>
+security: | Verified Sender DKIM
+
+TABLE 2
+CONTEXT: To: Vatm
+Cc: TW
+Đề nghị Vatm cập nhật lại lịch huỷ của TW cho chuyến TW007/008 vì nhầm thời gian khai thác của TW007. Lịch huỷ được gửi kèm cùng mail này.
+Trân trọng cảm ơn.
+Cancellation form for Scheduled Flight to/from Vietnam – Summer 2026 schedules
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De ward, Hanoi, Vietnam
+Tel: ++84 4 38272281; Email: atd@caa.gov.vn
+IATA Schedule Season:
+Summer 2026
+1. Carrier/Operator:
+Name: T’way Air Co.,Ltd
+IATA code: TW | ICAO code: TWB
+Postal Address: 10th Floor, KT Daegu Tower, 167, Dongdeok-ro, Jung-gu, Daegu, Republic of Korea
+Tel: +84932 408 828 | Email: dadkkz@twayair.com
+
+TABLE 3
+CONTEXT: 2. Schedules: Times are in UTC
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD(UTC time) | Arrival Airport | ETA(UTC time) | Aircraft type
+TW007 | 07May26 | 20Jul26 | 1__4__7 | ICN | 2255 | DAD | 0345+1 | B38M, B73H
+TW008 | 08May26 | 21Jul26 | 12__5__ | DAD | 0445 | ICN | 0925 | 

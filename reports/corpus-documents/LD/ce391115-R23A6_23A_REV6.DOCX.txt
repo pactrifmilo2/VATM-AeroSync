@@ -1,0 +1,59 @@
+FILE: R23A6 23A  REV6.DOCX
+
+PARAGRAPHS
+HANOI, 08MAY2026
+PERMIT NUMBER LD-23/A/S/2026VN/REV6
+1. Carrier
+2.1 OLD SCHEDULE (UTC Time)
+2.2 NEW SCHEDULE (UTC Time)
+3. Note: Other keep unchanged
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 08MAY2026
+PERMIT NUMBER LD-23/A/S/2026VN/REV6
+1. Carrier
+Name: Air Cambodia
+IATA code: K6 | ICAO code: KHV
+Postal Address: #206A, Preah Norodom Blvd, Sangkat Tonle Bassac,Khan Chamkamorn, Phnom Penh 12302, Cambodia.
+Tel: (855) 16 899 007 | Email: sivly.kloung@aircambodia.com
+
+TABLE 2
+CONTEXT: 2.1 OLD SCHEDULE (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+K6818 | 10-May-26 | 10-May-26 | ______7 | KTI | 1400 | SGN | 1510 | 321/320/AT7
+K6817 | 11-May-26 | 11-May-26 | 1______ | SGN | 0500 | KTI | 0610 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6838 | 11-May-26 | 11-May-26 | 1______ | KOS | 0000 | SGN | 0055 | 321/320/AT7
+K6819 | 11-May-26 | 11-May-26 | 1______ | SGN | 0430 | KTI | 0530 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6816 | 11-May-26 | 11-May-26 | 1______ | KTI | 0940 | SGN | 1055 | 321/320/AT7
+K6839 | 11-May-26 | 11-May-26 | 1______ | SGN | 1130 | KOS | 1250 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6818 | 11-May-26 | 11-May-26 | 1______ | KTI | 1400 | SGN | 1510 | 321/320/AT7
+K6817 | 12-May-26 | 12-May-26 | _2_____ | SGN | 0500 | KTI | 0610 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6812 | 12-May-26 | 12-May-26 | _2_____ | KTI | 0000 | SGN | 0055 | 321/320/AT7
+K6839 | 12-May-26 | 12-May-26 | _2_____ | SGN | 0430 | KOS | 0550 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6838 | 12-May-26 | 12-May-26 | _2_____ | KOS | 0000 | SGN | 0050 | 321/320/AT7
+K6813 | 12-May-26 | 12-May-26 | _2_____ | SGN | 0130 | KTI | 0230 | 321/320/AT7
+
+TABLE 3
+CONTEXT: 2.2 NEW SCHEDULE (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+K6818 | 10-May-26 | 10-May-26 | ______7 | KTI | 1400 | SGN | 1510 | 321/320/AT7
+K6839 | 11-May-26 | 11-May-26 | 1______ | SGN | 0130 | KOS | 0250 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6838 | 11-May-26 | 11-May-26 | 1______ | KOS | 0320 | SGN | 0430 | 321/320/AT7
+K6817 | 11-May-26 | 11-May-26 | 1______ | SGN | 0500 | KTI | 0610 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6818 | 11-May-26 | 11-May-26 | 1______ | KTI | 1400 | SGN | 1505 | 321/320/AT7
+K6839 | 12-May-26 | 12-May-26 | _2_____ | SGN | 0050 | KOS | 0210 | 321/320/AT7
+ |  |  |  |  |  |  |  | 
+K6838 | 12-May-26 | 12-May-26 | _2_____ | KOS | 0330 | SGN | 0430 | 321/320/AT7
+K6817 | 12-May-26 | 12-May-26 | _2_____ | SGN | 0500 | KTI | 0610 | 321/320/AT7
+K6812 | 12-May-26 | 12-May-26 | _2_____ | KTI | 0000 | SGN | 0050 | 321/320/AT7
+K6813 | 12-May-26 | 12-May-26 | _2_____ | SGN | 0130 | KTI | 0230 | 321/320/AT7

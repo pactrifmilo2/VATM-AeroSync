@@ -1,0 +1,57 @@
+FILE: OF 125_A_S_2026VN RVS1.docx
+
+PARAGRAPHS
+Hanoi, 31/3/2026
+Refer to the permit: OF - 125/A/S/2026VN
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+3.1. OLD:
+3.2. NEW:
+4. Airways
+4.1. OLD:
+4.2. NEW:
+5. Note: Other details remain unchanged
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 31/3/2026
+Refer to the permit: OF - 125/A/S/2026VN
+1. Carrier/Operator
+Name: Jiangsu Jingdong Cargo Airlines Co., Ltd.
+Postal Address: 15th Floor, Jianghaiyuanmenggu, New Century Avenue, Tongzhou District, Nantong, Jiangsu
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Jiangsu Jingdong Cargo Airlines Co., Ltd.
+Postal Address: 15th Floor, Jianghaiyuanmenggu, New Century Avenue, Tongzhou District, Nantong, Jiangsu
+Email: luoguohong6@jd.com, lixin201@jd.com, xueruichen1@jd.com, lixiaorui20@jd.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. OLD:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+JDL2791 | 29MAR26 | 24OCT26 | 1234567 | ZJHK | 0600 | VTBS | 0830 | OF - 125/A/S/2026VN
+JDL2914 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0940 | ZJHK | 1200 | OF - 125/A/S/2026VN
+
+TABLE 4
+CONTEXT: 3.2. NEW:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+JDL2791 | 29MAR26 | 24OCT26 | 1234567 | ZJQH | 0600 | VTBS | 0830
+JDL2914 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 0940 | ZJHK | 1200
+
+TABLE 5
+CONTEXT: 4. Airways
+4.1. OLD:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJHQ-VTBS | A1 | BUNTA | PAPRA
+VTBS-ZJHK | A202 | VILAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 4.2. NEW:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJQH-VTBS | A1 | BUNTA | PAPRA
+VTBS-ZJHK | A202 | VILAO | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

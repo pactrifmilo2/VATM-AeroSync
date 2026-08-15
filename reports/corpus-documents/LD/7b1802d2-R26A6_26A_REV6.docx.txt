@@ -1,0 +1,38 @@
+FILE: R26A6 26A  REV6.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 06/07/2026 PERMIT NO.: LD- 26/A/S/2026VN/REV6
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule,]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+OTHER DETAILS REMAIN UNCHANGED
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 06/07/2026 PERMIT NO.: LD- 26/A/S/2026VN/REV6
+1. Carrier/Operator
+Name: Hong Kong Air Cargo Carrier Limited
+IATA code: RH | ICAO code: HKC
+Postal Address: R.201, 2nd Floor, Noibai Cargo Terminal, Noi Bai Int'l Airport, Soc Son Dist, Hanoi, Viet Nam
+Tel: +844 3584 3331 | Email: manhlam.hoang@hkaircargo.com; tommy.fei@hkaircargo.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule,]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+RH317 | 04JUL26 | 30JUL26 | -2---6- | HKG | 1140 | HAN | 1340 | 33X | LD- 26/A/S/2026VN
+RH318 | 04JUL26 | 30JUL26 | -2---6- | HAN | 1510 | HKG | 1710 | 33X | LD- 26/A/S/2026VN
+RH317 | 04JUL26 | 30JUL26 | ---4--- | HKG | 1140 | HAN | 1340 | 33X | LD- 26/A/S/2026VN
+RH318 | 04JUL26 | 30JUL26 | ---4--- | HAN | 1510 | HKG | 1710 | 33X | LD- 26/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+RH317 | 04JUL26 | 30JUL26 | -2-4-6- | HKG | 0700 | HAN | 0900 | 33X
+RH318 | 04JUL26 | 30JUL26 | -2-4-6- | HAN | 1030 | HKG | 1230 | 33X

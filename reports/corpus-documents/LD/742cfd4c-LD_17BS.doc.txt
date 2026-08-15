@@ -1,0 +1,68 @@
+FILE: LD 17BS.doc
+
+PARAGRAPHS
+Ha Noi, 11th March 2026
+№: LD - 17/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Xiamen Airlines Co., Ltd IATA code: MF ICAO code: CXA Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R.China Tel: +86-592-5739208 Email: mfsaigon@xiamenair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type MF841 29Mar26 24Oct26 1234567 XMN 1150 SGN 1500 738 MF842 29Mar26 24Oct26 1234567 SGN 0100+1 XMN 0400+1 738 MF893 29Mar26 24Oct26 1234567 XMN 0120 SGN 0425 738 MF894 29Mar26 24Oct26 1234567 SGN 0525 XMN 0840 738 MF8701 29Mar26 18Oct26 --3---7 HGH 0105 SGN 0500 738 MF8702 29Mar26 18Oct26 --3---7 SGN 0555 HGH 0945 738 MF8701 01Apr26 23Oct26 ----5-- HGH 0205 SGN 0600 738 MF8702 01Apr26 23Oct26 ----5-- SGN 0655 HGH 1045 738 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 738 As per FAOC of MF China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR XMN-SGN L642 W15 EXOTO SGN-XMN W12 G221 BUNTA XMN-SGN A1 Q1 BUNTA HGH-SGN L642 W15 EXOTO HGH-SGN W10 Q1 ASSAD SGN-HGH W12 G221 BUNTA SGN-HGH Q1 W10 ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 11th March 2026
+№: LD - 17/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Xiamen Airlines Co., Ltd
+IATA code: MF | ICAO code: CXA
+Postal Address: 321 Donghuang Road, Xiamen, Fujian Province, P.R.China
+Tel: +86-592-5739208 | Email: mfsaigon@xiamenair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MF841 | 29Mar26 | 24Oct26 | 1234567 | XMN | 1150 | SGN | 1500 | 738
+MF842 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0100+1 | XMN | 0400+1 | 738
+MF893 | 29Mar26 | 24Oct26 | 1234567 | XMN | 0120 | SGN | 0425 | 738
+MF894 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0525 | XMN | 0840 | 738
+MF8701 | 29Mar26 | 18Oct26 | --3---7 | HGH | 0105 | SGN | 0500 | 738
+MF8702 | 29Mar26 | 18Oct26 | --3---7 | SGN | 0555 | HGH | 0945 | 738
+MF8701 | 01Apr26 | 23Oct26 | ----5-- | HGH | 0205 | SGN | 0600 | 738
+MF8702 | 01Apr26 | 23Oct26 | ----5-- | SGN | 0655 | HGH | 1045 | 738
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | As per FAOC of MF | China
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+XMN-SGN | L642 W15 | EXOTO | 
+SGN-XMN | W12 G221 |  | BUNTA
+XMN-SGN | A1 Q1 | BUNTA | 
+HGH-SGN | L642 W15 | EXOTO | 
+HGH-SGN | W10 Q1 | ASSAD | 
+SGN-HGH | W12 G221 |  | BUNTA
+SGN-HGH | Q1 W10 |  | ASSAD

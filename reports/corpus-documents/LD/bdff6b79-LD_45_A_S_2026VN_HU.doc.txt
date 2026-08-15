@@ -1,0 +1,64 @@
+FILE: LD_45_A_S_2026VN_HU.doc
+
+PARAGRAPHS
+Ha Noi, 17th March 2026
+№: LD - 45/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Hainan Airlines Holding Co., Ltd. IATA code: HU ICAO code: CHH Postal Address: Comprehensive Office Building No.21, Hainan Airlines Haikou Meilan Base, No.9, Meilan Airport Road, Meilan District, Haikou City, Hainan Province, China Tel: 8610+13070172198 Email: qn-zhang@hnair.com 
+2. Schedules: All time in UTC
+Flight number
+ Effective from
+ Effective to
+ Days of services
+ Departure Airport ETD Arrival Airport
+ ETA Aircraft Type
+ HU783 29MAR26 22OCT26 ---4--7 HAK 11:30 HAN 13:05 738/7M8 HU784 29MAR26 22OCT26 ---4--7 HAN 14:10 HAK 15:50 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 738 As per FAOC of Hainan Airlines Holding Co., Ltd
+ China
+ 7M8 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HAK-HAN R474 TEBAK / HAN-HAK R474 / TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Notes:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 17th March 2026
+№: LD - 45/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Hainan Airlines Holding Co., Ltd.
+IATA code: HU | ICAO code: CHH
+Postal Address: Comprehensive Office Building No.21, Hainan Airlines Haikou Meilan Base, No.9, Meilan Airport Road, Meilan District, Haikou City, Hainan Province, China
+Tel: 8610+13070172198 | Email: qn-zhang@hnair.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All time in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HU783 | 29MAR26 | 22OCT26 | ---4--7 | HAK | 11:30 | HAN | 13:05 | 738/7M8
+HU784 | 29MAR26 | 22OCT26 | ---4--7 | HAN | 14:10 | HAK | 15:50 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | As per FAOC of Hainan Airlines Holding Co., Ltd | China
+7M8 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HAK-HAN | R474 | TEBAK | /
+HAN-HAK | R474 | / | TEBAK

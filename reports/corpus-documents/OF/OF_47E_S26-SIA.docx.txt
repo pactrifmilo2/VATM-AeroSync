@@ -1,0 +1,83 @@
+FILE: OF 47E S26-SIA.docx
+
+PARAGRAPHS
+APPLICATION FOR SCHEDULED FLIGHT
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 0084438272281; Email: atd@caa.gov.vn;
+IATA Schedule Season: Season: SUMMER (NS26)
+1. Carrier
+2. Billing address
+3. Schedules: All times in UTC
+4. Purpose of Flight(s): [Passenger(9) or All-cargo]
+5. Aircraft:
+6. Air traffic service routes:
+7. Additional information : (if any)
+8.Application:
+Explanatory Notes:
+(1) Flight number: ICAO code.
+(2) Effective from: Start date, in English, format DDMmmYY.
+(3) Effective to: End date, in English, format DDMmmYY.
+(4) Days of services: Numbers 1–7 correspond to Monday–Sunday; “–” indicates no operation.
+(5) (7) Departure/Arrival airport: 4-letter ICAO code.
+(6) (8) Scheduled departure/arrival time: UTC time.
+(9) Passenger: Includes passenger flight and passenger with belly cargo.
+(10) Aircraft type: ICAO code.
+(11) Registration Mark:“As per AOC of [Operator name: ICAO code]” or list specific registration marks.
+(12) Maximum seats of aircraft type.
+(13) Maximum payload of aircraft type.
+(14) Aircraft nationality: in English.
+(15) Sector: ICAO code (e.g., WMKK-ZGGG).
+(16) Airways: List only airways within Vietnam FIR, including primary and alternative airways (if any).
+
+TABLE 1
+CONTEXT: APPLICATION FOR SCHEDULED FLIGHT
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 0084438272281; Email: atd@caa.gov.vn;
+IATA Schedule Season: Season: SUMMER (NS26)
+1. Carrier
+Name: SINGAPORE AIRLINES LIMITED
+IATA code: SQ | ICAO code: SIA
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email:
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: SINGAPORE AIRLINES LIMITED
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email: ans_charges@singaporeair.com.sg
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+SIA334 | 01-AUG-26 | 24-Oct-26 | 1234567 | WSSS | 03:10 | EHAM | 16:35
+SIA333 | 01-AUG-26 | 24-Oct-26 | 1234567 | EHAM | 18:35 | WSSS | 07:40
+ |  |  |  |  |  |  | 
+ |  |  |  |  |  |  | 
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): [Passenger(9) or All-cargo]
+5. Aircraft:
+Aircraft Type (10) | RegLTFMration Mark (11) | KKSEAts for passenger flight(12) | Payload for All-cargo flight (Tons) (13) | MTOW (Ton) | Nationality(14)
+B77W | According to SQ’s AOC | 263 | 51.6 | 351.5 | SINGAPORE
+A359 | According to SQ’s AOC | 253161303 | 41.922.846.0 | 275.0280.0250.0 | SINGAPORE
+A388 | According to SQ’s AOC | 471 | 59.7 | 569.0 | SINGAPORE
+B78X | According to SQ’s AOC | 337 | 50.0 | 242.6 | SINGAPORE
+B38M/B738 | According to SQ’s AOC | 162154 | 18.117.4 | 79.082.1 | SINGAPORE
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+ |  |  | 
+WSSS-EHAM | M765, M753, R334 | IGARI | NUMDI
+ |  |  | 
+EHAM-WSSS | R334, M753, M765 | NUMDI | IGARI
+
+TABLE 6
+CONTEXT: 7. Additional information : (if any)
+8.Application:
+Company : SINGAPORE AIRLINES LIMITED | 
+Individual | Title (if any):
+Postal Address: SIA Training Centre 02-C; 720 Upper Changi Road East - SINGAPORE 486652
+Tel: 65403410 | Email:
+Submitted date : 03 June 2026

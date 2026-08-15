@@ -1,0 +1,60 @@
+FILE: LD 09AS.docx
+
+PARAGRAPHS
+Ha Noi, March 06, 2026
+Permit No.: LD-09/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Thi Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260226-0109)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 06, 2026
+Permit No.: LD-09/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: BATIK AIR MALAYSIA
+IATA code: OD | ICAO code:MXD
+Postal Address: 1st Floor, Block B, Meritus @ Oasis Carporate Park, No. 2, Jalan PJU 1A/2 Ara Damansara, 47301 Petaling Jaya, Selangor MALAYSIA
+Tel: +60320356699 | Email: ady.wardyto@batikair.com.my
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+OD 502 | 29MAR26 | 24OCT26 | 1234567 | KUL | 0230 | DAD | 0505 | 738/7M8
+OD 503 | 29MAR26 | 24OCT26 | 1234567 | DAD | 0550 | KUL | 0840 | 738/7M8
+
+OD 571 | 29MAR26 | 24OCT26 | 1234657 | KUL | 0210 | HAN | 0530 | 738/7M8
+OD 572 | 29MAR26 | 24OCT26 | 1234657 | HAN | 0620 | KUL | 0940 | 738/7M8
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+738 | As per FAOC of OD | Malaysian
+7M8 | As per FAOC of OD | Malaysian
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KUL-DAD | M765, L637, Q2, Q7, Q1, W2, W1 | IGARI | -
+DAD-KUL | Q1, W1, L637, M765 | - | IGARI
+KUL-HAN | M765, M755, N639, Q1, Q2, W1, L637 | IGARI | -
+HAN-KUL | Q1, Q2, W1, L637, N639, M753, M765 | - | IGARI

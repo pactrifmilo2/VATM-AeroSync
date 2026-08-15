@@ -1,0 +1,55 @@
+FILE: OF 57B.docx
+
+PARAGRAPHS
+HANOI, 19th March 2026
+Permit No.: OF-57/B/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Pasengers
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 19th March 2026
+Permit No.: OF-57/B/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+Name: Lao Airlines State Enterprise
+IATA code: QV | ICAO code: LAO
+Postal Address: Wattay International Airport, Souphanouvong Rd. Meuangvathong village, Sikottabong District ,Vientiane Lao PDR.
+Tel: (856-21) 513150 | Email: visakhone@laoairlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name : Lao Airlines State Enterprise
+Postal Address: Wattay International Airport, Souphanouvong Rd. Meuangvathong village, Sikottabong District ,Vientiane Lao PDR.
+Tel: (856-21) 513150 | Email: visakhone@laoairlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+LAO878 | 29MAR26 | 24OCT26 | -2-4-6- | VLVT | 11:20 | ZGNN | 12:50
+LAO879 | 29MAR26 | 24OCT26 | -2-4-6- | ZGNN | 14:10 | VLVT | 15:40
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Pasengers
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | According to AOC of LAO | LAO
+C909 | According to AOC of LAO | LAO
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VLVT-ZGNN | R474 | LAVOS | TEBAK
+ZGNN-VLVT | R474 | TEBAK | LAVOS
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

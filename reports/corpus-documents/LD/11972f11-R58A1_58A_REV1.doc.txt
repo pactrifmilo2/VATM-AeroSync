@@ -1,0 +1,80 @@
+FILE: R58A1  58A  REV1.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 08/05/2026
+Permit No.: LD-58/A/S/2026VN /REV1
+ 
+1. Carrier/Operator
+Name: IRAERO IATA code: IO ICAO code: IAE Postal Address: Russian Federation, 664009, Irkutsk city, Sovetskaya street, 139-a Tel: +7(3952)43-44-42 Email: info@iraero.ru Tel: +7(3952)43-44-42 Email: info@iraero.ru 
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit(3) IO895 09May26 09May26 -----6- HTA 0155 KWL 0625 SU9 LD-58/A/S/2026VN IO895 09May26 09May26 -----6- KWL 0715 CXR 0955 SU9 LD-58/A/S/2026VN IO896 09May26 09May26 -----6- CXR 1105 KWL 1345 SU9 LD-58/A/S/2026VN IO896 09May26 09May26 -----6- KWL 1445 HTA 1905 SU9 LD-58/A/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type IO995 09May26 09May26 -----6- HTA 0155 HFE 0515 SU9 IO995 09May26 09May26 -----6- HFE 0605 CXR 0955 SU9 IO896 09May26 09May26 -----6- CXR 1105 KWL 1345 SU9 IO896 09May26 09May26 -----6- KWL 1445 HTA 1905 SU9 
+2.3. Original Purpose of Flight:
+HTA-CXR-HTA-Passenger and Cargo 
+KWL-Tech.stop only 2.4. New Purpose of Flight:
+HTA-CXR-HTA-Passenger and Cargo 
+HFE- Tech.stop only without embarking and disembarking passengers
+KWL-Tech.stop only without embarking and disembarking passengers 2.5 Original Airway
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR KWL-CXR TEBAK R474 NAKHA Q3 NAH Q1 DAN W2 NHATA TEBAK CXR-KWL DALA1A SOSPA W15 LKH W7 BMT Q1 NAH Q3 NAKHA R474 TEBAK TEBAK 2.6 New Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HFE-CXR EPKAL L642 VEPAM COTU2A EPKAL CXR-KWL DALA1A SOSPA W15 LKH W7 BMT Q1 NAH Q3 NAKHA R474 TEBAK TEBAK 
+Other details unchanged
+ 
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 08/05/2026
+Permit No.: LD-58/A/S/2026VN /REV1
+ 
+1. Carrier/Operator
+Name: IRAERO
+IATA code: IO | ICAO code: IAE
+Postal Address: Russian Federation, 664009, Irkutsk city, Sovetskaya street, 139-a
+Tel: +7(3952)43-44-42 Email: info@iraero.ru | Tel: +7(3952)43-44-42 Email: info@iraero.ru
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+IO895 | 09May26 | 09May26 | -----6- | HTA | 0155 | KWL | 0625 | SU9 | LD-58/A/S/2026VN
+IO895 | 09May26 | 09May26 | -----6- | KWL | 0715 | CXR | 0955 | SU9 | LD-58/A/S/2026VN
+IO896 | 09May26 | 09May26 | -----6- | CXR | 1105 | KWL | 1345 | SU9 | LD-58/A/S/2026VN
+IO896 | 09May26 | 09May26 | -----6- | KWL | 1445 | HTA | 1905 | SU9 | LD-58/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+IO995 | 09May26 | 09May26 | -----6- | HTA | 0155 | HFE | 0515 | SU9
+IO995 | 09May26 | 09May26 | -----6- | HFE | 0605 | CXR | 0955 | SU9
+IO896 | 09May26 | 09May26 | -----6- | CXR | 1105 | KWL | 1345 | SU9
+IO896 | 09May26 | 09May26 | -----6- | KWL | 1445 | HTA | 1905 | SU9
+
+TABLE 4
+CONTEXT: 2.3. Original Purpose of Flight:
+HTA-CXR-HTA-Passenger and Cargo KWL-Tech.stop only
+
+TABLE 5
+CONTEXT: 2.4. New Purpose of Flight:
+HTA-CXR-HTA-Passenger and Cargo HFE- Tech.stop only without embarking and disembarking passengers KWL-Tech.stop only without embarking and disembarking passengers
+
+TABLE 6
+CONTEXT: 2.5 Original Airway
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KWL-CXR | TEBAK R474 NAKHA Q3 NAH Q1 DAN W2 NHATA | TEBAK | 
+CXR-KWL | DALA1A SOSPA W15 LKH W7 BMT Q1 NAH Q3 NAKHA R474 TEBAK |  | TEBAK
+
+TABLE 7
+CONTEXT: 2.6 New Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HFE-CXR | EPKAL L642 VEPAM COTU2A | EPKAL | 
+CXR-KWL | DALA1A SOSPA W15 LKH W7 BMT Q1 NAH Q3 NAKHA R474 TEBAK |  | TEBAK

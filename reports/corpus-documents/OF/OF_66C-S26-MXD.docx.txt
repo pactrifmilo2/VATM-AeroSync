@@ -1,0 +1,58 @@
+FILE: OF 66C-S26-MXD.docx
+
+PARAGRAPHS
+Hanoi, 30 March 2026
+Permit number: OF-66/C/S/2026VN
+IATA Schedule Season: NORTHERN SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260328-0008)
+
+TABLE 1
+CONTEXT: Hanoi, 30 March 2026
+Permit number: OF-66/C/S/2026VN
+IATA Schedule Season: NORTHERN SUMMER 2026
+1. Carrier
+Name: Batik Air Malaysia
+IATA code: OD | ICAO code: MXD
+Postal Address: 1st FLOOR, MERITUS @OASIS CORPORATE PARK, B2-1-01, BLOCK B, NO.2 JALAN PJU 1A/2, ARA DAMANSARA 47301, PETALING JAYA, SELANGOR, MALAYSIA
+Tel: +603 2035 6699; Fax: +603 2035 6699 | Email: ady.wardyto@batikair.com.my
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Batik Air Malaysia
+Postal Address: 1st FLOOR, MERITUS @OASIS CORPORATE PARK, B2-1-01, BLOCK B, NO.2 JALAN PJU 1A/2, ARA DAMANSARA 47301, PETALING JAYA, SELANGOR, MALAYSIA
+Tel: +603 2035 6699; Fax: +603 2035 6699 | Email: diana.omar@batikair.com.my
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+MXD662 | 31MAR26 | 24OCT26 | 1234567 | WBGG | 1420 | ZGGG | 1820
+MXD663 | 31MAR26 | 24OCT26 | 1234567 | ZGGG | 1920 | WBGG | 2320
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B737-800LG | As per AOC of MXD | Malaysia
+B737-800HG | As per AOC of MXD | Malaysia
+B737-800HG | As per AOC of MXD | Malaysia
+B737 MAX | As per AOC of MXD | Malaysia
+A330 | As per AOC of MXD | Malaysia
+A330 WET LEASE | PK-LEL, PK-LDW | Indonesia
+B737-800 WET LEASE | PK-LZZ,PK-LBS,PK-LBK,PK-LDO,PK-LDM,PK-LBZ,PK-LZV, PK-LZM, PK-LZO | Indonesia
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+WBGG-ZGGG | L644/Q1/W10/A202 | DUDIS | ASSAD
+ZGGG-WBGG | P901/A1/Q1/L644 | BUNTA | DUDIS
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

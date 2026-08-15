@@ -1,0 +1,55 @@
+FILE: R32B5 32B RVS5.docx
+
+PARAGRAPHS
+Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 21/5/2026
+Phép bay số: LD-32/B/S/2026VN/REV5
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay ban đầu
+2.2. Lịch bay mới (sửa đổi)
+CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+Ghi chú
+- Hãng hàng không chỉ được phép khai thác loại các tàu bay trên các đường bay tương ứng tại mục 2 nêu trên. Trường hợp thay đổi loại tàu bay khai thác, hãng hàng không phải đề nghị cấp sửa đổi phép bay.
+- Hãng hàng không có trách nhiệm tuân thủ các quy định về khai thác tàu bay.
+*****
+From: Đinh Mạnh Dũng
+To: VATM, SPQ
+Cc: ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+Cc: NAA, MAA, SAA
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Phép bay thường lệ đi/đến Việt Nam
+Hà Nội, 21/5/2026
+Phép bay số: LD-32/B/S/2026VN/REV5
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay ban đầu
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay | Số phép bay đã cấp
+9G2953 | 26-May-26 | 26-May-26 | -2----- | CXR | 09:20 | PQC | 10:40 | 321/32Q/32N | LD-32/B/S/2026VN
+9G2953 | 02-Jun-26 | 30-Jun-26 | -2----- | CXR | 09:20 | PQC | 10:40 | 321/32Q/32N | 
+9G2953 | 28-May-26 | 28-Jun-26 | ---45-7 | CXR | 09:20 | PQC | 10:40 | 321/32Q/32N | 
+
+TABLE 4
+CONTEXT: 2.2. Lịch bay mới (sửa đổi)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+9G2953 | 26-May-26 | 26-May-26 | -2----- | CXR | 07:30 | PQC | 08:50 | 321/32Q/32N
+9G2953 | 02-Jun-26 | 30-Jun-26 | -2----- | CXR | 07:30 | PQC | 09:00 | 321/32Q/32N
+9G2953 | 28-May-26 | 28-Jun-26 | ---45-7 | CXR | 07:30 | PQC | 08:50 | 321/32Q/32N
+
+TABLE 5
+CONTEXT: CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+KT. CỤC TRƯỞNGPHÓ CỤC TRƯỞNG | 
+Đỗ Hồng Cẩm | 

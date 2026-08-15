@@ -1,0 +1,51 @@
+FILE: R91A5 (OF 91 A REV5) CLX.docx
+
+PARAGRAPHS
+Overflight permit for non-scheduled flight
+HA NOI, 10 JUL 2026
+PERMIT NUMBER OF-91/A/S/2026VN/REV5
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Aircraft
+4. Air traffic service routes:
+OTHER DETAILS REMAIN UNCHANGED
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Overflight permit for non-scheduled flight
+HA NOI, 10 JUL 2026
+PERMIT NUMBER OF-91/A/S/2026VN/REV5
+1. Carrier/Operator
+Name: Cargolux Airlines International S.A.
+IATA code: CV | ICAO code: CLX
+Postal Address: 70 Rue de Luxembourg, L-5230 Sanweiler, Luxembourg
+Tel: +35242113494 | Email: opsplanning@cargolux.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CLX9022 | 14JUL26 | 14JUL26 | 2 | RCTP | 1500 | WSSS | 1935 | 74Y/ 74N | OF-91/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CLX9001 | 14JUL2026 | 14JUL2026 | 2 | RCTP | 1300 | WSSS | 1725 | 74Y/ 74N
+
+TABLE 4
+CONTEXT: 3. Aircraft
+Aircraft Type | Registration Mark | Nationality
+B747-8F(74N) | According to the AOC of CLX | Luxembourg
+B747-400F(74Y) | According to the AOC of CLX | Luxembourg
+B747-400ERF (74Y) | According to the AOC of CLX | Luxembourg
+
+TABLE 5
+CONTEXT: 4. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-WSSS | A1-Q1/W1/L644/L642 | BUNTA | ESPOB
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -9,7 +9,7 @@ permit:
   pattern: (?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN
   numberGroup: number
   sourceTemplate: OF-{number}/{month}/{year}VN
-  normalizedTemplate: O/F {number}/S/CHK/{year}
+  normalizedTemplate: O/F {number}/CHK/{year}
   zeroPadGroups:
     number: 5
 permitDate:

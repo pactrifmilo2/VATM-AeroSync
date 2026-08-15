@@ -1,0 +1,74 @@
+FILE: R42A1  42A  REV1.docx
+
+PARAGRAPHS
+Hanoi, 27/03/2026 Permit No.: LD - 42/A/S/2026VN/REV1
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+Note: QR has no traffic rights between MEL–HAN and ALA–HAN.
+3. Airways
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/03/2026 Permit No.: LD - 42/A/S/2026VN/REV1
+1. Carrier
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 4022 2941 | Email: aeropoliticalsched@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+QR 8954 | 30MAR26 | 06APR26 | 1------ | DOH | 1705 | HAN | 2335 | 77X | LD - 42/A/S/2026VN
+QR 8955 | 31MAR26 | 07APR26 | -2----- | HAN | 0135 | DOH | 0925 | 77X | 
+ | 
+QR 8950 | 07APR26 | 07APR26 | -2----- | DOH | 1515 | HAN | 2145 | 77X | 
+QR 8951 | 07APR26 | 07APR26 | -2----- | HAN | 2345 | DOH | 0735+ | 77X | 
+ | 
+QR 8954 | 01APR26 | 01APR26 | --3---- | DOH | 1900 | HAN | 0135+ | 77X | 
+QR 8955 | 02APR26 | 02APR26 | ---4--- | HAN | 0335 | DOH | 1055 | 77X | 
+ | 
+QR 8954 | 03APR26 | 03APR26 | ---5--- | DOH | 1535 | HAN | 2210 | 77X | 
+QR 8955 | 04APR26 | 04APR26 | -----6- | HAN | 0010 | DOH | 0730 | 77X | 
+ | 
+QR 8952 | 29MAR26 | 29MAR26 | ------7 | DOH | 0440 | HAN | 1110 | 77X | 
+QR 8953 | 29MAR26 | 29MAR26 | ------7 | HAN | 1310 | DOH | 2100 | 77X | 
+ | 
+QR 8952 | 05APR26 | 05APR26 | ------7 | DOH | 0440 | HAN | 1110 | 77X | 
+QR 8953 | 05APR26 | 05APR26 | ------7 | HAN | 1310 | DOH | 2100 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR 8954 | 31MAR26 | 07APR26 | -2----- | DOH | 1130 | HAN | 1815 | 77X
+QR 8955 | 31MAR26 | 07APR26 | -2----- | HAN | 2015 | DOH | 0430 | 77X
+
+QR 8952 | 06APR26 | 06APR26 | 1------ | DOH | 0730 | HAN | 1415 | 77X
+QR 8953 | 07APR26 | 07APR26 | -2----- | HAN | 0030 | DOH | 0845 | 77X
+
+QR 8954 | 02APR26 | 02APR26 | ---4--- | DOH | 1130 | HAN | 1815 | 77X
+QR 8955 | 02APR26 | 02APR26 | ---4--- | HAN | 2015 | DOH | 0430 | 77X
+
+QR8004 | 02APR26 | 02APR26 | ---4--- | DOH | 1300 | ALA | 1800 | 77X
+QR8004 | 03APR26 | 03APR26 | ----5-- | ALA | 1725 | HAN | 2225 | 77X
+QR8955 | 04APR26 | 04APR26 | -----6- | HAN | 0025 | DOH | 0840 | 77X
+
+QR8318 | 28MAR26 | 28MAR26 | -----6- | DOH | 1200 | MEL | 2125 | 77X
+QR8395 | 29MAR26 | 29MAR26 | ------7 | MEL | 0820 | HAN | 1815 | 77X
+QR8395 | 29MAR26 | 29MAR26 | ------7 | HAN | 2015 | DOH | 0430 | 77X
+
+QR8018 | 03APR26 | 03APR26 | ----5-- | DOH | 0730 | MEL | 2125 | 77X
+QR8395 | 05APR26 | 05APR26 | ------7 | MEL | 0820 | HAN | 1815 | 77X
+QR8395 | 05APR26 | 05APR26 | ------7 | HAN | 2015 | DOH | 0430 | 77X
+
+TABLE 4
+CONTEXT: Note: QR has no traffic rights between MEL–HAN and ALA–HAN.
+3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MEL-HAN | M768 Q2 | AKMON | 
+ALA-HAN | B465 | LAPON | 

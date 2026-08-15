@@ -1,0 +1,71 @@
+FILE: R76A1 76A (Huy chuyen bay).docx
+
+PARAGRAPHS
+To: Vatm
+Cc: MU
+Đề nghị Vatm cập nhật Lịch huỷ của MU theo file đính kèm.
+Trân trọng
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER26
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 00842438272281; Fax: 00824438272290
+Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: CHINA EASTERN AIRLINES.
+- IATA code: MU ; ICAO code: CES
+- Address: NO.2550 HONGQIAO ROAD, SHANGHAI, P.R. CHINA
+- Tel:....; Fax:….; Email:….
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger
+4. Reason of cancellation: due to limitations in exploitation
+5. Ref to permit number: LD - 76/A/S/2026VN
+6. Applicant:
+- Name: Tran Vuong Ngan; Title: Representative of China Eastern Airlines Hanoi Office
+- Tel: +84 818167966; Fax:…..; Email: ceahan@gmail.com , jenniferchen186@gmail.com
+- Application is submitted on: 29 April, 2026
+6. Note:
+1,2,3,4,5,7 IATA code
+6 Name of ATS route:
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: MU
+Đề nghị Vatm cập nhật Lịch huỷ của MU theo file đính kèm.
+Trân trọng
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER26
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 00842438272281; Fax: 00824438272290
+Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: CHINA EASTERN AIRLINES.
+- IATA code: MU ; ICAO code: CES
+- Address: NO.2550 HONGQIAO ROAD, SHANGHAI, P.R. CHINA
+- Tel:....; Fax:….; Email:….
+2. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+MU869 | 27Apr26 | 24Oct26 | -2-4-6- | HGH | 1350 | SGN | 1800 | 32N/320/319/738/73G
+MU870 | 27Apr26 | 24Oct26 | -2-4-6- | SGN | 1900 | HGH | 2305 | 32N/320/319/738/73G
+MU6033 | 25Apr26 | 24Oct26 | -2-4-6- | PVG | 1330 | PQC | 1850 | 32Q/321/32N/320/319/738/73G
+MU6034 | 25Apr26 | 24Oct26 | -2-4-6- | PQC | 1950 | PVG | 0000 +1 | 32Q/321/32N/320/319/738/73G
+
+TABLE 2
+CONTEXT: 3. Type of services/ Purpose of Flight(s): Passenger
+4. Reason of cancellation: due to limitations in exploitation
+5. Ref to permit number: LD - 76/A/S/2026VN
+6. Applicant:
+- Name: Tran Vuong Ngan; Title: Representative of China Eastern Airlines Hanoi Office
+- Tel: +84 818167966; Fax:…..; Email: ceahan@gmail.com , jenniferchen186@gmail.com
+- Application is submitted on: 29 April, 2026
+6. Note:
+1,2,3,4,5,7 IATA code
+6 Name of ATS route:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HGH-SGN | L642, N500 | EXOTO | 
+HGH-SGN | A202, Q1 | ASSAD | 
+SGN-HGH | Q2, A202 |  | ASSAD
+SGN-HGH | W12, G221 |  | BUNTA
+PVG-PQC | L642, N500, W17 | EXOTO | 
+PQC-PVG | W17, Q2, W12, G221 |  | BUNTA

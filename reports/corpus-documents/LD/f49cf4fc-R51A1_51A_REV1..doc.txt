@@ -1,0 +1,73 @@
+FILE: R51A1  51A  REV1..doc
+
+PARAGRAPHS
+Ha Noi, 16th April 2026
+№: LD - 51/A/S/2026VN.RVS1
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator:
+Name: Spring Airlines Co., Ltd IATA Code: 9C ICAO Code: CQH Address: No.2550, Hongqiao Road, Changning District, Shanghai, China Tel: +86 (21) 223 525 53 Email: jarupat@ch.com 
+ 
+2. Schedules: UTC Time
+2.1 Old schedule (s): 
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft type 9C7347 17APR26 23OCT26 1-3-5-7 CAN 0805 SGN 1055 320/321 9C7348 17APR26 23OCT26 1-3-5-7 SGN 1155 CAN 1515 320/321 9C7557 18APR26 24OCT26 -2-4-6- PVG 0630 SGN 1055 320/321 9C7558 18APR26 24OCT26 -2-4-6- SGN 1155 PVG 1625 320/321 
+2.2 New schedule (s): 
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft type 9C7347 17APR26 23OCT26 1-3-5-7 CAN 0805 SGN 1055 320/32N/321/32Q 9C7348 17APR26 23OCT26 1-3-5-7 SGN 1155 CAN 1515 320/32N/321/32Q 9C7557 18APR26 24OCT26 -2-4-6- PVG 0630 SGN 1055 320/32N/321/32Q 9C7558 18APR26 24OCT26 -2-4-6- SGN 1155 PVG 1625 320/32N/321/32Q 
+3. Aircraft: 
+3.1 Old aircraft
+Aircraft Type Registration marks Nationality Included in AOC/FAOC Not included in AOC/FAOC 320 As per FAOC of 9C China 321 
+3.2 New aircraft
+Aircraft Type Registration marks Nationality Included in AOC/FAOC Not included in AOC/FAOC 320 As per FAOC of 9C China 32N 321 32Q 
+4. Note: Other details unchanged.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 16th April 2026
+№: LD - 51/A/S/2026VN.RVS1
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator:
+Name: Spring Airlines Co., Ltd
+IATA Code: 9C | ICAO Code: CQH
+Address: No.2550, Hongqiao Road, Changning District, Shanghai, China
+Tel: +86 (21) 223 525 53 | Email: jarupat@ch.com
+
+TABLE 2
+CONTEXT: 2. Schedules: UTC Time
+2.1 Old schedule (s):
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+9C7347 | 17APR26 | 23OCT26 | 1-3-5-7 | CAN | 0805 | SGN | 1055 | 320/321
+9C7348 | 17APR26 | 23OCT26 | 1-3-5-7 | SGN | 1155 | CAN | 1515 | 320/321
+
+9C7557 | 18APR26 | 24OCT26 | -2-4-6- | PVG | 0630 | SGN | 1055 | 320/321
+9C7558 | 18APR26 | 24OCT26 | -2-4-6- | SGN | 1155 | PVG | 1625 | 320/321
+
+TABLE 3
+CONTEXT: 2.2 New schedule (s):
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft type
+9C7347 | 17APR26 | 23OCT26 | 1-3-5-7 | CAN | 0805 | SGN | 1055 | 320/32N/321/32Q
+9C7348 | 17APR26 | 23OCT26 | 1-3-5-7 | SGN | 1155 | CAN | 1515 | 320/32N/321/32Q
+
+9C7557 | 18APR26 | 24OCT26 | -2-4-6- | PVG | 0630 | SGN | 1055 | 320/32N/321/32Q
+9C7558 | 18APR26 | 24OCT26 | -2-4-6- | SGN | 1155 | PVG | 1625 | 320/32N/321/32Q
+
+TABLE 4
+CONTEXT: 3. Aircraft: 
+3.1 Old aircraft
+Aircraft Type | Registration marks | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+320 | As per FAOC of 9C |  | China
+321 |  |  | 
+
+TABLE 5
+CONTEXT: 3.2 New aircraft
+Aircraft Type | Registration marks | Nationality
+ | Included in AOC/FAOC | Not included in AOC/FAOC | 
+320 | As per FAOC of 9C |  | China
+32N |  |  | 
+321 |  |  | 
+32Q |  |  | 

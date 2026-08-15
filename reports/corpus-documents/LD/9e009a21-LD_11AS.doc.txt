@@ -1,0 +1,88 @@
+FILE: LD 11AS.doc
+
+PARAGRAPHS
+Ha Noi, 05th March 2026
+№: LD - 11/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Aero K Airlines Co., LTD IATA code: RF ICAO code: EOK Postal Address: 154, Osongsaengmyeong 3-ro, Osong-eup, Heungdeok-gu, Cheongju-si,
+Chungcheongbuk-do, Republic of Korea Tel: Tel: +82 70 5068 2779 Email: salesplanning_team@aerok.com 
+2. Schedules: All times in UTC
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type RF531 29Mar26 28Jun26 --34-67 CJJ 11:55 DAD 16:55 320 RF532 29Mar26 28Jun26 --34-67 DAD 17:55 CJJ 22:10 320 RF531 01Jul26 31Aug26 1234567 CJJ 11:55 DAD 16:55 320 RF532 01Jul26 31Aug26 1234567 DAD 17:55 CJJ 22:10 320 RF531 02Sep26 20Sep26 --34-67 CJJ 11:55 DAD 16:55 320 RF532 02Sep26 20Sep26 --34-67 DAD 17:55 CJJ 22:10 320 RF531 23Sep26 11Oct26 1234567 CJJ 11:55 DAD 16:55 320 RF532 23Sep26 11Oct26 1234567 DAD 17:55 CJJ 22:10 320 RF531 14Oct26 24Oct26 --34-67 CJJ 11:55 DAD 16:55 320 RF532 14Oct26 24Oct26 --34-67 DAD 17:55 CJJ 22:10 320 RF557 31Mar26 24Oct26 -23-56- CJJ 10:30 CXR 15:30 320 RF558 31Mar26 24Oct26 -23-56- CXR 16:30 CJJ 21:20 320 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 320 As per FAOC of RF Korea 
+5. Airways
+1) CJJ-DAD-CJJ
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CJJ-DAD A1 BUNTA Alternate 1 R474 Q1 TEBAK Alternate 2 N892 L628 G474 W1 MIGUG Alternate 3 L628 G474 W1 ARESI DAD-CJJ A1 BUNTA Alternate 1 W1 R474 TEBAK Alternate 2 Q2 N639 W1 R474 TEBAK Alternate 3 Q1 G474 L628 ARESI Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+2) CJJ-CXR-CJJ
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CJJ-CXR A1 Q1 W7 W15 BUNTA Alternate 1 R474 Q1 W7 W15 TEBAK Alternate 2 N892 L628 L642 MIGUG Alternate 3 L628 L642 ARESI CXR-CJJ W15 W7 W1 A1 BUNTA Alternate 1 W15 W7 W1 R474 TEBAK Alternate 2 M771 L628 ARESI Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 05th March 2026
+№: LD - 11/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Aero K Airlines Co., LTD
+IATA code: RF | ICAO code: EOK
+Postal Address: 154, Osongsaengmyeong 3-ro, Osong-eup, Heungdeok-gu, Cheongju-si, Chungcheongbuk-do, Republic of Korea
+Tel: Tel: +82 70 5068 2779 | Email: salesplanning_team@aerok.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+RF531 | 29Mar26 | 28Jun26 | --34-67 | CJJ | 11:55 | DAD | 16:55 | 320
+RF532 | 29Mar26 | 28Jun26 | --34-67 | DAD | 17:55 | CJJ | 22:10 | 320
+RF531 | 01Jul26 | 31Aug26 | 1234567 | CJJ | 11:55 | DAD | 16:55 | 320
+RF532 | 01Jul26 | 31Aug26 | 1234567 | DAD | 17:55 | CJJ | 22:10 | 320
+RF531 | 02Sep26 | 20Sep26 | --34-67 | CJJ | 11:55 | DAD | 16:55 | 320
+RF532 | 02Sep26 | 20Sep26 | --34-67 | DAD | 17:55 | CJJ | 22:10 | 320
+RF531 | 23Sep26 | 11Oct26 | 1234567 | CJJ | 11:55 | DAD | 16:55 | 320
+RF532 | 23Sep26 | 11Oct26 | 1234567 | DAD | 17:55 | CJJ | 22:10 | 320
+RF531 | 14Oct26 | 24Oct26 | --34-67 | CJJ | 11:55 | DAD | 16:55 | 320
+RF532 | 14Oct26 | 24Oct26 | --34-67 | DAD | 17:55 | CJJ | 22:10 | 320
+ |  |  |  |  |  |  |  | 
+RF557 | 31Mar26 | 24Oct26 | -23-56- | CJJ | 10:30 | CXR | 15:30 | 320
+RF558 | 31Mar26 | 24Oct26 | -23-56- | CXR | 16:30 | CJJ | 21:20 | 320
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of RF | Korea
+
+TABLE 4
+CONTEXT: 5. Airways
+1) CJJ-DAD-CJJ
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CJJ-DAD | A1 | BUNTA | 
+Alternate 1 | R474 Q1 | TEBAK | 
+Alternate 2 | N892 L628 G474 W1 | MIGUG | 
+Alternate 3 | L628 G474 W1 | ARESI | 
+DAD-CJJ | A1 |  | BUNTA
+Alternate 1 | W1 R474 |  | TEBAK
+Alternate 2 | Q2 N639 W1 R474 |  | TEBAK
+Alternate 3 | Q1 G474 L628 |  | ARESI
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+2) CJJ-CXR-CJJ
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CJJ-CXR | A1 Q1 W7 W15 | BUNTA | 
+Alternate 1 | R474 Q1 W7 W15 | TEBAK | 
+Alternate 2 | N892 L628 L642 | MIGUG | 
+Alternate 3 | L628 L642 | ARESI | 
+CXR-CJJ | W15 W7 W1 A1 |  | BUNTA
+Alternate 1 | W15 W7 W1 R474 |  | TEBAK
+Alternate 2 | M771 L628 |  | ARESI

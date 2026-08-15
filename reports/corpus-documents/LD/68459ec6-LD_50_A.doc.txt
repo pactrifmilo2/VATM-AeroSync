@@ -1,0 +1,59 @@
+FILE: LD 50 A.doc
+
+PARAGRAPHS
+Ha Noi, 19th March 2026
+№: LD - 50/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Air Premia IATA code: YP ICAO code: APZ Postal Address: 4th Floor, 248, Gonghang-daero, Gangseo-gu, Seoul, Republic of Korea, 07805 Tel: +82 70 7468 1608 Email: g.park@airpremia.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type YP621 29Mar26 24Oct26 --34-67 ICN 08:45 DAD 13:40 789 YP622 29Mar26 24Oct26 --34-67 DAD 15:45 ICN 20:25 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 789 According to YP’s FAOC Korea 5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-DAD A1 BUNTA DAD-ICN A1 BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 19th March 2026
+№: LD - 50/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Air Premia
+IATA code: YP | ICAO code: APZ
+Postal Address: 4th Floor, 248, Gonghang-daero, Gangseo-gu, Seoul, Republic of Korea, 07805
+Tel: +82 70 7468 1608 | Email: g.park@airpremia.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+YP621 | 29Mar26 | 24Oct26 | --34-67 | ICN | 08:45 | DAD | 13:40 | 789
+YP622 | 29Mar26 | 24Oct26 | --34-67 | DAD | 15:45 | ICN | 20:25 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+789 | According to YP’s FAOC | Korea
+ |  | 
+ |  | 
+ |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-DAD | A1 | BUNTA | 
+DAD-ICN | A1 |  | BUNTA

@@ -1,0 +1,41 @@
+FILE: R27A1 OF 17ARVS1.docx
+
+PARAGRAPHS
+HA NOI, 29 APR 2026
+PERMIT NUMBER OF-27/A/S/2026VN/REV1
+1. Carrier
+2. Billing address
+3. Schedules (UTC Time)
+3.1. Old
+3.2. New
+OTHER MAIN DETAILS IS UNCHANGED.
+4. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 29 APR 2026
+PERMIT NUMBER OF-27/A/S/2026VN/REV1
+1. Carrier
+Name: Greater Bay Airlines Company Limited
+IATA code: HB | ICAO code: HGB
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: airlineplanning@greaterbay-airlines.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Greater Bay Airlines Company Limited
+Postal Address: 12/F, One Citygate, 20 Tat Tung Road, Tung Chung, Lantau, Hong Kong
+Tel: +852 – 3956 6166 | Email: occ@greaterbay-airlines.com
+
+TABLE 3
+CONTEXT: 3. Schedules (UTC Time)
+3.1. Old
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+HGB500 | 28APR26 | 24OCT26 | 1234567 | VHHH | 0550 | VRMM | 1230 | B738/B79M | OF-27/A/S/2026VN
+HGB501 | 28APR26 | 24OCT26 | 1234567 | VRMM | 1445 | VHHH | 2200 | B738/B79M | 
+
+TABLE 4
+CONTEXT: 3.2. New
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HGB510 | 28APR26 | 24OCT26 | 1234567 | VHHH | 0550 | VRMM | 1230 | B738/B79M
+HGB511 | 28APR26 | 24OCT26 | 1234567 | VRMM | 1445 | VHHH | 2200 | B738/B79M

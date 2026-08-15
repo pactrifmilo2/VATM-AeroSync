@@ -1,0 +1,51 @@
+FILE: OF 43AS.docx
+
+PARAGRAPHS
+HA NOI, 04 MAR 2026
+NUMBER OF-43/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Cargo
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 04 MAR 2026
+NUMBER OF-43/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: ATLAS AIR
+IATA code: 5Y | ICAO code: GTI
+Postal Address: 2000, WESTCHESTER AVENUE, PURCHASE, NY, USA 10577-2543
+Tel: + 1 914 701 8000 | F: + 1 914 701 8001; E: info@atlasair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: PRIME TRIP SUPPORT
+Postal Address: JUMEIRAH BAY X3 TOWER, SUITE 3701, JLT DUBAI, UAE
+Tel: +1 (888) 209-8190 | F: +971 (50) 741-1872; Email: AP@PRIMETRIPSUPPORT.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GTI8643 | 29MAR26 | 24OCT26 | -2----- | EBLG | 0540 | RCTP | 2000
+GTI8641 | 29MAR26 | 24OCT26 | ---4--- | EBLG | 2010 | RCTP | 1030+
+
+TABLE 5
+CONTEXT: 3. Type of services/ Purpose of Flight(s): Cargo
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+EBLG-RCTP | A206 W2 A1 | NALAO | BUNTA
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B747 | As per AOC of GTI | USA

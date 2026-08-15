@@ -1,0 +1,61 @@
+FILE: OF 34.B.S.docx
+
+PARAGRAPHS
+HA NOI, 05 MAR 2026
+NUMBER OF-34/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger Flights
+5. Aircraft:
+6. Air traffic service routes:
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 05 MAR 2026
+NUMBER OF-34/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Hong Kong Express Airways Limited
+IATA code: UO | ICAO code: HKE
+Postal Address: 1/F, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong
+Tel: +852 3151 1961 | Email: anthony.chan@hkexpress.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Hong Kong Express Airways Limited
+Postal Address: 1/F, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong
+Tel: +852 3906 7565 | Email: navigation@hkexpress.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of service | Departure Airport | ETD | Arrival Airport | ETA
+HKE732 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 1330 | VTBS | 1630
+HKE733 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1720 | VHHH | 2030
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger Flights
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320/A20N | As per AOC of HKE | Hong Kong SAR
+A321/A21N | As per AOC of HKE | Hong Kong SAR
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+VHHH-VTBS | A202 | ASSAD | VILAO
+VHHH-VTBS | A1 | BUNTA | PAPRA
+VHHH-VTBS | R474/B465 | TEBAK | LAPON
+VHHH-VTBS | R474 | TEBAK | LAVOS
+VHHH-VTBS | N500/L642/M765 | PANDI | IGARI
+VTBS-VHHH | A202 | VILAO | ASSAD
+VTBS-VHHH | A1 | PAPRA | BUNTA
+VTBS-VHHH | B465/R474 | LAPON | TEBAK
+VTBS-VHHH | R474 | LAVOS | TEBAK
+VTBS-VHHH | M765/L642/N500 | IGARI | PANDI

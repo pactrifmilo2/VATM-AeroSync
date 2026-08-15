@@ -1,0 +1,109 @@
+FILE: LD 28D.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 26/03/2026
+Permit No.: LD-28/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: CHINA AIRLINES IATA code: CI ICAO code: CAL Postal Address: 105 Ton Dat Tien, Tan My Ward, Ho Chi Minh City, Vietnam Tel: 84-28 36389968 Email: HYPERLINK "mailto:hatuyet.tran@china-airlines.com," hatuyet.tran@china-airlines.com, hanffci@china-airlines.com 
+2. Schedules (UTC Time)
+Flight Number Effective from Effective to Day(s) of services Departure Airport ETD
+(UTC) Arrival Airport ETA
+(UTC) Aircraft type CI781 28Mar26 23Oct26 1234567 TPE 2315Z SGN 0240Z+1 359,
+333,
+32Q,
+738,
+77W. CI782 29Mar26 24Oct26 1234567 SGN 0350Z TPE 0720Z CI783 29Mar26 24Oct26 1234567 TPE 0545Z SGN 0920Z CI784 29Mar26 24Oct26 1234567 SGN 1030Z TPE 1405Z CI791 29Mar26 24Oct26 1234567 TPE 0020Z HAN 0330Z CI792 29Mar26 24Oct26 1234567 HAN 0430Z TPE 0720Z CI793 29Mar26 24Oct26 1234567 TPE 0635Z HAN 0950Z CI794 29Mar26 24Oct26 1234567 HAN 1050Z TPE 1345Z 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration marks Nationality 359 According to CI’s FAOC R.O.C 333 According to CI’s FAOC R.O.C 32Q According to CI’s FAOC R.O.C 738 According to CI’s FAOC R.O.C 77W According to CI’s FAOC R.O.C 
+5. Airways
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TPE-SGN G221-W12-Q1
+N892-Q15-W15
+L628-Q15-W15
+G221-W12-W1
+N892 N500 BUNTA
+MIGUG
+ARESI
+BUNTA
+MIGUG SGN-TPE W12-G221
+W15-Q15-L628
+Q1-A1
+Q2-A1 BUNTA
+ARESI
+BUNTA
+BUNTA TPE-HAN R474
+N892-L628-G474-Q6-Q2
+A1 W2 Q2
+A1-Q1
+L628-G474-Q6-Q2 TEBAK
+MIGUG
+BUNTA
+BUNTA
+ARESI HAN-TPE R474
+Q1-A1
+Q1-G474-L628 TEBAK
+BUNTA
+ARESI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Validity: -12/+24H
+7. Note: This permit replaces permit LD-28/B/S/2026VN
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 
+2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 26/03/2026
+Permit No.: LD-28/D/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: CHINA AIRLINES
+IATA code: CI | ICAO code: CAL
+Postal Address: 105 Ton Dat Tien, Tan My Ward, Ho Chi Minh City, Vietnam
+Tel: 84-28 36389968 | Email: HYPERLINK "mailto:hatuyet.tran@china-airlines.com," hatuyet.tran@china-airlines.com, hanffci@china-airlines.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of services | Departure Airport | ETD (UTC) | Arrival Airport | ETA (UTC) | Aircraft type
+CI781 | 28Mar26 | 23Oct26 | 1234567 | TPE | 2315Z | SGN | 0240Z+1 | 359, 333, 32Q, 738, 77W.
+CI782 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0350Z | TPE | 0720Z | 
+CI783 | 29Mar26 | 24Oct26 | 1234567 | TPE | 0545Z | SGN | 0920Z | 
+CI784 | 29Mar26 | 24Oct26 | 1234567 | SGN | 1030Z | TPE | 1405Z | 
+CI791 | 29Mar26 | 24Oct26 | 1234567 | TPE | 0020Z | HAN | 0330Z | 
+CI792 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0430Z | TPE | 0720Z | 
+CI793 | 29Mar26 | 24Oct26 | 1234567 | TPE | 0635Z | HAN | 0950Z | 
+CI794 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1050Z | TPE | 1345Z | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+359 | According to CI’s FAOC | R.O.C
+333 | According to CI’s FAOC | R.O.C
+32Q | According to CI’s FAOC | R.O.C
+738 | According to CI’s FAOC | R.O.C
+77W | According to CI’s FAOC | R.O.C
+
+TABLE 5
+CONTEXT: 5. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TPE-SGN | G221-W12-Q1 N892-Q15-W15 L628-Q15-W15 G221-W12-W1 N892 N500 | BUNTA MIGUG ARESI BUNTA MIGUG | 
+SGN-TPE | W12-G221 W15-Q15-L628 Q1-A1 Q2-A1 |  | BUNTA ARESI BUNTA BUNTA
+TPE-HAN | R474 N892-L628-G474-Q6-Q2 A1 W2 Q2 A1-Q1 L628-G474-Q6-Q2 | TEBAK MIGUG BUNTA BUNTA ARESI | 
+HAN-TPE | R474 Q1-A1 Q1-G474-L628 |  | TEBAK BUNTA ARESI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

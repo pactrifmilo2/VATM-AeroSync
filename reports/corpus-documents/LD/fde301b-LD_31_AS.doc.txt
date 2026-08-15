@@ -1,0 +1,60 @@
+FILE: LD 31 AS.doc
+
+PARAGRAPHS
+Ha Noi, 11th March 2026
+№: LD - 31/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier
+Name: CHINA SOUTHERN AIRLINES CARGO IATA code: CZ ICAO code: CSG Postal Address: Phòng A104, Tầng 1, Toà nhà văn phòng TCS AFT1, Số 46-48 Hậu Giang, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh. Tel: 024.37716611; 0396856768 Email: HYPERLINK "mailto:phepbay@csair.com," phepbay@csair.com, haile@csair.com 
+Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CZ2595 28Mar26 25Oct26 ..3..6. CAN 21:50 RUH 07:00+1 77X CZ2596 28Mar26 25Oct26 ...4..7 RUH 9:30 HAN 16:50 CZ2596 28Mar26 25Oct26 ...4..7 HAN 19:20 PVG 22:20 
+Purpose of Flight: All-cargo
+Aircraft
+Aircraft
+Type Registration Mark
+ Nationality 77X According to CZ’s AOC China 
+Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RUH -HAN B214 W21 LADON HAN-PVG R474 TEBAK 
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 11th March 2026
+№: LD - 31/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+Carrier
+Name: CHINA SOUTHERN AIRLINES CARGO
+IATA code: CZ | ICAO code: CSG
+Postal Address: Phòng A104, Tầng 1, Toà nhà văn phòng TCS AFT1, Số 46-48 Hậu Giang, Phường 4, Quận Tân Bình, Thành phố Hồ Chí Minh.
+Tel: 024.37716611; 0396856768 | Email: HYPERLINK "mailto:phepbay@csair.com," phepbay@csair.com, haile@csair.com
+
+TABLE 2
+CONTEXT: Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CZ2595 | 28Mar26 | 25Oct26 | ..3..6. | CAN | 21:50 | RUH | 07:00+1 | 77X
+CZ2596 | 28Mar26 | 25Oct26 | ...4..7 | RUH | 9:30 | HAN | 16:50 | 
+CZ2596 | 28Mar26 | 25Oct26 | ...4..7 | HAN | 19:20 | PVG | 22:20 | 
+
+TABLE 3
+CONTEXT: Purpose of Flight: All-cargo
+Aircraft
+Aircraft Type | Registration Mark | Nationality
+77X | According to CZ’s AOC | China
+
+TABLE 4
+CONTEXT: Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RUH -HAN | B214 W21 | LADON | 
+HAN-PVG | R474 |  | TEBAK

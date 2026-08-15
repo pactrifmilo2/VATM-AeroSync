@@ -1,0 +1,39 @@
+FILE: R89A2 OF 89ARVS2.docx
+
+PARAGRAPHS
+Hanoi, 29/05/2026
+Permit No.: OF - 89/A/S/2026VN/REV2
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 29/05/2026
+Permit No.: OF - 89/A/S/2026VN/REV2
+1. Carrier/Operator
+Name: QATAR AIRWAYS
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS,NAVIGATION SERVICES- ATO / OVERFLIGHT SECTION, FLIGHT OPERATIONS,P.O. BOX 22550, DOHA, QATAR
+Tel: +974 40106617 | Email: OVERFLIGHTS@QATARAIRWAYS.COM.QA
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+QTR891 | 29MAY26 | 29MAY26 | ----5-- | ZSHC | 0315 | OTHH | 1655 | OF - 89/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+QTR891 | 29MAY26 | 29MAY26 | ----5-- | ZSHC | 1655 | OOMS | 0245+
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSHC-OOMS | A206 | ASSAD | NALAO

@@ -1,0 +1,55 @@
+FILE: OF 111D-S26-RMY.docx
+
+PARAGRAPHS
+Hanoi, 24 JUL 2026
+Permit number: OF-111/D/S/2026VN
+IATA Schedule Season:
+Season S26
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of flight(s): Cargo flight
+5. Aircraft
+6. Airways
+7. Validity: -3/+72 Hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260722-170653)
+
+TABLE 1
+CONTEXT: Hanoi, 24 JUL 2026
+Permit number: OF-111/D/S/2026VN
+IATA Schedule Season:
+Season S26
+1. Carrier/Operator:
+Name: RAYA AIRWAYS
+IATA Code: TH | ICAO Code: RMY
+Postal address: Left Wing, Ground Floor, Wisma Shell, 3450 Jalan Teknokrat 3, 63000 Cyberjaya, Selangor Darul Ehsan, Malaysia.
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: RAYA AIRWAYS
+Postal address: Left Wing, Ground Floor, Wisma Shell, 3450 Jalan Teknokrat 3, 63000 Cyberjaya, Selangor Darul Ehsan, Malaysia.
+Tel: + 60 3 82139000 | Email: mohamadfaisal@rayaairways.com; networkplanning@rayaairways.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Eff from | Eff to | Day(s) of services | Dep airport | ETD | Arr airport | ETA
+RMY738 | 01AUG26 | 24OCT26 | --3---- | WMKK | 1500 | ZSNJ | 2030
+RMY739 | 01AUG26 | 24OCT26 | --3---- | ZSNJ | 2155 | WMKK | 0325+
+
+TABLE 4
+CONTEXT: 4. Purpose of flight(s): Cargo flight
+5. Aircraft
+Aircraft type | Registration marks | Mtow (T) | Nationality
+76X | As per AOC of RMY | 159,2T | MALAYSIA
+76X | As per AOC of RMY | 140,6T | MALAYSIA
+32X | As per AOC of RMY | 89 | MALAYSIA
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry point into Vietnam FIR | Exit point from Vietnam FIR
+WMKK-ZSNJ | M765-M771 | IGARI | DONDA
+ZSNJ-WMKK | L642-M765 | EXOTO | IGARI
+Alternate airways: Other Permitted Airways Published In Vietnam’s AIP

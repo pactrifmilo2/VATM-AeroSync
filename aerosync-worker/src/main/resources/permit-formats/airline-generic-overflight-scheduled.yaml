@@ -1,0 +1,9 @@
+id: airline-generic-overflight-scheduled
+extends: caav-english-overflight-scheduled
+priority: -80
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}'
+  - '(?iu)IATA\s*(?:CODE)?\s*:\s*[A-Z0-9]{2}\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*[A-Z0-9]{3}\b'
+  - '(?iu)SCHEDULES?\s*:\s*UTC\s*TIME'
+  - '(?isu)^(?!.*NON[-\s]+SCHEDULED).*$'

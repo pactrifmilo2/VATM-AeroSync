@@ -1,0 +1,60 @@
+FILE: OF 102AS.doc
+
+PARAGRAPHS
+Ha Noi, 18th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 102/A/S/2026VN
+1. Carrier
+Name: WEST AIR CO., LTD. IATA code: PN ICAO code: CHB Postal Address: The production base of West Air, No 10 Lingang road,Yubei district, Chongqing, China 
+2. Billing address
+Name: WEST AIR CO., LTD. Postal Address: The production base of West Air, No 10 Lingang road,Yubei district, Chongqing, China Tel: +86-02381398552 Email: HYPERLINK "mailto:mhao_gong@westair.cn" mhao_gong@westair.cn 
+3. Schedules: UTC Time 
+Flight number Effective from Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CHB6425 29MAR26 24OCT26 1234567 ZUCK 1040 WSSS 1540 CHB6426 29MAR26 24OCT26 1234567 WSSS 1640 ZUCK 2140 CHB6443 29MAR26 24OCT26 1234567 ZUCK 1445 WSSS 1945 CHB6444 29MAR26 24OCT26 1234567 WSSS 2045 ZUCK 0145+1 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A321CEO/NEO B-321R,B-321S,B-321T,B-325W,B-32H0,B-32A7,B-32HN,B-32HE
+OR SUB CHINA A320CEO/NEO B-8867, B-302F, B-306V, B-306U, B-306W, B-306T, B-1897, B-8892, B-8893, B-8102, B-8110, B-8249, B-8286, B-8421, B-8422, B-8643, B-8642, B-9969, B-1629, B-6743, B-1898, B-6790, B-6763, B-6765, B-6811, B-9981, B-9982, B-9949, B-1817, B-8845, B-8846, B-6771, B-32JC, OR SUB CHINA A319CEO/NEO B-6412,B-6413,B-6420,B-6421,B-32JM,B-32MF OR SUB CHINA 
+6. Air traffic service routes:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZUCK-WSSS R474-Q3-Q1-L644-L642 TEBAK ESPOB WSSS-ZUCK M753-L637-Q2-N639-Q3-R747 IPRIX TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. VALIDITY: -3/+72 HOURS 
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 18th March 2026
+OVERFLIGHT PERMIT - SUMMER 2026 SCHEDULES
+№: OF - 102/A/S/2026VN
+1. Carrier
+Name: WEST AIR CO., LTD.
+IATA code: PN | ICAO code: CHB
+Postal Address: The production base of West Air, No 10 Lingang road,Yubei district, Chongqing, China
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: WEST AIR CO., LTD.
+Postal Address: The production base of West Air, No 10 Lingang road,Yubei district, Chongqing, China
+Tel: +86-02381398552 | Email: HYPERLINK "mailto:mhao_gong@westair.cn" mhao_gong@westair.cn
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CHB6425 | 29MAR26 | 24OCT26 | 1234567 | ZUCK | 1040 | WSSS | 1540
+CHB6426 | 29MAR26 | 24OCT26 | 1234567 | WSSS | 1640 | ZUCK | 2140
+CHB6443 | 29MAR26 | 24OCT26 | 1234567 | ZUCK | 1445 | WSSS | 1945
+CHB6444 | 29MAR26 | 24OCT26 | 1234567 | WSSS | 2045 | ZUCK | 0145+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A321CEO/NEO | B-321R,B-321S,B-321T,B-325W,B-32H0,B-32A7,B-32HN,B-32HE OR SUB | CHINA
+A320CEO/NEO | B-8867, B-302F, B-306V, B-306U, B-306W, B-306T, B-1897, B-8892, B-8893, B-8102, B-8110, B-8249, B-8286, B-8421, B-8422, B-8643, B-8642, B-9969, B-1629, B-6743, B-1898, B-6790, B-6763, B-6765, B-6811, B-9981, B-9982, B-9949, B-1817, B-8845, B-8846, B-6771, B-32JC, OR SUB | CHINA
+A319CEO/NEO | B-6412,B-6413,B-6420,B-6421,B-32JM,B-32MF OR SUB | CHINA
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZUCK-WSSS | R474-Q3-Q1-L644-L642 | TEBAK | ESPOB
+WSSS-ZUCK | M753-L637-Q2-N639-Q3-R747 | IPRIX | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

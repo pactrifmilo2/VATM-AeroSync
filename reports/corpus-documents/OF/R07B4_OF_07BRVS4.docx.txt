@@ -1,0 +1,40 @@
+FILE: R07B4 OF 07BRVS4.docx
+
+PARAGRAPHS
+HANOI, 14MAY2026
+PERMIT NUMBER OF-07/B/S/2026VN/REV4
+1. Carrier/Operator
+2. Schedule
+2.1 Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways:
+3. Note: Other details unchanged.
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 14MAY2026
+PERMIT NUMBER OF-07/B/S/2026VN/REV4
+1. Carrier/Operator
+Name: Myanmar Airways International
+IATA code: 8M | ICAO code: MMA
+Postal Address: INTERNATIONAL BUSINESS CENTRE (IBC) NO.(88), PYAY ROAD, 11ᵗʱ QUARTER, HLAING TOWNSHIP YANGON 11061, MYANMAR
+Tel: +951 533207 | Email: aungthu.fltops@maiair.aero,yeaung@maiair.aero, admin.fltops@maiair.aero
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1 Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+MMA-802 | 15May 26 | 31 May 26 | 2,4,5,7 | RKSI | 0705 | VTCC | 1220 | 319/320/E190 | OF-07/B/S/2026VN/REV3
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MMA-802 | 15May 26 | 31 May 26 | 2,4,5,7 | RKSI | 0705 | VYYY | 1305 | 319/320/E190
+
+TABLE 4
+CONTEXT: 3. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI- VYYY | R474 B465 | TEBAK | LAPON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

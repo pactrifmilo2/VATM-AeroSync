@@ -1,0 +1,34 @@
+FILE: R76C1 76C  (RVS1).docx
+
+PARAGRAPHS
+Hanoi, 24/4/2026
+Refer to the issued permit: LD - 76/C/S/2026VN
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 24/4/2026
+Refer to the issued permit: LD - 76/C/S/2026VN
+1. Carrier/Operator
+Name: CHINA EASTERN AIRLINES
+IATA code: MU | ICAO code: CES
+Postal Address: NO.2550 HONGQIAO ROAD, SHANGHAI, P.R. CHINA
+Tel: | Email:
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+MU6033 | 25Apr26 | 24Oct26 | -2-4-6- | PVG | 1300 | PQC | 1800 | 32Q/321/32N/320/319/738/73G | LD - 76/C/S/2026VN
+MU6034 | 25Apr26 | 24Oct26 | -2-4-6- | PQC | 1900 | PVG | 2320 | 32Q/321/32N/320/319/738/73G | LD - 76/C/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MU6033 | 25Apr26 | 24Oct26 | -2-4-6- | PVG | 1200 | PQC | 1705 | 32Q/321/32N/320/319/738/73G
+MU6034 | 25Apr26 | 24Oct26 | -2-4-6- | PQC | 1805 | PVG | 2230 | 32Q/321/32N/320/319/738/73G

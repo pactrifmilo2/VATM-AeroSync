@@ -1,0 +1,70 @@
+FILE: OF 70_D_S_2026VN_CDG.doc
+
+PARAGRAPHS
+Ha Noi, 24th July 2026
+№: OF - 70/D/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Operator:
+Name: SHANDONG AIRLINES IATA code: SC ICAO code: CDG Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA Tel: 0086-531-85698928 Email: liy73@sda.cn；suqh@sda.cn 
+2. Billing address:
+Name: ACCOUNT DEP OF SHANDONG AIRLINES Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE CHINA Tel: 0086-531-85698928 Email: liy73@sda.cn；suqh@sda.cn 
+3. Schedules: UTC Time
+Flight
+Number
+ Effective from
+ Effective
+To
+ Day(s) of services
+ Departure Airport
+ ETD
+ Arrival Airport
+ ETA
+ CDG8079 01SEP2026 24OCT2026 1234567 ZSJN 0845 WMKK 1505 CDG8080 01SEP2026 24OCT2026 1234567 WMKK 1605 ZSJN 2200 
+4. Purpose of Flight(s): COMERCIAL PASSENGER FLIGHT
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B738/B38M OR SUBS AS PER CDG’s AOC CHINA 
+6. Airways:
+Sectors ATS Routes 
+ ZSJN-WMKK R474, Q1, N639 ZSJN-WMKK M755, M765 WMKK-ZSJN M765, M755 WMKK-ZSJN N639, Q1, R474 
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 24th July 2026
+№: OF - 70/D/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Operator:
+Name: SHANDONG AIRLINES
+IATA code: SC | ICAO code: CDG
+Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA
+Tel: 0086-531-85698928 | Email: liy73@sda.cn；suqh@sda.cn
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: ACCOUNT DEP OF SHANDONG AIRLINES
+Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE CHINA
+Tel: 0086-531-85698928 | Email: liy73@sda.cn；suqh@sda.cn
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+CDG8079 | 01SEP2026 | 24OCT2026 | 1234567 | ZSJN | 0845 | WMKK | 1505
+CDG8080 | 01SEP2026 | 24OCT2026 | 1234567 | WMKK | 1605 | ZSJN | 2200
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): COMERCIAL PASSENGER FLIGHT
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B738/B38M OR SUBS | AS PER CDG’s AOC | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sectors | ATS Routes
+ZSJN-WMKK | R474, Q1, N639
+ZSJN-WMKK | M755, M765
+WMKK-ZSJN | M765, M755
+WMKK-ZSJN | N639, Q1, R474

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AeroSync.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70e49beeb6bbef18d8b6073cbb89e2a2c87377bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+237e629aef649087094a984e929ae369bdb0d5a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("AeroSync.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AeroSync.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,63 @@
+FILE: LD 13AS.doc
+
+PARAGRAPHS
+Ha Noi, 05th March 2026
+№: LD - 13/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Juneyao Airlines Co., Ltd IATA code: HO ICAO code: DKH Postal Address: No.2 East Kangqiao Road, Pudong New District, Shanghai, China. Tel: +86-21-95520 Email: HYPERLINK "mailto:yaoqiang3@juneyaoair.com" yaoqiang3@juneyaoair.com 
+2. Schedules: All times in UTC
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type HO1327 29MAR26 23OCT26 1234567 PVG 1305 SGN 1720 320/321/20N/21N HO1328 29MAR26 23OCT26 1234567 SGN 1820 PVG 2230 320/321/20N/21N HO1329 29MAR26 24OCT26 1234567 PVG 1345 HAN 1720 320/321/20N/21N HO1330 29MAR26 24OCT26 1234567 HAN 1820 PVG 2130 320/321/20N/21N 
+3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type Registration Marks Nationality 320 According to HO’s FAOC CHINA 321 20N 21N 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR PVG-SGN L642-W15-W1 or L642-N500 EXOTO PVG-SGN A202-Q1 or A202-W1 ASSAD SGN-PVG N500-M771 or W1-W15-Q15-M771 DONDA SGN-PVG Q2-A202 or W1-A202 ASSAD PVG-HAN R474 TEBAK PVG-HAN A206-Q2 or A206-W1 ASSAD HAN-PVG R474 TEBAK HAN-PVG Q1-A206 or W1-A206 ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 05th March 2026
+№: LD - 13/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: Juneyao Airlines Co., Ltd
+IATA code: HO | ICAO code: DKH
+Postal Address: No.2 East Kangqiao Road, Pudong New District, Shanghai, China.
+Tel: +86-21-95520 | Email: HYPERLINK "mailto:yaoqiang3@juneyaoair.com" yaoqiang3@juneyaoair.com
+
+TABLE 2
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+HO1327 | 29MAR26 | 23OCT26 | 1234567 | PVG | 1305 | SGN | 1720 | 320/321/20N/21N
+HO1328 | 29MAR26 | 23OCT26 | 1234567 | SGN | 1820 | PVG | 2230 | 320/321/20N/21N
+ |  |  |  |  |  |  |  | 
+HO1329 | 29MAR26 | 24OCT26 | 1234567 | PVG | 1345 | HAN | 1720 | 320/321/20N/21N
+HO1330 | 29MAR26 | 24OCT26 | 1234567 | HAN | 1820 | PVG | 2130 | 320/321/20N/21N
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft:
+Aircraft Type | Registration Marks | Nationality
+320 | According to HO’s FAOC | CHINA
+321 |  | 
+20N |  | 
+21N |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+PVG-SGN | L642-W15-W1 or L642-N500 | EXOTO | 
+PVG-SGN | A202-Q1 or A202-W1 | ASSAD | 
+SGN-PVG | N500-M771 or W1-W15-Q15-M771 |  | DONDA
+SGN-PVG | Q2-A202 or W1-A202 |  | ASSAD
+PVG-HAN | R474 | TEBAK | 
+PVG-HAN | A206-Q2 or A206-W1 | ASSAD | 
+HAN-PVG | R474 |  | TEBAK
+HAN-PVG | Q1-A206 or W1-A206 |  | ASSAD

@@ -1,0 +1,60 @@
+FILE: R54B3  54B REV3.docx
+
+PARAGRAPHS
+HANOI, 6-Jun-26
+the issued permit LD-54/B/S/2026VN/REV3
+IATA Schedule Season: Summer 2026
+1. CARRIER/OPERATOR
+2. Schedules (UTC Time)
+2.1 Old schedule
+2.2 New schedule
+Note: AK is authorized to operate 5th freedom right on sector BKK-SGN.
+3. Purpose Of Flight: All Cargo
+4. Airways
+4.1 Old route
+4.2 New route
+5. Note: Other details unchanged
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260605-170252 )
+
+TABLE 1
+CONTEXT: HANOI, 6-Jun-26
+the issued permit LD-54/B/S/2026VN/REV3
+IATA Schedule Season: Summer 2026
+1. CARRIER/OPERATOR
+NAME: AirAsia Berhad
+IATA CODE: AK | ICAO CODE: AXM
+ADDRESS: RedQ, Jalan Pekeliling 5, Kuala Lumpur International Airport (KLIA2), 6400 Sepang, Selangor Darul Ehsan, Malaysia
+TEL: 0060386604333 | EMAIL: regulatoryaffairs@airasia.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1 Old schedule
+Flight number | Effective from | Effective to | Day(s) of services | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+AK8140 | 20JUN26 | 20JUN26 | _____6_ | KUL | 1240 | SGN | 1450 | 321
+AK8141 | 20JUN26 | 20JUN26 | _____6_ | SGN | 1600 | KUL | 1805 | 
+
+TABLE 3
+CONTEXT: 2.2 New schedule
+Flight number | Effective from | Effective to | Day(s) of services | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+AK8701 | 20JUN26 | 20JUN26 | _____6_ | KUL | 0945 | BKK | 1155 | 321
+AK8702 | 20JUN26 | 20JUN26 | _____6_ | BKK | 1325 | SGN | 1450 | 
+AK8141 | 20JUN26 | 20JUN26 | _____6_ | SGN | 1600 | KUL | 1805 | 
+
+TABLE 4
+CONTEXT: Note: AK is authorized to operate 5th freedom right on sector BKK-SGN.
+3. Purpose Of Flight: All Cargo
+4. Airways
+4.1 Old route
+Sector | Airways | Entry Point Into Vietnam Fir | Exit Point From Vietnam Fir
+KUL-SGN | M765 L637 | IGARI | -
+SGN-KUL | L637 M765 | - | IGARI
+
+TABLE 5
+CONTEXT: 4.2 New route
+Sector | Airways | Entry Point Into Vietnam Fir | Exit Point From Vietnam Fir
+BKK-SGN | R468 | SAPEN | -
+SGN-KUL | L637 M765 | - | IGARI
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

@@ -41,6 +41,18 @@ public class VietnameseErrorMessageTranslator {
         }
         String value = message.trim();
 
+        String normalizedValue = value.toLowerCase(Locale.ROOT);
+        if (normalizedValue.contains("đã xảy ra lỗi kỹ thuật trong quá trình xử lý file")
+                || normalizedValue.contains("đã xảy ra lỗi trong quá trình xử lý")) {
+            return "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể. Hãy gửi lại file để hệ thống kiểm tra và ghi nhận lỗi đầy đủ.";
+        }
+        if (normalizedValue.contains("cần thêm format yaml")
+                || normalizedValue.contains("file word chưa có format yaml phù hợp")
+                || normalizedValue.contains("không hỗ trợ định dạng file word này vì chưa có format yaml phù hợp")
+                || normalizedValue.contains("không hỗ trợ định dạng giấy phép bay word này; không có format yaml nào phù hợp")) {
+            return "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.";
+        }
+
         Matcher matcher = REVISION_DIFFERENT.matcher(value);
         if (matcher.matches()) {
             return "PERMIT-REVISION-REVIEW: Phép bay " + matcher.group(1)
@@ -189,10 +201,10 @@ public class VietnameseErrorMessageTranslator {
                     + value.substring("Missing dateFlight value for flight".length()).trim() + ".";
         }
         if (lower.equals("unsupported word permit format; no format profile matched")) {
-            return "Không hỗ trợ định dạng giấy phép bay Word này; không có format YAML nào phù hợp.";
+            return "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.";
         }
         if (lower.startsWith("unsupported word permit format; best profile candidates:")) {
-            return "Không tìm thấy format YAML phù hợp. Các format gần nhất: "
+            return "CẦN THÊM FORMAT YAML: Không tìm thấy format phù hợp. Các format gần nhất: "
                     + value.substring(value.indexOf(':') + 1).trim();
         }
         if (lower.equals("no data rows found")) {
@@ -298,7 +310,10 @@ public class VietnameseErrorMessageTranslator {
             return "Không tìm thấy bản ghi file của tác vụ đồng bộ.";
         }
         if (lower.startsWith("sync job not found:")) {
-            return "Không tìm thấy tác vụ đồng bộ yêu cầu.";
+            return "Không tìm thấy tác vụ xử lý tương ứng trong cơ sở dữ liệu.";
+        }
+        if (lower.contains("syncjobid") || lower.contains("sync job id")) {
+            return "Bản tin xử lý file thiếu mã tác vụ liên kết.";
         }
         if (lower.startsWith("archive failed:")) {
             return "Xử lý xong nhưng không thể chuyển file vào thư mục lưu trữ.";
@@ -343,7 +358,8 @@ public class VietnameseErrorMessageTranslator {
             return value;
         }
 
-        return "Đã xảy ra lỗi trong quá trình xử lý. Vui lòng xem nhật ký kỹ thuật để biết chi tiết.";
+        return "Không thể hoàn tất yêu cầu vì nguyên nhân chưa được phân loại. Mã tham chiếu: "
+                + Integer.toUnsignedString(value.hashCode(), 16).toUpperCase(Locale.ROOT) + ".";
     }
 
     private boolean looksLikeEnglishTechnicalMessage(String value) {

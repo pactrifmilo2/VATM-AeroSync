@@ -1,0 +1,57 @@
+FILE: OF 44 F.doc
+
+PARAGRAPHS
+Ha Noi, 11/06/2026
+Permit number: OF - 44/F/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: TURKISH AIRLINES IATA code: TK ICAO code: THY Postal Address: USTGECIS UCRET TAHAKKUK VE KONTROL SEFLIGI, ENTEGRE OPERASYON KONTROL BASKANLIGI, TURKISH AIRLINES OPERATION CENTER ISTANBUL AIRPORT/ARNAVUTKOY-ISTANBUL/TURKIYE Tel: 902124636363 Email: ENROUTECHARGES@THY.COM 
+2. Billing address
+Name: TURKISH AIRLINES Postal Address: USTGECIS UCRET TAHAKKUK VE KONTROL SEFLIGI, ENTEGRE OPERASYON KONTROL BASKANLIGI, TURKISH AIRLINES OPERATION CENTER ISTANBUL AIRPORT/ARNAVUTKOY-ISTANBUL/TURKIYE Tel: 902124636363 Email: ENROUTECHARGES@THY.COM 
+3. Schedules: All times in UTC 
+Flight
+Number Effective from Effective
+To Day(s) of services Departure Airport ETD Arrival Airport ETA THY6367 13JUL26 17AUG26 1------ RCTP 1250 LTFM 0055+ 
+4. Purpose of Flight(s): Cargo.
+5. Aircraft
+Aircraft Type Registration marks Nationality A330-200F
+B777-200F
+B747-400F According to the AOC of Turkish Airlines TURKISH 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RCTP-LTFM A1 W2 A206 BUNTA NALAO Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 11/06/2026
+Permit number: OF - 44/F/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: TURKISH AIRLINES
+IATA code: TK | ICAO code: THY
+Postal Address: USTGECIS UCRET TAHAKKUK VE KONTROL SEFLIGI, ENTEGRE OPERASYON KONTROL BASKANLIGI, TURKISH AIRLINES OPERATION CENTER ISTANBUL AIRPORT/ARNAVUTKOY-ISTANBUL/TURKIYE
+Tel: 902124636363 | Email: ENROUTECHARGES@THY.COM
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: TURKISH AIRLINES
+Postal Address: USTGECIS UCRET TAHAKKUK VE KONTROL SEFLIGI, ENTEGRE OPERASYON KONTROL BASKANLIGI, TURKISH AIRLINES OPERATION CENTER ISTANBUL AIRPORT/ARNAVUTKOY-ISTANBUL/TURKIYE
+Tel: 902124636363 | Email: ENROUTECHARGES@THY.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+THY6367 | 13JUL26 | 17AUG26 | 1------ | RCTP | 1250 | LTFM | 0055+
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Cargo.
+5. Aircraft
+Aircraft Type | Registration marks | Nationality
+A330-200F B777-200F B747-400F | According to the AOC of Turkish Airlines | TURKISH
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-LTFM | A1 W2 A206 | BUNTA | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

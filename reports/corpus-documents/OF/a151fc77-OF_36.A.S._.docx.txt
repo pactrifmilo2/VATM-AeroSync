@@ -1,0 +1,62 @@
+FILE: OF 36.A.S. .docx
+
+PARAGRAPHS
+HA NOI, 09 APR 2026
+NUMBER O/F-36/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): GENERAL CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 09 APR 2026
+NUMBER O/F-36/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: GEORGIAN AIRLINES LLC
+IATA code: GH | ICAO code: IGT
+Postal Address: Add: 22 / 22 Panjikidze St., 0160 Tbilisi, Georgia
+Tel: (+995 322) 15 75 28 | Email: info@georgian-airways.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: Jetex FZE
+Postal Address: P.O BOX: 54698 DUBAI, UAE
+Tel: +971 4 2124000 | Email: INVOICES@JETEX.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+IGT1176 | 17APR26 | 24APR26 | ----5-- | UGTB | 0445 | ZJHK | 1315
+IGT1175 | 17APR26 | 24APR26 | ----5-- | ZJHK | 1515 | UTAV | 2305
+IGT1146 | 18APR26 | 25APR26 | -----6- | UGTB | 1610 | ZJSY | 0040+1
+IGT1145 | 19APR26 | 26APR26 | ------7 | ZJSY | 0310 | UTAV | 1100
+IGT1176 | 20APR26 | 27APR26 | 1------ | UGTB | 0300 | ZJHK | 1130
+IGT1175 | 20APR26 | 27APR26 | 1------ | ZJHK | 1330 | UTAV | 2120
+IGT1146 | 22APR26 | 22APR26 | --3---- | UGTB | 0240 | ZJSY | 1110
+IGT1145 | 22APR26 | 22APR26 | --3---- | ZJSY | 1310 | UTAV | 2100
+IGT1146 | 29APR26 | 29APR26 | --3---- | UGTB | 0240 | ZJHK | 1110
+IGT1145 | 29APR26 | 29APR26 | --3---- | ZJHK | 1310 | UTAV | 2100
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): GENERAL CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B767-300 | 4L-MLG OR SUB (4LMLG/4LGMC/4LGIT) | GEORGIA
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+UGTB-ZJHK | A206 | NALAO | ASSAD
+ZJHK-UTAV | A202 | ASSAD | NALAO
+UGTB-ZJSY | A206 | NALAO | ASSAD
+ZJSY-UTAV | A202 | ASSAD | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

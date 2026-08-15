@@ -1,0 +1,54 @@
+FILE: OF 05DS.docx
+
+PARAGRAPHS
+HANOI, 03Mar2026
+Permit No.: OF-05/D/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PAX FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 03Mar2026
+Permit No.: OF-05/D/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier/Operator
+Name: PHILIPPINE AIRLINES
+IATA code: PAL | ICAO code: PR
+Postal Address: PAL GATE1 FOD BLDG., ANDREWS AVE., NICHOLS, PASAY CITY 1300, PHILIPPINES
+Tel: +632 8558000 | Email: LEIZEL_GUINTO@PAL.COM.PH
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: 1FLT AVIATION DMCC
+Postal Address: P.O. BOX 337730, Dubai, United Arab Emirates
+Tel: +971 4 452-9285 | Email: accounts@1flt.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+PAL740 | 29Mar2026 | 24Oct2026 | 1234567 | RPLL | 2235 | VTBS | 0155+
+PAL741 | 29Mar2026 | 24Oct2026 | 1234567 | VTBS | 0320 | RPLL | 0700
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): PAX FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A350 | RP-C3501 OR SUB | PHILIPPINES
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RPLL-VTBS | L628 G474 | MESOX | ANINA
+VTBS-RPLL | G474 L628 | ANINA | MESOX
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

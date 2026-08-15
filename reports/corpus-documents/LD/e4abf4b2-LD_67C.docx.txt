@@ -1,0 +1,63 @@
+FILE: LD 67C.docx
+
+PARAGRAPHS
+Hanoi, 12 May 2026
+PERMIT No.: LD-67/C/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger Flight
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong,
+C.c: VATM, SAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV, Tran Thanh Son - DEP DIR of ATD - CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 12 May 2026
+PERMIT No.: LD-67/C/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: Air Astana
+IATA code: KC | ICAO code: KZR
+Postal Address: 4А Zakarpatskaya St., Almaty, Republic of Kazakhstan
+Tel: +77027022372 | Email: Flight.Dispatch.Supervisors@airastana.com; Control.centre@airastana.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+KC645 | 03JUN26 | 14OCT26 | --3---- | ALA | 1720 | PQC | 0030+1 | 32Q/32N
+KC646 | 04JUN26 | 15OCT26 | ---4--- | PQC | 0155 | ALA | 0955 | 32Q/32N
+ |  |  |  |  |  |  |  | 
+KC643 | 02JUN26 | 20OCT26 | -2--5-- | NQZ | 1620 | PQC | 0030+1 | 32Q/32N
+KC644 | 03JUN26 | 21OCT26 | --3--6- | PQC | 0155 | NQZ | 1005 | 32Q/32N
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger Flight
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+32Q/32N | As per the FAOC of KC | Ireland
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ALA-PQC | R334 | NUMDI | 
+ALA-PQC | A206-W2-N639-M753 | NALAO / OSOTA | 
+PQC-ALA | R334 |  | NUMDI
+PQC-ALA | M753-N639-W2-A206 |  | OSOTA / NALAO
+NQZ-PQC | R334 | NUMDI | 
+NQZ-PQC | A206-W2-N639-M753 | NALAO / OSOTA | 
+PQC-NQZ | R334 |  | NUMDI
+PQC-NQZ | M753-N639-W2-A206 |  | OSOTA / NALAO

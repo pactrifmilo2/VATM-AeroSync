@@ -1,0 +1,59 @@
+FILE: OF 93.B.S.2026.docx
+
+PARAGRAPHS
+HANOI, 30th MARCH 2026
+Permit No.: OF-93/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Schedule Passenger flight
+5. Aircraft:
+6. Air traffic service routes:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 30th MARCH 2026
+Permit No.: OF-93/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Thai Vietjet Air
+IATA code: VZ | ICAO code: TVJ
+Postal Address: 999 Car Park Building Zone 3, Suvarnabhumi Airport 6th Floor, Moo 1, Nong Prue, Bangpli, Samutprakan 10540,THAILAND
+Tel: +66 21343543 | Email: vz.dutyomc@vietjetair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Thai Vietjet Air
+Postal Address: 999 Car Park Building Zone 3, Suvarnabhumi Airport 6th Floor, Moo 1, Nong Prue, Bangpli, Samutprakan 10540,THAILAND
+Tel: +66 21343543 | Email: vz.dutyomc@vietjetair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+TVJ3676 | 16APR26 | 24OCT26 | ...4… | VTUD | 0435 | ZSYW | 0800
+TVJ3677 | 16APR26 | 24OCT26 | ...4... | ZSYW | 0900 | VTUD | 1230
+TVJ3686 | 18APR26 | 24OCT26 | .....6. | VTUD | 0435 | ZSWX | 0805
+TVJ3687 | 18APR26 | 24OCT26 | .....6. | ZSWX | 0905 | VTUD | 1250
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Schedule Passenger flight
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320/321 | HS-VKA, HS-VKB, HS-VKC, HS-VKD, HS-VKG, HS-VKH, HS-VKJ, HS-VKL, HS-VKM, HS-VKN, HS-VKO, HS-VKR, HS-VKS, HS-VKT | Thailand
+B38M | HS-VZA, HS-VZB, HS-VZC, HS-VZD, HS-VZE, HS-VZFHS-VZG, HS-VZH, HS-VZJ | Thailand
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTUD-ZSYW | R474 | LAVOS | TEBAK
+ZSYW-VTUD | R474 | TEBAK | LAVOS
+VTUD-ZSWX | R474 | LAVOS | TEBAK
+ZSWX-VTUD | R474 | TEBAK | LAVOS

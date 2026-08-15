@@ -1,0 +1,52 @@
+FILE: OF 16 A S.docx
+
+PARAGRAPHS
+HA NOI, 24 FEB 2026
+NUMBER OF-16/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Pax/Cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 24 FEB 2026
+NUMBER OF-16/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: Deutsche Lufthansa AG
+IATA code: LH | ICAO code: DLH
+Postal Address: Lufthansa Aviation Center, Airportring, 60546 Frankfurt/M., Germany
+Tel: 004969696-0 | Email: info@dlh.de
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Deutsche Lufthansa AG
+Postal Address: Venloer Strasse 151-153, 50672 Cologne, Germany
+Tel: 004969696-0 | Email: CGNRAATC@DLH.DE
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+DLH796 | 29MAR26 | 24OCT26 | 1234567 | EDDF | 1940 | VHHH | 0720
+DLH797 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 1525 | EDDF | 0420
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Pax/Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B789 | As per AOC of DLH | Germany
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+EDDF-VHHH | A202 | VILAO | ASSAD
+VHHH-EDDF | A206, R335 | ASSAD | IDOTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

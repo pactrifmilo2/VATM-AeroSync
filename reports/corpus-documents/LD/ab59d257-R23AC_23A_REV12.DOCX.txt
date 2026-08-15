@@ -1,0 +1,41 @@
+FILE: R23AC 23A REV12.DOCX
+
+PARAGRAPHS
+HANOI, 02JUL2026
+PERMIT NUMBER LD-23/A/S/2026VN/REV12
+1. Carrier
+2.1 OLD SCHEDULE (UTC Time)
+2.2 NEW SCHEDULE (UTC Time)
+3. Note: Other keep unchanged
+RGDS
+THUY DUONG FOR PHAM THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 02JUL2026
+PERMIT NUMBER LD-23/A/S/2026VN/REV12
+1. Carrier
+Name: Air Cambodia
+IATA code: K6 | ICAO code: KHV
+Postal Address: #206A, Preah Norodom Blvd, Sangkat Tonle Bassac,Khan Chamkamorn, Phnom Penh 12302, Cambodia.
+Tel: (855) 16 899 007 | Email: sivly.kloung@aircambodia.com
+
+TABLE 2
+CONTEXT: 2.1 OLD SCHEDULE (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+K6850 | 03JUL26 | 24JUL26 | ____5__ | KTI | 0930 | HAN | 1135 | 321/320/AT7
+K6851 | 03JUL26 | 24JUL26 | ____5__ | HAN | 1245 | KTI | 1440 | 321/320/AT7
+K6854 | 04JUL26 | 18JUL26 | _____6_ | KTI | 0105 | HAN | 0255 | 321/320/AT7
+K6855 | 04JUL26 | 18JUL26 | _____6_ | HAN | 0345 | KTI | 0540 | 321/320/AT7
+K6850 | 14JUL26 | 28JUL26 | _2_____ | KTI | 0930 | HAN | 1135 | 321/320/AT7
+K6851 | 14JUL26 | 28JUL26 | _2_____ | HAN | 1245 | KTI | 1440 | 321/320/AT7
+
+TABLE 3
+CONTEXT: 2.2 NEW SCHEDULE (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+K6850 | 03JUL26 | 24JUL26 | ____5__ | KTI | 1205 | HAN | 1400 | 321/320/AT7
+K6851 | 03JUL26 | 24JUL26 | ____5__ | HAN | 1500 | KTI | 1655 | 321/320/AT7
+K6854 | 04JUL26 | 18JUL26 | _____6_ | KTI | 5:30 | HAN | 0720 | 321/320/AT7
+K6855 | 04JUL26 | 18JUL26 | _____6_ | HAN | 0820 | KTI | 1015 | 321/320/AT7
+K6850 | 14JUL26 | 28JUL26 | _2_____ | KTI | 11:35 | HAN | 1330 | 321/320/AT7
+K6851 | 14JUL26 | 28JUL26 | _2_____ | HAN | 1430 | KTI | 1625 | 321/320/AT7

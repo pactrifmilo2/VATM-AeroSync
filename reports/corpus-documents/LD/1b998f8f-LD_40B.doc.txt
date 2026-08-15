@@ -1,0 +1,84 @@
+FILE: LD 40B.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 17/03/2026
+Permit No.: LD-40/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: EVA AIRWAYS CORPORATION IATA code: BR ICAO code: EVA Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi. Tel: 00842439361600-02 Email: hongnhung@evaair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type BR6021 29MAR26 24OCT26 ------7 TPE 1620 HAN 1920 
+777F
+ BR6022 29MAR26 24OCT26 ------7 HAN 2120 TPE 0010+1 BR6061 29MAR26 24OCT26 ------7 TPE 1935 SIN 0000+1 BR6061 29MAR26 24OCT26 1------ SIN 0200 HAN 0510 BR6062 29MAR26 24OCT26 1------ HAN 0710 TPE 1000 BR6061 29MAR26 24OCT26 -2----- TPE 1630 SIN 2055 BR6061 29MAR26 24OCT26 -2----- SIN 2255 HAN 0200+1 BR6062 29MAR26 24OCT26 --3---- HAN 0400 TPE 0650 BR6061 29MAR26 24OCT26 ---4--- TPE 2245 SIN 0310+1 BR6061 29MAR26 24OCT26 ----5-- SIN 0510 HAN 0825 BR6062 29MAR26 24OCT26 ----5-- HAN 1025 TPE 1315 BR has no fifth traffic rights on routes SIN_HAN
+3. Purpose of Flight: Freighter
+4. Aircraft
+Aircraft Type Registration Mark Nationality 777F (77X) As per FAOC of BR Republic of China 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TPE-SIN (BR6061) N892 MONBO MELAS SIN-HAN (BR6061) M753/M755 IPRIX KISAN N639 VILAO HAN-TPE (BR6062) R474, or Q1, A1 TEBAK/BUNTA TPE-HAN (BR6021) R474, or A1, Q1, Q5, Q2 TEBAK/BUNTA HAN-TPE (BR6022) R474, or Q1, A1 TEBAK/BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 17/03/2026
+Permit No.: LD-40/B/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: EVA AIRWAYS CORPORATION
+IATA code: BR | ICAO code: EVA
+Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi.
+Tel: 00842439361600-02 | Email: hongnhung@evaair.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BR6021 | 29MAR26 | 24OCT26 | ------7 | TPE | 1620 | HAN | 1920 | 777F
+BR6022 | 29MAR26 | 24OCT26 | ------7 | HAN | 2120 | TPE | 0010+1 | 
+ |  |  |  |  |  |  |  | 
+BR6061 | 29MAR26 | 24OCT26 | ------7 | TPE | 1935 | SIN | 0000+1 | 
+BR6061 | 29MAR26 | 24OCT26 | 1------ | SIN | 0200 | HAN | 0510 | 
+BR6062 | 29MAR26 | 24OCT26 | 1------ | HAN | 0710 | TPE | 1000 | 
+ |  |  |  |  |  |  |  | 
+BR6061 | 29MAR26 | 24OCT26 | -2----- | TPE | 1630 | SIN | 2055 | 
+BR6061 | 29MAR26 | 24OCT26 | -2----- | SIN | 2255 | HAN | 0200+1 | 
+BR6062 | 29MAR26 | 24OCT26 | --3---- | HAN | 0400 | TPE | 0650 | 
+ |  |  |  |  |  |  |  | 
+BR6061 | 29MAR26 | 24OCT26 | ---4--- | TPE | 2245 | SIN | 0310+1 | 
+BR6061 | 29MAR26 | 24OCT26 | ----5-- | SIN | 0510 | HAN | 0825 | 
+BR6062 | 29MAR26 | 24OCT26 | ----5-- | HAN | 1025 | TPE | 1315 | 
+
+TABLE 4
+CONTEXT: BR has no fifth traffic rights on routes SIN_HAN
+3. Purpose of Flight: Freighter
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+777F (77X) | As per FAOC of BR | Republic of China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TPE-SIN (BR6061) | N892 | MONBO | MELAS
+SIN-HAN (BR6061) | M753/M755 | IPRIX | KISAN
+ | N639 | VILAO | 
+HAN-TPE (BR6062) | R474, or Q1, A1 |  | TEBAK/BUNTA
+TPE-HAN (BR6021) | R474, or A1, Q1, Q5, Q2 | TEBAK/BUNTA | 
+HAN-TPE (BR6022) | R474, or Q1, A1 |  | TEBAK/BUNTA

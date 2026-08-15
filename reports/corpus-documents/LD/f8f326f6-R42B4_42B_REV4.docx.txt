@@ -1,0 +1,65 @@
+FILE: R42B4  42B  REV4.docx
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Ha Noi, 13/04/2026
+Permit No-: LD - 42/B/S/2026VN/REV4
+Carrier
+Tel (8424) 38272281
+Fax (8424) 38272290
+E-mail atd@caa-gov-vn Website www-caa-gov-vn
+Schedules (UTC Time)
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Khanh Ly
+C-c: Bui Minh Dang-Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Ha Noi, 13/04/2026
+Permit No-: LD - 42/B/S/2026VN/REV4
+Carrier
+Tel (8424) 38272281
+Fax (8424) 38272290
+E-mail atd@caa-gov-vn Website www-caa-gov-vn
+Name: QATAR AIRWAYS GROUP Q.C.S.C.
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS TOWER, AIRPORT ROAD, P.O. BOX 22550, DOHA, QATAR
+Tel: +97440184510 | Email: iocpreops@qatarairways.com.qa
+
+TABLE 2
+CONTEXT: Schedules (UTC Time)
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+QR976 | 16APR26 | 31MAY26 | 1234567 | DOH | 0025 | HAN | 0655 | 320332333359788789772 | LD - 42/B/S/2026VN
+QR976Z | 01JUN26 | 01JUN26 | 1------ | DOH | 0025 | HAN | 0655 |  | 
+QR977 | 16APR26 | 01JUN26 | 1-34567 | HAN | 1135 | DOH | 1855 |  | 
+QR977 | 21APR26 | 26MAY26 | -2----- | HAN | 1200 | DOH | 1920 |  | 
+QR976 | 02JUN26 | 15JUN26 | 1234567 | DOH | 0025 | HAN | 0655 |  | 
+QR977 | 02JUN26 | 13JUN26 | 1234567 | HAN | 1135 | DOH | 1855 |  | 
+QR977 | 14JUN26 | 15JUN26 | 1-----7 | HAN | 1230 | DOH | 1950 |  | 
+ |  | 
+QR982 | 15APR26 | 14JUN26 | 1234567 | DOH | 1745 | HAN | 0015 +1 |  | 
+QR983 | 16APR26 | 14JUN26 | 1234567 | HAN | 0235 | DOH | 0955 |  | 
+QR983 | 15JUN26 | 15JUN26 | 1------ | HAN | 0145 | DOH | 0905 |  | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QR976 | 16APR26 | 15JUN26 | 1234567 | DOH | 0025 | HAN | 0655 | 320 332 333 359 788 789 772
+QR977 | 16APR26 | 31MAY26 | 1-34567 | HAN | 1900 | DOH | 0300+1 | 
+QR977 | 21APR26 | 26MAY26 | -2----- | HAN | 1855 | DOH | 0255+1 | 
+QR977 | 1JUN26 | 15JUN26 | 1234567 | HAN | 1855 | DOH | 0255+1 | 
+ | 
+QR982 | 16APR26 | 14JUN26 | -2-4-67 | DOH | 1730 | HAN | 0015 +1 | 
+QR983 | 17APR26 | 14JUN26 | 1-3-5-7 | HAN | 0955 | DOH | 1755 | 
+QR983 | 15JUN26 | 15JUN26 | 1------ | HAN | 1055 | DOH | 1855 | 

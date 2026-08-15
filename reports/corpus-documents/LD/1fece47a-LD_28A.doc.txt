@@ -1,0 +1,77 @@
+FILE: LD 28A.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 10/03/2026
+Permit No.: LD-28/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: CHINA AIRLINES IATA code: CI ICAO code: CAL Postal Address: 105 Ton Dat Tien, Tan My Ward, Ho Chi Minh City, Vietnam Tel: 84-28 36389968 Email: HYPERLINK "mailto:hatuyet.tran@china-airlines.com," hatuyet.tran@china-airlines.com, hanffci@china-airlines.com 2. Schedules (UTC Time)
+Flight 
+Number Effective from Effective
+ To Day(s) of services Departure Airport ETD Arrival Airport ETA Aircraft Type CI789 29Mar26 23Oct26 12..5.7 TPE 0640Z DAD 0930Z A32Q, B738 CI790 29Mar26 23Oct26 12..5.7 DAD 1030Z TPE 1320Z A32Q, B738 CI787 31Mar26 23Oct26 .23.5.. TPE 2310Z DAD 0200Z+1 A32Q, B738 CI788 01Apr26 24Oct26 ..34.6. DAD 0300Z TPE 0550Z A32Q, B738 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration marks Nationality A321NEO According to CI’s FAOC R.O.C B737-800 According to CI’s FAOC R.O.C 5. Airways
+Sectors ATS Routes Entry Point Exit Point TPE-DAD W10 Q1
+A1
+N892-L628-G474-W1
+W10 ASSAD
+BUNTA
+MIGUG
+ASSAD DAD-TPE Q1 W10
+A1
+Q1-G474-L628
+Q1-R474 ASSAD
+BUNTA
+ARESI
+TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 10/03/2026
+Permit No.: LD-28/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: CHINA AIRLINES
+IATA code: CI | ICAO code: CAL
+Postal Address: 105 Ton Dat Tien, Tan My Ward, Ho Chi Minh City, Vietnam
+Tel: 84-28 36389968 | Email: HYPERLINK "mailto:hatuyet.tran@china-airlines.com," hatuyet.tran@china-airlines.com, hanffci@china-airlines.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CI789 | 29Mar26 | 23Oct26 | 12..5.7 | TPE | 0640Z | DAD | 0930Z | A32Q, B738
+CI790 | 29Mar26 | 23Oct26 | 12..5.7 | DAD | 1030Z | TPE | 1320Z | A32Q, B738
+CI787 | 31Mar26 | 23Oct26 | .23.5.. | TPE | 2310Z | DAD | 0200Z+1 | A32Q, B738
+CI788 | 01Apr26 | 24Oct26 | ..34.6. | DAD | 0300Z | TPE | 0550Z | A32Q, B738
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+A321NEO | According to CI’s FAOC | R.O.C
+B737-800 | According to CI’s FAOC | R.O.C
+
+TABLE 5
+CONTEXT: 5. Airways
+Sectors | ATS Routes | Entry Point | Exit Point
+TPE-DAD | W10 Q1 A1 N892-L628-G474-W1 W10 | ASSAD BUNTA MIGUG ASSAD | 
+DAD-TPE | Q1 W10 A1 Q1-G474-L628 Q1-R474 |  | ASSAD BUNTA ARESI TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -11,6 +11,7 @@ param(
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot
 $csproj = Join-Path $root "aerosync-ui\AeroSync.UI.csproj"
+$uiRoot = Join-Path $root "aerosync-ui"
 $exe = Join-Path $root "aerosync-ui\bin\x64\Debug\net8.0-windows10.0.19041.0\AeroSync.UI.exe"
 $processName = [System.IO.Path]::GetFileNameWithoutExtension($exe)
 
@@ -31,14 +32,24 @@ function Get-RunningUiProcesses {
 }
 
 $runningProcesses = @(Get-RunningUiProcesses)
+$sourceExtensions = @(".cs", ".xaml", ".csproj", ".json", ".manifest")
+$needsBuild = $Rebuild -or -not (Test-Path $exe)
+if (-not $needsBuild) {
+    $exeWriteTime = (Get-Item $exe).LastWriteTimeUtc
+    $needsBuild = Get-ChildItem $uiRoot -Recurse -File | Where-Object {
+        $_.FullName -notmatch "[\\/](?:bin|obj)[\\/]" -and
+        $sourceExtensions -contains $_.Extension.ToLowerInvariant() -and
+        $_.LastWriteTimeUtc -gt $exeWriteTime
+    } | Select-Object -First 1
+}
 
-if (-not $Rebuild -and $runningProcesses.Count -gt 0) {
+if (-not $needsBuild -and $runningProcesses.Count -gt 0) {
     $processIds = ($runningProcesses | ForEach-Object { $_.Id }) -join ", "
     Write-Host "AeroSync UI is already running (PID: $processIds)." -ForegroundColor Yellow
     exit 0
 }
 
-if ($Rebuild -or -not (Test-Path $exe)) {
+if ($needsBuild) {
     if ($runningProcesses.Count -gt 0) {
         Write-Host "Stopping the running AeroSync UI before rebuilding ..." -ForegroundColor Yellow
         foreach ($process in $runningProcesses) {
@@ -53,6 +64,12 @@ if ($Rebuild -or -not (Test-Path $exe)) {
     if (-not (Get-Command dotnet -ErrorAction SilentlyContinue)) {
         throw "The dotnet CLI was not found. Install the .NET 8 SDK or add dotnet to PATH."
     }
+
+    # Keep MSBuild temporary files off the nearly-full system drive.
+    $buildTemp = Join-Path $root ".tmp\dotnet-build-temp"
+    New-Item -ItemType Directory -Force -Path $buildTemp | Out-Null
+    $env:TEMP = $buildTemp
+    $env:TMP = $buildTemp
 
     Write-Host "Building AeroSync UI ..." -ForegroundColor Cyan
     $result = dotnet build $csproj -p:Platform=x64 2>&1

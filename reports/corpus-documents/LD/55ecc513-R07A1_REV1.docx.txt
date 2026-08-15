@@ -1,0 +1,69 @@
+FILE: R07A1  REV1.docx
+
+PARAGRAPHS
+HANOI, 01APR2026
+PERMIT NUMBER LD-07/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedules (UTC Time)
+2.1. Original schedule(s) LD-07/A/S/2026VN
+2.2. New schedule(s)
+3. Aircraft
+Other details unchanged
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 01APR2026
+PERMIT NUMBER LD-07/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: Cebu Air Inc.
+IATA code: 5J | ICAO code: CEB
+Postal Address: Cebu Pacific Air building, Domestic Road, Pasay City, Philippines
+Tel: +63 2 802 700 Local 6141Fax: +63 2 802 7140 | Email: Email: cebnetworkplanning@cebupacificair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1. Original schedule(s) LD-07/A/S/2026VN
+Flight number | Effective from | Effectiveto | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+5J 744 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 2105 | HAN | 0040+ | 321/320
+5J 745 | 01-Apr-26 | 12-Apr-26 | 1234567 | HAN | 0125 | MNL | 0515 | 
+5J 746 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 1425 | HAN | 1805 | 321/320
+5J 747 | 01-Apr-26 | 12-Apr-26 | 1234567 | HAN | 1850 | MNL | 2225 | 
+ |  |  |  |  |  |  |  | 
+5J 751 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 1410 | SGN | 1705 | 321/320
+5J 752 | 01-Apr-26 | 12-Apr-26 | 1234567 | SGN | 1750 | MNL | 2040 | 
+5J 753 | 01-Apr-26 | 12-Apr-26 | 1-3-5-- | MNL | 1110 | SGN | 1405 | 321/320
+5J 754 | 01-Apr-26 | 12-Apr-26 | 1-3-5-- | SGN | 1450 | MNL | 1745 | 
+ |  |  |  |  |  |  |  | 
+5J 5756 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 1150 | DAD | 1430 | 321/320
+5J 5757 | 01-Apr-26 | 12-Apr-26 | 1234567 | DAD | 1530 | MNL | 1810 | 
+5J 5758 | 01-Apr-26 | 12-Apr-26 | 1-3-5-- | MNL | 2140 | DAD | 0030+ | 321/320
+5J 5759 | 01-Apr-26 | 12-Apr-26 | -2-4-6- | DAD | 0130 | MNL | 0420 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effectiveto | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+5J 744 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 2105 | HAN | 0040+ | 320/32N/321/ 32Q/330
+5J 745 | 01-Apr-26 | 12-Apr-26 | 1234567 | HAN | 0125 | MNL | 0515 | 
+5J 746 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 1425 | HAN | 1805 | 320/32N/321/ 32Q/330
+5J 747 | 01-Apr-26 | 12-Apr-26 | 1234567 | HAN | 1850 | MNL | 2225 | 
+ |  |  |  |  |  |  |  | 
+5J 751 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 1410 | SGN | 1705 | 320/32N/321 /32Q/330
+5J 752 | 01-Apr-26 | 12-Apr-26 | 1234567 | SGN | 1750 | MNL | 2040 | 
+5J 753 | 01-Apr-26 | 12-Apr-26 | 1-3-5-- | MNL | 1110 | SGN | 1405 | 320/32N/321/ 32Q/330
+5J 754 | 01-Apr-26 | 12-Apr-26 | 1-3-5-- | SGN | 1450 | MNL | 1745 | 
+ |  |  |  |  |  |  |  | 
+5J 5756 | 01-Apr-26 | 12-Apr-26 | 1234567 | MNL | 1150 | DAD | 1430 | 320/32N/321/ 32Q/330
+5J 5757 | 01-Apr-26 | 12-Apr-26 | 1234567 | DAD | 1530 | MNL | 1810 | 
+5J 5758 | 01-Apr-26 | 12-Apr-26 | 1-3-5-- | MNL | 2140 | DAD | 0030+ | 320/32N/321/ 32Q/330
+5J 5759 | 01-Apr-26 | 12-Apr-26 | -2-4-6- | DAD | 0130 | MNL | 0420 | 
+
+TABLE 4
+CONTEXT: 3. Aircraft
+Aircraft Type | Registration marks | Nationality
+320 | As per FAOC of 5J | Philippines
+32N | As per FAOC of 5J | Philippines
+321 | As per FAOC of 5J | Philippines
+32Q | As per FAOC of 5J | Philippines
+330 | As per FAOC of 5J | Philippines

@@ -1,0 +1,108 @@
+FILE: LD 59 A.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: LD - 59/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: Korean Air IATA code: KE ICAO code: KAL Postal Address: 260 Haneul-Gil, Gangseo-Gu, Seoul, Korea Tel:0082226566044 Email: selsps@koreanair.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type KE441 28-Mar-2026 30-May-2026 1234567 ICN 2300 HAN 0350+1 773/ 781/ 77W/ 789/ 333/ 739/ 32Q/ 73J/ 7M8/ 223/ 73H KE442 29-Mar-2026 31-May-2026 1234567 HAN 0505 ICN 0935 KE441 31-May-2026 23-Oct-2026 1234567 ICN 2300 HAN 0335+1 KE442 01-Jun-2026 24-Oct-2026 1234567 HAN 0505 ICN 0935 KE447 29-Mar-2026 24-Oct-2026 1234567 ICN 0955 HAN 1435 KE448 29-Mar-2026 24-Oct-2026 1234567 HAN 1610 ICN 2025 KE457 29-Mar-2026 24-Oct-2026 1234567 ICN 0240 DAD 0720 KE458 29-Mar-2026 24-Oct-2026 1234567 DAD 0855 ICN 1330 KE459 29-Mar-2026 24-Oct-2026 1234567 ICN 0920 DAD 1405 KE460 29-Mar-2026 24-Oct-2026 1234567 DAD 1555 ICN 2030 KE467 29-Mar-2026 24-Oct-2026 1234567 ICN 1055 CXR 1605 KE468 29-Mar-2026 24-Oct-2026 1234567 CXR 1720 ICN 2225 KE471 29-Mar-2026 24-Oct-2026 1234567 ICN 0005 SGN 0535 KE472 29-Mar-2026 24-Oct-2026 1234567 SGN 0655 ICN 1225 KE475 29-Mar-2026 24-Oct-2026 1234567 ICN 0950 SGN 1510 KE476 29-Mar-2026 24-Oct-2026 1234567 SGN 1645 ICN 2200 KE479 29-Mar-2026 24-Oct-2026 1234567 ICN 1045 SGN 1615 KE480 30-Mar-2026 25-Oct-2026 1234567 SGN 0030 ICN 0555 KE485 29-Mar-2026 24-Oct-2026 1234567 ICN 1005 PQC 1550 KE486 29-Mar-2026 24-Oct-2026 1234567 PQC 1710 ICN 2250 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality 773 As per FAOC of KE
+ Korean 781 77W 789 333 739 32Q 73J 7M8 223 73H 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-HAN R474 TEBAK HAN-ICN R474 TEBAK ICN-SGN N892-N500 MONBO A1-Q1 BUNTA SGN-ICN W12-G221 BUNTA N500-L625 ARESI ICN-DAD A1 BUNTA R474-Q1 TEBAK DAD-ICN A1 BUNTA Q2-N639-Q3-R474 TEBAK ICN-CXR N892-L628-L642-W15 MONBO A1-Q1-W7-W15 BUNTA CXR-ICN M771-L628 ARESI W15-W7-W1-A1 BUNTA ICN-PQC A1-R575-N639-M753 BUNTA N892-N500-W17 MONBO PQC-ICN M753-N639-R575-A1 BUNTA W17-N500-L625 ARESI Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: LD - 59/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: Korean Air
+IATA code: KE | ICAO code: KAL
+Postal Address: 260 Haneul-Gil, Gangseo-Gu, Seoul, Korea
+Tel:0082226566044 | Email: selsps@koreanair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+KE441 | 28-Mar-2026 | 30-May-2026 | 1234567 | ICN | 2300 | HAN | 0350+1 | 773/ 781/ 77W/ 789/ 333/ 739/ 32Q/ 73J/ 7M8/ 223/ 73H
+KE442 | 29-Mar-2026 | 31-May-2026 | 1234567 | HAN | 0505 | ICN | 0935 | 
+ |  |  |  |  |  |  |  | 
+KE441 | 31-May-2026 | 23-Oct-2026 | 1234567 | ICN | 2300 | HAN | 0335+1 | 
+KE442 | 01-Jun-2026 | 24-Oct-2026 | 1234567 | HAN | 0505 | ICN | 0935 | 
+ |  |  |  |  |  |  |  | 
+KE447 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 0955 | HAN | 1435 | 
+KE448 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | HAN | 1610 | ICN | 2025 | 
+ |  |  |  |  |  |  |  | 
+KE457 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 0240 | DAD | 0720 | 
+KE458 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | DAD | 0855 | ICN | 1330 | 
+ |  |  |  |  |  |  |  | 
+KE459 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 0920 | DAD | 1405 | 
+KE460 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | DAD | 1555 | ICN | 2030 | 
+ |  |  |  |  |  |  |  | 
+KE467 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 1055 | CXR | 1605 | 
+KE468 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | CXR | 1720 | ICN | 2225 | 
+ |  |  |  |  |  |  |  | 
+KE471 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 0005 | SGN | 0535 | 
+KE472 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | SGN | 0655 | ICN | 1225 | 
+ |  |  |  |  |  |  |  | 
+KE475 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 0950 | SGN | 1510 | 
+KE476 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | SGN | 1645 | ICN | 2200 | 
+ |  |  |  |  |  |  |  | 
+KE479 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 1045 | SGN | 1615 | 
+KE480 | 30-Mar-2026 | 25-Oct-2026 | 1234567 | SGN | 0030 | ICN | 0555 | 
+ |  |  |  |  |  |  |  | 
+KE485 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | ICN | 1005 | PQC | 1550 | 
+KE486 | 29-Mar-2026 | 24-Oct-2026 | 1234567 | PQC | 1710 | ICN | 2250 | 
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+773 | As per FAOC of KE | Korean
+781 |  | 
+77W |  | 
+789 |  | 
+333 |  | 
+739 |  | 
+32Q |  | 
+73J |  | 
+7M8 |  | 
+223 |  | 
+73H |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-HAN | R474 | TEBAK | 
+HAN-ICN | R474 |  | TEBAK
+ICN-SGN | N892-N500 | MONBO | 
+ | A1-Q1 | BUNTA | 
+SGN-ICN | W12-G221 |  | BUNTA
+ | N500-L625 |  | ARESI
+ICN-DAD | A1 | BUNTA | 
+ | R474-Q1 | TEBAK | 
+DAD-ICN | A1 |  | BUNTA
+ | Q2-N639-Q3-R474 |  | TEBAK
+ICN-CXR | N892-L628-L642-W15 | MONBO | 
+ | A1-Q1-W7-W15 | BUNTA | 
+CXR-ICN | M771-L628 |  | ARESI
+ | W15-W7-W1-A1 |  | BUNTA
+ICN-PQC | A1-R575-N639-M753 | BUNTA | 
+ | N892-N500-W17 | MONBO | 
+PQC-ICN | M753-N639-R575-A1 |  | BUNTA
+ | W17-N500-L625 |  | ARESI

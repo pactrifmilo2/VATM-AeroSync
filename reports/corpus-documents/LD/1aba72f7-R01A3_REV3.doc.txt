@@ -1,0 +1,52 @@
+FILE: R01A3 REV3.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 13/05/2026
+Permit No.: LD-01/A/S/2026VN /REV3
+1. Carrier/Operator
+Name: Tigerair Taiwan Co., Ltd. IATA code: IT ICAO code: TTW Postal Address: 5f., no3., alley123, lane405, dunhua n. rd., Taipei city 10548, Taiwan Tel: +886 2 7735 6926 Email: slot@tigerairtw.com 
+2. Revised Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit IT551 01JUN26 29JUN26 1------ TPE 0910 DAD 1140 A320 LD-01/A/S/2026VN IT552 01JUN26 29JUN26 1------ DAD 1230 TPE 1515 A320 LD-01/A/S/2026VN IT585 02JUN26 30JUN26 -2-4--- KHH 0930 DAD 1210 A320 LD-01/A/S/2026VN IT585 06JUN26 27JUN26 -----6- KHH 0900 DAD 1140 A320 LD-01/A/S/2026VN IT552 02JUN26 30JUN26 -2-4--- DAD 1300 TPE 1540 A320 LD-01/A/S/2026VN IT552 06JUN26 27JUN26 -----6- DAD 1230 TPE 1510 A320 LD-01/A/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type IT551 01JUN26 29JUN26 1------ TPE 0835 DAD 1110 A320 IT552 01JUN26 29JUN26 1------ DAD 1200 TPE 1440 A320 IT585 02JUN26 30JUN26 -2-4--- KHH 0830 DAD 1110 A320 IT585 06JUN26 27JUN26 -----6- KHH 0830 DAD 1110 A320 IT552 02JUN26 30JUN26 -2-4--- DAD 1200 TPE 1440 A320 IT552 06JUN26 27JUN26 -----6- DAD 1200 TPE 1440 A320 Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+OTHER DETAILS REMAIN UNCHANGED.
+ 
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 13/05/2026
+Permit No.: LD-01/A/S/2026VN /REV3
+1. Carrier/Operator
+Name: Tigerair Taiwan Co., Ltd.
+IATA code: IT | ICAO code: TTW
+Postal Address: 5f., no3., alley123, lane405, dunhua n. rd., Taipei city 10548, Taiwan
+Tel: +886 2 7735 6926 | Email: slot@tigerairtw.com
+
+TABLE 2
+CONTEXT: 2. Revised Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+IT551 | 01JUN26 | 29JUN26 | 1------ | TPE | 0910 | DAD | 1140 | A320 | LD-01/A/S/2026VN
+IT552 | 01JUN26 | 29JUN26 | 1------ | DAD | 1230 | TPE | 1515 | A320 | LD-01/A/S/2026VN
+IT585 | 02JUN26 | 30JUN26 | -2-4--- | KHH | 0930 | DAD | 1210 | A320 | LD-01/A/S/2026VN
+IT585 | 06JUN26 | 27JUN26 | -----6- | KHH | 0900 | DAD | 1140 | A320 | LD-01/A/S/2026VN
+IT552 | 02JUN26 | 30JUN26 | -2-4--- | DAD | 1300 | TPE | 1540 | A320 | LD-01/A/S/2026VN
+IT552 | 06JUN26 | 27JUN26 | -----6- | DAD | 1230 | TPE | 1510 | A320 | LD-01/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+IT551 | 01JUN26 | 29JUN26 | 1------ | TPE | 0835 | DAD | 1110 | A320
+IT552 | 01JUN26 | 29JUN26 | 1------ | DAD | 1200 | TPE | 1440 | A320
+IT585 | 02JUN26 | 30JUN26 | -2-4--- | KHH | 0830 | DAD | 1110 | A320
+IT585 | 06JUN26 | 27JUN26 | -----6- | KHH | 0830 | DAD | 1110 | A320
+IT552 | 02JUN26 | 30JUN26 | -2-4--- | DAD | 1200 | TPE | 1440 | A320
+IT552 | 06JUN26 | 27JUN26 | -----6- | DAD | 1200 | TPE | 1440 | A320

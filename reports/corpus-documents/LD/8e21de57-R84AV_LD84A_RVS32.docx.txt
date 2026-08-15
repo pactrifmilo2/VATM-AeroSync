@@ -1,0 +1,47 @@
+FILE: R84AV LD84A RVS32.docx
+
+PARAGRAPHS
+LD-84/A/S/2026VN.RVS32
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Ghi chú:
+Các nội dung khác theo phép bay 84/A/S/2026VN không thay đổi.
+Phạm Giang for Phạm Thảo, Phó Trưởng phòng VTHK, Cục HKVN.
+
+TABLE 1
+from: | Phạm Giang <phamgiang.caav@gmail.com>
+date: | 29/06/2026 11:31 PM
+to: | To quan ly phep bay KHB <phepbaykhb@vatm.vn>, TT Thông Bao Hiep Dong Bay <hiepdongbay@vatm.vn>, dang dinh dinh <dinhdangdinhdpkt@gmail.com>, <gsvctm@naa.gov.vn>, <dieuphoikhaithacnoibai@gmail.com>
+cc: | THAO PHAM <thaopt@caa.gov.vn>, <lannguyent@vietjetair.com>
+security: | Verified Sender DKIM
+
+TABLE 2
+CONTEXT: LD-84/A/S/2026VN.RVS32
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 3
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay 84/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ439 | 30-Jun-26 | 30-Jun-26 | 2 | HAN | 08:40 | UIH | 10:15 | 320/321/32Q
+VJ438 | 30-Jun-26 | 30-Jun-26 | 2 | UIH | 10:45 | HAN | 12:25 | 320/321/32Q
+VJ1431 | 30-Jun-26 | 30-Jun-26 | 2 | HAN | 09:45 | UIH | 11:20 | 320/321/32Q
+VJ1432 | 30-Jun-26 | 30-Jun-26 | 2 | UIH | 11:50 | HAN | 14:20 | 320/321/32Q
+VJ384 | 30-Jun-26 | 30-Jun-26 | 2 | SGN | 09:35 | UIH | 10:45 | 320/321/32Q
+VJ385 | 30-Jun-26 | 30-Jun-26 | 2 | UIH | 11:15 | SGN | 12:20 | 320/321/32Q
+
+TABLE 4
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ439 | 30-Jun-26 | 30-Jun-26 | 2 | HAN | 02:45 | UIH | 04:25 | 320/321/32Q
+VJ438 | 30-Jun-26 | 30-Jun-26 | 2 | UIH | 05:00 | HAN | 06:40 | 320/321/32Q
+VJ1431 | 30-Jun-26 | 30-Jun-26 | 2 | HAN | 03:20 | UIH | 04:55 | 320/321/32Q
+VJ1432 | 30-Jun-26 | 30-Jun-26 | 2 | UIH | 05:35 | HAN | 07:15 | 320/321/32Q
+VJ384 | 30-Jun-26 | 30-Jun-26 | 2 | SGN | 04:15 | UIH | 05:25 | 320/321/32Q
+VJ385 | 30-Jun-26 | 30-Jun-26 | 2 | UIH | 06:00 | SGN | 07:10 | 320/321/32Q

@@ -1,0 +1,75 @@
+FILE: OF 02AS.docx
+
+PARAGRAPHS
+HA NOI, 09 FEB 2026
+NUMBER O/F-02/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SUMMER SCHEDULE FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 09 FEB 2026
+NUMBER O/F-02/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: EGYPTAIR
+IATA code: MSR | ICAO code: MS
+Postal Address: EGYPTAIR Admin. Complex south Bldg. 3rd Floor Finger 4/5 Room 1 - Airport Road Cairo, Egypt
+Tel: +2 0226963449 | Email : miscellaneous@egyptair.com, Planning.Slots@egyptair.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: EGYPTAIR
+IATA code: MSR | ICAO code: MS
+Postal Address: EGYPTAIR Admin. Complex south Bldg. 3rd Floor Finger 4/5 Room 1 - Airport Road Cairo, Egypt
+Tel: +2 0226963449 | Email : miscellaneous@egyptair.com, Planning.Slots@egyptair.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | 
+MSR951 | 29MAR26 | 24OCT26 | 1234567 | HECA | 2130 | ZSPD | 0800+ | 
+MSR952 | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 1555 | HECA | 0325+ | 
+MSR1951 | 29MAR26 | 24OCT26 | 1234567 | HECA | 2230 | ZSPD | 0900+ | 
+MSR1952 | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 1655 | HECA | 0425+ | 
+MSR951D | 29MAR26 | 24OCT26 | 1234567 | HECA | 2330 | ZSPD | 1000+ | 
+MSR952D | 29MAR26 | 24OCT26 | 1234567 | ZSPD | 1755 | HECA | 0525+ | 
+MSR953 | 29MAR26 | 24OCT26 | 1234567 | HECA | 0035 | ZSHC | ZSHC | 
+MSR954 | 29MAR26 | 24OCT26 | 1234567 | ZSHC | 1605 | HECA | HECA | 
+MSR1953 | 29MAR26 | 24OCT26 | 1234567 | HECA | 0135 | ZSHC | 1200 | 
+MSR1954 | 29MAR26 | 24OCT26 | 1234567 | ZSHC | 1705 | HECA | 0425+1 | 
+MSR953D | 29MAR26 | 24OCT26 | 1234567 | HECA | 0235 | ZSHC | 1300 | 
+MSR954D | 29MAR26 | 24OCT26 | 1234567 | ZSHC | 1805 | HECA | 0525+1 | 
+MSR958 | 29MAR26 | 24OCT26 | 1234567 | HECA | 2130 | ZGGG | 0800+1 | 
+MSR959 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 1555 | HECA | 0325+1 | 
+MSR1958 | 29MAR26 | 24OCT26 | 1234567 | HECA | 2230 | ZGGG | 0900+1 | 
+MSR1959 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 1655 | HECA | 0425+1 | 
+MSR958D | 29MAR26 | 24OCT26 | 1234567 | HECA | 2130 | ZGGG | 0800+1 | 
+MSR959D | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 1755 | HECA | 0525+1 | 
+ |  |  |  |  |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SUMMER SCHEDULE FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B789, B773 | U-GER / GES / GET / GEU / GEV / GEW | EGYPTIAN
+
+TABLE 6
+CONTEXT: 6. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HECA-ZSPD | B214 W21 R474 | LADON | TEBAK
+ZSPD-HECA | B214 W21 R474 | TEBAK | LADON
+HECA-ZSHC | B214 W21 R474 | LADON | TEBAK
+ZSHC-HECA | B214 W21 R474 | TEBAK | LADON
+HECA-ZGGG | B214 W21 R474 | LADON | TEBAK
+ZGGG-HECA | B214 W21 R474 | TEBAK | LADON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

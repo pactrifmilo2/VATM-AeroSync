@@ -1,0 +1,44 @@
+FILE: R54A1  54A  REV1..docx
+
+PARAGRAPHS
+Ha Noi, April 06, 2026
+Permit No.: LD-54/A/S/2026VN/REV1
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedule Change
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260401-0073)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, April 06, 2026
+Permit No.: LD-54/A/S/2026VN/REV1
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AirAsia Berhad
+IATA code: AK | ICAO code: AXM
+Postal Address: RedQ, Jalan Pekeliling 5, Terminal 2, 64000 (T2), Selangor
+Tel: +6038660 4333 | Email: regulatoryaffairs@airasia.com, hanhb@airasia.com, ahmadfauzanmansor@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedule Change
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AK1490 | 14 Apr26 | 29 Jun26 | 1235567 | JHB | 2305 | SGN | 0100 | 32032N32Q
+AK1491 | 15 Apr26 | 30 Jun26 | 1235567 | SGN | 0130 | JHB | 0320 | 
+
+TABLE 4
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AK1490 | 14 Apr26 | 29 Jun26 | 1235567 | JHB | 2330 | SGN | 0125 | 32032N32Q
+AK1491 | 15 Apr26 | 30 Jun26 | 1235567 | SGN | 0155 | JHB | 0345 | 

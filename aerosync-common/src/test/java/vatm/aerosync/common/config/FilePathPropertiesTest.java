@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         "app.file-paths.incoming=/tmp/incoming",
         "app.file-paths.processed=/tmp/processed",
         "app.file-paths.error=/tmp/error",
+        "app.file-paths.error-format=/tmp/error-format",
         "app.file-paths.quarantine=/tmp/quarantine"
 })
 class FilePathPropertiesTest {
@@ -25,6 +26,7 @@ class FilePathPropertiesTest {
         assertThat(properties.getIncoming()).isEqualTo("/tmp/incoming");
         assertThat(properties.getProcessed()).isEqualTo("/tmp/processed");
         assertThat(properties.getError()).isEqualTo("/tmp/error");
+        assertThat(properties.getErrorFormat()).isEqualTo("/tmp/error-format");
         assertThat(properties.getQuarantine()).isEqualTo("/tmp/quarantine");
     }
 

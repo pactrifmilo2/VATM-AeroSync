@@ -1,0 +1,65 @@
+FILE: OF 09 BS.doc
+
+PARAGRAPHS
+Ha Noi, 13th February 2026
+№: OF - 09/B/S/2026VN
+IATA Seasons: Summer 2026
+1. Carrier
+Name: SICHUAN AIRLINES CO. LTD IATA code: 3U ICAO code: CSC Postal Address: Chengdu Shuangliu International Airport, Chengdu, Sichuan, 610202, China Tel: +86 28 8888 8888 Email: HYPERLINK "mailto:duruizhi@sichuanair.com" \t "_blank" duruizhi@sichuanair.com 
+2. Billing address
+Name: UAS International Trip Support Postal Address: UAS Building, DAFZA, P.O. Box 54482, Dubai, UAE Tel: +971 4 299 6633 Email: payable@uas.aero 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CSC9397 29mar26 24oct26 1234567 ZGNN 1800 VTBS 2000 CSC9398 29mar26 24oct26 1234567 VTBS 2110 ZGNN 2315 
+4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality A319 As per AOC of Sichuan Airlines 
+China
+ A320 A321 
+A330 A350 
+6. Airways
+
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGNN - VTBS R474 TEBAK LAVOS VTBS - ZGNN R474 LAVOS TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+C/c: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 13th February 2026
+№: OF - 09/B/S/2026VN
+IATA Seasons: Summer 2026
+1. Carrier
+Name: SICHUAN AIRLINES CO. LTD
+IATA code: 3U | ICAO code: CSC
+Postal Address: Chengdu Shuangliu International Airport, Chengdu, Sichuan, 610202, China
+Tel: +86 28 8888 8888 | Email: HYPERLINK "mailto:duruizhi@sichuanair.com" \t "_blank" duruizhi@sichuanair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: UAS International Trip Support
+Postal Address: UAS Building, DAFZA, P.O. Box 54482, Dubai, UAE
+Tel: +971 4 299 6633 | Email: payable@uas.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CSC9397 | 29mar26 | 24oct26 | 1234567 | ZGNN | 1800 | VTBS | 2000
+CSC9398 | 29mar26 | 24oct26 | 1234567 | VTBS | 2110 | ZGNN | 2315
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): All-cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A319 | As per AOC of Sichuan Airlines | China
+A320 |  | 
+A321 |  | 
+A330 |  | 
+A350 |  | 
+
+TABLE 5
+CONTEXT: 6. Airways
+
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGNN - VTBS | R474 | TEBAK | LAVOS
+VTBS - ZGNN | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

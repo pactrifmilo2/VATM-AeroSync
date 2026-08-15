@@ -1,0 +1,43 @@
+FILE: R751 75A RVS1.doc
+
+PARAGRAPHS
+Ha Noi, 09th April 2026
+№: LD - 75/A/S/2026VN.RVS1
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: Sichuan Airlines IATA code:3U ICAO code: CSC Postal Address:Sichuan Airlines Mansion, Shuangliu International Airport, Chengdu 
+610202, P.R. China Tel:86-28-65392701 Email: duruizhi@sichuanair.com 
+2. Airways
+2.1. Original Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CXR-TFU W15 W7 W1 Q3 R471 KATBO 
+2.2. New Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CXR-TFU W15 W7 Q1 Q6 Q2 N639 Q3 R471 KATBO Alternativeairways: Other permitted airways published in Viet Nam’s AIP.
+3. Note: Other details unchanged.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 09th April 2026
+№: LD - 75/A/S/2026VN.RVS1
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: Sichuan Airlines
+IATA code:3U | ICAO code: CSC
+Postal Address:Sichuan Airlines Mansion, Shuangliu International Airport, Chengdu 610202, P.R. China
+Tel:86-28-65392701 | Email: duruizhi@sichuanair.com
+
+TABLE 2
+CONTEXT: 2. Airways
+2.1. Original Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CXR-TFU | W15 W7 W1 Q3 R471 |  | KATBO
+
+TABLE 3
+CONTEXT: 2.2. New Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CXR-TFU | W15 W7 Q1 Q6 Q2 N639 Q3 R471 |  | KATBO

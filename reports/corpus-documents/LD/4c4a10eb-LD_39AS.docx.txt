@@ -1,0 +1,81 @@
+FILE: LD 39AS.docx
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Hanoi, 17/03/2026
+Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn
+Permit No.: LD-39/A/S/2026VN
+IATA Schedule Season: Summer 2026
+Carrier
+Schedules (UTC Time)
+Purpose of Flight: Passenger
+Aircraft
+Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+Validity: -12/+24H
+Note
+The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.
+Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CONTEXT: CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam
+Hanoi, 17/03/2026
+Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn
+Permit No.: LD-39/A/S/2026VN
+IATA Schedule Season: Summer 2026
+Carrier
+Name: AIR MACAU COMPANY LIMITED
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU
+Tel: 8396 6888 | Email: network_planning@airmacau.com.mo
+
+TABLE 2
+CONTEXT: Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NX950 | 29MAR26 | 24OCT26 | 1234567 | MFM | 1305 | HAN | 1445 | 321/320
+NX949 | 29MAR26 | 24OCT26 | 1234567 | HAN | 1605 | MFM | 1755 | 321/320
+ |  |  |  |  |  |  |  | 
+NX960 | 29MAR26 | 24OCT26 | -2-4-6- | MFM | 1105 | HAN | 1300 | 321/320
+NX959 | 29MAR26 | 24OCT26 | -2-4-6- | HAN | 1410 | MFM | 1605 | 321/320
+ |  |  |  |  |  |  |  | 
+NX962 | 29MAR26 | 24OCT26 | ------7 | MFM | 1315 | HAN | 1545 | 321/320
+NX961 | 29MAR26 | 24OCT26 | ------7 | HAN | 1700 | MFM | 1850 | 321/320
+ |  |  |  |  |  |  |  | 
+NX964 | 29MAR26 | 24OCT26 | 1-3-5-- | MFM | 1245 | HAN | 1435 | 321/320
+NX963 | 29MAR26 | 24OCT26 | 1-3-5-- | HAN | 1550 | MFM | 1735 | 321/320
+
+TABLE 3
+CONTEXT: Purpose of Flight: Passenger
+Aircraft
+Aircraft Type | Registration Mark | Nationality
+ | Included in AOC/FAOC | 
+321 | As per FAOC of NX | CHINA
+320 | As per FAOC of NX | CHINA
+
+TABLE 4
+CONTEXT: Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MFM-HAN | R474 | TEBAK | 
+MFM-HAN | A202-Q2-W4 | ASSAD | 
+HAN-MFM | R474 |  | TEBAK
+HAN-MFM | Q1-A206-A202 |  | ASSAD

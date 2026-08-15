@@ -1,0 +1,48 @@
+FILE: R32B1 OF-32.B.S.2026VN.REV1.BOX.docx
+
+PARAGRAPHS
+OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 13 JUN 2026
+PERMIT NUMBER: OF-32/B/S/2026VN/REV1
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+3.1. OLD:
+3.2. NEW:
+4. Airways:
+OTHER MAIN DETAILS IS UNCHANGED.
+5. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: OVERFLIGHT PERMIT FOR NON-SCHEDULED FLIGHT
+HA NOI, 13 JUN 2026
+PERMIT NUMBER: OF-32/B/S/2026VN/REV1
+1. Operator:
+Name: AeroLogic GmbH
+IATA code: 3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: occ@aerologic.aero
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: AeroLogic GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1. OLD:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX555 | 16Jun26 | 28Jul26 | .2...6. | RCTP | 2155 | OMDW | 0640+1
+
+TABLE 4
+CONTEXT: 3.2. NEW:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX555 | 16Jun26 | 28Jul26 | .2...6. | RCTP | 2155 | VOBL | 0435+1
+
+TABLE 5
+CONTEXT: 4. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-VOHS | A1/W2/A206 | BUNTA / ASSAD | PAPRA / NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

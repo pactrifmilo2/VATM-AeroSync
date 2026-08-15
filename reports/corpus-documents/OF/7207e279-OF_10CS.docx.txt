@@ -1,0 +1,62 @@
+FILE: OF 10CS.docx
+
+PARAGRAPHS
+HA NOI, 14 FEB 2026
+NUMBER O/F-10/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier:
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose Of Flight(S): PASSENGER FLIGHT
+5. Aircraft:
+6. Air traffic service routes:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 14 FEB 2026
+NUMBER O/F-10/C/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier:
+Name: AIR MACAU CO LTD
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 ALAMEDA DR.CARLOS D’ASSUMPCAO, EDIF CNAC. 13-18 ANDAR, MACAU
+Tel: +(853) 88983132 | Email: fin cost@airmacau.com.mo
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: AIR MACAU CO LTD
+Postal Address: 398 ALAMEDA DR.CARLOS D’ASSUMPCAO, EDIF CNAC. 13-18 ANDAR, MACAU
+Tel: +(853) 88983132 | Email: fin cost@airmacau.com.mo
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+FlightNumber | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+AMU922 | 29MAR26 | 24OCT26 | 1234567 | VMMC | 0340 | WMKK | 0730
+AMU921 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 0830 | VMMC | 1235
+
+TABLE 5
+CONTEXT: 4. Purpose Of Flight(S): PASSENGER FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | As per AOC of AMU | Macau
+A320 | As per AOC of AMU | Macau
+A321 | As per AOC of AMU | Macau
+A321 | As per AOC of AMU | Macau
+A320NEO | As per AOC of AMU | Macau
+A321NEO | As per AOC of AMU | Macau
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+VMMC-WMKK | L642 | EXOTO | ESPOB
+VMMC-WMKK | A202-Q1-L644-L642 | ASSAD | ESPOB
+VMMC-WMKK | A1-Q1-L644-L642 | BUNTA | ESPOB
+VMMC-WMKK | L642-N500-L637-M765 | EXOTO | IGARI
+WMKK-VMMC | M771 | DUDIS | DONDA
+WMKK-VMMC | M765-L637-Q2-A202 | IGARI | ASSAD
+WMKK-VMMC | M765-L637-N500-M771 | IGARI | DONDA

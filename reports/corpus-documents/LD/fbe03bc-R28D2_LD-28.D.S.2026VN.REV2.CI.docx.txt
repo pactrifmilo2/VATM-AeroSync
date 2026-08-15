@@ -1,0 +1,34 @@
+FILE: R28D2  LD-28.D.S.2026VN.REV2.CI.docx
+
+PARAGRAPHS
+Hanoi, 10/07/2026
+Permit No.: LD-28/D/S/2026VN /REV2
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+Other details unchanged.
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 10/07/2026
+Permit No.: LD-28/D/S/2026VN /REV2
+1. Carrier/Operator
+Name: China Airlines LTD.
+IATA code: CI | ICAO code: CAL
+Postal Address: 1B Floor 7, Crescent Plaza 105 Ton Dat Tien Street, Tan Phu Ward, District 07, Ho Chi Minh City, Vietnam
+Tel: 84-24-35843581 | Email: hatuyet.tran@china-airlines.com,hanffci@china-airlines.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CI793 | 10Jul26 | 10Jul26 | ----5-- | TPE | 0635 | HAN | 0950 | A321NEO | LD-28/D/S/2026VN
+CI794 | 10Jul26 | 10Jul26 | ----5-- | HAN | 1050 | TPE | 1345 | A321NEO | LD-28/D/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CI793 | 10Jul26 | 10Jul26 | ----5-- | TPE | 0635 | HAN | 0950 | A321NEO
+CI794D | 11Jul26 | 11Jul26 | -----6- | HAN | 1905 | TPE | 2200 | A321NEO

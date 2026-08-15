@@ -1,0 +1,57 @@
+FILE: OF 13 BS.docx
+
+PARAGRAPHS
+HA NOI, 06 MAR 2026
+NUMBER OF-13/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Billing address
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger Transportation
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 06 MAR 2026
+NUMBER OF-13/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: “Siberia Airlines” JSC
+IATA code: S7 | ICAO code: SBI
+Postal Address: Mozzherina prospect, 10, office 201, 633104 Town of Ob, Novosibirsk region, Russian Federation
+Tel: +7(496) 795-17-33; Fax: +7(495)5439254 | Email : fsgfcc@s7.ru
+
+TABLE 3
+CONTEXT: Billing address
+Name: “Siberia Airlines” JSC
+Postal address: Mozzherina prospect, 10, office 201, 633104 0Town of Ob, Novosibirsk region, Russian Federation
+Tel: +7(383) 210-67-28; Fax: +7(495)5439254 | Email : isg@s7.ru
+
+TABLE 4
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+SBI6261 | 31MAR26 | 12MAY26 | 0200500 | UHWW | 0500 | VTBS | 1145 | B738 (ALT A320/A321/E170)
+ | 22SEP26 | 23OCT26 |  |  |  |  |  | 
+SBI6262 | 31MAR26 | 12MAY26 |  | VTBS | 1310 | UHWW | 1940 | 
+ | 22SEP26 | 23OCT26 |  |  |  |  |  | 
+
+TABLE 5
+CONTEXT: 3. Type of services/ Purpose of Flight(s): Passenger Transportation
+4. Air traffic service routes:
+Sectors 5 | ATS Routes 6 | Entry Point | Exit Point
+UHWW-VTBS | N0459F380 R474 | TEBAK | LAVOS
+VTBS-UHWW | N0464F350 R474 | LAVOS | TEBAK
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B738 | As per AOC of SBI | Russia
+A320 | As per AOC of SBI | Russia
+A321 | As per AOC of SBI | Russia
+E170 | As per AOC of SBI | Russia

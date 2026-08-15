@@ -1,0 +1,55 @@
+FILE: OF 13 AS.docx
+
+PARAGRAPHS
+HA NOI, 24 FEB 2026
+NUMBER OF-13/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Billing address
+2. Schedules
+3. Type of services/ Purpose of Flight(s): Passenger Transportation
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 24 FEB 2026
+NUMBER OF-13/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: “Siberia Airlines” JSC
+IATA code: S7 | ICAO code: SBI
+Postal Address: Mozzherina prospect, 10, office 201, 633104 Town of Ob, Novosibirsk region, Russian Federation
+Tel: +7(496) 795-17-33; Fax: +7(495)5439254 | Email : fsgfcc@s7.ru
+
+TABLE 3
+CONTEXT: Billing address
+Name: “Siberia Airlines” JSC
+Postal address: Mozzherina prospect, 10, office 201, 633104 0Town of Ob, Novosibirsk region, Russian Federation
+Tel: +7(383) 210-67-28; Fax: +7(495)5439254 | Email : isg@s7.ru
+
+TABLE 4
+CONTEXT: 2. Schedules
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+SBI9003 | 29MAR26 | 24OCT26 | 1234567 | UHWW | 1615 | VTBS | 2340 | B738 (ALT A320/A321/E170)
+SBI9004 |  |  |  | VTBS | 1615 | UHWW | 2240 | 
+
+TABLE 5
+CONTEXT: 3. Type of services/ Purpose of Flight(s): Passenger Transportation
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+UHWW-VTBS | N0459F380 R474 | TEBAK | LAVOS
+VTBS-UHWW | N0464F350 R474 | LAVOS | TEBAK
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B738 | As per AOC of SBI | Russia
+A320 | As per AOC of SBI | Russia
+A321 | As per AOC of SBI | Russia
+E170 | As per AOC of SBI | Russia

@@ -1,0 +1,96 @@
+FILE: LD 01AS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 02/03/2026
+Permit No.: LD-01/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Tigerair Taiwan Co., Ltd. IATA code: IT ICAO code: TTW Postal Address: 5f., no3., alley123, lane405, dunhua n. rd., Taipei city 10548, Taiwan Tel: +886 2 7735 6926 Email: slot@tigerairtw.com 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type IT551 29Mar26 24Oct26 1------ TPE 0910 DAD 1140 A320 IT551 29Mar26 24Oct26 ----5-- TPE 0915 DAD 1155 A320 IT551 29Mar26 24Oct26 -2----- TPE 0825 DAD 1110 A320 IT551 29Mar26 24Oct26 ---4--- TPE 0835 DAD 1110 A320 IT551 29Mar26 24Oct26 -----6- TPE 0830 DAD 1110 A320 IT552 29Mar26 24Oct26 1------ DAD 1230 TPE 1515 A320 IT552 29Mar26 24Oct26 ----5-- DAD 1245 TPE 1525 A320 IT552 29Mar26 24Oct26 -2-4--- DAD 1300 TPE 1540 A320 IT552 29Mar26 24Oct26 -----6- DAD 1230 TPE 1510 A320 
+IT585 29Mar26 24Oct26 -2-4--- KHH 0930 DAD 1210 A320 IT585 29Mar26 24Oct26 -----6- KHH 0900 DAD 1140 A320 IT585 29Mar26 24Oct26 --3---7 KHH 0800 DAD 1035 A320 IT586 29Mar26 24Oct26 -2-4-6- DAD 1200 KHH 1420 A320 IT586 29Mar26 24Oct26 --3---7 DAD 1125 KHH 1345 A320 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality A320-200 As per FAOC of IT Taiwan A320-271N As per FAOC of IT Taiwan 
+5. Airways
+Main route
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TPE - DAD A1 BUNTA DAD - TPE A1 BUNTA 
+KHH - DAD A1 BUNTA DAD – KHH A1 BUNTA 
+Substitute route
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR TPE - DAD MONBO N892 MESOX L628 PCA G474 PLK W1 VILOT MONBO DAD - TPE VILOT W1 PLK G474 PCA L628 FIR MESOX KHH - DAD MONBO N892 MESOX L628 PCA G474 PLK W1 VILOT MONBO DAD - KHH VILOT W1 PLK G474 PCA L628 FIR MESOX 
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 02/03/2026
+Permit No.: LD-01/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Tigerair Taiwan Co., Ltd.
+IATA code: IT | ICAO code: TTW
+Postal Address: 5f., no3., alley123, lane405, dunhua n. rd., Taipei city 10548, Taiwan
+Tel: +886 2 7735 6926 | Email: slot@tigerairtw.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+IT551 | 29Mar26 | 24Oct26 | 1------ | TPE | 0910 | DAD | 1140 | A320
+IT551 | 29Mar26 | 24Oct26 | ----5-- | TPE | 0915 | DAD | 1155 | A320
+IT551 | 29Mar26 | 24Oct26 | -2----- | TPE | 0825 | DAD | 1110 | A320
+IT551 | 29Mar26 | 24Oct26 | ---4--- | TPE | 0835 | DAD | 1110 | A320
+IT551 | 29Mar26 | 24Oct26 | -----6- | TPE | 0830 | DAD | 1110 | A320
+IT552 | 29Mar26 | 24Oct26 | 1------ | DAD | 1230 | TPE | 1515 | A320
+IT552 | 29Mar26 | 24Oct26 | ----5-- | DAD | 1245 | TPE | 1525 | A320
+IT552 | 29Mar26 | 24Oct26 | -2-4--- | DAD | 1300 | TPE | 1540 | A320
+IT552 | 29Mar26 | 24Oct26 | -----6- | DAD | 1230 | TPE | 1510 | A320
+
+TABLE 4
+IT585 | 29Mar26 | 24Oct26 | -2-4--- | KHH | 0930 | DAD | 1210 | A320
+IT585 | 29Mar26 | 24Oct26 | -----6- | KHH | 0900 | DAD | 1140 | A320
+IT585 | 29Mar26 | 24Oct26 | --3---7 | KHH | 0800 | DAD | 1035 | A320
+IT586 | 29Mar26 | 24Oct26 | -2-4-6- | DAD | 1200 | KHH | 1420 | A320
+IT586 | 29Mar26 | 24Oct26 | --3---7 | DAD | 1125 | KHH | 1345 | A320
+
+TABLE 5
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+A320-200 | As per FAOC of IT | Taiwan
+A320-271N | As per FAOC of IT | Taiwan
+
+TABLE 6
+CONTEXT: 5. Airways
+Main route
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TPE - DAD | A1 | BUNTA | 
+DAD - TPE | A1 |  | BUNTA
+
+TABLE 7
+KHH - DAD | A1 | BUNTA | 
+DAD – KHH | A1 |  | BUNTA
+
+TABLE 8
+CONTEXT: Substitute route
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+TPE - DAD | MONBO N892 MESOX L628 PCA G474 PLK W1 VILOT | MONBO | 
+DAD - TPE | VILOT W1 PLK G474 PCA L628 FIR |  | MESOX
+KHH - DAD | MONBO N892 MESOX L628 PCA G474 PLK W1 VILOT | MONBO | 
+DAD - KHH | VILOT W1 PLK G474 PCA L628 FIR |  | MESOX

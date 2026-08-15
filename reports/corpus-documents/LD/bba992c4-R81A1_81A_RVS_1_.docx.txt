@@ -1,0 +1,34 @@
+FILE: R81A1 81A (RVS 1).docx
+
+PARAGRAPHS
+Hanoi, 10/6/2026
+Refer to the issued permit: LD-81/A/S/2026VN
+1. Carrier/Operator
+2. Schedules (UTC Time)
+2.1 Original schedule (UTC Time)
+2.2 New schedule (UTC Time)
+3. Note: All other details remains unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 10/6/2026
+Refer to the issued permit: LD-81/A/S/2026VN
+1. Carrier/Operator
+Name: Airzeta
+IATA code: KJ | ICAO code: AIH
+Postal Address: 77-65 Gonghangdong-ro 295beon-gil, Jung-gu, Incheon, Republic of Korea
+Tel: +82-02-6026-1303 | Email: leety@airzetacargo.com, thyanh@airzetacargo.com, lynk@airzetacargo.
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1 Original schedule (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9) | Original permit
+KJ387 | 17Jun26 | 17Jun26 | --3---- | ICN | 1530 | HAN | 2015 | 76Y | LD-81/A/S/2026VN
+KJ388 | 17Jun26 | 17Jun26 | --3---- | HAN | 2145 | ICN | 0230+1 | 76Y | LD-81/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2 New schedule (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type
+KJ3871 | 17Jun26 | 17Jun26 | --3---- | ICN | 1200 | HAN | 1645 | 76Y
+KJ3881 | 17Jun26 | 17Jun26 | --3---- | HAN | 1815 | ICN | 2300 | 76Y

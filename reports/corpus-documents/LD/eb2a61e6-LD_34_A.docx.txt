@@ -1,0 +1,63 @@
+FILE: LD 34 A.docx
+
+PARAGRAPHS
+Hanoi, 16th March 2026
+PERMIT NUMBER: LD-34/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+(8K is authorized to operate 5th freedom right on sector HAN–HKG)
+3. Purpose of Flight: All-Cargo
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 16th March 2026
+PERMIT NUMBER: LD-34/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: K-Mile Air
+IATA code: 8K | ICAO code: KMI
+Postal Address: K-Mile Air Company Ltd. – Room 308-310, 3rd Floor, B-FZ Bldg, Suvarnabhumi Airport, 999 Moo 7, Racha Thewa, Bang Phli, Samutprakan 10540, Thailand
+Tel: +66 2 1346715 | Email: bkkops@k-mile.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+8K525 | 29Mar26 | 24Oct26 | 1234-- | BKK | 2325 | HAN | 0105+1 | 734/738
+8K525 | 29Mar26 | 24Oct26 | ----5-- | BKK | 2355 | HAN | 0145+1 | 734/738
+8K525 | 29Mar26 | 24Oct26 | -23456- | HAN | 1530 | HKG | 1730 | 734/738
+8K526 | 29Mar26 | 24Oct26 | -23456- | HKG | 1930 | BKK | 2210 | 734/738
+ |  |  |  |  |  |  |  | 
+8K528 | 29Mar26 | 24Oct26 | -----6- | BKK | 2355 | HAN | 0145+1 | 734/738
+8K528 | 29Mar26 | 24Oct26 | 1------ | HAN | 1530 | HKG | 1730 | 734/738
+8K526 | 29Mar26 | 24Oct26 | 1------ | HKG | 1930 | BKK | 2210 | 734/738
+
+TABLE 4
+CONTEXT: (8K is authorized to operate 5th freedom right on sector HAN–HKG)
+3. Purpose of Flight: All-Cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+734 | As per FAOC of 8K | Thailand
+738 | As per FAOC of 8K | Thailand
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BKK-HAN | R474 | LAVOS | -
+HAN-HKG | R474 | - | TEBAK

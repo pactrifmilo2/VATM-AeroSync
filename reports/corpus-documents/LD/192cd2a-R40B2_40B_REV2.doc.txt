@@ -1,0 +1,45 @@
+FILE: R40B2  40B REV2.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 23/04/2026
+Permit No.: LD-40/B/S/2026VN/REV2
+ 
+1. Carrier/Operator
+Name: EVA AIRWAYS CORPORATION IATA code: BR ICAO code: EVA Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi. Tel: 00842439361600 Email: theoluong@evaair.com 
+2. CHANGE SCHEDULE
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit BR6061 26Apr26 26Apr26 0000007 TPE 1935 SIN 0000+1 777F LD-40/B/S/2026VN BR6061 27Apr26 27Apr26 1000000 SIN 0200 HAN 0510 777F LD-40/B/S/2026VN BR6062 27Apr26 27Apr26 1000000 HAN 0710 TPE 1000 777F LD-40/B/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type BR6023 26Apr26 26Apr26 0000007 TPE 2300 HAN 0200+1 777F BR6024 27Apr26 27Apr26 1000000 HAN 0400 TPE 0650 777F 
+3. Note: 
+- EVA AIRWAYS has no traffic right on sectors SIN-HAN
+- Other details unchanged.
+ 
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 23/04/2026
+Permit No.: LD-40/B/S/2026VN/REV2
+ 
+1. Carrier/Operator
+Name: EVA AIRWAYS CORPORATION
+IATA code: BR | ICAO code: EVA
+Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi.
+Tel: 00842439361600 | Email: theoluong@evaair.com
+
+TABLE 2
+CONTEXT: 2. CHANGE SCHEDULE
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+BR6061 | 26Apr26 | 26Apr26 | 0000007 | TPE | 1935 | SIN | 0000+1 | 777F | LD-40/B/S/2026VN
+BR6061 | 27Apr26 | 27Apr26 | 1000000 | SIN | 0200 | HAN | 0510 | 777F | LD-40/B/S/2026VN
+BR6062 | 27Apr26 | 27Apr26 | 1000000 | HAN | 0710 | TPE | 1000 | 777F | LD-40/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BR6023 | 26Apr26 | 26Apr26 | 0000007 | TPE | 2300 | HAN | 0200+1 | 777F
+BR6024 | 27Apr26 | 27Apr26 | 1000000 | HAN | 0400 | TPE | 0650 | 777F

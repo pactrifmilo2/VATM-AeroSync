@@ -1,0 +1,55 @@
+FILE: OF 114AS.doc
+
+PARAGRAPHS
+Ha Noi, 23rd March 2026
+№: OF - 114/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: AIR PREMIA IATA code: YP ICAO code: APZ Add: 248 GONGHANG-DAERO, GANGSEO-GU, SEOUL, 07805 SOUTH KOREA Tel: +82-70-7468-1620 Email: OCC@AIRPREMIA.COM 
+2. Billing address:
+Name: AIR PREMIA Postal Address: AIRPREMIA OCC 4F, 248 GONGHANG-DAERO, GANGSEO-GU, SEOUL, 07805 SOUTH KOREA Tel: +82-70-7468-1620 Email: OCC@AIRPREMIA.COM 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA APZ601 29MAR26 24OCT26 12-45-7 RKSI 0815 VTBS 1410 APZ602 29MAR26 24OCT26 12-45-7 VTBS 1545 RKSI 2115 
+4. Purpose of Flight(s): SCHEDULE PAX FLIGHTS 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B787-900 AS PER APZ AOC KOREA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RKSI-VTBS A1 / R474 BUNTA / TEBAK PAPRA / LAVOS VTBS-RKSI A1 / R474 PAPRA / LAVOS BUNTA / TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 23rd March 2026
+№: OF - 114/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: AIR PREMIA
+IATA code: YP | ICAO code: APZ
+Add: 248 GONGHANG-DAERO, GANGSEO-GU, SEOUL, 07805 SOUTH KOREA
+Tel: +82-70-7468-1620 | Email: OCC@AIRPREMIA.COM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: AIR PREMIA
+Postal Address: AIRPREMIA OCC 4F, 248 GONGHANG-DAERO, GANGSEO-GU, SEOUL, 07805 SOUTH KOREA
+Tel: +82-70-7468-1620 | Email: OCC@AIRPREMIA.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+APZ601 | 29MAR26 | 24OCT26 | 12-45-7 | RKSI | 0815 | VTBS | 1410
+APZ602 | 29MAR26 | 24OCT26 | 12-45-7 | VTBS | 1545 | RKSI | 2115
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE PAX FLIGHTS 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B787-900 | AS PER APZ AOC | KOREA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI-VTBS | A1 / R474 | BUNTA / TEBAK | PAPRA / LAVOS
+VTBS-RKSI | A1 / R474 | PAPRA / LAVOS | BUNTA / TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,72 @@
+FILE: OF-94_E_S_2026VN_CQH8895.doc
+
+PARAGRAPHS
+Ha Noi, 05th May 2026
+№: OF-94/E/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier:
+Name: SPRING AIRLINES IATA Code: 9C ICAO Code: CQH Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG 
+YI ROAD, SHANGHAI, CHINA 
+2. Billing address: 
+Name: SPRING AIRLINES Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG 
+YI ROAD, SHANGHAI, CHINA Tel: + +86 21 323 15885 Email: HYPERLINK "mailto:xujiali@ch.com" xujiali@ch.com 
+3. Schedule: UTC Time
+Flight number Effective from Effective to Day(s) of Services Departure Airport ETD Arrival Airport ETA CQH8895 05MAY26 24OCT26 1234567 ZGGG 2140 VTBS 0030+ CQH8896 05MAY26 24OCT26 1234567 VTBS 0230 ZGGG 0600 
+4. Purpose of flight(s): Passenger flights
+5. Aircraft:
+Aircraft type Rsgistration marks Seats (pax) Payload (ton) Mtow (ton) Nationality 
+A320 B-6301/B-6309/B-6310/B-6562 /B-6561/B-6612/B-6645/B-6646/B-6667/B-6705/B-6706/B-6708/B-6707/B-6752/B-6751/B-6820/B6821/B6840/B6841/B-6851/B-6852 AND SUBS 
+0 
+16,6 
+77 
+CHINA
+ 
+A321 
+21,6 
+93,5 
+6. Air traffic service routes: 
+Sector Airways Entry point into Vietnam FIR Exit point from Vietnam FIR ZGGG–VTBS A202 ASSAD VILAO VTBS–ZGGG A202 VILAO ASSAD ZGGG–VTBS A1 BUNTA PAPRA VTBS–ZGGG A1 PAPRA BUNTA ZGGG–VTBS R474 TEBAK LAVOS VTBS–ZGGG R474 LAVOS TEBAK ZGGG–VTBS R474-B465 TEBAK LAPON VTBS–ZGGG B465-R474 LAPON TEBAK Alternate Route: Other Permitted Air Traffic Service Routes Published In Vietnam’s AIP 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 05th May 2026
+№: OF-94/E/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier:
+Name: SPRING AIRLINES
+IATA Code: 9C | ICAO Code: CQH
+Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG YI ROAD, SHANGHAI, CHINA
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: SPRING AIRLINES
+Postal address: 2ND FLOOR, BUILDING NO.2 HOMEYO HOTEL, NO.528 KONGGANG YI ROAD, SHANGHAI, CHINA
+Tel: + +86 21 323 15885 | Email: HYPERLINK "mailto:xujiali@ch.com" xujiali@ch.com
+
+TABLE 3
+CONTEXT: 3. Schedule: UTC Time
+Flight number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA
+CQH8895 | 05MAY26 | 24OCT26 | 1234567 | ZGGG | 2140 | VTBS | 0030+
+CQH8896 | 05MAY26 | 24OCT26 | 1234567 | VTBS | 0230 | ZGGG | 0600
+
+TABLE 4
+CONTEXT: 4. Purpose of flight(s): Passenger flights
+5. Aircraft:
+Aircraft type | Rsgistration marks | Seats (pax) | Payload (ton) | Mtow (ton) | Nationality
+A320 | B-6301/B-6309/B-6310/B-6562 /B-6561/B-6612/B-6645/B-6646/B-6667/B-6705/B-6706/B-6708/B-6707/B-6752/B-6751/B-6820/B6821/B6840/B6841/B-6851/B-6852 AND SUBS | 0 | 16,6 | 77 | CHINA
+A321 |  |  | 21,6 | 93,5 | 
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry point into Vietnam FIR | Exit point from Vietnam FIR
+ZGGG–VTBS | A202 | ASSAD | VILAO
+VTBS–ZGGG | A202 | VILAO | ASSAD
+ZGGG–VTBS | A1 | BUNTA | PAPRA
+VTBS–ZGGG | A1 | PAPRA | BUNTA
+ZGGG–VTBS | R474 | TEBAK | LAVOS
+VTBS–ZGGG | R474 | LAVOS | TEBAK
+ZGGG–VTBS | R474-B465 | TEBAK | LAPON
+VTBS–ZGGG | B465-R474 | LAPON | TEBAK
+Alternate Route: Other Permitted Air Traffic Service Routes Published In Vietnam’s AIP

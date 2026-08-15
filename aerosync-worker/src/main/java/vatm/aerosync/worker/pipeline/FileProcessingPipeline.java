@@ -94,8 +94,9 @@ public class FileProcessingPipeline {
             viaResolutionStep.resolve(context);
             businessRuleValidatorStep.validate(context);
             DatabaseWriteResult writeResult = databaseWriterStep.write(context);
-            boolean inserted = writeResult.status() == SyncStatus.SUCCESS;
-            Path archived = inserted
+            boolean completed = writeResult.status() == SyncStatus.SUCCESS
+                    || writeResult.status() == SyncStatus.SKIPPED;
+            Path archived = completed
                     ? archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveProcessed(
                             context.getFilePath(), event.getSourceType(), context.getSender()))
                     : archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveError(
@@ -123,6 +124,8 @@ public class FileProcessingPipeline {
                     duration);
             syncResultPublisher.publish(
                     event.getSyncJobId(), writeResult.status(), AlertLevel.INFO, writeResult.message());
+        } catch (NonPermitDocumentException e) {
+            handleNonPermitDocument(context, event, e);
         } catch (FormatValidationException e) {
             handleFormatError(context, event, e);
         } catch (BusinessRuleException e) {
@@ -183,7 +186,7 @@ public class FileProcessingPipeline {
         updateJobStatus(event.getSyncJobId(), SyncStatus.FAILED);
         updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.FAILED, e.getErrorDetail());
         updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.FAILED);
-        Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveError(
+        Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveFormatError(
                 context.getFilePath(), event.getSourceType(), e.getErrorDetail(), context.getSender()));
         if (archived != null) {
             markArchived(event.getSyncJobId(), archived.toString());
@@ -199,13 +202,35 @@ public class FileProcessingPipeline {
                 event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING, e.getMessage());
     }
 
+    private void handleNonPermitDocument(ProcessingContext context,
+                                         FileIngestedEvent event,
+                                         NonPermitDocumentException e) {
+        updateJobStatus(event.getSyncJobId(), SyncStatus.SKIPPED);
+        updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.SKIPPED, e.getMessage());
+        updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.SKIPPED);
+        Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveProcessed(
+                context.getFilePath(), event.getSourceType(), context.getSender()));
+        if (archived != null) {
+            markArchived(event.getSyncJobId(), archived.toString());
+        }
+        auditLogService.record(
+                event.getSyncJobId(),
+                "SYNC_NON_PERMIT_ATTACHMENT",
+                summaryInput(context),
+                e.getMessage(),
+                SyncStatus.SKIPPED,
+                context.elapsedMillis());
+        syncResultPublisher.publish(
+                event.getSyncJobId(), SyncStatus.SKIPPED, AlertLevel.INFO, e.getMessage());
+    }
+
     @Transactional
     void handleBusinessRuleError(ProcessingContext context, FileIngestedEvent event, BusinessRuleException e) {
         updateJobStatus(event.getSyncJobId(), SyncStatus.QUARANTINED);
         updateFileProcessingStatus(event.getSyncJobId(), FileProcessingStatus.QUARANTINED, e.getMessage());
         updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.QUARANTINED);
-        Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveError(
-                context.getFilePath(), event.getSourceType(), e.getMessage(), context.getSender()));
+        Path archived = archiveSafely(event.getSyncJobId(), () -> fileArchiverStep.archiveQuarantine(
+                context.getFilePath(), event.getSourceType(), context.getSender()));
         if (archived != null) {
             markArchived(event.getSyncJobId(), archived.toString());
         }

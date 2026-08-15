@@ -1,0 +1,60 @@
+FILE: LD 53_A_S_2026VN_PN.doc
+
+PARAGRAPHS
+Ha Noi, 19th March 2026
+№: LD - 53/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: West Air Co., Ltd IATA code: PN ICAO code: CHB Postal Address: The Production Base of West Air, No. 10 Lingang Road, Yubei District, Chongqing, P.R.C Tel: +86 023 86064860 Email: HYPERLINK "mailto:xzh.zhang@westair.cn" xzh.zhang@westair.cn 
+2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type PN6423 29MAR26 24OCT26 1234567 CKG 0825 HAN 1025 320/32N/321/319/A19N PN6424 29MAR26 24OCT26 1234567 HAN 1125 CKG 1325 320/32N/321/319/A19N 
+3. Purpose of Flight: Passenger 
+4. Aircraft
+Aircraft Type Registration Mark Nationality 320 According to PN’s FAOC 
+ China
+ 32N 321 319 A19N 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CKG-HAN R474 TEBAK HAN-CKG R474 TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 19th March 2026
+№: LD - 53/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: West Air Co., Ltd
+IATA code: PN | ICAO code: CHB
+Postal Address: The Production Base of West Air, No. 10 Lingang Road, Yubei District, Chongqing, P.R.C
+Tel: +86 023 86064860 | Email: HYPERLINK "mailto:xzh.zhang@westair.cn" xzh.zhang@westair.cn
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+PN6423 | 29MAR26 | 24OCT26 | 1234567 | CKG | 0825 | HAN | 1025 | 320/32N/321/319/A19N
+PN6424 | 29MAR26 | 24OCT26 | 1234567 | HAN | 1125 | CKG | 1325 | 320/32N/321/319/A19N
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger 
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | According to PN’s FAOC | China
+32N |  | 
+321 |  | 
+319 |  | 
+A19N |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CKG-HAN | R474 | TEBAK | 
+HAN-CKG | R474 |  | TEBAK

@@ -1,0 +1,62 @@
+FILE: R100A1 (OF 100AS RVS1).docx
+
+PARAGRAPHS
+Hanoi, 02/07/2026
+REVISE 1: OF - 100/A/S/2026VN
+IATA Schedule Season: Season Summer 2026
+REVISE 1: OF - 100/A/S/2026VN
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+3.1 OLD
+3.2 NEW:
+4. Air traffic service routes:
+4.1 OLD
+4.2 NEW
+Note: Other details remain unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 02/07/2026
+REVISE 1: OF - 100/A/S/2026VN
+IATA Schedule Season: Season Summer 2026
+REVISE 1: OF - 100/A/S/2026VN
+1. Carrier
+Name: ZHEJIANG LOONG AIRLINES CO.,LTD
+IATA code: GJ | ICAO code: CDC
+Postal Address: ZHEJIANG LOONG AIRLINES BUILDING, XIAOSHAN INTERNATIONAL AIRPORT, HANGZHOU CITY, ZHEJIANG PROVINCE, P.R. CHINA
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Beijing Star Aviation Services Co.,ltd
+Postal Address: Room 409, No113, Kaifang Road, Huai Rou District, Beijing, China.
+Tel: +86 15311937187 | Email: sugar_jun@126.com, sugar@junstar-aviation.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+3.1 OLD
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CDC6029 | 02JUL26 | 02JUL26 | ---4--- | ZSWZ | 0100 | WSSS | 0600
+CDC6030 | 02JUL26 | 02JUL26 | ---4--- | WSSS | 0700 | ZSWZ | 1205
+
+TABLE 4
+CONTEXT: 3.2 NEW:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CDC8057 | 02JUL26 | 02JUL26 | ---4--- | ZSHC | 0120 | WSSS | 0600
+CDC8058 | 02JUL26 | 02JUL26 | ---4--- | WSSS | 0700 | ZSHC | 1205
+
+TABLE 5
+CONTEXT: 4. Air traffic service routes:
+4.1 OLD
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSWZ-WSSS | L642 | EXOTO | ESPOB
+WSSS-ZSWZ | M771 | DUDIS | DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AI
+
+TABLE 6
+CONTEXT: 4.2 NEW
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZSHC-WSSS | L642 | EXOTO | ESPOB
+WSSS-ZSHC | M771 | DUDIS | DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AI

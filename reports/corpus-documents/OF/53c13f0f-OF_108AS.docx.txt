@@ -1,0 +1,52 @@
+FILE: OF 108AS.docx
+
+PARAGRAPHS
+Hanoi, 20 March 2026
+Permit number: OF-108/A/S/2026VN
+IATA Schedule Season: NORTHERN SUMMER 2026
+1. Carrier/Operator:
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PAX SCHEDULED FLIGHT
+5. Aircraft:
+6. Airways
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260316-0168)
+
+TABLE 1
+CONTEXT: Hanoi, 20 March 2026
+Permit number: OF-108/A/S/2026VN
+IATA Schedule Season: NORTHERN SUMMER 2026
+1. Carrier/Operator:
+Name: BATIK AIR
+IATA code: ID | ICAO code: BTK
+Postal Address: MERITUS @ OASIS CORPORATE PARK, B2-1-01 JALAN PJU 1A/2, ARA DAMANSARA 47301 PETALING JAYA, SELANGOR DARUL EHSAN, MALAYSIA
+Tel: +603 2035 6699 | Email: diana.omar@malindoair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: CHARTERLINK DMCC (D.B.A JUST AVIATION)
+Postal Address: OFFICE 702, JUMEIRAH BAY X3, CLUSTER X, JUMEIRAH LAKE TOWERS, DUBAI, UAE
+Tel: +971-50-571-2659 | Email: PAYABLES@JUSTAVIATION.AERO
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BTK7623 | 29MAR26 | 24OCT26 | 1234567 | WIII | 1020 | ZGNN | 1530
+BTK7622 | 29MAR26 | 24OCT26 | 1234567 | ZGNN | 1630 | WIII | 2140
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): PAX SCHEDULED FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | As per AOC of BTK | INDONESIA
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WIII- ZGNN | M753 M755 N639 Q3 R474 | ENREP | TEBAK
+ZGNN - WIII | R474 Q3 N639 M755 M753 | TEBAK | ENREP
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

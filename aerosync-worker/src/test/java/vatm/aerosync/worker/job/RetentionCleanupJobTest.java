@@ -26,6 +26,7 @@ class RetentionCleanupJobTest {
         FilePathProperties paths = new FilePathProperties();
         paths.setProcessed(tempDir.resolve("processed").toString());
         paths.setError(tempDir.resolve("error").toString());
+        paths.setErrorFormat(tempDir.resolve("error-format").toString());
         paths.setQuarantine(tempDir.resolve("quarantine").toString());
 
         WorkerProperties workerProperties = new WorkerProperties();

@@ -1,0 +1,50 @@
+FILE: OF 12 DS.docx
+
+PARAGRAPHS
+HA NOI, 20 MAY 2026
+NUMBER OF-12/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 20 MAY 2026
+NUMBER OF-12/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: CHALLENGE AIRLINES (IL) LTD
+IATA code: 5C | ICAO code: ICL
+Postal Address: Axeria Business Centre 380, Level 1, Canon Road Santa Venera, SVR 9033 Malta, Malta
+Tel: +356 2713 7174 | Email: info@challenge-group.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: Jetex FZE
+Postal Address: P.O BOX: 54698 DUBAI, UAE
+Tel: +971 4 2124000 | Email: INVOICES@JETEX.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ICL770 | 01JUN26 | 24OCT26 | 1234567 | VHHH | 2100 | OMDW | 0610+1
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B744/B763/B773 | 4X-ICA,4X-ICK,4X-IAJ, OO-ACE, OO-ACF, OE-LRG, OE-LRI,9H-CAC,9H-CAD,9H-CAH,9H-CAZ | ISRAEL
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-OMDW | A206 R335 | ASSAD | IDOTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

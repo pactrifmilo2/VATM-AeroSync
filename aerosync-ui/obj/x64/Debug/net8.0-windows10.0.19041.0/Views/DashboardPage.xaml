@@ -10,7 +10,7 @@
                     <TextBlock Text="HTSLB OPERATOR › GIÁM SÁT ĐỒNG BỘ" FontSize="26" FontWeight="Bold" Foreground="#123A70" />
                     <TextBlock Text="{Binding StatusMessage}" Foreground="#64748B" />
                 </StackPanel>
-                <Button HorizontalAlignment="Right" Content="Refresh" Command="{Binding RefreshCommand}" />
+                <Button HorizontalAlignment="Right" Content="Làm mới" Command="{Binding RefreshCommand}" />
             </Grid>
 
             <Border Background="#EFF6FF" BorderBrush="#3B82F6" BorderThickness="1" CornerRadius="8" Padding="14">
@@ -31,37 +31,37 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" BorderBrush="#B7E4C7" BorderThickness="1" CornerRadius="8" Padding="20">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="SUCCESS" Foreground="#16A34A" FontWeight="Bold" />
+                        <TextBlock Text="THÀNH CÔNG" Foreground="#16A34A" FontWeight="Bold" />
                         <TextBlock Text="{Binding SuccessCount}" Foreground="#16A34A" FontSize="30" FontWeight="Bold" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="1" BorderBrush="#FECACA" BorderThickness="1" CornerRadius="8" Padding="20">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="ERROR" Foreground="#DC2626" FontWeight="Bold" />
+                        <TextBlock Text="THẤT BẠI" Foreground="#DC2626" FontWeight="Bold" />
                         <TextBlock Text="{Binding ErrorCount}" Foreground="#DC2626" FontSize="30" FontWeight="Bold" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="2" BorderBrush="#FED7AA" BorderThickness="1" CornerRadius="8" Padding="20">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="WARN" Foreground="#EA580C" FontWeight="Bold" />
+                        <TextBlock Text="CÁCH LY" Foreground="#EA580C" FontWeight="Bold" />
                         <TextBlock Text="{Binding WarnCount}" Foreground="#EA580C" FontSize="30" FontWeight="Bold" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="3" BorderBrush="#BFDBFE" BorderThickness="1" CornerRadius="8" Padding="20">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="SKIPPED" Foreground="#2563EB" FontWeight="Bold" />
+                        <TextBlock Text="BỎ QUA" Foreground="#2563EB" FontWeight="Bold" />
                         <TextBlock Text="{Binding SkippedCount}" Foreground="#2563EB" FontSize="30" FontWeight="Bold" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="4" BorderBrush="#DDD6FE" BorderThickness="1" CornerRadius="8" Padding="20">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="PROCESSING" Foreground="#7C3AED" FontWeight="Bold" />
+                        <TextBlock Text="ĐANG XỬ LÝ" Foreground="#7C3AED" FontWeight="Bold" />
                         <TextBlock Text="{Binding ProcessingCount}" Foreground="#7C3AED" FontSize="30" FontWeight="Bold" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="5" BorderBrush="#CBD5E1" BorderThickness="1" CornerRadius="8" Padding="20">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="TOTAL" Foreground="#334155" FontWeight="Bold" />
+                        <TextBlock Text="TỔNG" Foreground="#334155" FontWeight="Bold" />
                         <TextBlock Text="{Binding TotalJobs}" Foreground="#334155" FontSize="30" FontWeight="Bold" />
                     </StackPanel>
                 </Border>
@@ -84,9 +84,9 @@
                         </ComboBox>
                         <ComboBox Grid.Column="2" Header="Trạng thái" SelectedIndex="0">
                             <ComboBoxItem Content="Tất cả" />
-                            <ComboBoxItem Content="SUCCESS" />
-                            <ComboBoxItem Content="FAILED" />
-                            <ComboBoxItem Content="QUARANTINED" />
+                            <ComboBoxItem Content="Thành công" />
+                            <ComboBoxItem Content="Thất bại" />
+                            <ComboBoxItem Content="Đã cách ly" />
                         </ComboBox>
                     </Grid>
                 </StackPanel>
@@ -106,7 +106,7 @@
                                                           >
                         <controls:DataGrid.Columns>
                             <controls:DataGridTextColumn Header="NGƯỜI GỬI / FILE" Binding="{Binding DisplayLabel}" Width="*" />
-                            <controls:DataGridTextColumn Header="TRẠNG THÁI" Binding="{Binding Status}" Width="180" />
+                            <controls:DataGridTextColumn Header="TRẠNG THÁI" Binding="{Binding StatusLabel}" Width="180" />
                             <controls:DataGridTextColumn Header="THỜI GIAN" Binding="{Binding TimeLabel}" Width="180" />
                         </controls:DataGrid.Columns>
                     </controls:DataGrid>
@@ -115,7 +115,7 @@
 
             <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="14">
                 <StackPanel Spacing="10">
-                    <TextBlock Text="LOG SYSTEM REAL-TIME" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                    <TextBlock Text="NHẬT KÝ HỆ THỐNG THEO THỜI GIAN THỰC" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
                     <ListView ItemsSource="{Binding Logs}" MaxHeight="160">
                         <ListView.ItemTemplate>
                             <DataTemplate>

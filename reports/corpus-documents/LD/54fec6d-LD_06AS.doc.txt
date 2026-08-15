@@ -1,0 +1,127 @@
+FILE: LD 06AS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 05/03/2026
+Permit No.: LD-06/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: FEDERAL EXPRESS CORPORATION IATA code: FX ICAO code: FDX Postal Address: 3131 Democrat Rd, Bldg C, Memphis, TN 38118 USA. Tel: (1-901) 606-9983 Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type FX5194 29Mar26 24Oct26 1234--- CAN 2000 SGN 2240 767F FX6091 29Mar26 24Oct26 -2345-- SGN 0045 BKK 0210 767F FX5775 29Mar26 24Oct26 ------7 CAN 1755 HAN 1950 767F FX5775 29Mar26 24Oct26 ------7 HAN 2120 SGN 2315 767F FX6065 29Mar26 24Oct26 1------ SGN 1355 CAN 1650 767F FX6067 29Mar26 24Oct26 -2345-- CRK 1035 SGN 1315 767F FX6067 29Mar26 24Oct26 -2345-- SGN 1445 CAN 1740 767F FX6001 29Mar26 24Oct26 1234--- CAN 2020 HAN 2220 767F FX6001 29Mar26 24Oct26 1234--- HAN 2335 BKK 0125+1 767F 767F FX6002 29Mar26 24Oct26 -2345-- BKK 1250 HAN 1455 767F FX6002 29Mar26 24Oct26 -2345-- HAN 1615 CAN 1800 767F FX9073 29Mar26 24Oct26 ------7 CAN 2155 ICN 0110+1 767F FX9073 29Mar26 24Oct26 1------ ICN 1015 HAN 1435 767F FX6013 29Mar26 24Oct26 1------ HAN 1605 CAN 1750 767F No traffic rights on sector HAN-SGN.
+3. Purpose of Flight: All – Cargo
+4. Aircraft
+Aircraft Type Registration Mark Nationality 767F As per FAOC of FX USA 5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR FX5775/ FX6001
+CAN-HAN R474
+L628 G474 Q2 TEBAK
+ARESI FX5775
+HAN-SGN Q1
+W2
+W2 W1 FX6065/ FX6067
+SGN-CAN N500 M771
+W12 G221 A1
+R468 A202
+R468 B329 N639 Q3 R474 
+ DONDA 
+BUNTA
+SAPEN ASSAD 
+SAPEN TEBAK FX5194
+CAN-SGN L642 
+G221 W12 Q1
+W10 Q1
+R474 Q1 EXOTO
+BUNTA
+ASSAD
+TEBAK FX5194
+SGN-SIN NIXIV
+L643 CSN L642 ESPOB FX6067
+SIN-SGN M753
+L637
+BITI IPRIX FX6001
+HAN-BKK R474 LAVOS FX6002
+BKK-HAN R474
+A202 A206 Q2 LAVOS
+VILAO FX6002
+HAN-CAN R474 TEBAK FX6091
+SGN-BKK SAPE2B SAPEN FX9073
+ICN-HAN R474 TEBAK FX6067
+CRK-SGN N500 PANDI Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 05/03/2026
+Permit No.: LD-06/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX5194 | 29Mar26 | 24Oct26 | 1234--- | CAN | 2000 | SGN | 2240 | 767F
+FX6091 | 29Mar26 | 24Oct26 | -2345-- | SGN | 0045 | BKK | 0210 | 767F
+ |  |  |  |  |  |  |  | 
+FX5775 | 29Mar26 | 24Oct26 | ------7 | CAN | 1755 | HAN | 1950 | 767F
+FX5775 | 29Mar26 | 24Oct26 | ------7 | HAN | 2120 | SGN | 2315 | 767F
+FX6065 | 29Mar26 | 24Oct26 | 1------ | SGN | 1355 | CAN | 1650 | 767F
+ |  |  |  |  |  |  |  | 
+FX6067 | 29Mar26 | 24Oct26 | -2345-- | CRK | 1035 | SGN | 1315 | 767F
+FX6067 | 29Mar26 | 24Oct26 | -2345-- | SGN | 1445 | CAN | 1740 | 767F
+ |  |  |  |  |  |  |  | 
+FX6001 | 29Mar26 | 24Oct26 | 1234--- | CAN | 2020 | HAN | 2220 | 767F
+FX6001 | 29Mar26 | 24Oct26 | 1234--- | HAN | 2335 | BKK | 0125+1 | 767F
+ |  |  |  |  |  |  |  | 767F
+FX6002 | 29Mar26 | 24Oct26 | -2345-- | BKK | 1250 | HAN | 1455 | 767F
+FX6002 | 29Mar26 | 24Oct26 | -2345-- | HAN | 1615 | CAN | 1800 | 767F
+ |  |  |  |  |  |  |  | 
+FX9073 | 29Mar26 | 24Oct26 | ------7 | CAN | 2155 | ICN | 0110+1 | 767F
+FX9073 | 29Mar26 | 24Oct26 | 1------ | ICN | 1015 | HAN | 1435 | 767F
+FX6013 | 29Mar26 | 24Oct26 | 1------ | HAN | 1605 | CAN | 1750 | 767F
+
+TABLE 4
+CONTEXT: No traffic rights on sector HAN-SGN.
+3. Purpose of Flight: All – Cargo
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+767F | As per FAOC of FX | USA
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+FX5775/ FX6001 CAN-HAN | R474 L628 G474 Q2 | TEBAK ARESI | 
+FX5775 HAN-SGN | Q1 W2 W2 W1 |  | 
+FX6065/ FX6067 SGN-CAN | N500 M771 W12 G221 A1 R468 A202 R468 B329 N639 Q3 R474 |  | DONDA BUNTA SAPEN ASSAD SAPEN TEBAK
+FX5194 CAN-SGN | L642 G221 W12 Q1 W10 Q1 R474 Q1 | EXOTO BUNTA ASSAD TEBAK | 
+FX5194 SGN-SIN | NIXIV L643 CSN L642 |  | ESPOB
+FX6067 SIN-SGN | M753 L637 BITI | IPRIX | 
+ |  |  | 
+FX6001 HAN-BKK | R474 |  | LAVOS
+FX6002 BKK-HAN | R474 A202 A206 Q2 | LAVOS VILAO | 
+FX6002 HAN-CAN | R474 |  | TEBAK
+FX6091 SGN-BKK | SAPE2B |  | SAPEN
+FX9073 ICN-HAN | R474 | TEBAK | 
+FX6067 CRK-SGN | N500 | PANDI | 

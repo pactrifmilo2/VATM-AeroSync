@@ -1,0 +1,46 @@
+FILE: R35A5 LD35A ABL RVS5.doc
+
+PARAGRAPHS
+Ha Noi, 14th July 2026
+№: LD - 35/A/S/2026VN.RVS.14JUL26
+1. Carrier
+Name: AIRBUSAN Co., Ltd. IATA code: BX ICAO code: ABL Postal Address: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea Tel: 82-51-410-0703 Email: jcpark@airbusan.com 
+2. Revised Item: Schedule
+2.1. Original schedule(s)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type BX787 01Aug26 24Oct26 1234567 ICN 0810 CXR 1340 32A/32S/32Q BX788 01Aug26 24Oct26 1234567 CXR 1450 ICN 2005 32A/32S/32Q 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type BX787 01Aug26 24Oct26 1234567 ICN 0810 CXR 1320 32A/32S/32Q BX788 01Aug26 24Oct26 1234567 CXR 1450 ICN 2005 32A/32S/32Q 
+3. Note: Other details unchanged.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 14th July 2026
+№: LD - 35/A/S/2026VN.RVS.14JUL26
+1. Carrier
+Name: AIRBUSAN Co., Ltd.
+IATA code: BX | ICAO code: ABL
+Postal Address: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea
+Tel: 82-51-410-0703 | Email: jcpark@airbusan.com
+
+TABLE 2
+CONTEXT: 2. Revised Item: Schedule
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BX787 | 01Aug26 | 24Oct26 | 1234567 | ICN | 0810 | CXR | 1340 | 32A/32S/32Q
+BX788 | 01Aug26 | 24Oct26 | 1234567 | CXR | 1450 | ICN | 2005 | 32A/32S/32Q
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BX787 | 01Aug26 | 24Oct26 | 1234567 | ICN | 0810 | CXR | 1320 | 32A/32S/32Q
+BX788 | 01Aug26 | 24Oct26 | 1234567 | CXR | 1450 | ICN | 2005 | 32A/32S/32Q

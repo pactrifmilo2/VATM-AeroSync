@@ -1,0 +1,95 @@
+FILE: LD 33 A.docx
+
+PARAGRAPHS
+Hanoi, 16th March 2026
+PERMIT NUMBER: LD-33/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. VALIDITY: -12/+24 Hours
+7. NOTE
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 16th March 2026
+PERMIT NUMBER: LD-33/A/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: THAI AIRASIA
+IATA code: FD | ICAO code: AIQ
+Postal Address:THAI AIRASIA Company Limited, 222, Don Mueang International Airport,3rd floor, Central Office Building, No.3200, Vibhavadi Rangsit Road, Sanambin, Don Mueang, Bangkok, 10120;
+Tel: +662-562-5799 | Email: thaiflightops@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FD634 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0050 | DAD | 0230 | 320/32N/32Q
+FD635 | 29Mar26 | 24Oct26 | 1234567 | DAD | 0305 | DMK | 0445 | 
+FD636 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0250 | DAD | 0430 | 
+FD637 | 29Mar26 | 24Oct26 | 1234567 | DAD | 0500 | DMK | 0640 | 
+FD638 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0900 | DAD | 1040 | 
+FD639 | 29Mar26 | 24Oct26 | 1234567 | DAD | 1110 | DMK | 1255 | 
+ |  |  |  |  |  |  |  | 
+FD640 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0255 | HAN | 0450 | 320/32N/32Q
+FD641 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0520 | DMK | 0710 | 
+FD642 | 28Mar26 | 24Oct26 | 1234567 | DMK | 2340 | HAN | 0130+1 | 
+FD643 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0205 | DMK | 0355 | 
+FD644 | 29Mar26 | 24Oct26 | 1234567 | DMK | 1125 | HAN | 1320 | 
+FD645 | 29Mar26 | 24Oct26 | 1234567 | HAN | 1355 | DMK | 1540 | 
+ |  |  |  |  |  |  |  | 
+FD646 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0100 | CXR | 0300 | 320/32N/32Q
+FD647 | 29Mar26 | 24Oct26 | 1234567 | CXR | 0330 | DMK | 0525 | 
+ |  |  |  |  |  |  |  | 
+FD654 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0640 | SGN | 0820 | 320/32N/32Q
+FD655 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0855 | DMK | 1035 | 
+FD656 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0030 | SGN | 0215 | 
+FD657 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0245 | DMK | 0420 | 
+FD658 | 29Mar26 | 24Oct26 | 1234567 | DMK | 1225 | SGN | 1405 | 
+FD659 | 29Mar26 | 24Oct26 | 1234567 | SGN | 1435 | DMK | 1605 | 
+ |  |  |  |  |  |  |  | 
+FD660 | 29Mar26 | 24Oct26 | 1234567 | DMK | 0500 | PQC | 0620 | 320/32N/32Q
+FD661 | 29Mar26 | 24Oct26 | 1234567 | PQC | 0650 | DMK | 0815 | 
+FD662 | 01May26 | 24Oct26 | 1234567 | DMK | 0840 | PQC | 1000 | 
+FD663 | 01May26 | 24Oct26 | 1234567 | PQC | 1030 | DMK | 1155 | 
+ |  |  |  |  |  |  |  | 
+FD870 | 29Mar26 | 24Oct26 | 13567 | CNX | 0615 | HAN | 0750 | 320/32N/32Q
+FD871 | 29Mar26 | 24Oct26 | 13567 | HAN | 0820 | CNX | 0955 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of FD | Thailand
+32N | As per FAOC of FD | Thailand
+32Q | As per FAOC of FD | Thailand
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DMK-DAD | A1 | PAPRA | 
+DAD-DMK | A1 |  | PAPRA
+DMK-HAN | R474 | LAVOS | 
+HAN-DMK | R474 |  | LAVOS
+DMK-CXR | M505-W7-W15 | MULAD | 
+CXR-DMK | W15-W1-R468 |  | SAPEN
+DMK-SGN | R468 | SAPEN | 
+SGN-DMK | R468 |  | SAPEN
+DMK-PQC | R334 | NUMDI | 
+PQC-DMK | R334 |  | NUMDI
+CNX-HAN | B465 | LAPON | 
+HAN-CNX | B465 |  | LAPON

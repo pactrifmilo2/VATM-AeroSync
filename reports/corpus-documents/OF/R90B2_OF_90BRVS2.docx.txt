@@ -1,0 +1,38 @@
+FILE: R90B2 OF 90BRVS2.docx
+
+PARAGRAPHS
+HA NOI, 29 APR 2026
+PERMIT NUMBER OF-90/B/S/2026VN /REV2
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+OTHER MAIN DETAILS IS UNCHANGED.
+3. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 29 APR 2026
+PERMIT NUMBER OF-90/B/S/2026VN /REV2
+1. Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG.
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+CPA037 | 30APR26 | 30MAY26 | ----5-- | HKG | 0010 | DWC | 0810 | 74N/74Y | OF-90/B/S/2026VN
+CPA061 | 30APR26 | 30MAY26 | ----5-- | HKG | 2145 | DWC | 0545+1 | 74N/74Y | OF-90/B/S/2026VN
+CPA067 | 30APR26 | 30MAY26 | -----6- | HKG | 1300 | DWC | 2100 | 74N/74Y | OF-90/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CPA037 | 30APR26 | 30MAY26 | ---4--- | HKG | 2305 | MAA | 0420+1 | 74N/74Y
+CPA061 | 30APR26 | 30MAY26 | ----5-- | HKG | 2255 | DEL | 0445+1 | 74N/74Y
+CPA067 | 30APR26 | 30MAY26 | -----6- | HKG | 1225 | MAA | 1735 | 74N/74Y

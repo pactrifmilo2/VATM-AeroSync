@@ -1,0 +1,64 @@
+FILE: OF 18 A S.doc
+
+PARAGRAPHS
+Ha Noi, 24th February 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 18/A/S/2026VN
+1. CARRIER/OPERATOR:
+Name: Lucky Air Company Limited IATA code: 8L ICAO code: LKE Postal Address: Lucky Air Base, East Road of Changshui Airport,Kunming, Yunnan, China 
+2. Billing address
+Name: Lucky Air Company Ltd Postal Address: Lucky Air Base, East Road of Changshui Airport, Kunming, Yunnan, China PHN: +86-18787088459 EMAIL: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF3IZSA8W59JQ8%26View%3DCompose%26New%3DYes%26To%3Dyanj.li1%2540luckyair.net','Compose',800,600,'yes');" \o "mailto:yanj.li1@luckyair.net" yanj.li1@luckyair.net 
+3. Schedules: UTC Time
+ 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA LKE833 29MAR26 24OCT26 1234567 ZPPP 1100 WIII 1555 LKE834 29MAR26 24OCT26 1234567 WIII 1655 ZPPP 2150 
+4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+A/C REG NATIONALITY A/C TYPE B-307U China A320NEO B-307Q China A320NEO B-307P China A320NEO B-1361 China A320NEO B-300L China A320NEO B-300K OR SUB China A320NEO 
+6. Airways
+ 
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZPPP-WIII R471-Q3-Q1-L644-L642 KATBO ESPOB WIII-ZPPP M753-M755 IPRIX KISAN Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+ 
+7. Window: -3/+72 hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+C/c: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 24th February 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 18/A/S/2026VN
+1. CARRIER/OPERATOR:
+Name: Lucky Air Company Limited
+IATA code: 8L | ICAO code: LKE
+Postal Address: Lucky Air Base, East Road of Changshui Airport,Kunming, Yunnan, China
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Lucky Air Company Ltd
+Postal Address: Lucky Air Base, East Road of Changshui Airport, Kunming, Yunnan, China
+PHN: +86-18787088459 | EMAIL: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DF3IZSA8W59JQ8%26View%3DCompose%26New%3DYes%26To%3Dyanj.li1%2540luckyair.net','Compose',800,600,'yes');" \o "mailto:yanj.li1@luckyair.net" yanj.li1@luckyair.net
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+LKE833 | 29MAR26 | 24OCT26 | 1234567 | ZPPP | 1100 | WIII | 1555
+LKE834 | 29MAR26 | 24OCT26 | 1234567 | WIII | 1655 | ZPPP | 2150
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+A/C REG | NATIONALITY | A/C TYPE
+B-307U | China | A320NEO
+B-307Q | China | A320NEO
+B-307P | China | A320NEO
+B-1361 | China | A320NEO
+B-300L | China | A320NEO
+B-300K OR SUB | China | A320NEO
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZPPP-WIII | R471-Q3-Q1-L644-L642 | KATBO | ESPOB
+WIII-ZPPP | M753-M755 | IPRIX | KISAN
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

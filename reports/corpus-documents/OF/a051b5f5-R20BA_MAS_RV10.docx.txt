@@ -1,0 +1,46 @@
+FILE: R20BA MAS RV10.docx
+
+PARAGRAPHS
+Hanoi, 07 Jul 2026
+Refer to the issued permit: OF-20/B/S/2026VN
+1. Carrier/Operator
+2. [Revised timing and reroute of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260703-170297)
+
+TABLE 1
+CONTEXT: Hanoi, 07 Jul 2026
+Refer to the issued permit: OF-20/B/S/2026VN
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Planning and Scheduling, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised timing and reroute of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6170 | 08JUL26 | 29JUL26 | ..3…. | WMKK | 0300 | ZSPD | 0825 | 33X
+MAS6171 | 08JUL26 | 29JUL26 | ..3…. | ZSPD | 1025 | WMKK | 1555 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6074 | 09JUL26 | 30JUL26 | …4… | WMKK | 2320 | RCTP | 0420+1 | 33X
+MAS6075 | 10JUL26 | 31JUL26 | ….5.. | RCTP | 0615 | WMKK | 1115 | 33X
+ |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6170 | 07JUL26 | 28JUL26 | .2….. | WMKK | 2000 | ZSPD | 0125+1 | 33X
+MAS6171 | 08JUL26 | 29JUL26 | ..3…. | ZSPD | 0325 | WMKK | 0855 | 33X
+ |  |  |  |  |  |  |  | 
+MAS6074 | 07JUL26 | 28JUL26 | .2….. | WMKK | 2230 | RCTP | 0330+1 | 33X
+MAS6075 | 08JUL26 | 29JUL26 | ..3…. | RCTP | 0525 | WMKK | 1025 | 33X
+ |  |  |  |  |  |  |  | 
+ |  |  |  |  |  |  |  | 

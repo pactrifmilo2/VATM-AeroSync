@@ -1,0 +1,68 @@
+FILE: R18A1 18A RVS1.doc
+
+PARAGRAPHS
+Ha Noi, 16th April 2026
+№: LD-18/A/S/2026VN.RVS1
+1. Carrier/Operator
+Name: CHONGQING AIRLINES IATA code: OQ IATA code: OQ Postal Address: No.6 Lingang Road, Lianglu Street, Yubei District, Chongqing, P.R.China 401120 Tel: +86 23 88358252 Tel: +86 23 88358252 
+2. Schedule:
+2.1. Original schedules
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type OQ2395 20JUN26 24OCT26 _2_4_6_ CKG 1300 SGN 1640 320/321 OQ2396 20JUN26 24OCT26 _2_4_6_ SGN 1740 CKG 2100 
+2.2. New schedules
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type OQ2395 20JUN26 24OCT26 _2_4_6_ CKG 1300 SGN 1640 32N/32Q OQ2396 20JUN26 24OCT26 _2_4_6_ SGN 1740 CKG 2100 
+3. Aircraft
+3.1. Original Aircraft
+Aircraft Type
+ Registration marks Nationality 320 As per FAOC of OQ
+ China 321 
+3.2. New Aircraft
+Aircraft Type
+ Registration marks Nationality 32N As per FAOC of OQ China
+ 32Q 
+4. Notes: Others remain unchanged
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 16th April 2026
+№: LD-18/A/S/2026VN.RVS1
+1. Carrier/Operator
+Name: CHONGQING AIRLINES
+IATA code: OQ | IATA code: OQ
+Postal Address: No.6 Lingang Road, Lianglu Street, Yubei District, Chongqing, P.R.China 401120
+Tel: +86 23 88358252 | Tel: +86 23 88358252
+
+TABLE 2
+CONTEXT: 2. Schedule:
+2.1. Original schedules
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+OQ2395 | 20JUN26 | 24OCT26 | _2_4_6_ | CKG | 1300 | SGN | 1640 | 320/321
+OQ2396 | 20JUN26 | 24OCT26 | _2_4_6_ | SGN | 1740 | CKG | 2100 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedules
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+OQ2395 | 20JUN26 | 24OCT26 | _2_4_6_ | CKG | 1300 | SGN | 1640 | 32N/32Q
+OQ2396 | 20JUN26 | 24OCT26 | _2_4_6_ | SGN | 1740 | CKG | 2100 | 
+
+TABLE 4
+CONTEXT: 3. Aircraft
+3.1. Original Aircraft
+Aircraft Type | Registration marks | Nationality
+320 | As per FAOC of OQ | China
+321 |  | 
+
+TABLE 5
+CONTEXT: 3.2. New Aircraft
+Aircraft Type | Registration marks | Nationality
+32N | As per FAOC of OQ | China
+32Q |  | 

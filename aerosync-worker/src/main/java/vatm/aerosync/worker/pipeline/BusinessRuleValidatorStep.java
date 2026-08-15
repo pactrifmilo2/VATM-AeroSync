@@ -87,7 +87,6 @@ public class BusinessRuleValidatorStep {
                     permit.flights().get(index),
                     index + 1,
                     permit.iataAirportsAllowed(),
-                    permit.emptyAirwaysAllowed(),
                     errors);
         }
         if (!errors.isEmpty()) {
@@ -103,7 +102,6 @@ public class BusinessRuleValidatorStep {
     private void validateScheduleFlight(ScheduleFlight flight,
                                         int rowNumber,
                                         boolean allowIataAirport,
-                                        boolean allowMissingAirways,
                                         List<RowValidationError> errors) {
         if (flight.flightNumber() == null || !flight.flightNumber().matches("^[A-Z0-9]{2,20}$")) {
             errors.add(error(rowNumber, "flightNumber", "BR-FLIGHT-NUMBER",
@@ -135,9 +133,6 @@ public class BusinessRuleValidatorStep {
                 && !hasOperatingDate(flight)) {
             errors.add(error(rowNumber, "serviceDays", "BR-SERVICE-DAYS-RANGE",
                     "No selected operating day falls in the effective date range", flight.serviceDays()));
-        }
-        if (!allowMissingAirways && (flight.via() == null || flight.via().isBlank())) {
-            errors.add(error(rowNumber, "via", "BR-AIRWAYS", "Airways are required", flight.via()));
         }
         if (flight.craftId() <= 0) {
             errors.add(error(rowNumber, "craftId", "BR-CRAFT", "Aircraft mapping is required",

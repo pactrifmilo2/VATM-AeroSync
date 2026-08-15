@@ -1,0 +1,56 @@
+FILE: OF 32G.docx
+
+PARAGRAPHS
+HA NOI, 24 JUN 2026
+NUMBER OF-32/G/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE CARGO FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 24 JUN 2026
+NUMBER OF-32/G/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Operator:
+Name: AeroLogic GmbH
+IATA code: 3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +49 342 044 431 22 | Email: accounting@aerologic.aero
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: AeroLogic GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +49 342 044 431 22 | Email: accounting@aerologic.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX553 | 30JUN26 | 28JUL26 | -2---6- | RCTP | 2155 | OMDW | 0640+1
+BOX613 | 05JUL26 | 26JUL26 | ------7 | RCTP | 1155 | OMDW | 2040
+BOX613 | 07JUL26 | 28JUL26 | -2----- | RCTP | 1910 | OMDW | 0355+1
+BOX613 | 03JUL26 | 31JUL26 | ----5-- | RCTP | 1125 | OMDW | 2010
+BOX637 | 05JUL26 | 26JUL26 | ------7 | VHHH | 2200 | OMDW | 0600+1
+BOX637 | 04JUL26 | 25JUL26 | -----6- | VHHH | 1215 | OMDW | 2015
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B777F | D-AALA OR SUB | GERMANY
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RCTP-OMDW | A1 | BUNTA | PAPRA
+VHHH-OMDW | A1 W2 A206 | BUNTA | NALAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

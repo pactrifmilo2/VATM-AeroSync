@@ -1,0 +1,70 @@
+FILE: OF 81B S.doc
+
+PARAGRAPHS
+Ha Noi, 06th April 2026
+№: OF - 81/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: S.F. Airlines Co., Ltd. Postal Address: 5F and 6F, SF South China Hub Building, No. 1111 Hangzhan Fourth Road, Shenzhen Airport, Caowei Community, Hangcheng Sub-District, Bao’an District, Shenzhen 
+2. Billing address
+Name: Sky Fuel Postal Address: 60 PAYA LEBAR ROAD #12-03, PAYA LEBAR SQUARE, SINGAPORE Email: HYPERLINK "mailto:ops@sky-fuel.com" ops@sky-fuel.com ; HYPERLINK "mailto:admin@sky-fuel.com" \o "mailto:admin@sky-fuel.com" admin@sky-fuel.com 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CSS139 09APR26 24OCT26 1234567 ZGSZ 1100 WSSS 1415 CSS140 09APR26 24OCT26 1234567 WSSS 1745 ZSPD 2225 
+4. Purpose of Flight(s): CARGO FLIGHTS 
+ 
+5. Aircraft:
+A/C TYPE A/C REG Nationality B747-400F B2422/B2423 CHINA B2425/B2426 OR SUB B767-300F B1423/B1576/B1589/B6996/B7593/B208R/B20A2/B20AV/
+B220H/B220T/ B220R/B221D/B221N/B222C/B222D/
+B221K/B222Q/B223D/B223L/B223Q/B222X/B223W/B223Z/B226X OR SUB B757-200F B2899/B2820/B2821/B2832/B2826/B2839/B2840
+/B2844/B2845/20E9/B20CX/B222E/B223C B2817 B1578/B1173/B208Q/B207Y/B1145/B205S/B1257/B222M/B223M
+/B223P B2828/B2829/B7342/B1463/B7689/B7082/B220J
+/B220Z/B220C/B220A B1177/B1378/B1252/B1231/B221U B1432 B20AW/B20EF B6150 OR SUB 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGSZ-WSSS L642 EXOTO ESPOB WSSS-ZSPD M771 DUDIS DONDA Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 06th April 2026
+№: OF - 81/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier/Operator
+Name: S.F. Airlines Co., Ltd.
+Postal Address: 5F and 6F, SF South China Hub Building, No. 1111 Hangzhan Fourth Road, Shenzhen Airport, Caowei Community, Hangcheng Sub-District, Bao’an District, Shenzhen
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: Sky Fuel
+Postal Address: 60 PAYA LEBAR ROAD #12-03, PAYA LEBAR SQUARE, SINGAPORE
+Email: HYPERLINK "mailto:ops@sky-fuel.com" ops@sky-fuel.com ; HYPERLINK "mailto:admin@sky-fuel.com" \o "mailto:admin@sky-fuel.com" admin@sky-fuel.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CSS139 | 09APR26 | 24OCT26 | 1234567 | ZGSZ | 1100 | WSSS | 1415
+CSS140 | 09APR26 | 24OCT26 | 1234567 | WSSS | 1745 | ZSPD | 2225
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CARGO FLIGHTS 
+ 
+5. Aircraft:
+A/C TYPE | A/C REG | Nationality
+B747-400F | B2422/B2423 | CHINA
+ | B2425/B2426 OR SUB | 
+B767-300F | B1423/B1576/B1589/B6996/B7593/B208R/B20A2/B20AV/ B220H/B220T/ B220R/B221D/B221N/B222C/B222D/ B221K/B222Q/B223D/B223L/B223Q/B222X/B223W/B223Z/B226X OR SUB | 
+B757-200F | B2899/B2820/B2821/B2832/B2826/B2839/B2840 /B2844/B2845/20E9/B20CX/B222E/B223C | 
+ | B2817 | 
+ | B1578/B1173/B208Q/B207Y/B1145/B205S/B1257/B222M/B223M /B223P | 
+ | B2828/B2829/B7342/B1463/B7689/B7082/B220J /B220Z/B220C/B220A | 
+ | B1177/B1378/B1252/B1231/B221U | 
+ | B1432 | 
+ | B20AW/B20EF | 
+ | B6150 OR SUB | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGSZ-WSSS | L642 | EXOTO | ESPOB
+WSSS-ZSPD | M771 | DUDIS | DONDA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -1,0 +1,57 @@
+FILE: OF-62.E.S.2026VN-TLM380-01JUL.docx
+
+PARAGRAPHS
+HANOI, 13 MAY 2026
+Permit No.: OF-62/E/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 13 MAY 2026
+Permit No.: OF-62/E/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: THAI LION MENTARI COMPANY LIMITED
+IATA code: SL | ICAO code: TLM
+Postal Address: 89/46 Vibhavadi Rangsit Road, Sanambin Subdistrict, Don Mueang District, Bangkok 10210, Thailand
+Tel: +66 2535 3710 | Email: KAMOLLUCK.IM@lionair-thai.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: THAI LION MENTARI COMPANY LIMITED
+Postal Address: 89/46 Vibhavadi Rangsit Road, Sanambin Subdistrict, Don Mueang District, Bangkok 10210, Thailand
+Tel: +66 2535 3710 | Email: FINANCE@lionair-thai.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+TLM380 | 01JUL26 | 25OCT26 | 12345-7 | VTBD | 20:00 | RCTP | 23:55
+TLM381 | 01JUL26 | 25OCT26 | 123456- | RCTP | 05:50 | VTBD | 09:40
+TLM380 | 01JUL26 | 25OCT26 | ------7 | VTBD | 02:40 | RCTP | 06:30
+TLM381 | 01JUL26 | 25OCT26 | ------7 | RCTP | 13:15 | VTBD | 17:15
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B739 | According to AOC of TLM | Thai
+B738 | According to AOC of TLM | Thai
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBD-RCTP | A1A202G474 L628 | PAPRAVILAOANINA | BUNTAASSADMESOX
+RCTP-VTBD | A1A202N892 L628 G474 | BUNTAASSADMIGUG | PAPRAVILAOANINA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

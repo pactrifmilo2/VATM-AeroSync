@@ -1,0 +1,74 @@
+FILE: LD 12AS.docx
+
+PARAGRAPHS
+Ha Noi, March 06, 2026
+Permit No.: LD-12/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of flights: Passenger
+4. Aircraft
+5. Airways
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Thi Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260302-0081)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 06, 2026
+Permit No.: LD-12/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address : Level 1 MAB Administration building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor Malaysia.
+Tel: +60-0126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+MH752 | 29Mar26 | 24Oct26 | 1234567 | KUL | 0135 | HAN | 0515 | 7387M8
+MH753 | 29Mar26 | 24Oct26 | 1234567 | HAN | 0605 | KUL | 0930 | 
+
+MH750 | 29Mar26 | 24Oct26 | 1234567 | KUL | 0100 | SGN | 0300 | 7387M8
+MH751 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0400 | KUL | 0555 | 
+
+MH758 | 29Mar26 | 24Oct26 | 1234567 | KUL | 0630 | SGN | 0840 | 7387M8
+MH759 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0940 | KUL | 1140 | 
+
+MH766 | 29Mar26 | 24Oct26 | 1234567 | KUL | 0935 | SGN | 1150 | 7387M8
+MH767 | 29Mar26 | 24Oct26 | 1234567 | SGN | 1240 | KUL | 1430 | 
+
+MH748 | 29Mar26 | 23Oct26 | 1_3_5_7 | KUL | 0400 | DAD | 0640 | 7387M8
+MH749 | 29Mar26 | 23Oct26 | 1_3_5_7 | DAD | 0740 | KUL | 1035 | 
+
+MH746 | 31Mar26 | 24Oct26 | _2_4_6_ | KUL | 0035 | DAD | 0325 | 7387M8
+MH747 | 31Mar26 | 24Oct26 | _2_4_6_ | DAD | 0425 | KUL | 0720 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of flights: Passenger
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+738 | As per FAOC of MH | MALAYSIA
+7M8 | As per FAOC of MH | MALAYSIA
+
+TABLE 5
+CONTEXT: 5. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+KUL-HAN | M765-L637-Q2 | IGARI | 
+HAN-KUL | Q1-W1-L637-M765 |  | IGARI
+KUL-SGN | M765-L637 | IGARI | 
+SGN-KUL | L637-M765 |  | IGARI
+KUL-DAD | M765-L637-Q2A1 | IGARIPAPRA | 
+DAD-KUL | Q1-W2-L637-M765A1 |  | IGARIPAPRA
+Alternate airways: Other permitted airways published in Viet Nam’s AIP

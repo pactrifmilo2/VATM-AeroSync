@@ -1,0 +1,79 @@
+FILE: OF 38AS.docx
+
+PARAGRAPHS
+HANOI, 03MAR2026
+Permit No.: OF-38/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+3. Schedules: UTC Time
+4. Purpose of Flight: Passenger
+5 Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 03MAR2026
+Permit No.: OF-38/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Air Cambodia
+IATA code: K6 | ICAO code: KHV
+Postal Address: #206A, Preah Norodom Blvd, Sangkat Tonle Bassac,Khan Chamkamorn, Phnom Penh 12302, Cambodia.
+Tel: (855) 23 66 000 95 23 66 000 96 | Email: schedule-permission@aircambodia.com; opsk6@aircambodia.com;
+2. Billing addressName: Air Cambodia
+IATA code: K6 | ICAO code: KHV
+Postal Address: #206A, Preah Norodom Blvd, Sangkat Tonle Bassac,Khan Chamkamorn, Phnom Penh 12302, Cambodia.
+Tel: (855) 23 66 000 95 23 66 000 96 | Email: schedule-permission@aircambodia.com; opsk6@aircambodia.com;
+ | 
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number(1) | Effective from (2) | Effective to (3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8)
+KHV668 | 29MAR26 | 24OCT26 | 1234567 | VDTI | 0120 | ZGGG | 0415
+KHV669 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 0525 | VDTI | 0820
+KHV610 | 29MAR26 | 24OCT26 | 1234567 | VDTI | 1650 | ZGGG | 2000
+KHV611 | 29MAR26 | 24OCT26 | 1234567 | ZGGG | 2100 | VDTI | 2350
+KHV896 | 29MAR26 | 24OCT26 | -2---6- | VDTI | 1000 | ZGNN | 1210
+KHV897 | 29MAR26 | 24OCT26 | -2---6- | ZGNN | 1330 | VDTI | 1550
+KHV894 | 29MAR26 | 24OCT26 | 1---5-- | VDTI | 1755 | ZHCC | 2205
+KHV895 | 29MAR26 | 24OCT26 | 1---5-- | ZHCC | 2305 | VDTI | 0310
+KHV926 | 29MAR26 | 24OCT26 | -2---6- | VDTI | 1430 | ZGSZ | 1700
+KHV927 | 29MAR26 | 24OCT26 | -2---6- | ZGSZ | 2100 | VDTI | 2330
+KHV592 | 29MAR26 | 24OCT26 | --3-5-7 | VDTI | 0015 | ZSFZ | 0345
+KHV593 | 29MAR26 | 24OCT26 | --3-5-7 | ZSFZ | 1445 | VDTI | 1815
+KHV680 | 29MAR26 | 24OCT26 | 1-3-5-7 | VDTI | 1000 | VHHH | 1235
+KHV681 | 29MAR26 | 24OCT26 | 1-3-5-7 | VHHH | 1335 | VDTI | 1610
+KHV930 | 29MAR26 | 24OCT26 | 1—4--- | VDSV | 1430 | ZGSZ | 1715
+KHV931 | 29MAR26 | 24OCT26 | 1—4--- | ZGSZ | 2000 | VDSV | 2300
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight: Passenger
+5 Aircraft:
+Aircraft Type | Registration marks | Nationality
+A320-200 | According to the AOC of K6 | Cambodia
+A321-200 | According to the AOC of K6 | Cambodia
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector(14) | Airways(15) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VDTI-ZGGG | A1 or A202 | PAPRA or VILAO | BUNTA or ASSAD
+ZGGG-VDTI | A1 or A202 | BUNTA or ASSAD | PAPRA or VILAO
+VDTI-ZHCC | N639-Q3-R474 | VILAO | TEBAK
+ZHCC-VDTI | R474-Q3-N639 | TEBAK | VILAO
+VDTI-ZGSZ | A202 or N639-Q3-R474 | VILAO | ASSAD or TEBAK
+ZGSZ-VDTI | A202 or R474-Q3-N639 | ASSAD or TEBAK | VILAO
+VDTI-ZGNN | N639-Q3-R474 | VILAO | TEBAK
+ZGNN-VDTI | R474-Q3-N639 | TEBAK | VILAO
+VDTI-ZSFZ | A202 | VILAO | ASSAD
+ZSFZ-VDTI | A202 | ASSAD | VILAO
+VDTI-VHHH | A1 | PAPRA | BUNTA
+VHHH-VDTI | A1 | BUNTA | PAPRA
+VDSV-ZGSZ | A202 or N639-Q3-R474 | VILAO | ASSAD or TEBAK
+ZGSZ-VDSV | A202 or R474-Q3-N639 | ASSAD or TEBAK | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

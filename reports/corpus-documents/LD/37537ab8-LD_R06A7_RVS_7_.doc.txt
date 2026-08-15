@@ -1,0 +1,60 @@
+FILE: LD R06A7 (RVS 7).doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 04/07/2026
+Permit No.: LD-06/A/S/2026VN/REV7
+ 
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION IATA code: FX ICAO code: FDX Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA. Tel: (1-901) 606-9983 Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com 
+2. Schedule (UTC Time)
+2.1. Original schedule(s) 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit FX5775 05Jul26 02Aug26 ------7 CAN 1755 HAN 1950 767F LD-06/A/S/2026VN/REV7 FX5775 05Jul26 02Aug26 ------7 HAN 2120 SGN 2315 767F LD-06/A/S/2026VN/REV7 FX6065 06Jul26 03Aug26 1------ SGN 1355 CAN 1650 767F LD-06/A/S/2026VN/REV7 
+2.2. New schedule(s) 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type FX6003 04Jul26 01Aug26 -----6- CAN 1800 HAN 2000 767F FX6003 04Jul26 01Aug26 -----6- HAN 2130 KIX 0145+1 767F FX5775 05Jul26 02Aug26 ------7 CAN 2035 SGN 2315 767F FX6065 06Jul26 03Aug26 1------ SGN 1355 CAN 1650 767F 
+3. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CAN-HAN R474 TEBAK HAN-KIX R474 TEBAK CAN-SGN L642 EXOTO SGN-CAN N500 M771 DONDA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+Other details unchanged
+ 
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 04/07/2026
+Permit No.: LD-06/A/S/2026VN/REV7
+ 
+1. Carrier/Operator
+Name: FEDERAL EXPRESS CORPORATION
+IATA code: FX | ICAO code: FDX
+Postal Address: 3131 Democrat Rd, Bldg. C, Memphis, TN 38118 USA.
+Tel: (1-901) 606-9983 | Email: HYPERLINK "mailto:airnav@corp.ds.fedex.com" airnav@corp.ds.fedex.com
+
+TABLE 2
+CONTEXT: 2. Schedule (UTC Time)
+2.1. Original schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+FX5775 | 05Jul26 | 02Aug26 | ------7 | CAN | 1755 | HAN | 1950 | 767F | LD-06/A/S/2026VN/REV7
+FX5775 | 05Jul26 | 02Aug26 | ------7 | HAN | 2120 | SGN | 2315 | 767F | LD-06/A/S/2026VN/REV7
+FX6065 | 06Jul26 | 03Aug26 | 1------ | SGN | 1355 | CAN | 1650 | 767F | LD-06/A/S/2026VN/REV7
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+FX6003 | 04Jul26 | 01Aug26 | -----6- | CAN | 1800 | HAN | 2000 | 767F
+FX6003 | 04Jul26 | 01Aug26 | -----6- | HAN | 2130 | KIX | 0145+1 | 767F
+ |  |  |  |  |  |  |  | 
+FX5775 | 05Jul26 | 02Aug26 | ------7 | CAN | 2035 | SGN | 2315 | 767F
+FX6065 | 06Jul26 | 03Aug26 | 1------ | SGN | 1355 | CAN | 1650 | 767F
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CAN-HAN | R474 | TEBAK | 
+HAN-KIX | R474 |  | TEBAK
+CAN-SGN | L642 | EXOTO | 
+SGN-CAN | N500 M771 |  | DONDA

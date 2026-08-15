@@ -1,0 +1,32 @@
+FILE: R07A1 CNL OF-07.A.docx
+
+PARAGRAPHS
+HANOI, 03APR 2026
+Cancellation of overflight permit OF-07/A/S/2026VN
+1. Carrier/Operator
+2. Cancellation details: OF-07/A/S/2026VN
+3. Note:
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 03APR 2026
+Cancellation of overflight permit OF-07/A/S/2026VN
+1. Carrier/Operator
+Name: Myanmar Airways International
+IATA code: 8M | ICAO code: MMA
+Postal Address: INTERNATIONAL BUSINESS CENTRE (IBC) NO.(88), PYAY ROAD, 11ᵗʱ QUARTER, HLAING TOWNSHIP YANGON 11061, MYANMAR
+Tel: +951 533207 | Email: aungthu.fltops@maiair.aero,yeaung@maiair.aero, admin.fltops@maiair.aero
+
+TABLE 2
+CONTEXT: 2. Cancellation details: OF-07/A/S/2026VN
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MMA-711 | 29 Mar 26 | 24 Oct 26 | Daily | VYYY | 0210 | ZGGG | 0515
+MMA-712 | 29 Mar 26 | 24 Oct 26 | Daily | ZGGG | 0615 | VYYY | 0920
+MMA-720 | 31 Mar 26 | 24 Oct 26 | 2,6 | VYYY | 1020 | ZGHA | 1335
+MMA-721 | 31 Mar 26 | 24 Oct 26 | 2,6 | ZGHA | 1435 | VYYY | 1815
+MMA-790 | 29 Mar 26 | 21 Oct 26 | 3,7 | VYYY | 1030 | ZGNN | 1300
+MMA-791 | 29 Mar 26 | 21 Oct 26 | 3,7 | ZGNN | 1400 | VYYY | 1645
+MMA-801 | 29 Mar 26 | 23 Oct 26 | 2,4,5,7 | VYYY | 0020 | RKSI | 0605
+MMA-802 | 29 Mar 26 | 23 Oct 26 | 2,4,5,7 | RKSI | 0705 | VYYY | 1305

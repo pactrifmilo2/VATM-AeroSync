@@ -1,0 +1,64 @@
+FILE: OF 65B.doc
+
+PARAGRAPHS
+Ha Noi, 24th March 2026
+Permit number: OF - 65/B/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: DHL Aviation EEMEA B.S.C IATA code: ES ICAO code: DHX Postal Address: P.O. Box 5741 Manama Kingdom of Bahrain Tel: +973 17 328 410 Email: BH.Flight.Dispatch.Duty.Manager@dhl.com 
+2. Billing address
+Name: DHL Aviation EEMEA B.S.C Postal Address: P.O. Box 5741 Manama Kingdom of Bahrain. Tel: +973 17 328 410 Email: Bahrain.flight.dispatch@dhl.com 
+3. Schedules: All times in UTC 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA DHX835 29MAR26 24OCT26 1234567 OOMS 0600 VHHH 1335 DHX836 29MAR26 24OCT26 1234567 VHHH 0700 OOMS 1550 DHX821 29MAR26 24OCT26 1234567 OOMS 0600 VHHH 1335 DHX820 29MAR26 24OCT26 1234567 VHHH 0700 OOMS 1550 DHX811 29MAR26 24OCT26 1234567 OOMS 0200 VHHH 0935 DHX810 29MAR26 24OCT26 1234567 VHHH 0200 OOMS 1050 DHX831 29MAR26 24OCT26 1234567 OOMS 0900 VHHH 1635 DHX832 29MAR26 24OCT26 1234567 VHHH 0700 OOMS 0850 
+4. Purpose of Flight(s): CARGO FLIGHT
+5. Aircraft
+Aircraft Type Registration marks Nationality B767-300 A9CDHS / A9CDHT / A9CDHU / A9CDHW / A9CDHZ / A9CDHV / A9CDHY / A9CDHAA Bahrain 
+6. Airways
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR VHHH-OOMS R474 TEBAK LAVOS OOMS-VHHH R474 LAVOS TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 24th March 2026
+Permit number: OF - 65/B/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier
+Name: DHL Aviation EEMEA B.S.C
+IATA code: ES | ICAO code: DHX
+Postal Address: P.O. Box 5741 Manama Kingdom of Bahrain
+Tel: +973 17 328 410 | Email: BH.Flight.Dispatch.Duty.Manager@dhl.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: DHL Aviation EEMEA B.S.C
+Postal Address: P.O. Box 5741 Manama Kingdom of Bahrain.
+Tel: +973 17 328 410 | Email: Bahrain.flight.dispatch@dhl.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+DHX835 | 29MAR26 | 24OCT26 | 1234567 | OOMS | 0600 | VHHH | 1335
+DHX836 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0700 | OOMS | 1550
+
+DHX821 | 29MAR26 | 24OCT26 | 1234567 | OOMS | 0600 | VHHH | 1335
+DHX820 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0700 | OOMS | 1550
+
+DHX811 | 29MAR26 | 24OCT26 | 1234567 | OOMS | 0200 | VHHH | 0935
+DHX810 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0200 | OOMS | 1050
+
+DHX831 | 29MAR26 | 24OCT26 | 1234567 | OOMS | 0900 | VHHH | 1635
+DHX832 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0700 | OOMS | 0850
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): CARGO FLIGHT
+5. Aircraft
+Aircraft Type | Registration marks | Nationality
+B767-300 | A9CDHS / A9CDHT / A9CDHU / A9CDHW / A9CDHZ / A9CDHV / A9CDHY / A9CDHAA | Bahrain
+
+TABLE 5
+CONTEXT: 6. Airways
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-OOMS | R474 | TEBAK | LAVOS
+OOMS-VHHH | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

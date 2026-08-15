@@ -11,6 +11,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Component
 public class FileArchiverStep {
@@ -40,9 +41,34 @@ public class FileArchiverStep {
     public Path archiveError(Path sourceFile, FileSourceType sourceType, String errorDetail, String sender)
             throws IOException {
         Path destination = moveTo(sourceFile, Path.of(filePathProperties.getError()), sourceType, null, sender);
-        Path logFile = destination.resolveSibling(destination.getFileName() + ".log");
-        Files.writeString(logFile, errorDetail);
+        writeErrorLog(destination, errorDetail);
         return destination;
+    }
+
+    public Path archiveFormatError(Path sourceFile, FileSourceType sourceType, String errorDetail, String sender)
+            throws IOException {
+        Path root = isMissingWordYamlFormat(sourceFile, errorDetail)
+                ? Path.of(filePathProperties.getErrorFormat())
+                : Path.of(filePathProperties.getError());
+        Path destination = moveTo(sourceFile, root, sourceType, null, sender);
+        writeErrorLog(destination, errorDetail);
+        return destination;
+    }
+
+    private void writeErrorLog(Path destination, String errorDetail) throws IOException {
+        Path logFile = destination.resolveSibling(destination.getFileName() + ".log");
+        Files.writeString(logFile, errorDetail == null ? "" : errorDetail);
+    }
+
+    private boolean isMissingWordYamlFormat(Path sourceFile, String errorDetail) {
+        String name = sourceFile.getFileName().toString().toLowerCase(Locale.ROOT);
+        if ((!name.endsWith(".doc") && !name.endsWith(".docx")) || errorDetail == null) {
+            return false;
+        }
+        String detail = errorDetail.toLowerCase(Locale.ROOT);
+        return detail.contains("unsupported word permit format")
+                || detail.contains("no format profile matched")
+                || detail.contains("file word ch\u01b0a c\u00f3 format yaml ph\u00f9 h\u1ee3p");
     }
 
     public Path archiveQuarantine(Path sourceFile, FileSourceType sourceType, String sender) throws IOException {

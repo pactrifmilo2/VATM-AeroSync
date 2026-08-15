@@ -1,0 +1,32 @@
+FILE: R27A2 OF 28ARVS2.docx
+
+PARAGRAPHS
+Hanoi, 06/05/2026
+Permit No.: OF - 28/A/S/2026VN/REV2
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 06/05/2026
+Permit No.: OF - 28/A/S/2026VN/REV2
+1. Carrier/Operator
+Name: SAUDI ARABIAN AIRLINES (SAUDIA)
+IATA code: SV | ICAO code: SVA
+Postal Address: P.O. BOX 167 JEDDAH 21231 / SAUDI ARABIA
+Tel: 0091-22-66859092/66859089 | Email: BOMOCSV@SAUDIA.COM
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+SV 871 | 07MAY26 | 07MAY26 | ---4--- | RPLL | 1530 | OEJN | 0205+ | OF - 28/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+SV 871 | 07MAY26 | 07MAY26 | ---4--- | RPLL | 1530 | OEMA | 0205+

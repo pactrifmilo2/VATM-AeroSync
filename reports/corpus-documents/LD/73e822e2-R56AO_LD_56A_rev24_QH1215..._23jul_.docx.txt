@@ -1,0 +1,40 @@
+FILE: R56AO LD 56A_rev24_QH1215..._23jul_.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 22/7/2026
+Phép bay số: LD-56/A/S/2026VN/REV24
+1. Người vận chuyển
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc trong phép bay số LD-56/A/S/2026VN
+2.2. Lịch bay mới
+3. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 22/7/2026
+Phép bay số: LD-56/A/S/2026VN/REV24
+1. Người vận chuyển
+Tên: BAMBOO AIRWAYS
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc trong phép bay số LD-56/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh
+QH1215 | 23Jul26 | 23Jul26 | ---4--- | HAN | 0920 | UIH | 1100
+QH1125 | 23Jul26 | 23Jul26 | ---4--- | UIH | 1200 | SGN | 1315
+QH1124 | 23Jul26 | 23Jul26 | ---4--- | SGN | 1015 | UIH | 1130
+QH1214 | 23Jul26 | 23Jul26 | ---4--- | UIH | 1130 | HAN | 1310
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh
+QH1215 | 23Jul26 | 23Jul26 | ---4--- | HAN | 0310 | UIH | 0450
+QH1125 | 23Jul26 | 23Jul26 | ---4--- | UIH | 0520 | SGN | 0635
+QH1124 | 23Jul26 | 23Jul26 | ---4--- | SGN | 0720 | UIH | 0835
+QH1214 | 23Jul26 | 23Jul26 | ---4--- | UIH | 0905 | HAN | 1045

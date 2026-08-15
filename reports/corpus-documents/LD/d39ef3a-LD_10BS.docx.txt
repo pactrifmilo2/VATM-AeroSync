@@ -1,0 +1,58 @@
+FILE: LD 10BS.docx
+
+PARAGRAPHS
+Hanoi, 23rd March 2026
+PERMIT NUMBER: LD-10/B/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+6. Validity: -12/+24 Hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM,NAA,MAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 23rd March 2026
+PERMIT NUMBER: LD-10/B/S/2026VN
+IATA SCHEDULE SEASON: SUMMER 2026
+1. Carrier
+Name: PHILIPPINES AIRASIA, INC
+IATA code: Z2 | ICAO code: APG
+Postal Address: 6th floor, Horizon Center, NECC Building, Newport City, Barangay 183, Pasay City, Metro Manila, Philippines
+Tel: (+632) 8294 4383 | Email: paa_regulatory@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Day(s) of services | Departure airport | ETD | Arrival airport | ETA | Aircraft type
+Z2826 | 21MAY26 | 24OCT26 | -2-4-6- | MNL | 2315 | DAD | 0145 | 320
+Z2827 | 21MAY26 | 24OCT26 | -2-4-6- | DAD | 0400 | MNL | 0645 | 320
+Z2842 | 20MAY26 | 23OCT26 | 1-3-5-7 | MNL | 2315 | HAN | 0240 | 320
+Z2843 | 20MAY26 | 23OCT26 | 1-3-5-7 | HAN | 0505 | MNL | 0745 | 320
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration marks | Nationality
+320 | As per FAOC of Z2 | Philippines
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point Into Vietnam FIR | Exit Point From Vietnam FIR
+MNL-DAD | L628-W2 | ARESI | -
+DAD-MNL | W2-L628 | - | ARESI
+MNL-HAN | L628-G474-Q2 | ARESI | -
+HAN-MNL | Q1-G474-L628 | - | ARESI
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

@@ -1,0 +1,64 @@
+FILE: OF 53 A S.docx
+
+PARAGRAPHS
+HA NOI, 06 MAR 2026
+NUMBER OF-53/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+1.1 Name: KLM – ROYAL DUTCH AIRLINES
+- ICAO code: KLM
+- Address: Department SPL/OL, PO Box 7700 1117ZL, Schiphol, the Netherlands
+- Tel: +31 6 23557681; Email: overfly.permissions@klm.com
+1.2 Billing address: Department SPL/HW, PO Box 1117ZL, Schiphol, the Netherlands
+- Tel: +31 6 51451057; Email: pdf-invoices@klm.com / hugo-van.joolen@klm.com
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): PASSENGER
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 06 MAR 2026
+NUMBER OF-53/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+1.1 Name: KLM – ROYAL DUTCH AIRLINES
+- ICAO code: KLM
+- Address: Department SPL/OL, PO Box 7700 1117ZL, Schiphol, the Netherlands
+- Tel: +31 6 23557681; Email: overfly.permissions@klm.com
+1.2 Billing address: Department SPL/HW, PO Box 1117ZL, Schiphol, the Netherlands
+- Tel: +31 6 51451057; Email: pdf-invoices@klm.com / hugo-van.joolen@klm.com
+2. Schedules: All times in UTC
+FlightNumber1 | Effective from | EffectiveTo | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+KLM805 | 29MAR26 | 24OCT26 | 1234567 | WMKK | 10:10 | RPLL | 12:15 | B77W
+KLM806 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 13:30 | WMKK | 15:40 | B77W
+KLM887 | 29MAR26 | 24OCT26 | 1234567 | EHAM | 19:15 | VHHH | 07:25 | B77W
+KLM888 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 14:20 | EHAM | 04:05 | B77W
+KLM807 | 29MAR26 | 24OCT26 | 1234567 | EHAM | 18:05 | RCTP | 06:55 | B77W
+KLM808 | 29MAR26 | 24OCT26 | 1234567 | RCTP | 15:59 | EHAM | 06:15 | B77W
+
+TABLE 3
+CONTEXT: 3. Type of services/ Purpose of Flight(s): PASSENGER
+4. Air traffic service routes:
+Sectors 5 | ATS Routes 6 | Entry Point | Exit Point
+WMKK - RPLL | M765 | IGARI | PANDI
+WMKK - RPLL | L625 M765 | AKMON | PANDI
+RPLL - WMKK | M765 M892 | PANDI | MELAS
+RPLL - WMKK | M765 | PANDI | IGARI
+EHAM-VHHH | A206 | NALAO | ASSAD
+VHHH-EHAM | A206 | ASSAD | NALAO
+EHAM-RCTP | A206 | NALAO | ASSAD
+RCTP-EHAM | A206 | ASSAD | NALAO
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 4
+CONTEXT: 5. Aircraft:
+Aircraft Type7 | Registration marks | Nationality
+B772 | PH-BQA or sub | The Netherlands
+B77W | PH-BVA or sub | The Netherlands
+B789 | PH-BHA or sub | The Netherlands
+B78X | PH-BKA or sub | The Netherlands

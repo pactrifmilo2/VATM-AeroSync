@@ -1,0 +1,55 @@
+FILE: OF 48C-S26-AXM.docx
+
+PARAGRAPHS
+Hanoi, 24 Jul 2026
+Permit number: OF-48/C/S/2026VN
+IATA Schedule Season: Season: SUMMER (NS26)
+1. CARRIER/OPERATOR
+2. Billing address:
+3. Schedules (UTC Time)
+4. Purpose Of Flight: Charter flights
+5. Airways
+6. Aircraft
+7. Validity: -3/+72 hours
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260722-170685)
+
+TABLE 1
+CONTEXT: Hanoi, 24 Jul 2026
+Permit number: OF-48/C/S/2026VN
+IATA Schedule Season: Season: SUMMER (NS26)
+1. CARRIER/OPERATOR
+NAME: AirAsia Berhad
+IATA CODE: AK | ICAO CODE: AXM
+Postal address: RedQ, Jalan Pekeliling 5, Kuala Lumpur International Airport (KLIA2), 6400 Sepang, Selangor Darul Ehsan, Malaysia
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: Finance Department Airasia Berhad,
+Postal address: Red Q, Jalan Pekeliling 5, KLIA 2, 64000 Sepang, Selangor, Malaysia.
+Tel: | Email: vinithbelapan@airasia.com;
+
+TABLE 3
+CONTEXT: 3. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AXM8601 | 01AUG26 | 24OCT26 | 1234567 | WMKK | 0700 | VDTI | 0900
+
+TABLE 4
+CONTEXT: 4. Purpose Of Flight: Charter flights
+5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WMKK-VDTI | M765-M755 | IGARI | KISAN
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+
+TABLE 5
+CONTEXT: 6. Aircraft
+Aircraft Type | Registration Mark | MTOW (Ton) | Nationality
+A320 | As per AOC of AXM | 73.5 | Malaysia
+A320 | As per AOC of AXM | 75.5 | Malaysia
+A30N | As per AOC of AXM | 75.5 | Malaysia
+A320 | As per AOC of AXM | 77.0 | Malaysia
+A321 | As per AOC of AXM | 89.0 | Malaysia
+A321 | As per AOC of AXM | 93.0 | Malaysia
+A321N | As per AOC of AXM | 93.5 | Malaysia

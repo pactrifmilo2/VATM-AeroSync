@@ -1,0 +1,72 @@
+FILE: LD 15AS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 05/03/2026
+Permit No.: LD-15/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AIR FRANCE IATA code: AF ICAO code: AFR Postal Address: No.130 Dong Khoi Street, Ward Sai Gon, Ho Chi Minh City Tel: +84 28 38290 981 Email: HYPERLINK "mailto:sgn.dsm@airfranceklm.com" sgn.dsm@airfranceklm.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type AF253 29Mar26 23Oct26 --3-5-7 SGN 0225 CDG 1550 B773/B772
+B789/A359 AF258 31Mar26 24Oct26 -2-4-6- CDG 1205 SGN 0025+1 B773/B772
+B789/A359 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality B772 According to AF’s FAOC France B773 According to AF’s FAOC France B789 According to AF’s FAOC France A359 According to AF’s FAOC France 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR CDG-SGN R468 SAPEN SGN-CDG R468 SAPEN Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 
+2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General.
+C.c: VATM; MAA; NAA; SAA.
+Sent by Le Vu Ha Anh.
+C.c: Bui Minh Dang - Director of ATD/CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 05/03/2026
+Permit No.: LD-15/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: AIR FRANCE
+IATA code: AF | ICAO code: AFR
+Postal Address: No.130 Dong Khoi Street, Ward Sai Gon, Ho Chi Minh City
+Tel: +84 28 38290 981 | Email: HYPERLINK "mailto:sgn.dsm@airfranceklm.com" sgn.dsm@airfranceklm.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AF253 | 29Mar26 | 23Oct26 | --3-5-7 | SGN | 0225 | CDG | 1550 | B773/B772 B789/A359
+AF258 | 31Mar26 | 24Oct26 | -2-4-6- | CDG | 1205 | SGN | 0025+1 | B773/B772 B789/A359
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+B772 | According to AF’s FAOC | France
+B773 | According to AF’s FAOC | France
+B789 | According to AF’s FAOC | France
+A359 | According to AF’s FAOC | France
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+CDG-SGN | R468 | SAPEN | 
+SGN-CDG | R468 |  | SAPEN

@@ -1,0 +1,28 @@
+FILE: R66A1 66A CNL AIC2388-2389.docx
+
+PARAGRAPHS
+HANOI, 25MAY2026
+Refer to the issued permit: LD-66/A/S/2026VN
+THE CAAV CONFIRMS CHANGE AS FLWS:
+1. Carrier
+2.CANCEL Schedules (UTC Time)
+3. Note : Other details unchanged
+RGDS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 25MAY2026
+Refer to the issued permit: LD-66/A/S/2026VN
+THE CAAV CONFIRMS CHANGE AS FLWS:
+1. Carrier
+Name: AIR INDIA LIMITED
+IATA code: AI | ICAO code: AIC
+Postal Address: Vatika One on One, Industrial Development Area, IDC, Sec 16, Gurugram – 122007, Haryana, India
+Tel: +91 124-6320507 | Email: intl.relations@airindia.com
+
+TABLE 2
+CONTEXT: 2.CANCEL Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+AI2388 | 2Jul26 | 29Aug26 | 246 | DEL | 07:25 | SGN | 12:55 | 32N/32Q/320/321 | LD-66/A/S/2026VN
+AI2389 | 2Jul26 | 29Aug26 | 246 | SGN | 13:55 | DEL | 19:10 | 32N/32Q/320/321 | LD-66/A/S/2026VN

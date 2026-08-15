@@ -1,0 +1,45 @@
+FILE: R36BB  36B REV11.docx
+
+PARAGRAPHS
+Hà Nội, ngày 23 tháng 7 năm 2026
+Số phép bay: LD-36/B/S/2026VN/REV11
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Người vận chuyển/ Người khai thác
+2. Sửa đổi lịch bay:
+2.1 Lịch bay gốc (Hủy chuyến)
+2.2 Lịch bay mới (Khai thác trở lại)
+3. Ghi chú
+Các chi tiết khác không thay đổi.
+KT. CỤC TRƯỞNG
+PHÓ CỤC TRƯỞNG
+Đỗ Hồng Cẩm
+C.c: VATM; MAA; SAA
+Gửi bởi: Bà Vũ Thị Thùy Dương - Chuyên viên Phòng Vận tải hàng không
+C.c: Bà Phạm Thị Thảo - Phó Trưởng phòng Vận tải hàng không
+C.c: Ông Bùi Minh Đăng- Trưởng phòng Vận tải hàng không
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hà Nội, ngày 23 tháng 7 năm 2026
+Số phép bay: LD-36/B/S/2026VN/REV11
+Lịch bay mùa IATA: Mùa Hè năm 2026
+1. Người vận chuyển/ Người khai thác
+Tên: PACIFIC AIRLINES
+Mã IATA: BL | Mã ICAO: PIC
+Địa chỉ bưu điện: 112 Hồng Hà, phường Tân Sơn Hòa, Thành phố Hồ Chí Minh, Việt Nam
+Điện thoại: +84 28 7301 7550 | Thư điện tử: slotpermit.occbl@pacificairlines.com.vn
+
+TABLE 3
+CONTEXT: 2. Sửa đổi lịch bay:
+2.1 Lịch bay gốc (Hủy chuyến)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay | Số phép bay đã cấp
+BL6210 | 18Aug26 | 24Oct26 | 1234567 | SGN | 23:30 | PXU | 00:40 | 321 | LD-36/B/S/2026VN
+BL6211 | 19Aug26 | 24Oct26 | 1234567 | PXU | 01:15 | SGN | 02:25 | 321 | 
+
+TABLE 4
+CONTEXT: 2.2 Lịch bay mới (Khai thác trở lại)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dự kiến hạ cánh | Loại tàu bay
+BL6170 | 19Aug26 | 24Oct26 | 1234567 | SGN | 00:00 | DLI | 00:55 | 321
+BL6171 | 19Aug26 | 24Oct26 | 1234567 | DLI | 01:30 | SGN | 02:25 | 321

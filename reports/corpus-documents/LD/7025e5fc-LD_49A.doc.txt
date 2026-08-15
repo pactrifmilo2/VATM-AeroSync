@@ -1,0 +1,67 @@
+FILE: LD 49A.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 19/03/2026
+Permit No.: LD-49/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator: 
+Name: BELAVIA - BELARUSIAN AIRLINES IATA code: B2 ICAO code: BRU Postal Address: 14, NEMIGA STREET, MINSK, 220004, REPUBLIC OF BELARUS 
+2. Schedules: All times in UTC
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type B2795 30MAR26 23OCT26 1---5-- MSQ 2130 CXR 0830+1 332 B2796 31MAR26 24OCT26 -2---6- CXR 1030 MSQ 2210 332 B2795 01APR26 21OCT26 --3---- MSQ 2130 CXR 0830+1 332 B2796 02APR26 22OCT26 ---4--- CXR 1030 MSQ 2210 332 
+3. Type of services/ Purpose of Flight(s): PASSENGER FLIGHT
+4. Aircraft:
+Aircraft Type Registration Mark Nationality 332 As per FAOC of B2 Belarusian 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR MSQ-CXR R468-W1-W15 SAPEN CXR-MSQ W15-W1-R468 SAPEN Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 19/03/2026
+Permit No.: LD-49/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator:
+Name: BELAVIA - BELARUSIAN AIRLINES
+IATA code: B2 | ICAO code: BRU
+Postal Address: 14, NEMIGA STREET, MINSK, 220004, REPUBLIC OF BELARUS
+
+TABLE 3
+CONTEXT: 2. Schedules: All times in UTC
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+B2795 | 30MAR26 | 23OCT26 | 1---5-- | MSQ | 2130 | CXR | 0830+1 | 332
+B2796 | 31MAR26 | 24OCT26 | -2---6- | CXR | 1030 | MSQ | 2210 | 332
+ |  |  |  |  |  |  |  | 
+B2795 | 01APR26 | 21OCT26 | --3---- | MSQ | 2130 | CXR | 0830+1 | 332
+B2796 | 02APR26 | 22OCT26 | ---4--- | CXR | 1030 | MSQ | 2210 | 332
+
+TABLE 4
+CONTEXT: 3. Type of services/ Purpose of Flight(s): PASSENGER FLIGHT
+4. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+332 | As per FAOC of B2 | Belarusian
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+MSQ-CXR | R468-W1-W15 | SAPEN | 
+CXR-MSQ | W15-W1-R468 |  | SAPEN

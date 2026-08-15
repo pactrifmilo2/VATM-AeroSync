@@ -1,0 +1,38 @@
+FILE: R90B3 OF 90BRVS3.docx
+
+PARAGRAPHS
+HA NOI, 01 JUN 2026
+PERMIT NUMBER OF-90/B/S/2026VN /REV3
+1. Carrier/Operator
+2. Revised Item or Additional details: Rescheduled
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+OTHER MAIN DETAILS IS UNCHANGED.
+3. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG – DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: HA NOI, 01 JUN 2026
+PERMIT NUMBER OF-90/B/S/2026VN /REV3
+1. Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 2
+CONTEXT: 2. Revised Item or Additional details: Rescheduled
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+CPA007 | 06JUN26 | 27JUN26 | 6 | VHHH | 2140 | OMDW | 0540+1 | A332/A333/B744/B748 | OF-90/B/S/2026VN
+CPA037 | 06JUN26 | 27JUN26 | 5 | VHHH | 0030 | OMDW | 0830 | A332/A333/B744/B748 | OF-90/B/S/2026VN
+CPA061 | 06JUN26 | 27JUN26 | 5 | VHHH | 2145 | OMDW | 0545+1 | A332/A333/B744/B748 | OF-90/B/S/2026VN
+CPA067 | 06JUN26 | 27JUN26 | 6 | VHHH | 1325 | OMDW | 2125 | A332/A333/B744/B748 | OF-90/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CPA007 | 06JUN26 | 27JUN26 | 6 | VHHH | 2205 | VABB | 0415+1 | A332/A333/B744/B748
+CPA037 | 04JUN26 | 25JUN26 | 4 | VHHH | 2305 | VOBL | 0440+1 | A332/A333/B744/B748
+CPA061 | 05JUN26 | 26JUN26 | 5 | VHHH | 2100 | VOBL | 0235+1 | A332/A333/B744/B748
+CPA067 | 06JUN26 | 27JUN26 | 6 | VHHH | 1155 | VOMM | 1720 | A332/A333/B744/B748

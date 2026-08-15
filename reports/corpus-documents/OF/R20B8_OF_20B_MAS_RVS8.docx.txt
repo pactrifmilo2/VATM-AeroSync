@@ -1,0 +1,43 @@
+FILE: R20B8 OF 20B MAS RVS8.docx
+
+PARAGRAPHS
+Hanoi, 08 June 2026
+The permit issued: OF-20/B/S/2026VN/REV8
+1. Carrier/Operator
+2. [Revised timing and rerouting of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Air traffic service routes
+4. Note: Others un-changed
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 08 June 2026
+The permit issued: OF-20/B/S/2026VN/REV8
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Scheduling and Regulatory Affairs MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised timing and rerouting of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+MAS6104 | 09JUN26 | 09JUN26 | -2---- | WBKL | 02:45 | VHHH | 05:45 | 33X | OF-20/B/S/2026VN
+MAS6105 | 09JUN26 | 09JUN26 | -2---- | VHHH | 07:45 | WMKK | 11:25 | 33X | OF-20/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6104 | 09JUN26 | 09JUN26 | -2----- | WMKK | 08:05 | VHHH | 11:55 | 33X
+MAS6105 | 09JUN26 | 09JUN26 | -2----- | VHHH | 1355 | WMKK | 17:35 | 33X
+ |  |  |  |  |  |  |  | 
+
+TABLE 4
+CONTEXT: 3. Air traffic service routes
+Sector(15) | Airways(16) | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WMKK-VHHH | M771 | DUDIS | DONDA
+VHHH-WMKK | L642 | EXOTO | ESPOD

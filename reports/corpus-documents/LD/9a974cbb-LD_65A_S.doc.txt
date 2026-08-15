@@ -1,0 +1,85 @@
+FILE: LD 65A S.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: LD - 65/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: PARATA AIR. Inc IATA code: WE ICAO code: PTA Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea Tel: 0935304545 Email: nle@parataair.com 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type WE201 29Mar26 24Oct26 1234567 ICN 0930 DAD 1410 320/330 WE202 29Mar26 24Oct26 1234567 DAD 1540 ICN 2015 320/330 WE205 29Mar26 24Oct26 0034067 ICN 0945 CXR 1515 320 WE206 29Mar26 24Oct26 0034067 CXR 1615 ICN 2125 320 WE207 08Apr26 24Oct26 0034067 ICN 1215 PQC 1810 330 WE208 08Apr26 24Oct26 0034067 PQC 1940 ICN 0055+1 330 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality 320 As per FAOC of WE Korea
+ 330 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ICN-CXR N892 L628 L642 W15 MONBO A1 Q1 W7 W15 BUNTA G221 W12 W7 W15 BUNTA CXR-ICN M771 L628 ARESI W15 W7 W1 A1 BUNTA W15 W7 W12 G221 BUNTA ICN-DAD A1 BUNTA R474 Q3 Q1 TEBAK N892 L628 G474 W1 MONBO DAD-ICN A1 BUNTA Q2 N639 Q3 R474 TEBAK Q1 G474 L628 ARESI ICN-PQC N892 L628 L642 W15 W1 W17
+A1 R575 N639 M753
+R474 W1 N639 M753 MIGUG 
+BUNTA
+TEBAK PQC-ICN M753 R588 W1 A1 GONLY OSOTA
+BUNTA W17 N500 M771 L628
+W17 N500 L625
+M753 N639 W1 R474 ARESI
+ARESI
+TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: LD - 65/A/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: PARATA AIR. Inc
+IATA code: WE | ICAO code: PTA
+Postal Address: 166-20, IIchul-ro, Yangyang-eup, Yangyang-gun, Gangwon-do, Korea
+Tel: 0935304545 | Email: nle@parataair.com
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+WE201 | 29Mar26 | 24Oct26 | 1234567 | ICN | 0930 | DAD | 1410 | 320/330
+WE202 | 29Mar26 | 24Oct26 | 1234567 | DAD | 1540 | ICN | 2015 | 320/330
+WE205 | 29Mar26 | 24Oct26 | 0034067 | ICN | 0945 | CXR | 1515 | 320
+WE206 | 29Mar26 | 24Oct26 | 0034067 | CXR | 1615 | ICN | 2125 | 320
+WE207 | 08Apr26 | 24Oct26 | 0034067 | ICN | 1215 | PQC | 1810 | 330
+WE208 | 08Apr26 | 24Oct26 | 0034067 | PQC | 1940 | ICN | 0055+1 | 330
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of WE | Korea
+330 |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ICN-CXR | N892 L628 L642 W15 | MONBO | 
+ | A1 Q1 W7 W15 | BUNTA | 
+ | G221 W12 W7 W15 | BUNTA | 
+CXR-ICN | M771 L628 |  | ARESI
+ | W15 W7 W1 A1 |  | BUNTA
+ | W15 W7 W12 G221 |  | BUNTA
+ICN-DAD | A1 | BUNTA | 
+ | R474 Q3 Q1 | TEBAK | 
+ | N892 L628 G474 W1 | MONBO | 
+DAD-ICN | A1 |  | BUNTA
+ | Q2 N639 Q3 R474 |  | TEBAK
+ | Q1 G474 L628 |  | ARESI
+ICN-PQC | N892 L628 L642 W15 W1 W17 A1 R575 N639 M753 R474 W1 N639 M753 | MIGUG BUNTA TEBAK | 
+PQC-ICN | M753 R588 W1 A1 | GONLY | OSOTA BUNTA
+ | W17 N500 M771 L628 W17 N500 L625 M753 N639 W1 R474 |  | ARESI ARESI TEBAK

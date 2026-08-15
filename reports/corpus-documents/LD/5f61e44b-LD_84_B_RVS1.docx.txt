@@ -1,0 +1,33 @@
+FILE: LD 84 B RVS1.docx
+
+PARAGRAPHS
+Hà Nội, ngày 24/4/2026
+LD-84/B/S/2026VN (rvs)
+1. Người vận chuyển/ Người khai thác:
+2. Nội dung sửa đổi:
+· Bổ sung tàu bay mới vào phép bay:
+· Thông tin tàu bay bổ sung:
+3. Ghi chú: Các chi tiết khác không thay đổi.
+PHẠM GIANG GỬI THAY PHẠM THẢO-PTP VTHK, CỤC HKVN
+C/c: BÙI MINH ĐĂNG-TP VTHK (để b/c)
+
+TABLE 1
+CONTEXT: Hà Nội, ngày 24/4/2026
+LD-84/B/S/2026VN (rvs)
+1. Người vận chuyển/ Người khai thác:
+Tên: Công ty cổ phần hàng không vietjet (vietjet air).
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Phố Kim Mã, Phường Ngọc Hà, TP. Hà Nội, Việt Nam.
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Nội dung sửa đổi:
+· Bổ sung tàu bay mới vào phép bay:
+Số phép bay | Hiệu lực từ | Hiệu lực đến
+LD- 84/B/S/2026VN | 24-Apr-26 | 23-May-26
+
+TABLE 3
+CONTEXT: · Thông tin tàu bay bổ sung:
+Loại tàu bay | Số đăng ký | Quốc tịch | 
+32Q | VN-A200 | Việt Nam | 
+ |  |  | 

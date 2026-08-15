@@ -1,0 +1,60 @@
+FILE: LD 63.A.S.2026VN-BI-SGN.docx
+
+PARAGRAPHS
+Hanoi, 25th March 2026
+PERMIT NUMBER: LD-63/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong
+C.c: VATM, SAA
+C.c: Bui Minh Dang - DIR of ATD - CAAV and Pham Thi Thao - DEP DIR of ATD - CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 25th March 2026
+PERMIT NUMBER: LD-63/A/S/2026VN
+IATA SCHEDULE SEASON:
+SUMMER 2026
+1. Carrier
+Name: Royal Brunei Airlines
+IATA code: BI | ICAO code: RBA
+Postal Address: Royal Brunei Airlines Sdn. Bhd., RB Campus, Jalan Kustin, Terunjing Lama, Berakas BB2114, Brunei Darussalam.
+Tel: +673 2367691 | Email: ashraf.mohamad@rba.com.bn
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BI381 | 31Mar26 | 20Oct26 | -2----- | BWN | 0420 | SGN | 0615 | 32N
+BI382 | 31Mar26 | 20Oct26 | -2----- | SGN | 0705 | BWN | 0900 | 32N
+BI381 | 02Apr26 | 22Oct26 | ---4--- | BWN | 0430 | SGN | 0625 | 32N
+BI382 | 02Apr26 | 22Oct26 | ---4--- | SGN | 0715 | BWN | 0910 | 32N
+BI383 | 29Mar26 | 18Oct26 | ------7 | BWN | 1050 | SGN | 1245 | 32N
+BI384 | 29Mar26 | 18Oct26 | ------7 | SGN | 1335 | BWN | 1530 | 32N
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+32N | As per FAOC of BI | Brunei Darussalam
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BWN-SGN | M768 | AKMON | 
+SGN-BWN | M768 |  | AKMON

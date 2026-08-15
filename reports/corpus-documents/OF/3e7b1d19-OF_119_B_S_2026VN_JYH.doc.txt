@@ -1,0 +1,112 @@
+FILE: OF 119_B_S_2026VN_JYH.doc
+
+PARAGRAPHS
+Ha Noi, 27th March 2026
+№: OF - 119/B/S/2026VN
+IATA Schedule Season: Summer 2026
+. Carrier/Operator:
+1.1 Name:NINE AIR CO., LTD.
+- ICAO Code: JYH
+- IATA Code: AQ
+- Post Code: 510470
+- AFTN Address: ZGGGJYHX
+- SITA Address: CANUOAQ 
+- Address: NO.1501 FANGHUA ROAD, RENHE TOWN, BAIYUN DISTRCT, GUANGZHOU, GUANGDONG, P.R.C
+- Tel: +86-18680214399, +86-18148739205
+- Fax:+86-20-86113104
+- Email: HYPERLINK "mailto:cuilongjie@9air.com," cuilongjie@9air.com, HYPERLINK "mailto:fengzhenshan@9air.com;" yinqi@9air.com; 
+1.2 Billing Address: NO.1501 FANGHUA ROAD, RENHE TOWN, BAIYUN DISTRCT, GUANGZHOU, GUANGDONG, P.R.C
+- Tel:+86-15625078988
+- Fax:+86-20-86113104
+- Post Code: 510470
+- AFTN Address: ZGGGJYHX
+- SITA Address: CANUOAQ
+- Email: HYPERLINK "mailto:chentianlin@9air.com;" chentianlin@9air.com; 
+2. Schedules: All times in UTC 
+Flight 
+Number1
+ Effective from
+ Effective
+ To
+ Day(s) of services
+ Departure Airport2
+ ETD
+ Arrival Airport3
+ ETA
+ Aircraft Type4
+ JYH1219 29MAR2026 24OCT2026 Daily ZJHK 1355 WBSB 1725 B737-800，B737-8 JYH1220 29MAR2026 24OCT2026 Daily WBSB 1825 ZJHK 2140 B737-800，B737-8 
+3.Type of services: Passenger 
+4. Air traffic service routes (UTC):
+Sectors 5 ATS Routes 6 Flight Level Entry Point/
+Entry Time(hh:mm) Exit Point/
+Exit Time(hh:mm) ZJHK-WBSB A1, Q1, L644, M768 FL270 BUNTA/14:35 AKMON/16:05 WBSB-ZJHK L644, W1, W10 FL250 AKMON/19:15 ASSAD/20:55 Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+5. Aircraft:
+Registration Numbers Type Nationality B-1172 B737-800 China B-1233 B737-800 China B-1472 B737-800 China B-1473 B737-800 China B-1551 B737-800 China B-1552 B737-800 China B-1553 B737-800 China B-1556 B737-800 China B-1592 B737-800 China B-1715 B737-800 China B-1716 B737-800 China B-1719 B737-800 China B-208K B737-800 China B-220S B737-800 China B-220Y B737-800 China B-221M B737-800 China B-6990 B737-800 China B-6991 B737-800 China B-6992 B737-800 China B-7105 B737-800 China B-7113 B737-800 China B-206J B737-8 China B-206L B737-8 China B-208H B737-8 China B-224U B737-8 China B-224V B737-8 China 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 27th March 2026
+№: OF - 119/B/S/2026VN
+IATA Schedule Season: Summer 2026
+. Carrier/Operator:
+1.1 Name:NINE AIR CO., LTD.
+- ICAO Code: JYH
+- IATA Code: AQ
+- Post Code: 510470
+- AFTN Address: ZGGGJYHX
+- SITA Address: CANUOAQ 
+- Address: NO.1501 FANGHUA ROAD, RENHE TOWN, BAIYUN DISTRCT, GUANGZHOU, GUANGDONG, P.R.C
+- Tel: +86-18680214399, +86-18148739205
+- Fax:+86-20-86113104
+- Email: HYPERLINK "mailto:cuilongjie@9air.com," cuilongjie@9air.com, HYPERLINK "mailto:fengzhenshan@9air.com;" yinqi@9air.com; 
+1.2 Billing Address: NO.1501 FANGHUA ROAD, RENHE TOWN, BAIYUN DISTRCT, GUANGZHOU, GUANGDONG, P.R.C
+- Tel:+86-15625078988
+- Fax:+86-20-86113104
+- Post Code: 510470
+- AFTN Address: ZGGGJYHX
+- SITA Address: CANUOAQ
+- Email: HYPERLINK "mailto:chentianlin@9air.com;" chentianlin@9air.com; 
+2. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+JYH1219 | 29MAR2026 | 24OCT2026 | Daily | ZJHK | 1355 | WBSB | 1725 | B737-800，B737-8
+JYH1220 | 29MAR2026 | 24OCT2026 | Daily | WBSB | 1825 | ZJHK | 2140 | B737-800，B737-8
+
+TABLE 2
+CONTEXT: 3.Type of services: Passenger 
+4. Air traffic service routes (UTC):
+Sectors 5 | ATS Routes 6 | Flight Level | Entry Point/ Entry Time(hh:mm) | Exit Point/ Exit Time(hh:mm)
+ZJHK-WBSB | A1, Q1, L644, M768 | FL270 | BUNTA/14:35 | AKMON/16:05
+WBSB-ZJHK | L644, W1, W10 | FL250 | AKMON/19:15 | ASSAD/20:55
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 3
+CONTEXT: 5. Aircraft:
+Registration Numbers | Type | Nationality
+B-1172 | B737-800 | China
+B-1233 | B737-800 | China
+B-1472 | B737-800 | China
+B-1473 | B737-800 | China
+B-1551 | B737-800 | China
+B-1552 | B737-800 | China
+B-1553 | B737-800 | China
+B-1556 | B737-800 | China
+B-1592 | B737-800 | China
+B-1715 | B737-800 | China
+B-1716 | B737-800 | China
+B-1719 | B737-800 | China
+B-208K | B737-800 | China
+B-220S | B737-800 | China
+B-220Y | B737-800 | China
+B-221M | B737-800 | China
+B-6990 | B737-800 | China
+B-6991 | B737-800 | China
+B-6992 | B737-800 | China
+B-7105 | B737-800 | China
+B-7113 | B737-800 | China
+B-206J | B737-8 | China
+B-206L | B737-8 | China
+B-208H | B737-8 | China
+B-224U | B737-8 | China
+B-224V | B737-8 | China

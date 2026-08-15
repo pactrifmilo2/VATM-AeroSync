@@ -1,0 +1,101 @@
+FILE: LD 37A.docx
+
+PARAGRAPHS
+Ha Noi, March 13, 2026
+Permit No.: LD-37/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Nguyen Thi Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260305-0097)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 13, 2026
+Permit No.: LD-37/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Scoot Pte Ltd
+IATA code: TR | ICAO code: TGW
+Postal Address: 65 Airport Boulevard, Changi Airport Terminal 3, #B1-17, Singapore 819663
+Tel: +65 9129 6408 | Email: regulatoryaffairs@flyscoot.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TR502 | 28Mar26 | 23Oct26 | 1234567 | SIN | 2300 | SGN | 0115+1 | 32032N32Q
+TR503 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0215 | SIN | 0420 | 
+TR516 | 29Mar26 | 24Oct26 | 1234567 | SIN | 0800 | SGN | 1015 | 
+TR517 | 29Mar26 | 24Oct26 | 1234567 | SGN | 1115 | SIN | 1320 | 
+TR552 | 29Mar26 | 24Oct26 | 1234567 | SIN | 0525 | SGN | 0740 | 
+TR553 | 29Mar26 | 24Oct26 | 1234567 | SGN | 0840 | SIN | 1045 | 
+
+TR514 | 30Mar26 | 19Oct26 | 1------ | SIN | 0355 | HAN | 0720 | 32032N32Q788789
+TR515 | 30Mar26 | 19Oct26 | 1------ | HAN | 0820 | SIN | 1150 | 
+TR532 | 02Apr26 | 20Aug26 | ---4--- | SIN | 0835 | HAN | 1200 | 
+TR533 | 02Apr26 | 20Aug26 | ---4--- | HAN | 1300 | SIN | 1620 | 
+TR532 | 03Sept26 | 22Oct26 | ---4--- | SIN | 0835 | HAN | 1200 | 
+TR533 | 03Sept26 | 22Oct26 | ---4--- | HAN | 1300 | SIN | 1620 | 
+TR532 | 03Apr26 | 23Oct26 | ----5-- | SIN | 0850 | HAN | 1215 | 
+TR533 | 03Apr26 | 23Oct26 | ----5-- | HAN | 1315 | SIN | 1635 | 
+TR532 | 27Aug26 | 27Aug26 | ---4--- | SIN | 0835 | HAN | 1200 | 
+TR533 | 27Aug26 | 27Aug26 | ---4--- | HAN | 1300 | SIN | 1620 | 
+TR544 | 01Apr26 | 21Oct26 | --3---- | SIN | 0125 | HAN | 0450 | 
+TR545 | 01Apr26 | 21Oct26 | --3---- | HAN | 0550 | SIN | 0910 | 
+TR544 | 03Apr26 | 23Oct26 | ----5-- | SIN | 2225 | HAN | 0150+1 | 
+TR545 | 04Apr26 | 24Oct26 | -----6- | HAN | 0250 | SIN | 0615 | 
+
+TR510 | 30Mar26 | 23Oct26 | 1-345-- | SIN | 0010 | DAD | 0255 | 320/32N/32Q
+TR511 | 30Mar26 | 23Oct26 | 1-345-- | DAD | 0355 | SIN | 0645 | 
+TR518 | 29Mar26 | 24Oct26 | -2---67 | SIN | 0740 | DAD | 1030 | 
+TR519 | 29Mar26 | 24Oct26 | -2---67 | DAD | 1130 | SIN | 1430 | 
+
+TR524 | 30Mar26 | 24Oct26 | 1-3456- | SIN | 0840 | PQC | 1040 | 290
+TR525 | 30Mar26 | 24Oct26 | 1-3456- | PQC | 1120 | SIN | 1315 | 
+TR528 | 29Mar26 | 23Oct26 | -2--5-7 | SIN | 0245 | PQC | 0445 | 
+TR529 | 29Mar26 | 23Oct26 | -2--5-7 | PQC | 0525 | SIN | 0730 | 
+
+TR542 | 29Mar26 | 20Oct26 | -2----7 | SIN | 0835 | CXR | 1105 | 290
+TR543 | 29Mar26 | 20Oct26 | -2----7 | CXR | 1140 | SIN | 1355 | 
+TR548 | 30Mar26 | 23Oct26 | 1--45-- | SIN | 0200 | CXR | 0430 | 
+TR549 | 30Mar26 | 23Oct26 | 1--45-- | CXR | 0510 | SIN | 0725 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+290 | As per FAOC of TR | Singapore
+320 | As per FAOC of TR | Singapore
+32N | As per FAOC of TR | Singapore
+32Q | As per FAOC of TR | Singapore
+788 | As per FAOC of TR | Singapore
+789 | As per FAOC of TR | Singapore
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+SIN-HAN | M753-L637-Q2M753 M755 N639 Q2 | IPRIXIPRIX | --
+HAN-SIN | Q1-L644-L642N639 / M755 M753W1 L637 M753 | -KISAN- | ESPOBVILAO/IPRIXIPRIX
+SIN-SGN | M753-L637L644 M765 M768 | IPRIXDUDIS | --
+SGN-SIN | L643-L642 | - | ESPOB
+SIN-PQC | M753 | IPRIX | -
+PQC-SIN | M753 | - | IPRIX
+SIN-DAD | M753-L637-Q2 | IPRIX | -
+DAD-SIN | Q1-L644-L642 | - | ESPOB
+SIN-CXR | M753-L637-W2-W15 | IPRIX | -
+CXR-SIN | L642W15 W1 L637 M753 | -- | ESPOBIPRIX

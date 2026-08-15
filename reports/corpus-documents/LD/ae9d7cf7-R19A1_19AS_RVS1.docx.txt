@@ -1,0 +1,55 @@
+FILE: R19A1 19AS RVS1.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: DHT
+REVISE#1: LD-19/A/S/2026VN
+1. Carrier
+2. Schedules (UTC Time)
+2.1. ORIGINAL SCHEDULE:
+2.2. NEW SCHEDULE:
+3. Purpose of Flight: FERRY FLIGHT FROM SGN AFTER AOG
+4. Aircraft
+5. Airways
+Alternative airways: Other permittedairways published in Viet Nam’s AIP.
+Pham Giang for Pham Thao Dep Dir of Atd, Caav
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: DHT
+REVISE#1: LD-19/A/S/2026VN
+1. Carrier
+Name: Ruili Airlines Co., Ltd.
+IATA code: DR | ICAO code: RLH
+Postal Address: Ruili Airlines Co.,Ltd. Base,East Airport Road, South Work Area of Kunming Changshui International Airport, Kunming, Yunnan, China.
+Tel: +8618725009534 | Email: mail_dr_routeteam@rlair.net / saqib@rlair.net
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1. ORIGINAL SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | ORIGINAL PERMIT
+DR5051 | 25Jun26 | 25Jun26 | ---4--- | JHG | 0005 | LJG | 0110 | 737 | 
+DR5051 | 25Jun26 | 25Jun26 | ---4--- | LJG | 0240 | SGN | 0555 | 737 | LD-19/A/S/2026VN
+DR5052 | 25Jun26 | 25Jun26 | ---4--- | SGN | 0705 | LJG | 1035 | 737 | LD-19/A/S/2026VN
+DR5052 | 25Jun26 | 25Jun26 | ---4--- | LJG | 1205 | JHG | 1310 | 737 | 
+
+TABLE 3
+CONTEXT: 2.2. NEW SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+DR5051 | 25Jun26 | 25Jun26 | ---4--- | JHG | 0005 | LJG | 0110 | 737
+DR5051 | 25Jun26 | 25Jun26 | ---4--- | LJG | 0240 | SGN | 0555 | 737
+DR6002 | 26Jun26 | 26Jun26 | ----5-- | SGN | 0230 | KMG | 0530 | 737
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: FERRY FLIGHT FROM SGN AFTER AOG
+4. Aircraft
+Aircraft Type | Registration Mark | Seats number | MTOW (Ton) | Nationality
+B737-700 | B-5829 | F4Y138 | 67.131 | China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+LJG-SGN | R471 R474 Q1 | KATBO | 
+LJG-SGN | A206 W2 Q1 | NALAO | 
+LJG-SGN | R471 R474 Q1 N639 R468 | KATBO | 
+SGN-KMG | R468-SAPEN-VILAO-N639-Q3-R471 |  | KATBO

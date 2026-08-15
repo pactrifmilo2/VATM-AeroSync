@@ -1,0 +1,84 @@
+FILE: OF 41_C_S_2026VN_CSN.doc
+
+PARAGRAPHS
+Ha Noi, 29th June 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 41/C/S/2026VN
+1. Carrier
+Name: CHINA SOUTHERN AIRLINES IATA code:CZ ICAO code:CSN Postal Address:68 QIXIN ROAD GUANGZHOU, GUANGDONG PROVINCE Tel:+86 020-86112040 Email: soc-hw@csair.com 
+2. Billing address
+Name: ACCOUNTING CENTRE OF CHINA AVIATION Postal Address: NO.7,YUMIN STREET, HOUSHAYU,SHUNYI DISTRICT, BEIJING,CHINA
+( TRAVELSKY HI-TECH PARK, BUILDING A3) Tel:+86-10-56896258 Email: NAVSERVICE@ACCA.COM.CN 
+3. Schedules: All times in UTC 
+Flight 
+Number1
+ Effective from
+ Effective
+ To
+ Day(s) of services
+ Departure Airport2
+ ETD
+ Arrival Airport3
+ ETA
+ CSN3043 01JUL26 24OCT26 1234567 ZGGG 0555 WSSS 1000 CSN3044 01JUL26 24OCT26 1234567 WSSS 1100 ZGGG 1515 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) Registration Mark (11)
+ Nationality(14) A20N According to the CSN’s AOC
+ CHINA A21N A319 A320 A321 A333 A359 B38M B737 B738 B77W B788 B789 
+6. Air traffic service routes:
+Sectors 5
+ ATS Routes 6
+ Entry Point Exit Point ZGGG-WSSS L642 EXOTO ESPOB ZGGG-WSSS A202 Q1 L644 L642 ASSAD ESPOB WSSS-ZGGG M771 DUDIS DONDA WSSS-ZGGG M753 L637 Q2 A202 IPRIX ASSAD Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 29th June 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 41/C/S/2026VN
+1. Carrier
+Name: CHINA SOUTHERN AIRLINES
+IATA code:CZ | ICAO code:CSN
+Postal Address:68 QIXIN ROAD GUANGZHOU, GUANGDONG PROVINCE
+Tel:+86 020-86112040 | Email: soc-hw@csair.com
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: ACCOUNTING CENTRE OF CHINA AVIATION
+Postal Address: NO.7,YUMIN STREET, HOUSHAYU,SHUNYI DISTRICT, BEIJING,CHINA ( TRAVELSKY HI-TECH PARK, BUILDING A3)
+Tel:+86-10-56896258 | Email: NAVSERVICE@ACCA.COM.CN
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA
+CSN3043 | 01JUL26 | 24OCT26 | 1234567 | ZGGG | 0555 | WSSS | 1000
+CSN3044 | 01JUL26 | 24OCT26 | 1234567 | WSSS | 1100 | ZGGG | 1515
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type (10) | Registration Mark (11) | Nationality(14)
+A20N | According to the CSN’s AOC | CHINA
+A21N |  | 
+A319 |  | 
+A320 |  | 
+A321 |  | 
+A333 |  | 
+A359 |  | 
+B38M |  | 
+B737 |  | 
+B738 |  | 
+B77W |  | 
+B788 |  | 
+B789 |  | 
+
+TABLE 5
+CONTEXT: 6. Air traffic service routes:
+Sectors 5 | ATS Routes 6 | Entry Point | Exit Point
+ZGGG-WSSS | L642 | EXOTO | ESPOB
+ZGGG-WSSS | A202 Q1 L644 L642 | ASSAD | ESPOB
+WSSS-ZGGG | M771 | DUDIS | DONDA
+WSSS-ZGGG | M753 L637 Q2 A202 | IPRIX | ASSAD
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

@@ -1,0 +1,34 @@
+FILE: R39B5 LD 39 B S REV5.docx
+
+PARAGRAPHS
+Hanoi, 24/07/2026
+Permit No.: LD-39/B/S/2026VN/REV5
+1. Carrier
+2. Schedules (UTC Time)
+2.1. Old:
+2.2. New:
+OTHER DETAILS REMAIN UNCHANGED
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 24/07/2026
+Permit No.: LD-39/B/S/2026VN/REV5
+1. Carrier
+Name: AIR MACAU COMPANY LIMITED
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU
+Tel: 8396 6888 | Email: network_planning@airmacau.com.mo
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1. Old:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NX9974 | 26JUL26 | 23AUG26 | 1234567 | MFM | 1140 | DAD | 1330 | 321/320
+NX9973 | 26JUL26 | 23AUG26 | 1234567 | DAD | 1430 | MFM | 1615 | 321/320
+
+TABLE 3
+CONTEXT: 2.2. New:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+NX978 | 26JUL26 | 23AUG26 | 1234567 | MFM | 1140 | DAD | 1330 | 321/320
+NX977 | 26JUL26 | 23AUG26 | 1234567 | DAD | 1430 | MFM | 1615 | 321/320

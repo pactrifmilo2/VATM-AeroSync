@@ -1,0 +1,34 @@
+FILE: R82A2 LD 82RVS1.docx
+
+PARAGRAPHS
+To: Vatm
+Cc: JAL
+Refer to the issued permit: LD-82/A/S/2026VN RVS1
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s)　REV 1 (UTC Time)
+3. Note: Other details unchanged.
+
+TABLE 1
+CONTEXT: To: Vatm
+Cc: JAL
+Refer to the issued permit: LD-82/A/S/2026VN RVS1
+1. Carrier/Operator
+Name: Japan Airlines
+IATA code:JL | ICAO code:JAL
+Postal Address:#811 08th floor, Daeha building, 360 Kim Ma str, Giang Vo ward, Hanoi
+Tel:02437872214 | Email: org.hankku.jali@jal.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+JL70 | 18APR26 | 18APR26 | 6 | SGN | 1630 | HND | 2155 | B788 | LD-82/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s)　REV 1 (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JL70D | 20APR26 | 20APR26 | 1 | SGN | 0630 | HND | 1155 | B788

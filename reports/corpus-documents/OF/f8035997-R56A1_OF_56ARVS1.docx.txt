@@ -1,0 +1,33 @@
+FILE: R56A1 OF 56ARVS1.docx
+
+PARAGRAPHS
+HANOI, 29APR 2026
+PERMIT NUMBER OF-56/A/S/2026VN/REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 29APR 2026
+PERMIT NUMBER OF-56/A/S/2026VN/REV1
+1. Carrier/Operator
+Name: AirAsia Cambodia Co., Ltd.
+IATA code: KT | ICAO code: KTC
+Postal Address: Red Base, Maline Office, Building No. 162, 3rd Floor, Norodom Blvd., corner of Street 466, Sangkat Tonle Bassac, Khan Chamkarmorn, Phnom Penh, Cambodia
+Tel: +855 69 860 168 | Email: chharaingsey@airasia.com, malykhuoch@airasia.com, sivhach@airasia.com, ktdispatch@airasia.com, phengsoksoukea@airasia.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+KT165 | 15May26 | 29May26 | 3 5 7 | VDTI | 05:30 | WMKK | 07:20 | 320 | OF-56/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+KT165 | 15May26 | 29May26 | 3 5 7 | VDTI | 00:00 | WMKK | 01:50 | 320

@@ -1,0 +1,52 @@
+FILE: OF 118.B.S.2026VN.FIN.docx
+
+PARAGRAPHS
+HA NOI, 01 APR 2026
+NUMBER OF-118/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULE PASSENGERS FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 01 APR 2026
+NUMBER OF-118/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: FINNAIR
+IATA code: AY | ICAO code: FIN
+Postal Address: Tietotie 11A Helsinki-Vantaa Airport, P. O. Box 15, Finland
+Tel: +358 9 818 4831 | Email: aemc@finnair.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: HADID INTERNATIONAL SERVICES FZE
+Postal Address: P.O.BOX 54508, DUBAI, UAE
+Tel: +971 (04) 205 3000 | Email: PERMITS@HADID.AERO
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+FIN8855 | 02APR26 | 24OCT26 | 1234567 | VTBS | 1300 | VHHH | 1550
+FIN8856 | 02APR26 | 24OCT26 | 1234567 | VHHH | 0030 | VTBS | 0330
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE PASSENGERS FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A359 /A330 | OHLWA / OHLTM OR SUB | FINLAND
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS-VHHH | A202 | VILAO | ASSAD
+VHHH-VTBS | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

@@ -1,0 +1,59 @@
+FILE: OF 03AS.doc
+
+PARAGRAPHS
+Ha Noi, 10/02/2026
+Permit number: OF - 03/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator: 
+Name: GULF AIR IATA code: GF ICAO code: GFA Postal Address: P.O.BOX 138 BAHRAIN Tel: +97173338022 Email: FLIGHT.DISPATCH@GULFAIR.COM 
+2. Billing address:
+Name: GULF AIR Postal Address: P.O.BOX 138 BAHRAIN Tel: +97173338022 Email: ISA.JAMAL@GULFAIR.COM ABDULJALIL.ALARAIBI@GULFAIR.COM 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA GFA154 31MAR26 28OCT26 1234567 OBBI 1800 RPLL 0210+ GFA155 31MAR26 28OCT26 1234567 RPLL 0325 OBBI 1335 GFA156 31MAR26 28OCT26 1234567 OBBI 0700 RPLL 1635 GFA157 31MAR26 28OCT26 1234567 RPLL 1750 OBBI 0310+ 
+4. Purpose of Flight(s): SCHEDULED PASSENGERS FLIGHT
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B787-900 According to the AOC of Gulf Air BAHRAIN 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR OBBI-RPLL G474 L628 ANINA ARESI RPLL-OBBI L628 G474 ARESI ANINA Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 10/02/2026
+Permit number: OF - 03/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator:
+Name: GULF AIR
+IATA code: GF | ICAO code: GFA
+Postal Address: P.O.BOX 138 BAHRAIN
+Tel: +97173338022 | Email: FLIGHT.DISPATCH@GULFAIR.COM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: GULF AIR
+Postal Address: P.O.BOX 138 BAHRAIN
+Tel: +97173338022 | Email: ISA.JAMAL@GULFAIR.COM ABDULJALIL.ALARAIBI@GULFAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+GFA154 | 31MAR26 | 28OCT26 | 1234567 | OBBI | 1800 | RPLL | 0210+
+GFA155 | 31MAR26 | 28OCT26 | 1234567 | RPLL | 0325 | OBBI | 1335
+GFA156 | 31MAR26 | 28OCT26 | 1234567 | OBBI | 0700 | RPLL | 1635
+GFA157 | 31MAR26 | 28OCT26 | 1234567 | RPLL | 1750 | OBBI | 0310+
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): SCHEDULED PASSENGERS FLIGHT
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B787-900 | According to the AOC of Gulf Air | BAHRAIN
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OBBI-RPLL | G474 L628 | ANINA | ARESI
+RPLL-OBBI | L628 G474 | ARESI | ANINA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

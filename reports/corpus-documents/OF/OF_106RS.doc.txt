@@ -1,0 +1,76 @@
+FILE: OF 106RS.doc
+
+PARAGRAPHS
+Ha Noi, 19 May 2026
+№: OF -106/R/S/2026VN
+IATA Seasons: Summer 2026
+1. Carrier:
+Name: Hainan Airlines IATA code: HU ICAO code: CHH Postal Address: COMPREHENSIVE OFFICE BUILDING NO.21, HAINAN AIRLINES HAIKOU MEILAN BASE, NO.9, MEILAN AIRPORT ROAD, MEILAN DISTRICT, HAIKOU CITY, HAINAN PROVINCE, CHINA Tel: 86-898-6887-5251 Email: HYPERLINK "mailto:presidentmailbox@hnair.com" \h presidentmailbox@hnair.com 
+2. Billing address:
+Name: HAINAN AIRLINES HOLDING COMPANY LIMITED Postal Address: COMPREHENSIVE OFFICE BUILDING NO.21, HAINAN AIRLINES HAIKOU MEILAN BASE, NO.9, MEILAN AIRPORT ROAD, MEILAN DISTRICT, HAIKOU CITY, HAINAN PROVINCE, CHINA Tel: 86-898-6887-5251 Email: HYPERLINK "mailto:OCDCOST@HNAIR.COM" OCDCOST@HNAIR.COM ; HYPERLINK "mailto:CHSH_FU@HNAIR.COM" CHSH_FU@HNAIR.COM 
+3. Schedules: UTC Time
+ 
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA CHH701 06JUN2026 24OCT2026 1.…6. ZJHK 0630 WIII 1110 CHH702 06JUN2026 24OCT2026 1.…6. WIII 1215 ZJHK 1700 
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B737-800 As per AOC of CHH 
+China B737-8 A330-200 A330-300 A330-900 B787-8 B787-9 A320neo A321neo Or SUBS 
+Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR 
+ZJHK-WIII
+ A1 Q1 L644 L642 BUNTA ESPOB A1 Q1 L644 BUNTA DUDIS A202 Q1 L644 L642 ASSAD ESPOB L642 EXOTO ESPOB WIII-ZJHK M753 L637 Q2 A202 IPRIX ASSAD M753 M765 M771 IPRIX DONDA M753 L637 W1 A202 IPRIX ASSAD Alternative airways: Other permitted airways published in Viet Nam’s AIP 
+7. Validity: -3/+72 hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+C/c: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 19 May 2026
+№: OF -106/R/S/2026VN
+IATA Seasons: Summer 2026
+1. Carrier:
+Name: Hainan Airlines
+IATA code: HU | ICAO code: CHH
+Postal Address: COMPREHENSIVE OFFICE BUILDING NO.21, HAINAN AIRLINES HAIKOU MEILAN BASE, NO.9, MEILAN AIRPORT ROAD, MEILAN DISTRICT, HAIKOU CITY, HAINAN PROVINCE, CHINA
+Tel: 86-898-6887-5251 | Email: HYPERLINK "mailto:presidentmailbox@hnair.com" \h presidentmailbox@hnair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: HAINAN AIRLINES HOLDING COMPANY LIMITED
+Postal Address: COMPREHENSIVE OFFICE BUILDING NO.21, HAINAN AIRLINES HAIKOU MEILAN BASE, NO.9, MEILAN AIRPORT ROAD, MEILAN DISTRICT, HAIKOU CITY, HAINAN PROVINCE, CHINA
+Tel: 86-898-6887-5251 | Email: HYPERLINK "mailto:OCDCOST@HNAIR.COM" OCDCOST@HNAIR.COM ; HYPERLINK "mailto:CHSH_FU@HNAIR.COM" CHSH_FU@HNAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CHH701 | 06JUN2026 | 24OCT2026 | 1.…6. | ZJHK | 0630 | WIII | 1110
+CHH702 | 06JUN2026 | 24OCT2026 | 1.…6. | WIII | 1215 | ZJHK | 1700
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-800 | As per AOC of CHH | China
+B737-8 |  | 
+A330-200 |  | 
+A330-300 |  | 
+A330-900 |  | 
+B787-8 |  | 
+B787-9 |  | 
+A320neo |  | 
+A321neo |  | 
+Or SUBS |  | 
+
+TABLE 5
+CONTEXT: Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZJHK-WIII | A1 Q1 L644 L642 | BUNTA | ESPOB
+ | A1 Q1 L644 | BUNTA | DUDIS
+ | A202 Q1 L644 L642 | ASSAD | ESPOB
+ | L642 | EXOTO | ESPOB
+WIII-ZJHK | M753 L637 Q2 A202 | IPRIX | ASSAD
+ | M753 M765 M771 | IPRIX | DONDA
+ | M753 L637 W1 A202 | IPRIX | ASSAD
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

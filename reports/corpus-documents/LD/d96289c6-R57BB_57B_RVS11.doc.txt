@@ -1,0 +1,52 @@
+FILE: R57BB  57B RVS11.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 10/06/2026
+Permit No.: LD-57/B/S/2026VN/REV11
+ 
+2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit(3) CV7623 10Jun26 10Jun26 0030000 LUX 0920 HAN 2040 74Y/74N LD-57/B/S/2026VN CV7623 10Jun26 10Jun26 0030000 HAN 2240 HKG 0030+1 74Y/74N LD-57/B/S/2026VN CV976 11Jun26 11Jun26 0004000 HKG 0230 NQZ 0950 74Y/74N LD-57/B/S/2026VN CV976 11Jun26 11Jun26 0004000 NQZ 1050 LUX 1825 74Y/74N LD-57/B/S/2026VN CV7623 11Jun26 11Jun26 0030000 LUX 0920 HAN 2040 74Y/74N LD-57/B/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type CV4793 10Jun26 10Jun26 0030000 LUX 1740 HAN 0510+1 74Y/ 74N CV4793 11Jun26 11Jun26 0004000 HAN 0710 HKG 0900 74Y/ 74N CV287 11Jun26 11Jun26 0004000 HKG 1110 ANC 2115 74Y/ 74N CV287 11Jun26 11Jun26 0004000 ANC 2215 MIA 0620+1 74Y/ 74N CV287 12Jun26 12Jun26 0000500 MIA 0820 DFW 1135 74Y/ 74N CV287 12Jun26 12Jun26 0000500 DFW 1335 LUX 2250 74Y/74N 
+3. Note: Other details unchanged.
+4. Air traffic service routes:
+Sectors ATS Routes Entry Point Exit Point LUX-HAN B214 LADON Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+other details unchanged
+5. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 10/06/2026
+Permit No.: LD-57/B/S/2026VN/REV11
+ 
+2. [Revised Item or Additional details, e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CV7623 | 10Jun26 | 10Jun26 | 0030000 | LUX | 0920 | HAN | 2040 | 74Y/74N | LD-57/B/S/2026VN
+CV7623 | 10Jun26 | 10Jun26 | 0030000 | HAN | 2240 | HKG | 0030+1 | 74Y/74N | LD-57/B/S/2026VN
+CV976 | 11Jun26 | 11Jun26 | 0004000 | HKG | 0230 | NQZ | 0950 | 74Y/74N | LD-57/B/S/2026VN
+CV976 | 11Jun26 | 11Jun26 | 0004000 | NQZ | 1050 | LUX | 1825 | 74Y/74N | LD-57/B/S/2026VN
+CV7623 | 11Jun26 | 11Jun26 | 0030000 | LUX | 0920 | HAN | 2040 | 74Y/74N | LD-57/B/S/2026VN
+
+TABLE 2
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CV4793 | 10Jun26 | 10Jun26 | 0030000 | LUX | 1740 | HAN | 0510+1 | 74Y/ 74N
+CV4793 | 11Jun26 | 11Jun26 | 0004000 | HAN | 0710 | HKG | 0900 | 74Y/ 74N
+CV287 | 11Jun26 | 11Jun26 | 0004000 | HKG | 1110 | ANC | 2115 | 74Y/ 74N
+CV287 | 11Jun26 | 11Jun26 | 0004000 | ANC | 2215 | MIA | 0620+1 | 74Y/ 74N
+CV287 | 12Jun26 | 12Jun26 | 0000500 | MIA | 0820 | DFW | 1135 | 74Y/ 74N
+CV287 | 12Jun26 | 12Jun26 | 0000500 | DFW | 1335 | LUX | 2250 | 74Y/74N
+
+TABLE 3
+CONTEXT: 3. Note: Other details unchanged.
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+LUX-HAN | B214 | LADON | 
+ |  |  | 
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

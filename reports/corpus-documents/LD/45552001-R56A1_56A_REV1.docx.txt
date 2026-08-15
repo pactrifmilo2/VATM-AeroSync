@@ -1,0 +1,46 @@
+FILE: R56A1 56A REV1.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 27/03/2026
+Phép bay số: LD-56/A/S/2026VN/REV1
+1. Người vận chuyển
+2. Lịch bay
+2.1.Lịch bay gốc (Giờ UTC)
+2.1.Lịch bay mới (Giờ UTC)
+3. Ghi chú: Các chi tiết khác không thay đổi.
+Khuất Duy Anh gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+C.c: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 27/03/2026
+Phép bay số: LD-56/A/S/2026VN/REV1
+1. Người vận chuyển
+Tên: BAMBOO AIRWAYS
+Mã IATA: QH | Mã ICAO: BAV
+Địa chỉ bưu điện: FLC LANDMARK TOWER, 05 LÊ ĐỨC THỌ, PHƯỜNG TỪ LIÊM, HÀ NỘI
+Điện thoại: +84961499934 | Thư điện tử: permission.hdq@bambooairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay
+2.1.Lịch bay gốc (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh | Loại tàu bay
+QH104 | 4Apr26 | 18Apr26 | …..6. | DAD | 2:40 | HAN | 4:05 | 320/32N/321
+QH104 | 7Apr26 | 21Apr26 | .2….. | DAD | 2:40 | HAN | 4:05 | 320/32N/321
+QH104 | 6Apr26 | 20Apr26 | 1..4.. | DAD | 2:40 | HAN | 4:10 | 320/32N/321
+QH1415 | 4Apr26 | 21Apr26 | 12.4.6. | HAN | 5:55 | CXR | 7:55 | 320/32N/321
+QH1416 | 4Apr26 | 21Apr26 | 12.4.6. | CXR | 8:25 | HAN | 10:25 | 320/32N/321
+QH135 | 5Apr26 | 8Apr26 | ..3…7 | HAN | 4:50 | DAD | 6:15 | 320/32N/321
+
+TABLE 3
+CONTEXT: 2.1.Lịch bay mới (Giờ UTC)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờdự kiến cất cánh | Sân bay hạ cánh | Giờ dựkiếnhạ cánh | Loại tàu bay
+QH104 | 4Apr26 | 4Apr26 | …..6. | DAD | 0:40 | HAN | 2:05 | 320/32N/321
+QH104 | 11Apr26 | 18Apr26 | …..6. | DAD | 0:40 | HAN | 2:20 | 320/32N/321
+QH104 | 7Apr26 | 21Apr26 | .2….. | DAD | 0:40 | HAN | 2:05 | 320/32N/321
+QH104 | 6Apr26 | 20Apr26 | 1..4.. | DAD | 0:40 | HAN | 2:20 | 320/32N/321
+QH1415 | 4Apr26 | 21Apr26 | 12.4.6. | HAN | 3:05 | CXR | 5:05 | 320/32N/321
+QH1416 | 4Apr26 | 21Apr26 | 12.4.6. | CXR | 5:35 | HAN | 7:35 | 320/32N/321
+QH135 | 5Apr26 | 5Apr26 | ……7 | HAN | 1:25 | DAD | 2:50 | 320/32N/321
+QH135 | 8Apr26 | 8Apr26 | ..3…. | HAN | 0:20 | DAD | 1:45 | 320/32N/321

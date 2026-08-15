@@ -1,0 +1,87 @@
+FILE: OF 24BS.doc
+
+PARAGRAPHS
+Ha Noi, 26/02/2026
+Permit number: OF - 24/B/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator: 
+Name: QANTAS AIRWAYS LTD IATA code: QF ICAO code: QFA Postal Address: 10 BOURKE ROAD MASCOT NSW 2020 AUSTRALIA Tel: +61296911205 Email: HYPERLINK "mailto:navdata@qantas.com.au" navdata@qantas.com.au 
+2. Billing address:
+Name: QANTAS AIRWAYS LTD Postal Address: QCB3 10 Bourke Road Mascot NSW 2020 Australia. Tel: +61296911205 Email: HYPERLINK "mailto:finesse.invoices@qantas.com.au" finesse.invoices@qantas.com.au ; HYPERLINK "mailto:atm@qantas.com.au" atm@qantas.com.au ; HYPERLINK "mailto:accounts@aeroadapt.com" accounts@aeroadapt.com 
+3. Schedules: UTC Time
+Flight 
+Number Effective from EffectiveTo Day(s) of services Departure Airport ETD Arrival Airport ETA QFA23 29MAR26 24OCT26 1234567 YSSY 2350 VTBS 0940+1 QFA24 29MAR26 24OCT26 1234567 VTBS 1110 YSSY 2025 QFA67 29MAR26 24OCT26 1234567 YSSY 2205 VOBL 1005+1 QFA68 29MAR26 24OCT26 1234567 VOBL 1200 YSSY 2315 QFA6041 29MAR26 24OCT26 1234567 VTBS 1415 YSSY 0001+1 QFA6045 29MAR26 24OCT26 1234567 VTBS 2100 YBBN 0550+1 QFA7067 29MAR26 24OCT26 1234567 YSSY 2305 VOBL 1105+1 QFA7068 29MAR26 24OCT26 1234567 VOBL 1300 YSSY 0015+1 
+4. Purpose of Flight(s): Passengers
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A330-200 VH-EBA TO EBL Australia A330-200 VH-EBM TO EBV Australia A330-300 VH-QPA TO QPL Australia A380-800 VH-OQA TO OQL Australia B787-900 VH-ZNA TO ZNN Australia A321 VH-OGA TO OGZ Australia 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR YSSY-VTBS M768 R468
+N891 AKMON
+IGARI SAPEN
+XONAN YSSY-VOBL M768 R468
+N891 AKMON
+IGARI SAPEN
+XONAN VTBS-YSSY R468 M768
+N891 SAPEN
+XONAN AKMON
+IGARI VTBS-YBBN R468 M768
+N891 SAPEN
+XONAN AKMON
+IGARI VOBL-YSSY R468 M768
+N891 SAPEN
+XONAN AKMON
+IGARI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26/02/2026
+Permit number: OF - 24/B/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator:
+Name: QANTAS AIRWAYS LTD
+IATA code: QF | ICAO code: QFA
+Postal Address: 10 BOURKE ROAD MASCOT NSW 2020 AUSTRALIA
+Tel: +61296911205 | Email: HYPERLINK "mailto:navdata@qantas.com.au" navdata@qantas.com.au
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: QANTAS AIRWAYS LTD
+Postal Address: QCB3 10 Bourke Road Mascot NSW 2020 Australia.
+Tel: +61296911205 | Email: HYPERLINK "mailto:finesse.invoices@qantas.com.au" finesse.invoices@qantas.com.au ; HYPERLINK "mailto:atm@qantas.com.au" atm@qantas.com.au ; HYPERLINK "mailto:accounts@aeroadapt.com" accounts@aeroadapt.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+QFA23 | 29MAR26 | 24OCT26 | 1234567 | YSSY | 2350 | VTBS | 0940+1
+QFA24 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1110 | YSSY | 2025
+QFA67 | 29MAR26 | 24OCT26 | 1234567 | YSSY | 2205 | VOBL | 1005+1
+QFA68 | 29MAR26 | 24OCT26 | 1234567 | VOBL | 1200 | YSSY | 2315
+QFA6041 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1415 | YSSY | 0001+1
+QFA6045 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 2100 | YBBN | 0550+1
+QFA7067 | 29MAR26 | 24OCT26 | 1234567 | YSSY | 2305 | VOBL | 1105+1
+QFA7068 | 29MAR26 | 24OCT26 | 1234567 | VOBL | 1300 | YSSY | 0015+1
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passengers
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A330-200 | VH-EBA TO EBL | Australia
+A330-200 | VH-EBM TO EBV | Australia
+A330-300 | VH-QPA TO QPL | Australia
+A380-800 | VH-OQA TO OQL | Australia
+B787-900 | VH-ZNA TO ZNN | Australia
+A321 | VH-OGA TO OGZ | Australia
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+YSSY-VTBS | M768 R468 N891 | AKMON IGARI | SAPEN XONAN
+YSSY-VOBL | M768 R468 N891 | AKMON IGARI | SAPEN XONAN
+VTBS-YSSY | R468 M768 N891 | SAPEN XONAN | AKMON IGARI
+VTBS-YBBN | R468 M768 N891 | SAPEN XONAN | AKMON IGARI
+VOBL-YSSY | R468 M768 N891 | SAPEN XONAN | AKMON IGARI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

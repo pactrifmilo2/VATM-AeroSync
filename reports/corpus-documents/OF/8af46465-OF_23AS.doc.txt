@@ -1,0 +1,82 @@
+FILE: OF 23AS.doc
+
+PARAGRAPHS
+Ha Noi, 26/02/2026
+Permit number: OF – 23/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator: 
+Name: JETSTAR AIRWAYS LTD. IATA code: JQ ICAO code: JST Postal Address: 10 BOURKE ROAD MASCOT NSW 2020 AUSTRALIA Tel: +61296911085 Email: HYPERLINK "mailto:navdata@qantas.com.au" atm@qantas.com.au 
+2. Billing address:
+Name: JETSTAR AIRWAYS LTD. Postal Address: QCB3 10 Bourke Road Mascot NSW 2020 Australia. Tel: +61296911205 Email: HYPERLINK "mailto:finesse.invoices@qantas.com.au" finesse.invoices@qantas.com.au ; HYPERLINK "mailto:atm@qantas.com.au" atm@qantas.com.au ; HYPERLINK "mailto:accounts@aeroadapt.com" accounts@aeroadapt.com 
+3. Schedules: UTC Time
+Flight 
+Number Effective from EffectiveTo Day(s) of services Departure Airport ETD Arrival Airport ETA JST29 29MAR26 24OCT26 1234567 YMML 0325 VTBS 1250 JST30 29MAR26 24OCT26 1234567 VTBS 1440 YMML 2325 JST65 29MAR26 24OCT26 1234567 YBBN 0340 VTBS 1300 JST66 29MAR26 24OCT26 1234567 VTBS 1440 YBBN 2325 JST1029 29MAR26 24OCT26 1234567 YMML 0325 VTBS 1250 JST1030 29MAR26 24OCT26 1234567 VTBS 1440 YMML 2330 JST1065 29MAR26 24OCT26 1234567 YBBN 0340 VTBS 1300 JST1066 29MAR26 24OCT26 1234567 VTBS 1440 YBBN 2330 
+4. Purpose of Flight(s): Passengers
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A320 VH-YXQ or SUB Australia A20N VH-A5A or SUB Australia A321 VH-VWN or SUB Australia A21N VH-OFE Australia B787 VH-VKA or SUB Australia 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR YMML-VTBS M768-R468
+ N891 AKMON
+IGARI SAPEN
+XONAN VTBS-YMML R468-M768
+ N891 SAPEN
+XONAN AKMON
+IGARI YBBN-VTBS M768-R468
+ N891 AKMON
+IGARI SAPEN
+XONAN VTBS-YBBN R468-M768
+N891 SAPEN
+XONAN AKMON
+IGARI Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 hours
+NGUYEN KHANH LY FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26/02/2026
+Permit number: OF – 23/A/S/2026VN
+IATA Seasons: SUMMER 2026
+1. Carrier/Operator:
+Name: JETSTAR AIRWAYS LTD.
+IATA code: JQ | ICAO code: JST
+Postal Address: 10 BOURKE ROAD MASCOT NSW 2020 AUSTRALIA
+Tel: +61296911085 | Email: HYPERLINK "mailto:navdata@qantas.com.au" atm@qantas.com.au
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: JETSTAR AIRWAYS LTD.
+Postal Address: QCB3 10 Bourke Road Mascot NSW 2020 Australia.
+Tel: +61296911205 | Email: HYPERLINK "mailto:finesse.invoices@qantas.com.au" finesse.invoices@qantas.com.au ; HYPERLINK "mailto:atm@qantas.com.au" atm@qantas.com.au ; HYPERLINK "mailto:accounts@aeroadapt.com" accounts@aeroadapt.com
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight Number | Effective from | EffectiveTo | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+JST29 | 29MAR26 | 24OCT26 | 1234567 | YMML | 0325 | VTBS | 1250
+JST30 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1440 | YMML | 2325
+JST65 | 29MAR26 | 24OCT26 | 1234567 | YBBN | 0340 | VTBS | 1300
+JST66 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1440 | YBBN | 2325
+JST1029 | 29MAR26 | 24OCT26 | 1234567 | YMML | 0325 | VTBS | 1250
+JST1030 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1440 | YMML | 2330
+JST1065 | 29MAR26 | 24OCT26 | 1234567 | YBBN | 0340 | VTBS | 1300
+JST1066 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1440 | YBBN | 2330
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passengers
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A320 | VH-YXQ or SUB | Australia
+A20N | VH-A5A or SUB | Australia
+A321 | VH-VWN or SUB | Australia
+A21N | VH-OFE | Australia
+B787 | VH-VKA or SUB | Australia
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+YMML-VTBS | M768-R468 N891 | AKMON IGARI | SAPEN XONAN
+VTBS-YMML | R468-M768 N891 | SAPEN XONAN | AKMON IGARI
+YBBN-VTBS | M768-R468 N891 | AKMON IGARI | SAPEN XONAN
+VTBS-YBBN | R468-M768 N891 | SAPEN XONAN | AKMON IGARI
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

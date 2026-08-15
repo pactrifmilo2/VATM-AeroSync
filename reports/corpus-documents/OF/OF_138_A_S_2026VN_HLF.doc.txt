@@ -1,0 +1,61 @@
+FILE: OF 138 A S 2026VN_HLF.doc
+
+PARAGRAPHS
+Ha Noi, 19th June 2026
+№: OF - 138/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: CENTRAL AIRLINES CO., LTD IATA CODE: I9 ICAO CODE: HLF POSTAL ADDRESS: NO.9, HANGAN 1ST ROAD, AIRPORT AVENUE, MEILAN DISTRICT, HAIKOU, HAINAN, P.R.C 
+2. Billing address
+Name: CENTRAL AIRLINES CO., LTD Postal Address: :NO.9, HANGAN 1ST ROAD, AIRPORT AVENUE, MEILAN DISTRICT, HAIKOU, HAINAN, P.R.C Tel: 0898-36601758/0086 188 769 48262 Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DRV8W18W3N63Q8%26View%3DCompose%26New%3DYes%26To%3DHUPEIGUO%2540CENTRALAIRLINES.COM','Compose',800,600,'yes');" HUPEIGUO@CENTRALAIRLINES.COM 
+3. Schedules: UTC Time
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA HLF9829 14JUL26 24OCT26 1234567 ZHEC 0820 VTBS 1205 HLF9830 14JUL26 24OCT26 1234567 VTBS 1335 ZHEC 1800 
+4. Purpose of Flight(s): REGULAR CARGO FLIGHT
+ 
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B733 B-2119/B-2963 OR SUBS CHINA B738 B-221V/B-222P/B223J/B223R OR SUBS B77L B-2079 / B-2082 OR SUBS 
+6. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZHEC-VTBS R474 TEBAK LAVOS VTBS-ZHEC R474 LAVOS TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Validity: -3/+72 Hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 19th June 2026
+№: OF - 138/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier/Operator
+Name: CENTRAL AIRLINES CO., LTD
+IATA CODE: I9 | ICAO CODE: HLF
+POSTAL ADDRESS: NO.9, HANGAN 1ST ROAD, AIRPORT AVENUE, MEILAN DISTRICT, HAIKOU, HAINAN, P.R.C
+
+TABLE 2
+CONTEXT: 2. Billing address
+Name: CENTRAL AIRLINES CO., LTD
+Postal Address: :NO.9, HANGAN 1ST ROAD, AIRPORT AVENUE, MEILAN DISTRICT, HAIKOU, HAINAN, P.R.C
+Tel: 0898-36601758/0086 188 769 48262 | Email: HYPERLINK "javascript:top.openWin('%2FWorldClient.dll%3FSession%3DRV8W18W3N63Q8%26View%3DCompose%26New%3DYes%26To%3DHUPEIGUO%2540CENTRALAIRLINES.COM','Compose',800,600,'yes');" HUPEIGUO@CENTRALAIRLINES.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+HLF9829 | 14JUL26 | 24OCT26 | 1234567 | ZHEC | 0820 | VTBS | 1205
+HLF9830 | 14JUL26 | 24OCT26 | 1234567 | VTBS | 1335 | ZHEC | 1800
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): REGULAR CARGO FLIGHT
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B733 | B-2119/B-2963 OR SUBS | CHINA
+B738 | B-221V/B-222P/B223J/B223R OR SUBS | 
+B77L | B-2079 / B-2082 OR SUBS | 
+
+TABLE 5
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZHEC-VTBS | R474 | TEBAK | LAVOS
+VTBS-ZHEC | R474 | LAVOS | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

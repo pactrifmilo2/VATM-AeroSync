@@ -1,0 +1,86 @@
+FILE: OF 52 AS.doc
+
+PARAGRAPHS
+Ha Noi, 05th March 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 52A/S/2026VN
+1. Carrier/Operator:
+1.1 Name: AIR BUSAN
+- ICAO code: ABL
+- Address: 6, Yutongdanji 1-Ro 57Beonga-Gil, Gangseo-Gu, Busan, Korea
+- Tel: +82 51 410 0771, Fax: +82 51 410 0799
+- Email: mjkim@airbusan.com
+1.2 Billing address: Premise no. O-1-7, International Terminal, Danang International Airport, Hoa Thuan Tay ward, Hai Chau District, Danang City, Vietnam
+- Tel: +84 236 382 2626, Fax: +84 236 383 2626
+- Email: ttth@airbusan.com, jcpark@airbusan.com 
+2. Schedules: All times in UTC 
+Flight
+Number1 Effective
+from Effective
+To Day(s) of
+Service Departure
+Airport2 ETD Arrival
+Airport3 ETA Aircraft
+Type4 ABL725 29MAR26 24OCT26 1234567 RKPK 0900 VTBS 1445 A320/A321/A21N
+ ABL726 29MAR26 24OCT26 1234567 VTBS 1555 RKPK 2120 ABL745 29MAR26 24OCT26 0004007 RKPK 1225 VLVT 1715 ABL746 29MAR26 24OCT26 0004007 VLVT 1815 RKPK 2255 
+3. Type of services: Passenger
+4. Air traffic service routes:
+Sectors 5 ATS Routes 6
+ Entry Point Exit Point RKPK-VTBS A1 BUNTA PAPRA N892, L628, G474 MONBO ANINA L628, G474 ARESI ANINA R474 TEBAK LAVOS VTBS-RKPK A1 PAPRA BUNTA R474 LAVOS TEBAK G474, L628 ANINA ARESI RKPK-VLVT R474 TEBAK LAVOS A206, R335 ASSAD IDOTA A1,Q1,W1,A206, R335 BUNTA IDOTA VLVT-RKPK R474 LAVOS TEBAK R335, W2, A1 IDOTA BUNTA Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+5. Aircraft:
+Aircraft Type7 Registration marks Nationality A320 HL8055, HL8309, HL8328 
+Korea
+ HL7753 HL7744 A321 HL8365 HL7729, HL7730, HL8257, HL7211, HL7210, HL8099
+HL8256 A21N HL8366, HL8394 HL8357, HL8395, HL8396, HL8504, HL8526, HL8525 
+6. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 05th March 2026
+OVERFLIGHT PERMIT – SUMMER 2026 SCHEDULES
+№: OF - 52A/S/2026VN
+1. Carrier/Operator:
+1.1 Name: AIR BUSAN
+- ICAO code: ABL
+- Address: 6, Yutongdanji 1-Ro 57Beonga-Gil, Gangseo-Gu, Busan, Korea
+- Tel: +82 51 410 0771, Fax: +82 51 410 0799
+- Email: mjkim@airbusan.com
+1.2 Billing address: Premise no. O-1-7, International Terminal, Danang International Airport, Hoa Thuan Tay ward, Hai Chau District, Danang City, Vietnam
+- Tel: +84 236 382 2626, Fax: +84 236 383 2626
+- Email: ttth@airbusan.com, jcpark@airbusan.com 
+2. Schedules: All times in UTC
+Flight Number1 | Effective from | Effective To | Day(s) of Service | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+ABL725 | 29MAR26 | 24OCT26 | 1234567 | RKPK | 0900 | VTBS | 1445 | A320/A321/A21N
+ABL726 | 29MAR26 | 24OCT26 | 1234567 | VTBS | 1555 | RKPK | 2120 | 
+ABL745 | 29MAR26 | 24OCT26 | 0004007 | RKPK | 1225 | VLVT | 1715 | 
+ABL746 | 29MAR26 | 24OCT26 | 0004007 | VLVT | 1815 | RKPK | 2255 | 
+
+TABLE 2
+CONTEXT: 3. Type of services: Passenger
+4. Air traffic service routes:
+Sectors 5 | ATS Routes 6 | Entry Point | Exit Point
+RKPK-VTBS | A1 | BUNTA | PAPRA
+ | N892, L628, G474 | MONBO | ANINA
+ | L628, G474 | ARESI | ANINA
+ | R474 | TEBAK | LAVOS
+VTBS-RKPK | A1 | PAPRA | BUNTA
+ | R474 | LAVOS | TEBAK
+ | G474, L628 | ANINA | ARESI
+RKPK-VLVT | R474 | TEBAK | LAVOS
+ | A206, R335 | ASSAD | IDOTA
+ | A1,Q1,W1,A206, R335 | BUNTA | IDOTA
+VLVT-RKPK | R474 | LAVOS | TEBAK
+ | R335, W2, A1 | IDOTA | BUNTA
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 3
+CONTEXT: 5. Aircraft:
+Aircraft Type7 | Registration marks | Nationality
+A320 | HL8055, HL8309, HL8328 | Korea
+ | HL7753 | 
+ | HL7744 | 
+A321 | HL8365 | 
+ | HL7729, HL7730, HL8257, HL7211, HL7210, HL8099 HL8256 | 
+A21N | HL8366, HL8394 | 
+ | HL8357, HL8395, HL8396, HL8504, HL8526, HL8525 | 

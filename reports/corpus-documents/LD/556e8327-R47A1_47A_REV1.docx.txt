@@ -1,0 +1,34 @@
+FILE: R47A1  47A  REV1.docx
+
+PARAGRAPHS
+Hanoi, 08/4/2026
+LD - 47/A/S/2026VN.RVS
+1. Carrier/Operator
+2. Schedules
+Original Schedules (UTC Time)
+New Schedules
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 08/4/2026
+LD - 47/A/S/2026VN.RVS
+1. Carrier/Operator
+Name: SHENZHEN AIRLINES
+IATA code: ZH | ICAO code: CSZ
+Postal Address: 529 Marketing Building, Hangzhan Rd No.4, Baoan International Airport, Shenzhen Airlines. Shenzhen Guangdong China
+Tel: +86 755 23162760 | Email: A25770@shenzhenair.com
+
+TABLE 2
+CONTEXT: 2. Schedules
+Original Schedules (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+ZH105 | 01May26 | 24Oct26 | 1234567 | SZX | 0835 | HAN | 1040 | 738/320/32N/7M8
+ZH106 | 01May26 | 24Oct26 | 1234567 | HAN | 1140 | SZX | 1330 | 
+
+TABLE 3
+CONTEXT: New Schedules
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+ZH105 | 01May26 | 24Oct26 | 1234567 | SZX | 0815 | HAN | 1025 | 738/320/32N/7M8
+ZH106 | 01May26 | 24Oct26 | 1234567 | HAN | 1125 | SZX | 1315 | 

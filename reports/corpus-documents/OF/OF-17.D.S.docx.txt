@@ -1,0 +1,57 @@
+FILE: OF-17.D.S.docx
+
+PARAGRAPHS
+HA NOI, 13 APR 2026
+NUMBER OF-17/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): PASSENGERS FLIGHT
+5. Aircraft:
+6. Air traffic service routes:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 13 APR 2026
+NUMBER OF-17/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier
+Name: ETHIOPIAN AIRLINES
+IATA code: ET | ICAO code: ETH
+Postal Address: 1755, Addis Ababa, Ethiopia
+Tel: (+251-011)6656666 | Email: www.ethiopianairlines.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: Leulseged Desalegn
+Postal Address:
+Tel: +84 96 774 30 67/+84 9752 24 9942 | Email: leulsegedd@ethiopianairlines.com
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ETH628 | 01-May-26 | 25-OCT-26 | 1234567 | VTBS | 07:30 | VHHH | 10:15
+ETH629 | 01-May-26 | 25-OCT-26 | 1234567 | VHHH | 15:20 | VTBS | 18:05
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): PASSENGERS FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B77L | As per AOC of ETH | ETHIOPIAN
+B77W | As per AOC of ETH | ETHIOPIAN
+B788 | As per AOC of ETH | ETHIOPIAN
+B789 | As per AOC of ETH | ETHIOPIAN
+A359 | As per AOC of ETH | ETHIOPIAN
+A351 | As per AOC of ETH | ETHIOPIAN
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VTBS-VHHH | A202 | VILAO | ASSAD
+VHHH-VTBS | A202 | ASSAD | VILAO

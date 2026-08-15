@@ -1,0 +1,51 @@
+FILE: R35A3  35A LICH HUY FORM (1Jul~21Jul).docx
+
+PARAGRAPHS
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER 2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 00842438272281; Fax: 00824438272290
+Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- NAME: AIRBUSAN Co., Ltd.
+- IATA 2 LETTER CODE: BX
+- ICAO 3 LETTER CODE: ABL
+- ADDRESS: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea
+- TEL: 82-51-410-0703 FAX: 82-51-410-0749
+- EMAIL: jcpark@airbusan.com
+- AFTN: RKSSABLO / SITA: PUSCPBX
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger
+4. Reason of cancellation: DUE TO HIGH FUEL COST N LACK OF FUEL
+5. Ref to permit number: LD- 35A/S/2026VN
+6. Applicant:
+- Name PARK JAECHAN; Title: Station Manager at Da nang Branch
+- Tel:0702065944; Fax:+82-51-410-0749; Email: jcpark@airbusan.com
+- Application is submitted on: 27 May 2026
+
+TABLE 1
+CONTEXT: CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER 2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son Str , Long Bien Dst, Ha Noi, Viet Nam
+Tel: 00842438272281; Fax: 00824438272290
+Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- NAME: AIRBUSAN Co., Ltd.
+- IATA 2 LETTER CODE: BX
+- ICAO 3 LETTER CODE: ABL
+- ADDRESS: 6, Yutongdanji 1-ro 57beonga-gil, Gangseo-gu, Busan 46721, Korea
+- TEL: 82-51-410-0703 FAX: 82-51-410-0749
+- EMAIL: jcpark@airbusan.com
+- AFTN: RKSSABLO / SITA: PUSCPBX
+2. Schedules: All times in UTC
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+BX7315 | 01Jul 26 | 21Jul26 | 1------ | PUS | 1305 | DAD | 1810 | 32A/32S/32Q
+BX7325 | 01Jul 26 | 21Jul26 | 1------ | DAD | 1910 | PUS | 2325 | 
+BX7315 | 01Jul 26 | 21Jul26 | -23-567 | PUS | 1305 | DAD | 1810 | 
+BX7325 | 01Jul 26 | 21Jul26 | -23-567 | DAD | 1910 | PUS | 0005+1 | 
+BX7315 | 01Jul 26 | 21Jul26 | ---4--- | PUS | 1305 | DAD | 1810 | 
+BX7325 | 01Jul 26 | 21Jul26 | ---4--- | DAD | 1910 | PUS | 0000+1 | 
+BX781 | 02Jul26 | 12Jul26 | ---4--7 | PUS | 1020 | CXR | 1520 | 
+BX782 | 02Jul26 | 12Jul26 | ---4--7 | CXR | 1620 | PUS | 2120 | 

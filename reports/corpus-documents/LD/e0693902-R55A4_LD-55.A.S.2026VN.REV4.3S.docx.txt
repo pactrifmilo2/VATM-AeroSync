@@ -1,0 +1,52 @@
+FILE: R55A4  LD-55.A.S.2026VN.REV4.3S.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+Hanoi, 13/07/2026 Permit No.: LD-55/A/S/2026VN/REV4
+ 1. Carrier
+2. Revised Schedules (UTC Time)
+2.1. Old Schedule:
+2.2 New:
+3. Airways
+3.1 Old
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+3.2 New
+OTHER DETAILS REMAIN UNCHANGED
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+Hanoi, 13/07/2026 Permit No.: LD-55/A/S/2026VN/REV4
+ 1. Carrier
+Name: Aerologic GmbH
+IATA code:3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Straße 2, 04435 Schkeuditz, Germany
+Tel: +49 (0) 34204 443 140 | Email: 3S-schedule-slot@aerologic.aero
+
+TABLE 2
+CONTEXT: 2. Revised Schedules (UTC Time)
+2.1. Old Schedule:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+3S738 | 14JUL26 | 14JUL26 | 0200000 | BAH | 05:40 | HAN | 12:30 | 77X
+3S738 | 14JUL26 | 14JUL26 | 0200000 | HAN | 14:30 | HKG | 16:30 | 77X
+
+TABLE 3
+CONTEXT: 2.2 New:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+3S738 | 13JUL26 | 13JUL26 | 1000000 | LEJ | 23:40 | HAN | 12:30+1 | 77X
+3S738 | 14JUL26 | 14JUL26 | 0200000 | HAN | 14:30 | HKG | 16:30 | 77X
+
+TABLE 4
+CONTEXT: 3. Airways
+3.1 Old
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+BAH-HAN | B214-W21 | LADON | 
+HAN-HKG | R474 |  | TEBAK
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+3.2 New
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+LEJ-HAN | B214-W21 | LADON | 
+HAN-HKG | R474 |  | TEBAK

@@ -1,0 +1,39 @@
+FILE: R12A3  REV2.docx
+
+PARAGRAPHS
+Hanoi, 12 May 2026
+Refer to the permit issued: LD-12/A/S/2026VN/REV2
+1. Carrier/Operator
+2. [Retiming of MH749 DAD/KUL OW effective 18May26 to 23Oct26]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 12 May 2026
+Refer to the permit issued: LD-12/A/S/2026VN/REV2
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1 MAB Administration building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor Malaysia.
+Tel: +60-0126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Retiming of MH749 DAD/KUL OW effective 18May26 to 23Oct26]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+MH748 | 18MAY26 | 27SEP26 | 1.3.5.7 | KUL | 0400 | DAD | 0640 | 738/7M8 | LD-12/A/S/2026VN
+MH749 | 18MAY26 | 27SEP26 | 1.3.5.7 | DAD | 0740 | KUL | 1035 | 738/7M8 | LD-12/A/S/2026VN
+MH748 | 30SEP26 | 23OCT26 | 1.3.5.7 | KUL | 0400 | DAD | 0640 | 738/7M8 | LD-12/A/S/2026VN
+MH749 | 30SEP26 | 23OCT26 | 1.3.5.7 | DAD | 0740 | KUL | 1035 | 738/7M8 | LD-12/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MH748 | 18MAY26 | 27SEP26 | 1.3.5.7 | KUL | 0400 | DAD | 0640 | 738/7M8
+MH749 | 18MAY26 | 27SEP26 | 1.3.5.7 | DAD | 0735 | KUL | 1030 | 738/7M8
+MH748 | 30SEP26 | 23OCT26 | 1.3.5.7 | KUL | 0400 | DAD | 0640 | 738/7M8
+MH749 | 30SEP26 | 23OCT26 | 1.3.5.7 | DAD | 0735 | KUL | 1030 | 738/7M8

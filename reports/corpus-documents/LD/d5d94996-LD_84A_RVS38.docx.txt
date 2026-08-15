@@ -1,0 +1,42 @@
+FILE: LD 84A RVS38.docx
+
+PARAGRAPHS
+LD-84/A/S/2026VN.RVS38
+1. Người vận chuyển:
+2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay: 84/A/S/2026VN
+2.2/ Lịch bay mới:
+3. Lý do:
+Sân bay VII đóng cửa do diễn tập Quân sự.
+4. Ghi chú:
+Các nội dung khác theo phép bay 84/A/S/2026VN không thay đổi.
+Phạm Giang gửi thay bà Phạm Thao PTP VTHK, Cục HKVN.
+
+TABLE 1
+CONTEXT: LD-84/A/S/2026VN.RVS38
+1. Người vận chuyển:
+Tên: Vietjet Air
+Mã IATA: VJ | Mã ICAO: VJC
+Địa chỉ bưu điện: 302/3 Kim Mã, Phường Ngọc Hà, Thành phố Hà Nội
+Điện thoại: +84 1900 1886 | Thư điện tử:
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1/ Lịch bay cũ: theo phép bay: 84/A/S/2026VN
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ212 | 17-Jul-26 | 17-Jul-26 | 5 | SGN | 01:00 | VII | 02:50 | 320/321/32Q
+VJ215 | 17-Jul-26 | 17-Jul-26 | 5 | VII | 03:20 | SGN | 05:10 | 320/321/32Q
+VJ224 | 16-Jul-26 | 16-Jul-26 | 4 | SGN | 22:00 | VII | 23:50 | 320/321/32Q
+VJ741 | 17-Jul-26 | 17-Jul-26 | 5 | VII | 00:20 | BMV | 01:45 | 320/321/32Q
+VJ740 | 17-Jul-26 | 17-Jul-26 | 5 | BMV | 02:15 | VII | 03:40 | 320/321/32Q
+VJ227 | 17-Jul-26 | 17-Jul-26 | 5 | VII | 04:10 | SGN | 06:00 | 320/321/32Q
+
+TABLE 3
+CONTEXT: 2.2/ Lịch bay mới:
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ hạ cánh dự kiến | Loại tàu bay
+VJ212 | 17-Jul-26 | 17-Jul-26 | 5 | SGN | 00:35 | VII | 02:30 | 320/321/32Q
+VJ215 | 17-Jul-26 | 17-Jul-26 | 5 | VII | 03:00 | SGN | 04:50 | 320/321/32Q
+VJ224 | 16-Jul-26 | 16-Jul-26 | 4 | SGN | 21:00 | VII | 22:50 | 320/321/32Q
+VJ741 | 16-Jul-26 | 16-Jul-26 | 4 | VII | 23:20 | BMV | 00:25+ | 320/321/32Q
+VJ740 | 17-Jul-26 | 17-Jul-26 | 5 | BMV | 00:55 | VII | 03:40 | 320/321/32Q
+VJ227 | 17-Jul-26 | 17-Jul-26 | 5 | VII | 03:10 | SGN | 05:00 | 320/321/32Q

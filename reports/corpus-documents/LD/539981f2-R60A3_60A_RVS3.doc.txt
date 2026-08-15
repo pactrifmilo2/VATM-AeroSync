@@ -1,0 +1,38 @@
+FILE: R60A3 60A RVS3.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 26/06/2026
+Permit No.: LD-60/a/S/2026VN/REV3
+1. Carrier
+Name: PJSC AEROFLOT RUSSIAN AIRLINES IATA code: SU ICAO code: AFL Postal Address: 01, Arbat str., Moscow, 119019, Russia Tel: +7(499)5006253 Email: HYPERLINK "mailto:aflrpl@aeroflot.ru" aflrpl@aeroflot.ru 
+2. OLD Schedules (UTC Time) 
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type SU836 26Jun26 26Jun26 0000500 SVX 1625 CXR 0125+1 A330/A350 SU837 27Jun26 27Jun26 0000060 CXR 0255 SVX 1225 A330/A350 
+NEW Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type SU836 26Jun26 26Jun26 0000500 SVX 1625 CXR 0210+1 A330/A350 SU837 27Jun26 27Jun26 0000060 CXR 0340 SVX 1225 A330/A350 
+OTHER DETAILS REMAIN UNCHANGED.
+ 
+3. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 26/06/2026
+Permit No.: LD-60/a/S/2026VN/REV3
+1. Carrier
+Name: PJSC AEROFLOT RUSSIAN AIRLINES
+IATA code: SU | ICAO code: AFL
+Postal Address: 01, Arbat str., Moscow, 119019, Russia
+Tel: +7(499)5006253 | Email: HYPERLINK "mailto:aflrpl@aeroflot.ru" aflrpl@aeroflot.ru
+
+TABLE 2
+CONTEXT: 2. OLD Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+SU836 | 26Jun26 | 26Jun26 | 0000500 | SVX | 1625 | CXR | 0125+1 | A330/A350
+SU837 | 27Jun26 | 27Jun26 | 0000060 | CXR | 0255 | SVX | 1225 | A330/A350
+
+TABLE 3
+CONTEXT: NEW Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+SU836 | 26Jun26 | 26Jun26 | 0000500 | SVX | 1625 | CXR | 0210+1 | A330/A350
+SU837 | 27Jun26 | 27Jun26 | 0000060 | CXR | 0340 | SVX | 1225 | A330/A350

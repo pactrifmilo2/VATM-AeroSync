@@ -1,0 +1,31 @@
+FILE: R05D3 SJX (LD 05DS RVS2 ).docx
+
+PARAGRAPHS
+Hanoi, 10/07/2026
+Permit No.: LD-05/D/S/2026VN /REV2
+1. Carrier/Operator
+2.Revised flight number and travel schedule due Typhoon.
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 10/07/2026
+Permit No.: LD-05/D/S/2026VN /REV2
+1. Carrier/Operator
+Name: STARLUX AIRLINES
+IATA code: JX | ICAO code: SJX
+Postal Address: 11F., No. 525, Sec. 4, Zhongxiao E. Rd., Xinyi Dist., Taipei City 110055, Taiwan (R.O.C)
+Tel: +886-2-2791-1000 ext. 6314 | Email: ashleyliu@starlux-airlines.com
+
+TABLE 2
+CONTEXT: 2.Revised flight number and travel schedule due Typhoon.
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+JX3714 | 11Jul26 | 11Jul26 | ….6.. | SGN | 1700 | TPE | 2030 | 32Q/339/359 | LD-05/D/S/2026VN/REV1
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+JX3714 | 10Jul26 | 10Jul26 | ….5.. | SGN | 1100 | TPE | 1430 | 32Q/339/359

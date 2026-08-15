@@ -1,0 +1,62 @@
+FILE: OF 32.D.S.docx
+
+PARAGRAPHS
+HA NOI, 02 MAY 2026
+NUMBER OF-32/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): CARGO CHARTER FLIGHT
+5. Aircraft:
+6. Airways
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 02 MAY 2026
+NUMBER OF-32/D/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: AeroLogic GmbH
+IATA code: 3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: AeroLogic GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX534 | 04MAY26 | 01JUN26 | 1------ | WSSS | 0230 | VHHH | 0620
+BOX555 | 05MAY26 | 30MAY26 | -2---6- | RCTP | 2155 | VOBL | 0435+
+BOX556 | 08MAY26 | 29MAY26 | ----5-- | VOBL | 1335 | VHHH | 1920
+BOX614 | 03MAY26 | 06MAY26 | --3---7 | EDDF | 0550 | RCTP | 1900
+BOX613 | 06MAY26 | 06MAY26 | --3---- | RCTP | 2125 | VOHS | 0340
+BOX723 | 05MAY26 | 30MAY26 | -2-4-6- | VHHH | 2145 | VIDP | 0345+
+BOX733 | 02MAY26 | 30MAY26 | -----6- | VHHH | 2135 | VOBL | 0315+
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): CARGO CHARTER FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B777F | D-AALA OR SUB | GERMANY
+
+TABLE 6
+CONTEXT: 6. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+WSSS-VHHH | M771 | DUDIS | DONDA
+VHHH-VIDP | A202 | ASSAD | VILAO
+VHHH-VOBL | A202 | ASSAD | VILAO
+VOBL-VHHH | A1 | PAPRA | BUNTA
+RCTP-VOBL | A202 | ASSAD | VILAO
+EDDF-RCTP | A206 W2 A1 | NALAO | BUNTA
+RCTP-VOHS | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

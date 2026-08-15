@@ -1,0 +1,87 @@
+FILE: OF 117AS.docx
+
+PARAGRAPHS
+HANOI, 25th MARTH 2026
+Permit No.: OF-117/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Passenger
+5. Aircraft:
+6. Airways:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+7. Validity: -3/+72 HOURS
+VU THI THUY DUONG FOR TRAN THANH SON-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DEP DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 25th MARTH 2026
+Permit No.: OF-117/A/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: InterGlobe Aviation Limited (IndiGo)
+IATA code: 6E | ICAO code: IGO
+Postal Address: InterGlobe Aviation Limited (IndiGo) Emaar Capital Tower -II, Sector 26, Sikanderpur Ghosi, MG Road, Gurugram- 122002
+Tel:+91 0124 4352500 | Email: RNSP@GOINDIGO.IN
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: InterGlobe Aviation Limited (IndiGo)
+Postal Address: InterGlobe Aviation Limited (IndiGo) Emaar Capital Tower -II, Sector 26, Sikanderpur Ghosi, MG Road, Gurugram- 122002
+Tel:+91 0124 4352500 | Email: RNSP@GOINDIGO.IN
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+IGO1701 | 29-Mar-26 | 24-Oct-26 | 1234567 | VIDP | 1525 | ZGGG | 2000
+IGO1702 | 29-Mar-26 | 24-Oct-26 | 1234567 | ZGGG | 2150 | VIDP | 0335
+IGO1703 | 29-Mar-26 | 24-Oct-26 | 1234567 | VECC | 1610 | ZGGG | 1945
+IGO1704 | 29-Mar-26 | 24-Oct-26 | 1234567 | ZGGG | 2115 | VECC | 0200
+IGO1709 | 29-Mar-26 | 24-Oct-26 | 1234567 | VECC | 1615 | ZSPD | 2040
+IGO1710 | 29-Mar-26 | 24-Oct-26 | 1234567 | ZSPD | 2140 | VECC | 0335
+IGO1719 | 29-Mar-26 | 24-Oct-26 | 1234567 | VIDP | 0500 | ZSAM | 1055
+IGO1720 | 29-Mar-26 | 24-Oct-26 | 1234567 | ZSAM | 1230 | VIDP | 1845
+IGO1721 | 29-Mar-26 | 24-Oct-26 | 1234567 | VIDP | 0045 | VHHH | 0640
+IGO1722 | 29-Mar-26 | 24-Oct-26 | 1234567 | VHHH | 0740 | VIDP | 1340
+IGO1751 | 29-Mar-26 | 24-Oct-26 | 1234567 | VIDP | 0105 | RKSI | 0830
+IGO1752 | 29-Mar-26 | 24-Oct-26 | 1234567 | RKSI | 1020 | VIDP | 1815
+IGO9251 | 29-Mar-26 | 24-Oct-26 | 1234567 | VECC | 0100 | VHHH | 0500
+IGO9252 | 29-Mar-26 | 24-Oct-26 | 1234567 | VHHH | 0200 | VECC | 0630
+IGO9253 | 29-Mar-26 | 24-Oct-26 | 1234567 | VECC | 0100 | VHHH | 0500
+IGO9254 | 29-Mar-26 | 24-Oct-26 | 1234567 | VHHH | 0200 | VECC | 0630
+IGO9256 | 29-Mar-26 | 24-Oct-26 | 1234567 | VECC | 0015 | ZHEC | 0605
+IGO9257 | 29-Mar-26 | 24-Oct-26 | 1234567 | ZHEC | 0025 | VECC | 0550
+IGO9258 | 29-Mar-26 | 24-Oct-26 | 1234567 | VECC | 0025 | ZHEC | 0615
+IGO9259 | 29-Mar-26 | 24-Oct-26 | 1234567 | ZHEC | 0035 | VECC | 0610
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Passenger
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A20N/A21N | As per AOC of IGO | INDIAN
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VIDP-ZGGG | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZGGG-VIDP | R474 NOB W21 BQ B214 | TEBAK | LADON
+VECC-ZGGG | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZGGG-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON
+VECC-ZSPD | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZSPD-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON
+VIDP-ZSAM | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZSAM-VIDP | R474 NOB W21 BQ B214 | TEBAK | LADON
+VIDP-VHHH | B214 BQ W21 NOB R474 | LADON | TEBAK
+VHHH-VIDP | R474 NOB W21 BQ B214 | TEBAK | LADON
+VIDP-RKSI | B214 BQ W21 NOB R474 | LADON | TEBAK
+RKSI-VIDP | R474 NOB W21 BQ B214 | TEBAK | LADON
+VECC-VHHH | B214 BQ W21 NOB R474 | LADON | TEBAK
+VHHH-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON
+VECC-VHHH | A1 | PAPRA | BUNTA
+VHHH-VECC | A1 | BUNTA | PAPRA
+VECC-ZHEC | B214 BQ W21 NOB R474 | LADON | TEBAK
+ZHEC-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON

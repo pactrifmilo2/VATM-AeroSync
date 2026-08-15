@@ -1,0 +1,59 @@
+FILE: R31A1 OF 31A HUY.docx
+
+PARAGRAPHS
+Kính gửi VATM thông tin hủy số phép bay OF- OF-31/A/W/2026VN.MSR như nội dung tại file đính kèm do trùng nội dung với phép OF-02/B/S/2026VN
+HA NOI, 26 FEB 2026
+NUMBER OF-31/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): All-Cargo
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Kính gửi VATM thông tin hủy số phép bay OF- OF-31/A/W/2026VN.MSR như nội dung tại file đính kèm do trùng nội dung với phép OF-02/B/S/2026VN
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 26 FEB 2026
+NUMBER OF-31/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: EGYPTAIR AIRLINES
+IATA code: | ICAO code: MSR
+Postal Address: CAIRO INTL. AIRPORT
+Tel: : -27656735/9; Fax: - 22656735/9; | Email: ba.usercharges.invoices@iairgroup.com
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: CAIRO INTL. AIRPORT
+Tel-27656735/9 Fax-22656735/9 | Email- Planning.slots@egyptair.com
+
+TABLE 4
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport2 | ETD | Arrival Airport | ETA | Aircraft Type
+MSR509 | 29MAR26 | 24OCT26 | 1234567 | HECA | 07:30 | VHHH | 17:15 | A332F
+MSR510 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 19:15 | VTBS | 22:00 | 
+MSR5099 | 29MAR26 | 24OCT26 | 1234567 | OJAI | 07:00 | VHHH | 17:00 | 
+MSR5080 | 29MAR26 | 24OCT26 | 1234567 | HECA | 07:30 | ZJHK | 16:30 | 
+MSR5081 | 29MAR26 | 24OCT26 | 1234567 | ZJHK | 18:30 | OMDW | 03:05 | 
+
+TABLE 5
+CONTEXT: 3. Type of services/ Purpose of Flight(s): All-Cargo
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+HECA- VHHH | B214 W21 R474 | LADON | TEBAK
+VHHH -VTBS | A202 | ASSAD | VILAO
+OJAI- VHHH | B214 W21 R474 | LADON | TEBAK
+HECA- ZJHK | A206 | NALAO | ASSAD
+ZJHK-OMDW | A206 | ASSAD | NALAO
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+A332F | SU-GCJ/GCE/GCF | EGYPTIAN

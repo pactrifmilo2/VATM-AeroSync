@@ -1,0 +1,41 @@
+FILE: R32B6 32B RVS6.docx
+
+PARAGRAPHS
+Phép bay sửa đổi
+Hà Nội, 24/6/2026
+To: VATM, SPQ
+Cc: MAA, SAA
+Phép bay số: LD-32/B/S/2026VN/REV6
+1. Hãng hàng không
+2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+2.2. Lịch bay mới (sửa đổi)
+CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI
+*****
+Đinh Mạnh Dũng gửi thay Ông Đào Ngọc Dũng - Phó trưởng phòng, Phòng VTHK/Cục HKVN
+Cc: Ông Bùi Minh Đăng - Trưởng phòng, Phòng VTHK/Cục HKVN (để báo cáo)
+
+TABLE 1
+CONTEXT: Phép bay sửa đổi
+Hà Nội, 24/6/2026
+To: VATM, SPQ
+Cc: MAA, SAA
+Phép bay số: LD-32/B/S/2026VN/REV6
+1. Hãng hàng không
+Tên: Công ty TNHH Hàng không Mặt trời Phú Quốc (Sun PhuQuoc Airways)
+Mã IATA: 9G | Mã ICAO: SPQ
+Địa chỉ bưu điện: Tầng 4, Tòa nhà Sun Grand City, Số 69B Đường Thụy Khuê, Phường Tây Hồ, Hà Nội
+Điện thoại: 0888035246 | Thư điện tử: iocc@sunphuquocairways.com; permission@sunphuquocairways.com
+
+TABLE 2
+CONTEXT: 2. Lịch bay (Giờ UTC)
+2.1. Lịch bay gốc
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay | Số phép bay đã cấp
+9G2953 | 02-Jul-26 | 12-Jul-26 | -2-45-7 | CXR | 09:20 | PQC | 10:40 | 321/32Q/32N | LD-32/B/S/2026VN
+9G2953 | 16-Jul-26 | 21-Jul-26 | -2-45-7 | CXR | 09:20 | PQC | 10:40 | 321/32Q/32N | 
+
+TABLE 3
+CONTEXT: 2.2. Lịch bay mới (sửa đổi)
+Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần | Sân bay cất cánh | Giờ khởi hành dự kiến | Sân bay hạ cánh | Giờ dựkiến hạcánh | Loại tàu bay
+9G2953 | 02-Jul-26 | 12-Jul-26 | -2-45-7 | CXR | 07:30 | PQC | 08:50 | 321/32Q/32N
+9G2953 | 16-Jul-26 | 21-Jul-26 | -2-45-7 | CXR | 07:30 | PQC | 09:05 | 321/32Q/32N

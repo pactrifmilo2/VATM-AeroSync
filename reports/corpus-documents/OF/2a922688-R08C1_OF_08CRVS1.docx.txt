@@ -1,0 +1,33 @@
+FILE: R08C1 OF 08CRVS1.docx
+
+PARAGRAPHS
+HANOI, 26MAR2026
+PERMIT NUMBER OF-08/C/S/2026VN.REV1
+1. Carrier/Operator
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 26MAR2026
+PERMIT NUMBER OF-08/C/S/2026VN.REV1
+1. Carrier/Operator
+Name: Thai AirAsia
+IATA code: FD | ICAO code: AIQ
+Postal Address: Thai AirAsia Company Limited, 222, Don Mueang International Airport,3 rd floor, Central Office Building, No.3200, Vibhavadi Rangsit Road, Sanambin, DonMueang, Bangkok, 10120
+Tel:+662-562-5799 | Email: thaiflightops@airasia.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+AIQ9242 | 9JULY26 | 9JULY26 | 4 | VTCC | 1840 | RCTP | 2235 | A320/A20N/A21N | OF- 08/C/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+AIQ9242 | 9JULY26 | 9JULY26 | 4 | VTCC | 0605 | RCTP | 1000

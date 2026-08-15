@@ -1,0 +1,38 @@
+FILE: R20B2 OF 20BRVS2.docx
+
+PARAGRAPHS
+HANOI, 21-Apr-26
+The issued permit: OF-20/B/S/2026VN/REV2
+1. Carrier/Operator
+2. [Revised timing of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Note: Other details unchanged.
+RGDS
+MAI THANH FOR PHAM THAO, DEP DIR OF ATD, CAAV
+BUI MINH DANG, DIR OF ATD, CAAV (FOR REPORT)
+(Ref. G17.44-260417-0083)
+
+TABLE 1
+CONTEXT: HANOI, 21-Apr-26
+The issued permit: OF-20/B/S/2026VN/REV2
+1. Carrier/Operator
+Name: Malaysia Airlines Berhad
+IATA code: MH | ICAO code: MAS
+Postal Address: Level 1, Network Planning and Scheduling, MAB Administration Building, South Support Zone Kuala Lumpur International Airport – KLIA 64000 Sepang Selangor
+Tel: 600126460448 | Email: sitiindra.abdulmomen@malaysiaairlines.com
+
+TABLE 2
+CONTEXT: 2. [Revised timing of Cargo flight]
+[2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6165 | 21APR26 | 28APR26 | .2….. | ZSPD | 1315 | WMKK | 1845 | 33X
+MAS6170 | 22APR26 | 29APR26 | ..3…. | WMKK | 0300 | ZSPD | 0825 | 33X
+MAS6171 | 22APR26 | 29APR26 | ..3…. | ZSPD | 1025 | WMKK | 1555 | 33X
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MAS6165 | 21APR26 | 28APR26 | .2….. | ZSPD | 1005 | WMKK | 1535 | 33X
+MAS6170 | 21APR26 | 28APR26 | .2….. | WMKK | 2000 | ZSPD | 0125+1 | 33X
+MAS6171 | 22APR26 | 29APR26 | ..3…. | ZSPD | 0325 | WMKK | 0855 | 33X

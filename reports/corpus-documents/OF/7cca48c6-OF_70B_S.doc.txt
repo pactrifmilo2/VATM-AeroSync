@@ -1,0 +1,57 @@
+FILE: OF 70B S.doc
+
+PARAGRAPHS
+Ha Noi, 02nd April 2026
+№: OF - 70/B/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: SHANDONG AIRLINES IATA code: SC ICAO code: CDG Postal address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA Tel: 0086-531-85698928
+ Email: liy73@sda.cn；suqh@sda.cn 
+2. Billing address:
+Name: ACCOUNT DEP OF SHANDONG AIRLINES Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA Tel: 0086-531-85698928
+ Email: liy73@sda.cn；suqh@sda.cn 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CDG2445 05APR2026 24OCT2026 1234567 ZGSZ 0930 WIII 1510 CDG2446 05APR2026 24OCT2026 1234567 WIII 1630 ZGSZ 2100 
+4. Purpose of Flight(s): SCHEDULE CARGO FLIGHTS
+5. Aircraft:
+Aircraft Type Registration Mark Nationality B737-800 OR SUB AS PER THE CDG AOC CHINA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZGSZ-WIII L642 EXOTO ESPOB WIII-ZGSZ M771 DUDIS DONDA Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 02nd April 2026
+№: OF - 70/B/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: SHANDONG AIRLINES
+IATA code: SC | ICAO code: CDG
+Postal address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA
+Tel: 0086-531-85698928 | Email: liy73@sda.cn；suqh@sda.cn
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: ACCOUNT DEP OF SHANDONG AIRLINES
+Postal Address: YAOQIANG INTERNATIONAL AIRPORT, JINAN, SHANDONG PROVINCE, CHINA
+Tel: 0086-531-85698928 | Email: liy73@sda.cn；suqh@sda.cn
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CDG2445 | 05APR2026 | 24OCT2026 | 1234567 | ZGSZ | 0930 | WIII | 1510
+CDG2446 | 05APR2026 | 24OCT2026 | 1234567 | WIII | 1630 | ZGSZ | 2100
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): SCHEDULE CARGO FLIGHTS
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B737-800 OR SUB | AS PER THE CDG AOC | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZGSZ-WIII | L642 | EXOTO | ESPOB
+WIII-ZGSZ | M771 | DUDIS | DONDA
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

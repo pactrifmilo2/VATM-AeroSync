@@ -1,0 +1,46 @@
+FILE: R61A1   LD-61_A_S_2026VN.RVS.27JUL26 (1).docx
+
+PARAGRAPHS
+Hanoi, 27/7/2026
+Refer to the issued permit number: LD-61/A/S/2026VN
+1. Người vận chuyển/Người khai thác
+Carrier/Operator
+2. Schedules
+Revised schedule
+Original schedule:
+New schedule:
+Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 27/7/2026
+Refer to the issued permit number: LD-61/A/S/2026VN
+1. Người vận chuyển/Người khai thác
+Carrier/Operator
+Tên/Name: ASIANA AIRLINES
+Mã IATA/IATA code: OZ | Mã ICAO/ICAO code: AAR
+Địa chỉ bưu điện/Postal Address: Asiana Town; Gangseo P.O. Box98, #47 Osea-Dong, Gangseo-Gu, Seoul, Korea 157-600
+Điện thoại/Tel: 0236.3826.826 | Thư điện tử/Email: ngoctrung@flyasiana.com
+
+TABLE 2
+CONTEXT: 2. Schedules
+Revised schedule
+Original schedule:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+OZ755 | 02AUG26 | 02AUG26 | 0000007 | ICN | 0950 | DAD | 1435 | 333/321/32Q
+OZ756 | 02AUG26 | 02AUG26 | 0000007 | DAD | 1600 | ICN | 2055 | 
+OZ755 | 04AUG26 | 04AUG26 | 0200000 | ICN | 0950 | DAD | 1435 | 
+OZ756 | 04AUG26 | 04AUG26 | 0200000 | DAD | 1600 | ICN | 2055 | 
+OZ755 | 07AUG26 | 07AUG26 | 0000500 | ICN | 0950 | DAD | 1435 | 
+OZ756 | 07AUG26 | 07AUG26 | 0000500 | DAD | 1600 | ICN | 2055 | 
+
+TABLE 3
+CONTEXT: New schedule:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+OZ755 | 02AUG26 | 02AUG26 | 0000007 | ICN | 1105 | DAD | 1535 | 333/321/32Q
+OZ756 | 02AUG26 | 02AUG26 | 0000007 | DAD | 1655 | ICN | 2150 | 
+OZ755 | 04AUG26 | 04AUG26 | 0200000 | ICN | 1100 | DAD | 1530 | 
+OZ756 | 04AUG26 | 04AUG26 | 0200000 | DAD | 1650 | ICN | 2145 | 
+OZ755 | 07AUG26 | 07AUG26 | 0000500 | ICN | 1050 | DAD | 1520 | 
+OZ756 | 07AUG26 | 07AUG26 | 0000500 | DAD | 1640 | ICN | 2135 | 

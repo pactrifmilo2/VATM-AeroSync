@@ -64,18 +64,41 @@ public record ScheduleFlight(
                 beginDate, endDate, remark, sourceAircraftType);
     }
 
-    public ScheduleFlight withRevisionDefaults(long inheritedCraftId,
+    public ScheduleFlight withRevisionDefaults(String inheritedPurposeId,
+                                               long inheritedCraftId,
                                                BigDecimal inheritedMtow,
                                                String inheritedRegistration,
                                                String inheritedVia,
                                                String inheritedRemark) {
         return new ScheduleFlight(
-                purposeId, inheritedCraftId, inheritedMtow, flightNumber,
+                purposeId == null || purposeId.isBlank() ? inheritedPurposeId : purposeId,
+                inheritedCraftId, inheritedMtow, flightNumber,
                 registration == null || registration.isBlank() ? inheritedRegistration : registration,
                 serviceDays, fromAirport, toAirport, etd, eta,
                 via == null || via.isBlank() ? inheritedVia : via,
                 beginDate, endDate,
                 remark == null || remark.isBlank() ? inheritedRemark : remark,
                 sourceAircraftType);
+    }
+
+    public ScheduleFlight asCancelledFrom(String originalPermitNumber) {
+        String cancellation = "HUY TU " + (originalPermitNumber == null
+                ? "PHEP GOC"
+                : originalPermitNumber.trim());
+        return new ScheduleFlight(
+                purposeId, craftId, mtow, flightNumber, registration, serviceDays,
+                fromAirport, toAirport, etd, eta, via, beginDate, endDate,
+                cancellation, sourceAircraftType);
+    }
+
+    public ScheduleFlight withAircraftOnlyRemark() {
+        String aircraft = sourceAircraftType == null ? "" : sourceAircraftType.trim();
+        String revisedRemark = aircraft.isBlank()
+                ? (remark == null ? null : remark.trim())
+                : ((purposeId == null ? "" : purposeId.trim()) + " " + aircraft).trim();
+        return new ScheduleFlight(
+                purposeId, craftId, mtow, flightNumber, registration, serviceDays,
+                fromAirport, toAirport, etd, eta, via, beginDate, endDate,
+                revisedRemark, sourceAircraftType);
     }
 }

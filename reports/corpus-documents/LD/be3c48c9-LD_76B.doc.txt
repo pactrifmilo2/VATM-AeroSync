@@ -1,0 +1,66 @@
+FILE: LD 76B.doc
+
+PARAGRAPHS
+Ha Noi, 09th April 2026
+№: LD - 76/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: CHINA EASTERN AIRLINES IATA code: MU ICAO code: CES Postal Address: NO.2550 HONGQIAO ROAD, SHANGHAI, P.R. CHINA Tel: Email: 
+2. Schedules (UTC Time)
+Flight number Effective from
+ Effective to
+ Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type MU869 27Apr26 24Oct26 -2-4-6- HGH 1500 SGN 1910 32N/320/319/738/73G MU870 27Apr26 24Oct26 -2-4-6- SGN 2010 HGH 2350 32N/320/319/738/73G 
+3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark
+ Nationality A32N 
+According to the MU’s FAOC
+ CHINA
+ A320 A319 B738 B73G 
+5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HGH-SGN L642, N500 EXOTO HGH-SGN A202, Q1 ASSAD SGN-HGH Q2, A202 ASSAD SGN-HGH W12, G221 BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Window: -12/+24hours
+7. Note:
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the 
+CIVIL AVIATION AUTHORITY OF VIET NAM
+DO HONG CAM
+DEPUTY DIRECTOR GENENAL
+Sent by PHAM THI HUONG GIANG
+C/c: BUI MINH DANG DIRECTOR-ATD,CAAV
+C/c: PHAM THAO DEPUTY DIRECTOR-ATD, CAAV
+
+TABLE 1
+CONTEXT: Ha Noi, 09th April 2026
+№: LD - 76/B/S/2026VN
+IATA Schedule Season: SUMMER 2026
+1. Carrier
+Name: CHINA EASTERN AIRLINES
+IATA code: MU | ICAO code: CES
+Postal Address: NO.2550 HONGQIAO ROAD, SHANGHAI, P.R. CHINA
+Tel: | Email:
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+MU869 | 27Apr26 | 24Oct26 | -2-4-6- | HGH | 1500 | SGN | 1910 | 32N/320/319/738/73G
+MU870 | 27Apr26 | 24Oct26 | -2-4-6- | SGN | 2010 | HGH | 2350 | 32N/320/319/738/73G
+
+TABLE 3
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+A32N | According to the MU’s FAOC | CHINA
+A320 |  | 
+A319 |  | 
+B738 |  | 
+B73G |  | 
+
+TABLE 4
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HGH-SGN | L642, N500 | EXOTO | 
+HGH-SGN | A202, Q1 | ASSAD | 
+SGN-HGH | Q2, A202 |  | ASSAD
+SGN-HGH | W12, G221 |  | BUNTA

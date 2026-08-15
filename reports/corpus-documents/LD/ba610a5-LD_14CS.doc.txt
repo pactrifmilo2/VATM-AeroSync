@@ -1,0 +1,73 @@
+FILE: LD 14CS.doc
+
+PARAGRAPHS
+CỤC HÀNG KHÔNG VIỆT NAM
+CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM
+119 Nguyen Son Street, Bo De Ward, Ha Noi
+Socialist Republic of Viet Nam Tel: (84 24) 38272281
+Fax: (84 24) 38272290
+E-mail: atd@caa.gov.vn
+Website: www.caa.gov.vn Hanoi, 05/03/2026
+Permit No.: LD-14/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Hong Kong Express Airways Limited IATA code: UO ICAO code: HKE Postal Address: 1/F, Cathay House, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong Tel: +852 3151 1961 Email: HYPERLINK "mailto:anthony.chan@hkexpress.com" anthony.chan@hkexpress.com 2. Schedules (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type UO596 29MAR26 24OCT26 1234567 HKG 0810 PQC 1120 321/320 UO597 29MAR26 24OCT26 1234567 PQC 1205 HKG 1510 321/320 UO576 16JUL26 23AUG28 1234567 HKG 0210 PQC 0505 321/320 UO577 16JUL26 23AUG28 1234567 PQC 0605 HKG 0915 321/320 UO598 28MAR26 31AUG26 1234567 HKG 2345 PQC 0240+1 321/320 UO599 29MAR26 01SEP26 1234567 PQC 0340 HKG 0650 321/320 UO598 01SEP26 20SEP26 1-3-5-7 HKG 2345 PQC 0240+1 321/320 UO599 02SEP26 21SEP26 1-3-5-7 PQC 0340 HKG 0650 321/320 UO598 21SEP26 23OCT26 1234567 HKG 2345 PQC 0240+1 321/320 UO599 22SEP26 24OCT26 1234567 PQC 0340 HKG 0650 321/320 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type Registration Mark Nationality 320 As per FAOC of UO Hong Kong, China 321 As per FAOC of UO Hong Kong, China 5. Airways
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR HKG-PQC L642-W15-W1-W17-W8 or L642-N500-W17-W8 or A1-W1-W17-W8 or A1-Q1-W1-W17-W8 or G221-W12-W17-W8 EXOTO/ BUNTA - PQC-HKG W8-W17-N500-M771 or W8-W17-W1-A1 or W8-W17-Q2-A1 or W8-W17-W12-G221 - DONDA/ BUNTA Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24H
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2. Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+C.c: VATM; MAA; NAA; SAA
+Sent by Le Vu Ha Anh
+C.c: Bui Minh Dang - Director of ATD/CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAM CIVIL AVIATION AUTHORITY OF PRIVATE VIET NAM 119 Nguyen Son Street, Bo De Ward, Ha Noi Socialist Republic of Viet Nam |  | Tel: (84 24) 38272281 Fax: (84 24) 38272290 E-mail: atd@caa.gov.vn Website: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: Hanoi, 05/03/2026
+Permit No.: LD-14/C/S/2026VN
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: Hong Kong Express Airways Limited
+IATA code: UO | ICAO code: HKE
+Postal Address: 1/F, Cathay House, 11 Tung Fai Road, Hong Kong International Airport, Lantau, Hong Kong
+Tel: +852 3151 1961 | Email: HYPERLINK "mailto:anthony.chan@hkexpress.com" anthony.chan@hkexpress.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+UO596 | 29MAR26 | 24OCT26 | 1234567 | HKG | 0810 | PQC | 1120 | 321/320
+UO597 | 29MAR26 | 24OCT26 | 1234567 | PQC | 1205 | HKG | 1510 | 321/320
+ |  |  |  |  |  |  |  | 
+UO576 | 16JUL26 | 23AUG28 | 1234567 | HKG | 0210 | PQC | 0505 | 321/320
+UO577 | 16JUL26 | 23AUG28 | 1234567 | PQC | 0605 | HKG | 0915 | 321/320
+ |  |  |  |  |  |  |  | 
+UO598 | 28MAR26 | 31AUG26 | 1234567 | HKG | 2345 | PQC | 0240+1 | 321/320
+UO599 | 29MAR26 | 01SEP26 | 1234567 | PQC | 0340 | HKG | 0650 | 321/320
+ |  |  |  |  |  |  |  | 
+UO598 | 01SEP26 | 20SEP26 | 1-3-5-7 | HKG | 2345 | PQC | 0240+1 | 321/320
+UO599 | 02SEP26 | 21SEP26 | 1-3-5-7 | PQC | 0340 | HKG | 0650 | 321/320
+ |  |  |  |  |  |  |  | 
+UO598 | 21SEP26 | 23OCT26 | 1234567 | HKG | 2345 | PQC | 0240+1 | 321/320
+UO599 | 22SEP26 | 24OCT26 | 1234567 | PQC | 0340 | HKG | 0650 | 321/320
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+320 | As per FAOC of UO | Hong Kong, China
+321 | As per FAOC of UO | Hong Kong, China
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+HKG-PQC | L642-W15-W1-W17-W8 or L642-N500-W17-W8 or A1-W1-W17-W8 or A1-Q1-W1-W17-W8 or G221-W12-W17-W8 | EXOTO/ BUNTA | -
+PQC-HKG | W8-W17-N500-M771 or W8-W17-W1-A1 or W8-W17-Q2-A1 or W8-W17-W12-G221 | - | DONDA/ BUNTA

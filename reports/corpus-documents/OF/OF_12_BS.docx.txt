@@ -1,0 +1,51 @@
+FILE: OF 12 BS.docx
+
+PARAGRAPHS
+HA NOI, 02 MAR 2026
+NUMBER OF-12/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+7. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 02 MAR 2026
+NUMBER OF-12/B/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: CHALLENGE AIRLINES (IL) LTD
+IATA code: 5C | ICAO code: ICL
+Postal Address: Axeria Business Centre 380, Level 1, Canon Road Santa Venera, SVR 9033 Malta, Malta
+Tel: +356 2713 7174 | Email: info@challenge-group.com
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: Jetex FZE
+Postal Address: P.O BOX: 54698 DUBAI, UAE
+Tel: +971 4 2124000 | Email: INVOICES@JETEX.COM
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+ICL1852 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0230 | LLBG | 1350
+ICL852 | 29MAR26 | 24OCT26 | 1234567 | VHHH | 0230 | LLBG | 1350
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B747-400F | As per AOC of ICL | ISRAEL
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH-LLBG | A202 | ASSAD | VILAO
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

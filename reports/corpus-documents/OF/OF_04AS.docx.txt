@@ -1,0 +1,54 @@
+FILE: OF 04AS.docx
+
+PARAGRAPHS
+HA NOI, 11 FEB 2026
+NUMBER O/F-04/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+2. Billing address
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Commercial scheduled services
+4. Air traffic service routes:
+5. Aircraft:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 11 FEB 2026
+NUMBER O/F-04/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator
+Name: AIR FRANCE
+IATA code: AFR | ICAO code:
+Postal Address: OA SO Overflight Permits – Vianney ROGE45 rue de Paris - 95747 ROISSY CHARLES DE GAULLE CEDEX - FRANCE
+Tel: 0033(0)6.49.79.03.45 | Email : mail.ovf.afr@airfrance.fr
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: IO.NG Fee Controlling – Damien GAMARD
+Postal address: 45 rue de Paris - 95747 ROISSY CHARLES DE GAULLE CEDEX - FRANCE
+Tel: 0033(0)1.41.56.80.95 | Email : miscellaneous@egyptair.com, Planning.Slots@egyptair.com
+
+TABLE 4
+CONTEXT: 2. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AFR248 | 29MAR26 | 24OCT26 | 1234567 | LFPG | 2120 | RPLL | 1045 | A359
+AFR249 | 29MAR26 | 24OCT26 | 1234567 | RPLL | 1255 | LFPG | 0350 | A359
+
+TABLE 5
+CONTEXT: 3. Type of services/ Purpose of Flight(s): Commercial scheduled services
+4. Air traffic service routes:
+Sectors | ATS Routes | Entry Point | Exit Point
+LFPG-RPLL | B202 / L628 | BOMPA | ARESI
+RPLL-LFPG | L628 / B202 | ARESI | BOMPA
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.
+
+TABLE 6
+CONTEXT: 5. Aircraft:
+Aircraft Type | Registration marks | Nationality
+B789 | According to the AOC of Air France | France
+B777 | According to the AOC of Air France | France
+A359 | According to the AOC of Air France | France

@@ -1,0 +1,47 @@
+FILE: R40B1  40B REV1.doc
+
+PARAGRAPHS
+Revision of landing/overflight permit
+Hanoi, 13/04/2026
+Permit No.: LD-40/B/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: EVA AIRWAYS CORPORATION IATA code: BR ICAO code: EVA Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi. Tel: 00842439361600 Email: theoluong@evaair.com 
+2. CHANGE SCHEDULE
+2.1. Original schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type Original permit BR6061 14Apr26 14Apr26 0200000 TPE 1630 SIN 2055 777F LD-40/B/S/2026VN BR6061 14Apr26 14Apr26 0200000 SIN 2255 HAN 0200+1 777F LD-40/B/S/2026VN BR6062 15Apr26 15Apr26 0030000 HAN 0400 TPE 0650 777F LD-40/B/S/2026VN 
+2.2. New schedule(s) (UTC Time)
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA Aircraft Type BR6007 14Apr26 14Apr26 0200000 TPE 2020 BKK 2305 777F BR6007 15Apr26 15Apr26 0030000 BKK 0205 HAN 0400 777F BR6008 15Apr26 15Apr26 0030000 HAN 0600 TPE 0850 777F 
+3. Note: 
+- EVA AIRWAYS has no traffic right on sectors BKK-HAN
+- Other details unchanged.
+OTHER MAIN DETAILS IS UNCHANGED.
+ 
+4. Validity: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: Revision of landing/overflight permit
+Hanoi, 13/04/2026
+Permit No.: LD-40/B/S/2026VN/REV1
+ 
+1. Carrier/Operator
+Name: EVA AIRWAYS CORPORATION
+IATA code: BR | ICAO code: EVA
+Postal Address: 16 Phan Chu Trinh, Cua Nam Ward, Hanoi.
+Tel: 00842439361600 | Email: theoluong@evaair.com
+
+TABLE 2
+CONTEXT: 2. CHANGE SCHEDULE
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+BR6061 | 14Apr26 | 14Apr26 | 0200000 | TPE | 1630 | SIN | 2055 | 777F | LD-40/B/S/2026VN
+BR6061 | 14Apr26 | 14Apr26 | 0200000 | SIN | 2255 | HAN | 0200+1 | 777F | LD-40/B/S/2026VN
+BR6062 | 15Apr26 | 15Apr26 | 0030000 | HAN | 0400 | TPE | 0650 | 777F | LD-40/B/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+BR6007 | 14Apr26 | 14Apr26 | 0200000 | TPE | 2020 | BKK | 2305 | 777F
+BR6007 | 15Apr26 | 15Apr26 | 0030000 | BKK | 0205 | HAN | 0400 | 777F
+BR6008 | 15Apr26 | 15Apr26 | 0030000 | HAN | 0600 | TPE | 0850 | 777F

@@ -1,0 +1,38 @@
+FILE: R72B6 72B RVS6.docx
+
+PARAGRAPHS
+Hanoi, 11/05/2026 Permit No.: LD - 72/B/S/2026VN/REV6
+1. Carrier
+2. Schedule
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Aircraft:
+4. Note: Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG- DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 11/05/2026 Permit No.: LD - 72/B/S/2026VN/REV6
+1. Carrier
+Name: Emirates Airline
+IATA code: EK | ICAO code: UAE
+Postal Address: P.O.Box:686, Dubai, United Arab Emirates;
+Tel: +97147083415 | Email : cao.duong@emirates.com
+
+TABLE 2
+CONTEXT: 2. Schedule
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit
+EK9814 | 11MAY26 | 11MAY26 | 1------ | DWC | 0930 | HAN | 1340 | 77X | LD - 72/B/S/2026VN
+EK9815 | 11MAY26 | 11MAY26 | 1------ | HAN | 1600 | DWC | 0050+1 | 77X | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+EK9814 | 11MAY26 | 11MAY26 | 1------ | DWC | 1035 | HAN | 1445 | 77W
+EK9815 | 11MAY26 | 11MAY26 | 1------ | HAN | 1645 | DWC | 0135+1 | 77W
+
+TABLE 4
+CONTEXT: 3. Aircraft:
+Aircraft Type (11) | Registration Mark (12) | Nationality(15)
+77W | According to EK’s FAOC | UAE

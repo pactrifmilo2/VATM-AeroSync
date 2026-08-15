@@ -1,0 +1,72 @@
+FILE: R59B1  59B REV1.docx
+
+PARAGRAPHS
+Hanoi, 21/4/2026
+Refer to the issued permit: LD - 59/B/S/2026VN
+1. Carrier/Operator
+2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Original Aircraft
+Original Airway:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+2.2. New schedule(s) (UTC Time)
+New Aircraft
+New Airway:
+Alternative airways: Other permitted airways published in Viet Nam’s AIP
+3. Note: Other details unchanged.
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 21/4/2026
+Refer to the issued permit: LD - 59/B/S/2026VN
+1. Carrier/Operator
+Name: Korean Air
+IATA code: KE | ICAO code: KAL
+Postal Address: 260 Haneul-Gil, Gangseo-Gu, Seoul, Korea
+Tel:0082226566044 | Email: selsps@koreanair.com
+
+TABLE 2
+CONTEXT: 2. [Revised Item or Additional details(2), e.g. Schedule, Airway, …]
+[Original and New item]
+[2.1. Original schedule(s) (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9) | Original permit(3)
+KE8351 | 03-May-2026 | 31-May-2026 | ------7 | ICN | 1640 | BKK | 2220 | 77X | LD - 59/B/S/2026VN
+KE8351 | 04-May-2026 | 01-Jun-2026 | 1------ | BKK | 0020 | SGN | 0205 | 74Y/77X | 
+KE8352 | 04-May-2026 | 01-Jun-2026 | 1------ | SGN | 0405 | ICN | 0925 | 74Y/77X | 
+
+TABLE 3
+CONTEXT: Original Aircraft
+Aircraft Type (11) | Registration Mark (12) | Nationality
+77X | As per FAOC of KE | Korean
+
+TABLE 4
+CONTEXT: Original Airway:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point fromVietnam FIR
+BKK-SGN | R468 | SAPEN | 
+HAN-SIN |  | SAPEN | 
+SGN-ICN | W12-G221 |  | BUNTA
+ | N500-L625 |  | ARESI
+
+TABLE 5
+CONTEXT: Alternative airways: Other permitted airways published in Viet Nam’s AIP
+2.2. New schedule(s) (UTC Time)
+Flight number(1) | Effective from(2) | Effective to(3) | Days of services(4) | Departure Airport(5) | ETD(6) | Arrival Airport(7) | ETA(8) | Aircraft Type(9)
+KE9351 | 03-May-2026 | 31-May-2026 | ------7 | ICN | 1430 | SGN | 1950 | 77X
+KE9351 | 03-May-2026 | 31-May-2026 | ------7 | SGN | 2150 | BKK | 2320 | 
+KE9352 | 04-May-2026 | 01-Jun-2026 | 1------ | BKK | 0120 | ICN | 0625 | 
+
+TABLE 6
+CONTEXT: New Aircraft
+Aircraft Type (11) | Registration Mark (12) | Nationality(15)
+74Y | As per FAOC of KE | Korean
+77X | As per FAOC of KE | 
+
+TABLE 7
+CONTEXT: New Airway:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point fromVietnam FIR
+ICN-SGN | N892 N500 | MONBO | -
+HAN-PEN | A1 Q1 | BUNTA | -
+SGN-BKK | R468 | - | SAPEN
+ | - | - | SAPEN

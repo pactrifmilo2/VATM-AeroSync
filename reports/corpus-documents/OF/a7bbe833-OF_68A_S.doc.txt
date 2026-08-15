@@ -1,0 +1,59 @@
+FILE: OF 68A S.doc
+
+PARAGRAPHS
+Ha Noi, 09th March 2026
+№: OF - 68/A/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: CHONGQING AIRLINES IATA code: OQ ICAO code: CQN Postal Address: LINGANGROAD#6, YUBEI, DISTRICT, CHONGQING MUNICIPALITY, CHINA Tel: 023-88358034
+ Email: HYPERLINK "mailto:NAVSERVICE@ACCA.COM.CN" NAVSERVICE@ACCA.COM.CN , LIYVXIAO@CSAIR.COM 
+2. Billing address:
+Name: CHONGQING AIRLINES COMPANY LIMITED Postal Address: LINGANGROAD#6, YUBEI, DISTRICT, CHONGQING MUNICIPALITY, CHINA Tel: 023-88358034
+ Email: HYPERLINK "mailto:NAVSERVICE@ACCA.COM.CN" NAVSERVICE@ACCA.COM.CN , LIYVXIAO@CSAIR.COM 
+3. Schedules: UTC Time
+Flight number Effective from Effective to Days of services Departure Airport ETD Arrival Airport ETA CQN2095 29MAR26 24OCT26 12345667 ZUCK 0045 WSSS 0510 CQN2096 29MAR26 24OCT26 12345667 WSSS 0620 ZUCK 1120 
+4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+Aircraft Type Registration Mark Nationality A321/A320/A319 OR SUBS B1826 OR SUBS CHINA 
+6. Airways:
+Sector Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR ZUCK-WSSS R474 Q3 Q1 L644 L642 TEBAK ESPOB WSSS-ZUCK M753 L637 Q2 N639 Q3 R474 IPRIX TEBAK Alternative airways: Other permitted airways published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 09th March 2026
+№: OF - 68/A/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: CHONGQING AIRLINES
+IATA code: OQ | ICAO code: CQN
+Postal Address: LINGANGROAD#6, YUBEI, DISTRICT, CHONGQING MUNICIPALITY, CHINA
+Tel: 023-88358034 | Email: HYPERLINK "mailto:NAVSERVICE@ACCA.COM.CN" NAVSERVICE@ACCA.COM.CN , LIYVXIAO@CSAIR.COM
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: CHONGQING AIRLINES COMPANY LIMITED
+Postal Address: LINGANGROAD#6, YUBEI, DISTRICT, CHONGQING MUNICIPALITY, CHINA
+Tel: 023-88358034 | Email: HYPERLINK "mailto:NAVSERVICE@ACCA.COM.CN" NAVSERVICE@ACCA.COM.CN , LIYVXIAO@CSAIR.COM
+
+TABLE 3
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+CQN2095 | 29MAR26 | 24OCT26 | 12345667 | ZUCK | 0045 | WSSS | 0510
+CQN2096 | 29MAR26 | 24OCT26 | 12345667 | WSSS | 0620 | ZUCK | 1120
+
+TABLE 4
+CONTEXT: 4. Purpose of Flight(s): Passenger
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A321/A320/A319 OR SUBS | B1826 OR SUBS | CHINA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+ZUCK-WSSS | R474 Q3 Q1 L644 L642 | TEBAK | ESPOB
+WSSS-ZUCK | M753 L637 Q2 N639 Q3 R474 | IPRIX | TEBAK
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

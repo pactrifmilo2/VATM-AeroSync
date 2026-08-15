@@ -30,6 +30,7 @@
                     <controls:DataGridTextColumn Header="TÊN FILE" Binding="{Binding StoredFileName}" Width="*" />
                     <controls:DataGridTextColumn Header="NGUỒN" Binding="{Binding SourceLabel}" Width="80" />
                     <controls:DataGridTextColumn Header="NGƯỜI GỬI" Binding="{Binding Sender}" Width="160" />
+                    <controls:DataGridTextColumn Header="FORMAT" Binding="{Binding FormatStatusLabel}" Width="190" />
                     <controls:DataGridTemplateColumn Header="THAO TÁC" Width="180">
                         <controls:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

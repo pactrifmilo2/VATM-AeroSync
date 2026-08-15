@@ -10,6 +10,7 @@ namespace AeroSync.UI;
 public sealed partial class MainWindow : Window
 {
     private readonly AeroSyncApiClient apiClient;
+    private readonly Dictionary<string, Page> pageCache = new(StringComparer.OrdinalIgnoreCase);
 
     public MainWindow(AeroSyncApiClient apiClient, string initialTag = "dashboard")
     {
@@ -32,12 +33,21 @@ public sealed partial class MainWindow : Window
 
     private void Navigate(string tag)
     {
-        ContentFrame.Content = tag switch
+        if (!pageCache.TryGetValue(tag, out var page))
         {
-            "config" => new ConfigPage(apiClient),
-            "dashboard" => new DashboardPage(apiClient),
-            "email-resend" => new EmailResendPage(apiClient),
-            _ => new PlaceholderPage((RootNav.SelectedItem as NavigationViewItem)?.Content?.ToString() ?? "AeroSync")
-        };
+            page = tag switch
+            {
+                "config" => new ConfigPage(apiClient),
+                "dashboard" => new DashboardPage(apiClient),
+                "email-resend" => new EmailResendPage(apiClient),
+                _ => new PlaceholderPage((RootNav.SelectedItem as NavigationViewItem)?.Content?.ToString() ?? "AeroSync")
+            };
+            pageCache[tag] = page;
+        }
+
+        if (!ReferenceEquals(ContentFrame.Content, page))
+        {
+            ContentFrame.Content = page;
+        }
     }
 }

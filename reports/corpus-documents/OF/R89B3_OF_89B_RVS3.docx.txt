@@ -1,0 +1,61 @@
+FILE: R89B3 OF 89B RVS3.docx
+
+PARAGRAPHS
+Hanoi, 29/06/2026
+Permit No.: OF - 89/B/S/2026VN/REV3
+1. Carrier/Operator
+2. Schedules
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+3. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+4. Other details unchanged.
+NGUYEN KHANH LY FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: Hanoi, 29/06/2026
+Permit No.: OF - 89/B/S/2026VN/REV3
+1. Carrier/Operator
+Name: QATAR AIRWAYS
+IATA code: QR | ICAO code: QTR
+Postal Address: QATAR AIRWAYS, IOC- ATM / OVERFLIGHT PERMISSIONS SECTION, FLIGHT OPERATIONS, P.O. BOX 22550, DOHA, QATAR
+Tel: +974 40106617 | Email: OVERFLIGHTS@QATARAIRWAYS.COM.QA
+
+TABLE 2
+CONTEXT: 2. Schedules
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Original permit
+QTR8374 | 01JUL26 | 24OCT26 | 1234567 | OTHH | 0450 | ZSJN | 1250 | OF - 89/B/S/2026VN
+QTR8375 | 01JUL26 | 24OCT26 | 1234567 | ZSJN | 1400 | OTHH | 2240 | 
+QTR8408 | 02JUL26 | 30JUL26 | ---4--- | WSSS | 1650 | VHHH | 2040 | 
+QTR8478 | 07JUL26 | 28JUL26 | -2----- | OTHH | 0140 | VHHH | 1025 | 
+QTR8906 | 03JUL26 | 31JUL26 | ----5-- | VMMC | 2100 | OTHH | 0555+ | 
+QTR8906 | 06JUL26 | 27JUL26 | 1------ | VMMC | 2100 | OTHH | 0555+ | 
+QTR8910 | 08JUL26 | 29JUL26 | --3---- | VMMC | 0015 | OTHH | 0910 | 
+QTR8910 | 01JUL26 | 01JUL26 | --3---- | VMMC | 0015 | OTHH | 0910 | 
+QTR8913 | 06JUL26 | 27JUL26 | 1------ | VMMC | 0205 | OTHH | 1100 | 
+QTR8913 | 01JUL26 | 31JUL26 | --3-5-- | VMMC | 0205 | OTHH | 1100 | 
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+QTR8374 | 01JUL26 | 24OCT26 | 1234567 | OTHH | 0100 | VMMC | 0900
+QTR8375 | 01JUL26 | 24OCT26 | 1234567 | VMMC | 1130 | VTBS | 1930
+QTR8408 | 02JUL26 | 30JUL26 | ---4--- | OTHH | 1250 | VHHH | 2055
+QTR8478 | 07JUL26 | 28JUL26 | -2----- | NZAA | 2350 | VHHH | 1120
+QTR8906 | 03JUL26 | 31JUL26 | ----5-- | VMMC | 0030 | VECC | 0415
+QTR8906 | 06JUL26 | 27JUL26 | 1------ | VMMC | 2005 | VECC | 2350
+QTR8910 | 08JUL26 | 29JUL26 | --3---- | VMMC | 0020 | VECC | 0405
+QTR8910 | 01JUL26 | 01JUL26 | --3---- | VMMC | 0015 | VTBS | 0300
+QTR8913 | 06JUL26 | 27JUL26 | 1------ | VMMC | 0145 | VECC | 0530
+QTR8913 | 01JUL26 | 31JUL26 | --3-5-- | VMMC | 1805 | VECC | 2150
+
+TABLE 4
+CONTEXT: 3. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+OTHH-VMMC | A206 | NALAO | ASSAD
+VMMC-VTBS | A202 | ASSAD | VILAO
+OTHH-VHHH | A206 | NALAO | ASSAD
+NZAA-VHHH | M771 | DUDIS | DONDA
+VMMC-VECC | R474 NOB W21 BQ B214 | TEBAK | LADON

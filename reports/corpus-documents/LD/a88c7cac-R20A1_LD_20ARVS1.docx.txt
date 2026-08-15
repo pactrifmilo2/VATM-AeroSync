@@ -1,0 +1,66 @@
+FILE: R20A1 LD 20ARVS1.docx
+
+PARAGRAPHS
+HANOI, 06 JULY 2026
+PERMIT No.: LD-20/A/S/2026VN /REV1
+IATA SCHEDULE SEASON: Summer 2026
+1. Carrier/Operator:
+2. . Schedule
+2.1. Original schedules (UTC Time)
+2.2. New schedules (UTC Time)
+3. Purpose of Flight(s): Passengers
+4. Aircraft
+5. Note: Other details unchanged
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong;
+C.c: VATM, SAA;
+C.c: Bui Minh Dang - DIR of ATD - CAAV, Pham Thi Thao - DEP DIR of ATD – CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 06 JULY 2026
+PERMIT No.: LD-20/A/S/2026VN /REV1
+IATA SCHEDULE SEASON: Summer 2026
+1. Carrier/Operator:
+Name: THAI AIRWAYS INTERNATIONAL PUBLIC COMPANY LIMITED
+IATA code: TG | ICAO code: THA
+Address: 89 VIBHAVADI-RANGSIT ROAD, BANGKOK 10900 THAILAND
+Tel: +66-2-5452738 | Email: chawarit.t@thaiairways.com; bkkdsb2office@thaiairways.com
+
+TABLE 3
+CONTEXT: 2. . Schedule
+2.1. Original schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TG550 | 06Jul26 | 24Oct26 | 1234567 | BKK | 0035 | SGN | 0205 | 772/788/789/333/320/32A
+TG551 | 06Jul26 | 24Oct26 | 1234567 | SGN | 0305 | BKK | 0430 | 
+TG556 | 06Jul26 | 24Oct26 | 1234567 | BKK | 1035 | SGN | 1205 | 
+TG557 | 06Jul26 | 24Oct26 | 1234567 | SGN | 1310 | BKK | 1435 | 
+ |  |  |  |  |  |  |  | 
+TG560 | 06Jul26 | 24Oct26 | 1234567 | BKK | 0045 | HAN | 0235 | 
+TG561 | 06Jul26 | 24Oct26 | 1234567 | HAN | 0335 | BKK | 0525 | 
+TG564 | 06Jul26 | 24Oct26 | 1234567 | BKK | 1050 | HAN | 1240 | 
+TG565 | 06Jul26 | 24Oct26 | 1234567 | HAN | 1345 | BKK | 1535 | 
+
+TABLE 4
+CONTEXT: 2.2. New schedules (UTC Time)
+Flight Number | Effective from | Effective to | Day(s) of Services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+TG550 | 06Jul26 | 24Oct26 | 1234567 | BKK | 0035 | SGN | 0205 | 772/788/789/333/320/32A/32Q
+TG551 | 06Jul26 | 24Oct26 | 1234567 | SGN | 0305 | BKK | 0430 | 
+TG556 | 06Jul26 | 24Oct26 | 1234567 | BKK | 1035 | SGN | 1205 | 
+TG557 | 06Jul26 | 24Oct26 | 1234567 | SGN | 1310 | BKK | 1435 | 
+ |  |  |  |  |  |  |  | 
+TG560 | 06Jul26 | 24Oct26 | 1234567 | BKK | 0045 | HAN | 0235 | 
+TG561 | 06Jul26 | 24Oct26 | 1234567 | HAN | 0335 | BKK | 0525 | 
+TG564 | 06Jul26 | 24Oct26 | 1234567 | BKK | 1050 | HAN | 1240 | 
+TG565 | 06Jul26 | 24Oct26 | 1234567 | HAN | 1345 | BKK | 1535 | 
+
+TABLE 5
+CONTEXT: 3. Purpose of Flight(s): Passengers
+4. Aircraft
+Aircraft Type | Registration Marks | Nationality
+77278978833332032A32Q | As per FAOC of TG | Thailand

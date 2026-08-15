@@ -1,0 +1,44 @@
+FILE: R41A1  40A  REV1.docx
+
+PARAGRAPHS
+Ha Noi, March 27, 2026
+Permit No.: LD-41/A/S/2026VN/REV1
+IATA Schedule Season: Summer 2026
+1. Carrier
+2. Schedule change:
+2.1. Original schedule
+2.2. New schedule
+3. Note: Other details unchanged.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Mai Thanh
+C.c: VATM; Bui Minh Dang - Director of ATD/CAAV
+(Ref. G17.44-260325-0144)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: ww.caa.gov.vn
+
+TABLE 2
+CONTEXT: Ha Noi, March 27, 2026
+Permit No.: LD-41/A/S/2026VN/REV1
+IATA Schedule Season: Summer 2026
+1. Carrier
+Name: PT. Indonesia AirAsia
+IATA code: QZ | ICAO code: AWQ
+Postal Address: Jl.Marsekal Suryadarma No.1, Kebon Sayur RT 01/01, Kel.Selapajang Jaya, Kec.Neglasari, Tangerang, Banten, 15127, Indonesia.
+Tel: +622129850983 | Email: iaa_aagr@airasia.com
+
+TABLE 3
+CONTEXT: 2. Schedule change:
+2.1. Original schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QZ 480 | 29Mar26 | 24Oct26 | 1-3-5-7 | DPS | 0705 | DAD | 1135 | 320
+QZ 480 | 29Mar26 | 24Oct26 | 1-3-5-7 | DAD | 1205 | DPS | 1640 | 320
+
+TABLE 4
+CONTEXT: 2.2. New schedule
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+QZ 480 | 29Mar26 | 24Oct26 | 1-3-5-7 | DPS | 0705 | DAD | 1135 | 320
+QZ 481 | 29Mar26 | 24Oct26 | 1-3-5-7 | DAD | 1205 | DPS | 1640 | 320

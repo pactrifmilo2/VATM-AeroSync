@@ -1,0 +1,51 @@
+FILE: R11A2  LD 11AS CNL.docx
+
+PARAGRAPHS
+CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER 2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De Ward, Hanoi, Vietnam
+Tel: 00842438272281; Fax: 00824438272290
+Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: Aero K Airlines Co., LTD
+- IATA code: RF; ICAO code: EOK
+- Address: 154, Osongsaengmyeong 3-ro, Osong-eup, Heungdeok-gu, Cheongju, Chungbuk 28165 KR
+- Tel: +84(0)336113634; Email: salesplanning_team@aerok.com
+2. Schedules: All times in UTC
+3. Type of services/ Purpose of Flight(s): Passenger
+4. Reason of cancellation: Schedule changes for the CJJ–CXR/DAD operations in the S26 season.
+5. Ref to permit number: LD - 11/A/S/2026VN
+6. Applicant:
+- Name: Aero K Airlines Co., LTD
+- Tel: +84(0)336113634; Email: salesplanning_team@aerok.com
+- Application is submitted on: 16/Apr/2026
+7. Note:
+1,2,3,4,5,7 IATA code
+6 Name of ATS route: Example R468, A1, R474….
+
+TABLE 1
+CONTEXT: CANCELLATION FORM FOR SCHEDULED FLIGHT
+TO/FROM VIET NAM – SUMMER 2026
+To: Civil Aviation Authority of Viet Nam
+Address: 119 Nguyen Son, Bo De Ward, Hanoi, Vietnam
+Tel: 00842438272281; Fax: 00824438272290
+Email: atd@caa.gov.vn
+1. Carrier/Operator:
+- Name: Aero K Airlines Co., LTD
+- IATA code: RF; ICAO code: EOK
+- Address: 154, Osongsaengmyeong 3-ro, Osong-eup, Heungdeok-gu, Cheongju, Chungbuk 28165 KR
+- Tel: +84(0)336113634; Email: salesplanning_team@aerok.com
+2. Schedules: All times in UTC
+FlightNumber1 | Effective from | EffectiveTo | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+RF531 | 17Jul26 | 27Jul26 | 125 | CJJ | 1155 | DAD | 1655 | 320
+RF532 | 17Jul26 | 27Jul26 | 125 | DAD | 1755 | CJJ | 2210 | 320
+RF531 | 07Aug26 | 11Aug26 | 125 | CJJ | 1155 | DAD | 1655 | 320
+RF532 | 07Aug26 | 11Aug26 | 125 | DAD | 1755 | CJJ | 2210 | 320
+RF531 | 25Aug26 | 25Aug26 | 2 | CJJ | 1155 | DAD | 1655 | 320
+RF532 | 25Aug26 | 25Aug26 | 2 | DAD | 1755 | CJJ | 2210 | 320
+
+TABLE 2
+FlightNumber1 | Effective from | EffectiveTo | Day(s) of services | Departure Airport2 | ETD | Arrival Airport3 | ETA | Aircraft Type4
+RF557 | 17Jul26 | 17Jul26 | 5 | CJJ | 1030 | CXR | 1530 | 320
+RF558 | 17Jul26 | 17Jul26 | 5 | CXR | 1630 | CJJ | 2120 | 320

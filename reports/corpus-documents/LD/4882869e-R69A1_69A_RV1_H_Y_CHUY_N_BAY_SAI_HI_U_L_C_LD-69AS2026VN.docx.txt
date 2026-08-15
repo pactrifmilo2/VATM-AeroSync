@@ -1,0 +1,31 @@
+FILE: R69A1 69A RV1 HỦY CHUYẾN BAY SAI HIỆU LỰC LD-69AS2026VN.docx
+
+PARAGRAPHS
+HÀ NỘI, NGÀY 29/3/2026
+Căn cứ phép bay LD-69/A/S/2026VN
+CỤC HKVN XÁC NHẬN HỦY CÁC CHUYẾN BAY SAU:
+Hãng hàng không
+Lịch bay (Giờ UTC)
+CÁC CHI TIẾT KHÁC TRONG PHÉP BAY KHÔNG THAY ĐỔI
+TRÂN TRỌNG./.
+THÙY DƯƠNG GỬI THAY BÀ PHẠM THẢO - PTP VTHK
+C/c: BÙI MINH ĐĂNG - TP VTHK, CHKVN (ĐỂ B/C)
+
+TABLE 1
+CONTEXT: HÀ NỘI, NGÀY 29/3/2026
+Căn cứ phép bay LD-69/A/S/2026VN
+CỤC HKVN XÁC NHẬN HỦY CÁC CHUYẾN BAY SAU:
+Hãng hàng không
+Tên: CÔNG TY BAY DỊCH VỤ HÀNG KHÔNG VASCO
+Mã IATA: 0V | Mã ICAO: VFC
+Địa chỉ bưu điện:
+Điện thoại: 0981818334 | Thư điện tử: flightops.vasco@vasco.com.vn
+
+TABLE 2
+CONTEXT: Lịch bay (Giờ UTC)
+Số hiệu chuyến bay(1) | Hiệu lực từ(2) | Hiệu lực đến(3) | Ngày trong tuần(4) | Sân bay cất cánh(5) | Giờ khởi hành dự kiến (6) | Sân bay hạ cánh(7) | Giờ dự kiến hạcánh(8) | Loại tàu bay(9)
+0V8068 | 07APR26 | 24OCT24 | 1 | VCS | 09:45 | SGN | 10:50 | ATR72
+0V1892 | 02NOV25 | 05NOV25 | 1237 | VCS | 02:30 | SGN | 03:35 | ATR72
+0V1894 | 02NOV25 | 05NOV25 | 1237 | VCS | 05:25 | SGN | 06:30 | ATR72
+0V1986 | 02NOV25 | 05NOV25 | 1237 | VCS | 08:20 | SGN | 09:25 | ATR72
+0V8078 | 01NOV25 | 01NOV25 | 6 | VCS | 23:50 | SGN | 00:50+ | ATR72

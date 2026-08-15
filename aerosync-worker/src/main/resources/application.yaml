@@ -60,6 +60,7 @@ app:
     incoming: ${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}
     processed: ${APP_FILE_PATHS_PROCESSED:D:/vatm-storage/processed}
     error: ${APP_FILE_PATHS_ERROR:D:/vatm-storage/error}
+    error-format: ${APP_FILE_PATHS_ERROR_FORMAT:D:/vatm-storage/error-format}
     quarantine: ${APP_FILE_PATHS_QUARANTINE:D:/vatm-storage/quarantine}
   worker:
     max-file-size-bytes: 10485760

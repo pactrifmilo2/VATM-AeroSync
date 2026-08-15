@@ -1,0 +1,66 @@
+FILE: OF-69_B_S_2026VN_TWA.doc
+
+PARAGRAPHS
+Ha Noi, 26th March 2026
+№: OF - 69/B/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: TWAY AIR CO.LTD IATA code:TW ICAO code: TWB Add: 10F, 167 DONGDEOK-RO, JUNG-GU, DAEGU, REPUBLIC OF KOREA Tel: 02 2660 8490 Email: HYPERLINK "mailto:oug@twayair.com" oug@twayair.com 
+2. Billing address:
+Name: TWAY AIR CO.LTD Postal Address: 10F, 167 DONGDEOK-RO, JUNG-GU, DAEGU, REPUBLIC OF KOREA Tel: 02 2660 8490 Email: HYPERLINK "mailto:oug@twayair.com" oug@twayair.com 
+3. Schedules: All times in UTC
+Flight
+Number Effective from Effective
+ To Day(s) of services Departure Airport ETD Arrival Airport ETA TWB171 30MAR26 06APR26 1------ RKSI 0830 VGHS 1535 TWB172 30MAR26 06APR26 1------ VGHS 1700 RKSI 2335 
+4. Type of services: Passenger
+ 
+5. Aircraft:
+Aircraft Type Registration Mark
+ Nationality B38M/B738/A333/A332/B77W AS PER THE TWB AOC KOREA 
+6. Airways: 
+Sectors Airways Entry Point into Vietnam FIR Exit Point from Vietnam FIR RKSI- VGHS R474 W21 B214 
+ TEBAK LADON A1 W1 W21 B214 BUNTA LADON VGHS-RKSI B214 W21 R474 LADON TEBAK B214 W21 Q1 A1 LADON BUNTA 
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP. 
+7. Window: -3/+72hours
+PHAM GIANG FOR PHAM THAO DEP DIR-ATD, CAAV
+Cc: BUI MINH DANG DIR-ATD (FOR REPORT)
+
+TABLE 1
+CONTEXT: Ha Noi, 26th March 2026
+№: OF - 69/B/S/2026VN
+IATA Schedule Season: Season SUMMER 2026
+1. Carrier/Operator:
+Name: TWAY AIR CO.LTD
+IATA code:TW | ICAO code: TWB
+Add: 10F, 167 DONGDEOK-RO, JUNG-GU, DAEGU, REPUBLIC OF KOREA
+Tel: 02 2660 8490 | Email: HYPERLINK "mailto:oug@twayair.com" oug@twayair.com
+
+TABLE 2
+CONTEXT: 2. Billing address:
+Name: TWAY AIR CO.LTD
+Postal Address: 10F, 167 DONGDEOK-RO, JUNG-GU, DAEGU, REPUBLIC OF KOREA
+Tel: 02 2660 8490 | Email: HYPERLINK "mailto:oug@twayair.com" oug@twayair.com
+
+TABLE 3
+CONTEXT: 3. Schedules: All times in UTC
+Flight Number | Effective from | Effective To | Day(s) of services | Departure Airport | ETD | Arrival Airport | ETA
+TWB171 | 30MAR26 | 06APR26 | 1------ | RKSI | 0830 | VGHS | 1535
+TWB172 | 30MAR26 | 06APR26 | 1------ | VGHS | 1700 | RKSI | 2335
+
+TABLE 4
+CONTEXT: 4. Type of services: Passenger
+ 
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B38M/B738/A333/A332/B77W | AS PER THE TWB AOC | KOREA
+
+TABLE 5
+CONTEXT: 6. Airways:
+Sectors | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+RKSI- VGHS | R474 W21 B214 | TEBAK | LADON
+ | A1 W1 W21 B214 | BUNTA | LADON
+VGHS-RKSI | B214 W21 R474 | LADON | TEBAK
+ | B214 W21 Q1 A1 | LADON | BUNTA
+
+TABLE 6
+Alternate route: Other permitted air traffic service routes published in Viet Nam’s AIP.

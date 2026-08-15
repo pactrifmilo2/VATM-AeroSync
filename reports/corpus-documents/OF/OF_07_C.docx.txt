@@ -1,0 +1,54 @@
+FILE: OF 07 C.docx
+
+PARAGRAPHS
+HANOI, 20MAY2026
+Permit No.: OF-07/C/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+2. Billing address
+3. Schedules: UTC Time
+4. Purpose of Flight(s): Cargo
+5. Aircraft:
+6. Air traffic service routes:
+7. VALIDITY: -3/+72 HOURS
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 20MAY2026
+Permit No.: OF-07/C/S/2026VN
+IATA SEASON-SUMMER 2026
+1. Carrier
+Name: Myanmar Airways International
+IATA code: 8M | ICAO code: MMA
+Postal Address: No. 88, 11 Qtr, Pyay Road, Hlaing Township, Yangon, Myanmar
+Tel: +951 533207 | Email: aungthu@maiair.aero, yeaung@maiair.aero, admin.fltops@maiair.aero
+
+TABLE 3
+CONTEXT: 2. Billing address
+Name: International Business Center
+Postal Address: No. 88, 11 Qtr, Pyay Road, Hlaing Township, Yangon, Myanmar
+Tel: +951 9670028 Ext: 614, Fax | Email: finance@maiair.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+MMA-774 | 23May26 | 24Oct26 | 1234567 | VYYY | 0700 | ZGNN | 0930
+MMA-775 | 23May26 | 24Oct26 | 1234567 | ZGNN | 1130 | VYYY | 1400
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): Cargo
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+A321-231 | RP-C9866 | Myanmar
+
+TABLE 6
+CONTEXT: 6. Air traffic service routes:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VYYY-ZGNN | B465 R474 | LAPON | TEBAK
+ZGNN -VYYY | R474 B465 | TEBAK | LAPON
+Alternative airways: Other permitted airways published in Viet Nam’s AIP

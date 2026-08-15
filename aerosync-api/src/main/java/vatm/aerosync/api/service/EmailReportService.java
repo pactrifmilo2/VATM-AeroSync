@@ -194,7 +194,9 @@ public class EmailReportService {
                 metadata.getAcknowledgementStatus(),
                 metadata.isIngestComplete(),
                 metadata.getAcknowledgedAt(),
-                job != null ? job.getStatus() : null);
+                job != null ? job.getStatus() : null,
+                latestFileRecord != null && WordFormatRequirement.isRequired(
+                        latestFileRecord.getOriginalFileName(), latestFileRecord.getErrorMessage()));
     }
 
     private Map<Long, String> permitNumbersFor(List<EmailMetadata> metadataRows) {

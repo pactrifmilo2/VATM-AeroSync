@@ -1,0 +1,33 @@
+FILE: R33A1 RVS1  CORR.docx
+
+PARAGRAPHS
+HANOI, 14JUL2026
+Refer to the issued permit: LD-33/A/S/2026VN
+THE CAAV CONFIRMS CANCEL AS FLWS:
+1. Carrier/Operator: - Name : THAI AIRASIA - IATA code : FD; ICAO code: AIQ - Address : THAI AIRASIA Company Limited, 222, Don Mueang International Airport, 3rd floor, Central Office Building, No. 3200, Vibhavadi Rangsit Road, Sanambin, Don Mueang, Bangkok, 10120; - Tel : +662-562-5799; Fax: NIL; Email: thaiflightops@airasia.com
+2. CANCEL Schedules (UTC Time) LD-33/A/S/2026VN
+3. Note: Other details unchanged
+BRGDS
+VU THI THUY DUONG FOR PHAM THI THAO-DEP DIR OF ATD-CAAV
+C/C: BUI MINH DANG-DIR OF ATD-CAAV (FOR REPORT)
+
+TABLE 1
+CONTEXT: HANOI, 14JUL2026
+Refer to the issued permit: LD-33/A/S/2026VN
+THE CAAV CONFIRMS CANCEL AS FLWS:
+1. Carrier/Operator: - Name : THAI AIRASIA - IATA code : FD; ICAO code: AIQ - Address : THAI AIRASIA Company Limited, 222, Don Mueang International Airport, 3rd floor, Central Office Building, No. 3200, Vibhavadi Rangsit Road, Sanambin, Don Mueang, Bangkok, 10120; - Tel : +662-562-5799; Fax: NIL; Email: thaiflightops@airasia.com
+2. CANCEL Schedules (UTC Time) LD-33/A/S/2026VN
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+
+FD642 | 14-Jul-26 | 25-Jul-26 | 1234567 | DMK | 23:40 | HAN | 01:30 | 320/32N /32Q
+FD643 | 14-Jul-26 | 25-Jul-26 | 1234567 | HAN | 02:05 | DMK | 03:55 | 
+FD642 | 27-Jul-26 | 03-Aug-26 | 134567 | DMK | 23:40 | HAN | 01:30 | 
+FD643 | 27-Jul-26 | 03-Aug-26 | 134567 | HAN | 02:05 | DMK | 03:55 | 
+FD642 | 04-Aug-26 | 31-Aug-26 | 1234567 | DMK | 23:40 | HAN | 01:30 | 
+FD643 | 04-Aug-26 | 31-Aug-26 | 1234567 | HAN | 02:05 | DMK | 03:55 | 
+
+FD646 | 02-Aug-26 | 30-Aug-26 | 357 | DMK | 01:00 | CXR | 03:00 | 320/32N /32Q
+FD647 | 02-Aug-26 | 30-Aug-26 | 357 | CXR | 03:30 | DMK | 05:25 | 
+
+FD662 | 14-Jul-26 | 31-Jul-26 | 1357 | DMK | 08:40 | PQC | 10:00 | 320/32N /32Q
+FD663 | 14-Jul-26 | 31-Jul-26 | 1357 | PQC | 10:30 | DMK | 11:55 | 

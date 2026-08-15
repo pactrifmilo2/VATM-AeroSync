@@ -1,0 +1,110 @@
+FILE: OF 32 AS.docx
+
+PARAGRAPHS
+HA NOI, 26 FEB 2026
+NUMBER OF-32/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+2. Billing address:
+3. Schedules: UTC Time
+4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+6. Airways:
+6. VALIDITY: -3/+72 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG-DIR OF ATD-CAAV
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HA NOI, 26 FEB 2026
+NUMBER OF-32/A/S/2026VN
+IATA SEASONS: SUMMER 2026
+1. Carrier/Operator:
+Name: AeroLogic GmbH
+IATA code: 3S | ICAO code: BOX
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: occ@aerologic.aero
+
+TABLE 3
+CONTEXT: 2. Billing address:
+Name: AeroLogic GmbH
+Postal Address: Josef-von-Copertino-Str. 2, 04435 Schkeuditz, Germany
+Tel: +4934204443122 | Email: accounting@aerologic.aero
+
+TABLE 4
+CONTEXT: 3. Schedules: UTC Time
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+BOX510 | 29Mar26 | 24Oct26 | 1234567 | EDDP | 0400 | VHHH | 1525
+BOX716 | 29Mar26 | 24Oct26 | 1234567 | OMDB | 0405 | VHHH | 1105
+BOX717 | 29Mar26 | 24Oct26 | 1234567 | VHHH | 1305 | OMDB | 2110
+BOX517 | 29Mar26 | 24Oct26 | 1234567 | VHHH | 0200 | EDDP | 1445
+BOX522 | 29Mar26 | 24Oct26 | 1234567 | OBBI | 1655 | VHHH | 0035
+BOX527 | 29Mar26 | 24Oct26 | 1234567 | VHHH | 0110 | OBBI | 1030
+BOX635 | 29Mar26 | 24Oct26 | .2...67 | VHHH | 1135 | EDDF | 0035
+BOX500 | 31Mar26 | 24Oct26 | .2.4.6. | EDDP | 0350 | VHHH | 1520
+BOX502 | 01Apr26 | 23Oct26 | ..3.5.. | EDDP | 0350 | VHHH | 1520
+BOX503 | 31Mar26 | 22Oct26 | .2.4... | VHHH | 0030 | EDDP | 1310
+BOX509 | 02Apr26 | 22Oct26 | ...4... | VHHH | 0600 | EDDP | 1840
+BOX509 | 04Apr26 | 24Oct26 | .....6. | VHHH | 2255 | EDDP | 1135
+BOX515 | 30Mar26 | 21Oct26 | 1.3.... | VHHH | 0030 | EDDP | 1310
+BOX519 | 30Mar26 | 23Oct26 | 12345.. | VHHH | 0900 | EDDP | 2140
+BOX520 | 01Apr26 | 21Oct26 | ..3.... | OBBI | 1950 | VHHH | 0400
+BOX520 | 03Apr26 | 23Oct26 | ....5.. | OBBI | 1110 | VHHH | 1920
+BOX520 | 29Mar26 | 18Oct26 | ......7 | OBBI | 2235 | VHHH | 0645
+BOX523 | 31Mar26 | 22Oct26 | .2.4... | VHHH | 2250 | OBBI | 0720
+BOX525 | 30Mar26 | 21Oct26 | 1.3.... | VHHH | 2250 | OBBI | 0720
+BOX528 | 04Apr26 | 24Oct26 | .....6. | OBBI | 1110 | ZGSZ | 1910
+BOX540 | 01Apr26 | 21Oct26 | ..3.... | VTBS | 1635 | VHHH | 1930
+BOX542 | 31Mar26 | 20Oct26 | .2..... | VTBS | 1635 | VHHH | 1930
+BOX542 | 02Apr26 | 22Oct26 | ...4... | VTBS | 1710 | VHHH | 2005
+BOX544 | 30Mar26 | 19Oct26 | 1...... | UZTT | 1225 | VHHH | 1900
+BOX545 | 04Apr26 | 23Oct26 | ....5.. | VHHH | 2155 | EBBR | 1105
+BOX547 | 03Apr26 | 23Oct26 | ....5.. | VHHH | 0350 | EBBR | 1700
+BOX554 | 31Mar26 | 24Oct26 | .2...6. | EDDP | 0655 | RCTP | 1955
+BOX555 | 31Mar26 | 24Oct26 | .2...6. | RCTP | 2155 | OMDW | 0640
+BOX584 | 31Mar26 | 22Oct26 | .234... | OBBI | 1050 | ZGSZ | 1850
+BOX586 | 30Mar26 | 24Oct26 | 1...56. | VTBS | 1620 | ZGSZ | 1910
+BOX614 | 02Apr26 | 22Oct26 | ...4... | EDDF | 1945 | RCTP | 0855
+BOX615 | 03Apr26 | 23Oct26 | ....5.. | RCTP | 1125 | OMDW | 2010
+BOX614 | 04Apr26 | 24Oct26 | .....6. | EDDF | 2015 | RCTP | 0925
+BOX615 | 29Mar26 | 18Oct26 | ......7 | RCTP | 1155 | OMDW | 2040
+BOX629 | 29Mar26 | 18Oct26 | ......7 | VHHH | 2200 | OMDW | 0600
+BOX630 | 04Apr26 | 24Oct26 | .....6. | UZTT | 0310 | VHHH | 0945
+BOX631 | 04Apr26 | 24Oct26 | .....6. | VHHH | 1215 | OMDW | 2015
+BOX632 | 31Mar26 | 20Oct26 | .2..... | VOBL | 1420 | VHHH | 2005
+BOX633 | 31Mar26 | 20Oct26 | .2..... | VHHH | 2205 | OMDW | 0605
+BOX704 | 29Mar26 | 18Oct26 | ......7 | LIMC | 2040 | VHHH | 0815
+BOX712 | 31Mar26 | 22Oct26 | .2.4... | OMDB | 1205 | VHHH | 1940
+BOX712 | 04Apr26 | 24Oct26 | .....6. | OMDB | 1200 | VHHH | 1935
+BOX714 | 01Apr26 | 23Oct26 | ..3.5.. | OMDB | 1205 | VHHH | 1940
+BOX713 | 31Mar26 | 22Oct26 | .2.4... | VHHH | 2125 | OMDB | 0530
+BOX713 | 04Apr26 | 24Oct26 | .....6. | VHHH | 2135 | OMDB | 0540
+BOX715 | 30Mar26 | 21Oct26 | 1.3.... | VHHH | 2125 | OMDB | 0530
+BOX715 | 03Apr26 | 23Oct26 | ....5.. | VHHH | 2125 | OMDB | 0530
+BOX718 | 29Mar26 | 18Oct26 | ......7 | EDDP | 1620 | VHHH | 0350
+BOX719 | 30Mar26 | 19Oct26 | 1...... | VHHH | 0550 | EDDP | 1830
+BOX720 | 31Mar26 | 22Oct26 | .2.4... | VIDP | 1350 | VHHH | 1910
+BOX722 | 01Apr26 | 23Oct26 | ..3.5.. | VIDP | 1350 | VHHH | 1910
+BOX721 | 04Apr26 | 24Oct26 | .....6. | VHHH | 2335 | VIDP | 0535
+BOX726 | 29Mar26 | 18Oct26 | ......7 | OMDW | 2145 | VHHH | 0520
+BOX733 | 30Mar26 | 23Oct26 | 1.3.5.. | VHHH | 2140 | VOBL | 0320
+BOX735 | 31Mar26 | 22Oct26 | .2.4... | VHHH | 2140 | VOBL | 0320
+BOX728 | 05May26 | 23Oct26 | .2..5.. | OERK | 1430 | VHHH | 2300
+BOX724 | 06May26 | 21Oct26 | ..3.... | OERK | 1430 | VHHH | 2300
+BOX737 | 31Mar26 | 24Oct26 | .2.4.6. | VHHH | 2145 | OBBI | 0615
+BOX739 | 30Mar26 | 21Oct26 | 1.3.... | VHHH | 2145 | OBBI | 0615
+BOX739 | 03Apr26 | 23Oct26 | ....5.. | VHHH | 2250 | OBBI | 0720
+
+TABLE 5
+CONTEXT: 4. Purpose of Flight(s): SCHEDULED CARGO FLIGHT
+5. Aircraft:
+Aircraft Type | Registration Mark | Nationality
+B777F | D-AALA OR SUB | GERMANY
+
+TABLE 6
+CONTEXT: 6. Airways:
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+VHHH, RCTP - … | A1/W2/A206 | BUNTA | PAPRA/NALAO
+… - VHHH, ZGSZ, ZGGG, PANC, RCTP | A206/W2/A1 | PAPRA/NALAO | BUNTA
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.

@@ -5,7 +5,12 @@ param(
 
 $root = Split-Path -Parent $PSScriptRoot
 $envFile = Join-Path $root ".env"
-$jar = Join-Path $root "$JarName\target\$JarName-0.0.1-SNAPSHOT.jar"
+$jarFile = if ($JarName -eq "aerosync-worker") {
+    "$JarName-0.0.1-SNAPSHOT-deploy.jar"
+} else {
+    "$JarName-0.0.1-SNAPSHOT.jar"
+}
+$jar = Join-Path $root "$JarName\target\$jarFile"
 
 if (-not (Test-Path $envFile)) {
     Write-Host "Missing .env — run: .\run-aerosync.bat  (creates .env on first run)"

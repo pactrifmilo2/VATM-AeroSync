@@ -1,0 +1,54 @@
+FILE: LD 66B.docx
+
+PARAGRAPHS
+HANOI, 08th APRIL 2026
+PERMIT No.: LD-66/B/S/2026VN
+IATA SCHEDULE SEASON: Summer 2026
+1. Carrier
+2. Schedules (UTC Time)
+3. Purpose of Flight: Passenger
+4. Aircraft
+5. Airways
+Alternative airways: Other permitted airways published in Viet Nam’s AIP.
+6. Validity: -12/+24 Hours.
+7. Note
+7.1. The airline is permitted to operate only the aircraft types specified on the respective sector under item 2.Schedules. Any change of aircraft type requires an application for amendment of the flight permit.
+7.2. The airline is responsible for complying with applicable regulations on aircraft operation.
+For and on behalf of the
+CIVIL AVIATION AUTHORITY OF VIET NAM
+Do Hong Cam
+Deputy Director General
+Sent by Vu Thi Thuy Duong,
+C.c: VATM, NAA,
+C.c: Bui Minh Dang - DIR of ATD - CAAV, Tran Thanh Son - DEP DIR of ATD - CAAV.
+
+TABLE 1
+CỤC HÀNG KHÔNG VIỆT NAMCIVIL AVIATION AUTHORITY OF VIET NAM119 Nguyen Son Street, Bo De Ward, Ha NoiSocialist Republic of Viet Nam |  | Tel: (84 24) 38272281Fax: (84 24) 38272290E-mail: atd@caa.gov.vnWebsite: www.caa.gov.vn
+
+TABLE 2
+CONTEXT: HANOI, 08th APRIL 2026
+PERMIT No.: LD-66/B/S/2026VN
+IATA SCHEDULE SEASON: Summer 2026
+1. Carrier
+Name: AIR INDIA LIMITED
+IATA code: AI | ICAO code: AIC
+Postal Address: Vatika One on One, Industrial Development Area, IDC, Sec 16, Gurugram – 122007, Haryana, India
+Tel: +91 124-6320507 | Email: intl.relations@airindia.com
+
+TABLE 3
+CONTEXT: 2. Schedules (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+AI2390 | 01May26 | 24Oct26 | 1-3-567 | DEL | 19:50 | HAN | 00:20 | 32N/32Q/320/321
+AI2391 | 01May26 | 24Oct26 | 1-3-567 | HAN | 01:20 | DEL | 06:00 | 
+
+TABLE 4
+CONTEXT: 3. Purpose of Flight: Passenger
+4. Aircraft
+Aircraft Type | Registration Mark | Nationality
+321/32Q/320/32N | As per FAOC of AI | India
+
+TABLE 5
+CONTEXT: 5. Airways
+Sector | Airways | Entry Point into Vietnam FIR | Exit Point from Vietnam FIR
+DEL-HAN | B214 | LADON | 
+HAN-DEL | B214 |  | LADON

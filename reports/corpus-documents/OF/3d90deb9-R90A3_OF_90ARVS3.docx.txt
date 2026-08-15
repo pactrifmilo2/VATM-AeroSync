@@ -1,0 +1,32 @@
+FILE: R90A3 OF 90ARVS3.docx
+
+PARAGRAPHS
+REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 05/05/2026 PERMIT NO.: OF-90/A/S/2026VN ( REV3 )
+Carrier/Operator
+2. Revised Item or Additional details : Flight delay and change callsign
+2.1. Original schedule(s) (UTC Time)
+2.2. New schedule(s) (UTC Time)
+OTHER DETAILS REMAIN UNCHANGED
+3. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAAV
+
+TABLE 1
+CONTEXT: REVISION OF LANDING/OVERFLIGHT PERMIT
+HANOI, 05/05/2026 PERMIT NO.: OF-90/A/S/2026VN ( REV3 )
+Carrier/Operator
+Name: Cathay Pacific Airways Limited
+IATA code: CX | ICAO code: CPA
+Postal Address: CATHAY PACIFIC CITY, 08 SCENIC ROAD, HONG KONG INTERNATIONAL AIRPORT, LANTAU, HONG KONG
+Tel: +852 2747 6272 | Email: ARTHUR_WONG@CATHAYPACIFIC.COM
+
+TABLE 2
+CONTEXT: 2. Revised Item or Additional details : Flight delay and change callsign
+2.1. Original schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type | Original permit(3)
+CPA774 | 05May2026 | 05May2026 | 2 | VTBS | 0510Z | VHHH | 0815Z | A321 | OF-90/A/S/2026VN
+
+TABLE 3
+CONTEXT: 2.2. New schedule(s) (UTC Time)
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA | Aircraft Type
+CPA774D | 06May2026 | 06May2026 | 3 | VTBS | 1000Z | VHHH | 1250Z | A321

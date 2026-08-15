@@ -1,0 +1,33 @@
+FILE: R39A1 LD 39.A.S.2026VN.REV1.NX.docx
+
+PARAGRAPHS
+Hanoi, 26/07/2026 Permit No.: LD-39/A/S/2026VN/REV1
+1. Carrier
+2. Schedules (UTC Time)
+2.1. ORIGINAL SCHEDULE:
+2.2. NEW SCHEDULE:
+3. Purpose of Flight: Passenger (Delay due to Typhoon Noul at MFM)
+OTHER DETAILS REMAIN UNCHANGED
+4. VALIDITY: -12/+24 HOURS WINDOW FOR PSBL DELAY
+HA ANH FOR BUI MINH DANG- DIR OF ATD-CAA
+
+TABLE 1
+CONTEXT: Hanoi, 26/07/2026 Permit No.: LD-39/A/S/2026VN/REV1
+1. Carrier
+Name: AIR MACAU COMPANY LIMITED
+IATA code: NX | ICAO code: AMU
+Postal Address: 398 Alm. Dr. Calos D’Assumpcao, Edif. CNAC, 14-18 andar, MACAU
+Tel: 8396 6888 | Email: network_planning@airmacau.com.mo
+
+TABLE 2
+CONTEXT: 2. Schedules (UTC Time)
+2.1. ORIGINAL SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+NX950 | 25JUL26 | 25JUL26 | -----6- | MFM | 1305 | HAN | 1445
+NX949 | 25JUL26 | 25JUL26 | -----6- | HAN | 1605 | MFM | 1755
+
+TABLE 3
+CONTEXT: 2.2. NEW SCHEDULE:
+Flight number | Effective from | Effective to | Days of services | Departure Airport | ETD | Arrival Airport | ETA
+NX950 | 25JUL26 | 25JUL26 | -----6- | MFM | 1305 | HAN | 1445
+NX949D | 26JUL26 | 26JUL26 | ------7 | HAN | 0710 | MFM | 0900
