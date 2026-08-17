@@ -219,16 +219,17 @@ SELECT $targetFields FROM target_rows ORDER BY master_id, table_kind;
 "@
     Invoke-OracleExport $targetConnect $targetSql $targetPath
     $targetRows = @(Read-DelimitedRows $targetPath $targetColumns)
-    $targetByMaster = $targetRows | Group-Object MasterId -AsHashTable -AsString
+    $targetByIdentity = $targetRows | Group-Object { "$($_.MasterId):$($_.PermId)" } -AsHashTable -AsString
 
     $results = foreach ($tracking in $trackingRows) {
         $errors = [Collections.Generic.List[string]]::new()
         $warnings = [Collections.Generic.List[string]]::new()
-        $targets = @($targetByMaster[$tracking.TargetMasterId])
+        $targetIdentity = "$($tracking.TargetMasterId):$($tracking.TargetPermId)"
+        $targets = @($targetByIdentity[$targetIdentity])
         $target = if ($targets.Count -eq 1) { $targets[0] } else { $null }
 
         if ($targets.Count -eq 0) { $errors.Add("target master missing") }
-        if ($targets.Count -gt 1) { $errors.Add("target master exists in both SC and NO") }
+        if ($targets.Count -gt 1) { $errors.Add("target identity exists in both SC and NO") }
         if (-not $tracking.StoredPath -or -not (Test-Path -LiteralPath $tracking.StoredPath)) {
             $errors.Add("source file missing")
         }
@@ -243,17 +244,20 @@ SELECT $targetFields FROM target_rows ORDER BY master_id, table_kind;
         }
         $sourceSignal = "$($tracking.OriginalFileName) $($tracking.AttachmentName) $($tracking.Subject) $sourceText"
         $isSeasonal = $tracking.PermitId -match '/[SW]/CHK/'
-        $isRevision = $sourceSignal -match '(?i)\b(?:REV(?:ISION)?|RVS)\b|L[IỊ]CH\s+BAY\s+C[ŨU]|OLD\s+SCHEDULE'
+        $isRevision = $sourceSignal -match '(?i)\b(?:REVISE|REVISION|REV|RVS)\s*\d*|L[IỊ]CH\s+BAY\s+C[ŨU]|OLD\s+SCHEDULE'
 
         if ($target) {
             if ($target.PermId -ne $tracking.TargetPermId) { $errors.Add("target PERM_ID mismatch") }
             if ($target.PermitNumber -ne $tracking.PermitId) { $errors.Add("normalized permit ID mismatch") }
             $expectedKind = if ($isSeasonal) { "SC" } else { "NO" }
             if ($target.TableKind -ne $expectedKind) { $errors.Add("expected $expectedKind table, found $($target.TableKind)") }
-            if ([int]$target.DetailCount -ne [int]$tracking.ExpectedDetailCount) { $errors.Add("detail count mismatch") }
+            $detailCountMatches = [int]$target.DetailCount -eq [int]$tracking.ExpectedDetailCount
+            $revisionCountMatches = $isRevision -and [int]$target.DetailCount -ge [int]$tracking.ExpectedDetailCount
+            if (-not $detailCountMatches -and -not $revisionCountMatches) { $errors.Add("detail count mismatch") }
             if ([int]$target.DetailCount -lt 1) { $errors.Add("no target details") }
             if ([int]$target.InvalidCoreCount -gt 0) { $errors.Add("detail missing flight/from/to") }
-            if (-not $target.Reference) { $errors.Add("reference is blank") }
+            if (-not $target.Reference -and $isRevision) { $errors.Add("revision reference is blank") }
+            if (-not $target.Reference -and -not $isRevision) { $warnings.Add("original reference is blank") }
             if (-not $target.BillingAddress) { $errors.Add("billing address is blank") }
             if ([int]$target.PermitContentLength -lt 20) { $errors.Add("stored permit content is blank or too short") }
             if ([int]$target.RemarkCount -eq 0) { $warnings.Add("all detail remarks are blank") }
