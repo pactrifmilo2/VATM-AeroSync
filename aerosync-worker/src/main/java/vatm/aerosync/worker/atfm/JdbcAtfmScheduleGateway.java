@@ -919,9 +919,11 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     private String masterReference(SchedulePermit permit) {
         if (permit.reference() != null && !permit.reference().isBlank()) {
-            return permit.reference();
+            return permit.reference().trim();
         }
-        return permit.rawContent();
+        // REFERENCE is the permit's business reference, never the full Word body.
+        // Profiles without an explicit (REF...) field still have the source permit number.
+        return permit.sourcePermitNumber();
     }
 
     private String operatorName(Connection connection, SchedulePermit permit) throws SQLException {
