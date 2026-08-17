@@ -123,7 +123,7 @@ try {
     $trackingPath = Join-Path $tempDir "tracking.txt"
     $trackingColumns = @(
         "ImportId", "SyncJobId", "PermitId", "TargetMasterId", "TargetPermId",
-        "ExpectedDetailCount", "ImportedAt", "StoredPath", "OriginalFileName",
+        "ExpectedDetailCount", "TargetWriteCount", "ImportedAt", "StoredPath", "OriginalFileName",
         "AttachmentName", "Subject"
     )
     $trackingFields = @(
@@ -133,6 +133,7 @@ try {
         (Sql-Text "TO_CHAR(target_master_id)"),
         (Sql-Text "TO_CHAR(target_perm_id)"),
         (Sql-Text "TO_CHAR(detail_count)"),
+        (Sql-Text "TO_CHAR(target_write_count)"),
         (Sql-Text "TO_CHAR(imported_at, 'YYYY-MM-DD HH24:MI:SS')"),
         (Sql-Text "stored_path"),
         (Sql-Text "original_file_name"),
@@ -140,10 +141,14 @@ try {
         (Sql-Text "subject")
     ) -join " || '|~|' || "
     $trackingSql = @"
-WITH latest_import AS (
-    SELECT pi.*, ROW_NUMBER() OVER (ORDER BY pi.UPDATED_AT DESC, pi.ID DESC) AS audit_rn
+WITH saved_import AS (
+    SELECT pi.*,
+           COUNT(*) OVER (PARTITION BY pi.TARGET_MASTER_ID, pi.TARGET_PERM_ID) AS target_write_count
       FROM PERMIT_IMPORTS pi
      WHERE pi.STATUS = 'SAVED'
+), latest_import AS (
+    SELECT pi.*, ROW_NUMBER() OVER (ORDER BY pi.UPDATED_AT DESC, pi.ID DESC) AS audit_rn
+      FROM saved_import pi
 ), latest_file AS (
     SELECT fr.*, ROW_NUMBER() OVER (PARTITION BY fr.SYNC_JOB_ID ORDER BY fr.ID DESC) AS file_rn
       FROM FILE_RECORDS fr
@@ -156,7 +161,7 @@ SELECT $trackingFields
         SELECT pi.ID AS import_id, pi.SYNC_JOB_ID AS sync_job_id,
                pi.NORMALIZED_PERMIT_ID AS normalized_permit_id,
                pi.TARGET_MASTER_ID AS target_master_id, pi.TARGET_PERM_ID AS target_perm_id,
-               pi.DETAIL_COUNT AS detail_count, pi.UPDATED_AT AS imported_at,
+               pi.DETAIL_COUNT AS detail_count, pi.target_write_count, pi.UPDATED_AT AS imported_at,
                fr.STORED_PATH AS stored_path, fr.ORIGINAL_FILE_NAME AS original_file_name,
                em.ATTACHMENT_NAME AS attachment_name, em.SUBJECT AS subject
           FROM latest_import pi
@@ -242,9 +247,11 @@ SELECT $targetFields FROM target_rows ORDER BY master_id, table_kind;
                 $warnings.Add("legacy DOC was not text-inspected")
             }
         }
-        $sourceSignal = "$($tracking.OriginalFileName) $($tracking.AttachmentName) $($tracking.Subject) $sourceText"
+        $fileSignal = "$($tracking.OriginalFileName) $($tracking.AttachmentName) $($tracking.Subject)"
         $isSeasonal = $tracking.PermitId -match '/[SW]/CHK/'
-        $isRevision = $sourceSignal -match '(?i)\b(?:REVISE|REVISION|REV|RVS)\s*\d*|L[IỊ]CH\s+BAY\s+C[ŨU]|OLD\s+SCHEDULE'
+        $isRevision = $tracking.PermitId -match '(?i)[A-Z]?R\d+/' `
+                -or $fileSignal -match '(?i)\b(?:REVISE|REVISION|REV|RVS)\s*\d*' `
+                -or $sourceText -match '(?i)L[IỊ]CH\s+BAY\s+(?:G[ỐO]C|C[ŨU])|OLD\s+SCHEDULE'
 
         if ($target) {
             if ($target.PermId -ne $tracking.TargetPermId) { $errors.Add("target PERM_ID mismatch") }
@@ -252,8 +259,12 @@ SELECT $targetFields FROM target_rows ORDER BY master_id, table_kind;
             $expectedKind = if ($isSeasonal) { "SC" } else { "NO" }
             if ($target.TableKind -ne $expectedKind) { $errors.Add("expected $expectedKind table, found $($target.TableKind)") }
             $detailCountMatches = [int]$target.DetailCount -eq [int]$tracking.ExpectedDetailCount
-            $revisionCountMatches = $isRevision -and [int]$target.DetailCount -ge [int]$tracking.ExpectedDetailCount
-            if (-not $detailCountMatches -and -not $revisionCountMatches) { $errors.Add("detail count mismatch") }
+            $accumulatedCountMatches = [int]$tracking.TargetWriteCount -gt 1 `
+                    -and [int]$target.DetailCount -ge [int]$tracking.ExpectedDetailCount
+            if (-not $detailCountMatches -and -not $accumulatedCountMatches) { $errors.Add("detail count mismatch") }
+            if (-not $detailCountMatches -and $accumulatedCountMatches) {
+                $warnings.Add("shared target has accumulated details")
+            }
             if ([int]$target.DetailCount -lt 1) { $errors.Add("no target details") }
             if ([int]$target.InvalidCoreCount -gt 0) { $errors.Add("detail missing flight/from/to") }
             if (-not $target.Reference -and $isRevision) { $errors.Add("revision reference is blank") }
