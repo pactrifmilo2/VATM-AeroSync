@@ -97,7 +97,7 @@ public class PermitImportCoordinator {
                     markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
                     return outcome(attempt);
                 }
-                return updateExistingPermit(attempt, permit);
+                return updateExistingPermit(attempt, permit, snapshot);
             }
 
             AtfmWriteResult result = atfmScheduleGateway.insert(permit);

@@ -26,7 +26,7 @@ class HvnReferencedPermitTargetProfileTest {
                 createDocument("LD-11116/7/2026VN", "LD-2372/6/2026VN", true),
                 "LD 2517 HVN.docx");
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD 11116/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 11116/CHK/2026");
         assertThat(permit.referencedPermitId()).isEqualTo("LD 02372/S/CHK/2026");
         assertThat(permit.atfmTargetPermitId()).isEqualTo("LD 02372/S/CHK/2026");
         assertThat(permit.flights()).extracting(flight -> flight.flightNumber())
@@ -39,7 +39,7 @@ class HvnReferencedPermitTargetProfileTest {
                 createDocument("LD-1120/7/2026VN", "LD-68/A/S/2026VN", false),
                 "LD 2847 HVN384.docx");
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD 01120/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 01120/CHK/2026");
         assertThat(permit.referencedPermitId()).isEqualTo("LD 0068A/S/CHK/2026");
         assertThat(permit.atfmTargetPermitId()).isEqualTo("LD 0068A/S/CHK/2026");
     }

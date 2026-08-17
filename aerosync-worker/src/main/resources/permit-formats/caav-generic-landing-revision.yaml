@@ -33,6 +33,7 @@ reference:
   pattern: '(?iu)\(REF\.\s*(?<value>[^)]+)\)'
   group: value
   required: false
+referenceColumn: originalPermit
 purpose:
   defaultId: PAX
   mappings:

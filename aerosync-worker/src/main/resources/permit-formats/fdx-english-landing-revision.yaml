@@ -5,9 +5,9 @@ detectionPatterns:
   - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN\s*/\s*REV\d+'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*FDX\b|FEDERAL\s+EXPRESS\s+CORPORATION)'
 permit:
-  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\s*/\s*REV\d+\b'
+  pattern: '(?iu)\bLD\s*-?\s*(?=(?<numberRaw>\d{1,5})\s*/)(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\s*/\s*REV\d+\b'
   numberGroup: number
-  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  sourceTemplate: 'LD-{numberRaw}/{version}/{season}/{year}VN'
   normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
   zeroPadGroups:
     number: 4
@@ -19,6 +19,8 @@ permitDate:
   locale: en
 operator:
   fixedValue: FDX
+purpose:
+  defaultId: CAR
 schedule:
   preferredTableContextPatterns: ['(?iu)2\.2\.?\s*(?:NEW|REVISED)']
   lastMatchingTable: true

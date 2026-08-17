@@ -89,13 +89,19 @@ public class RevisionReconciliationStep {
                 if (inherited != null) {
                     current = inherit(current, inherited);
                 }
-                reconciled.add(current.withFlightNumber(operatorCatalog.normalizeFlightNumber(
-                        current.flightNumber(), permit.operatorId())).withAircraftOnlyRemark());
+                current = current.withFlightNumber(operatorCatalog.normalizeFlightNumber(
+                        current.flightNumber(), permit.operatorId()));
+                ScheduleFlight resolved = current;
+                boolean updatesExistingNonScheduled = !permit.seasonalPermit()
+                        && baseline.stream().anyMatch(item -> sameIdentity(item, resolved));
+                reconciled.add(updatesExistingNonScheduled
+                        ? resolved.withRemark(permit.revisionReference())
+                        : resolved.withAircraftOnlyRemark());
             }
             if (permit.seasonalRevision()) {
                 context.setSchedulePermit(permit.asSeasonalRevision(
                         materializeRevisionRows(permit, baseline, reconciled)));
-            } else if (sameNonScheduledIdentity(reconciled, baseline)) {
+            } else if (!baseline.isEmpty()) {
                 context.setSchedulePermit(permit.withFlights(reconciled));
             } else {
                 context.setSchedulePermit(permit.asNonScheduledRevision(
@@ -133,7 +139,6 @@ public class RevisionReconciliationStep {
         return sameText(original.flightNumber(), revised.flightNumber())
                 && java.util.Objects.equals(original.beginDate(), revised.beginDate())
                 && java.util.Objects.equals(original.endDate(), revised.endDate())
-                && sameText(original.serviceDays(), revised.serviceDays())
                 && sameAirport(original.fromAirport(), revised.fromAirport())
                 && sameAirport(original.toAirport(), revised.toAirport());
     }
@@ -218,6 +223,8 @@ public class RevisionReconciliationStep {
     private boolean sameFlightRoute(ScheduleFlight left, ScheduleFlight right) {
         return left != null && right != null
                 && sameText(left.flightNumber(), right.flightNumber())
+                && java.util.Objects.equals(left.beginDate(), right.beginDate())
+                && java.util.Objects.equals(left.endDate(), right.endDate())
                 && sameAirport(left.fromAirport(), right.fromAirport())
                 && sameAirport(left.toAirport(), right.toAirport());
     }

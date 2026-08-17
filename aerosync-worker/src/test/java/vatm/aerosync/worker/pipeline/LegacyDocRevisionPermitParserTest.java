@@ -19,8 +19,8 @@ class LegacyDocRevisionPermitParserTest {
     void parseContent_mapsOnlyNewLandingRevisionSchedule() {
         SchedulePermit permit = parser.parseContent(rawContent(), tables("767F"), "revision.doc");
 
-        assertThat(permit.sourcePermitNumber()).isEqualTo("LD-06/A/S/2026");
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD-06/A/S/2026");
+        assertThat(permit.sourcePermitNumber()).isEqualTo("LD-06/A/S/2026VN");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 0006A/S/CHK/2026");
         assertThat(permit.permitNumber()).isEqualTo("06");
         assertThat(permit.permitType()).isEqualTo("LD");
         assertThat(permit.authorId()).isEqualTo("CHK");
@@ -30,17 +30,17 @@ class LegacyDocRevisionPermitParserTest {
         assertThat(permit.operatorId()).isEqualTo("FDX");
         assertThat(permit.reference()).isEqualTo("LD-06/A/S/2026VN/REV7");
         assertThat(permit.validHours()).isEqualTo(24);
-        assertThat(permit.billingAddress()).contains("3131 Democrat Rd");
+        assertThat(permit.billingAddress()).isEqualTo("FEDERAL EXPRESS CORPORATION");
 
         assertThat(permit.flights()).hasSize(2)
                 .extracting(flight -> flight.flightNumber())
-                .containsOnly("FX606D");
+                .containsOnly("FDX606D");
         assertThat(permit.flights().getFirst()).satisfies(flight -> {
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 16));
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2026, 7, 16));
             assertThat(flight.serviceDays()).isEqualTo("0004000");
-            assertThat(flight.fromAirport()).isEqualTo("SIN");
-            assertThat(flight.toAirport()).isEqualTo("SGN");
+            assertThat(flight.fromAirport()).isEqualTo("WSSS");
+            assertThat(flight.toAirport()).isEqualTo("VVTS");
             assertThat(flight.etd()).isEqualTo("2215");
             assertThat(flight.eta()).isEqualTo("0030");
             assertThat(flight.via()).isEqualTo("M753");
@@ -52,8 +52,8 @@ class LegacyDocRevisionPermitParserTest {
         assertThat(permit.flights().get(1)).satisfies(flight -> {
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 17));
             assertThat(flight.serviceDays()).isEqualTo("0000500");
-            assertThat(flight.fromAirport()).isEqualTo("SGN");
-            assertThat(flight.toAirport()).isEqualTo("CAN");
+            assertThat(flight.fromAirport()).isEqualTo("VVTS");
+            assertThat(flight.toAirport()).isEqualTo("ZGGG");
             assertThat(flight.via()).isEqualTo("N500 M771");
         });
     }
@@ -77,10 +77,10 @@ class LegacyDocRevisionPermitParserTest {
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD-06/A/S/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 0006A/S/CHK/2026");
         assertThat(permit.operatorId()).isEqualTo("FDX");
         assertThat(permit.flights()).hasSize(2)
-                .allMatch(flight -> flight.flightNumber().equals("FX606D"));
+                .allMatch(flight -> flight.flightNumber().equals("FDX606D"));
     }
 
     private String rawContent() {

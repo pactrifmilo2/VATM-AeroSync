@@ -120,7 +120,7 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
-    void parse_vjcWithIataButBlankIcao_failsWithMissingFieldMessage()
+    void parse_vjcWithIataButBlankIcao_resolvesOperatorFromIataAndCarrierName()
             throws Exception {
         Path file = createVjcPermitWithoutIcao();
         Clock fixedClock = Clock.fixed(
@@ -132,13 +132,13 @@ class DocxSchedulePermitParserTest {
                 new PermitOperatorCatalog(),
                 fixedClock);
 
-        assertThatThrownBy(() -> fixedClockParser.parse(file, file.getFileName().toString()))
-                .hasMessageContaining("Missing ICAO code")
-                .hasMessageContaining("IATA is present");
+        SchedulePermit permit = fixedClockParser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.operatorId()).isEqualTo("VJC");
     }
 
     @Test
-    void parse_withoutIcao_doesNotSilentlyResolveTheMissingField() throws Exception {
+    void parse_withoutIcao_usesAtfmResolverWithIataAndEnglishCarrierName() throws Exception {
         Path file = createVjcPermitWithoutIcao();
         String[] resolvedInput = new String[2];
         PermitOperatorResolver resolver = (iataCode, carrierName) -> {
@@ -154,15 +154,13 @@ class DocxSchedulePermitParserTest {
                 resolver,
                 Clock.systemDefaultZone());
 
-        assertThatThrownBy(() -> atfmBackedParser.parse(file, file.getFileName().toString()))
-                .hasMessageContaining("Missing ICAO code");
+        SchedulePermit permit = atfmBackedParser.parse(file, file.getFileName().toString());
 
-        /* Previous behavior resolved a missing ICAO from IATA. It is intentionally
+        assertThat(resolvedInput).containsExactly(
                 "VJ", "Công ty cổ phần hàng không Vietjet (Vietjet air)");
         assertThat(permit.operatorId()).isEqualTo("VJC");
         assertThat(permit.flights()).extracting(flight -> flight.flightNumber())
-                .containsExactly("VJC8890", "VJC1282"); */
-        assertThat(resolvedInput).containsOnlyNulls();
+                .containsExactly("VJC8890", "VJC1282");
     }
 
     @Test

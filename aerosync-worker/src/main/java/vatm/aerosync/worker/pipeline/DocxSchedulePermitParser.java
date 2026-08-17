@@ -228,16 +228,12 @@ public class DocxSchedulePermitParser {
                 // Explicit N/A for both codes denotes a private/non-scheduled operator.
                 iataCode = null;
                 operatorId = "PRV";
-            } else if (iataCode != null && labeledIcaoCode == null) {
-                throw invalid(fileName, "Missing ICAO code: IATA is present but ICAO is blank or invalid");
-            } else if (labeledIcaoCode != null && iataCode == null) {
-                throw invalid(fileName, "Missing IATA code: ICAO is present but IATA is blank or invalid");
             } else if (iataCode == null && labeledIcaoCode == null) {
-                throw invalid(fileName, "IATA and ICAO fields are present but both values are blank or invalid");
+                operatorId = "PRV";
             }
         } else if (!revisionDocument && fixedOperator == null
                 && hasOperatorLabels && iataCode == null && labeledIcaoCode == null) {
-            throw invalid(fileName, "Operator code field is present but its value is blank or invalid");
+            operatorId = "PRV";
         }
         if (fixedOperator == null && operatorId == null && iataCode == null) {
             operatorId = normalizedOperator(
@@ -253,12 +249,6 @@ public class DocxSchedulePermitParser {
         }
         if (operatorId == null) {
             operatorId = "PRV";
-        }
-        boolean seasonalPermit = Pattern.compile("(?i)/(?:S|W)/")
-                .matcher(permitMatcher.group()).find();
-        if (!revisionDocument && seasonalPermit && iataCode == null
-                && !permitOperatorResolver.hasIata(operatorId)) {
-            throw invalid(fileName, "Phép bay mùa bắt buộc phải có mã IATA");
         }
         String resolvedOperatorId = operatorId;
         String iataPrefix = schedule.inferIataPrefix()

@@ -407,15 +407,16 @@ class JdbcAtfmScheduleGatewayTest {
                      """)) {
             master.next();
             assertThat(master.getString("REFERENCE"))
-                    .isEqualTo("01/08/2026 GOC" + System.lineSeparator() + "13/08/2026 RVS(1)");
+                    .isEqualTo("01/08/2026 GOC" + System.lineSeparator() + "13082026 RVS(1)");
             assertThat(master.getString("PERMCONTENT")).contains("NOI DUNG GOC", revisedContent);
             assertThat(master.getString("PERMCONTENT1")).contains("NOI DUNG GOC", revisedContent);
         }
         try (Connection connection = DriverManager.getConnection(properties.getUrl(), "sa", "");
              var details = connection.createStatement().executeQuery(
-                     "SELECT COUNT(*) TOTAL FROM T_PERMDETAIL_NO WHERE PERM_ID = 7001")) {
+                     "SELECT COUNT(*) TOTAL, MAX(REMARK) REMARK FROM T_PERMDETAIL_NO WHERE PERM_ID = 7001")) {
             details.next();
-            assertThat(details.getInt("TOTAL")).isEqualTo(2);
+            assertThat(details.getInt("TOTAL")).isEqualTo(1);
+            assertThat(details.getString("REMARK")).isEqualTo("PAX 321");
         }
     }
 

@@ -267,7 +267,8 @@ public record SchedulePermit(
         String revisedPermitNumber = revisedPermitNumber();
         return new SchedulePermit(
                 sourcePermitWithRevisionNumber(), revisedId, revisedPermitNumber,
-                authorId, permitType, version, season, permitDate, operatorId, reference,
+                authorId, permitType, version, season, permitDate, operatorId,
+                seasonalRevisionReference(),
                 validHours, billingAddress, flightType, iataAirportsAllowed,
                 emptyAirwaysAllowed, reviewOnly, rawContent, materializedFlights,
                 originalFlights, revisionBasePermitId(), true);
@@ -288,8 +289,20 @@ public record SchedulePermit(
         if (number == null || permitDate == null) {
             return reference;
         }
-        return permitDate.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        return permitDate.format(java.time.format.DateTimeFormatter.ofPattern("ddMMyyyy"))
                 + " RVS(" + number + ")";
+    }
+
+    private String seasonalRevisionReference() {
+        Integer number = revisionNumber();
+        if (number == null) {
+            return reference;
+        }
+        String base = sourcePermitNumber == null || sourcePermitNumber.isBlank()
+                ? revisionBasePermitId()
+                : sourcePermitNumber.replaceFirst(
+                        "(?iu)\\s*/?\\s*(?:REV|RVS)\\s*[:._/-]?\\s*\\d+\\s*$", "").trim();
+        return base + " RVS(" + number + ")";
     }
 
     private String revisedPermitNumber() {

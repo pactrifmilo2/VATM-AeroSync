@@ -50,7 +50,7 @@ class QuyNgoxuanPermitProfileRegressionTest {
 
         SchedulePermit permit = legacyParser.parseContent(raw, tables, "LD 2785 (REV1).doc");
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02785/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02785/CHK/2026");
         assertThat(permit.permitNumber()).isEqualTo("2785");
         assertThat(permit.permitDate()).isEqualTo(LocalDate.of(2026, 8, 1));
         assertThat(permit.operatorId()).isEqualTo("KAR");
@@ -89,7 +89,7 @@ class QuyNgoxuanPermitProfileRegressionTest {
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02856/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("LD 02856/CHK/2026");
         assertThat(permit.operatorId()).isEqualTo("VFC");
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("VFC8068");
@@ -133,7 +133,7 @@ class QuyNgoxuanPermitProfileRegressionTest {
 
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
 
-        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05517/S/CHK/2026");
+        assertThat(permit.normalizedPermitId()).isEqualTo("O/F 05517/CHK/2026");
         assertThat(permit.operatorId()).isEqualTo("FDX");
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("FDX9082");

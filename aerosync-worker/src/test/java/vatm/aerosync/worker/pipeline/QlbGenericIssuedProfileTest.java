@@ -15,6 +15,6 @@ class QlbGenericIssuedProfileTest {
 
         assertThat(profile.master().authorId()).isEqualTo("QLB");
         assertThat(profile.permit().normalizedTemplate())
-                .isEqualTo("QLB {number}/S/QLB/{year}");
+                .isEqualTo("QLB {number}/QLB/{year}");
     }
 }

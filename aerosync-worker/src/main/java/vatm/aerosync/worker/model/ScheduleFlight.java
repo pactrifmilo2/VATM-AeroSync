@@ -101,4 +101,11 @@ public record ScheduleFlight(
                 fromAirport, toAirport, etd, eta, via, beginDate, endDate,
                 revisedRemark, sourceAircraftType);
     }
+
+    public ScheduleFlight withRemark(String revisedRemark) {
+        return new ScheduleFlight(
+                purposeId, craftId, mtow, flightNumber, registration, serviceDays,
+                fromAirport, toAirport, etd, eta, via, beginDate, endDate,
+                revisedRemark, sourceAircraftType);
+    }
 }

@@ -149,6 +149,18 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+    private static final String UPDATE_NO_DETAIL_SQL = """
+            UPDATE T_PERMDETAIL_NO
+               SET CRAFT_ID = ?, MTOW = ?, REGISTRATION = ?, ETD = ?, ETA = ?,
+                   VIA = ?, STATUS = ?, LASTMODIFY = ?, LASTUSER = ?,
+                   PURPOSE_ID = ?, MAX_DATE = ?, REMARK = ?
+             WHERE PERM_ID = ?
+               AND UPPER(TRIM(FLIGHTNBR)) = ?
+               AND UPPER(TRIM(FROM_AIRP)) = ?
+               AND UPPER(TRIM(TO_AIRP)) = ?
+               AND DAYSFLIGHT = ?
+            """;
+
     private static final DateTimeFormatter NO_FLIGHT_DATE = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
             .appendPattern("dd-MMM-uuuu")
@@ -566,11 +578,32 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
 
         List<ExistingFlight> existing = readExistingNoFlights(connection, permId);
+        List<ScheduleFlight> updates = permit.importRevision()
+                && !permit.revisionCreatesNewPermit()
+                ? flights.stream()
+                        .filter(flight -> existing.stream().anyMatch(row ->
+                                row.sameRevisionIdentity(ExistingFlight.fromExpected(flight))))
+                        .toList()
+                : List.of();
+        if (!updates.isEmpty()) {
+            try (PreparedStatement statement = connection.prepareStatement(UPDATE_NO_DETAIL_SQL)) {
+                for (ScheduleFlight flight : updates) {
+                    bindNoDetailUpdate(statement, permId, flight);
+                    statement.addBatch();
+                }
+                for (int count : statement.executeBatch()) {
+                    if (count == PreparedStatement.EXECUTE_FAILED || count == 0) {
+                        throw new SQLException("ATFM non-scheduled revision update did not match its business row");
+                    }
+                }
+            }
+        }
         List<ScheduleFlight> missing = permit.importRevision()
-                ? missingCompleteFlights(existing, flights)
+                ? flights.stream().filter(flight -> updates.stream().noneMatch(
+                        updated -> sameRevisionIdentity(updated, flight))).toList()
                 : missingFlights(existing, flights);
         if (missing.isEmpty()) {
-            return new AtfmWriteResult(masterId, permId, 0);
+            return new AtfmWriteResult(masterId, permId, updates.size());
         }
         try (PreparedStatement statement = connection.prepareStatement(INSERT_NO_DETAIL_SQL)) {
             for (ScheduleFlight flight : missing) {
@@ -584,7 +617,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 }
             }
         }
-        return new AtfmWriteResult(masterId, permId, missing.size());
+        return new AtfmWriteResult(masterId, permId, updates.size() + missing.size());
     }
 
     private void appendNoRevisionMaster(Connection connection,
@@ -683,6 +716,34 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index++, flight.purposeId());
         statement.setDate(index++, Date.valueOf(flight.endDate()));
         statement.setString(index, truncateUtf8(flight.remark(), 4000));
+    }
+
+    private void bindNoDetailUpdate(PreparedStatement statement,
+                                    long permId,
+                                    ScheduleFlight flight) throws SQLException {
+        int index = 1;
+        statement.setLong(index++, flight.craftId());
+        statement.setBigDecimal(index++, flight.mtow());
+        setNullableString(statement, index++, flight.registration());
+        statement.setString(index++, flight.etd());
+        setNullableString(statement, index++, flight.eta());
+        setNullableString(statement, index++, flight.via());
+        statement.setString(index++, "0");
+        statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+        statement.setString(index++, "AEROSYNC");
+        statement.setString(index++, flight.purposeId());
+        statement.setDate(index++, Date.valueOf(flight.endDate()));
+        statement.setString(index++, truncateUtf8(flight.remark(), 4000));
+        statement.setLong(index++, permId);
+        statement.setString(index++, normalize(flight.flightNumber()));
+        statement.setString(index++, normalize(flight.fromAirport()));
+        statement.setString(index++, normalize(flight.toAirport()));
+        statement.setString(index, noFlightDates(flight));
+    }
+
+    private boolean sameRevisionIdentity(ScheduleFlight left, ScheduleFlight right) {
+        return ExistingFlight.fromExpected(left).sameRevisionIdentity(
+                ExistingFlight.fromExpected(right));
     }
 
     private String noFlightDates(ScheduleFlight flight) {
@@ -1133,6 +1194,14 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     && Objects.equals(fromAirport, other.fromAirport)
                     && Objects.equals(toAirport, other.toAirport)
                     && Objects.equals(etd, other.etd)
+                    && Objects.equals(beginDate, other.beginDate)
+                    && Objects.equals(endDate, other.endDate);
+        }
+
+        boolean sameRevisionIdentity(ExistingFlight other) {
+            return Objects.equals(flightNumber, other.flightNumber)
+                    && Objects.equals(fromAirport, other.fromAirport)
+                    && Objects.equals(toAirport, other.toAirport)
                     && Objects.equals(beginDate, other.beginDate)
                     && Objects.equals(endDate, other.endDate);
         }
