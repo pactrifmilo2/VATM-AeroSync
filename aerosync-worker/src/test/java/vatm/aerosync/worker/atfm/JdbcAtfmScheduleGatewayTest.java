@@ -295,7 +295,8 @@ class JdbcAtfmScheduleGatewayTest {
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMMASTER_NO (
                         ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL,
-                        PERMNBR_ID VARCHAR2(100))
+                        PERMNBR_ID VARCHAR2(100), REFERENCE VARCHAR2(4000),
+                        LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50))
                     """);
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMDETAIL_NO (
@@ -309,8 +310,16 @@ class JdbcAtfmScheduleGatewayTest {
                         REMARK VARCHAR2(4000))
                     """);
             connection.createStatement().execute("""
-                    INSERT INTO T_PERMMASTER_NO (ID, PERM_ID, PERMNBR_ID)
-                    VALUES (5001, 7001, 'LD 02821/CHK/2026')
+                    INSERT INTO T_PERMMASTER_NO (ID, PERM_ID, PERMNBR_ID, REFERENCE)
+                    VALUES (5001, 7001, 'LD 02821/CHK/2026', 'FULL WORD CONTENT WRONGLY STORED')
+                    """);
+            connection.createStatement().execute("""
+                    INSERT INTO T_PERMDETAIL_NO
+                        (PERM_ID, CRAFT_ID, MTOW, DAYSFLIGHT, FLIGHTNBR,
+                         FROM_AIRP, TO_AIRP, ETD, ETA, VIA, PURPOSE_ID, MAX_DATE, REMARK)
+                    VALUES (7001, 1935, 0, '05-AUG-2026', 'HVN123',
+                            'VVNB', 'VVTS', '0100', '0300', 'W1', 'PAX',
+                            DATE '2026-08-05', 'PAX')
                     """);
         }
 
@@ -323,12 +332,17 @@ class JdbcAtfmScheduleGatewayTest {
                 "CHK", "LD", "A", "S", LocalDate.of(2026, 8, 5),
                 "HVN", null, 24, null, "NO", "raw", List.of(singleDay));
 
-        AtfmWriteResult result = new JdbcAtfmScheduleGateway(
-                properties, new AtfmAirportCodeResolver()).update(permit);
+        JdbcAtfmScheduleGateway gateway = new JdbcAtfmScheduleGateway(
+                properties, new AtfmAirportCodeResolver());
+        assertThat(gateway.findExisting(permit)).get()
+                .extracting(AtfmPermitSnapshot::matchesExpectedPermit)
+                .isEqualTo(false);
+
+        AtfmWriteResult result = gateway.update(permit);
 
         assertThat(result.masterId()).isEqualTo(5001L);
         assertThat(result.permId()).isEqualTo(7001L);
-        assertThat(result.detailCount()).isOne();
+        assertThat(result.detailCount()).isZero();
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword());
              var rows = connection.createStatement().executeQuery("""
@@ -337,6 +351,14 @@ class JdbcAtfmScheduleGatewayTest {
             rows.next();
             assertThat(rows.getString("FLIGHTNBR")).isEqualTo("HVN123");
             assertThat(rows.getString("DAYSFLIGHT")).isEqualTo("05-AUG-2026");
+        }
+        try (Connection connection = DriverManager.getConnection(
+                properties.getUrl(), properties.getUsername(), properties.getPassword());
+             var rows = connection.createStatement().executeQuery(
+                     "SELECT REFERENCE, LASTUSER FROM T_PERMMASTER_NO WHERE ID = 5001")) {
+            rows.next();
+            assertThat(rows.getString("REFERENCE")).isEqualTo("LD-2821/8/2026VN");
+            assertThat(rows.getString("LASTUSER")).isEqualTo("AEROSYNC");
         }
     }
 

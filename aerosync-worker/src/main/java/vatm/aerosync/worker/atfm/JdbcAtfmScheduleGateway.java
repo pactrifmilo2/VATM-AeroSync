@@ -99,7 +99,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             """;
 
     private static final String FIND_NO_MASTER_SQL = """
-            SELECT ID, PERM_ID
+            SELECT ID, PERM_ID, REFERENCE
               FROM T_PERMMASTER_NO
              WHERE ID = (SELECT MAX(candidate.ID)
                            FROM T_PERMMASTER_NO candidate
@@ -147,6 +147,12 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 FROM_AIRP, TO_AIRP, ETD, ETA, VIA, STATUS, LASTMODIFY,
                 LASTUSER, PURPOSE_ID, MAX_DATE, REMARK)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """;
+
+    private static final String UPDATE_NO_REFERENCE_SQL = """
+            UPDATE T_PERMMASTER_NO
+               SET REFERENCE = ?, LASTMODIFY = ?, LASTUSER = ?
+             WHERE ID = ?
             """;
 
     private static final String UPDATE_NO_DETAIL_SQL = """
@@ -541,9 +547,12 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 long masterId = rows.getLong("ID");
                 long permId = rows.getLong("PERM_ID");
                 List<ExistingFlight> actual = readExistingNoFlights(connection, permId);
+                boolean referenceMatches = Objects.equals(
+                        normalize(rows.getString("REFERENCE")),
+                        normalize(masterReference(permit)));
                 boolean matches = permit.importRevision()
                         ? flightsContainComplete(actual, expected)
-                        : flightsMatch(actual, expected);
+                        : flightsMatch(actual, expected) && referenceMatches;
                 return Optional.of(new AtfmPermitSnapshot(masterId, permId, matches));
             }
         }
@@ -575,6 +584,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
         if (existingMaster && permit.importRevision() && !permit.revisionCreatesNewPermit()) {
             appendNoRevisionMaster(connection, masterId, permit);
+        }
+        if (existingMaster && !permit.importRevision()) {
+            updateNoReference(connection, masterId, permit);
         }
 
         List<ExistingFlight> existing = readExistingNoFlights(connection, permId);
@@ -716,6 +728,25 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index++, flight.purposeId());
         statement.setDate(index++, Date.valueOf(flight.endDate()));
         statement.setString(index, truncateUtf8(flight.remark(), 4000));
+    }
+
+    private void updateNoReference(Connection connection,
+                                   long masterId,
+                                   SchedulePermit permit) throws SQLException {
+        String reference = masterReference(permit);
+        if (reference == null || reference.isBlank()) {
+            return;
+        }
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_NO_REFERENCE_SQL)) {
+            statement.setString(1, truncateUtf8(reference, 4000));
+            statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(3, "AEROSYNC");
+            statement.setLong(4, masterId);
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException(
+                        "Non-scheduled master reference update affected an unexpected number of rows");
+            }
+        }
     }
 
     private void bindNoDetailUpdate(PreparedStatement statement,
