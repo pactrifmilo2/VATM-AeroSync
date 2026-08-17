@@ -146,7 +146,8 @@ class JdbcAtfmScheduleGatewayTest {
                        FROM T_PERMMASTER_SC WHERE ID = 4167
                      """)) {
             master.next();
-            assertThat(master.getString("REFERENCE")).isEqualTo(fullContent);
+            assertThat(master.getString("REFERENCE"))
+                    .isEqualTo(JdbcAtfmScheduleGateway.truncateUtf8(fullContent, 4000));
             assertThat(master.getString("BILLINGADDRESS")).isEqualTo("RAYA AIRWAYS");
             assertThat(master.getString("PERMCONTENT").getBytes(StandardCharsets.UTF_8).length)
                     .isLessThanOrEqualTo(4000);
