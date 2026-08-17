@@ -1,7 +1,8 @@
 param(
     [ValidateRange(1, 1000)]
     [int] $Limit = 100,
-    [string] $OutputPath
+    [string] $OutputPath,
+    [string] $ManifestPath
 )
 
 $ErrorActionPreference = "Stop"
@@ -12,6 +13,9 @@ if (-not (Test-Path -LiteralPath $envPath)) {
 }
 if (-not $OutputPath) {
     $OutputPath = Join-Path $root ("reports\latest-{0}-saved-permits-{1}.md" -f $Limit, (Get-Date -Format "yyyy-MM-dd"))
+}
+if (-not $ManifestPath) {
+    $ManifestPath = [IO.Path]::ChangeExtension($OutputPath, ".manifest.txt")
 }
 
 $envValues = @{}
@@ -322,7 +326,10 @@ SELECT $targetFields FROM target_rows ORDER BY master_id, table_kind;
         $null = $builder.AppendLine("| $($item.Result) | $($item.ImportId) | $($item.SyncJobId) | $(Markdown-Cell $item.ImportedAt) | $(Markdown-Cell $item.File) | $(Markdown-Cell $item.PermitId) | $(Markdown-Cell $item.Target) | $details | $($item.Revision) | $(Markdown-Cell $finding) |")
     }
     [IO.File]::WriteAllText($OutputPath, $builder.ToString(), [Text.UTF8Encoding]::new($false))
+    $manifestFiles = $trackingRows.StoredPath | Where-Object { $_ } | Select-Object -Unique
+    [IO.File]::WriteAllLines($ManifestPath, $manifestFiles, [Text.UTF8Encoding]::new($false))
     Write-Output "Report: $OutputPath"
+    Write-Output "Manifest: $ManifestPath"
     Write-Output "PASS=$passCount REVIEW=$reviewCount FAIL=$failCount"
     if ($failCount -gt 0) { exit 2 }
 } finally {

@@ -32,12 +32,11 @@ class WordPermitCorpusRegressionTest {
     @Test
     void parseConfiguredPermitCorpus() throws Exception {
         String corpusDirectory = System.getProperty("permit.corpus.dir");
-        Assumptions.assumeTrue(corpusDirectory != null && !corpusDirectory.isBlank(),
-                "Set -Dpermit.corpus.dir to validate a directory of Word permits");
-
-        Path directory = Path.of(corpusDirectory);
-        Assumptions.assumeTrue(Files.isDirectory(directory),
-                "Configured permit corpus directory does not exist");
+        String corpusManifest = System.getProperty("permit.corpus.manifest");
+        Assumptions.assumeTrue(
+                (corpusDirectory != null && !corpusDirectory.isBlank())
+                        || (corpusManifest != null && !corpusManifest.isBlank()),
+                "Set -Dpermit.corpus.dir or -Dpermit.corpus.manifest to validate Word permits");
 
         WordPermitDocumentReader reader = new WordPermitDocumentReader();
         WordPermitFormatDetector detector =
@@ -68,15 +67,9 @@ class WordPermitCorpusRegressionTest {
         BusinessRuleValidatorStep validator = new BusinessRuleValidatorStep();
         Path reportDirectory = reportDirectory();
 
-        List<Path> files;
-        try (var paths = Files.walk(directory)) {
-            files = paths
-                    .filter(Files::isRegularFile)
-                    .filter(this::isWordDocument)
-                    .filter(path -> !isTemporaryWordDocument(path))
-                    .sorted(Comparator.comparing(path -> path.getFileName().toString()))
-                    .toList();
-        }
+        List<Path> files = corpusManifest != null && !corpusManifest.isBlank()
+                ? filesFromManifest(Path.of(corpusManifest))
+                : filesFromDirectory(Path.of(corpusDirectory));
         assertThat(files)
                 .as("Word permit files in configured corpus")
                 .isNotEmpty();
@@ -146,6 +139,31 @@ class WordPermitCorpusRegressionTest {
         assertThat(failures)
                 .as("Every configured Word permit should match a profile and parse")
                 .isEmpty();
+    }
+
+    private List<Path> filesFromManifest(Path manifest) throws Exception {
+        assertThat(manifest).as("Configured permit corpus manifest").isRegularFile();
+        List<Path> files = Files.readAllLines(manifest).stream()
+                .map(String::trim)
+                .filter(line -> !line.isEmpty() && !line.startsWith("#"))
+                .map(Path::of)
+                .filter(this::isWordDocument)
+                .filter(path -> !isTemporaryWordDocument(path))
+                .toList();
+        assertThat(files).as("Word permit paths in configured manifest").allMatch(Files::isRegularFile);
+        return files;
+    }
+
+    private List<Path> filesFromDirectory(Path directory) throws Exception {
+        assertThat(directory).as("Configured permit corpus directory").isDirectory();
+        try (var paths = Files.walk(directory)) {
+            return paths
+                    .filter(Files::isRegularFile)
+                    .filter(this::isWordDocument)
+                    .filter(path -> !isTemporaryWordDocument(path))
+                    .sorted(Comparator.comparing(path -> path.getFileName().toString()))
+                    .toList();
+        }
     }
 
     private boolean containsPermitIdentity(String content) {
