@@ -162,6 +162,25 @@ class RevisionReconciliationStepTest {
     }
 
     @Test
+    void reconcile_nonScheduledRevisionWithoutBaselineStillTargetsOriginalPermit() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("CKS602", "VVNB", "B744");
+        ScheduleFlight revised = nonScheduledFlight("CKS9716", "VVNB", "B744");
+        SchedulePermit revision = nonScheduledPermit(revised, original);
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.empty());
+        ProcessingContext context = context(revision, "REV1-LD-2797_K4.docx");
+
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        SchedulePermit result = context.getSchedulePermit();
+        assertThat(result.seasonalPermit()).isFalse();
+        assertThat(result.revisionCreatesNewPermit()).isFalse();
+        assertThat(result.atfmTargetPermitId()).isEqualTo("LD 02576A/CHK/2026");
+        assertThat(result.flights()).extracting(ScheduleFlight::flightNumber)
+                .containsExactly("CKS9716");
+    }
+
+    @Test
     void reconcile_appliesSameNonScheduledDecisionToVietnameseRevision() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
         ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");

@@ -166,12 +166,7 @@ public class PermitImportCoordinator {
         return outcome(attempt);
     }
 
-    /**
-     * Revision path: the parser has already selected only replacement/new
-     * schedule tables.  Do not reconcile the old table against ATFM.  Append
-     * the selected rows to an existing permit, or insert a new permit when the
-     * referenced base permit cannot be found.
-     */
+    /** Revision path after the parser has selected replacement/new rows. */
     private PermitImportOutcome importRevision(PermitImport attempt, SchedulePermit permit) {
         if (!properties.isWriteEnabled()) {
             attempt.setStatus(PermitImportStatus.DRY_RUN);
@@ -181,6 +176,12 @@ public class PermitImportCoordinator {
             throw new BusinessRuleException(
                     "ATFM-WRITE-DISABLED",
                     "Revision parsed, but ATFM writes are disabled");
+        }
+
+        if (!permit.seasonalPermit()) {
+            // Sudden/non-scheduled revisions update the original NO permit.
+            // Only seasonal revisions may create a separate R(n) permit.
+            return updateExistingPermit(attempt, permit);
         }
 
         Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);

@@ -162,6 +162,21 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
+    void importPermit_doesNotInsertNonScheduledRevisionWhenBaseIsMissing() {
+        context.setSchedulePermit(nonScheduledRevisionPermit());
+        when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> coordinator.importPermit(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("Original ATFM permit not found");
+
+        verify(atfmScheduleGateway, never()).insert(any());
+        verify(atfmScheduleGateway, never()).update(any());
+        verify(permitImportRepository, atLeastOnce()).save(argThat(attempt ->
+                attempt.getStatus() == PermitImportStatus.REVISION_REVIEW));
+    }
+
+    @Test
     void importPermit_locksAndTracksReferencedRevisionTarget() {
         context.setSchedulePermit(referencedRevisionPermit());
         when(atfmScheduleGateway.findExisting(any()))
@@ -296,6 +311,19 @@ class PermitImportCoordinatorTest {
                 permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
                 permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
                 permit.emptyAirwaysAllowed(), true, permit.rawContent(), permit.flights());
+    }
+
+    private SchedulePermit nonScheduledRevisionPermit() {
+        ScheduleFlight revised = new ScheduleFlight(
+                "CAR", 1935L, BigDecimal.ZERO, "CKS9716", null, "0000007",
+                "WMKP", "VVNB", "2130", "0100", "R474",
+                LocalDate.of(2026, 8, 16), LocalDate.of(2026, 8, 16), "CAR B744");
+        return new SchedulePermit(
+                "LD-2797/07/2026VN/REV1", "LD 02797/CHK/2026", "2797",
+                "CHK", "LD", "A", null, LocalDate.of(2026, 8, 15),
+                "CKS", null, 24, "KALITTA AIR, LLC", "NO",
+                false, false, false,
+                "REV1\nNEW SCHEDULE", List.of(revised), List.of());
     }
 
     private SchedulePermit referencedRevisionPermit() {

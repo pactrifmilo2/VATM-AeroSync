@@ -101,11 +101,10 @@ public class RevisionReconciliationStep {
             if (permit.seasonalRevision()) {
                 context.setSchedulePermit(permit.asSeasonalRevision(
                         materializeRevisionRows(permit, baseline, reconciled)));
-            } else if (!baseline.isEmpty()) {
-                context.setSchedulePermit(permit.withFlights(reconciled));
             } else {
-                context.setSchedulePermit(permit.asNonScheduledRevision(
-                        materializeRevisionRows(permit, baseline, reconciled)));
+                // A non-scheduled revision always targets its original permit.
+                // A missing baseline must be reviewed, never materialized as R(n).
+                context.setSchedulePermit(permit.withFlights(reconciled));
             }
         }
     }
