@@ -324,7 +324,7 @@ class JdbcAtfmScheduleGatewayTest {
         }
 
         ScheduleFlight singleDay = new ScheduleFlight(
-                "PAX", 1935L, BigDecimal.ZERO, "HVN123", null, "0003000",
+                "PAX", 1935L, BigDecimal.ZERO, "HVN123", null, "0030000",
                 "VVNB", "VVTS", "0100", "0300", "W1",
                 LocalDate.of(2026, 8, 5), LocalDate.of(2026, 8, 5), "PAX");
         SchedulePermit permit = new SchedulePermit(
