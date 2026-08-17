@@ -1,0 +1,17 @@
+id: aar-english-seasonal-landing-revision
+extends: caav-generic-seasonal-landing-revision
+priority: 40
+
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/?\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*OZ\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*AAR\b'
+  - '(?iu)\bNEW\s+CHANGE\s+S(?:CH|H)EDULE\b'
+
+operator:
+  fixedValue: AAR
+
+schedule:
+  preferredTableContextPatterns:
+    - '(?iu)NEW\s+CHANGE\s+S(?:CH|H)EDULE'
+  lastMatchingTable: true
