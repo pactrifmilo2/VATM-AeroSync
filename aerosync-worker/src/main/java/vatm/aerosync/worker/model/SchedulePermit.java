@@ -53,6 +53,10 @@ public record SchedulePermit(
         // normalizedPermitId is produced by YAML and must never be allowed to invent /S/ or /W/.
         boolean seasonalIdentity = SEASONAL_PERMIT.matcher(
                 sourcePermitNumber == null ? "" : sourcePermitNumber).find();
+        if (revisionCreatesNewPermit && !seasonalIdentity) {
+            throw new IllegalArgumentException(
+                    "Only a seasonal permit may create a separate revision permit");
+        }
         flightType = seasonalIdentity ? "SC" : "NO";
     }
 
@@ -272,16 +276,6 @@ public record SchedulePermit(
                 validHours, billingAddress, flightType, iataAirportsAllowed,
                 emptyAirwaysAllowed, reviewOnly, rawContent, materializedFlights,
                 originalFlights, revisionBasePermitId(), true);
-    }
-
-    public SchedulePermit asNonScheduledRevision(List<ScheduleFlight> materializedFlights) {
-        String revisedId = revisionPermitId();
-        return new SchedulePermit(
-                sourcePermitWithRevisionNumber(), revisedId, revisedPermitNumber(),
-                authorId, permitType, version, season, permitDate, operatorId,
-                revisionReference(), validHours, billingAddress, flightType,
-                iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
-                materializedFlights, originalFlights, revisionBasePermitId(), true);
     }
 
     public String revisionReference() {

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class SchedulePermitRevisionNumberTest {
 
@@ -91,6 +92,23 @@ class SchedulePermitRevisionNumberTest {
         assertThat(vietnamese.otherDetailsUnchanged()).isTrue();
         assertThat(english.importRevision()).isTrue();
         assertThat(english.otherDetailsUnchanged()).isTrue();
+    }
+
+    @Test
+    void nonScheduledRevision_cannotCreateIndependentRPermit() {
+        SchedulePermit permit = permit(
+                "LD-2797/07/2026VN/REV1", "LD 02797/CHK/2026", "2797",
+                "REV1\nNEW SCHEDULE");
+
+        assertThatThrownBy(() -> new SchedulePermit(
+                permit.sourcePermitNumber(), permit.normalizedPermitId(), permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
+                permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
+                permit.emptyAirwaysAllowed(), permit.reviewOnly(), permit.rawContent(),
+                permit.flights(), permit.originalFlights(), permit.normalizedPermitId(), true))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Only a seasonal permit");
     }
 
     private SchedulePermit permit(String source, String normalized, String number, String raw) {
