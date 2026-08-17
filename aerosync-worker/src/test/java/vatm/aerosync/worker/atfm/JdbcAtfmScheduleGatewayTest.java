@@ -131,7 +131,7 @@ class JdbcAtfmScheduleGatewayTest {
         SchedulePermit permit = new SchedulePermit(
                 "OF-5199/A/S/2026VN", "O/F 05199/S/CHK/2026", "5199",
                 "CHK", "O/F", "A", "S", LocalDate.of(2026, 7, 17),
-                "RMY", "G17.44", 72, "Cyberjaya", "SC", fullContent,
+                "RMY", null, 72, null, "SC", fullContent,
                 List.of(existing, added));
 
         AtfmWriteResult result = gateway.update(permit);
@@ -142,11 +142,12 @@ class JdbcAtfmScheduleGatewayTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword());
              var master = connection.createStatement().executeQuery("""
-                     SELECT BILLINGADDRESS, PERMCONTENT, PERMCONTENT1
+                     SELECT REFERENCE, BILLINGADDRESS, PERMCONTENT, PERMCONTENT1
                        FROM T_PERMMASTER_SC WHERE ID = 4167
                      """)) {
             master.next();
-            assertThat(master.getString("BILLINGADDRESS")).isEqualTo("Cyberjaya");
+            assertThat(master.getString("REFERENCE")).isEqualTo(fullContent);
+            assertThat(master.getString("BILLINGADDRESS")).isEqualTo("RAYA AIRWAYS");
             assertThat(master.getString("PERMCONTENT").getBytes(StandardCharsets.UTF_8).length)
                     .isLessThanOrEqualTo(4000);
             assertThat(master.getString("PERMCONTENT1")).isEqualTo(fullContent);

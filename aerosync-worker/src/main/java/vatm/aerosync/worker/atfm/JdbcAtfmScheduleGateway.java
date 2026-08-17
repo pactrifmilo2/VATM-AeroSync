@@ -407,7 +407,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 statement.setString(index++, permit.season());
                 statement.setDate(index++, Date.valueOf(permit.permitDate()));
                 statement.setString(index++, permit.operatorId());
-                statement.setString(index++, truncateUtf8(permit.reference(), 4000));
+                statement.setString(index++, truncateUtf8(masterReference(permit), 4000));
                 statement.setInt(index++, permit.validHours());
                 statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
                 statement.setString(index++, "AEROSYNC");
@@ -496,7 +496,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             statement.setString(index++, permit.season());
             statement.setDate(index++, Date.valueOf(permit.permitDate()));
             statement.setString(index++, permit.operatorId());
-            statement.setString(index++, truncateUtf8(permit.reference(), 4000));
+            statement.setString(index++, truncateUtf8(masterReference(permit), 4000));
             statement.setInt(index++, permit.validHours());
             statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
             statement.setString(index++, "AEROSYNC");
@@ -677,7 +677,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             statement.setString(index++, permit.permitNumber());
             statement.setDate(index++, Date.valueOf(permit.permitDate()));
             statement.setString(index++, permit.operatorId());
-            statement.setString(index++, truncateUtf8(permit.reference(), 4000));
+            statement.setString(index++, truncateUtf8(masterReference(permit), 4000));
             statement.setInt(index++, permit.validHours());
             statement.setString(index++, "0");
             statement.setString(index++, "AEROSYNC");
@@ -917,8 +917,34 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
     }
 
-    private String operatorName(Connection connection, SchedulePermit permit) {
-        return permit.billingAddress();
+    private String masterReference(SchedulePermit permit) {
+        if (permit.reference() != null && !permit.reference().isBlank()) {
+            return permit.reference();
+        }
+        return permit.rawContent();
+    }
+
+    private String operatorName(Connection connection, SchedulePermit permit) throws SQLException {
+        if (permit.billingAddress() != null && !permit.billingAddress().isBlank()) {
+            return permit.billingAddress().trim();
+        }
+        try (PreparedStatement statement = connection.prepareStatement("""
+                SELECT MAX(TRIM(OPER_NAME)) AS OPER_NAME
+                  FROM M_OPER
+                 WHERE UPPER(TRIM(OPER_ICAO)) = ?
+                """)) {
+            statement.setString(1, normalize(permit.operatorId()));
+            try (ResultSet rows = statement.executeQuery()) {
+                if (rows.next()) {
+                    String operatorName = rows.getString("OPER_NAME");
+                    if (operatorName != null && !operatorName.isBlank()) {
+                        return operatorName.trim();
+                    }
+                }
+            }
+        }
+        throw new AtfmReferenceDataException(
+                "Operator name not found in M_OPER for " + permit.operatorId());
     }
 
     private void ensureLookupExists(Connection connection,
