@@ -85,7 +85,8 @@ public class AtfmTestResetService {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     String lastUser = resultSet.getString("LASTUSER");
-                    boolean owned = permitImport.getNormalizedPermitId().equals(resultSet.getString("PERMNBR_ID"))
+                    boolean owned = samePermitIdentity(permitImport.getNormalizedPermitId(),
+                            resultSet.getString("PERMNBR_ID"))
                             && lastUser != null && AEROSYNC_USER.equalsIgnoreCase(lastUser.trim());
                     return new TargetMatch(owned ? TargetOwnership.OWNED : TargetOwnership.UNSAFE, table);
                 }
@@ -117,12 +118,17 @@ public class AtfmTestResetService {
     private int deleteMaster(Connection connection, PermitImport permitImport, TableKind table) throws SQLException {
         String masterTable = table == TableKind.SC ? "T_PERMMASTER_SC" : "T_PERMMASTER_NO";
         String sql = "DELETE FROM " + masterTable
-                + " WHERE ID = ? AND PERM_ID = ? AND PERMNBR_ID = ? AND UPPER(TRIM(LASTUSER)) = ?";
+                + " WHERE ID = ? AND PERM_ID = ?"
+                + " AND (PERMNBR_ID = ? OR PERMNBR_ID = ? OR PERMNBR_ID = ?)"
+                + " AND UPPER(TRIM(LASTUSER)) = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, permitImport.getTargetMasterId());
             statement.setLong(2, permitImport.getTargetPermId());
-            statement.setString(3, permitImport.getNormalizedPermitId());
-            statement.setString(4, AEROSYNC_USER);
+            String expected = permitImport.getNormalizedPermitId();
+            statement.setString(3, expected);
+            statement.setString(4, expected.replace("/S/", "/"));
+            statement.setString(5, expected.replace("/W/", "/"));
+            statement.setString(6, AEROSYNC_USER);
             return statement.executeUpdate();
         }
     }
@@ -149,6 +155,20 @@ public class AtfmTestResetService {
         OWNED,
         MISSING,
         UNSAFE
+    }
+
+    /** Accept the legacy target spelling that omitted the seasonal /S/ or /W/ segment. */
+    private boolean samePermitIdentity(String expected, String actual) {
+        if (expected == null || actual == null) {
+            return false;
+        }
+        return canonicalPermit(expected).equals(canonicalPermit(actual));
+    }
+
+    private String canonicalPermit(String value) {
+        return value.trim().toUpperCase(java.util.Locale.ROOT)
+                .replaceAll("\\s+", "")
+                .replaceAll("/(?:S|W)/", "/");
     }
 
     private enum TableKind { SC, NO }
