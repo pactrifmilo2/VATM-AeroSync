@@ -149,6 +149,14 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
+    private static final String FIND_REFERENCED_SEASON_SQL = """
+            SELECT SEASON
+              FROM T_PERMMASTER_SC
+             WHERE ID = (SELECT MAX(candidate.ID)
+                           FROM T_PERMMASTER_SC candidate
+                          WHERE candidate.PERMNBR_ID = ?)
+            """;
+
     private static final String UPDATE_NO_REFERENCE_SQL = """
             UPDATE T_PERMMASTER_NO
                SET REFERENCE = ?, LASTMODIFY = ?, LASTUSER = ?
@@ -159,12 +167,23 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             UPDATE T_PERMDETAIL_NO
                SET CRAFT_ID = ?, MTOW = ?, REGISTRATION = ?, ETD = ?, ETA = ?,
                    VIA = ?, STATUS = ?, LASTMODIFY = ?, LASTUSER = ?,
-                   PURPOSE_ID = ?, MAX_DATE = ?, REMARK = ?
+                   PURPOSE_ID = ?, MAX_DATE = ?, REMARK = ?, DAYSFLIGHT = ?,
+                   FROM_AIRP = ?, TO_AIRP = ?
              WHERE PERM_ID = ?
                AND UPPER(TRIM(FLIGHTNBR)) = ?
                AND UPPER(TRIM(FROM_AIRP)) = ?
                AND UPPER(TRIM(TO_AIRP)) = ?
                AND DAYSFLIGHT = ?
+            """;
+
+    private static final String UPDATE_NO_DETAIL_BY_CALLSIGN_SQL = """
+            UPDATE T_PERMDETAIL_NO
+               SET CRAFT_ID = ?, MTOW = ?, REGISTRATION = ?, ETD = ?, ETA = ?,
+                   VIA = ?, STATUS = ?, LASTMODIFY = ?, LASTUSER = ?,
+                   PURPOSE_ID = ?, MAX_DATE = ?, REMARK = ?, DAYSFLIGHT = ?,
+                   FROM_AIRP = ?, TO_AIRP = ?
+             WHERE PERM_ID = ?
+               AND UPPER(TRIM(FLIGHTNBR)) = ?
             """;
 
     private static final DateTimeFormatter NO_FLIGHT_DATE = new DateTimeFormatterBuilder()
@@ -590,29 +609,40 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
 
         List<ExistingFlight> existing = readExistingNoFlights(connection, permId);
-        List<ScheduleFlight> updates = permit.importRevision()
+        List<RevisionUpdate> updates = permit.importRevision()
                 && !permit.revisionCreatesNewPermit()
                 ? flights.stream()
-                        .filter(flight -> existing.stream().anyMatch(row ->
-                                row.sameRevisionIdentity(ExistingFlight.fromExpected(flight))))
+                        .map(flight -> revisionUpdate(existing, flight))
+                        .filter(java.util.Objects::nonNull)
                         .toList()
                 : List.of();
         if (!updates.isEmpty()) {
-            try (PreparedStatement statement = connection.prepareStatement(UPDATE_NO_DETAIL_SQL)) {
-                for (ScheduleFlight flight : updates) {
-                    bindNoDetailUpdate(statement, permId, flight);
-                    statement.addBatch();
+            try (PreparedStatement exact = connection.prepareStatement(UPDATE_NO_DETAIL_SQL);
+                 PreparedStatement byCallsign = connection.prepareStatement(UPDATE_NO_DETAIL_BY_CALLSIGN_SQL)) {
+                for (RevisionUpdate update : updates) {
+                    if (update.byCallsign()) {
+                        bindNoDetailUpdateByCallsign(byCallsign, permId, update.flight());
+                        byCallsign.addBatch();
+                    } else {
+                        bindNoDetailUpdate(exact, permId, update.flight());
+                        exact.addBatch();
+                    }
                 }
-                for (int count : statement.executeBatch()) {
+                for (int count : exact.executeBatch()) {
                     if (count == PreparedStatement.EXECUTE_FAILED || count == 0) {
                         throw new SQLException("ATFM non-scheduled revision update did not match its business row");
+                    }
+                }
+                for (int count : byCallsign.executeBatch()) {
+                    if (count == PreparedStatement.EXECUTE_FAILED || count == 0) {
+                        throw new SQLException("ATFM non-scheduled revision update did not match its callsign");
                     }
                 }
             }
         }
         List<ScheduleFlight> missing = permit.importRevision()
                 ? flights.stream().filter(flight -> updates.stream().noneMatch(
-                        updated -> sameRevisionIdentity(updated, flight))).toList()
+                        updated -> sameRevisionIdentity(updated.flight(), flight))).toList()
                 : missingFlights(existing, flights);
         if (missing.isEmpty()) {
             return new AtfmWriteResult(masterId, permId, updates.size());
@@ -712,7 +742,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                               ScheduleFlight flight) throws SQLException {
         int index = 1;
         statement.setLong(index++, permId);
-        statement.setLong(index++, flight.craftId());
+        setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
         statement.setString(index++, noFlightDates(flight));
         statement.setString(index++, flight.flightNumber());
@@ -728,6 +758,26 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index++, flight.purposeId());
         statement.setDate(index++, Date.valueOf(flight.endDate()));
         statement.setString(index, truncateUtf8(flight.remark(), 4000));
+    }
+
+    @Override
+    public Optional<String> findReferencedSeason(SchedulePermit permit) {
+        if (permit.referencedPermitId() == null || permit.referencedPermitId().isBlank()) {
+            return Optional.empty();
+        }
+        try (Connection connection = openConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_REFERENCED_SEASON_SQL)) {
+            statement.setString(1, permit.referencedPermitId());
+            try (ResultSet rows = statement.executeQuery()) {
+                if (!rows.next()) {
+                    return Optional.empty();
+                }
+                String season = normalize(rows.getString("SEASON"));
+                return season.matches("[SW]") ? Optional.of(season) : Optional.empty();
+            }
+        } catch (SQLException exception) {
+            throw databaseFailure("read referenced permit season", exception);
+        }
     }
 
     private void updateNoReference(Connection connection,
@@ -753,7 +803,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                                     long permId,
                                     ScheduleFlight flight) throws SQLException {
         int index = 1;
-        statement.setLong(index++, flight.craftId());
+        setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
         setNullableString(statement, index++, flight.registration());
         statement.setString(index++, flight.etd());
@@ -765,6 +815,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index++, flight.purposeId());
         statement.setDate(index++, Date.valueOf(flight.endDate()));
         statement.setString(index++, truncateUtf8(flight.remark(), 4000));
+        statement.setString(index++, noFlightDates(flight));
+        statement.setString(index++, normalize(flight.fromAirport()));
+        statement.setString(index++, normalize(flight.toAirport()));
         statement.setLong(index++, permId);
         statement.setString(index++, normalize(flight.flightNumber()));
         statement.setString(index++, normalize(flight.fromAirport()));
@@ -772,9 +825,53 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index, noFlightDates(flight));
     }
 
+    private void bindNoDetailUpdateByCallsign(PreparedStatement statement,
+                                              long permId,
+                                              ScheduleFlight flight) throws SQLException {
+        int index = 1;
+        setNullableAircraftId(statement, index++, flight.craftId());
+        statement.setBigDecimal(index++, flight.mtow());
+        setNullableString(statement, index++, flight.registration());
+        statement.setString(index++, flight.etd());
+        setNullableString(statement, index++, flight.eta());
+        setNullableString(statement, index++, flight.via());
+        statement.setString(index++, "0");
+        statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+        statement.setString(index++, "AEROSYNC");
+        statement.setString(index++, flight.purposeId());
+        statement.setDate(index++, Date.valueOf(flight.endDate()));
+        statement.setString(index++, truncateUtf8(flight.remark(), 4000));
+        statement.setString(index++, noFlightDates(flight));
+        statement.setString(index++, normalize(flight.fromAirport()));
+        statement.setString(index++, normalize(flight.toAirport()));
+        statement.setLong(index++, permId);
+        statement.setString(index, normalize(flight.flightNumber()));
+    }
+
+    private RevisionUpdate revisionUpdate(List<ExistingFlight> existing,
+                                          ScheduleFlight flight) {
+        ExistingFlight expected = ExistingFlight.fromExpected(flight);
+        if (existing.stream().anyMatch(row -> row.sameRevisionIdentity(expected))) {
+            return new RevisionUpdate(flight, false);
+        }
+        long sameCallsign = existing.stream()
+                .filter(row -> sameText(row.flightNumber, flight.flightNumber()))
+                .count();
+        return sameCallsign == 1 ? new RevisionUpdate(flight, true) : null;
+    }
+
+    private boolean sameText(String left, String right) {
+        String normalizedLeft = normalize(left);
+        String normalizedRight = normalize(right);
+        return normalizedLeft != null && normalizedLeft.equalsIgnoreCase(normalizedRight);
+    }
+
     private boolean sameRevisionIdentity(ScheduleFlight left, ScheduleFlight right) {
         return ExistingFlight.fromExpected(left).sameRevisionIdentity(
                 ExistingFlight.fromExpected(right));
+    }
+
+    private record RevisionUpdate(ScheduleFlight flight, boolean byCallsign) {
     }
 
     private String noFlightDates(ScheduleFlight flight) {
@@ -860,11 +957,11 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     }
 
     private List<ScheduleFlight> noFlights(SchedulePermit permit, List<ScheduleFlight> flights) {
-        return permit.seasonalPermit() ? List.of() : flights;
+        return permit.usesScheduledStorage() ? List.of() : flights;
     }
 
     private List<ScheduleFlight> scheduledFlights(SchedulePermit permit, List<ScheduleFlight> flights) {
-        return permit.seasonalPermit() ? flights : List.of();
+        return permit.usesScheduledStorage() ? flights : List.of();
     }
 
     private String noPermitId(SchedulePermit permit) {
@@ -1024,7 +1121,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         int index = 1;
         statement.setLong(index++, permId);
         statement.setString(index++, flight.purposeId());
-        statement.setLong(index++, flight.craftId());
+        setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
         statement.setString(index++, flight.flightNumber());
         setNullableString(statement, index++, flight.registration());
@@ -1173,6 +1270,16 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             statement.setNull(index, Types.VARCHAR);
         } else {
             statement.setString(index, value);
+        }
+    }
+
+    private void setNullableAircraftId(PreparedStatement statement,
+                                       int index,
+                                       long craftId) throws SQLException {
+        if (craftId > 0) {
+            statement.setLong(index, craftId);
+        } else {
+            statement.setNull(index, Types.NUMERIC);
         }
     }
 
