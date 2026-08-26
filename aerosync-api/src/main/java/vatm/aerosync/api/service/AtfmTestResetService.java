@@ -31,19 +31,19 @@ public class AtfmTestResetService {
                 properties.getAtfmUrl(), properties.getAtfmUsername(), properties.getAtfmPassword())) {
             connection.setAutoCommit(false);
             try {
-                TargetOwnership ownership = targetOwnership(connection, permitImport);
-                if (ownership == TargetOwnership.MISSING) {
+                TargetMatch target = targetOwnership(connection, permitImport);
+                if (target.ownership() == TargetOwnership.MISSING) {
                     connection.commit();
                     return new TargetDeleteResult(0, 0);
                 }
-                if (ownership == TargetOwnership.UNSAFE) {
+                if (target.ownership() == TargetOwnership.UNSAFE) {
                     connection.rollback();
                     throw new IllegalStateException(
                             "Refusing to delete the ATFM permit because the recorded target row "
                                     + "changed or was not written by AEROSYNC");
                 }
-                int details = deleteDetails(connection, permitImport.getTargetPermId());
-                int masters = deleteMaster(connection, permitImport);
+                int details = deleteDetails(connection, permitImport.getTargetPermId(), target.table());
+                int masters = deleteMaster(connection, permitImport, target.table());
                 if (masters != 1) {
                     connection.rollback();
                     throw new IllegalStateException("ATFM permit changed while the test replay was being prepared");
@@ -60,13 +60,25 @@ public class AtfmTestResetService {
         }
     }
 
-    private TargetOwnership targetOwnership(Connection connection, PermitImport permitImport) throws SQLException {
-        String sql = """
-                SELECT PERMNBR_ID, LASTUSER
-                  FROM T_PERMMASTER_SC
-                 WHERE ID = ? AND PERM_ID = ?
-                 FOR UPDATE
-                """;
+    private TargetMatch targetOwnership(Connection connection, PermitImport permitImport) throws SQLException {
+        TargetMatch sc = targetOwnership(connection, permitImport, TableKind.SC);
+        if (sc.ownership() != TargetOwnership.MISSING) {
+            return sc;
+        }
+        TargetMatch no = targetOwnership(connection, permitImport, TableKind.NO);
+        if (no.ownership() != TargetOwnership.MISSING) {
+            return no;
+        }
+        return normalizedPermitExists(connection, permitImport.getNormalizedPermitId())
+                ? new TargetMatch(TargetOwnership.UNSAFE, TableKind.SC)
+                : new TargetMatch(TargetOwnership.MISSING, TableKind.SC);
+    }
+
+    private TargetMatch targetOwnership(Connection connection, PermitImport permitImport,
+                                         TableKind table) throws SQLException {
+        String masterTable = table == TableKind.SC ? "T_PERMMASTER_SC" : "T_PERMMASTER_NO";
+        String sql = "SELECT PERMNBR_ID, LASTUSER FROM " + masterTable
+                + " WHERE ID = ? AND PERM_ID = ? FOR UPDATE";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, permitImport.getTargetMasterId());
             statement.setLong(2, permitImport.getTargetPermId());
@@ -75,13 +87,11 @@ public class AtfmTestResetService {
                     String lastUser = resultSet.getString("LASTUSER");
                     boolean owned = permitImport.getNormalizedPermitId().equals(resultSet.getString("PERMNBR_ID"))
                             && lastUser != null && AEROSYNC_USER.equalsIgnoreCase(lastUser.trim());
-                    return owned ? TargetOwnership.OWNED : TargetOwnership.UNSAFE;
+                    return new TargetMatch(owned ? TargetOwnership.OWNED : TargetOwnership.UNSAFE, table);
                 }
             }
         }
-        return normalizedPermitExists(connection, permitImport.getNormalizedPermitId())
-                ? TargetOwnership.UNSAFE
-                : TargetOwnership.MISSING;
+        return new TargetMatch(TargetOwnership.MISSING, table);
     }
 
     private boolean normalizedPermitExists(Connection connection, String normalizedPermitId) throws SQLException {
@@ -95,19 +105,19 @@ public class AtfmTestResetService {
         }
     }
 
-    private int deleteDetails(Connection connection, long permitId) throws SQLException {
+    private int deleteDetails(Connection connection, long permitId, TableKind table) throws SQLException {
+        String detailTable = table == TableKind.SC ? "T_PERMDETAIL_SC" : "T_PERMDETAIL_NO";
         try (PreparedStatement statement = connection.prepareStatement(
-                "DELETE FROM T_PERMDETAIL_SC WHERE PERM_ID = ?")) {
+                "DELETE FROM " + detailTable + " WHERE PERM_ID = ?")) {
             statement.setLong(1, permitId);
             return statement.executeUpdate();
         }
     }
 
-    private int deleteMaster(Connection connection, PermitImport permitImport) throws SQLException {
-        String sql = """
-                DELETE FROM T_PERMMASTER_SC
-                 WHERE ID = ? AND PERM_ID = ? AND PERMNBR_ID = ? AND UPPER(TRIM(LASTUSER)) = ?
-                """;
+    private int deleteMaster(Connection connection, PermitImport permitImport, TableKind table) throws SQLException {
+        String masterTable = table == TableKind.SC ? "T_PERMMASTER_SC" : "T_PERMMASTER_NO";
+        String sql = "DELETE FROM " + masterTable
+                + " WHERE ID = ? AND PERM_ID = ? AND PERMNBR_ID = ? AND UPPER(TRIM(LASTUSER)) = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, permitImport.getTargetMasterId());
             statement.setLong(2, permitImport.getTargetPermId());
@@ -139,5 +149,10 @@ public class AtfmTestResetService {
         OWNED,
         MISSING,
         UNSAFE
+    }
+
+    private enum TableKind { SC, NO }
+
+    private record TargetMatch(TargetOwnership ownership, TableKind table) {
     }
 }

@@ -52,6 +52,23 @@ class AtfmTestResetServiceTest {
         assertThat(result.detailRows()).isZero();
     }
 
+    @Test
+    void deleteOwnedPermit_deletesOwnedNonScheduledPermit() throws Exception {
+        TestDatabase database = database();
+        database.insertNoPermit("AEROSYNC");
+        PermitImport permitImport = permitImport();
+        permitImport.setNormalizedPermitId("O/F 06017/CHK/2026");
+        permitImport.setTargetMasterId(30L);
+        permitImport.setTargetPermId(40L);
+
+        var result = new AtfmTestResetService(database.properties()).deleteOwnedPermit(permitImport);
+
+        assertThat(result.masterRows()).isOne();
+        assertThat(result.detailRows()).isEqualTo(2);
+        assertThat(database.count("T_PERMMASTER_NO")).isZero();
+        assertThat(database.count("T_PERMDETAIL_NO")).isZero();
+    }
+
     private PermitImport permitImport() {
         PermitImport permitImport = new PermitImport();
         permitImport.setNormalizedPermitId("LD-06/A/S/2026");
@@ -78,6 +95,20 @@ class AtfmTestResetServiceTest {
                         CONSTRAINT FK_TEST_PERMIT FOREIGN KEY (PERM_ID)
                             REFERENCES T_PERMMASTER_SC(PERM_ID))
                     """);
+            statement.execute("""
+                    CREATE TABLE T_PERMMASTER_NO (
+                        ID BIGINT PRIMARY KEY,
+                        PERM_ID BIGINT NOT NULL UNIQUE,
+                        PERMNBR_ID VARCHAR(100) NOT NULL,
+                        LASTUSER VARCHAR(100) NOT NULL)
+                    """);
+            statement.execute("""
+                    CREATE TABLE T_PERMDETAIL_NO (
+                        ID BIGINT PRIMARY KEY,
+                        PERM_ID BIGINT NOT NULL,
+                        CONSTRAINT FK_TEST_PERMIT_NO FOREIGN KEY (PERM_ID)
+                            REFERENCES T_PERMMASTER_NO(PERM_ID))
+                    """);
         }
         TestReplayProperties properties = new TestReplayProperties();
         properties.setAtfmUrl(url);
@@ -95,6 +126,16 @@ class AtfmTestResetServiceTest {
                         + "(10, 20, 'LD-06/A/S/2026', '" + lastUser + "')");
                 statement.executeUpdate("INSERT INTO T_PERMDETAIL_SC VALUES (1, 20)");
                 statement.executeUpdate("INSERT INTO T_PERMDETAIL_SC VALUES (2, 20)");
+            }
+        }
+
+        void insertNoPermit(String lastUser) throws Exception {
+            try (Connection connection = DriverManager.getConnection(url, "sa", "");
+                 Statement statement = connection.createStatement()) {
+                statement.executeUpdate("INSERT INTO T_PERMMASTER_NO VALUES "
+                        + "(30, 40, 'O/F 06017/CHK/2026', '" + lastUser + "')");
+                statement.executeUpdate("INSERT INTO T_PERMDETAIL_NO VALUES (11, 40)");
+                statement.executeUpdate("INSERT INTO T_PERMDETAIL_NO VALUES (12, 40)");
             }
         }
 
