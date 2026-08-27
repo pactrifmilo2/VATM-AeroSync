@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Hướng dẫn sử dụng VATM AeroSync</title>
+<style>
+@page { size: A4; margin: 2cm; }
+body { font-family: Arial, sans-serif; font-size: 11pt; line-height: 1.45; color: #202124; }
+h1 { color: #163a63; font-size: 24pt; text-align: center; margin-top: 100px; }
+h2 { color: #1d5688; font-size: 16pt; border-bottom: 1px solid #9db7cf; padding-bottom: 4px; page-break-after: avoid; }
+h3 { color: #294f70; font-size: 13pt; page-break-after: avoid; }
+p, li { text-align: justify; }
+.cover { text-align: center; page-break-after: always; }
+.subtitle { font-size: 15pt; color: #4d6070; text-align: center; }
+.meta { margin-top: 130px; text-align: center; color: #555; }
+.note { background: #edf5fc; border-left: 5px solid #2878b5; padding: 9px 12px; }
+.warn { background: #fff4e5; border-left: 5px solid #e28a13; padding: 9px 12px; }
+.danger { background: #fdecec; border-left: 5px solid #c9362b; padding: 9px 12px; }
+pre { background: #f3f5f7; border: 1px solid #d8dde3; padding: 9px; font-family: Consolas, monospace; font-size: 9pt; white-space: pre-wrap; }
+code { font-family: Consolas, monospace; }
+table { border-collapse: collapse; width: 100%; margin: 10px 0 16px; }
+th, td { border: 1px solid #9aa7b2; padding: 6px; vertical-align: top; }
+th { background: #dceaf5; color: #183b5b; }
+.pagebreak { page-break-before: always; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <h1>HƯỚNG DẪN SỬ DỤNG<br>VATM AEROSYNC</h1>
+  <p class="subtitle">Cài đặt, vận hành, xử lý dữ liệu và khắc phục sự cố</p>
+  <p class="meta">Phiên bản tài liệu: 1.0<br>Áp dụng từ bản AeroSync 0.0.1-20260826-180339<br>Ngày cập nhật: 27/08/2026</p>
+</div>
+
+<h2>1. Mục đích và phạm vi</h2>
+<p>Tài liệu này hướng dẫn quản trị viên và người vận hành triển khai AeroSync trên Windows, cấu hình kết nối, theo dõi ba dịch vụ, tiếp nhận file từ email/thư mục, kiểm tra kết quả, xử lý file lỗi và thu thập thông tin khi cần hỗ trợ.</p>
+<p class="note"><b>Phạm vi nghiệp vụ:</b> AeroSync đọc phép bay từ email hoặc thư mục incoming, nhận diện hãng/format, trích xuất dữ liệu, đối chiếu từ điển ATFM và ghi phép bay vào cơ sở dữ liệu đích.</p>
+
+<h2>2. Tổng quan hệ thống</h2>
+<table>
+<tr><th>Thành phần</th><th>Chức năng</th></tr>
+<tr><td>AeroSyncApi</td><td>Cung cấp giao diện và API báo cáo, trạng thái, thao tác vận hành.</td></tr>
+<tr><td>AeroSyncIngest</td><td>Đọc email và file trong thư mục incoming, tạo công việc xử lý.</td></tr>
+<tr><td>AeroSyncWorker</td><td>Nhận công việc, đọc nội dung, kiểm tra nghiệp vụ và ghi dữ liệu ATFM.</td></tr>
+<tr><td>Oracle</td><td>Lưu dữ liệu nội bộ AeroSync và dữ liệu phép bay ATFM.</td></tr>
+<tr><td>RabbitMQ</td><td>Truyền công việc từ ingest tới worker.</td></tr>
+<tr><td>Redis</td><td>Lưu trạng thái/cache phục vụ quá trình xử lý.</td></tr>
+</table>
+
+<h2>3. Điều kiện trước khi cài đặt</h2>
+<ul>
+<li>Windows PowerShell 5.1 và tài khoản có quyền Administrator.</li>
+<li>Java 21; không cần Maven hoặc Node.js trên máy chạy gói deploy.</li>
+<li>Kết nối được Oracle, RabbitMQ cổng 5672 và Redis cổng 6379.</li>
+<li>Cổng API, mặc định 8081, không bị ứng dụng khác sử dụng.</li>
+<li>Có quyền đọc/ghi tại <code>C:\AeroSync</code> và các thư mục lưu file.</li>
+</ul>
+<pre>java -version
+Test-NetConnection 192.168.131.15 -Port 1521
+Test-NetConnection localhost -Port 5672
+Test-NetConnection localhost -Port 6379
+Get-NetTCPConnection -LocalPort 8081 -ErrorAction SilentlyContinue</pre>
+
+<h2>4. Cài đặt hoặc cập nhật AeroSync</h2>
+<ol>
+<li>Sao chép file ZIP deploy sang máy chủ và giải nén toàn bộ vào một thư mục tạm.</li>
+<li>Mở PowerShell bằng <b>Run as administrator</b>.</li>
+<li>Chạy kiểm tra trước deploy:</li>
+</ol>
+<pre>Set-Location 'D:\duong-dan-goi-deploy'
+.\AeroSync-Deploy.cmd check</pre>
+<p>Chỉ tiếp tục khi không còn dòng đánh dấu <b>[X]</b>. Sau đó chạy:</p>
+<pre>.\AeroSync-Deploy.cmd</pre>
+<p>Script sẽ dừng các service đang chạy, sao lưu bản cũ, cập nhật chương trình, cài hoặc refresh service, khởi động lại và kiểm tra API.</p>
+<p class="warn"><b>Không xóa thủ công C:\AeroSync khi cập nhật.</b> Thư mục này chứa cấu hình, log và bản sao lưu phục vụ rollback.</p>
+
+<h2>5. Cấu hình file môi trường</h2>
+<p>File cấu hình thật phải nằm tại <code>C:\AeroSync\config\.env</code>. Không sử dụng nhầm <code>C:\AeroSync\config.env</code>.</p>
+<pre>SPRING_DATASOURCE_URL=jdbc:oracle:thin:@//192.168.131.15:1521/DB19
+SPRING_DATASOURCE_USERNAME=atfm
+SPRING_DATASOURCE_PASSWORD=&lt;mat-khau&gt;
+SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+
+APP_ATFM_DATASOURCE_URL=jdbc:oracle:thin:@//192.168.131.15:1521/DB19
+APP_ATFM_DATASOURCE_USERNAME=atfm
+APP_ATFM_DATASOURCE_PASSWORD=&lt;mat-khau&gt;
+
+SPRING_RABBITMQ_HOST=localhost
+SPRING_RABBITMQ_PORT=5672
+SPRING_DATA_REDIS_HOST=localhost
+SPRING_DATA_REDIS_PORT=6379
+SERVER_PORT=8081</pre>
+<p class="danger"><b>Bảo mật:</b> Không ghi mật khẩu thật vào tài liệu, Git, ảnh chụp hoặc log gửi hỗ trợ. Tên biến dùng dấu gạch dưới bình thường, ví dụ <code>SERVER_PORT</code>, không viết <code>SERVER\_PORT</code>.</p>
+
+<h3>5.1. Cấu hình thư mục file</h3>
+<pre>APP_FILE_PATHS_INCOMING=D:/vatm-storage/incoming
+APP_FILE_PATHS_PROCESSED=D:/vatm-storage/processed
+APP_FILE_PATHS_ERROR=D:/vatm-storage/error
+APP_FILE_PATHS_QUARANTINE=D:/vatm-storage/quarantine</pre>
+<table>
+<tr><th>Thư mục</th><th>Ý nghĩa</th></tr>
+<tr><td>incoming</td><td>File đầu vào đặt trực tiếp trên máy chủ.</td></tr>
+<tr><td>processed</td><td>File đã xử lý hoàn tất.</td></tr>
+<tr><td>error</td><td>File lỗi kỹ thuật hoặc lỗi xử lý.</td></tr>
+<tr><td>quarantine</td><td>File cần kiểm tra thủ công, thiếu format hoặc dữ liệu không chắc chắn.</td></tr>
+<tr><td>error-format</td><td>Nguồn tham khảo để bổ sung YAML cho format hãng chưa nhận diện.</td></tr>
+</table>
+
+<h3>5.2. Cấu hình email</h3>
+<pre>APP_EMAIL_HOST=mail.vatm.vn
+APP_EMAIL_PORT=993
+APP_EMAIL_PROTOCOL=imaps
+APP_EMAIL_USERNAME=&lt;tai-khoan-email&gt;
+APP_EMAIL_PASSWORD=&lt;mat-khau-email&gt;
+APP_EMAIL_FOLDER=INBOX
+APP_EMAIL_PROCESSED_FOLDER=AeroSync/Processed
+APP_EMAIL_ERROR_FOLDER=AeroSync/Error</pre>
+<p>Sau khi đổi file <code>.env</code>, phải restart ba service để cấu hình mới có hiệu lực.</p>
+
+<div class="pagebreak"></div>
+<h2>6. Kiểm tra sau deploy và vận hành service</h2>
+<pre>.\AeroSync-Deploy.cmd status
+Get-Service AeroSyncApi,AeroSyncIngest,AeroSyncWorker
+Invoke-WebRequest http://localhost:8081/api/dashboard/stats -UseBasicParsing
+Get-Content C:\AeroSync\VERSION</pre>
+<p>Kết quả hợp lệ: cả ba service ở trạng thái <b>Running</b>, API trả về thành công và VERSION đúng với gói vừa cài.</p>
+<table>
+<tr><th>Lệnh</th><th>Công dụng</th></tr>
+<tr><td><code>AeroSync-Deploy.cmd check</code></td><td>Kiểm tra môi trường, cấu hình, kết nối và service.</td></tr>
+<tr><td><code>AeroSync-Deploy.cmd status</code></td><td>Xem trạng thái bản cài và ba service.</td></tr>
+<tr><td><code>AeroSync-Deploy.cmd restart</code></td><td>Khởi động lại toàn bộ service.</td></tr>
+<tr><td><code>AeroSync-Deploy.cmd rollback</code></td><td>Khôi phục bản sao lưu gần nhất khi bản mới lỗi.</td></tr>
+</table>
+
+<h2>7. Quy trình tiếp nhận và xử lý file</h2>
+<h3>7.1. Nguồn email</h3>
+<ol>
+<li>Gửi email có file đính kèm hợp lệ tới hộp thư đã cấu hình.</li>
+<li>Ingest đọc email, mỗi file đính kèm được theo dõi riêng.</li>
+<li>Worker nhận diện format, đọc phép bay, kiểm tra từ điển và ghi ATFM.</li>
+<li>Email/file thành công được chuyển sang thư mục Processed; file lỗi được chuyển Error hoặc Quarantine theo nguyên nhân.</li>
+</ol>
+<p>Dữ liệu API có <code>source_type=email</code> và <code>source_key=1</code>.</p>
+
+<h3>7.2. Nguồn thư mục</h3>
+<ol>
+<li>Sao chép file vào đúng thư mục <code>D:\vatm-storage\incoming</code>.</li>
+<li>Không mở hoặc ghi đè file khi ingest đang đọc.</li>
+<li>Chờ hết chu kỳ scheduler hoặc theo dõi giao diện.</li>
+</ol>
+<p>Dữ liệu API có <code>source_type=folder</code> và <code>source_key=2</code>.</p>
+
+<h2>8. Cách đọc kết quả xử lý</h2>
+<table>
+<tr><th>Trạng thái</th><th>Ý nghĩa và thao tác</th></tr>
+<tr><td>SAVED / SUCCESS</td><td>Đã ghi dữ liệu. Vẫn cần đối chiếu số chuyến, chặng, giờ, tàu bay, via và remark với file gốc.</td></tr>
+<tr><td>SKIPPED</td><td>Tài liệu không phải phép bay, trùng hoặc thuộc trường hợp được phép bỏ qua. Đọc errorMessage để biết lý do cụ thể.</td></tr>
+<tr><td>ERROR / FAILED</td><td>Lỗi đọc file, cấu hình, kết nối hoặc nghiệp vụ. Sửa nguyên nhân trước khi gửi lại.</td></tr>
+<tr><td>QUARANTINED</td><td>Cần kiểm tra thủ công, thường do chưa có YAML, không chắc format hoặc thiếu phép gốc.</td></tr>
+<tr><td>REVISION_REVIEW</td><td>Phép sửa đổi chưa tìm thấy/đối chiếu được phép gốc hoặc không thể cập nhật an toàn.</td></tr>
+</table>
+
+<h2>9. Quy tắc dữ liệu nghiệp vụ chính</h2>
+<ul>
+<li>Phép đột xuất không đọc hoặc không đối chiếu được tàu bay: vẫn lưu, dùng loại dự phòng <b>A000</b> và giữ errorMessage chi tiết.</li>
+<li>Loại tàu bay bắt đầu bằng 3 được chuẩn hóa thêm A (321 thành A321, 32N thành A32N); bắt đầu bằng 7 thêm B (787 thành B787).</li>
+<li>Đường bay nhiều dòng phải lấy theo từng sector; các đoạn đã xuất hiện không lặp lại.</li>
+<li>Nếu không đối chiếu được via, giữ nội dung có ích trong trường via và ghi rõ nguyên nhân trong errorMessage.</li>
+<li>Phép sửa đổi phải tìm đúng phép gốc, cập nhật chặng/ngày/giờ theo nội dung NEW và ghi remark dạng ngày xử lý + R(n).</li>
+<li>Các quy tắc A000/nới lỏng lỗi tàu bay, đường bay chỉ áp dụng cho phép đột xuất nếu nghiệp vụ đã quy định; phép mùa vẫn kiểm tra nghiêm ngặt.</li>
+</ul>
+
+<h2>10. Gửi lại file lỗi</h2>
+<ol>
+<li>Đọc <code>errorMessage</code>, mở file gốc và sửa đúng nguyên nhân.</li>
+<li>Kiểm tra file không bị hỏng, có bảng lịch bay, loại tàu bay, chặng, ngày/giờ và số phép.</li>
+<li>Gửi lại file qua hộp thư nhận dữ liệu hoặc đặt lại vào incoming.</li>
+<li>Theo dõi job mới và đối chiếu dữ liệu đích.</li>
+</ol>
+<p class="warn">Retry/reset giữ nguyên syncJobId chỉ được thực hiện qua chức năng quản trị được thiết kế cho ERROR, SKIPPED, QUARANTINED và lỗi format. Không xóa trực tiếp dữ liệu ATFM nếu chưa xác định chính xác master/detail và phép gốc dùng chung.</p>
+
+<h2>11. Kiểm tra bằng API</h2>
+<pre>$id = 29840
+Invoke-RestMethod "http://localhost:8081/api/reports/emails/$id" |
+  ConvertTo-Json -Depth 10</pre>
+<p>Kiểm tra các trường: <code>processingStatus</code>, <code>jobStatus</code>, <code>syncJobId</code>, <code>permitNumber</code>, <code>attachmentName</code>, <code>errorMessage</code>, <code>source_type</code> và <code>source_key</code>.</p>
+<p>Nếu API trả 409 Conflict khi resend, không gửi lặp liên tục. Đọc nội dung phản hồi để xác định job đang xử lý, trạng thái không phù hợp hoặc bản ghi đích không thể reset an toàn.</p>
+
+<h2>12. Log và chẩn đoán lỗi</h2>
+<pre>C:\AeroSync\logs\deploy-*.log
+C:\AeroSync\logs\api\AeroSyncApi.out.log
+C:\AeroSync\logs\ingest\AeroSyncIngest.out.log
+C:\AeroSync\logs\worker\AeroSyncWorker.out.log</pre>
+<table>
+<tr><th>Hiện tượng</th><th>Kiểm tra/xử lý</th></tr>
+<tr><td>Chạy thủ công được, service không chạy</td><td>Kiểm tra tài khoản service, Java, đường dẫn working directory, quyền đọc .env và log service.</td></tr>
+<tr><td>ORA-12514</td><td>Kiểm tra service name Oracle và Listener.</td></tr>
+<tr><td>ORA-01017</td><td>Kiểm tra username/password, không in mật khẩu ra log.</td></tr>
+<tr><td>RabbitMQ/Redis unavailable</td><td>Kiểm tra service, cổng, firewall và địa chỉ trong .env.</td></tr>
+<tr><td>API không lên</td><td>Kiểm tra SERVER_PORT, tiến trình chiếm cổng và log AeroSyncApi.</td></tr>
+<tr><td>Không nhận diện format</td><td>Đưa file vào error-format, so sánh với YAML chuẩn của hãng và bổ sung format có kiểm thử.</td></tr>
+<tr><td>Thiếu phép gốc</td><td>Không tự tạo dữ liệu sửa đổi. Phải tìm/khôi phục phép gốc đúng số phép và đúng loại mùa/đột xuất.</td></tr>
+</table>
+
+<h2>13. Checklist vận hành hằng ngày</h2>
+<ul>
+<li>Ba service đều Running.</li>
+<li>Oracle, RabbitMQ, Redis kết nối bình thường.</li>
+<li>Không có file tồn bất thường trong incoming.</li>
+<li>Kiểm tra ERROR, QUARANTINED, SKIPPED và errorMessage mới.</li>
+<li>Đối chiếu ngẫu nhiên file thành công với DB: số chuyến, callsign, ngày, sân bay, giờ, craft, purpose, via và remark.</li>
+<li>Kiểm tra dung lượng ổ đĩa và log tăng bất thường.</li>
+</ul>
+
+<h2>14. Thông tin cần gửi khi yêu cầu hỗ trợ</h2>
+<ul>
+<li>VERSION đang chạy.</li>
+<li>ID email/job/syncJobId và tên file.</li>
+<li>Trạng thái cùng errorMessage đầy đủ.</li>
+<li>Log API/Ingest/Worker đúng khoảng thời gian xảy ra lỗi.</li>
+<li>File nguồn lỗi nếu được phép chia sẻ.</li>
+<li>Kết quả mong đợi và dữ liệu thực tế trong DB.</li>
+</ul>
+<p class="danger">Trước khi gửi, phải che mật khẩu Oracle, mật khẩu email, token, dữ liệu cá nhân và các thông tin nhạy cảm.</p>
+
+</body>
+</html>
