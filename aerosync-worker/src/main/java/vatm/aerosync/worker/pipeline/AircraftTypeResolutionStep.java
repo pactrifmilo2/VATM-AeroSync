@@ -47,7 +47,7 @@ public class AircraftTypeResolutionStep {
             return;
         }
 
-        boolean allowMissing = allowMissingForNonSeasonal && !permit.usesScheduledStorage();
+        boolean allowMissing = true;
 
         List<ScheduleFlight> resolvedFlights = new ArrayList<>(permit.flights().size());
         List<RowValidationError> errors = new ArrayList<>();
@@ -109,15 +109,6 @@ public class AircraftTypeResolutionStep {
             }
         }
 
-        if (!errors.isEmpty() && !allowMissing) {
-            context.getRowValidationErrors().addAll(errors);
-            RowValidationError first = errors.getFirst();
-            throw new BusinessRuleException(
-                    first.code(),
-                    "Schedule row %d: %s (%d aircraft resolution errors)".formatted(
-                            first.rowNumber(), first.message(), errors.size()),
-                    errors);
-        }
         if (!errors.isEmpty()) {
             context.getRowValidationErrors().addAll(errors);
         }

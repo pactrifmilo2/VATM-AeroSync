@@ -17,6 +17,7 @@ import vatm.aerosync.worker.repository.FlightDataRepository;
 import vatm.aerosync.worker.service.PermitImportCoordinator;
 import vatm.aerosync.worker.service.PermitImportOutcome;
 import vatm.aerosync.worker.service.VietnameseStoredErrorMessage;
+import vatm.aerosync.common.exception.BusinessRuleException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -98,11 +99,43 @@ public class DatabaseWriterStep {
 
     private DatabaseWriteResult writeSchedulePermit(ProcessingContext context) {
         var permit = context.getSchedulePermit();
+        permit = LandingFlightFilter.filter(permit);
+        context.setSchedulePermit(permit);
+        if (context.getReceivedDate() != null) {
+            permit = permit.withReference("EM " + context.getReceivedDate().format(
+                    java.time.format.DateTimeFormatter.ofPattern("ddMMyyyy")));
+            context.setSchedulePermit(permit);
+        }
         if (!permit.revision() && !permit.importRevision() && !permit.implicitTableRevision()
                 && !permit.referencedSeasonNewPermit()) {
             context.setSchedulePermit(permit.withFlights(permit.flights().stream()
-                    .map(flight -> flight.withRemark(newPermitRemark(flight.sourceAircraftType())))
+                    .map(flight -> flight.withRemark(PermitRemarkPolicy.newFlight(flight)))
                     .toList()));
+        } else if (permit.importRevision() && context.getReceivedDate() != null) {
+            final var revision = permit;
+            final var date = context.getReceivedDate();
+            if (!permit.seasonalPermit() && !permit.revisionCreatesNewPermit()) {
+                context.setSchedulePermit(permit.withFlights(permit.flights().stream()
+                        .map(flight -> flight.withRemark(PermitRemarkPolicy.suddenRevision(
+                                flight, date, revision.revisionNumber())))
+                        .toList()));
+            } else {
+                var oldRows = permit.originalFlights();
+                if (permit.flights().size() >= oldRows.size()) {
+                    var revised = new java.util.ArrayList<vatm.aerosync.worker.model.ScheduleFlight>();
+                    for (int index = 0; index < oldRows.size(); index++) {
+                        var flight = permit.flights().get(index);
+                        revised.add(flight.withRemark(PermitRemarkPolicy.seasonalOld(flight,
+                                revision.revisionBasePermitId())));
+                    }
+                    for (int index = oldRows.size(); index < permit.flights().size(); index++) {
+                        var flight = permit.flights().get(index);
+                        revised.add(flight.withRemark(PermitRemarkPolicy.seasonalNew(flight,
+                                revision.atfmTargetPermitId(), revision.revisionBasePermitId())));
+                    }
+                    context.setSchedulePermit(permit.withFlights(revised));
+                }
+            }
         }
         Long syncJobId = context.getEvent().getSyncJobId();
         SyncJob job = syncJobRepository.findById(syncJobId)

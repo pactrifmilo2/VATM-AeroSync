@@ -913,7 +913,7 @@ public class DocxSchedulePermitParser {
                 tables,
                 List.of(),
                 aircraft.auxiliaryColumns(),
-                aircraft.auxiliaryRequiredColumns(),
+                List.of(aircraft.auxiliaryTypeColumn()),
                 List.of(),
                 List.of(),
                 aircraft.lastMatchingTable());
@@ -1044,7 +1044,7 @@ public class DocxSchedulePermitParser {
 
     private String inferAircraftTypes(String rawContent) {
         Matcher matcher = Pattern.compile(
-                "(?iu)(?<![A-Z0-9])(?:A\\d{3}|B\\d{3}|\\d{2}[A-Z])(?![A-Z0-9])")
+                "(?iu)(?<![A-Z0-9])(?:A\\d{3}|B\\d{3}|\\d{2}[A-Z]|\\d{3})(?![A-Z0-9])")
                 .matcher(Objects.requireNonNullElse(rawContent, ""));
         LinkedHashSet<String> values = new LinkedHashSet<>();
         while (matcher.find()) {

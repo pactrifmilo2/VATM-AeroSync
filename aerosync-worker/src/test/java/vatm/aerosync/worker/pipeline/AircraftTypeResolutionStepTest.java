@@ -103,14 +103,11 @@ class AircraftTypeResolutionStepTest {
     }
 
     @Test
-    void resolve_quarantinesAmbiguousAtfmCodes() {
+    void resolve_usesA000AndReportsAmbiguousAtfmCodes() {
         ProcessingContext context = context("AMB");
 
-        assertThatThrownBy(() -> step.resolve(context))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("BR-AIRCRAFT-AMBIGUOUS")
-                .hasMessageContaining("9001")
-                .hasMessageContaining("9002");
+        step.resolve(context);
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(6881L);
         assertThat(context.getRowValidationErrors())
                 .extracting("field", "code", "value")
                 .containsExactly(org.assertj.core.groups.Tuple.tuple(
@@ -127,13 +124,15 @@ class AircraftTypeResolutionStepTest {
     }
 
     @Test
-    void resolve_quarantinesUnknownAircraftTypes() {
+    void resolve_usesA000AndReportsUnknownAircraftTypes() {
         ProcessingContext context = context("75V");
 
-        assertThatThrownBy(() -> step.resolve(context))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("BR-AIRCRAFT-NOT-FOUND")
-                .hasMessageContaining("75V");
+        step.resolve(context);
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(6881L);
+        assertThat(context.getRowValidationErrors()).singleElement().satisfies(error -> {
+            assertThat(error.code()).isEqualTo("BR-AIRCRAFT-NOT-FOUND");
+            assertThat(error.message()).contains("75V");
+        });
     }
 
     @Test
