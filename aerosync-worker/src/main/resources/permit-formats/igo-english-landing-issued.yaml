@@ -120,6 +120,7 @@ schedule:
   supplementalTableContextPatterns:
   - (?iu)2\.5\.\s*(?:TRANSFER\s+FLIGHTS|CB\s+CHỞ\s+KHÁCH\s+SANG\s+CHUYẾN\s+SÂN)
   dateFormats:
+  - dMMMuuuu
   - dMMMyy
   - d-MMM-yy
   - d/M/uuuu

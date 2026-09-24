@@ -1,0 +1,13 @@
+id: csg-seasonal-landing-issued-audit
+extends: airline-generic-seasonal-landing-issued
+# Observed in the September 2026 local corpus; exact ICAO scope.
+priority: 35
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*CSG\b'
+  - '(?iu)SCHEDULES?'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'
+operator:
+  fixedValue: CSG
+validation:
+  reviewOnly: true

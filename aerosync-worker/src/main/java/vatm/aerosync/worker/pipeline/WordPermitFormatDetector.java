@@ -19,6 +19,7 @@ class WordPermitFormatDetector {
                     + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
 
     private final List<DocxPermitFormatProfile> profiles;
+    private final PermitOperatorCatalog operatorCatalog = new PermitOperatorCatalog();
 
     WordPermitFormatDetector(DocxPermitProfileCatalog profileCatalog) {
         this.profiles = profileCatalog.profiles();
@@ -123,12 +124,17 @@ class WordPermitFormatDetector {
     private boolean supports(DocxPermitFormatProfile profile,
                              WordPermitDocument document,
                              boolean ignoreRevisionExclusion) {
-        boolean hasIata = IATA_IDENTITY.matcher(document.rawContent()).find();
-        boolean hasIcao = ICAO_IDENTITY.matcher(document.rawContent()).find();
+        CarrierIdentity identity = carrierIdentity(document.rawContent());
+        // Missing ICAO is not permission to match every carrier. Relax an ICAO
+        // guard only when an unambiguous catalog IATA maps to this fixed operator.
+        String inferredOperator = identity.iata() == null ? null : operatorCatalog.operatorForIata(identity.iata());
+        boolean confirmedIataOnly = identity.icao() == null && inferredOperator != null
+                && profile.operator() != null && profile.operator().fixedValue() != null
+                && inferredOperator.equalsIgnoreCase(profile.operator().fixedValue());
         boolean detectionMatches = profile.detectionPatterns().stream()
                 .allMatch(pattern -> (ignoreRevisionExclusion && isRevisionExclusionPattern(pattern))
                         || matchesPattern(pattern, document.rawContent())
-                        || (hasIata && !hasIcao && isIcaoIdentificationPattern(pattern)));
+                        || (confirmedIataOnly && isIcaoIdentificationPattern(pattern)));
         return detectionMatches
                 && (!ignoreRevisionExclusion
                 || Pattern.compile(profile.permit().pattern())

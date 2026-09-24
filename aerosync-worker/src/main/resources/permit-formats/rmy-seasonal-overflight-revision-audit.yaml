@@ -1,0 +1,14 @@
+id: rmy-seasonal-overflight-revision-audit
+extends: caav-generic-seasonal-overflight-revision
+priority: 35
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?(?:\s*\([^)]*\))?\s*:\s*RMY\b'
+  - '(?iu)(?:NEW\s+SCHEDULE|OLD\s+SCHEDULE|ORIGINAL\s+SCHEDULE|REVISED\s+(?:ITEM|DESTINATION)|LỊCH\s+BAY\s+(?:GỐC|MỚI))'
+operator:
+  fixedValue: RMY
+route:
+  filterSchedule: false
+  lastMatchingTable: true
+validation:
+  reviewOnly: true

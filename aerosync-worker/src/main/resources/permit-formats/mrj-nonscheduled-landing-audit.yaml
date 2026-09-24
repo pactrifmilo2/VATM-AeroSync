@@ -1,0 +1,24 @@
+id: mrj-nonscheduled-landing-audit
+extends: caav-generic-landing-issued
+priority: 35
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,5}\s*[./]\s*\d{1,2}\s*[./]\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*MRJ\b'
+  - '(?iu)SCHEDULES?'
+operator:
+  fixedValue: MRJ
+schedule:
+  includeEta: true
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  preferredTableContextPatterns: ['(?iu)2\.2\.?\s*NEW']
+  originalTableContextPatterns: ['(?iu)2\.1\.?\s*ORIGINAL']
+validation:
+  reviewOnly: true
+route:
+  lastMatchingTable: true
+  filterSchedule: false
+
+permit:
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*[./]\s*(?<month>\d{1,2})\s*[./]\s*(?<year>20\d{2})\s*VN'
+aircraft:
+  lastMatchingTable: true

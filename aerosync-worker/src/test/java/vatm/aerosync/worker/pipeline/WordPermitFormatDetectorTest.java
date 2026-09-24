@@ -100,6 +100,20 @@ class WordPermitFormatDetectorTest {
                 .isEqualTo("kme-english-seasonal-overflight-revision");
     }
 
+    @Test
+    void missingIcaoDoesNotMatchUnrelatedHighPriorityCarriers() {
+        var doc = document("OF-6455/9/2026VN\nIATA code: N/A\nICAO code:\nSchedules: UTC Time\nFlight number");
+        var detected = detector.detect(doc, "private.docx");
+        assertThat(detected.id()).doesNotStartWith("hke-").doesNotStartWith("mxd-");
+    }
+
+    @Test
+    void billingCountryDoesNotIdentifyAir7() {
+        var doc = document("OF-6187/8/2026VN\nName: PHILIPPINES AIRASIA\nIATA code: N/A\nICAO code: N/A\n"
+                + "Schedules: UTC Time\nFlight number\nBilling address: SINGAPORE");
+        assertThat(detector.detect(doc, "philippines.docx").id()).doesNotStartWith("prv-air7-");
+    }
+
     private WordPermitDocument document(String rawContent) {
         return new WordPermitDocument(rawContent, rawContent, rawContent, List.of(), List.of());
     }

@@ -1,0 +1,17 @@
+id: kal-seasonal-landing-revision-audit
+extends: caav-generic-seasonal-landing-revision
+priority: 35
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?(?:\s*\([^)]*\))?\s*:\s*KAL\b'
+  - '(?iu)(?:NEW\s+SCHEDULE|OLD\s+SCHEDULE|ORIGIN(?:AL)?\s+SCHEDULE|REVISED\s+(?:ITEM|DESTINATION)|LỊCH\s+BAY\s+(?:GỐC|CŨ|MỚI)|ORIGINAL\s*:|NEW\s*:)'
+operator:
+  fixedValue: KAL
+route:
+  filterSchedule: false
+  lastMatchingTable: true
+validation:
+  reviewOnly: true
+schedule:
+  preferredTableContextPatterns: ['(?iu)(?:^|\s)NEW\s*:|2\.2\.?\s*REVISE']
+  originalTableContextPatterns: ['(?iu)(?:^|\s)ORIGINAL\s*:|2\.1\.?\s*ORIGIN']

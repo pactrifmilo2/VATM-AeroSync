@@ -3,7 +3,7 @@ extends: airline-generic-overflight-issued
 priority: 75
 detectionPatterns:
   - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
-  - '(?iu)(?:\bAIR\s*7\b|\bAIR7\b|SKY\s*FUEL|SINGAPORE)'
+  - '(?iu)(?:\bAIR\s*7\b|\bAIR7\b)'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
 operator:
   fixedValue: PRV

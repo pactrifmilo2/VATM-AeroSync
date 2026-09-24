@@ -120,6 +120,35 @@ class FileProcessingPipelineTest {
     }
 
     @Test
+    void receivedDateUsesEmailAndRemainsStableOnRetry() throws Exception {
+        var metadata = new vatm.aerosync.common.entity.EmailMetadata();
+        metadata.setReceivedAt(LocalDateTime.of(2026, 9, 23, 23, 55));
+        when(emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(7L)).thenReturn(Optional.of(metadata));
+        org.springframework.test.util.ReflectionTestUtils.setField(record, "createdAt", LocalDateTime.of(2026, 9, 24, 0, 5));
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(Path.of("C:/archive/processed.csv"));
+        java.util.List<java.time.LocalDate> dates = new java.util.ArrayList<>();
+        doAnswer(invocation -> {
+            vatm.aerosync.worker.model.ProcessingContext context = invocation.getArgument(0);
+            dates.add(context.getReceivedDate()); return null;
+        }).when(parserStep).parse(any());
+        pipeline.process(event);
+        pipeline.process(event);
+        assertThat(dates).containsExactly(java.time.LocalDate.of(2026, 9, 23), java.time.LocalDate.of(2026, 9, 23));
+    }
+
+    @Test
+    void receivedDateFallsBackToEarliestIngestRecordNotToday() throws Exception {
+        org.springframework.test.util.ReflectionTestUtils.setField(record, "createdAt", LocalDateTime.of(2026, 9, 24, 0, 5));
+        var earlier = new FileRecord(); org.springframework.test.util.ReflectionTestUtils.setField(earlier, "createdAt", LocalDateTime.of(2026, 9, 22, 23, 50));
+        when(fileRecordRepository.findBySyncJobId(7L)).thenReturn(List.of(record, earlier));
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(Path.of("C:/archive/processed.csv"));
+        var captor = org.mockito.ArgumentCaptor.forClass(vatm.aerosync.worker.model.ProcessingContext.class);
+        pipeline.process(event);
+        verify(parserStep).parse(captor.capture());
+        assertThat(captor.getValue().getReceivedDate()).isEqualTo(java.time.LocalDate.of(2026, 9, 22));
+    }
+
+    @Test
     void process_tracksDatabaseAndArchiveSuccessSeparately() throws Exception {
         Path archived = Path.of("C:/archive/processed.csv");
         when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);

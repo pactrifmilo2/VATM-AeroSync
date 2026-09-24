@@ -94,11 +94,11 @@ public class DocxSchedulePermitParser {
             Map.entry("fromAirport", List.of(
                     "Dep airport", "Sân bay đi", "Sân bay điDeparture Airport")),
             Map.entry("etd", List.of(
-                    "EOBT", "Giờ dự kiến đi", "Giờ dự kiến điEOBT")),
+                    "EOBT", "EOBT (UTC)", "Giờ dự kiến đi", "Giờ dự kiến điEOBT")),
             Map.entry("toAirport", List.of(
                     "Arr airport", "Sân bay đến", "Sân bay đếnArrival Airport")),
             Map.entry("eta", List.of(
-                    "EIBT", "Giờ dự kiến đến", "Giờ dựkiến đếnEIBT")),
+                    "EIBT", "EIBT (UTC)", "Giờ dự kiến đến", "Giờ dựkiến đếnEIBT")),
             Map.entry("sector", List.of("Setors", "Chặng baySector")),
             Map.entry("airways", List.of("ATS Routes", "Đường hàng khôngAirways")),
             Map.entry("aircraftType", List.of(
@@ -308,8 +308,13 @@ public class DocxSchedulePermitParser {
         List<RouteRow> routes = routeRows(
                 profile.route(), document.tables(), normalizeAirportsToIcao, fileName);
 
+        // Include every structural schedule, even OLD tables excluded by a profile
+        // or legacy reader without heading contexts, before locating an aircraft table.
+        List<List<List<String>>> allScheduleTables = findTableMatches(
+                document.tables(), document.tableContexts(), schedule.columns(),
+                schedule.requiredColumns(), List.of()).stream().map(TableMatch::table).toList();
         String parsedAuxiliaryAircraftTypes = auxiliaryAircraftTypes(
-                profile.aircraft(), document.tables(), scheduleTables);
+                profile.aircraft(), document.tables(), allScheduleTables);
         String auxiliaryRegistration = auxiliaryRegistration(profile.aircraft(), document.tables());
         boolean aircraftTablePresent = parsedAuxiliaryAircraftTypes != null
                 && !parsedAuxiliaryAircraftTypes.isBlank()
@@ -322,7 +327,7 @@ public class DocxSchedulePermitParser {
         if (aircraftTablePresent && (parsedAuxiliaryAircraftTypes == null
                 || parsedAuxiliaryAircraftTypes.isBlank())) {
             parsedAuxiliaryAircraftTypes = inferAircraftTypesFromAircraftTables(
-                    document.tables(), scheduleTables);
+                    document.tables(), allScheduleTables);
         }
         String auxiliaryAircraftTypes = parsedAuxiliaryAircraftTypes;
         List<ScheduleFlight> flights = scheduleTables.stream()
@@ -910,7 +915,7 @@ public class DocxSchedulePermitParser {
             return null;
         }
         List<List<String>> table = findTable(
-                tables,
+                tables.stream().filter(candidate -> !scheduleTables.contains(candidate)).toList(),
                 List.of(),
                 aircraft.auxiliaryColumns(),
                 List.of(aircraft.auxiliaryTypeColumn()),
@@ -1907,6 +1912,8 @@ public class DocxSchedulePermitParser {
         if (cleanValue.isBlank() && nullable) {
             return null;
         }
+        // Parenthesized timetable offsets carry the same meaning as +1.
+        cleanValue = cleanValue.replaceFirst("\\(\\s*\\+\\s*1\\s*\\)$", "+1");
         // Forms use both ICAO-style "+1" and timetable-style "/1" to mark
         // an arrival on the following UTC day (for example 0045/1).
         boolean nextDay = cleanValue.matches(".*(?:\\+\\s*(?:1)?|/\\s*1)$");
