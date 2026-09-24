@@ -44,19 +44,14 @@ class NewPermitStoragePolicyTest {
         var flight = new ScheduleFlight("PAX", 1L, null, "SVA1", "HZARA", "1234567",
                 "OERK", "RPLL", "0100", "0200", "A1",
                 LocalDate.of(2026, 10, 25), LocalDate.of(2026, 10, 25), "original remark");
-        for (String name : List.of("bindDetail", "bindNoDetail", "bindNoDetailUpdateByCallsign")) {
+        for (String name : List.of("bindDetail", "bindNoDetail")) {
             var statement = mock(PreparedStatement.class);
             var method = JdbcAtfmScheduleGateway.class.getDeclaredMethod(name,
                     PreparedStatement.class, long.class, ScheduleFlight.class);
             method.setAccessible(true);
             method.invoke(gateway, statement, 2L, flight);
-            verify(statement).setNull(name.equals("bindNoDetailUpdateByCallsign") ? 3 : 6, Types.VARCHAR);
+            verify(statement).setNull(6, Types.VARCHAR);
         }
-        var statement = mock(PreparedStatement.class);
-        var method = JdbcAtfmScheduleGateway.class.getDeclaredMethod("bindNoDetailUpdate",
-                PreparedStatement.class, long.class, ScheduleFlight.class, ScheduleFlight.class);
-        method.setAccessible(true);
-        method.invoke(gateway, statement, 2L, flight, flight);
-        verify(statement).setNull(3, Types.VARCHAR);
+
     }
 }

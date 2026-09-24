@@ -99,7 +99,12 @@ public class DatabaseWriterStep {
 
     private DatabaseWriteResult writeSchedulePermit(ProcessingContext context) {
         var permit = context.getSchedulePermit();
-        permit = LandingFlightFilter.filter(permit);
+        var filtered = LandingFlightFilter.filter(permit);
+        if (permit.replacesNonScheduledRows() && filtered.flights().size() != permit.flights().size()) {
+            throw new vatm.aerosync.common.exception.BusinessRuleException("BR-REVISION-PARTIAL-LD-FILTER",
+                    "PERMNO replacement would omit NEW legs; review OLD/NEW scope before deleting rows");
+        }
+        permit = filtered;
         context.setSchedulePermit(permit);
         if (context.getReceivedDate() != null) {
             permit = permit.withReference("EM " + context.getReceivedDate().format(

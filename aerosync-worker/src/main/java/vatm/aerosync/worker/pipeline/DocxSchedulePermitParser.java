@@ -207,9 +207,62 @@ public class DocxSchedulePermitParser {
         return permitIdentity && permitStructure && issuedMarker && !applicationHeading;
     }
 
+    SchedulePermit parseNoReplacement(Path file) throws IOException {
+        return parseNoReplacement(documentReader.read(file), file.getFileName().toString());
+    }
+
+    SchedulePermit parseNoReplacement(WordPermitDocument document, String fileName) {
+        DocxPermitFormatProfile p = formatDetector.detect(document, fileName);
+        var t = p.schedule();
+        // Keep YAML aliases/date/time mappings; override NO replacement selection only.
+        var schedule = new DocxPermitFormatProfile.ScheduleDefinition(t.columns(), t.headerlessColumns(),
+                t.requiredColumns(), t.excludeColumns(), t.tableContextPatterns(),
+                revisionMarkers(t.preferredTableContextPatterns(), "(?iu)(?:^|\\s)(?:NEW|REVISED|REVISE)\\b|LỊCH\\s+BAY\\s+MỚI"),
+                revisionMarkers(t.originalTableContextPatterns(), "(?iu)(?:^|\\s)(?:OLD|ORIGINAL|ORIGIN)\\b|LỊCH\\s+BAY\\s+(?:GỐC|CŨ)"),
+                t.supplementalTableContextPatterns(), t.dateFormats(), t.timeFormats(), t.locale(),
+                t.purposeId(), true, t.lastMatchingTable(), t.inferIataPrefix());
+        var r = p.route();
+        var route = r == null ? null : new DocxPermitFormatProfile.RouteDefinition(r.columns(), r.requiredColumns(),
+                Map.of(), r.tableRequired(), r.allowEmpty(), false, true, false);
+        var adjusted = new DocxPermitFormatProfile(p.id(), p.priority(), p.detectionPatterns(), p.permit(),
+                p.permitDate(), p.operator(), p.billingAddress(), p.reference(), p.referenceColumn(), p.purpose(),
+                p.master(), schedule, route, p.aircraft(), p.validation());
+        return parseProfile(adjusted, document, fileName, true);
+    }
+
+    private List<RouteRow> revisionRoutes(DocxPermitFormatProfile.RouteDefinition route,
+                                          List<List<List<String>>> tables, boolean normalize, String fileName) {
+        Map<String, RouteRow> latest = new LinkedHashMap<>();
+        for (List<List<String>> table : tables) {
+            for (RouteRow row : routeRows(route, List.of(table), normalize, fileName)) {
+                latest.put(row.from() + "->" + row.to(), row);
+            }
+        }
+        return List.copyOf(latest.values());
+    }
+
+    private List<String> revisionMarkers(List<String> configured, String common) {
+        List<String> result = new ArrayList<>(safeList(configured)); result.add(common); return result;
+    }
+
+    private List<List<List<String>>> revisionValueTables(WordPermitDocument document, boolean old) {
+        List<List<List<String>>> selected = new ArrayList<>();
+        for (int i = 0; i < document.tables().size(); i++) {
+            int role = RevisionDocumentText.role(document.tableContexts().get(i));
+            if (old ? role <= 0 : role >= 0) selected.add(document.tables().get(i));
+        }
+        return selected;
+    }
+
     private SchedulePermit parseProfile(DocxPermitFormatProfile profile,
                                         WordPermitDocument document,
                                         String fileName) {
+        return parseProfile(profile, document, fileName, false);
+    }
+
+    private SchedulePermit parseProfile(DocxPermitFormatProfile profile,
+                                        WordPermitDocument document,
+                                        String fileName, boolean noReplacement) {
         Matcher permitMatcher = require(
                 profile.permit().pattern(), joinSplitDigits(document.rawContent()), fileName,
                 "Permit number not found for profile " + profile.id());
@@ -305,8 +358,13 @@ public class DocxSchedulePermitParser {
                 : null;
         boolean normalizeAirportsToIcao = profile.validation() == null
                 || !profile.validation().allowIataAirports();
-        List<RouteRow> routes = routeRows(
-                profile.route(), document.tables(), normalizeAirportsToIcao, fileName);
+        List<List<List<String>>> newValueTables = noReplacement ? revisionValueTables(document, false) : document.tables();
+        List<RouteRow> routes = noReplacement
+                ? revisionRoutes(profile.route(), newValueTables, normalizeAirportsToIcao, fileName)
+                : routeRows(profile.route(), newValueTables, normalizeAirportsToIcao, fileName);
+        List<RouteRow> oldRoutes = noReplacement ? revisionRoutes(profile.route(), revisionValueTables(document, true),
+                normalizeAirportsToIcao, fileName) : routes;
+        String purposeContent = noReplacement ? RevisionDocumentText.newValues(document.rawContent()) : document.rawContent();
 
         // Include every structural schedule, even OLD tables excluded by a profile
         // or legacy reader without heading contexts, before locating an aircraft table.
@@ -314,11 +372,11 @@ public class DocxSchedulePermitParser {
                 document.tables(), document.tableContexts(), schedule.columns(),
                 schedule.requiredColumns(), List.of()).stream().map(TableMatch::table).toList();
         String parsedAuxiliaryAircraftTypes = auxiliaryAircraftTypes(
-                profile.aircraft(), document.tables(), allScheduleTables);
-        String auxiliaryRegistration = auxiliaryRegistration(profile.aircraft(), document.tables());
+                profile.aircraft(), newValueTables, allScheduleTables);
+        String auxiliaryRegistration = auxiliaryRegistration(profile.aircraft(), newValueTables);
         boolean aircraftTablePresent = parsedAuxiliaryAircraftTypes != null
                 && !parsedAuxiliaryAircraftTypes.isBlank()
-                || hasAircraftTableContent(document.tables());
+                || hasAircraftTableContent(newValueTables);
         // Never infer an aircraft from the complete document text: addresses,
         // telephone numbers and references can look like ICAO aircraft codes
         // (for example, THY's "76A Lelai" was previously stored as aircraft
@@ -327,22 +385,22 @@ public class DocxSchedulePermitParser {
         if (aircraftTablePresent && (parsedAuxiliaryAircraftTypes == null
                 || parsedAuxiliaryAircraftTypes.isBlank())) {
             parsedAuxiliaryAircraftTypes = inferAircraftTypesFromAircraftTables(
-                    document.tables(), allScheduleTables);
+                    newValueTables, allScheduleTables);
         }
         String auxiliaryAircraftTypes = parsedAuxiliaryAircraftTypes;
         List<ScheduleFlight> flights = scheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
                         profile, table, routes, auxiliaryAircraftTypes,
                         auxiliaryRegistration, aircraftTablePresent,
-                        document.rawContent(), resolvedOperatorId, iataPrefix,
-                        normalizeAirportsToIcao, false, fileName).stream())
+                        purposeContent, resolvedOperatorId, iataPrefix,
+                        normalizeAirportsToIcao, false, fileName, noReplacement).stream())
                 .toList();
         List<ScheduleFlight> originalFlights = originalScheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
-                        profile, table, routes, auxiliaryAircraftTypes,
+                        profile, table, oldRoutes, auxiliaryAircraftTypes,
                         auxiliaryRegistration, aircraftTablePresent,
                         document.rawContent(), resolvedOperatorId, iataPrefix,
-                        normalizeAirportsToIcao, true, fileName).stream())
+                        normalizeAirportsToIcao, true, fileName, noReplacement).stream())
                 .toList();
         if (flights.isEmpty()) {
             throw invalid(fileName, "No schedule rows found for profile " + profile.id());
@@ -678,7 +736,7 @@ public class DocxSchedulePermitParser {
                                                  String iataPrefix,
                                                  boolean normalizeAirportsToIcao,
                                                  boolean allowMissingAircraft,
-                                                 String fileName) {
+                                                 String fileName, boolean exactSchedule) {
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
         Map<String, Integer> columns = resolveColumns(table.getFirst(), schedule.columns());
         int firstDataRow = 1;
@@ -706,10 +764,11 @@ public class DocxSchedulePermitParser {
             String rawTo = value(row, columns, "toAirport").toUpperCase(Locale.ROOT);
             String from = normalizeAirport(rawFrom, normalizeAirportsToIcao);
             String to = normalizeAirport(rawTo, normalizeAirportsToIcao);
-            String[] routeCorrected = correctTruncatedAirportFromPublishedRoute(from, to, routes);
+            String[] routeCorrected = exactSchedule ? new String[] {from, to}
+                    : correctTruncatedAirportFromPublishedRoute(from, to, routes);
             from = routeCorrected[0];
             to = routeCorrected[1];
-            if (from.equals(to) && routes.size() == 1) {
+            if (!exactSchedule && from.equals(to) && routes.size() == 1) {
                 RouteRow publishedRoute = routes.getFirst();
                 if (publishedRoute.from().equals(from) && !publishedRoute.to().equals(to)) {
                     to = publishedRoute.to();
@@ -718,9 +777,11 @@ public class DocxSchedulePermitParser {
                     from = publishedRoute.from();
                 }
             }
-            AircraftSource aircraftSource = aircraftType(
-                    profile.aircraft(), row, columns, auxiliaryAircraftTypes,
-                    aircraftTablePresent);
+            AircraftSource aircraftSource = exactSchedule
+                    ? aircraftType(profile.aircraft(), row, columns, null, false) : null;
+            if (aircraftSource == null || aircraftSource.value() == null || aircraftSource.value().isBlank()) {
+                aircraftSource = aircraftType(profile.aircraft(), row, columns, auxiliaryAircraftTypes, aircraftTablePresent);
+            }
             String aircraftType = aircraftSource.value();
             String purposeId = purposeId(
                     profile, rawContent, rawFrom, rawTo, value(row, columns, "remark"));
@@ -754,13 +815,13 @@ public class DocxSchedulePermitParser {
                     effectiveDates[1],
                     schedule.dateFormats(), schedule.locale(), fileName, "effective-to date",
                     permitYear(rawContent));
-            beginDate = correctClearlyMistypedEffectiveYear(
+            if (!exactSchedule) beginDate = correctClearlyMistypedEffectiveYear(
                     beginDate, endDate, permitYear(rawContent));
             String rawServiceDays = value(row, columns, "serviceDays");
             String serviceDays = rawServiceDays.isBlank() && previousServiceDays != null
                     ? previousServiceDays
                     : normalizeDays(rawServiceDays, fileName);
-            if (beginDate.equals(endDate)) {
+            if (!exactSchedule && beginDate.equals(endDate)) {
                 // A one-day effective window uniquely determines the operating weekday,
                 // even when the source form's day flag contains a clerical mismatch.
                 serviceDays = serviceDayFor(beginDate);

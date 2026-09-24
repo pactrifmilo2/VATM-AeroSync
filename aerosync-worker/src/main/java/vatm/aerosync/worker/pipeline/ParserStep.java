@@ -48,14 +48,25 @@ public class ParserStep {
     }
 
     public void parse(ProcessingContext context) {
-        if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOCX) {
-            context.setSchedulePermit(docxSchedulePermitParser.parse(
-                    context.getFilePath(), context.getOriginalFileName()));
-            return;
-        }
-        if (context.getFileType() == vatm.aerosync.common.enums.FileType.DOC) {
-            context.setSchedulePermit(legacyDocRevisionPermitParser.parse(
-                    context.getFilePath(), context.getOriginalFileName()));
+        if (context.getFileType() == FileType.DOCX || context.getFileType() == FileType.DOC) {
+            try {
+                context.setSchedulePermit(context.getFileType() == FileType.DOCX
+                        ? docxSchedulePermitParser.parse(context.getFilePath(), context.getOriginalFileName())
+                        : legacyDocRevisionPermitParser.parse(context.getFilePath(), context.getOriginalFileName()));
+            } catch (FormatValidationException legacyFailure) {
+                // A route-based filter in a legacy YAML may discard all NEW rows.
+                // Recover only a NO revision candidate; preserve the original failure
+                // if baseline discovery later routes it to SC.
+                try {
+                    var candidate = docxSchedulePermitParser.parseNoReplacement(context.getFilePath());
+                    if (candidate.usesScheduledStorage() || (!candidate.importRevision() && !candidate.implicitTableRevision()))
+                        throw legacyFailure;
+                    context.setLegacyWordParseFailure(legacyFailure);
+                    context.setSchedulePermit(candidate);
+                } catch (IOException | RuntimeException recoveryFailure) {
+                    throw legacyFailure;
+                }
+            }
             return;
         }
         List<FlightRow> rows = switch (context.getFileType()) {

@@ -358,6 +358,11 @@ public record SchedulePermit(
         return EXISTING_SC_REVISION.equalsIgnoreCase(workflow);
     }
 
+    /** Only the actual NO destination uses OLD deletion / NEW insertion. */
+    public boolean replacesNonScheduledRows() {
+        return importRevision() && !usesScheduledStorage() && !revisionCreatesNewPermit;
+    }
+
     public boolean usesScheduledStorage() {
         return seasonalPermit() || referencedSeasonNewPermit() || existingScheduledRevision()
                 || multiDayNonScheduled();

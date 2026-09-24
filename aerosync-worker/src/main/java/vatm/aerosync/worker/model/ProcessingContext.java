@@ -3,6 +3,7 @@ package vatm.aerosync.worker.model;
 import vatm.aerosync.common.dto.FileIngestedEvent;
 import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.enums.FileType;
+import vatm.aerosync.common.exception.FormatValidationException;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -18,12 +19,31 @@ public class ProcessingContext {
     private LocalDate receivedDate;
     private FileType fileType;
     private SchedulePermit schedulePermit;
+    private boolean noReplacementMapped;
+    private FormatValidationException legacyWordParseFailure;
+
     private final List<FlightRow> rows = new ArrayList<>();
     private final List<RowValidationError> rowValidationErrors = new ArrayList<>();
     private long startedAtMillis = System.currentTimeMillis();
 
     public ProcessingContext(FileIngestedEvent event) {
         this.event = event;
+    }
+
+    public FormatValidationException getLegacyWordParseFailure() {
+        return legacyWordParseFailure;
+    }
+
+    public void setLegacyWordParseFailure(FormatValidationException failure) {
+        legacyWordParseFailure = failure;
+    }
+
+    public boolean isNoReplacementMapped() {
+        return noReplacementMapped;
+    }
+
+    public void setNoReplacementMapped(boolean value) {
+        noReplacementMapped = value;
     }
 
     public FileIngestedEvent getEvent() {

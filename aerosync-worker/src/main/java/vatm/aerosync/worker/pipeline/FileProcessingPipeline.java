@@ -94,6 +94,9 @@ public class FileProcessingPipeline {
             normalizerStep.normalize(context);
             purposeResolutionStep.resolve(context);
             revisionReconciliationStep.reconcile(context);
+            if (context.getSchedulePermit() != null && context.getSchedulePermit().replacesNonScheduledRows()) {
+                purposeResolutionStep.resolve(context);
+            }
             aircraftTypeResolutionStep.resolveAllowingMissingForNonSeasonal(context);
             viaResolutionStep.resolveAllowingMissingForNonSeasonal(context);
             businessRuleValidatorStep.validate(context);

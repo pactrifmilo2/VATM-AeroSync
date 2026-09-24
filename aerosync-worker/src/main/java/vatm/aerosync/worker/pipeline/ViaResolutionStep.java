@@ -70,6 +70,7 @@ public class ViaResolutionStep {
                     try {
                         via = resolveVia(connection, permit, flight, from, to);
                     } catch (AtfmDocumentRouteException exception) {
+                        if (permit.replacesNonScheduledRows()) throw exception;
                         via = null;
                         routeMissing = true;
                         context.getRowValidationErrors().add(new RowValidationError(
@@ -77,7 +78,7 @@ public class ViaResolutionStep {
                                 "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file",
                                 flight.via()));
                     } catch (AtfmReferenceDataException exception) {
-                        if (!allowMissing) {
+                        if (!allowMissing || permit.replacesNonScheduledRows()) {
                             throw exception;
                         }
                         String routeError = routeErrorMessage(from, to, exception.getMessage());

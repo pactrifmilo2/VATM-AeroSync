@@ -17,16 +17,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Keeps the replacement schedule selected by the parser intact.
- *
- * A revision document may contain both an old/original schedule and a new
- * schedule.  The parser stores the latter in {@code flights} and the former in
- * {@code originalFlights}; only {@code flights} is sent to the writer.  Older
- * code tried to match every original row against ATFM before writing, which
- * incorrectly quarantined valid revisions when the base permit was absent or
- * formatted differently.  Revisions are now written directly: an existing
- * permit receives only the new rows, and a missing target is inserted as a new
- * permit by the coordinator.
+ * Reconciles SC using its existing materialization policy. For NO replacements,
+ * OLD identifies the baseline and NEW supplies the schedule; missing attributes
+ * inherit from that exact baseline. The gateway atomically deletes OLD/inserts NEW.
  */
 @Component
 public class RevisionReconciliationStep {
@@ -93,6 +86,9 @@ public class RevisionReconciliationStep {
                 permit = permit.withExistingScheduledTarget(baselinePermit.scheduledPermitId());
                 context.setSchedulePermit(permit);
             }
+            if (permit.usesScheduledStorage() && context.getLegacyWordParseFailure() != null) {
+                throw context.getLegacyWordParseFailure();
+            }
             List<ScheduleFlight> baseline = baselinePermit == null
                     ? List.of()
                     : baselinePermit.flights();
@@ -100,6 +96,29 @@ public class RevisionReconciliationStep {
             if ((permit.operatorId() == null || "PRV".equalsIgnoreCase(permit.operatorId()))
                     && inheritedOperator != null && inheritedOperator.matches("(?i)[A-Z0-9]{3}")) {
                 permit = permit.withOperatorId(inheritedOperator.toUpperCase(java.util.Locale.ROOT));
+            }
+            if (permit.replacesNonScheduledRows()) {
+                // The master is retained, including its operator. A missing carrier
+                // label must not re-infer another airline from two callsign letters.
+                if (inheritedOperator != null && !inheritedOperator.isBlank()) {
+                    permit = permit.withOperatorId(inheritedOperator);
+                }
+                // Resolve destination first. Legacy NO permits targeting SC never reparse
+                // with the new mapper and retain their old reconciliation behavior.
+                if (context.getFilePath() != null && java.nio.file.Files.isRegularFile(context.getFilePath())
+                        && context.getFilePath().toString().matches("(?i).*\\.docx?")) {
+                    try {
+                        SchedulePermit mapped = new DocxSchedulePermitParser().parseNoReplacement(context.getFilePath());
+                        if (mapped.usesScheduledStorage()) throw new BusinessRuleException("BR-REVISION-STORE-MISMATCH",
+                                "Complete NEW schedule requires SC; refusing NO replacement after partial legacy parsing");
+                        permit = permit.withFlightsAndOriginals(mapped.flights(), mapped.originalFlights());
+                    } catch (java.io.IOException e) {
+                        throw new BusinessRuleException("BR-REVISION-DOCUMENT-READ", "Cannot read OLD/NEW: " + e.getMessage());
+                    }
+                }
+                context.setSchedulePermit(reconcileNoReplacement(permit, baseline));
+                context.setNoReplacementMapped(true);
+                return;
             }
             List<ScheduleFlight> reconciled = new ArrayList<>(permit.flights().size());
             for (int index = 0; index < permit.flights().size(); index++) {
@@ -218,6 +237,72 @@ public class RevisionReconciliationStep {
                 context.setSchedulePermit(permit.withFlights(reconciled));
             }
         }
+    }
+
+    private SchedulePermit reconcileNoReplacement(SchedulePermit permit, List<ScheduleFlight> baseline) {
+        if (permit.originalFlights().isEmpty()) {
+            throw new BusinessRuleException("BR-REVISION-OLD-REQUIRED",
+                    "PERMNO replacement requires an OLD schedule to identify rows for deletion");
+        }
+        if (baseline.isEmpty()) throw new BusinessRuleException("BR-REVISION-BASE-NOT-FOUND",
+                "Original PERMNO permit not found: " + permit.atfmTargetPermitId());
+        List<ScheduleFlight> originals = permit.originalFlights().stream().map(f -> normalizeNoFlight(f, permit)).toList();
+        List<ScheduleFlight> replacements = permit.flights().stream().map(f -> normalizeNoFlight(f, permit)).toList();
+        List<ScheduleFlight> result = new ArrayList<>();
+        for (int i = 0; i < replacements.size(); i++) {
+            ScheduleFlight current = replacements.get(i);
+            List<ScheduleFlight> identityMatches = originals.stream()
+                    .filter(f -> sameFlightRoute(f, current)).toList();
+            ScheduleFlight old = identityMatches.size() == 1 ? identityMatches.getFirst()
+                    : findUniqueByCallsign(originals, current);
+            if (old == null && originals.size() == 1) old = originals.getFirst();
+            // Multiple changed callsigns/dates cannot be paired by row order safely.
+            // Inherit only when one explicit OLD can be identified.
+            if (old == null) throw new BusinessRuleException("BR-REVISION-ROW-MAPPING-AMBIGUOUS",
+                    "Cannot pair NEW with OLD for unchanged fields: " + current.flightNumber());
+            final ScheduleFlight documented = old;
+            List<ScheduleFlight> matches = baseline.stream().filter(f ->
+                    vatm.aerosync.worker.model.NoRevisionIdentity.matches(normalizeNoFlight(f, permit), documented)).toList();
+            if (matches.size() > 1) throw new BusinessRuleException("BR-REVISION-OLD-AMBIGUOUS",
+                    "More than one stored row matches OLD: " + old.flightNumber());
+            // A retry after commit has no OLD row. Use exact NEW only to recover
+            // enrichment; the gateway still requires the persisted revision receipt.
+            if (matches.isEmpty()) matches = baseline.stream().filter(f ->
+                    vatm.aerosync.worker.model.NoRevisionIdentity.matches(normalizeNoFlight(f, permit), current)).toList();
+            if (matches.size() != 1) throw new BusinessRuleException("BR-REVISION-OLD-NOT-FOUND",
+                    "Cannot uniquely identify baseline OLD (or committed NEW) for " + old.flightNumber());
+            ScheduleFlight source = matches.getFirst();
+            String purpose = PurposeResolutionStep.hasExplicitNewPurpose(permit.rawContent(), current)
+                    ? current.purposeId() : source.purposeId();
+            boolean hasNewAircraft = current.aircraftTablePresent()
+                    || (current.sourceAircraftType() != null && !current.sourceAircraftType().isBlank());
+            String via = current.via();
+            if ((via == null || via.isBlank()) && sameAirport(source.fromAirport(), current.fromAirport())
+                    && sameAirport(source.toAirport(), current.toAirport())) via = source.via();
+            if ((via == null || via.isBlank()) && (!sameAirport(source.fromAirport(), current.fromAirport())
+                    || !sameAirport(source.toAirport(), current.toAirport()))) {
+                throw new BusinessRuleException("BR-REVISION-NEW-VIA-REQUIRED",
+                        "Changed sector requires an explicit NEW route: " + current.fromAirport() + " -> " + current.toAirport());
+            }
+            result.add(new ScheduleFlight(purpose, hasNewAircraft ? current.craftId() : source.craftId(),
+                    hasNewAircraft ? current.mtow() : source.mtow(), current.flightNumber(),
+                    hasNewAircraft ? current.registration() : source.registration(), current.serviceDays(),
+                    current.fromAirport(), current.toAirport(), current.etd(), current.eta(), via,
+                    current.beginDate(), current.endDate(), permit.revisionRemark(),
+                    hasNewAircraft ? current.sourceAircraftType() : source.sourceAircraftType(), current.aircraftTablePresent()));
+        }
+        List<ScheduleFlight> snapshots = originals.stream().map(old -> {
+            List<ScheduleFlight> matches = baseline.stream().map(f -> normalizeNoFlight(f, permit))
+                    .filter(f -> vatm.aerosync.worker.model.NoRevisionIdentity.matches(f, old)).toList();
+            return matches.size() == 1 ? matches.getFirst() : old;
+        }).toList();
+        return permit.withFlightsAndOriginals(result, snapshots);
+    }
+
+    private ScheduleFlight normalizeNoFlight(ScheduleFlight flight, SchedulePermit permit) {
+        return flight.withFlightNumber(operatorCatalog.normalizeFlightNumber(flight.flightNumber(), permit.operatorId()))
+                .withResolvedRoute(airportCodeCatalog.normalize(flight.fromAirport()),
+                        airportCodeCatalog.normalize(flight.toAirport()), flight.via());
     }
 
     private List<ScheduleFlight> materializeRevisionRows(SchedulePermit permit,

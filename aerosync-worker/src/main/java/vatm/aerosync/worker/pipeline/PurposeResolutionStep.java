@@ -54,7 +54,9 @@ public class PurposeResolutionStep {
             List<PurposeEntry> entries = load(connection);
             List<ScheduleFlight> resolved = new ArrayList<>(permit.flights().size());
             for (ScheduleFlight flight : permit.flights()) {
-                String purpose = resolvePurpose(entries, permit.rawContent(), flight);
+                String content = context.isNoReplacementMapped()
+                        ? newPurposeContent(permit.rawContent()) : permit.rawContent();
+                String purpose = resolvePurpose(entries, content, flight);
                 resolved.add(flight.withPurposeId(purpose));
             }
             context.setSchedulePermit(permit.withFlights(resolved));
@@ -96,6 +98,30 @@ public class PurposeResolutionStep {
         Match labelledMatch = bestMatch(entries, labelledPurposeText(rawContent));
         if (labelledMatch != null) return labelledMatch.code();
         return fallback;
+    }
+
+    private static String newPurposeContent(String raw) {
+        String content = RevisionDocumentText.newValues(raw);
+        AirportCodeCatalog airports = new AirportCodeCatalog();
+        Matcher routes = Pattern.compile("(?imu)^\\s*([A-Z]{3,4})\\s*[-–—]\\s*([A-Z]{3,4})\\s*:").matcher(content);
+        StringBuilder normalized = new StringBuilder();
+        while (routes.find()) routes.appendReplacement(normalized, Matcher.quoteReplacement(
+                airports.normalize(routes.group(1)) + "-" + airports.normalize(routes.group(2)) + ":"));
+        routes.appendTail(normalized);
+        return normalized.toString();
+    }
+
+    static boolean hasExplicitNewPurpose(String raw, ScheduleFlight flight) {
+        String content = newPurposeContent(raw);
+        String labelled = Objects.toString(flightPurposeText(content, flight.flightNumber()), "")
+                + " " + labelledPurposeText(content);
+        String meaningful = canonical(labelled);
+        if (!meaningful.isBlank() && !meaningful.matches(".*(?:UNCHANGED|NO CHANGE|KHONG THAY DOI).*$")) return true;
+        // A sector-labelled airway is not a purpose change. Only recognized purpose
+        // descriptions may override inherited PURPOSE when attached to a sector.
+        String route = canonical(routeDescription(content, flight.fromAirport(), flight.toAirport()));
+        return Pattern.compile("\\b(?:PAX|PASSENGER|CARGO|FREIGHTER|FER|FERRY|TECH|TECHNICAL|AMB|AMBULANCE|VIP|PRIVATE|BUSINESS|CHARTER|HANH KHACH|HANG HOA)\\b")
+                .matcher(route).find();
     }
 
     private static Match bestMatch(List<PurposeEntry> entries, String text) {

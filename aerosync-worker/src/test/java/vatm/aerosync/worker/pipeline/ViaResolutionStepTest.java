@@ -76,6 +76,19 @@ class ViaResolutionStepTest {
     }
 
     @Test
+    void noReplacementMustNotDropUnreadableNewRouteAndProceedWithDeletion() {
+        ProcessingContext context = context("HVN", false);
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst()
+                .withResolvedRoute("SGN", "VCL", "NOTE: SEE ATTACHED ROUTE");
+        var revision = new SchedulePermit("LD-123/9/2026VN/REV1", "LD 00123/CHK/2026", "123",
+                "CHK", "LD", "A", null, LocalDate.of(2026, 9, 24), "HVN", null, 24, null, "NO",
+                false, true, false, "REV1", List.of(flight), List.of(flight));
+        context.setSchedulePermit(revision);
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> step.resolveAllowingMissingForNonSeasonal(context))
+                .isInstanceOf(vatm.aerosync.worker.atfm.AtfmDocumentRouteException.class);
+    }
+
+    @Test
     void resolve_mapsIataAirportsAndAddsTheHvnRouteFromMVia() {
         ProcessingContext context = context();
 
