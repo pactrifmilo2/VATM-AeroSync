@@ -274,7 +274,9 @@ public class RevisionReconciliationStep {
             ScheduleFlight source = matches.getFirst();
             String purpose = PurposeResolutionStep.hasExplicitNewPurpose(permit.rawContent(), current)
                     ? current.purposeId() : source.purposeId();
-            boolean hasNewAircraft = current.aircraftTablePresent()
+            // A present-but-empty Aircraft table is not a CRAFT change. Only
+            // an explicit NEW type (or an already resolved NEW craft ID) wins.
+            boolean hasNewAircraft = current.craftId() > 0
                     || (current.sourceAircraftType() != null && !current.sourceAircraftType().isBlank());
             String via = current.via();
             if ((via == null || via.isBlank()) && sameAirport(source.fromAirport(), current.fromAirport())

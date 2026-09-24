@@ -49,7 +49,7 @@ Những trường hợp này phải được đối chiếu nguồn trước khi
 
 ## Kiểm thử
 
-- `NoRevisionReplacementMappingTest`: file thật, ETA/VIA OLD/NEW, đổi ngày, purpose mới, aircraft mới/riêng dòng, giữ day flags, từ chối ghép mơ hồ, không thay policy SC.
+- `NoRevisionReplacementMappingTest`: file thật, ETA/VIA OLD/NEW, đổi ngày, purpose mới, aircraft mới/riêng dòng, bảng Aircraft NEW rỗng kế thừa baseline, giữ day flags, từ chối ghép mơ hồ, không thay policy SC.
 - `NoRevisionReplacementGatewayTest`: H2 Oracle mode; OLD ID bị xóa và NEW ID mới, các chuyến khác còn nguyên; đổi callsign/date/sector, rollback insert lỗi, thiếu master, trùng/mất OLD, NEW tồn tại, retry và thay purpose-only. Có test từ Word thật → reconcile → gateway → đọc lại DB H2 → retry.
 - Bộ worker offline có cả regression SC, coordinator, purpose/aircraft/routes. Test Docker/RabbitMQ không chạy trên máy chưa có Docker hoạt động.
 

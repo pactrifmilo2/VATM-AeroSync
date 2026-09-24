@@ -239,8 +239,8 @@ class RevisionReconciliationStepTest {
         new RevisionReconciliationStep(gateway).reconcile(context);
 
         assertThat(context.getSchedulePermit().flights()).singleElement().satisfies(flight -> {
-            assertThat(flight.craftId()).isZero();
-            assertThat(flight.sourceAircraftType()).isNull();
+            assertThat(flight.craftId()).isEqualTo(1935L);
+            assertThat(flight.sourceAircraftType()).isEqualTo("320");
         });
     }
 
