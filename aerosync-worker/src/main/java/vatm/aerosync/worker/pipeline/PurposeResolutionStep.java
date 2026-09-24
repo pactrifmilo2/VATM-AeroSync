@@ -83,17 +83,19 @@ public class PurposeResolutionStep {
                                  String rawContent,
                                  ScheduleFlight flight) {
         String fallback = flight.purposeId();
+        String flightText = flightPurposeText(rawContent, flight.flightNumber());
+        Match flightMatch = bestMatch(entries, flightText);
+        if (flightMatch != null) return flightMatch.code();
         String routeText = routeDescription(rawContent, flight.fromAirport(), flight.toAirport());
         Match routeMatch = bestMatch(entries, routeText);
-        if (routeMatch != null) {
-            return routeMatch.code();
-        }
+        if (routeMatch != null) return routeMatch.code();
         // Do not search the entire document: airline names (for example
         // "... CARGO") and administrative notes ("Other details unchanged")
         // are not the flight purpose. Only an explicitly labelled purpose
         // field may override the purpose selected by the YAML profile.
         Match labelledMatch = bestMatch(entries, labelledPurposeText(rawContent));
-        return labelledMatch == null ? fallback : labelledMatch.code();
+        if (labelledMatch != null) return labelledMatch.code();
+        return fallback;
     }
 
     private static Match bestMatch(List<PurposeEntry> entries, String text) {
@@ -149,7 +151,7 @@ public class PurposeResolutionStep {
     private static String labelledPurposeText(String rawContent) {
         String value = Objects.requireNonNullElse(rawContent, "");
         Pattern label = Pattern.compile(
-                "(?imu)^[ \\t]*(?:purpose(?:\\s+of\\s+flight(?:s)?)?|flight\\s+purpose|"
+                "(?imu)^[ \\t]*(?:\\d+(?:\\.\\d+)*\\.?\\s*)?(?:purpose(?:\\s+of\\s+flight(?:\\(s\\)|s)?)?|flight\\s+purpose|"
                         + "mục\\s*đích(?:\\s+chuyến\\s+bay)?)\\s*[:\\-]\\s*(?<value>[^\\r\\n]+)");
         StringBuilder result = new StringBuilder();
         Matcher matcher = label.matcher(value);
@@ -160,6 +162,15 @@ public class PurposeResolutionStep {
             result.append(matcher.group("value"));
         }
         return result.toString();
+    }
+
+    private static String flightPurposeText(String rawContent, String flightNumber) {
+        if (flightNumber == null || flightNumber.isBlank()) return null;
+        Matcher matcher = Pattern.compile("(?imu)^\\s*" + Pattern.quote(flightNumber)
+                + "\\s*(?:[|\\t:;-]\\s*|\\s+)(?:PURPOSE|MỤC\\s*ĐÍCH)"
+                + "(?:\\s+(?:OF\\s+FLIGHT|CHUYẾN\\s+BAY))?\\s*[:\\t| -]+(?<value>[^\\r\\n]+)")
+                .matcher(Objects.requireNonNullElse(rawContent, ""));
+        return matcher.find() ? matcher.group("value") : null;
     }
 
     private static String canonical(String value) {
@@ -176,8 +187,7 @@ public class PurposeResolutionStep {
     record PurposeEntry(String code, String name) {
         List<String> synonyms() {
             List<String> values = new ArrayList<>();
-            values.add(canonical(name));
-            for (String synonym : name.split(";")) {
+        for (String synonym : name.split(";")) {
                 String value = canonical(synonym);
                 if (!value.isBlank()) {
                     values.add(value);

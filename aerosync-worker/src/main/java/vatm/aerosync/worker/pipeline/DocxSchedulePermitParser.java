@@ -624,8 +624,7 @@ public class DocxSchedulePermitParser {
         for (String candidate : List.of(
                 Objects.requireNonNullElse(rowHint, ""),
                 Objects.requireNonNullElse(routeDescription, ""),
-                Objects.requireNonNullElse(summary, ""),
-                rawContent)) {
+                Objects.requireNonNullElse(summary, ""))) {
             if (candidate.isBlank()) {
                 continue;
             }
@@ -638,7 +637,8 @@ public class DocxSchedulePermitParser {
                 return match;
             }
         }
-        return purpose.defaultId();
+        return profile.schedule().purposeId() == null
+                ? purpose.defaultId() : profile.schedule().purposeId();
     }
 
     private String routeDescription(String rawContent, String from, String to) {
