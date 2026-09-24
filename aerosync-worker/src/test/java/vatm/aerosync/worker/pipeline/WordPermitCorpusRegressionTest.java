@@ -144,10 +144,19 @@ class WordPermitCorpusRegressionTest {
                 .isEmpty();
     }
 
+    @Test
+    void readsUtf8BomManifest(@org.junit.jupiter.api.io.TempDir Path directory) throws Exception {
+        Path document = directory.resolve("permit.docx");
+        Files.write(document, new byte[0]);
+        Path manifest = directory.resolve("manifest.txt");
+        Files.writeString(manifest, "\uFEFF" + document + "\n# ignored comment\n", StandardCharsets.UTF_8);
+        assertThat(filesFromManifest(manifest)).containsExactly(document);
+    }
+
     private List<Path> filesFromManifest(Path manifest) throws Exception {
         assertThat(manifest).as("Configured permit corpus manifest").isRegularFile();
         List<Path> files = Files.readAllLines(manifest).stream()
-                .map(String::trim)
+                .map(line -> line.replaceFirst("^\\uFEFF", "").trim())
                 .filter(line -> !line.isEmpty() && !line.startsWith("#"))
                 .map(Path::of)
                 .filter(this::isWordDocument)
