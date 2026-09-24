@@ -64,7 +64,7 @@ schedule:
     etd: [ETD]
     toAirport: [Arrival Airport, Arr airport]
     eta: [ETA]
-    aircraftType: [Aircraft Type]
+    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
     originalPermit: [Original permit]
     remark: [Notes, Note]
   requiredColumns:
@@ -97,10 +97,11 @@ route:
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:
-    aircraftType: [Aircraft Type]
-    registrationMarks: [Registration Mark, Registration Marks]
+    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark, Aircraft registration marks]
   auxiliaryRequiredColumns: [aircraftType, registrationMarks]
   auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
   remarkPrefix: ''
   defaultType: GLEX
   lastMatchingTable: false

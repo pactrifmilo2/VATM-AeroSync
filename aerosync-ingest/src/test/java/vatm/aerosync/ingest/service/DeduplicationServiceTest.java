@@ -11,7 +11,10 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.dao.DataIntegrityViolationException;
 import vatm.aerosync.common.entity.SyncJob;
+import vatm.aerosync.common.entity.PermitImport;
+import vatm.aerosync.common.enums.PermitImportStatus;
 import vatm.aerosync.common.enums.SyncStatus;
+import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 
 import java.util.Optional;
@@ -37,6 +40,9 @@ class DeduplicationServiceTest {
 
     @Mock
     private SyncJobRepository syncJobRepository;
+
+    @Mock
+    private PermitImportRepository permitImportRepository;
 
     private DeduplicationService deduplicationService;
 
@@ -156,5 +162,25 @@ class DeduplicationServiceTest {
 
         assertThat(job).isSameAs(existing);
         verify(syncJobRepository, never()).saveAndFlush(org.mockito.ArgumentMatchers.any());
+    }
+
+    @Test
+    void claimAuthorizedResend_reusesTerminalJobAndResetsPermitAttempt() {
+        deduplicationService = new DeduplicationService(
+                redisTemplate, syncJobRepository, permitImportRepository);
+        SyncJob job = org.mockito.Mockito.mock(SyncJob.class);
+        PermitImport attempt = org.mockito.Mockito.mock(PermitImport.class);
+        when(valueOperations.get("aerosync:resend:" + HASH)).thenReturn("81");
+        when(syncJobRepository.findById(81L)).thenReturn(Optional.of(job));
+        when(job.getFileHash()).thenReturn(HASH);
+        when(job.getStatus()).thenReturn(SyncStatus.FAILED);
+        when(job.getId()).thenReturn(81L);
+        when(permitImportRepository.findBySyncJobId(81L)).thenReturn(Optional.of(attempt));
+
+        assertThat(deduplicationService.claimAuthorizedResend(HASH)).contains(job);
+
+        verify(job).setStatus(SyncStatus.PENDING);
+        verify(attempt).setStatus(PermitImportStatus.RESERVED);
+        verify(redisTemplate).delete("aerosync:resend:" + HASH);
     }
 }

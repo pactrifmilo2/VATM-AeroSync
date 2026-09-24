@@ -28,7 +28,10 @@ public class AuditLogController {
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to,
             @RequestParam(required = false) SyncStatus status,
-            @RequestParam(required = false) FileSourceType source) {
-        return auditLogQueryService.search(from, to, status, source);
+            @RequestParam(required = false) FileSourceType source,
+            @RequestParam(required = false) Integer limit) {
+        return limit == null
+                ? auditLogQueryService.search(from, to, status, source)
+                : auditLogQueryService.search(from, to, status, source, limit);
     }
 }

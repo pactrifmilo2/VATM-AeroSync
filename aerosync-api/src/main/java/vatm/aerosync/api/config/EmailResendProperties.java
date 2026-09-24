@@ -12,7 +12,7 @@ public class EmailResendProperties {
     private String password;
     private String recipient;
     private boolean starttls = true;
-    private int timeoutMs = 30_000;
+    private int timeoutMs = 120_000;
 
     public boolean isEnabled() { return enabled; }
     public void setEnabled(boolean enabled) { this.enabled = enabled; }

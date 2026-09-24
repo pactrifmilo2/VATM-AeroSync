@@ -245,7 +245,12 @@ SELECT $targetFields FROM target_rows ORDER BY master_id, table_kind;
 
         $sourceText = ""
         if ($tracking.StoredPath -and (Test-Path -LiteralPath $tracking.StoredPath)) {
-            if ([IO.Path]::GetExtension($tracking.StoredPath).Equals('.docx', [StringComparison]::OrdinalIgnoreCase)) {
+            $sourceName = if ($tracking.OriginalFileName) {
+                $tracking.OriginalFileName
+            } else {
+                $tracking.AttachmentName
+            }
+            if ([IO.Path]::GetExtension($sourceName).Equals('.docx', [StringComparison]::OrdinalIgnoreCase)) {
                 try { $sourceText = Read-DocxText $tracking.StoredPath } catch { $errors.Add("source DOCX unreadable") }
             } else {
                 $warnings.Add("legacy DOC was not text-inspected")

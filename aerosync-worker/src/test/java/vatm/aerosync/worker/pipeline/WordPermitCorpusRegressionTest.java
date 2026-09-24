@@ -90,7 +90,8 @@ class WordPermitCorpusRegressionTest {
                 }
                 if (Pattern.compile("(?iu)(?:PASSENGER\\s+LIST|DANH\\s+SÁCH\\s+HÀNH\\s+KHÁCH|"
                                 + "APPLICATION\\s+FORM|ĐƠN\\s+(?:XIN|ĐỀ NGHỊ))")
-                        .matcher(document.rawContent()).find()) {
+                        .matcher(document.rawContent()).find()
+                        && !DocxSchedulePermitParser.looksLikeIssuedPermitDocument(document.rawContent())) {
                     nonPermitDocuments.add(file.getFileName().toString());
                     continue;
                 }
@@ -101,6 +102,8 @@ class WordPermitCorpusRegressionTest {
                 ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
                         1L, file.toString(), "corpus", FileSourceType.FILESYSTEM, false));
                 context.setSchedulePermit(permit);
+                new NormalizerStep(java.time.ZoneId.systemDefault()).normalize(context);
+                permit = context.getSchedulePermit();
                 if (aircraftTypeResolutionStep == null) {
                     context.setSchedulePermit(permit.withFlights(
                             permit.flights().stream()

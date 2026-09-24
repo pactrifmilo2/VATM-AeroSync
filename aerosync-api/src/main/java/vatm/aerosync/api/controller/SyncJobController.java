@@ -26,8 +26,12 @@ public class SyncJobController {
     }
 
     @GetMapping
-    public List<SyncJobSummaryResponse> listJobs(@RequestParam(required = false) SyncStatus status) {
-        return syncJobService.listJobs(status);
+    public List<SyncJobSummaryResponse> listJobs(
+            @RequestParam(required = false) SyncStatus status,
+            @RequestParam(required = false) Integer limit) {
+        return limit == null
+                ? syncJobService.listJobs(status)
+                : syncJobService.listJobs(status, limit);
     }
 
     @GetMapping("/{id}")

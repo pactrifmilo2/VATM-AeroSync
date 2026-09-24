@@ -8,6 +8,14 @@ import java.util.Set;
 
 public record EmailResendRequest(
         @NotBlank String messageId,
-        @NotEmpty Set<EmailProcessingStatus> statuses
+        @NotEmpty Set<EmailProcessingStatus> statuses,
+        Set<Long> attachmentIds
 ) {
+    public EmailResendRequest {
+        attachmentIds = attachmentIds == null ? Set.of() : Set.copyOf(attachmentIds);
+    }
+
+    public EmailResendRequest(String messageId, Set<EmailProcessingStatus> statuses) {
+        this(messageId, statuses, Set.of());
+    }
 }

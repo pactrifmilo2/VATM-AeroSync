@@ -16,6 +16,7 @@ import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.repository.FlightDataRepository;
 import vatm.aerosync.worker.service.PermitImportCoordinator;
 import vatm.aerosync.worker.service.PermitImportOutcome;
+import vatm.aerosync.worker.service.VietnameseStoredErrorMessage;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -96,6 +97,13 @@ public class DatabaseWriterStep {
     }
 
     private DatabaseWriteResult writeSchedulePermit(ProcessingContext context) {
+        var permit = context.getSchedulePermit();
+        if (!permit.revision() && !permit.importRevision() && !permit.implicitTableRevision()
+                && !permit.referencedSeasonNewPermit()) {
+            context.setSchedulePermit(permit.withFlights(permit.flights().stream()
+                    .map(flight -> flight.withRemark(newPermitRemark(flight.sourceAircraftType())))
+                    .toList()));
+        }
         Long syncJobId = context.getEvent().getSyncJobId();
         SyncJob job = syncJobRepository.findById(syncJobId)
                 .orElseThrow(() -> new IllegalStateException("Sync job not found: " + syncJobId));
@@ -112,14 +120,18 @@ public class DatabaseWriterStep {
                 record.setProcessingStatus(fileStatus);
                 record.setRowsSaved(outcome.detailCount());
                 record.setDatabaseSavedAt(savedAt);
-                record.setErrorMessage(null);
+                record.setErrorMessage(duplicate && !context.getSchedulePermit().revision()
+                        ? "Ph\u00e9p n\u00e0y \u0111\u00e3 t\u1ed3n t\u1ea1i r\u1ed3i."
+                        : warningMessage(context));
             }
             fileRecordRepository.saveAll(fileRecords);
             job.setStatus(syncStatus);
             syncJobRepository.save(job);
         });
         String message = duplicate
-                ? "Permit already exists; target write skipped"
+                ? (!context.getSchedulePermit().revision()
+                    ? "Ph\u00e9p n\u00e0y \u0111\u00e3 t\u1ed3n t\u1ea1i r\u1ed3i."
+                    : "Permit already exists; target write skipped")
                 : "ATFM permit saved (masterId=%d, permId=%d)".formatted(
                         outcome.targetMasterId(), outcome.targetPermId());
         return new DatabaseWriteResult(syncStatus, outcome.detailCount(), message);
@@ -133,5 +145,29 @@ public class DatabaseWriterStep {
         entity.setToAirport(row.getTo());
         entity.setDateFlight(row.getDateFlight());
         return entity;
+    }
+
+    static String newPermitRemark(String aircraft) {
+        String normalized = AircraftTypeNotation.normalize(aircraft);
+        if (normalized == null || normalized.isBlank()) return null;
+        var types = java.util.Arrays.stream(normalized.split("[/,;\\s]+"))
+                .filter(type -> !type.isBlank()).distinct().toList();
+        return types.size() > 1 ? String.join("/", types) : null;
+    }
+
+    private String warningMessage(ProcessingContext context) {
+        if (context.getSchedulePermit() == null || context.getRowValidationErrors().isEmpty()) {
+            return null;
+        }
+        String warning = context.getRowValidationErrors().stream()
+                .map(error -> VietnameseStoredErrorMessage.translate(
+                        "Schedule row " + error.rowNumber() + ": " + error.message()))
+                .filter(message -> message != null && !message.isBlank())
+                .distinct()
+                .reduce((left, right) -> left + " " + right)
+                .orElse(null);
+        return warning == null || warning.length() <= 2000
+                ? warning
+                : warning.substring(0, 2000);
     }
 }

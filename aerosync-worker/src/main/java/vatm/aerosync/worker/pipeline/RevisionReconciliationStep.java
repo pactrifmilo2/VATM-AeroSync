@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.worker.atfm.AtfmScheduleGateway;
 import vatm.aerosync.worker.atfm.AtfmRevisionBaseline;
+import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
+import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.ScheduleFlight;
 import vatm.aerosync.worker.model.SchedulePermit;
@@ -31,6 +33,8 @@ public class RevisionReconciliationStep {
 
     private static final Pattern FILE_REVISION_NUMBER = Pattern.compile(
             "(?iu)(?:REV(?:ISION)?|RVS|(?<![A-Z0-9])R)\\s*[(_.-]?\\s*(?<number>\\d+)\\s*[)]?");
+    private static final Pattern FILE_SEASONAL_REVISION_PREFIX = Pattern.compile(
+            "(?iu)(?<![A-Z0-9])R\\d{1,5}[A-Z](?<number>\\d+)(?=$|[^A-Z0-9])");
 
     private final AtfmScheduleGateway gateway;
     private final AirportCodeCatalog airportCodeCatalog;
@@ -57,6 +61,18 @@ public class RevisionReconciliationStep {
 
     public void reconcile(ProcessingContext context) {
         SchedulePermit permit = context.getSchedulePermit();
+        if (permit != null && permit.referencedSeasonNewPermit()) {
+            String referencedPermitId = permit.referencedPermitId();
+            java.util.Optional<String> referencedSeason = gateway.findReferencedSeason(permit);
+            if (referencedSeason.isEmpty()) {
+                throw new AtfmReferenceDataException(
+                        "Referenced seasonal permit not found or has no valid season: "
+                                + referencedPermitId);
+            }
+            String inheritedSeason = referencedSeason.get();
+            context.setSchedulePermit(permit.withReferencedSeason(inheritedSeason));
+            return;
+        }
         if (permit != null && permit.implicitTableRevision()) {
             int revisionNumber = revisionNumberFromFile(context.getOriginalFileName());
             if (revisionNumber < 1) {
@@ -67,6 +83,11 @@ public class RevisionReconciliationStep {
         }
         if (permit != null && permit.importRevision()) {
             AtfmRevisionBaseline baselinePermit = gateway.findRevisionBaseline(permit).orElse(null);
+            if (baselinePermit != null && baselinePermit.scheduledStorage()
+                    && !permit.usesScheduledStorage()) {
+                permit = permit.withExistingScheduledTarget(baselinePermit.scheduledPermitId());
+                context.setSchedulePermit(permit);
+            }
             List<ScheduleFlight> baseline = baselinePermit == null
                     ? List.of()
                     : baselinePermit.flights();
@@ -78,29 +99,114 @@ public class RevisionReconciliationStep {
             List<ScheduleFlight> reconciled = new ArrayList<>(permit.flights().size());
             for (int index = 0; index < permit.flights().size(); index++) {
                 ScheduleFlight current = permit.flights().get(index);
-                ScheduleFlight documentedOriginal = findMatchingFlight(
-                        permit.originalFlights(), current);
-                ScheduleFlight inherited = permit.otherDetailsUnchanged()
-                        ? findBaseline(baseline, documentedOriginal, current)
-                        : null;
-                if (documentedOriginal != null) {
-                    current = inherit(current, documentedOriginal);
-                }
-                if (inherited != null) {
-                    current = inherit(current, inherited);
-                }
                 current = current.withFlightNumber(operatorCatalog.normalizeFlightNumber(
                         current.flightNumber(), permit.operatorId()));
+                ScheduleFlight documentedOriginal = findMatchingFlight(
+                        permit.originalFlights(), current);
+                if (documentedOriginal == null) {
+                    documentedOriginal = findUniqueByCallsign(permit.originalFlights(), current);
+                }
+                if (documentedOriginal == null
+                        && permit.originalFlights().size() == permit.flights().size()) {
+                    // OLD/NEW tables are paired by position only after exact
+                    // identity and unique callsign matching have failed.
+                    documentedOriginal = permit.originalFlights().get(index);
+                }
+                if (!permit.seasonalPermit() && !permit.originalFlights().isEmpty()
+                        && documentedOriginal == null) {
+                    throw new BusinessRuleException(
+                            "BR-REVISION-ROW-MAPPING-AMBIGUOUS",
+                            "Cannot identify the original schedule row for revised flight "
+                                    + current.flightNumber()
+                                    + "; OLD and NEW tables do not form an unambiguous pair");
+                }
+                ScheduleFlight baselineMatch = findBaseline(
+                        baseline, documentedOriginal, current);
+                ScheduleFlight inherited = permit.otherDetailsUnchanged()
+                        ? baselineMatch
+                        : null;
+                if (documentedOriginal != null) {
+                    current = inheritDetails(current, documentedOriginal);
+                }
+                if (inherited != null) {
+                    current = inheritDetails(current, inherited);
+                }
+                // The baseline match may have been located through the OLD
+                // row's route, so only inherit its VIA when the revised row
+                // still flies the exact same airport pair - then the stored
+                // VIA applies verbatim, even without an explicit "other
+                // details unchanged" statement.
+                if (baselineMatch != null && (current.via() == null || current.via().isBlank())
+                        && baselineMatch.via() != null && !baselineMatch.via().isBlank()
+                        && sameAirport(baselineMatch.fromAirport(), current.fromAirport())
+                        && sameAirport(baselineMatch.toAirport(), current.toAirport())) {
+                    current = current.withResolvedRoute(
+                            current.fromAirport(), current.toAirport(), baselineMatch.via());
+                }
+                if (shouldInheritAircraft(permit, current, documentedOriginal)) {
+                    ScheduleFlight aircraftSource = findUniqueByCallsign(
+                            permit.originalFlights(), current);
+                    aircraftSource = usableAircraftSource(aircraftSource);
+                    if (aircraftSource == null) {
+                        aircraftSource = findUniqueByCallsign(baseline, current);
+                        aircraftSource = usableAircraftSource(aircraftSource);
+                    }
+                    if (aircraftSource == null) {
+                        aircraftSource = findUniqueByCallsign(baseline, documentedOriginal);
+                        aircraftSource = usableAircraftSource(aircraftSource);
+                    }
+                    if (aircraftSource == null) {
+                        aircraftSource = findConsistentAircraftByCallsign(baseline, current);
+                    }
+                    if (aircraftSource == null) {
+                        aircraftSource = findConsistentAircraftByCallsign(
+                                baseline, documentedOriginal);
+                    }
+                    if (aircraftSource == null) {
+                        aircraftSource = documentedOriginal;
+                    }
+                    if (aircraftSource == null
+                            || (aircraftSource.craftId() <= 0
+                                && (aircraftSource.sourceAircraftType() == null
+                                    || aircraftSource.sourceAircraftType().isBlank()))) {
+                        aircraftSource = baselineMatch;
+                    }
+                    if (aircraftSource != null
+                            && (aircraftSource.craftId() > 0
+                                    || (aircraftSource.sourceAircraftType() != null
+                                        && !aircraftSource.sourceAircraftType().isBlank()))) {
+                        current = current.withInheritedAircraft(
+                                aircraftSource.craftId(), aircraftSource.mtow(),
+                                aircraftSource.registration(),
+                                aircraftSource.sourceAircraftType());
+                    }
+                }
                 ScheduleFlight resolved = current;
+                // A callsign can legitimately occur on multiple dates. The exact
+                // baseline row (callsign + date + route) is the authoritative match;
+                // do not suppress the revision remark merely because the callsign
+                // is repeated elsewhere in the original permit.
                 boolean updatesExistingNonScheduled = !permit.seasonalPermit()
-                        && baseline.stream().anyMatch(item -> sameIdentity(item, resolved));
-                reconciled.add(updatesExistingNonScheduled
-                        ? resolved.withRemark(permit.revisionReference())
-                        : resolved.withAircraftOnlyRemark());
+                        && (baselineMatch != null || hasUniqueCallsign(baseline, resolved));
+                if (updatesExistingNonScheduled) {
+                    reconciled.add(resolved.withRemark(permit.revisionRemark()));
+                } else if (!permit.seasonalPermit() && documentedOriginal != null
+                        && resolved.sourceAircraftType() != null
+                        && !resolved.sourceAircraftType().isBlank()) {
+                    // A non-scheduled replacement with no ATFM baseline can
+                    // still inherit aircraft from its OLD row; retain the
+                    // aircraft-only remark while avoiding a synthetic PAX tag.
+                    reconciled.add(resolved.withRemark(resolved.sourceAircraftType().trim()));
+                } else {
+                    reconciled.add(resolved.withAircraftOnlyRemark());
+                }
             }
             if (permit.seasonalRevision()) {
+                List<ScheduleFlight> replacementRows = permit.cancellationRevision()
+                        ? List.of()
+                        : reconciled;
                 context.setSchedulePermit(permit.asSeasonalRevision(
-                        materializeRevisionRows(permit, baseline, reconciled)));
+                        materializeRevisionRows(permit, baseline, replacementRows)));
             } else {
                 // A non-scheduled revision always targets its original permit.
                 // A missing baseline must be reviewed, never materialized as R(n).
@@ -118,9 +224,19 @@ public class RevisionReconciliationStep {
         List<ScheduleFlight> originalRows = permit.originalFlights();
         List<ScheduleFlight> materialized = new ArrayList<>(originalRows.size() + revisedRows.size());
         for (int index = 0; index < originalRows.size(); index++) {
-            ScheduleFlight original = originalRows.get(index);
+            ScheduleFlight original = originalRows.get(index).withFlightNumber(
+                    operatorCatalog.normalizeFlightNumber(
+                            originalRows.get(index).flightNumber(), permit.operatorId()));
             ScheduleFlight inherited = findBaseline(baseline, original, original);
-            ScheduleFlight complete = inherited == null ? original : inherit(original, inherited);
+            if (inherited == null) {
+                inherited = findUniqueByCallsign(baseline, original);
+            }
+            if (inherited == null) {
+                inherited = findConsistentAircraftByCallsign(baseline, original);
+            }
+            ScheduleFlight complete = inherited == null
+                    ? original
+                    : inheritDetailsAndAircraft(original, inherited);
             materialized.add(complete.asCancelledFrom(originalPermitNumber(permit, original, index)));
         }
         materialized.addAll(revisedRows);
@@ -142,6 +258,15 @@ public class RevisionReconciliationStep {
                 && sameAirport(original.toAirport(), revised.toAirport());
     }
 
+    private boolean hasUniqueCallsign(List<ScheduleFlight> baseline, ScheduleFlight revised) {
+        if (revised.flightNumber() == null || revised.flightNumber().isBlank()) {
+            return false;
+        }
+        return baseline.stream()
+                .filter(item -> sameText(item.flightNumber(), revised.flightNumber()))
+                .count() == 1;
+    }
+
     private boolean sameAirport(String left, String right) {
         String normalizedLeft = airportCodeCatalog.normalize(left);
         String normalizedRight = airportCodeCatalog.normalize(right);
@@ -155,7 +280,12 @@ public class RevisionReconciliationStep {
     }
 
     private int revisionNumberFromFile(String fileName) {
-        Matcher matcher = FILE_REVISION_NUMBER.matcher(fileName == null ? "" : fileName);
+        String value = fileName == null ? "" : fileName;
+        Matcher seasonalPrefix = FILE_SEASONAL_REVISION_PREFIX.matcher(value);
+        if (seasonalPrefix.find()) {
+            return Integer.parseInt(seasonalPrefix.group("number"));
+        }
+        Matcher matcher = FILE_REVISION_NUMBER.matcher(value);
         return matcher.find() ? Integer.parseInt(matcher.group("number")) : 0;
     }
 
@@ -219,6 +349,64 @@ public class RevisionReconciliationStep {
                 .orElse(null);
     }
 
+    private ScheduleFlight findUniqueByCallsign(List<ScheduleFlight> candidates,
+                                                ScheduleFlight expected) {
+        if (expected == null || expected.flightNumber() == null
+                || expected.flightNumber().isBlank()) {
+            return null;
+        }
+        List<ScheduleFlight> matches = candidates.stream()
+                .filter(candidate -> sameText(candidate.flightNumber(), expected.flightNumber()))
+                .toList();
+        return matches.size() == 1 ? matches.getFirst() : null;
+    }
+
+    private ScheduleFlight findConsistentAircraftByCallsign(List<ScheduleFlight> candidates,
+                                                             ScheduleFlight expected) {
+        if (expected == null || expected.flightNumber() == null
+                || expected.flightNumber().isBlank()) {
+            return null;
+        }
+        List<ScheduleFlight> matches = candidates.stream()
+                .filter(candidate -> sameText(candidate.flightNumber(), expected.flightNumber()))
+                .filter(this::hasAircraft)
+                .toList();
+        if (matches.isEmpty()) {
+            return null;
+        }
+        ScheduleFlight first = matches.getFirst();
+        boolean consistent = matches.stream().allMatch(candidate -> sameAircraft(first, candidate));
+        return consistent ? first : null;
+    }
+
+    private boolean hasAircraft(ScheduleFlight flight) {
+        return flight.craftId() > 0
+                || (flight.sourceAircraftType() != null
+                        && !flight.sourceAircraftType().isBlank());
+    }
+
+    private ScheduleFlight usableAircraftSource(ScheduleFlight flight) {
+        return flight != null && hasAircraft(flight) ? flight : null;
+    }
+
+    private boolean sameAircraft(ScheduleFlight left, ScheduleFlight right) {
+        if (left.craftId() > 0 || right.craftId() > 0) {
+            return left.craftId() > 0 && left.craftId() == right.craftId();
+        }
+        return sameText(left.sourceAircraftType(), right.sourceAircraftType());
+    }
+
+    private boolean shouldInheritAircraft(SchedulePermit permit,
+                                          ScheduleFlight current,
+                                          ScheduleFlight documentedOriginal) {
+        return !permit.implicitTableRevision()
+                && (permit.otherDetailsUnchanged() || documentedOriginal != null)
+                && !current.aircraftTablePresent()
+                && (current.sourceAircraftType() == null
+                        || current.sourceAircraftType().isBlank())
+                && current.craftId() <= 0;
+    }
+
     private boolean sameFlightRoute(ScheduleFlight left, ScheduleFlight right) {
         return left != null && right != null
                 && sameText(left.flightNumber(), right.flightNumber())
@@ -228,9 +416,16 @@ public class RevisionReconciliationStep {
                 && sameAirport(left.toAirport(), right.toAirport());
     }
 
-    private ScheduleFlight inherit(ScheduleFlight current, ScheduleFlight source) {
+    private ScheduleFlight inheritDetails(ScheduleFlight current, ScheduleFlight source) {
         return current.withRevisionDefaults(
                 source.purposeId(), source.craftId(), source.mtow(), source.registration(),
-                source.via(), source.remark());
+                source.via(), source.remark(), source.sourceAircraftType(), false);
+    }
+
+    private ScheduleFlight inheritDetailsAndAircraft(ScheduleFlight current,
+                                                      ScheduleFlight source) {
+        return current.withRevisionDefaults(
+                source.purposeId(), source.craftId(), source.mtow(), source.registration(),
+                source.via(), source.remark(), source.sourceAircraftType(), true);
     }
 }

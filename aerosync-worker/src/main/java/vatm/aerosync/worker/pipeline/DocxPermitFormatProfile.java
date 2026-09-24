@@ -56,7 +56,8 @@ record DocxPermitFormatProfile(
             String version,
             String season,
             int validHours,
-            String flightType
+            String flightType,
+            String workflow
     ) {
     }
 
@@ -76,6 +77,7 @@ record DocxPermitFormatProfile(
             List<String> excludeColumns,
             List<String> tableContextPatterns,
             List<String> preferredTableContextPatterns,
+            List<String> originalTableContextPatterns,
             List<String> supplementalTableContextPatterns,
             List<String> dateFormats,
             List<String> timeFormats,

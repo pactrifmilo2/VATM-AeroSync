@@ -25,8 +25,11 @@ public record SchedulePermit(
         List<ScheduleFlight> flights,
         List<ScheduleFlight> originalFlights,
         String referencedPermitId,
-        boolean revisionCreatesNewPermit
+        boolean revisionCreatesNewPermit,
+        String workflow
 ) {
+    public static final String REFERENCED_SEASON_NEW_SC = "REFERENCED_SEASON_NEW_SC";
+    public static final String EXISTING_SC_REVISION = "EXISTING_SC_REVISION";
     private static final Pattern REVISION_MARKER = Pattern.compile(
             "(?iu)(?:\\bREV(?:ISION)?\\s*\\d*\\b|\\bRVS\\s*\\d*\\b|"
                     + "SỬA\\s*ĐỔI|SUA\\s*DOI|LỊCH\\s*BAY\\s*GỐC|LICH\\s*BAY\\s*GOC|"
@@ -44,6 +47,10 @@ public record SchedulePermit(
     private static final Pattern SEASONAL_PERMIT = Pattern.compile("(?i)/(?:S|W)/");
     private static final Pattern EXPLICIT_REVISION = Pattern.compile(
             "(?iu)\\b(?:REV|RVS)\\s*[:._/-]?\\s*(?<number>\\d+)\\b");
+    private static final Pattern REVISION_TOKEN = Pattern.compile(
+            "(?iu)\\b(?:REV(?:ISION)?|RVS)(?:\\s*[:._/-]?\\s*\\d+)?\\b");
+    private static final Pattern SCHEDULE_CANCELLATION = Pattern.compile(
+            "(?iu)\\bCANCELLATION\\s+FORM\\s+FOR\\s+SCHEDULED\\s+FLIGHT\\b");
     private static final String INFERRED_REVISION_MARKER = "AEROSYNC_INFERRED_REVISION";
 
     public SchedulePermit {
@@ -65,7 +72,8 @@ public record SchedulePermit(
                 sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
-                resolvedFlights, originalFlights, referencedPermitId, revisionCreatesNewPermit);
+                resolvedFlights, originalFlights, referencedPermitId, revisionCreatesNewPermit,
+                workflow);
     }
 
     public SchedulePermit withFlightsAndOriginals(List<ScheduleFlight> resolvedFlights,
@@ -74,7 +82,8 @@ public record SchedulePermit(
                 sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
                 version, season, permitDate, operatorId, reference, validHours, billingAddress,
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
-                resolvedFlights, resolvedOriginalFlights, referencedPermitId, revisionCreatesNewPermit);
+                resolvedFlights, resolvedOriginalFlights, referencedPermitId, revisionCreatesNewPermit,
+                workflow);
     }
 
     public boolean revision() {
@@ -96,7 +105,10 @@ public record SchedulePermit(
     }
 
     public String atfmTargetPermitId() {
-        if (seasonalRevision() || inferredRevision() || revisionCreatesNewPermit) {
+        if (referencedSeasonNewPermit()) {
+            return normalizedPermitId;
+        }
+        if (seasonalRevision() || revisionCreatesNewPermit) {
             return revisionPermitId();
         }
         return revision() && referencedPermitId != null && !referencedPermitId.isBlank()
@@ -108,26 +120,28 @@ public record SchedulePermit(
         return revisionNumber() != null;
     }
 
-    /**
-     * SC is revised by REV/RVS alone. NO requires both REV/RVS and a
-     * NEW/REVISED schedule section.
-     */
+    /** REV/RVS with a resolved number identifies a revision for both permit types. */
     public boolean importRevision() {
-        if (!explicitRevision()) {
-            return false;
-        }
-        if (seasonalPermit()) {
-            return true;
-        }
-        return hasReplacementScheduleSection();
+        return explicitRevision();
     }
 
-    /**
-     * Only a seasonal permit may infer a revision from a NEW/REVISED schedule
-     * table when the Word permit number itself has no REV/RVS marker.
-     */
+    /** A bare REV/RVS marker or replacement table requires an inferred revision number. */
     public boolean implicitTableRevision() {
-        return seasonalPermit() && revisionNumber() == null && hasReplacementScheduleSection();
+        return !referencedSeasonNewPermit()
+                && revisionNumber() == null
+                && (hasRevisionToken() || hasReplacementScheduleSection()
+                        || cancellationRevision());
+    }
+
+    public boolean cancellationRevision() {
+        return seasonalPermit() && SCHEDULE_CANCELLATION.matcher(
+                rawContent == null ? "" : rawContent).find();
+    }
+
+    private boolean hasRevisionToken() {
+        return REVISION_TOKEN.matcher(String.join("\n",
+                sourcePermitNumber == null ? "" : sourcePermitNumber,
+                rawContent == null ? "" : rawContent)).find();
     }
 
     private boolean hasReplacementScheduleSection() {
@@ -145,9 +159,9 @@ public record SchedulePermit(
     public boolean otherDetailsUnchanged() {
         String folded = foldVietnamese(rawContent);
         return Pattern.compile(
-                "(?iu)(?:OTHER\\s+(?:DETAILS|INFORMATION)\\s+"
-                        + "(?:REMAIN(?:S|ED)?\\s+)?UNCHANGED|"
-                        + "(?:CAC\\s+)?THONG\\s+TIN\\s+KHAC\\s+"
+                "(?iu)(?:OTHER\\s+(?:MAIN\\s+)?(?:DETAILS|INFORMATION)\\s+"
+                        + "(?:(?:REMAIN(?:S|ED)?|IS)\\s+)?UNCHANGED|"
+                        + "(?:CAC\\s+)?(?:THONG\\s+TIN|CHI\\s+TIET)\\s+KHAC\\s+"
                         + "(?:KHONG\\s+THAY\\s+DOI|GIU\\s+NGUYEN))")
                 .matcher(folded).find();
     }
@@ -181,7 +195,8 @@ public record SchedulePermit(
                 flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly,
                 INFERRED_REVISION_MARKER + "\nREV" + number + "\n"
                         + (rawContent == null ? "" : rawContent),
-                flights, originalFlights, referencedPermitId, revisionCreatesNewPermit);
+                flights, originalFlights, referencedPermitId, revisionCreatesNewPermit,
+                workflow);
     }
 
     public boolean inferredRevision() {
@@ -275,7 +290,7 @@ public record SchedulePermit(
                 seasonalRevisionReference(),
                 validHours, billingAddress, flightType, iataAirportsAllowed,
                 emptyAirwaysAllowed, reviewOnly, rawContent, materializedFlights,
-                originalFlights, revisionBasePermitId(), true);
+                originalFlights, revisionBasePermitId(), true, workflow);
     }
 
     public String revisionReference() {
@@ -285,6 +300,16 @@ public record SchedulePermit(
         }
         return permitDate.format(java.time.format.DateTimeFormatter.ofPattern("ddMMyyyy"))
                 + " RVS(" + number + ")";
+    }
+
+    /** Remark placed on the exact flight row changed by a non-scheduled revision. */
+    public String revisionRemark() {
+        Integer number = revisionNumber();
+        if (number == null || permitDate == null) {
+            return reference;
+        }
+        return permitDate.format(java.time.format.DateTimeFormatter.ofPattern("ddMMyyyy"))
+                + " R(" + number + ")";
     }
 
     private String seasonalRevisionReference() {
@@ -323,13 +348,140 @@ public record SchedulePermit(
                 version, season, permitDate, resolvedOperatorId, reference, validHours,
                 billingAddress, flightType, iataAirportsAllowed, emptyAirwaysAllowed,
                 reviewOnly, rawContent, flights, originalFlights, referencedPermitId,
-                revisionCreatesNewPermit);
+                revisionCreatesNewPermit, workflow);
     }
 
     /** Seasonal/non-scheduled classification comes only from the permit number. */
     public boolean seasonalPermit() {
         return SEASONAL_PERMIT.matcher(
                 sourcePermitNumber == null ? "" : sourcePermitNumber).find();
+    }
+
+    public boolean referencedSeasonNewPermit() {
+        return REFERENCED_SEASON_NEW_SC.equalsIgnoreCase(workflow);
+    }
+
+    public boolean existingScheduledRevision() {
+        return EXISTING_SC_REVISION.equalsIgnoreCase(workflow);
+    }
+
+    public boolean usesScheduledStorage() {
+        return seasonalPermit() || referencedSeasonNewPermit() || existingScheduledRevision()
+                || multiDayNonScheduled();
+    }
+
+    /** Identifies a non-scheduled permit whose schedule contains a date range. */
+    public boolean multiDayNonScheduled() {
+        return !seasonalPermit() && !referencedSeasonNewPermit() && !existingScheduledRevision()
+                && flights.stream().anyMatch(flight -> flight.beginDate() != null
+                        && flight.endDate() != null
+                        && !flight.beginDate().equals(flight.endDate()));
+    }
+
+    /**
+     * Season stored in ATFM. A multi-day non-scheduled permit derives its season
+     * from the IATA season of its earliest flight date; all other permits keep
+     * the season supplied by the parsing profile or inherited workflow.
+     */
+    @Override
+    public String season() {
+        if (!multiDayNonScheduled()) {
+            return season;
+        }
+        LocalDate earliest = flights.stream()
+                .map(ScheduleFlight::beginDate)
+                .filter(java.util.Objects::nonNull)
+                .min(LocalDate::compareTo)
+                .orElse(null);
+        return earliest == null ? season : iataSeason(earliest);
+    }
+
+    /** IATA seasons: summer from the last Sunday of March, winter from the last Sunday of October. */
+    private static String iataSeason(LocalDate date) {
+        return switch (date.getMonthValue()) {
+            case 4, 5, 6, 7, 8, 9 -> "S";
+            case 3 -> date.isBefore(lastSunday(date.getYear(), 3)) ? "W" : "S";
+            case 10 -> date.isBefore(lastSunday(date.getYear(), 10)) ? "S" : "W";
+            default -> "W";
+        };
+    }
+
+    private static LocalDate lastSunday(int year, int month) {
+        return LocalDate.of(year, month, 1)
+                .with(java.time.temporal.TemporalAdjusters.lastInMonth(java.time.DayOfWeek.SUNDAY));
+    }
+
+    public SchedulePermit withExistingScheduledTarget(String scheduledPermitId) {
+        String target = scheduledPermitId == null
+                ? ""
+                : scheduledPermitId.trim().toUpperCase(java.util.Locale.ROOT);
+        if (target.isBlank()) {
+            throw new IllegalArgumentException("Scheduled revision target must not be blank");
+        }
+        java.util.regex.Matcher matcher = Pattern.compile("(?i)/(?<season>[SW])/").matcher(target);
+        // A multi-day non-scheduled permit lives in scheduled storage without a
+        // season marker in its id; its season is derived from the flight dates.
+        String targetSeason = matcher.find()
+                ? matcher.group("season").toUpperCase(java.util.Locale.ROOT)
+                : season();
+        return new SchedulePermit(
+                sourcePermitNumber, target, permitNumber, authorId, permitType,
+                version, targetSeason, permitDate,
+                operatorId, reference, validHours, billingAddress, flightType,
+                iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
+                flights, originalFlights, target, false, EXISTING_SC_REVISION);
+    }
+
+    public SchedulePermit withReferencedSeason(String inheritedSeason) {
+        if (!referencedSeasonNewPermit()) {
+            return this;
+        }
+        String normalizedSeason = inheritedSeason == null
+                ? ""
+                : inheritedSeason.trim().toUpperCase(java.util.Locale.ROOT);
+        if (!normalizedSeason.matches("[SW]")) {
+            throw new IllegalArgumentException("Referenced permit season must be S or W");
+        }
+        String inheritedPermitId = normalizedPermitId;
+        if (!SEASONAL_PERMIT.matcher(inheritedPermitId == null ? "" : inheritedPermitId).find()) {
+            inheritedPermitId = inheritedPermitId.replaceFirst(
+                    "(?i)/(?=[A-Z0-9]+/(?:19|20)\\d{2}$)",
+                    "/" + normalizedSeason + "/");
+        }
+        List<ScheduleFlight> materialized = new java.util.ArrayList<>(
+                originalFlights.size() + flights.size());
+        for (int index = 0; index < originalFlights.size(); index++) {
+            ScheduleFlight original = originalFlights.get(index);
+            materialized.add(original.asCancelledReferenceFrom(
+                    originalPermitNumber(original, index)));
+        }
+        materialized.addAll(flights);
+        return new SchedulePermit(
+                sourcePermitNumber, inheritedPermitId, permitNumber, authorId, permitType,
+                version, normalizedSeason, permitDate, operatorId, reference, validHours,
+                billingAddress, flightType, iataAirportsAllowed, emptyAirwaysAllowed,
+                reviewOnly, rawContent, materialized, originalFlights, referencedPermitId,
+                false, workflow);
+    }
+
+    private String originalPermitNumber(ScheduleFlight original, int index) {
+        if (original.remark() != null) {
+            java.util.regex.Matcher matcher = Pattern.compile(
+                            "(?iu)(?:LD|O\\s*/?\\s*F)\\s*-?\\s*\\d{1,5}"
+                                    + "(?:\\s*/\\s*[A-Z])?(?:\\s*/\\s*[SW])?"
+                                    + "(?:\\s*/\\s*(?:19|20)\\d{2})(?:VN)?")
+                    .matcher(original.remark());
+            if (matcher.find()) {
+                return matcher.group().trim();
+            }
+        }
+        if (reference != null && !reference.isBlank()) {
+            String[] references = reference.split("\\s*;\\s*");
+            if (index < references.length && !references[index].isBlank()) {
+                return references[index].trim();
+            }
+        }
+        return referencedPermitId;
     }
 
     public Integer atfmTargetPermitYear() {
@@ -343,6 +495,33 @@ public record SchedulePermit(
             year = Integer.valueOf(matcher.group());
         }
         return year;
+    }
+
+    public SchedulePermit(String sourcePermitNumber,
+                          String normalizedPermitId,
+                          String permitNumber,
+                          String authorId,
+                          String permitType,
+                          String version,
+                          String season,
+                          LocalDate permitDate,
+                          String operatorId,
+                          String reference,
+                          int validHours,
+                          String billingAddress,
+                          String flightType,
+                          boolean iataAirportsAllowed,
+                          boolean emptyAirwaysAllowed,
+                          boolean reviewOnly,
+                          String rawContent,
+                          List<ScheduleFlight> flights,
+                          List<ScheduleFlight> originalFlights,
+                          String referencedPermitId,
+                          boolean revisionCreatesNewPermit) {
+        this(sourcePermitNumber, normalizedPermitId, permitNumber, authorId, permitType,
+                version, season, permitDate, operatorId, reference, validHours, billingAddress,
+                flightType, iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
+                flights, originalFlights, referencedPermitId, revisionCreatesNewPermit, null);
     }
 
     public SchedulePermit(String sourcePermitNumber,

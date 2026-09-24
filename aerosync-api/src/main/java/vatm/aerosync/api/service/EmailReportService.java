@@ -107,7 +107,9 @@ public class EmailReportService {
                 metadata.isIngestComplete(),
                 metadata.getAcknowledgedAt(),
                 errorMessageTranslator.translate(metadata.getAcknowledgementError()),
-                job != null ? job.getStatus() : null);
+                job != null ? job.getStatus() : null,
+                "email",
+                1);
     }
 
     @Transactional(readOnly = true)
@@ -196,7 +198,9 @@ public class EmailReportService {
                 metadata.getAcknowledgedAt(),
                 job != null ? job.getStatus() : null,
                 latestFileRecord != null && WordFormatRequirement.isRequired(
-                        latestFileRecord.getOriginalFileName(), latestFileRecord.getErrorMessage()));
+                        latestFileRecord.getOriginalFileName(), latestFileRecord.getErrorMessage()),
+                "email",
+                1);
     }
 
     private Map<Long, String> permitNumbersFor(List<EmailMetadata> metadataRows) {

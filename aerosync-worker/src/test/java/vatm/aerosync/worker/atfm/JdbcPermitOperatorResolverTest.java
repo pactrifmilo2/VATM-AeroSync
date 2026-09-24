@@ -65,4 +65,9 @@ class JdbcPermitOperatorResolverTest {
         assertThat(resolver.resolve("NN", null)).isEmpty();
         assertThat(resolver.resolve("NN", "UNKNOWN OPERATOR")).isEmpty();
     }
+
+    @Test
+    void resolveFromCallsign_doesNotTreatAircraftRegistrationAsOperator() {
+        assertThat(resolver.resolveFromCallsign("VN-B593", "Vietnam Airlines")).isEmpty();
+    }
 }

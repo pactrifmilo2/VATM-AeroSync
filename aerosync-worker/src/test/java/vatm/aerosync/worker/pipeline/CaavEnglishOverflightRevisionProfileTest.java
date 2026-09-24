@@ -59,7 +59,7 @@ class CaavEnglishOverflightRevisionProfileTest {
             assertThat(flight.purposeId()).isEqualTo("CHT");
             assertThat(flight.craftId()).isZero();
             assertThat(flight.mtow()).isNull();
-            assertThat(flight.sourceAircraftType()).isEqualTo("CL60");
+            assertThat(flight.sourceAircraftType()).isNull();
             assertThat(flight.serviceDays()).isEqualTo("0030000");
             assertThat(flight.fromAirport()).isEqualTo("WSSL");
             assertThat(flight.toAirport()).isEqualTo("RCSS");

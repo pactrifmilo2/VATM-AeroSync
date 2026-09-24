@@ -1,6 +1,7 @@
 package vatm.aerosync.worker.pipeline;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assumptions;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.nio.file.Path;
@@ -15,6 +16,8 @@ class Spa070PermitProfileRegressionTest {
         Path sample = Path.of("..",
                 "dungdm_20260729_172132_email_007__SPA070__REV1_LD-2702_S26_04AUG-07AUG_ND.docx")
                 .toAbsolutePath().normalize();
+        Assumptions.assumeTrue(java.nio.file.Files.isRegularFile(sample),
+                "External SPA070 sample is not available: " + sample);
 
         SchedulePermit permit = new DocxSchedulePermitParser()
                 .parse(sample, sample.getFileName().toString());

@@ -1,0 +1,9 @@
+id: rba-english-overflight-issued
+extends: airline-generic-overflight-issued
+priority: 80
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*RBA\b|IATA\s*(?:CODE)?\s*:\s*BI\b|ROYAL\s+BRUNEI\s+AIRLINES|\bBRUNEI\b)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: RBA

@@ -1,0 +1,45 @@
+id: kme-english-seasonal-overflight-revision
+extends: caav-generic-seasonal-overflight-revision
+priority: 260
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*KME\b|IATA\s*(?:CODE)?\s*:\s*KR\b|CAMBODIA\s+AIRWAYS)'
+  - '(?iu)(?:SCHEDULE\s+CHANGE|CHANGE\s+TO\s+NEW|ORIGINAL\s+EFFECTIVE|NEW\s+EFFECTIVE|OLD\s+SCHEDULE|NEW\s+SCHEDULE)'
+operator:
+  fixedValue: KME
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+schedule:
+  columns:
+    flightNumber: [FLT No., Flight number]
+    effectiveFrom: [From, Effective from]
+    effectiveTo: [To, Effective to]
+    serviceDays: [Day(s) of OPS, Day(s) of services]
+    fromAirport: [From, Departure Airport]
+    etd: [STD, ETD, Departure]
+    toAirport: [To, Arrival Airport]
+    eta: [STA, ETA, Arrival]
+    aircraftType: [Aircraft Type, Aircraft type]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  includeEta: true
+  lastMatchingTable: true
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: A320
+  auxiliaryRequiredColumns: []
+validation:
+  reviewOnly: true
+  allowIataAirports: false

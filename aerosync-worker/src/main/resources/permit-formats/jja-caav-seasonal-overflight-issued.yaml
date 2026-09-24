@@ -1,0 +1,13 @@
+id: jja-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 40
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/–—]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*JJA\b'
+  - '(?iu)OVERFLIGHT\s+PERMIT'
+  - '(?iu)SCHEDULES?'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: JJA
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/–—]?\s*(?<number>\d{1,5})\s*/?\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'

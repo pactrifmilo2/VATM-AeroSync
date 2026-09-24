@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AeroSync — Canvas luồng hoạt động</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#243449; --line:#475569;
+    --text:#e2e8f0; --muted:#94a3b8;
+    --blue:#38bdf8; --green:#4ade80; --amber:#fbbf24; --red:#f87171;
+    --violet:#a78bfa; --cyan:#22d3ee; --pink:#f472b6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif;padding:32px 24px 64px}
+  h1{font-size:26px;margin-bottom:4px}
+  .sub{color:var(--muted);margin-bottom:28px;font-size:14px}
+  h2{font-size:19px;margin:40px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--panel2);color:var(--muted);letter-spacing:.5px}
+  .desc{color:var(--muted);font-size:13px;margin-bottom:18px;max-width:900px}
+  .canvas{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px;overflow-x:auto}
+
+  /* ---- hàng luồng ngang ---- */
+  .flow{display:flex;align-items:stretch;gap:0;min-width:max-content}
+  .node{background:var(--panel2);border:1.5px solid var(--line);border-radius:10px;
+        padding:12px 14px;min-width:150px;max-width:210px;position:relative}
+  .node .t{font-weight:600;font-size:13.5px;margin-bottom:4px}
+  .node .d{font-size:11.5px;color:var(--muted);line-height:1.45}
+  .node .code{font-family:Consolas,monospace;font-size:10.5px;color:var(--cyan);display:block;margin-top:5px;word-break:break-all}
+  .arrow{display:flex;align-items:center;padding:0 6px;color:var(--muted);flex-shrink:0}
+  .arrow svg{display:block}
+  .arrow .lbl{font-size:10px;color:var(--muted);text-align:center;margin:0 2px;max-width:90px}
+  .arrow.col{flex-direction:column;justify-content:center}
+
+  .b-blue{border-color:var(--blue)}   .b-green{border-color:var(--green)}
+  .b-amber{border-color:var(--amber)} .b-red{border-color:var(--red)}
+  .b-violet{border-color:var(--violet)} .b-cyan{border-color:var(--cyan)}
+  .b-pink{border-color:var(--pink)}
+
+  .badge{position:absolute;top:-9px;right:10px;font-size:9.5px;font-weight:700;
+         padding:2px 8px;border-radius:99px;background:var(--amber);color:#1c1917}
+  .badge.new{background:var(--green)}
+
+  /* ---- nhánh dọc ---- */
+  .branch{display:flex;gap:26px;margin-top:18px;flex-wrap:wrap}
+  .lane{flex:1;min-width:330px;background:rgba(148,163,184,.05);border:1px dashed var(--line);
+        border-radius:12px;padding:16px}
+  .lane>.lt{font-size:12.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:12px}
+  .vflow{display:flex;flex-direction:column;gap:0}
+  .vflow .node{max-width:none;width:100%}
+  .varrow{display:flex;justify-content:center;padding:3px 0;color:var(--muted)}
+  .varrow .lbl{font-size:10px;margin-left:8px;align-self:center}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:11.5px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .decision{background:#2a2440;border:1.5px solid var(--violet);border-radius:10px;
+            padding:12px 14px;text-align:center}
+  .decision .t{font-weight:600;font-size:13px}
+  .decision .d{font-size:11px;color:var(--muted);margin-top:3px}
+
+  .steps{counter-reset:st}
+  .steps .node{padding-left:44px}
+  .steps .node::before{counter-increment:st;content:counter(st);
+      position:absolute;left:12px;top:12px;width:22px;height:22px;border-radius:50%;
+      background:var(--line);color:var(--text);font-size:11.5px;font-weight:700;
+      display:flex;align-items:center;justify-content:center}
+
+  footer{margin-top:44px;color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);padding-top:14px}
+  @media print{body{background:#fff;color:#111}}
+</style>
+</head>
+<body>
+
+<h1>VATM AeroSync — Canvas luồng hoạt động</h1>
+<div class="sub">Nền tảng đồng bộ dữ liệu bay · aerosync-ingest → aerosync-worker → Oracle ATFM → aerosync-api → WinUI dashboard</div>
+
+<!-- ============ 1. TỔNG QUAN ============ -->
+<h2>1. Luồng tổng quan toàn hệ thống <span class="tag">END-TO-END</span></h2>
+<div class="desc">File dữ liệu bay đến từ thư mục hệ thống hoặc email đính kèm, được chống trùng, đưa qua hàng đợi, xử lý bởi worker rồi ghi vào Oracle; kết quả được phát về API để hiển thị trên dashboard.</div>
+<div class="canvas">
+  <div class="flow">
+    <div class="node b-blue"><div class="t">📁 Nguồn file</div>
+      <div class="d">Thư mục drop (CSV/XLSX/XML/JSON) &amp; hộp thư IMAP (file Word phép bay đính kèm)</div></div>
+    <div class="arrow"><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-blue"><div class="t">aerosync-ingest</div>
+      <div class="d">Quét định kỳ, tải file về, đặt tên <i>sender_date_time_source_prefix_hash</i></div>
+      <span class="code">FileSystemIngestService · EmailIngestService</span></div>
+    <div class="arrow col"><div class="lbl">SHA-256</div><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-cyan"><div class="t">Chống trùng (BR-01)</div>
+      <div class="d">Hash nội dung tra Redis; đã xử lý xong → bỏ qua</div>
+      <span class="code">DeduplicationService</span></div>
+    <div class="arrow col"><div class="lbl">FileIngestedEvent</div><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-amber"><div class="t">🐇 RabbitMQ</div>
+      <div class="d">Exchange <b>file.ingested</b> → queue <b>file.processing.queue</b><br>URGENT/VIP → priority 10 (BR-05)</div></div>
+    <div class="arrow"><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-green"><div class="t">aerosync-worker</div>
+      <div class="d">Khóa phân tán Redis theo file, chạy pipeline xử lý (mục 2 &amp; 3)</div>
+      <span class="code">FileProcessingPipeline</span></div>
+    <div class="arrow"><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-red"><div class="t">🗄️ Oracle XE (XEPDB1)</div>
+      <div class="d">sync_jobs · file_records · flight_data · permit_imports · audit_logs (BR-07) + bảng ATFM</div></div>
+    <div class="arrow col"><div class="lbl">SyncResultEvent<br>(fanout sync.result)</div><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-violet"><div class="t">aerosync-api :8080</div>
+      <div class="d">Thống kê, danh sách job, retry, audit log, cảnh báo</div>
+      <span class="code">AlertService · REST API</span></div>
+    <div class="arrow"><svg width="34" height="14"><line x1="0" y1="7" x2="26" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M26 2 L34 7 L26 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-pink"><div class="t">🖥️ AeroSync.UI</div>
+      <div class="d">WinUI 3, tự làm mới 3 giây — "Tổng quan", "Giám sát đồng bộ"…</div></div>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--blue)"></span>Thu nhận</span>
+    <span><span class="dot" style="background:var(--cyan)"></span>Chống trùng</span>
+    <span><span class="dot" style="background:var(--amber)"></span>Hàng đợi</span>
+    <span><span class="dot" style="background:var(--green)"></span>Xử lý</span>
+    <span><span class="dot" style="background:var(--red)"></span>Lưu trữ</span>
+    <span><span class="dot" style="background:var(--violet)"></span>API</span>
+    <span><span class="dot" style="background:var(--pink)"></span>Giao diện</span>
+  </div>
+</div>
+
+<!-- ============ 2. PIPELINE 6 BƯỚC ============ -->
+<h2>2. Pipeline xử lý file dữ liệu bay <span class="tag">6 BƯỚC · WORKER</span></h2>
+<div class="desc">Áp dụng cho file CSV/XLSX/XML/JSON. Thất bại ở bước 1 → thư mục <b>/error/</b> (FAILED); vi phạm nghiệp vụ ở bước 4 → <b>/quarantine/</b> (QUARANTINED); ghi DB nguyên khối, rollback toàn phần (BR-02).</div>
+<div class="canvas">
+  <div class="flow steps">
+    <div class="node b-blue"><div class="t">FormatValidator</div><div class="d">Tồn tại, ≤10MB, UTF-8, header CSV (callsign, from, to, dateflight)</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-blue"><div class="t">Parser</div><div class="d">Strategy CSV/XLSX/XML/JSON → danh sách FlightRow</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-cyan"><div class="t">Normalizer</div><div class="d">Trim, UPPERCASE callsign/sân bay, chuẩn hóa múi giờ dateFlight</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-amber"><div class="t">BusinessRuleValidator</div><div class="d">Callsign [A-Z0-9]{2,10}, sân bay [A-Z]{3}, from≠to, ngày bay 2000 → +1 năm</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-red"><div class="t">DatabaseWriter</div><div class="d">@Transactional: xóa dòng cũ của job → chèn FlightData → SUCCESS</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-green"><div class="t">FileArchiver</div><div class="d">Chuyển vào processed / error / quarantine; dọn theo BR-03 (60/90 ngày)</div></div>
+  </div>
+</div>
+
+<!-- ============ 3. LUỒNG WORD ============ -->
+<h2>3. Luồng xử lý file Word phép bay <span class="tag">DOCX · PHÉP BAY CAAV</span></h2>
+<div class="desc">File .docx phép bay (từ email) đi qua nhánh riêng: nhận diện định dạng bằng hồ sơ YAML → trích xuất phép + lịch bay → đối chiếu sửa đổi → phân giải tàu bay/đường bay → ghi vào bảng ATFM qua PermitImportCoordinator.</div>
+<div class="canvas">
+  <div class="flow">
+    <div class="node b-blue"><div class="t">📄 File .docx</div>
+      <div class="d">VD: <i>giangpth_…_LD-3248_34d3f25b.docx</i><br>(LD-3248/9/2026VN — Vietjet)</div></div>
+    <div class="arrow"><svg width="30" height="14"><line x1="0" y1="7" x2="22" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M22 2 L30 7 L22 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-cyan"><div class="t">Nhận diện định dạng</div>
+      <div class="d">So khớp &gt;200 hồ sơ YAML theo priority + detectionPatterns (mã IATA/ICAO, dạng số phép, tiêu đề cột…)</div>
+      <span class="code">WordPermitFormatDetector · permit-formats/*.yaml</span></div>
+    <div class="arrow"><svg width="30" height="14"><line x1="0" y1="7" x2="22" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M22 2 L30 7 L22 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-cyan"><div class="t">Parse phép + lịch bay</div>
+      <div class="d">Số phép → normalizedPermitId (VD LD 03248/CHK/2026), bảng lịch bay, mục đích, tàu bay, đường bay</div>
+      <span class="code">DocxSchedulePermitParser → SchedulePermit</span></div>
+    <div class="arrow"><svg width="30" height="14"><line x1="0" y1="7" x2="22" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M22 2 L30 7 L22 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-violet"><div class="t">Phân loại phép</div>
+      <div class="d">Số phép gốc có <b>/S/</b> hoặc <b>/W/</b> → phép mùa (SC).<br>Không có → <b>phép đột xuất (NO)</b></div>
+      <span class="code">SchedulePermit.seasonalPermit()</span></div>
+  </div>
+
+  <div class="branch">
+    <!-- Lane: các bước sau parse -->
+    <div class="lane">
+      <div class="lt" style="color:var(--cyan)">Các bước sau parse (theo thứ tự)</div>
+      <div class="vflow">
+        <div class="node b-cyan"><div class="t">Normalizer → PurposeResolution</div>
+          <div class="d">Chuẩn hóa dữ liệu, gán mục đích chuyến bay (PAX/CAR…)</div></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg></div>
+        <div class="node b-amber"><div class="t">RevisionReconciliation</div>
+          <div class="d">Nếu là REV/RVS: suy số revision, ghép cặp bảng CŨ/MỚI, kế thừa tàu bay &amp; chi tiết từ baseline ATFM, gắn remark <i>ddMMyyyy R(n)</i> (đột xuất) / <i>RVS(n)</i> (mùa)</div></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg></div>
+        <div class="node b-cyan"><div class="t">AircraftType + Via Resolution</div>
+          <div class="d">Tra loại tàu bay (M_CRAFT_TYPE) và đường hàng không (M_VIA/M_AIRPORT_ROUTE). Bắt buộc với phép dùng kho SC</div></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg></div>
+        <div class="node b-amber"><div class="t">BusinessRuleValidator</div>
+          <div class="d">Kiểm tra từng dòng bay; vi phạm → quarantine kèm RowValidationError</div></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg></div>
+        <div class="node b-green"><div class="t">PermitImportCoordinator</div>
+          <div class="d">Khóa Redis theo phép đích → findExisting: trùng hoàn toàn → DUPLICATE; đã có → update; chưa có → insert. Trạng thái lưu vào permit_imports</div></div>
+      </div>
+    </div>
+
+    <!-- Lane: quyết định định tuyến kho -->
+    <div class="lane">
+      <div class="lt" style="color:var(--violet)">Định tuyến kho ATFM (usesScheduledStorage)</div>
+      <div class="vflow">
+        <div class="decision"><div class="t">Số phép có /S/ hoặc /W/ ?</div></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg><span class="lbl">Có → phép mùa</span></div>
+        <div class="node b-red"><div class="t">Kho phép mùa (SC)</div>
+          <div class="d">T_PERMMASTER_SC / T_PERMDETAIL_SC · FLIGHTTYPE=SC · SEASON theo số phép. Sửa đổi tạo phép mới R(n): LD 0001A<b>R2</b>/S/CHK/2026</div></div>
+        <div class="varrow"><span class="lbl" style="margin:0">— nếu Không có S/W —</span></div>
+        <div class="decision"><div class="t">Có chuyến nào "Hiệu lực từ" ≠ "Hiệu lực đến" ?</div>
+          <div class="d">Kiểm tra beginDate/endDate của tất cả dòng bay</div>
+          <span class="badge new" style="position:static;margin-top:6px;display:inline-block">QUY TẮC MỚI</span></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg><span class="lbl">Tất cả bằng nhau (1 ngày)</span></div>
+        <div class="node b-green"><div class="t">Kho đột xuất (NO)</div>
+          <div class="d">T_PERMMASTER_NO / T_PERMDETAIL_NO · FLIGHTTYPE=NO · ngày bay lưu dạng DAYSFLIGHT. Sửa đổi ghi đè phép gốc, không sinh R(n); mất phép gốc → REVISION_REVIEW</div></div>
+        <div class="varrow"><svg width="14" height="22"><line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" stroke-width="1.5"/><path d="M2 14 L7 22 L12 14 Z" fill="currentColor"/></svg><span class="lbl">Có ít nhất 1 chuyến khác nhau</span></div>
+        <div class="node b-red"><span class="badge new">MỚI</span><div class="t">Kho phép mùa (SC) nhưng FLIGHTTYPE = NO</div>
+          <div class="d">Toàn bộ phép ghi vào T_PERMMASTER_SC/T_PERMDETAIL_SC với <b>FLIGHTTYPE='NO'</b>, id không có season marker (VD LD 03248/CHK/2026).<br><b>SEASON</b> tính theo mùa IATA từ ngày bay sớm nhất: CN cuối tháng 3 → CN cuối tháng 10 = <b>S</b>, còn lại = <b>W</b>.<br>Áp dụng validation nghiêm ngặt như phép mùa (bắt buộc tàu bay + VIA)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend" style="margin-top:22px">
+    <span><span class="dot" style="background:var(--green)"></span>Nhãn "MỚI": quy tắc phép đột xuất nhiều ngày (multiDayNonScheduled) bổ sung 09/2026</span>
+  </div>
+</div>
+
+<!-- ============ 4. KẾT QUẢ ============ -->
+<h2>4. Kết thúc luồng &amp; phản hồi <span class="tag">KẾT QUẢ</span></h2>
+<div class="canvas">
+  <div class="flow">
+    <div class="node b-green"><div class="t">✅ SAVED / DUPLICATE</div><div class="d">Ghi ATFM thành công hoặc phát hiện trùng — file → /processed/</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-amber"><div class="t">⚠️ QUARANTINED / REVISION_REVIEW</div><div class="d">Vi phạm nghiệp vụ hoặc cần xử lý tay — file → /quarantine/</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-red"><div class="t">❌ FAILED</div><div class="d">Lỗi định dạng/hệ thống — file → /error/, có thể retry từ dashboard</div></div>
+    <div class="arrow"><svg width="26" height="14"><line x1="0" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.5"/><path d="M18 2 L26 7 L18 12 Z" fill="currentColor"/></svg></div>
+    <div class="node b-violet"><div class="t">🔔 Cảnh báo + Audit</div><div class="d">SyncResultEvent → API AlertService → dashboard; 100% thao tác ghi audit_logs (BR-07)</div></div>
+  </div>
+</div>
+
+<footer>
+  VATM AeroSync · Canvas luồng hoạt động · Cập nhật 10/09/2026 — bao gồm quy tắc định tuyến phép đột xuất nhiều ngày vào kho phép mùa (FLIGHTTYPE=NO, SEASON theo mùa IATA).
+</footer>
+</body>
+</html>

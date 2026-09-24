@@ -1,0 +1,23 @@
+id: rxi-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*RXI\b|IATA\s*(?:CODE)?\s*:\s*RX\b|AVIATION\s+SERVICES\s+COMPANY)'
+  - '(?iu)(?:FLIGHT\s+NUMBER|EFFECTIVE\s+FROM|DAY\(S\)\s+OF\s+SERVICES)'
+operator:
+  fixedValue: RXI
+schedule:
+  includeEta: true
+  purposeId: PAX
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryRequiredColumns: [aircraftType]
+  registrationColumn: null
+  defaultType: B789
+validation:
+  reviewOnly: false
+  allowIataAirports: false

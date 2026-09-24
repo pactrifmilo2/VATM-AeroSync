@@ -71,6 +71,24 @@ class JavaMailEmailClientTest {
     }
 
     @Test
+    void convertMessages_marksAeroSyncResendHeader() throws Exception {
+        when(readableMessage.getHeader("Message-ID")).thenReturn(new String[] { "msg-resend" });
+        when(readableMessage.getHeader("X-AeroSync-Resend")).thenReturn(new String[] { "true" });
+        when(readableMessage.getFrom()).thenReturn(new InternetAddress[] {
+                new InternetAddress("aerosync@example.com")
+        });
+        when(readableMessage.getSubject()).thenReturn("Resend permit");
+        when(readableMessage.getReceivedDate()).thenReturn(new Date());
+        when(readableMessage.getContent()).thenReturn("body");
+        when(readableMessage.isMimeType("multipart/*")).thenReturn(false);
+
+        assertThat(emailClient.convertMessages(new Message[] { readableMessage }, 10))
+                .singleElement()
+                .extracting(EmailMessage::resendRequested)
+                .isEqualTo(true);
+    }
+
+    @Test
     void convertMessages_recoversUnreadableEnvelopeFromRawHeaders() throws Exception {
         Message recovered = mock(Message.class);
         when(recovered.getMessageNumber()).thenReturn(99);

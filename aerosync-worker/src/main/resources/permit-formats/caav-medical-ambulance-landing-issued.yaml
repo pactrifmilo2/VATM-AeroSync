@@ -1,0 +1,22 @@
+id: caav-medical-ambulance-landing-issued
+extends: caav-generic-landing-issued
+priority: 230
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:MEDICAL\s*/\s*AMBULANCE|MEDEVAC|AMBULANCE\s+FLIGHT)\b'
+  - '(?iu)\b(?:PATIENT\s+ON\s+BOARD|MEDICAL\s*/\s*AMBULANCE)\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+purpose:
+  defaultId: MED
+  mappings:
+    - pattern: '(?iu)\b(?:MEDICAL|MEDEVAC|AMBULANCE|PATIENT\s+ON\s+BOARD)\b'
+      value: MED
+master:
+  flightType: 'NO'
+schedule:
+  includeEta: true
+route:
+  tableRequired: false
+  allowEmpty: true
+aircraft:
+  remarkPrefix: 'MEDICAL/AMBULANCE'

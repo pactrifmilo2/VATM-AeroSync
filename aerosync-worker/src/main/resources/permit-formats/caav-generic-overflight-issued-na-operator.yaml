@@ -28,7 +28,7 @@ schedule:
     etd: [ETD, EOBT]
     toAirport: [Arrival Airport, Arr airport]
     eta: [ETA, EIBT]
-    aircraftType: [Aircraft Type, Aircraft type]
+    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
   requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
   dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
@@ -46,8 +46,8 @@ route:
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:
-    aircraftType: [Aircraft type, Aircraft Type]
-    registrationMarks: [Registration Mark, Registration Marks]
+    aircraftType: [Aircraft type, Aircraft Type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark, Aircraft registration marks]
   auxiliaryRequiredColumns: [aircraftType, registrationMarks]
   auxiliaryTypeColumn: aircraftType
   registrationColumn: registrationMarks

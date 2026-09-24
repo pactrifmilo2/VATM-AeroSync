@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -22,15 +21,10 @@ public class AtfmViaResolver {
                AND TRIM(ROUTE) IS NOT NULL
              ORDER BY NVL(SUMMARY, 0) DESC, ID DESC
             """;
-
-    private static final String FIND_ROUTES_SQL = """
-            SELECT DISTINCT UPPER(TRIM(VIA)) AS VIA, UPPER(TRIM(OPER)) AS OPER
-              FROM M_VIA
-             WHERE UPPER(TRIM(FROM_AIRP)) = ?
-               AND UPPER(TRIM(TO_AIRP)) = ?
-               AND VIA IS NOT NULL
-             ORDER BY 1, 2
-            """;
+    private static final Set<String> NON_ROUTE_WORDS = Set.of(
+            "AS", "PER", "SEE", "NOTE", "NOTES", "REMARK", "REMARKS",
+            "NIL", "NONE", "ROUTE", "SUBJECT", "APPROVAL", "ATTACHED",
+            "ABOVE", "BELOW", "SAME");
 
     public String resolve(Connection connection,
                           String fromAirport,
@@ -39,9 +33,12 @@ public class AtfmViaResolver {
                           String documentVia) throws SQLException {
         String from = normalize(fromAirport);
         String to = normalize(toAirport);
-        String operator = normalize(operatorId);
         String existing = normalizeRoute(documentVia);
         if (!existing.isBlank()) {
+            if (!isReadableRoute(existing)) {
+                throw new AtfmDocumentRouteException(
+                        "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file");
+            }
             return existing;
         }
 
@@ -61,49 +58,8 @@ public class AtfmViaResolver {
             }
         }
 
-        // Keep M_VIA as a compatibility fallback for airport pairs that have
-        // not yet been migrated into M_AIRPORT_ROUTE.
-        Set<String> operatorRoutes = new LinkedHashSet<>();
-        Set<String> genericRoutes = new LinkedHashSet<>();
-        Set<String> allRoutes = new LinkedHashSet<>();
-
-        try (PreparedStatement statement = connection.prepareStatement(FIND_ROUTES_SQL)) {
-            statement.setString(1, from);
-            statement.setString(2, to);
-            try (ResultSet rows = statement.executeQuery()) {
-                while (rows.next()) {
-                    String route = normalizeRoute(rows.getString("VIA"));
-                    if (route.isBlank()) {
-                        continue;
-                    }
-                    String routeOperator = normalize(rows.getString("OPER"));
-                    allRoutes.add(route);
-                    if (routeOperator.equals(operator)) {
-                        operatorRoutes.add(route);
-                    } else if (routeOperator.isBlank()) {
-                        genericRoutes.add(route);
-                    }
-                }
-            }
-        }
-
-        if (!operatorRoutes.isEmpty()) {
-            return selectFirst(operatorRoutes);
-        }
-        if (!genericRoutes.isEmpty()) {
-            return selectFirst(genericRoutes);
-        }
-        if (!allRoutes.isEmpty()) {
-            return selectFirst(allRoutes);
-        }
-        // A route is optional for import. When neither catalogue contains the
-        // airport pair, keep VIA empty so the remaining permit data can still
-        // be inserted into ATFM.
-        return "";
-    }
-
-    private String selectFirst(Set<String> routes) {
-        return routes.iterator().next();
+        throw new AtfmReferenceDataException(
+                "BR-ROUTE-NOT-FOUND: ATFM route not found: " + from + " -> " + to);
     }
 
     private String normalize(String value) {
@@ -111,8 +67,36 @@ public class AtfmViaResolver {
     }
 
     private String normalizeRoute(String value) {
-        return normalize(value)
+        String normalized = normalize(value);
+        String lower = normalized.toLowerCase(Locale.ROOT);
+        if (lower.contains("atfm route not found")
+                || lower.contains("đường bay không có trong từ điển atfm")) {
+            return "";
+        }
+        return normalized
+                .replaceAll("(?iu)\\s+(?:-|\\u2013|\\u2014)\\s+", "/")
+                .replaceAll("(?iu)\\s+HOẶC\\s+", "/")
+                .replaceAll("(?iu)(?<=[A-Z0-9])-(?=[A-Z][A-Z0-9]{1,5}(?:$|[-/\\s]))", "/")
+                .replaceAll("(?iu)\\s*(?:,|;|\\bOR\\b)\\s*", "/")
                 .replaceAll("\\s*/\\s*", "/")
+                .replaceAll("/{2,}", "/")
                 .replaceAll("/+$", "");
+    }
+
+    private boolean isReadableRoute(String value) {
+        String[] tokens = value.split("[\\s/]+");
+        boolean hasRouteToken = false;
+        for (String token : tokens) {
+            if (token.isBlank()) {
+                continue;
+            }
+            if (!token.matches("[A-Z0-9]{1,15}") || NON_ROUTE_WORDS.contains(token)) {
+                return false;
+            }
+            hasRouteToken |= token.equals("DCT")
+                    || token.matches(".*\\d.*")
+                    || token.matches("[A-Z]{3,5}");
+        }
+        return hasRouteToken;
     }
 }

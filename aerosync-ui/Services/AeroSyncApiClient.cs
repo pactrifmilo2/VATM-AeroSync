@@ -6,6 +6,7 @@ namespace AeroSync.UI.Services;
 
 public sealed class AeroSyncApiClient
 {
+    public const int MaxUiRecords = 50;
     private readonly HttpClient httpClient;
     private readonly JsonSerializerOptions jsonOptions = new(JsonSerializerDefaults.Web)
     {
@@ -29,7 +30,7 @@ public sealed class AeroSyncApiClient
     public async Task<List<SyncJobSummaryResponse>> GetJobsAsync(CancellationToken cancellationToken = default)
     {
         return await httpClient.GetFromJsonAsync<List<SyncJobSummaryResponse>>(
-                "/api/jobs",
+                $"/api/jobs?limit={MaxUiRecords}",
                 jsonOptions,
                 cancellationToken)
             ?? [];
@@ -79,7 +80,7 @@ public sealed class AeroSyncApiClient
 
         Task<PagedResponse<EmailReportRowResponse>?> FetchPageAsync(int page) =>
             httpClient.GetFromJsonAsync<PagedResponse<EmailReportRowResponse>>(
-                $"/api/reports/emails?page={page}&size=100{senderQuery}{fromQuery}{toQuery}",
+                $"/api/reports/emails?page={page}&size={MaxUiRecords}{senderQuery}{fromQuery}{toQuery}",
                 jsonOptions,
                 cancellationToken);
 
@@ -89,39 +90,11 @@ public sealed class AeroSyncApiClient
             return [];
         }
 
-        var pages = new List<(int Number, PagedResponse<EmailReportRowResponse> Page)>
-        {
-            (0, firstPage)
-        };
-        if (firstPage.TotalPages > 1)
-        {
-            using var concurrency = new SemaphoreSlim(4);
-            var pageTasks = Enumerable.Range(1, firstPage.TotalPages - 1).Select(async pageNumber =>
-            {
-                await concurrency.WaitAsync(cancellationToken);
-                try
-                {
-                    return (Number: pageNumber, Page: await FetchPageAsync(pageNumber));
-                }
-                finally
-                {
-                    concurrency.Release();
-                }
-            });
-            var remainingPages = await Task.WhenAll(pageTasks);
-            pages.AddRange(remainingPages
-                .Where(item => item.Page is not null)
-                .Select(item => (item.Number, item.Page!)));
-        }
-
         var rows = new List<EmailReportRowResponse>();
-        foreach (var page in pages.OrderBy(item => item.Number))
+        foreach (var row in firstPage.Content)
         {
-            foreach (var row in page.Page.Content)
-            {
-                row.ErrorMessage = VietnameseErrorMessage.FromServerMessage(row.ErrorMessage);
-            }
-            rows.AddRange(page.Page.Content);
+            row.ErrorMessage = VietnameseErrorMessage.FromServerMessage(row.ErrorMessage);
+            rows.Add(row);
         }
 
         return rows;
@@ -166,7 +139,7 @@ public sealed class AeroSyncApiClient
     public async Task<List<AuditLogResponse>> GetAuditLogsAsync(CancellationToken cancellationToken = default)
     {
         var logs = await httpClient.GetFromJsonAsync<List<AuditLogResponse>>(
-                "/api/audit-logs",
+                $"/api/audit-logs?limit={MaxUiRecords}",
                 jsonOptions,
                 cancellationToken)
             ?? [];

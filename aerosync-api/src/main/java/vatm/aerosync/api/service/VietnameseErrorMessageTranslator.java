@@ -42,9 +42,28 @@ public class VietnameseErrorMessageTranslator {
         String value = message.trim();
 
         String normalizedValue = value.toLowerCase(Locale.ROOT);
+        // Keep resend configuration/SMTP failures actionable instead of hiding them
+        // behind the generic 409 reference message.
+        if (normalizedValue.contains("email resend is disabled")) {
+            return "Ch\u1ee9c n\u0103ng g\u1eedi l\u1ea1i email \u0111ang b\u1ecb t\u1eaft; h\u00e3y b\u1eadt APP_EMAIL_RESEND_ENABLED v\u00e0 kh\u1edfi \u0111\u1ed9ng l\u1ea1i API.";
+        }
+        if (normalizedValue.contains("gmail smtp credentials are missing")) {
+            return "Thi\u1ebfu c\u1ea5u h\u00ecnh Gmail SMTP; h\u00e3y khai b\u00e1o APP_EMAIL_RESEND_USERNAME v\u00e0 APP_EMAIL_RESEND_PASSWORD.";
+        }
+        if (normalizedValue.contains("app_email_resend_recipient is not configured")) {
+            return "Thi\u1ebfu h\u1ed9p th\u01b0 nh\u1eadn resend; h\u00e3y khai b\u00e1o APP_EMAIL_RESEND_RECIPIENT.";
+        }
+        if (normalizedValue.contains("gmail smtp authentication failed")) {
+            return "X\u00e1c th\u1ef1c Gmail SMTP th\u1ea5t b\u1ea1i; h\u00e3y d\u00f9ng Gmail App Password 16 k\u00fd t\u1ef1.";
+        }
+        if (normalizedValue.contains("gmail smtp could not send the email")) {
+            return "Kh\u00f4ng th\u1ec3 g\u1eedi email qua Gmail SMTP; h\u00e3y ki\u1ec3m tra k\u1ebft n\u1ed1i, c\u1ed5ng SMTP v\u00e0 App Password.";
+        }
         if (normalizedValue.contains("đã xảy ra lỗi kỹ thuật trong quá trình xử lý file")
                 || normalizedValue.contains("đã xảy ra lỗi trong quá trình xử lý")) {
-            return "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể. Hãy gửi lại file để hệ thống kiểm tra và ghi nhận lỗi đầy đủ.";
+            return withReference(
+                    "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể; cần gửi lại file để phân tích lại",
+                    value);
         }
         if (normalizedValue.contains("cần thêm format yaml")
                 || normalizedValue.contains("file word chưa có format yaml phù hợp")
@@ -177,21 +196,27 @@ public class VietnameseErrorMessageTranslator {
                     || lower.contains("content type") || lower.contains("invalid header")
                     || lower.contains("ole2") || lower.contains("unexpected end")
                     || lower.contains("truncated")) {
-                return "Không thể đọc tài liệu Word vì file bị hỏng hoặc phần mở rộng không đúng với định dạng thực tế.";
+                return withReference(
+                        "Không thể đọc tài liệu Word vì file bị hỏng hoặc phần mở rộng không đúng với định dạng thực tế",
+                        value);
             }
-            return "Không thể đọc cấu trúc tài liệu Word. Hãy đóng file nếu đang mở, kiểm tra quyền truy cập và thử mở lại file bằng Microsoft Word.";
+            return withReference(
+                    "Không thể đọc cấu trúc tài liệu Word. Hãy đóng file nếu đang mở, kiểm tra quyền truy cập và thử mở lại file bằng Microsoft Word",
+                    value);
         }
         if (lower.startsWith("failed to parse csv:")) {
-            return "Không thể phân tích file CSV. Hãy kiểm tra bảng mã, dấu phân cách và cấu trúc các dòng dữ liệu.";
+            return withReference(
+                    "Không thể phân tích file CSV. Hãy kiểm tra bảng mã, dấu phân cách và cấu trúc các dòng dữ liệu",
+                    value);
         }
         if (lower.startsWith("failed to parse json:")) {
-            return "Không thể phân tích file JSON vì nội dung không đúng cấu trúc yêu cầu.";
+            return withReference("Không thể phân tích file JSON vì nội dung không đúng cấu trúc yêu cầu", value);
         }
         if (lower.startsWith("failed to parse xml:")) {
-            return "Không thể phân tích file XML vì nội dung không đúng cấu trúc yêu cầu.";
+            return withReference("Không thể phân tích file XML vì nội dung không đúng cấu trúc yêu cầu", value);
         }
         if (lower.startsWith("failed to parse xlsx:")) {
-            return "Không thể đọc file Excel XLSX. File có thể bị hỏng, bị khóa hoặc không phải XLSX hợp lệ.";
+            return withReference("Không thể đọc file Excel XLSX. File có thể bị hỏng, bị khóa hoặc không phải XLSX hợp lệ", value);
         }
         if (lower.equals("json must be an array or contain a flights array")) {
             return "JSON phải là một mảng hoặc phải chứa trường mảng 'flights'.";
@@ -358,7 +383,7 @@ public class VietnameseErrorMessageTranslator {
             return value;
         }
 
-        return "Không thể hoàn tất yêu cầu vì nguyên nhân chưa được phân loại. Mã tham chiếu: "
+        return "Lỗi xử lý chi tiết: " + value + ". Mã tham chiếu: "
                 + Integer.toUnsignedString(value.hashCode(), 16).toUpperCase(Locale.ROOT) + ".";
     }
 
@@ -376,5 +401,11 @@ public class VietnameseErrorMessageTranslator {
 
     private boolean containsVietnamese(String value) {
         return value.matches(".*[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ].*");
+    }
+
+    private String withReference(String summary, String technicalValue) {
+        return summary + ". Chi tiết kỹ thuật: " + technicalValue
+                + ". Mã tham chiếu: "
+                + Integer.toUnsignedString(technicalValue.hashCode(), 16).toUpperCase(Locale.ROOT) + ".";
     }
 }

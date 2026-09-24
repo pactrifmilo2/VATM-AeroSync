@@ -13,7 +13,8 @@ public record EmailMessage(
         String body,
         String mailboxFolder,
         long uidValidity,
-        long messageUid
+        long messageUid,
+        boolean resendRequested
 ) {
     public EmailMessage(String messageId,
                         String sender,
@@ -22,7 +23,22 @@ public record EmailMessage(
                         List<EmailAttachment> attachments,
                         boolean priority,
                         String body) {
-        this(messageId, sender, subject, receivedAt, attachments, priority, body, "INBOX", 0L, 0L);
+        this(messageId, sender, subject, receivedAt, attachments, priority, body,
+                "INBOX", 0L, 0L, false);
+    }
+
+    public EmailMessage(String messageId,
+                        String sender,
+                        String subject,
+                        LocalDateTime receivedAt,
+                        List<EmailAttachment> attachments,
+                        boolean priority,
+                        String body,
+                        String mailboxFolder,
+                        long uidValidity,
+                        long messageUid) {
+        this(messageId, sender, subject, receivedAt, attachments, priority, body,
+                mailboxFolder, uidValidity, messageUid, false);
     }
 
     public EmailEnvelope envelope() {

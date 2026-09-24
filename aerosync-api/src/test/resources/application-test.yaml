@@ -29,5 +29,7 @@ app:
     defaults:
       scheduler-fixed-delay-ms: 300000
       max-files-per-cycle: 100
+      email-user: test@example.invalid
+      email-password: test-only-not-a-secret
       blacklist-senders:
         - ops@vatm.local

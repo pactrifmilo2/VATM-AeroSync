@@ -75,7 +75,9 @@ class EmailReportControllerTest {
                 true,
                 receivedAt.plusMinutes(1),
                 SyncStatus.FAILED,
-                true);
+                true,
+                "email",
+                1);
         PagedResponse<EmailReportRowResponse> response = new PagedResponse<>(
                 List.of(row), 1, 10, 11, 2, false, true);
         when(emailReportService.search(filter, 1, 10)).thenReturn(response);
@@ -99,6 +101,8 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.content[0].errorMessage")
                         .value("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp."))
                 .andExpect(jsonPath("$.content[0].requiresFormat").value(true))
+                .andExpect(jsonPath("$.content[0].source_type").value("email"))
+                .andExpect(jsonPath("$.content[0].source_key").value(1))
                 .andExpect(jsonPath("$.content[0].processingStatus").value("FAILED"))
                 .andExpect(jsonPath("$.content[0].jobStatus").value("FAILED"))
                 .andExpect(jsonPath("$.page").value(1))
@@ -132,7 +136,9 @@ class EmailReportControllerTest {
                 true,
                 null,
                 null,
-                null);
+                null,
+                "email",
+                1);
         when(emailReportService.get(102L)).thenReturn(detail);
 
         mockMvc.perform(get("/api/reports/emails/102"))
@@ -140,6 +146,8 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.id").value(102))
                 .andExpect(jsonPath("$.mailboxFolder").value("INBOX"))
                 .andExpect(jsonPath("$.body").value("Email body"))
+                .andExpect(jsonPath("$.source_type").value("email"))
+                .andExpect(jsonPath("$.source_key").value(1))
                 .andExpect(jsonPath("$.processingStatus").value("NO_ATTACHMENT"));
     }
 

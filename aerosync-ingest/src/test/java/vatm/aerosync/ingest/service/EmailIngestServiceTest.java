@@ -154,6 +154,29 @@ class EmailIngestServiceTest {
     }
 
     @Test
+    void ingestUpTo_authorizedResendReusesJobAndPublishesAgain() {
+        byte[] content = "resend-permit".getBytes();
+        EmailMessage message = new EmailMessage(
+                "resend-msg", "aerosync@vatm.vn", "Resend permit", LocalDateTime.now(),
+                List.of(new EmailAttachment("permit.docx", content)), false, "",
+                "INBOX", 100L, 901L, true);
+        SyncJob existing = org.mockito.Mockito.mock(SyncJob.class);
+        when(existing.getId()).thenReturn(77L);
+        when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
+        when(deduplicationService.claimAuthorizedResend(anyString()))
+                .thenReturn(Optional.of(existing));
+
+        assertThat(emailIngestService.ingestUpTo(10)).isOne();
+
+        verify(deduplicationService, never()).createPendingJob(anyString());
+        verify(emailMetadataRepository).save(org.mockito.ArgumentMatchers.argThat(metadata ->
+                metadata.getSyncJob() == existing
+                        && metadata.getProcessingStatus() == EmailProcessingStatus.DOWNLOADED));
+        verify(ingestPublisher).publish(org.mockito.ArgumentMatchers.argThat(event ->
+                event.getSyncJobId().equals(77L)));
+    }
+
+    @Test
     void ingestUpTo_acceptsLegacyDocPermitAttachment() {
         byte[] content = new byte[] {(byte) 0xD0, (byte) 0xCF, 0x11, (byte) 0xE0};
         EmailMessage message = new EmailMessage(

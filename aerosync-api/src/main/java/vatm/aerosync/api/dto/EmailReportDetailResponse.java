@@ -1,5 +1,6 @@
 package vatm.aerosync.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
@@ -28,6 +29,8 @@ public record EmailReportDetailResponse(
         boolean ingestComplete,
         LocalDateTime acknowledgedAt,
         String acknowledgementError,
-        SyncStatus jobStatus
+        SyncStatus jobStatus,
+        @JsonProperty("source_type") String sourceType,
+        @JsonProperty("source_key") int sourceKey
 ) {
 }

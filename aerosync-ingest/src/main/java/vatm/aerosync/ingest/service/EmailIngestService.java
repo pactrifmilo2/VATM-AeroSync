@@ -159,32 +159,41 @@ public class EmailIngestService {
             }
 
             String hash = Hashing.sha256Hex(attachment.content());
+            Optional<SyncJob> authorizedResend = message.resendRequested()
+                    ? deduplicationService.claimAuthorizedResend(hash)
+                    : Optional.empty();
+            SyncJob saved;
+            if (authorizedResend.isPresent()) {
+                saved = authorizedResend.get();
+                log.info("Accepted authorized resend for email attachment {} using sync job {}",
+                        attachment.fileName(), saved.getId());
+            } else {
+                if (deduplicationService.isDuplicate(hash)) {
+                    log.info("Skipping duplicate email attachment {} from {} (hash already has a synchronization job)",
+                            attachment.fileName(), message.sender());
+                    SyncJob skippedJob = deduplicationService.createSkippedDuplicateJob(hash);
+                    emailMetadataRepository.save(toMetadata(
+                            message,
+                            attachment,
+                            attachmentIndex,
+                            skippedJob,
+                            EmailProcessingStatus.SKIPPED));
+                    Files.deleteIfExists(storedFile);
+                    return false;
+                }
 
-            if (deduplicationService.isDuplicate(hash)) {
-                log.info("Skipping duplicate email attachment {} from {} (hash already has a synchronization job)",
-                        attachment.fileName(), message.sender());
-                SyncJob skippedJob = deduplicationService.createSkippedDuplicateJob(hash);
-                emailMetadataRepository.save(toMetadata(
-                        message,
-                        attachment,
-                        attachmentIndex,
-                        skippedJob,
-                        EmailProcessingStatus.SKIPPED));
-                Files.deleteIfExists(storedFile);
-                return false;
-            }
-
-            DeduplicationService.JobCreationResult creation = deduplicationService.createPendingJob(hash);
-            SyncJob saved = creation.job();
-            if (!creation.created()) {
-                emailMetadataRepository.save(toMetadata(
-                        message,
-                        attachment,
-                        attachmentIndex,
-                        saved,
-                        EmailProcessingStatus.SKIPPED));
-                Files.deleteIfExists(storedFile);
-                return false;
+                DeduplicationService.JobCreationResult creation = deduplicationService.createPendingJob(hash);
+                saved = creation.job();
+                if (!creation.created()) {
+                    emailMetadataRepository.save(toMetadata(
+                            message,
+                            attachment,
+                            attachmentIndex,
+                            saved,
+                            EmailProcessingStatus.SKIPPED));
+                    Files.deleteIfExists(storedFile);
+                    return false;
+                }
             }
 
             FileRecord record = new FileRecord();

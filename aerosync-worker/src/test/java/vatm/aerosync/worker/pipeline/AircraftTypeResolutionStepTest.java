@@ -22,6 +22,26 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class AircraftTypeResolutionStepTest {
 
+    @Test
+    void resolve_keepsAircraftInheritedFromAtfmBaselineWithoutSourceType() {
+        ScheduleFlight inherited = new ScheduleFlight(
+                "PAX", 4366L, java.math.BigDecimal.valueOf(93.5), "SPQ907", null,
+                "1234567", "VVNB", "VVDN", "2350", "0120+", null,
+                java.time.LocalDate.of(2026, 9, 5), java.time.LocalDate.of(2026, 9, 10),
+                "HUY TU LD-32/C/S/2026VN", null);
+        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
+                1L, "permit.docx", "h", FileSourceType.EMAIL, false));
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-32/C/S/2026VN/REV17", "LD 0032C/S/CHK/2026", "32C",
+                "CHK", "LD", "C", "S", LocalDate.of(2026, 9, 5),
+                "SPQ", "LD-32/C/S/2026VN", 24, "SPQ", "SC",
+                false, false, false, "REV17", List.of(inherited), List.of()));
+
+        step.resolve(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(4366L);
+    }
+
     private AircraftTypeResolutionStep step;
 
     @BeforeEach
@@ -44,11 +64,16 @@ class AircraftTypeResolutionStepTest {
             connection.createStatement().execute("""
                     INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG) VALUES
                         (6864, 'A33X', 'A33X', NULL, 230),
+                        (6865, 'A321', 'A321', NULL, 90),
+                        (6866, 'A320', 'A320', NULL, 78),
+                        (6867, 'A333', 'A333', NULL, 230),
+                        (6868, 'B768', 'B768', NULL, 180),
                         (1712, 'GLF6', NULL, NULL, 46),
                         (4102, 'GA6C', 'GA6C', NULL, 94600),
                         (4941, 'GA6C', 'GA6C', NULL, 42),
                         (9001, 'AMB', 'AMB', NULL, 10),
-                        (9002, 'AMB', 'AMB', NULL, 20)
+                        (9002, 'AMB', 'AMB', NULL, 20),
+                        (6881, 'A000', 'A000', NULL, 0)
                     """);
         }
         step = new AircraftTypeResolutionStep(
@@ -109,6 +134,79 @@ class AircraftTypeResolutionStepTest {
                 .isInstanceOf(BusinessRuleException.class)
                 .hasMessageContaining("BR-AIRCRAFT-NOT-FOUND")
                 .hasMessageContaining("75V");
+    }
+
+    @Test
+    void resolveAllowingMissingPrefixesAdHocNumericAircraftTypes() {
+        ProcessingContext context = context("321");
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.sourceAircraftType()).isEqualTo("A321");
+        assertThat(flight.craftId()).isEqualTo(6865L);
+        assertThat(context.getRowValidationErrors()).isEmpty();
+    }
+
+    @Test
+    void resolve_normalizesEveryNumericAircraftInSeasonalRemark() {
+        ProcessingContext context = new ProcessingContext(new FileIngestedEvent(
+                1L, "permit.docx", "h", FileSourceType.EMAIL, false));
+        ScheduleFlight flight = new ScheduleFlight(
+                "PAX", 0L, null, "HVN001", null, "1000000",
+                "VVNB", "VVTS", "0100", "0300", "W1",
+                LocalDate.of(2026, 9, 7), LocalDate.of(2026, 9, 30),
+                "PAX 768/321/320/333", "768/321/320/333");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-4861/S/2026VN", "LD 04861/S/CHK/2026", "4861",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 9, 1),
+                "HVN", null, 24, "Vietnam Airlines", "SC", "raw", List.of(flight)));
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        ScheduleFlight resolved = context.getSchedulePermit().flights().getFirst();
+        assertThat(resolved.sourceAircraftType()).isEqualTo("B768/A321/A320/A333");
+        assertThat(resolved.remark()).isEqualTo("PAX B768/A321/A320/A333");
+        assertThat(resolved.craftId()).isEqualTo(6868L);
+    }
+
+    @Test
+    void resolve_usesSlashForHyphenSeparatedNumericAircraftList() {
+        ProcessingContext context = context("768-321-320-333");
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().sourceAircraftType())
+                .isEqualTo("B768/A321/A320/A333");
+    }
+
+    @Test
+    void resolveAllowingMissingUsesFallbackCraftIdAndWarning() {
+        ProcessingContext context = context("799");
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.sourceAircraftType()).isEqualTo("B799");
+        assertThat(flight.craftId()).isEqualTo(6881L);
+        assertThat(context.getRowValidationErrors())
+                .extracting("code")
+                .containsExactly("BR-AIRCRAFT-NOT-FOUND");
+    }
+
+    @Test
+    void resolveAllowingMissingHandlesNullAircraftTypeWithoutNullPointerException() {
+        ProcessingContext context = context(null);
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.sourceAircraftType()).isNull();
+        assertThat(flight.craftId()).isEqualTo(6881L);
+        assertThat(context.getRowValidationErrors())
+                .extracting("code", "field", "value")
+                .containsExactly(org.assertj.core.groups.Tuple.tuple(
+                        "BR-AIRCRAFT-MISSING", "aircraftType", ""));
     }
 
     private ProcessingContext context(String sourceAircraftType) {

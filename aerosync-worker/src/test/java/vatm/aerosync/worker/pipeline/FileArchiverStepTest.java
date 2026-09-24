@@ -55,7 +55,7 @@ class FileArchiverStepTest {
                 .resolve("2026").resolve("06").resolve("04"));
         // No sender => "local" prefix
         assertThat(archived.getFileName().toString())
-                .startsWith("local_20260604_101530_fs_flight.csv");
+                .isEqualTo("local_20260604_101530_fs_flight_3a6eb079.csv");
         assertThat(Files.exists(source)).isFalse();
     }
 
@@ -71,7 +71,26 @@ class FileArchiverStepTest {
         assertThat(Files.exists(archived)).isTrue();
         assertThat(archived.getParent()).isEqualTo(processedDir.resolve("2026").resolve("06").resolve("04"));
         assertThat(archived.getFileName().toString())
-                .startsWith("haibdhe140272_20260604_101530_email_flight.csv");
+                .isEqualTo("haibdhe140272_20260604_101530_email_flight_3a6eb079.csv");
+    }
+
+    @Test
+    void archiveProcessed_doesNotOverwriteSameNameWithinSameSecond() throws Exception {
+        Path first = tempDir.resolve("one").resolve("flight.csv");
+        Path second = tempDir.resolve("two").resolve("flight.csv");
+        Files.createDirectories(first.getParent());
+        Files.createDirectories(second.getParent());
+        Files.writeString(first, "first");
+        Files.writeString(second, "second");
+
+        Path archivedFirst = fileArchiverStep.archiveProcessed(first, FileSourceType.EMAIL, "ops@example.com");
+        Path archivedSecond = fileArchiverStep.archiveProcessed(second, FileSourceType.EMAIL, "ops@example.com");
+
+        assertThat(archivedFirst).isNotEqualTo(archivedSecond);
+        assertThat(archivedFirst.getFileName().toString()).endsWith("_a7937b64.csv");
+        assertThat(archivedSecond.getFileName().toString()).endsWith("_16367aac.csv");
+        assertThat(Files.readString(archivedFirst)).isEqualTo("first");
+        assertThat(Files.readString(archivedSecond)).isEqualTo("second");
     }
 
     @Test
@@ -84,7 +103,7 @@ class FileArchiverStepTest {
                 "first.last@example.com");
 
         assertThat(archived.getFileName().toString())
-                .startsWith("firstlast_20260604_101530_email_data.csv");
+                .isEqualTo("firstlast_20260604_101530_email_data_3a6eb079.csv");
     }
 
     @Test

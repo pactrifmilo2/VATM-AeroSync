@@ -43,6 +43,17 @@ class FormatValidatorStepTest {
     }
 
     @Test
+    void validate_acceptsOperationalCsvHeaderAliases() throws Exception {
+        Path file = tempDir.resolve("flight-status.csv");
+        Files.writeString(file, "Flight Date,Flight No,STD,Dep,Arr,STA\n05-SEP-2026,BL6211,0115,PXU,SGN,0225");
+
+        ProcessingContext context = contextFor(file);
+        formatValidatorStep.validate(context);
+
+        assertThat(context.getFileType()).isEqualTo(FileType.CSV);
+    }
+
+    @Test
     void validate_rejectsUnsupportedExtension() throws Exception {
         Path file = tempDir.resolve("notes.txt");
         Files.writeString(file, "hello");

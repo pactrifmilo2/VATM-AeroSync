@@ -116,7 +116,7 @@ public class EmailReportController {
     @PostMapping("/resend")
     @Operation(
             summary = "Resend selected email attachments through Gmail SMTP",
-            description = "Creates a new email with a new Message-ID, attaches only records matching the selected statuses, then clears their SHA-256, sync job, local permit data and ATFM target while retaining audit/dashboard notifications.")
+            description = "Creates a new email with a new Message-ID and authorizes the selected attachment hashes for one safe reprocessing pass. Existing SyncJob history, archived files and ATFM rows are preserved.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Email accepted by Gmail SMTP"),
             @ApiResponse(responseCode = "400", description = "Invalid request or no matching attachments"),

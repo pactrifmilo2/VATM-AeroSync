@@ -64,6 +64,10 @@ class ViaResolutionStepTest {
                         ('VVTS', 'VVCA', 'Q2/W12/W1/W11', 'VJC'),
                         ('VVTS', 'VVCA', 'Q2/Q7/Q1/W11/W1', 'HVN')
                     """);
+            connection.createStatement().execute("""
+                    INSERT INTO M_AIRPORT_ROUTE (ID, FROM_AIRP, TO_AIRP, ROUTE, SUMMARY) VALUES
+                        (1, 'VVTS', 'VVCA', 'Q2/Q7/Q1/W11/W1', 1)
+                    """);
         }
         step = new ViaResolutionStep(
                 properties,
@@ -96,19 +100,56 @@ class ViaResolutionStepTest {
     }
 
     @Test
-    void resolve_keepsViaEmptyWhenNoDatabaseRouteExists() {
+    void resolve_writesDetailedErrorWhenNoDatabaseRouteExists() {
         ProcessingContext context = context("HVN", false);
         ScheduleFlight source = context.getSchedulePermit().flights().getFirst();
         context.setSchedulePermit(context.getSchedulePermit().withFlights(List.of(
                 source.withResolvedRoute("SGN", "VVNB", null))));
 
-        step.resolve(context);
+        step.resolveAllowingMissingForNonSeasonal(context);
 
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
         assertThat(flight.fromAirport()).isEqualTo("VVTS");
         assertThat(flight.toAirport()).isEqualTo("VVNB");
-        assertThat(flight.via()).isEmpty();
+        assertThat(flight.via()).isNull();
+        assertThat(context.getRowValidationErrors()).extracting("code")
+                .containsExactly("BR-ROUTE-NOT-FOUND");
         new BusinessRuleValidatorStep().validate(context);
+    }
+
+    @Test
+    void resolve_keepsBlankViaAndWarningForDocumentRouteNotes() {
+        ProcessingContext context = context("HVN", true);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst();
+        context.setSchedulePermit(context.getSchedulePermit().withFlights(List.of(
+                source.withResolvedRoute("SGN", "VCL", "NOTE: SEE ATTACHED ROUTE"))));
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().via()).isNull();
+        assertThat(context.getRowValidationErrors())
+                .extracting("code", "field")
+                .containsExactly(org.assertj.core.groups.Tuple.tuple(
+                        "BR-ROUTE-DOCUMENT-UNREADABLE", "via"));
+        new BusinessRuleValidatorStep().validate(context);
+    }
+
+    @Test
+    void resolve_allowsSeasonalPermitWithUnreadableDocumentRoute() {
+        ProcessingContext context = context("HVN", true);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst()
+                .withResolvedRoute("SGN", "VCL", "REMARK: ROUTE TO BE ADVISED");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-11111/S/2026VN", "LD 11111/S/CHK/2026", "11111",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 7, 1),
+                "HVN", null, 24, "Vietnam Airlines", "SC",
+                false, false, false, "raw", List.of(source), List.of()));
+
+        step.resolve(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().via()).isNull();
+        assertThat(context.getRowValidationErrors()).extracting("code")
+                .containsExactly("BR-ROUTE-DOCUMENT-UNREADABLE");
     }
 
     private ProcessingContext context() {
@@ -121,7 +162,7 @@ class ViaResolutionStepTest {
         ScheduleFlight flight = new ScheduleFlight(
                 "PAX", 1L, null, "VN1466", null, "0000500",
                 "SGN", "VCL", "0905", "1030", null,
-                LocalDate.of(2026, 7, 3), LocalDate.of(2026, 7, 4),
+                LocalDate.of(2026, 7, 3), LocalDate.of(2026, 7, 3),
                 "Bay sớm", "321/320");
         context.setSchedulePermit(new SchedulePermit(
                 "LD-11111/7/2026VN", "LD 11111/S/CHK/2026", "11111",

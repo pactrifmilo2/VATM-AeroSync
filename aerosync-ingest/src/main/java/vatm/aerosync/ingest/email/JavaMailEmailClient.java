@@ -353,7 +353,8 @@ public class JavaMailEmailClient implements EmailClient {
                     body,
                     envelope.mailboxFolder(),
                     envelope.uidValidity(),
-                    envelope.messageUid());
+                    envelope.messageUid(),
+                    "true".equalsIgnoreCase(firstHeader(message, "X-AeroSync-Resend")));
         } catch (MessagingException e) {
             log.warn("Skipping message #{}: failed to read IMAP envelope ({})",
                     candidate.message().getMessageNumber(), e.getMessage());

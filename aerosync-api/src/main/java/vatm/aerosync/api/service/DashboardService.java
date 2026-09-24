@@ -32,12 +32,9 @@ public class DashboardService {
         }
 
         LocalDateTime since = LocalDateTime.now().minusHours(24);
-        long jobsLast24Hours = syncJobRepository.findAll().stream()
-                .filter(job -> job.getUpdatedAt() != null && !job.getUpdatedAt().isBefore(since))
-                .count();
-        long failedLast24Hours = syncJobRepository.findByStatus(SyncStatus.FAILED).stream()
-                .filter(job -> job.getUpdatedAt() != null && !job.getUpdatedAt().isBefore(since))
-                .count();
+        long jobsLast24Hours = syncJobRepository.countByUpdatedAtGreaterThanEqual(since);
+        long failedLast24Hours = syncJobRepository
+                .countByStatusAndUpdatedAtGreaterThanEqual(SyncStatus.FAILED, since);
 
         return new DashboardStatsResponse(
                 total,

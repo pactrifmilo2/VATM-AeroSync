@@ -78,7 +78,7 @@ public class ParserStep {
             if (lines.size() < 2) {
                 return List.of();
             }
-            String[] headers = lines.getFirst().toLowerCase().split(",");
+            String[] headers = lines.getFirst().split(",");
             Map<String, Integer> index = headerIndex(headers);
             List<FlightRow> rows = new ArrayList<>();
             for (int i = 1; i < lines.size(); i++) {
@@ -88,10 +88,10 @@ public class ParserStep {
                 }
                 String[] values = line.split(",", -1);
                 rows.add(new FlightRow(
-                        valueAt(values, index.get("callsign")),
-                        valueAt(values, index.get("from")),
-                        valueAt(values, index.get("to")),
-                        parseDate(valueAt(values, index.get("dateflight")), fileName)));
+                        valueAt(values, firstColumn(index, "callsign", "flightno", "flightnumber", "flt", "fltno")),
+                        valueAt(values, firstColumn(index, "from", "dep", "departureairport", "depairport")),
+                        valueAt(values, firstColumn(index, "to", "arr", "arrivalairport", "arrairport")),
+                        parseDate(valueAt(values, firstColumn(index, "dateflight", "flightdate", "date")), fileName)));
             }
             return rows;
         } catch (FormatValidationException e) {
@@ -146,36 +146,64 @@ public class ParserStep {
     List<FlightRow> parseXlsx(java.nio.file.Path file, String fileName) {
         try (InputStream in = Files.newInputStream(file);
              Workbook workbook = new XSSFWorkbook(in)) {
-            Sheet sheet = workbook.getSheetAt(0);
             DataFormatter formatter = new DataFormatter();
-            Row headerRow = findXlsxHeader(sheet, formatter);
-            if (headerRow == null) {
-                return List.of();
+            Map<String, FlightRow> uniqueRows = new java.util.LinkedHashMap<>();
+            Integer inferredYear = inferYear(fileName);
+            for (Sheet sheet : workbook) {
+                for (FlightRow row : parseXlsxSheet(sheet, formatter, inferredYear, fileName)) {
+                    String key = String.join("|", row.getCallsign(), row.getFrom(), row.getTo(),
+                            row.getDateFlight().toString());
+                    uniqueRows.putIfAbsent(key, row);
+                }
             }
+            return List.copyOf(uniqueRows.values());
+        } catch (FormatValidationException e) {
+            throw e;
+        } catch (IOException e) {
+            throw new FormatValidationException(fileName, "Failed to parse XLSX: " + e.getMessage());
+        }
+    }
+
+    private List<FlightRow> parseXlsxSheet(Sheet sheet, DataFormatter formatter,
+                                           Integer inferredYear, String fileName) {
+        Row headerRow = findXlsxHeader(sheet, formatter);
+        if (headerRow == null) {
+            return parseHeaderlessScheduleSheet(sheet, formatter, fileName);
+        }
             Map<String, Integer> index = new HashMap<>();
             for (int c = 0; c < headerRow.getLastCellNum(); c++) {
                 String header = normalizeXlsxHeader(formatter.formatCellValue(headerRow.getCell(c)));
                 index.put(header, c);
             }
-            Integer callsignColumn = firstColumn(index, "callsign", "fltno", "flightnumber");
-            Integer fromColumn = firstColumn(index, "from", "departureairport", "depairport");
-            Integer toColumn = firstColumn(index, "to", "arrivalairport", "arrairport");
+            Integer callsignColumn = firstColumn(index, "callsign", "flt", "fltno", "flightno", "flightnumber");
+            Integer fromColumn = firstColumn(index, "from", "dep", "departureairport", "depairport");
+            Integer toColumn = firstColumn(index, "to", "arr", "arrivalairport", "arrairport");
             Integer routeColumn = firstColumn(index, "sector", "route");
             Integer dateColumn = firstColumn(index, "dateflight", "flightdate", "date");
             List<FlightRow> rows = new ArrayList<>();
             LocalDate sectionDate = null;
+            for (int r = 0; r < headerRow.getRowNum(); r++) {
+                Row preceding = sheet.getRow(r);
+                LocalDate candidate = preceding == null
+                        ? null : sectionDate(preceding, formatter, inferredYear);
+                if (candidate != null) sectionDate = candidate;
+            }
             for (int r = headerRow.getRowNum() + 1; r <= sheet.getLastRowNum(); r++) {
                 Row row = sheet.getRow(r);
                 if (row == null) {
                     continue;
                 }
-                LocalDate detectedSectionDate = sectionDate(row, formatter);
+                LocalDate detectedSectionDate = sectionDate(row, formatter, inferredYear);
                 if (detectedSectionDate != null) {
                     sectionDate = detectedSectionDate;
                     continue;
                 }
                 String callsign = cell(row, callsignColumn, formatter);
                 if (callsign == null || callsign.isBlank()) {
+                    continue;
+                }
+                if (java.util.Set.of("callsign", "flt", "fltno", "flightno", "flightnumber")
+                        .contains(normalizeXlsxHeader(callsign))) {
                     continue;
                 }
                 String from = cell(row, fromColumn, formatter);
@@ -189,6 +217,11 @@ public class ParserStep {
                         from = route[0];
                         to = route[1];
                     }
+                }
+                if (!callsign.matches("(?i)[A-Z0-9]{2,10}")
+                        || from == null || !from.matches("(?i)[A-Z]{3,4}")
+                        || to == null || !to.matches("(?i)[A-Z]{3,4}")) {
+                    continue;
                 }
                 LocalDate flightDate = dateColumn == null
                         ? sectionDate
@@ -204,11 +237,26 @@ public class ParserStep {
                         flightDate));
             }
             return rows;
-        } catch (FormatValidationException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new FormatValidationException(fileName, "Failed to parse XLSX: " + e.getMessage());
+    }
+
+    private List<FlightRow> parseHeaderlessScheduleSheet(
+            Sheet sheet, DataFormatter formatter, String fileName) {
+        List<FlightRow> rows = new ArrayList<>();
+        for (int rowNumber = 0; rowNumber <= sheet.getLastRowNum(); rowNumber++) {
+            Row row = sheet.getRow(rowNumber);
+            if (row == null) continue;
+            String callsign = cell(row, 0, formatter).toUpperCase();
+            String from = cell(row, 4, formatter).toUpperCase();
+            String to = cell(row, 6, formatter).toUpperCase();
+            String date = cell(row, 1, formatter);
+            if (!callsign.matches("[A-Z0-9]{2,10}")
+                    || !from.matches("[A-Z]{3,4}") || !to.matches("[A-Z]{3,4}")
+                    || date.isBlank()) {
+                continue;
+            }
+            rows.add(new FlightRow(callsign, from, to, parseDate(date, fileName)));
         }
+        return rows;
     }
 
     private Row findXlsxHeader(Sheet sheet, DataFormatter formatter) {
@@ -222,11 +270,13 @@ public class ParserStep {
             for (int column = 0; column < row.getLastCellNum(); column++) {
                 headers.add(normalizeXlsxHeader(formatter.formatCellValue(row.getCell(column))));
             }
-            boolean hasCallsign = headers.contains("callsign")
+            boolean hasCallsign = headers.contains("callsign") || headers.contains("flt")
+                    || headers.contains("flightno")
                     || headers.contains("fltno")
                     || headers.contains("flightnumber");
             boolean hasRoute = headers.contains("sector") || headers.contains("route")
-                    || (headers.contains("from") && headers.contains("to"));
+                    || ((headers.contains("from") || headers.contains("dep"))
+                    && (headers.contains("to") || headers.contains("arr")));
             if (hasCallsign && hasRoute) {
                 return row;
             }
@@ -249,7 +299,7 @@ public class ParserStep {
         return null;
     }
 
-    private LocalDate sectionDate(Row row, DataFormatter formatter) {
+    private LocalDate sectionDate(Row row, DataFormatter formatter, Integer inferredYear) {
         int populated = 0;
         for (int column = 0; column < row.getLastCellNum(); column++) {
             if (!formatter.formatCellValue(row.getCell(column)).isBlank()) {
@@ -278,7 +328,27 @@ public class ParserStep {
                 // Try the next supported section-date format.
             }
         }
+        if (inferredYear != null) {
+            for (DateTimeFormatter format : List.of(
+                    new java.time.format.DateTimeFormatterBuilder().parseCaseInsensitive()
+                            .appendPattern("d/MMM/uuuu").toFormatter(java.util.Locale.ENGLISH),
+                    new java.time.format.DateTimeFormatterBuilder().parseCaseInsensitive()
+                            .appendPattern("d-MMM-uuuu").toFormatter(java.util.Locale.ENGLISH))) {
+                try {
+                    String separator = value.contains("/") ? "/" : "-";
+                    return LocalDate.parse(value + separator + inferredYear, format);
+                } catch (DateTimeParseException ignored) {
+                    // Try the next supported section-date format.
+                }
+            }
+        }
         return null;
+    }
+
+    private Integer inferYear(String fileName) {
+        java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("(?<!\\d)(20\\d{2})(?!\\d)")
+                .matcher(fileName == null ? "" : fileName);
+        return matcher.find() ? Integer.valueOf(matcher.group(1)) : null;
     }
 
     private FlightRow mapNode(JsonNode node, String fileName) {
@@ -309,7 +379,7 @@ public class ParserStep {
     private Map<String, Integer> headerIndex(String[] headers) {
         Map<String, Integer> index = new HashMap<>();
         for (int i = 0; i < headers.length; i++) {
-            index.put(headers[i].trim(), i);
+            index.put(normalizeXlsxHeader(headers[i]), i);
         }
         return index;
     }
@@ -349,10 +419,22 @@ public class ParserStep {
         if (raw == null || raw.isBlank()) {
             throw new FormatValidationException(fileName, "Missing dateFlight value");
         }
-        try {
-            return LocalDate.parse(raw.trim());
-        } catch (Exception e) {
-            throw new FormatValidationException(fileName, "Invalid dateFlight: " + raw);
+        String value = raw.trim();
+        for (DateTimeFormatter formatter : List.of(
+                DateTimeFormatter.ISO_LOCAL_DATE,
+                DateTimeFormatter.ofPattern("d/M/uuuu"),
+                DateTimeFormatter.ofPattern("d/M/yy"),
+                DateTimeFormatter.ofPattern("M/d/uuuu"),
+                new java.time.format.DateTimeFormatterBuilder().parseCaseInsensitive()
+                        .appendPattern("d-MMM-uuuu").toFormatter(java.util.Locale.ENGLISH),
+                new java.time.format.DateTimeFormatterBuilder().parseCaseInsensitive()
+                        .appendPattern("d-MMM-yy").toFormatter(java.util.Locale.ENGLISH))) {
+            try {
+                return LocalDate.parse(value, formatter);
+            } catch (DateTimeParseException ignored) {
+                // Try the next supported operational date format.
+            }
         }
+        throw new FormatValidationException(fileName, "Invalid dateFlight: " + raw);
     }
 }

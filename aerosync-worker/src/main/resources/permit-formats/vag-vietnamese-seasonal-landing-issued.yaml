@@ -1,0 +1,11 @@
+id: vag-vietnamese-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 280
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:CODE\s+IATA/ICAO\s*:\s*VU\s*/\s*VAG|ICAO\s*(?:CODE)?\s*:\s*VAG\b|VIETRAVEL\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b|SỬA\s+ĐỔI)).*$'
+operator:
+  fixedValue: VAG
+schedule:
+  dateFormats: [d/M/uu, d/M/uuuu, dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu]

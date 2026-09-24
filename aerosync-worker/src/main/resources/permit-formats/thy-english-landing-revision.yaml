@@ -44,7 +44,13 @@ route:
 aircraft:
   scheduleColumn: aircraftType
   defaultType: B77W
-  auxiliaryRequiredColumns: []
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  remarkPrefix: ''
+  lastMatchingTable: true
 validation:
   reviewOnly: false
   allowIataAirports: true

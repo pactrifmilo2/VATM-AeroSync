@@ -18,6 +18,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Optional;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -42,6 +43,18 @@ class DocxSchedulePermitParserTest {
         assertThat(DocxSchedulePermitParser.removeInventedSeasonMarker(
                 "LD-01/A/W/2026VN", "LD 0001A/W/CHK/2026"))
                 .isEqualTo("LD 0001A/W/CHK/2026");
+    }
+
+    @Test
+    void doesNotTreatAnApplicationAttachmentAsAnIssuedPermit() {
+        assertThat(DocxSchedulePermitParser.looksLikeIssuedPermitDocument(
+                "Application for Revision LD-25/B/S/2026VN/REV30\n"
+                        + "Refer to the issued permit\nOriginal schedule\nNew schedule"))
+                .isFalse();
+        assertThat(DocxSchedulePermitParser.looksLikeIssuedPermitDocument(
+                "Permit No.: LD-25/B/S/2026VN/REV30\n"
+                        + "Original schedules\nNew schedules"))
+                .isTrue();
     }
 
     @Test
@@ -84,6 +97,7 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.craftId()).isZero();
             assertThat(flight.mtow()).isNull();
             assertThat(flight.sourceAircraftType()).isEqualTo("76X/32X");
+            assertThat(flight.aircraftTablePresent()).isTrue();
             assertThat(flight.remark()).isEqualTo("CAR 76X/32X");
         });
     }
@@ -92,8 +106,104 @@ class DocxSchedulePermitParserTest {
     void parse_acceptsNonScheduledPrivatePermitWithoutIata() throws Exception {
         Path file = createGenericLandingPermitDocument();
 
-        assertThat(parser.parse(file, file.getFileName().toString()).flightType())
-                .isEqualTo("NO");
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.flightType()).isEqualTo("NO");
+        assertThat(permit.operatorId()).isEqualTo("PRV");
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("VNB593");
+            assertThat(flight.sourceAircraftType()).isEqualTo("C208");
+            assertThat(flight.aircraftTablePresent()).isFalse();
+        });
+    }
+
+    @Test
+    void parse_keepsAllAirwaysInOrderAndRemovesDuplicateSegments() throws Exception {
+        Path file = createPermitDocument("Q1-L644-L642; Q1-W1-L644-L642");
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.flights()).singleElement()
+                .extracting(flight -> flight.via())
+                .isEqualTo("Q1/W1/L644/L642");
+    }
+
+    @Test
+    void mergeAirways_keepsAllUniqueSegmentsAcrossBranches() {
+        assertThat(DocxSchedulePermitParser.mergeAirwayAlternatives(List.of(
+                        List.of("Q1", "W1", "L644", "L642"),
+                        List.of("M765", "L637", "Q2", "A1", "Q5"),
+                        List.of("M765", "L637", "Q2", "A1", "Q3"))))
+                .isEqualTo("Q1/W1/L644/L642/M765/L637/Q2/A1/Q3/Q5");
+    }
+
+    @Test
+    void parse_leavesAircraftBlankWhenDocumentHasNoAircraftValue() throws Exception {
+        Path file = createGenericLandingPermitDocument("");
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.sourceAircraftType()).isNull();
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.mtow()).isNull();
+        });
+    }
+
+    @Test
+    void parse_thyRevisionReadsAircraftOnlyFromAircraftTable() throws Exception {
+        Path file = createThyRevisionDocument();
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.operatorId()).isEqualTo("THY");
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("THY6242");
+            assertThat(flight.fromAirport()).isEqualTo("CAI");
+            assertThat(flight.toAirport()).isEqualTo("HAN");
+            assertThat(flight.via()).isEqualTo("B214 W21");
+            assertThat(flight.sourceAircraftType()).isEqualTo("77X/33X");
+            assertThat(flight.aircraftTablePresent()).isTrue();
+            assertThat(flight.purposeId()).isEqualTo("CAR");
+            assertThat(flight.remark()).isEqualTo("CAR 77X/33X");
+        });
+    }
+
+    @Test
+    void parse_rejectsApplicationForRevisionAsNonIssuedDocument() throws Exception {
+        Path file = tempDir.resolve("Application-for-Revision-THY.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("Application for Revision of Landing Permit");
+            document.createParagraph().createRun().setText("Refer to the issued permit LD-25/B/S/2026VN");
+            document.createParagraph().createRun().setText("2.1. Original schedule");
+            document.createParagraph().createRun().setText("2.2. New schedule");
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+
+        assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
+                .isInstanceOf(NonPermitDocumentException.class)
+                .hasMessageContaining("không phải phép bay đã cấp");
+    }
+
+    @Test
+    void parse_configuredThyRevisionSample() {
+        String samplePath = System.getProperty("permit.thy.sample.path");
+        Assumptions.assumeTrue(samplePath != null && !samplePath.isBlank(),
+                "Set -Dpermit.thy.sample.path to validate a real THY permit document");
+        Path file = Path.of(samplePath);
+        Assumptions.assumeTrue(Files.isRegularFile(file), "Configured THY document does not exist");
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.operatorId()).isEqualTo("THY");
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("THY6242");
+            assertThat(flight.sourceAircraftType()).isEqualTo("77X/33X");
+            assertThat(flight.purposeId()).isEqualTo("CAR");
+            assertThat(flight.via()).contains("B214", "W21");
+        });
     }
 
     @Test
@@ -221,6 +331,10 @@ class DocxSchedulePermitParserTest {
     }
 
     private Path createPermitDocument() throws Exception {
+        return createPermitDocument("M765-M771");
+    }
+
+    private Path createPermitDocument(String routeAirways) throws Exception {
         Path file = tempDir.resolve("OF-5199.docx");
         try (XWPFDocument document = new XWPFDocument()) {
             document.createParagraph().createRun().setText("HANOI, 17-Jul-26");
@@ -251,7 +365,7 @@ class DocxSchedulePermitParserTest {
             route.getRow(0).getCell(2).setText("Entry point into Vietnam FIR");
             route.getRow(0).getCell(3).setText("Exit point from Vietnam FIR");
             route.getRow(1).getCell(0).setText("WMKK - VHHH");
-            route.getRow(1).getCell(1).setText("M765-M771");
+            route.getRow(1).getCell(1).setText(routeAirways);
             route.getRow(1).getCell(2).setText("IGARI");
             route.getRow(1).getCell(3).setText("DONDA");
 
@@ -272,6 +386,10 @@ class DocxSchedulePermitParserTest {
     }
 
     private Path createGenericLandingPermitDocument() throws Exception {
+        return createGenericLandingPermitDocument("C208");
+    }
+
+    private Path createGenericLandingPermitDocument(String aircraftType) throws Exception {
         Path file = tempDir.resolve("LD-2483.docx");
         try (XWPFDocument document = new XWPFDocument()) {
             document.createParagraph().createRun()
@@ -285,7 +403,7 @@ class DocxSchedulePermitParserTest {
                     "Days of services", "Departure Airport", "ETD", "Arrival Airport",
                     "ETA", "Aircraft Type"};
             String[] values = {"VN-B593", "02JUL26", "02JUL26", "-2-----",
-                    "BMV", "0000", "HPH", "0400", "C208"};
+                    "BMV", "0000", "HPH", "0400", aircraftType};
             for (int index = 0; index < headers.length; index++) {
                 schedule.getRow(0).getCell(index).setText(headers[index]);
                 schedule.getRow(1).getCell(index).setText(values[index]);
@@ -296,6 +414,49 @@ class DocxSchedulePermitParserTest {
             route.getRow(0).getCell(1).setText("Airways");
             route.getRow(1).getCell(0).setText("BMV-HPH");
             route.getRow(1).getCell(1).setText("W1 - DAN - W2");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
+    }
+
+    private Path createThyRevisionDocument() throws Exception {
+        Path file = tempDir.resolve("REV31-LD-25B-THY.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("Hanoi, 26/8/2026");
+            document.createParagraph().createRun().setText(
+                    "Permit No.: LD - 25/B/S/2026VN/REV31");
+            document.createParagraph().createRun().setText("Name: TURKISH AIRLINES CARGO");
+            document.createParagraph().createRun().setText("ICAO code: THY");
+            document.createParagraph().createRun().setText(
+                    "Postal Address: AB Tower, 76A Lelai str, HCMC");
+            document.createParagraph().createRun().setText("2.2. New schedule(s) (UTC Time)");
+
+            XWPFTable schedule = document.createTable(2, 10);
+            String[] headers = {"Flight number", "Effective from", "Effective to",
+                    "Days of services", "Departure Airport", "EOBT", "Arrival Airport",
+                    "EIBT", "Original permit", "Aircraft Type"};
+            String[] values = {"THY6242", "12SEP26", "26SEP26", "-----6-",
+                    "CAI", "2345", "HAN", "0810+1", "", ""};
+            for (int index = 0; index < headers.length; index++) {
+                schedule.getRow(0).getCell(index).setText(headers[index]);
+                schedule.getRow(1).getCell(index).setText(values[index]);
+            }
+
+            XWPFTable aircraft = document.createTable(3, 3);
+            aircraft.getRow(0).getCell(0).setText("Aircraft Type");
+            aircraft.getRow(0).getCell(1).setText("Registration Marks");
+            aircraft.getRow(0).getCell(2).setText("MTOW (KG)");
+            aircraft.getRow(1).getCell(0).setText("77X");
+            aircraft.getRow(2).getCell(0).setText("33X");
+
+            XWPFTable route = document.createTable(2, 2);
+            route.getRow(0).getCell(0).setText("Sector");
+            route.getRow(0).getCell(1).setText("Airways");
+            route.getRow(1).getCell(0).setText("CAI-HAN");
+            route.getRow(1).getCell(1).setText("B214 W21");
 
             try (OutputStream output = Files.newOutputStream(file)) {
                 document.write(output);

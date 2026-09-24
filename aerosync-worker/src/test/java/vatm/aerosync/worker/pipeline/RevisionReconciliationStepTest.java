@@ -52,7 +52,28 @@ class RevisionReconciliationStepTest {
     }
 
     @Test
-    void reconcile_doesNotInferRevisionForNonSeasonalPermit() {
+    void reconcile_allocatesRevisionNumberForBareSeasonalRvsMarker() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        SchedulePermit revision = new SchedulePermit(
+                "OF-78/B/S/2026VN/RVS", "O/F 00078B/S/CHK/2026", "78B",
+                "CHK", "O/F", "B", "S", LocalDate.of(2026, 8, 3),
+                "FDX", null, 72, null, "SC", false, false, true,
+                "OTHER DETAILS REMAIN UNCHANGED", List.of(flight("NEW100")), List.of());
+        ProcessingContext context = context(revision, "OF-78-rvs.docx");
+        when(gateway.findUsedRevisionNumbers(revision)).thenReturn(Set.of(1, 2));
+        SchedulePermit numbered = revision.withRevisionNumber(3);
+        when(gateway.findRevisionBaseline(numbered)).thenReturn(java.util.Optional.empty());
+
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().revisionNumber()).isEqualTo(3);
+        assertThat(context.getSchedulePermit().permitNumber()).isEqualTo("78BR3");
+        assertThat(context.getSchedulePermit().atfmTargetPermitId())
+                .isEqualTo("O/F 00078BR3/S/CHK/2026");
+    }
+
+    @Test
+    void reconcile_infersRevisionForNonSeasonalReplacementTable() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
         SchedulePermit revision = new SchedulePermit(
                 "OF-78/B/2026VN", "O/F 00078B/CHK/2026", "78B",
@@ -63,11 +84,10 @@ class RevisionReconciliationStepTest {
 
         new RevisionReconciliationStep(gateway).reconcile(context);
 
-        assertThat(context.getSchedulePermit().revisionNumber()).isNull();
+        assertThat(context.getSchedulePermit().revisionNumber()).isEqualTo(5);
         assertThat(context.getSchedulePermit().atfmTargetPermitId())
                 .isEqualTo("O/F 00078B/CHK/2026");
-        org.mockito.Mockito.verify(gateway, org.mockito.Mockito.never())
-                .findUsedRevisionNumbers(org.mockito.ArgumentMatchers.any());
+        assertThat(context.getSchedulePermit().importRevision()).isTrue();
     }
 
     @Test
@@ -138,11 +158,11 @@ class RevisionReconciliationStepTest {
         assertThat(result.atfmTargetPermitId()).isEqualTo("LD 02576A/CHK/2026");
         assertThat(result.revisionReference()).isEqualTo("13082026 RVS(1)");
         assertThat(result.flights()).singleElement().satisfies(flight ->
-                assertThat(flight.remark()).isEqualTo("13082026 RVS(1)"));
+                assertThat(flight.remark()).isEqualTo("13082026 R(1)"));
     }
 
     @Test
-    void reconcile_nonScheduledRevisionWithNewBusinessKeyInsertsIntoOriginalPermit() {
+    void reconcile_nonScheduledRevisionWithSameCallsignUpdatesOriginalPermit() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
         ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");
         ScheduleFlight revised = nonScheduledFlight("HVN123", "VVDN", "321");
@@ -158,7 +178,71 @@ class RevisionReconciliationStepTest {
         assertThat(result.atfmTargetPermitId()).isEqualTo("LD 02576A/CHK/2026");
         assertThat(result.permitNumber()).isEqualTo("2576A");
         assertThat(result.flights()).extracting(ScheduleFlight::remark)
-                .containsExactly("PAX 321");
+                .containsExactly("13082026 R(1)");
+    }
+
+    @Test
+    void reconcile_marksExactDateWhenCallsignAppearsMultipleTimesInBaseline() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight documentedOriginal = nonScheduledFlight("HVN123", "VVTS", "320");
+        ScheduleFlight revised = nonScheduledFlight("HVN123", "VVTS", "321");
+        ScheduleFlight anotherDate = new ScheduleFlight(
+                "PAX", 1935L, java.math.BigDecimal.ZERO, "HVN123", null, "0001000",
+                "VVNB", "VVTS", "0100", "0300", null,
+                LocalDate.of(2026, 8, 11), LocalDate.of(2026, 8, 11), "PAX 320", "320");
+        SchedulePermit revision = nonScheduledPermit(revised, documentedOriginal);
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(10L, 20L, "HVN", List.of(anotherDate, documentedOriginal))));
+
+        ProcessingContext context = context(revision, "LD-2576-RVS1.docx");
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights()).singleElement()
+                .extracting(ScheduleFlight::remark)
+                .isEqualTo("13082026 R(1)");
+    }
+
+    @Test
+    void reconcile_inheritsAircraftByCallsignWhenAircraftTableIsAbsent() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");
+        ScheduleFlight revised = new ScheduleFlight(
+                null, 0L, null, "HVN123", null, "0001000", "VVNB", "VVDN",
+                "0100", "0300", null, LocalDate.of(2026, 8, 12),
+                LocalDate.of(2026, 8, 12), null, null);
+        SchedulePermit revision = nonScheduledPermit(
+                revised, original, "RVS1\n3.1 Original\n3.2 New");
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.empty());
+
+        ProcessingContext context = context(revision, "LD-2576-RVS1.docx");
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.craftId()).isEqualTo(1935L);
+            assertThat(flight.sourceAircraftType()).isEqualTo("320");
+            assertThat(flight.remark()).isEqualTo("320");
+        });
+    }
+
+    @Test
+    void reconcile_doesNotInheritAircraftWhenAircraftTableIsPresent() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");
+        ScheduleFlight revised = new ScheduleFlight(
+                null, 0L, null, "HVN123", null, "0001000", "VVNB", "VVDN",
+                "0100", "0300", null, LocalDate.of(2026, 8, 12),
+                LocalDate.of(2026, 8, 12), null, null, true);
+        SchedulePermit revision = nonScheduledPermit(
+                revised, original, "RVS1\nOther main details is unchanged");
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.empty());
+
+        ProcessingContext context = context(revision, "LD-2576-RVS1.docx");
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.craftId()).isZero();
+            assertThat(flight.sourceAircraftType()).isNull();
+        });
     }
 
     @Test
@@ -199,7 +283,54 @@ class RevisionReconciliationStepTest {
         assertThat(context.getSchedulePermit().atfmTargetPermitId())
                 .isEqualTo("LD 02576A/CHK/2026");
         assertThat(context.getSchedulePermit().flights()).singleElement().satisfies(flight ->
-                assertThat(flight.remark()).isEqualTo("13082026 RVS(1)"));
+                assertThat(flight.remark()).isEqualTo("13082026 R(1)"));
+    }
+
+    @Test
+    void reconcile_inheritsBaselineViaForSameRouteWithoutUnchangedStatement() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");
+        ScheduleFlight revised = nonScheduledFlight("HVN123", "VVTS", "321");
+        ScheduleFlight baseline = new ScheduleFlight(
+                "PAX", 1935L, java.math.BigDecimal.ZERO, "HVN123", null, "0001000",
+                "VVNB", "VVTS", "0100", "0300", "W1/DAN/W2",
+                LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 12), "PAX 320", "320");
+        SchedulePermit revision = nonScheduledPermit(
+                revised, original, "RVS1\nREVISED FLIGHT SCHEDULE");
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(10L, 20L, "HVN", List.of(baseline))));
+        ProcessingContext context = context(revision, "LD-2576-RVS1.docx");
+
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(revision.otherDetailsUnchanged()).isFalse();
+        assertThat(context.getSchedulePermit().flights()).singleElement()
+                .extracting(ScheduleFlight::via)
+                .isEqualTo("W1/DAN/W2");
+    }
+
+    @Test
+    void reconcile_doesNotInheritBaselineViaWhenRouteChanges() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");
+        ScheduleFlight revised = nonScheduledFlight("HVN123", "VVDN", "321");
+        ScheduleFlight baseline = new ScheduleFlight(
+                "PAX", 1935L, java.math.BigDecimal.ZERO, "HVN123", null, "0001000",
+                "VVNB", "VVTS", "0100", "0300", "W1/DAN/W2",
+                LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 12), "PAX 320", "320");
+        SchedulePermit revision = nonScheduledPermit(
+                revised, original, "RVS1\nREVISED FLIGHT SCHEDULE");
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(10L, 20L, "HVN", List.of(baseline))));
+        ProcessingContext context = context(revision, "LD-2576-RVS1.docx");
+
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights()).singleElement()
+                .satisfies(flight -> {
+                    assertThat(flight.toAirport()).isEqualTo("VVDN");
+                    assertThat(flight.via()).isNull();
+                });
     }
 
     @Test
@@ -271,6 +402,105 @@ class RevisionReconciliationStepTest {
     }
 
     @Test
+    void reconcile_normalizesIataCallsignBeforeInheritingAircraftFromBaseline() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("9G907", "VVNB", null)
+                .withResolvedAircraft(0L, null);
+        ScheduleFlight revised = nonScheduledFlight("9G907", "VVNB", null)
+                .withResolvedAircraft(0L, null);
+        ScheduleFlight baseline = nonScheduledFlight("SPQ907", "VVNB", "A321")
+                .withResolvedAircraft(4366L, java.math.BigDecimal.valueOf(93.5));
+        baseline = new ScheduleFlight(
+                baseline.purposeId(), baseline.craftId(), baseline.mtow(), baseline.flightNumber(),
+                baseline.registration(), baseline.serviceDays(), baseline.fromAirport(),
+                baseline.toAirport(), baseline.etd(), baseline.eta(), baseline.via(),
+                baseline.beginDate().minusDays(30), baseline.endDate().plusDays(30),
+                baseline.remark(), baseline.sourceAircraftType());
+        SchedulePermit revision = new SchedulePermit(
+                "LD-32/C/S/2026VN/REV17", "LD 0032C/S/CHK/2026", "32C",
+                "CHK", "LD", "C", "S", LocalDate.of(2026, 9, 5),
+                "SPQ", "LD-32/C/S/2026VN", 24, "SPQ", "SC",
+                true, false, false, "REV17\nCác chi tiết khác không thay đổi",
+                List.of(revised), List.of(original));
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(1L, 2L, "SPQ", List.of(baseline))));
+
+        ProcessingContext context = context(revision, "SPA022-REV17.docx");
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights().getLast()).satisfies(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("SPQ907");
+            assertThat(flight.craftId()).isEqualTo(4366L);
+        });
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(ScheduleFlight::craftId)
+                .containsOnly(4366L);
+    }
+
+    @Test
+    void reconcile_inheritsAircraftWhenRepeatedBaselineRowsAgreeOnCraft() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("SPQ907", "VVNB", null)
+                .withResolvedAircraft(0L, null);
+        ScheduleFlight revised = nonScheduledFlight("SPQ907", "VVNB", null)
+                .withResolvedAircraft(0L, null);
+        ScheduleFlight first = nonScheduledFlight("SPQ907", "VVNB", "A321")
+                .withResolvedAircraft(4366L, java.math.BigDecimal.valueOf(93.5));
+        ScheduleFlight second = new ScheduleFlight(
+                first.purposeId(), first.craftId(), first.mtow(), first.flightNumber(),
+                first.registration(), first.serviceDays(), first.fromAirport(), first.toAirport(),
+                first.etd(), first.eta(), first.via(), first.beginDate().plusDays(1),
+                first.endDate().plusDays(1), first.remark(), first.sourceAircraftType());
+        SchedulePermit revision = new SchedulePermit(
+                "LD-32/C/S/2026VN/REV17", "LD 0032C/S/CHK/2026", "32C",
+                "CHK", "LD", "C", "S", LocalDate.of(2026, 9, 5),
+                "SPQ", "LD-32/C/S/2026VN", 24, "SPQ", "SC",
+                true, false, false, "REV17\nCác chi tiết khác không thay đổi",
+                List.of(revised), List.of(original));
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(1L, 2L, "SPQ", List.of(first, second))));
+
+        ProcessingContext context = context(revision, "SPA022-REV17.docx");
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(ScheduleFlight::craftId)
+                .containsOnly(4366L);
+    }
+
+    @Test
+    void reconcile_inheritsAircraftByDocumentedOriginalWhenCallsignAndRouteBothChange() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight documentedOriginal = new ScheduleFlight(
+                null, 0L, null, "THY6244", null, "0000060",
+                "IST", "BEY", "1910", "2115", null,
+                LocalDate.of(2026, 9, 5), LocalDate.of(2026, 9, 5), null, null);
+        ScheduleFlight revised = new ScheduleFlight(
+                null, 0L, null, "THY6242", null, "0000060",
+                "CAI", "HAN", "2000", "0810", "B214 W21",
+                LocalDate.of(2026, 9, 5), LocalDate.of(2026, 9, 5), null, null);
+        ScheduleFlight baseline = new ScheduleFlight(
+                "CAR", 24L, java.math.BigDecimal.valueOf(100), "THY6244", null,
+                "0000060", "OLBA", "VVNB", "2305", "0810+", "B214/W21",
+                LocalDate.of(2026, 8, 1), LocalDate.of(2026, 8, 31), "CAR 77X", null);
+        SchedulePermit revision = new SchedulePermit(
+                "LD-25/B/S/2026VN/REV30", "LD 0025B/S/CHK/2026", "25B",
+                "CHK", "LD", "B", "S", LocalDate.of(2026, 8, 26),
+                "THY", "LD-25/B/S/2026VN", 24, "Turkish Airlines Cargo", "SC",
+                true, true, false, "REV30\nOther details unchanged",
+                List.of(revised), List.of(documentedOriginal));
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(1L, 2L, "THY", List.of(baseline))));
+
+        ProcessingContext context = context(revision, "REV30-LD-25B.docx");
+
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights()).hasSize(2);
+        assertThat(context.getSchedulePermit().flights().getLast().craftId()).isEqualTo(24L);
+    }
+
+    @Test
     void reconcile_doesNotCopyBaselineRowsWhenWordHasNoOriginalScheduleTable() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
         ScheduleFlight revised = nonScheduledFlight("HVN999", "VVTS", "321");
@@ -291,6 +521,37 @@ class RevisionReconciliationStepTest {
         assertThat(context.getSchedulePermit().flights())
                 .extracting(ScheduleFlight::flightNumber)
                 .containsExactly("HVN999");
+    }
+
+    @Test
+    void reconcile_routesDatedRevisionToItsLegacyScheduledBaseline() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight revised = new ScheduleFlight(
+                "PAX", 0L, null, "VJC30", null, "0000200",
+                "HAK", "DAD", "0300", "0430", "G221",
+                LocalDate.of(2026, 8, 18), LocalDate.of(2026, 8, 18), null, null);
+        ScheduleFlight baseline = new ScheduleFlight(
+                "PAX", 288L, java.math.BigDecimal.valueOf(93), "VJC30", null, "0000200",
+                "HAK", "HAN", "0300", "0430", "G221",
+                LocalDate.of(2026, 8, 14), LocalDate.of(2026, 8, 14), "PAX 333", null);
+        SchedulePermit revision = new SchedulePermit(
+                "LD-2869/8/2026VN.REV1", "LD 02869/CHK/2026", "2869",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 8, 17),
+                "VJC", null, 24, "Vietjet", "NO",
+                false, false, false, "REV1\nCác chi tiết khác không thay đổi",
+                List.of(revised), List.of());
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(10L, 20L, "VJC",
+                        "LD 02869/S/CHK/2026", List.of(baseline))));
+        ProcessingContext context = context(revision, "LD_2869_RVS_1_VJC.docx");
+
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        SchedulePermit reconciled = context.getSchedulePermit();
+        assertThat(reconciled.atfmTargetPermitId()).isEqualTo("LD 02869/S/CHK/2026");
+        assertThat(reconciled.usesScheduledStorage()).isTrue();
+        assertThat(reconciled.seasonalPermit()).isFalse();
+        assertThat(reconciled.flights().getFirst().craftId()).isEqualTo(288L);
     }
 
     private ProcessingContext context(SchedulePermit permit) {

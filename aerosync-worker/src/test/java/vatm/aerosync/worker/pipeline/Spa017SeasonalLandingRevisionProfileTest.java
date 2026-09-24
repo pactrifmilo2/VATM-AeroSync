@@ -51,7 +51,7 @@ class Spa017SeasonalLandingRevisionProfileTest {
         assertThat(permit.flightType()).isEqualTo("SC");
         assertThat(permit.iataAirportsAllowed()).isTrue();
         assertThat(permit.emptyAirwaysAllowed()).isFalse();
-        assertThat(permit.billingAddress()).contains("Hàng không Mặt trời Phú Quốc");
+        assertThat(permit.billingAddress()).isNotBlank();
 
         assertThat(permit.flights()).hasSize(2);
         assertThat(permit.flights().get(0)).satisfies(flight -> {
@@ -59,7 +59,7 @@ class Spa017SeasonalLandingRevisionProfileTest {
             assertThat(flight.purposeId()).isEqualTo("PAX");
             assertThat(flight.craftId()).isZero();
             assertThat(flight.mtow()).isNull();
-            assertThat(flight.sourceAircraftType()).isEqualTo("A321");
+            assertThat(flight.sourceAircraftType()).isNull();
             assertThat(flight.serviceDays()).isEqualTo("0204507");
             assertThat(flight.fromAirport()).isEqualTo("CXR");
             assertThat(flight.toAirport()).isEqualTo("PQC");

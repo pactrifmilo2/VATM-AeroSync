@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 class WordPermitFormatDetector {
 
     private static final Pattern IATA_IDENTITY = Pattern.compile(
-            "(?iu)(?:IATA\\s*(?:CODE)?|M[ÃƒA]\\s*IATA)(?:\\s*\\([^)]*\\))?"
+            "(?iu)(?:IATA\\s*(?:CODE)?|M(?:ã|Ã|A)\\s*IATA)(?:\\s*\\([^)]*\\))?"
                     + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{2})(?![A-Z0-9])");
     private static final Pattern ICAO_IDENTITY = Pattern.compile(
-            "(?iu)(?:ICAO\\s*(?:CODE)?|M[ÃƒA]\\s*ICAO)(?:\\s*\\([^)]*\\))?"
+            "(?iu)(?:ICAO\\s*(?:CODE)?|M(?:ã|Ã|A)\\s*ICAO)(?:\\s*\\([^)]*\\))?"
                     + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
 
     private final List<DocxPermitFormatProfile> profiles;
@@ -33,7 +33,7 @@ class WordPermitFormatDetector {
                 .filter(profile -> supports(profile, document, true))
                 .toList();
         List<DocxPermitFormatProfile> matches = preferredMatchSet(directMatches, relaxedMatches);
-        if (carrier.complete()) {
+        if (carrier.icao() != null) {
             List<DocxPermitFormatProfile> directCarrierMatches = directMatches.stream()
                     .filter(profile -> !isCaavFallback(profile))
                     .toList();
@@ -55,7 +55,7 @@ class WordPermitFormatDetector {
             }
         }
         if (matches.isEmpty()) {
-            if (carrier.complete()) {
+            if (carrier.icao() != null) {
                 throw invalid(fileName,
                         "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
             }
@@ -87,11 +87,12 @@ class WordPermitFormatDetector {
     private boolean permitIdentityMatches(DocxPermitFormatProfile profile, String rawContent) {
         return profile.permit() != null
                 && profile.permit().pattern() != null
-                && Pattern.compile(profile.permit().pattern()).matcher(rawContent).find();
+                && Pattern.compile(profile.permit().pattern())
+                        .matcher(joinSplitDigits(rawContent)).find();
     }
 
     private boolean isCaavFallback(DocxPermitFormatProfile profile) {
-        return profile.id().toLowerCase(Locale.ROOT).startsWith("caav-");
+        return profile.id().toLowerCase(Locale.ROOT).startsWith("caav-generic-");
     }
 
     private List<DocxPermitFormatProfile> preferredMatchSet(
@@ -99,6 +100,9 @@ class WordPermitFormatDetector {
             List<DocxPermitFormatProfile> relaxedMatches) {
         if (directMatches.isEmpty()) {
             return relaxedMatches;
+        }
+        if (directMatches.stream().anyMatch(profile -> !isCaavFallback(profile))) {
+            return directMatches;
         }
         int directPriority = highestPriority(directMatches);
         int relaxedPriority = highestPriority(relaxedMatches);
@@ -119,23 +123,30 @@ class WordPermitFormatDetector {
     private boolean supports(DocxPermitFormatProfile profile,
                              WordPermitDocument document,
                              boolean ignoreRevisionExclusion) {
-        boolean hasIata = Pattern.compile(
-                        "(?iu)(?:IATA\\s*(?:CODE)?|M[ÃA]\\s*IATA)(?:\\s*\\([^)]*\\))?"
-                                + "[ \\t]*:[ \\t]*[A-Z0-9]{2}(?![A-Z0-9])")
-                .matcher(document.rawContent())
-                .find();
-        boolean hasIcao = Pattern.compile(
-                        "(?iu)(?:ICAO\\s*(?:CODE)?|M[ÃA]\\s*ICAO)(?:\\s*\\([^)]*\\))?"
-                                + "[ \\t]*:[ \\t]*[A-Z0-9]{3}(?![A-Z0-9])")
-                .matcher(document.rawContent())
-                .find();
+        boolean hasIata = IATA_IDENTITY.matcher(document.rawContent()).find();
+        boolean hasIcao = ICAO_IDENTITY.matcher(document.rawContent()).find();
         boolean detectionMatches = profile.detectionPatterns().stream()
                 .allMatch(pattern -> (ignoreRevisionExclusion && isRevisionExclusionPattern(pattern))
-                        || Pattern.compile(pattern).matcher(document.rawContent()).find()
+                        || matchesPattern(pattern, document.rawContent())
                         || (hasIata && !hasIcao && isIcaoIdentificationPattern(pattern)));
         return detectionMatches
                 && (!ignoreRevisionExclusion
-                || Pattern.compile(profile.permit().pattern()).matcher(document.rawContent()).find());
+                || Pattern.compile(profile.permit().pattern())
+                        .matcher(joinSplitDigits(document.rawContent())).find());
+    }
+
+    private boolean matchesPattern(String pattern, String rawContent) {
+        Pattern compiled = Pattern.compile(pattern);
+        if (compiled.matcher(rawContent).find()) {
+            return true;
+        }
+        // A number of legacy YAML profiles contain the UTF-8 mojibake "MÃ"
+        // while incoming Vietnamese documents correctly contain "Mã".
+        return compiled.matcher(rawContent.replace("Mã", "MÃ")).find();
+    }
+
+    private String joinSplitDigits(String value) {
+        return value == null ? "" : value.replaceAll("(?<=\\d)[ \\t]+(?=\\d)", "");
     }
 
     private boolean isRevisionExclusionPattern(String pattern) {
@@ -158,8 +169,5 @@ class WordPermitFormatDetector {
     }
 
     private record CarrierIdentity(String iata, String icao) {
-        boolean complete() {
-            return iata != null && icao != null;
-        }
     }
 }

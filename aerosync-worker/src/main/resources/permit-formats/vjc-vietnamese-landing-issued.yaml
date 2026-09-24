@@ -29,6 +29,7 @@ billingAddress:
   pattern: '(?iu)ĐỊA\s+CHỈ\s+BƯU\s+ĐIỆN[ \t]*:[ \t]*(?<value>[^\n]+)'
   group: value
   required: true
+referenceColumn: originalPermit
 purpose:
   defaultId: PAX
   mappings:
@@ -53,6 +54,8 @@ schedule:
     etd: [Giờ khởi hành dự kiến]
     toAirport: [Sân bay hạ cánh]
     eta: [Giờ hạ cánh dự kiến, Giờ dự kiến hạ cánh]
+    aircraftType: [Loại tàu bay, Tàu bay]
+    originalPermit: [Số phép gốc, Số phép bay, Số phép bay đã cấp, Phép bay liên quan]
   requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport, eta]
   excludeColumns: []
   tableContextPatterns: []

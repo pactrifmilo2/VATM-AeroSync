@@ -1,0 +1,22 @@
+VATM AEROSYNC - CAI DAT / CAP NHAT
+
+Nguoi dung chi can lam 3 buoc:
+
+1. Giai nen toan bo file ZIP.
+2. Bam dup vao AeroSync-Deploy.cmd.
+3. Chon Yes khi Windows hoi quyen Administrator, sau do cho den khi hien:
+   "AeroSync da san sang."
+
+Sau khi cai dat thanh cong, giao dien AeroSync tu dong mo. Cac lan sau,
+mo shortcut AeroSync tren Desktop hoac Start Menu.
+
+Khong xoa hoac sua cac file ben trong goi cap nhat.
+Khong can go bo phien ban cu. File deploy tu dong giu cau hinh, sao luu va cap nhat.
+
+Lenh danh cho ky thuat khi can:
+
+  AeroSync-Deploy.cmd status
+  AeroSync-Deploy.cmd restart
+  AeroSync-Deploy.cmd rollback
+
+Neu co loi, gui anh man hinh va file C:\AeroSync\logs\deploy-*.log cho ky thuat.

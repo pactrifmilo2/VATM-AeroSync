@@ -87,6 +87,7 @@ public class BusinessRuleValidatorStep {
                     permit.flights().get(index),
                     index + 1,
                     permit.iataAirportsAllowed(),
+                    permit.usesScheduledStorage(),
                     errors);
         }
         if (!errors.isEmpty()) {
@@ -102,6 +103,7 @@ public class BusinessRuleValidatorStep {
     private void validateScheduleFlight(ScheduleFlight flight,
                                         int rowNumber,
                                         boolean allowIataAirport,
+                                        boolean seasonalPermit,
                                         List<RowValidationError> errors) {
         if (flight.flightNumber() == null || !flight.flightNumber().matches("^[A-Z0-9]{2,20}$")) {
             errors.add(error(rowNumber, "flightNumber", "BR-FLIGHT-NUMBER",
@@ -134,9 +136,9 @@ public class BusinessRuleValidatorStep {
             errors.add(error(rowNumber, "serviceDays", "BR-SERVICE-DAYS-RANGE",
                     "No selected operating day falls in the effective date range", flight.serviceDays()));
         }
-        if (flight.craftId() <= 0) {
-            errors.add(error(rowNumber, "craftId", "BR-CRAFT", "Aircraft mapping is required",
-                    Long.toString(flight.craftId())));
+            if (flight.craftId() <= 0 && seasonalPermit) {
+                errors.add(error(rowNumber, "craftId", "BR-CRAFT", "Aircraft mapping is required",
+                        Long.toString(flight.craftId())));
         }
     }
 

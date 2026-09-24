@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using AeroSync.UI.Models;
 using AeroSync.UI.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,85 +8,38 @@ namespace AeroSync.UI.ViewModels;
 public sealed partial class DashboardViewModel : ObservableObject
 {
     private readonly AeroSyncApiClient apiClient;
-
     private long successCount;
     private long errorCount;
     private long warnCount;
     private long skippedCount;
     private long processingCount;
     private long totalJobs;
-    private long activeAlerts;
     private bool isLoading;
-    private string statusMessage = "Sẵn sàng";
-    private string incomingNotice = "Chưa có thông báo mới từ thư mục Incoming.";
-
-    public ObservableCollection<SyncJobSummaryResponse> Jobs { get; } = [];
-    public ObservableCollection<AuditLogResponse> Logs { get; } = [];
+    private string statusMessage = "S\u1EB5n s\u00E0ng";
 
     public DashboardViewModel(AeroSyncApiClient apiClient)
     {
         this.apiClient = apiClient;
     }
 
-    public long SuccessCount
-    {
-        get => successCount;
-        set => SetProperty(ref successCount, value);
-    }
+    public string Title => "Gi\u00E1m s\u00E1t \u0111\u1ED3ng b\u1ED9";
+    public string Subtitle => "Theo d\u00F5i s\u1ED1 li\u1EC7u t\u1ED5ng h\u1EE3p, kh\u00F4ng t\u1EA3i danh s\u00E1ch b\u1EA3n ghi.";
+    public string RefreshLabel => "L\u00E0m m\u1EDBi";
+    public string SuccessLabel => "Th\u00E0nh c\u00F4ng";
+    public string ErrorLabel => "Th\u1EA5t b\u1EA1i";
+    public string WarningLabel => "C\u00E1ch ly";
+    public string SkippedLabel => "B\u1ECF qua";
+    public string ProcessingLabel => "\u0110ang x\u1EED l\u00FD";
+    public string TotalLabel => "T\u1ED5ng s\u1ED1";
 
-    public long ErrorCount
-    {
-        get => errorCount;
-        set => SetProperty(ref errorCount, value);
-    }
-
-    public long WarnCount
-    {
-        get => warnCount;
-        set => SetProperty(ref warnCount, value);
-    }
-
-    public long SkippedCount
-    {
-        get => skippedCount;
-        set => SetProperty(ref skippedCount, value);
-    }
-
-    public long ProcessingCount
-    {
-        get => processingCount;
-        set => SetProperty(ref processingCount, value);
-    }
-
-    public long TotalJobs
-    {
-        get => totalJobs;
-        set => SetProperty(ref totalJobs, value);
-    }
-
-    public long ActiveAlerts
-    {
-        get => activeAlerts;
-        set => SetProperty(ref activeAlerts, value);
-    }
-
-    public bool IsLoading
-    {
-        get => isLoading;
-        set => SetProperty(ref isLoading, value);
-    }
-
-    public string StatusMessage
-    {
-        get => statusMessage;
-        set => SetProperty(ref statusMessage, value);
-    }
-
-    public string IncomingNotice
-    {
-        get => incomingNotice;
-        set => SetProperty(ref incomingNotice, value);
-    }
+    public long SuccessCount { get => successCount; set => SetProperty(ref successCount, value); }
+    public long ErrorCount { get => errorCount; set => SetProperty(ref errorCount, value); }
+    public long WarnCount { get => warnCount; set => SetProperty(ref warnCount, value); }
+    public long SkippedCount { get => skippedCount; set => SetProperty(ref skippedCount, value); }
+    public long ProcessingCount { get => processingCount; set => SetProperty(ref processingCount, value); }
+    public long TotalJobs { get => totalJobs; set => SetProperty(ref totalJobs, value); }
+    public bool IsLoading { get => isLoading; set => SetProperty(ref isLoading, value); }
+    public string StatusMessage { get => statusMessage; set => SetProperty(ref statusMessage, value); }
 
     [RelayCommand]
     public async Task RefreshAsync()
@@ -100,37 +52,12 @@ public sealed partial class DashboardViewModel : ObservableObject
         try
         {
             IsLoading = true;
-            var statsTask = apiClient.GetDashboardStatsAsync();
-            var jobsTask = apiClient.GetJobsAsync();
-            var auditLogsTask = apiClient.GetAuditLogsAsync();
-            await Task.WhenAll(statsTask, jobsTask, auditLogsTask);
-
-            var stats = await statsTask;
-            SuccessCount = Count(stats, "SUCCESS");
-            ErrorCount = Count(stats, "FAILED");
-            WarnCount = Count(stats, "QUARANTINED");
-            SkippedCount = Count(stats, "SKIPPED");
-            ProcessingCount = Count(stats, "PENDING") + Count(stats, "IN_PROGRESS");
-            TotalJobs = stats.TotalJobs > 0 ? stats.TotalJobs : SuccessCount + ErrorCount + WarnCount + SkippedCount + ProcessingCount;
-            ActiveAlerts = stats.ActiveAlerts;
-
-            Replace(Jobs, await jobsTask);
-            var auditLogs = await auditLogsTask;
-            Replace(Logs, auditLogs.Take(20));
-            var latestIncoming = auditLogs.FirstOrDefault(log =>
-                log.Action.StartsWith("INCOMING_", StringComparison.OrdinalIgnoreCase));
-            if (latestIncoming is not null)
-            {
-                IncomingNotice = $"{latestIncoming.Timestamp:dd/MM/yyyy HH:mm:ss} - "
-                    + (string.IsNullOrWhiteSpace(latestIncoming.Message)
-                        ? VietnameseErrorMessage.TranslateAction(latestIncoming.Action)
-                        : latestIncoming.Message);
-            }
-            StatusMessage = $"Đang theo dõi {TotalJobs} tác vụ · {ProcessingCount} tác vụ đang xử lý · cập nhật lúc {DateTime.Now:HH:mm:ss}";
+            ApplyStats(await apiClient.GetDashboardStatsAsync());
+            StatusMessage = $"C\u1EADp nh\u1EADt l\u00FAc {DateTime.Now:HH:mm:ss}";
         }
         catch (Exception ex)
         {
-            StatusMessage = VietnameseErrorMessage.FromException(ex, "Tải dữ liệu bảng điều khiển");
+            StatusMessage = VietnameseErrorMessage.FromException(ex, "T\u1EA3i s\u1ED1 li\u1EC7u t\u1ED5ng h\u1EE3p");
         }
         finally
         {
@@ -138,17 +65,18 @@ public sealed partial class DashboardViewModel : ObservableObject
         }
     }
 
+    private void ApplyStats(DashboardStatsResponse stats)
+    {
+        SuccessCount = Count(stats, "SUCCESS");
+        ErrorCount = Count(stats, "FAILED");
+        WarnCount = Count(stats, "QUARANTINED");
+        SkippedCount = Count(stats, "SKIPPED");
+        ProcessingCount = Count(stats, "PENDING") + Count(stats, "IN_PROGRESS");
+        TotalJobs = stats.TotalJobs;
+    }
+
     private static long Count(DashboardStatsResponse stats, string status)
     {
         return stats.StatusCounts.TryGetValue(status, out var count) ? count : 0;
-    }
-
-    private static void Replace<T>(ObservableCollection<T> target, IEnumerable<T> source)
-    {
-        target.Clear();
-        foreach (var item in source)
-        {
-            target.Add(item);
-        }
     }
 }

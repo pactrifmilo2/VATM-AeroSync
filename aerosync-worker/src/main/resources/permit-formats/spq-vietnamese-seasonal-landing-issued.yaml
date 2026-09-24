@@ -1,0 +1,15 @@
+id: spq-vietnamese-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 260
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:MÃ\s*IATA|IATA\s*(?:CODE)?)\s*:\s*9G\b'
+  - '(?iu)(?:MÃ\s*ICAO|ICAO\s*(?:CODE)?)\s*:\s*SPQ\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: SPQ
+purpose:
+  defaultId: PAX
+  mappings:
+    - pattern: '(?iu)\b(?:MEDICAL|MEDEVAC|AMBULANCE)\b'
+      value: MED

@@ -44,6 +44,62 @@ class WordPermitFormatDetectorTest {
                 .isEqualTo("mfx-english-overflight-issued");
     }
 
+    @Test
+    void detectsBambooPermitWhenMonthDigitsAreSplitByWordFormatting() {
+        WordPermitDocument document = document("""
+                Phép bay số: LD- 99999 /0 8 /2026VN
+                Mã IATA: QH
+                Mã ICAO: BAV
+                """);
+
+        assertThat(detector.detect(document, "LD-3063-QH18.docx").id())
+                .isEqualTo("bav-vietnamese-landing-issued");
+    }
+
+    @Test
+    void recognizesVietnameseCarrierIdentityWithoutFallingBackToGenericProfile() {
+        WordPermitDocument document = document("""
+                Phép bay số: LD- 99999 /0 8 /2026VN
+                Mã IATA: QH
+                Mã ICAO: BAV
+                Số hiệu chuyến bay | Hiệu lực từ | Hiệu lực đến | Ngày trong tuần
+                QH9999 | 01AUG26 | 01AUG26 | 6
+                """);
+
+        assertThat(detector.detect(document, "LD-99999-QH9999.docx").id())
+                .isEqualTo("bav-vietnamese-landing-issued");
+    }
+
+    @Test
+    void ICAOAloneSelectsCarrierProfile() {
+        WordPermitDocument document = document("""
+                OF-5716/8/2026VN
+                ICAO code: MFX
+                3. Schedules: UTC Time
+                4. Purpose of Flight(s): Cargo
+                Flight number | Effective from | Effective to
+                MFX7632 | 11AUG26 | 11AUG26
+                """);
+
+        assertThat(detector.detect(document, "OF-MFX7632-11AUG26.docx").id())
+                .isEqualTo("mfx-english-overflight-issued");
+    }
+
+    @Test
+    void detectsCambodiaAirwaysScheduleChangeProfile() {
+        WordPermitDocument document = document("""
+                Ref: Permit approval Num: O/F-06/A/W/2023VN
+                THE CAAV CONFIRMS SCHEDULE CHANGE AS FOLLOWING DETAILS
+                IATA code: KR | ICAO code: KME
+                2.2 Change to new Effective from 29Oct2023 to 30Mar2024
+                FLT No. | From | To | Day(s) of OPS | STD | STA | Aircraft Type
+                KME501 | 29Oct2023 | 30Mar2024 | 1234567 | VDPP | 0040 | VMMC | 0220 | A319/320
+                """);
+
+        assertThat(detector.detect(document, "OF-06A_W23_CHANGE_2.docx").id())
+                .isEqualTo("kme-english-seasonal-overflight-revision");
+    }
+
     private WordPermitDocument document(String rawContent) {
         return new WordPermitDocument(rawContent, rawContent, rawContent, List.of(), List.of());
     }

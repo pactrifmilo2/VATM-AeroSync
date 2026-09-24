@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileProcessingStatus;
@@ -165,6 +166,25 @@ class DatabaseWriterStepTest {
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SKIPPED);
         assertThat(record.getRowsSaved()).isEqualTo(1);
         assertThat(record.getDatabaseSavedAt()).isNotNull();
+    }
+
+    @Test
+    void write_schedulePermitKeepsAircraftNotFoundWarningAfterInsert() {
+        TestFixture fixture = createFixture("permit-aircraft-warning");
+        ProcessingContext context = contextFor(fixture);
+        context.setSchedulePermit(schedulePermit());
+        context.getRowValidationErrors().add(new RowValidationError(
+                1, "aircraftType", "BR-AIRCRAFT-NOT-FOUND",
+                "Aircraft type not found in ATFM dictionary: B799 (tried: B799)", "B799"));
+        when(permitImportCoordinator.importPermit(any()))
+                .thenReturn(new PermitImportOutcome(PermitImportStatus.SAVED, 1, 101L, 202L));
+
+        databaseWriterStep.write(context);
+
+        FileRecord record = fileRecordRepository.findBySyncJobId(fixture.job().getId()).getFirst();
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SAVED);
+        assertThat(record.getErrorMessage())
+                .contains("Dòng lịch bay 1", "B799", "A000");
     }
 
     private TestFixture createFixture(String hash) {

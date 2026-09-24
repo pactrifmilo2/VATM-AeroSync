@@ -25,6 +25,14 @@ class PermitOperatorCatalogTest {
     }
 
     @Test
+    void normalizeFlightNumber_doesNotForceUniqueIataMappingOntoDifferentOperator() {
+        assertThat(catalog.normalizeFlightNumber("VN1822", "PRV"))
+                .isEqualTo("VN1822");
+        assertThat(catalog.normalizeFlightNumber("VN1822", "VJC"))
+                .isEqualTo("VN1822");
+    }
+
+    @Test
     void operatorForIata_resolvesOperatorWhenDocumentDoesNotContainIcao() {
         assertThat(catalog.operatorForIata("VJ")).isEqualTo("VJC");
         assertThat(catalog.operatorForIata("NN")).isNull();

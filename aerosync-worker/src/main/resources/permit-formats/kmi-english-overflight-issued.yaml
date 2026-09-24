@@ -7,3 +7,7 @@ detectionPatterns:
   - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
 operator:
   fixedValue: KMI
+schedule:
+  # K-Mile schedules publish an ETA column (OF-6517: 1800/2235); the generic
+  # base profile drops it, which saved T_PERMDETAIL_SC rows with ETA null.
+  includeEta: true

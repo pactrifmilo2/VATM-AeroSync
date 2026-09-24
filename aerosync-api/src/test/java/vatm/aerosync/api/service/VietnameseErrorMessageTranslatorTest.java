@@ -35,7 +35,7 @@ class VietnameseErrorMessageTranslatorTest {
     @Test
     void replacesUnknownEnglishTechnicalErrorsWithVietnameseFallback() {
         assertThat(translator.translate("Some new internal technical failure"))
-                .startsWith("Không thể hoàn tất yêu cầu vì nguyên nhân chưa được phân loại. Mã tham chiếu: ");
+                .startsWith("Lỗi xử lý chi tiết: Some new internal technical failure. Mã tham chiếu: ");
     }
 
     @Test
@@ -46,10 +46,12 @@ class VietnameseErrorMessageTranslatorTest {
         assertThat(translator.translate(
                 "Failed to parse Word permit: zip END header not found"))
                 .contains("file bị hỏng")
-                .doesNotContain("Failed to parse");
+                .contains("Chi tiết kỹ thuật: Failed to parse Word permit: zip END header not found")
+                .contains("Mã tham chiếu:");
         assertThat(translator.translate("Failed to parse XLSX: invalid entry size"))
                 .contains("Không thể đọc file Excel XLSX")
-                .doesNotContain("Failed to parse");
+                .contains("Chi tiết kỹ thuật: Failed to parse XLSX: invalid entry size")
+                .contains("Mã tham chiếu:");
         assertThat(translator.translate("Invalid ETD: giờ 25"))
                 .isEqualTo("Giờ khởi hành dự kiến (ETD) không hợp lệ: giờ 25.");
     }

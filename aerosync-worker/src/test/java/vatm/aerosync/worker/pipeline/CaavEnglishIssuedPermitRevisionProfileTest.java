@@ -51,7 +51,7 @@ class CaavEnglishIssuedPermitRevisionProfileTest {
         assertThat(permit.flightType()).isEqualTo("SC");
         assertThat(permit.iataAirportsAllowed()).isTrue();
         assertThat(permit.emptyAirwaysAllowed()).isTrue();
-        assertThat(permit.billingAddress()).contains("AVIATION SERVICE CENTER");
+        assertThat(permit.billingAddress()).isEqualTo("JJA(JEJUAIR)/7C(JEJUAIR) /JEJUAIR OPERATIONS CONTROL CENTER");
 
         assertThat(permit.flights()).singleElement().satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("7C2396");

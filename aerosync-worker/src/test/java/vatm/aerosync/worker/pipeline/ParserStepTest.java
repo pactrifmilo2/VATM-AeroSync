@@ -109,6 +109,22 @@ class ParserStepTest {
     }
 
     @Test
+    void parseCsv_readsOperationalHeaderAliasesAndDate() throws Exception {
+        Path file = Files.createTempFile("flight-status-", ".csv");
+        Files.writeString(file,
+                "Flight Date,Flight No,STD,Dep,Arr,STA\n05-SEP-2026,BL6211,0115,PXU,SGN,0225");
+
+        List<FlightRow> rows = parserStep.parseCsv(file, file.getFileName().toString());
+
+        assertThat(rows).singleElement().satisfies(row -> {
+            assertThat(row.getCallsign()).isEqualTo("BL6211");
+            assertThat(row.getFrom()).isEqualTo("PXU");
+            assertThat(row.getTo()).isEqualTo("SGN");
+            assertThat(row.getDateFlight()).isEqualTo(LocalDate.of(2026, 9, 5));
+        });
+    }
+
+    @Test
     void parseXlsx_readsVnaBaseScheduleWithSectionDateAndSector() throws Exception {
         Path file = Files.createTempFile("vna-base-schedule-", ".xlsx");
         try (Workbook workbook = new XSSFWorkbook()) {

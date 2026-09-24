@@ -25,6 +25,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -35,6 +36,9 @@ import java.util.regex.Pattern;
 
 @Component
 public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
+
+    private static final int NO_DAYSFLIGHT_MAX_BYTES = 200;
+    static final String VIA_PREFIX = "Other permitted airways published in Viet Nams AIP/";
 
     private static final String FIND_SC_PERMIT_IDS_BY_YEAR_SQL = """
             SELECT PERMNBR_ID FROM T_PERMMASTER_SC
@@ -243,33 +247,176 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     }
 
     @Override
+    public Optional<AtfmPermitSnapshot> findNewPermitInEitherStore(SchedulePermit permit) {
+        try (Connection connection = openConnection()) {
+            for (String table : List.of("T_PERMMASTER_SC", "T_PERMMASTER_NO")) {
+                try (PreparedStatement statement = connection.prepareStatement(
+                        "SELECT ID, PERM_ID FROM " + table
+                                + " WHERE UPPER(TRIM(PERMNBR_ID)) = ? ORDER BY ID DESC")) {
+                    statement.setString(1, permit.atfmTargetPermitId().trim()
+                            .toUpperCase(java.util.Locale.ROOT));
+                    statement.setMaxRows(1);
+                    try (ResultSet rows = statement.executeQuery()) {
+                        if (rows.next()) {
+                            return Optional.of(new AtfmPermitSnapshot(
+                                    rows.getLong("ID"), rows.getLong("PERM_ID"), false));
+                        }
+                    }
+                }
+            }
+            return Optional.empty();
+        } catch (SQLException exception) {
+            throw databaseFailure("check new permit in SC and NO", exception);
+        }
+    }
+
+    @Override
     public Optional<AtfmRevisionBaseline> findRevisionBaseline(SchedulePermit permit) {
         try (Connection connection = openConnection()) {
             if (!permit.seasonalPermit()) {
-                return findNoRevisionBaseline(connection, permit);
+                Optional<AtfmRevisionBaseline> nonScheduled = findNoRevisionBaseline(connection, permit);
+                return nonScheduled.isPresent()
+                        ? nonScheduled
+                        : findLegacyScheduledRevisionBaseline(connection, permit);
             }
-            try (PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
-                statement.setString(1, permit.revisionBasePermitId());
-                statement.setString(2, requiredPermitYear(permit));
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (!resultSet.next()) {
-                        return Optional.empty();
-                    }
-                    long masterId = resultSet.getLong("ID");
-                    long permId = resultSet.getLong("PERM_ID");
-                    String operatorId = resultSet.getString("OPER_ID");
-                    List<ScheduleFlight> flights = new ArrayList<>();
-                    do {
-                        if (resultSet.getString("FLIGHTNBR") != null) {
-                            flights.add(toBaselineFlight(resultSet));
-                        }
-                    } while (resultSet.next());
-                    return Optional.of(new AtfmRevisionBaseline(
-                            masterId, permId, operatorId, flights));
-                }
-            }
+            return findSeasonalRevisionBaseline(connection, permit, requiredPermitYear(permit));
         } catch (SQLException exception) {
             throw databaseFailure("read revision baseline", exception);
+        }
+    }
+
+    private Optional<AtfmRevisionBaseline> findScRevisionBaseline(Connection connection,
+                                                                   String permitId,
+                                                                   String year)
+            throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(FIND_EXISTING_SQL)) {
+            statement.setString(1, permitId);
+            statement.setString(2, year);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (!resultSet.next()) {
+                    return Optional.empty();
+                }
+                long masterId = resultSet.getLong("ID");
+                long permId = resultSet.getLong("PERM_ID");
+                String operatorId = resultSet.getString("OPER_ID");
+                List<ScheduleFlight> flights = new ArrayList<>();
+                do {
+                    if (resultSet.getString("FLIGHTNBR") != null) {
+                        flights.add(toBaselineFlight(resultSet));
+                    }
+                } while (resultSet.next());
+                return Optional.of(new AtfmRevisionBaseline(
+                        masterId, permId, operatorId, permitId, flights));
+            }
+        }
+    }
+
+    private Optional<AtfmRevisionBaseline> findSeasonalRevisionBaseline(
+            Connection connection,
+            SchedulePermit permit,
+            String year) throws SQLException {
+        String basePermitId = permit.revisionBasePermitId();
+        Optional<AtfmRevisionBaseline> base = findScRevisionBaseline(
+                connection, basePermitId, year);
+        Integer currentRevision = permit.revisionNumber();
+        Pattern family = revisionFamilyPattern(basePermitId);
+        if (currentRevision == null || currentRevision < 2 || family == null) {
+            return base;
+        }
+
+        Map<String, RevisionPermitId> precedingByCanonicalId = new LinkedHashMap<>();
+        try (PreparedStatement statement = connection.prepareStatement(
+                FIND_SC_PERMIT_IDS_BY_YEAR_SQL)) {
+            statement.setString(1, year);
+            try (ResultSet rows = statement.executeQuery()) {
+                while (rows.next()) {
+                    String storedPermitId = rows.getString(1);
+                    String canonical = canonicalPermitId(storedPermitId);
+                    java.util.regex.Matcher matcher = family.matcher(canonical);
+                    if (!matcher.matches()) {
+                        continue;
+                    }
+                    String number = matcher.group("number") == null
+                            ? matcher.group("legacyNumber")
+                            : matcher.group("number");
+                    int revision = Integer.parseInt(number);
+                    if (revision > 0 && revision < currentRevision) {
+                        precedingByCanonicalId.putIfAbsent(
+                                canonical, new RevisionPermitId(storedPermitId, revision));
+                    }
+                }
+            }
+        }
+
+        List<AtfmRevisionBaseline> preceding = new ArrayList<>();
+        List<RevisionPermitId> orderedPreceding = precedingByCanonicalId.values().stream()
+                .sorted(Comparator.comparingInt(RevisionPermitId::revision).reversed())
+                .toList();
+        for (RevisionPermitId candidate : orderedPreceding) {
+            findScRevisionBaseline(connection, candidate.permitId(), year)
+                    .ifPresent(preceding::add);
+        }
+        if (preceding.isEmpty()) {
+            return base;
+        }
+
+        List<ScheduleFlight> completeHistory = new ArrayList<>();
+        preceding.forEach(item -> completeHistory.addAll(item.flights()));
+        base.ifPresent(item -> completeHistory.addAll(item.flights()));
+        AtfmRevisionBaseline identity = base.orElse(preceding.getLast());
+        String operatorId = preceding.stream()
+                .map(AtfmRevisionBaseline::operatorId)
+                .filter(value -> value != null && !value.isBlank())
+                .findFirst()
+                .orElse(identity.operatorId());
+        return Optional.of(new AtfmRevisionBaseline(
+                identity.masterId(), identity.permId(), operatorId,
+                base.map(AtfmRevisionBaseline::scheduledPermitId)
+                        .orElse(identity.scheduledPermitId()),
+                completeHistory));
+    }
+
+    private record RevisionPermitId(String permitId, int revision) {
+    }
+
+    private Optional<AtfmRevisionBaseline> findLegacyScheduledRevisionBaseline(
+            Connection connection,
+            SchedulePermit permit) throws SQLException {
+        String noPermitId = noBasePermitId(permit);
+        String year = requiredPermitYear(permit);
+        // A multi-day non-scheduled permit is stored in the scheduled tables
+        // under its unmarked id; that exact id wins over legacy S/W variants.
+        Optional<AtfmRevisionBaseline> unmarked =
+                findScRevisionBaseline(connection, noPermitId, year);
+        if (unmarked.isPresent()) {
+            return unmarked;
+        }
+        List<AtfmRevisionBaseline> matches = new ArrayList<>(2);
+        for (String season : List.of("S", "W")) {
+            String scheduledId = noPermitId.replaceFirst(
+                    "(?i)/(?=[A-Z0-9]+/(?:19|20)\\d{2}$)", "/" + season + "/");
+            findScRevisionBaseline(connection, scheduledId, year).ifPresent(matches::add);
+        }
+        if (matches.size() > 1) {
+            throw new AtfmReferenceDataException(
+                    "Revision base is ambiguous between S and W permits: " + noPermitId);
+        }
+        return matches.stream().findFirst();
+    }
+
+    @Override
+    public Optional<AtfmRevisionBaseline> findCrossStoreRevisionBaseline(SchedulePermit permit) {
+        // Only relevant for the multi-day non-scheduled routing rule: the
+        // permit currently routes to SC storage, but its base permit may
+        // still be sitting in the NO table (e.g. it was originally a
+        // single-day permit before this revision extended it to a range).
+        if (permit.seasonalPermit() || !permit.usesScheduledStorage()) {
+            return Optional.empty();
+        }
+        try (Connection connection = openConnection()) {
+            return findNoRevisionBaseline(connection, permit);
+        } catch (SQLException exception) {
+            throw databaseFailure("read cross-store revision baseline", exception);
         }
     }
 
@@ -391,14 +538,18 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private AtfmWriteResult updateWithinTransaction(Connection connection,
                                                     SchedulePermit permit) throws SQLException {
         List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
-        List<ScheduleFlight> noFlights = noFlights(permit, resolvedFlights);
-        List<ScheduleFlight> scheduledFlights = scheduledFlights(permit, resolvedFlights);
+        List<ScheduleFlight> resolvedOriginalFlights = resolveAirportCodes(
+                connection, permit.originalFlights());
+        SchedulePermit resolvedPermit = permit.withFlightsAndOriginals(
+                resolvedFlights, resolvedOriginalFlights);
+        List<ScheduleFlight> noFlights = noFlights(resolvedPermit, resolvedFlights);
+        List<ScheduleFlight> scheduledFlights = scheduledFlights(resolvedPermit, resolvedFlights);
         AtfmWriteResult scheduledResult = scheduledFlights.isEmpty()
                 ? null
-                : updateScWithinTransaction(connection, permit.withFlights(scheduledFlights));
+                : updateScWithinTransaction(connection, resolvedPermit.withFlights(scheduledFlights));
         AtfmWriteResult noResult = noFlights.isEmpty()
                 ? null
-                : upsertNoWithinTransaction(connection, permit.withFlights(noFlights), noFlights);
+                : upsertNoWithinTransaction(connection, resolvedPermit.withFlights(noFlights), noFlights);
         return combine(scheduledResult, noResult);
     }
 
@@ -609,13 +760,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
 
         List<ExistingFlight> existing = readExistingNoFlights(connection, permId);
-        List<RevisionUpdate> updates = permit.importRevision()
-                && !permit.revisionCreatesNewPermit()
-                ? flights.stream()
-                        .map(flight -> revisionUpdate(existing, flight))
-                        .filter(java.util.Objects::nonNull)
-                        .toList()
-                : List.of();
+        List<RevisionUpdate> updates = revisionUpdates(permit, existing, flights);
         if (!updates.isEmpty()) {
             try (PreparedStatement exact = connection.prepareStatement(UPDATE_NO_DETAIL_SQL);
                  PreparedStatement byCallsign = connection.prepareStatement(UPDATE_NO_DETAIL_BY_CALLSIGN_SQL)) {
@@ -624,7 +769,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                         bindNoDetailUpdateByCallsign(byCallsign, permId, update.flight());
                         byCallsign.addBatch();
                     } else {
-                        bindNoDetailUpdate(exact, permId, update.flight());
+                        bindNoDetailUpdate(exact, permId, update.flight(), update.matchingFlight());
                         exact.addBatch();
                     }
                 }
@@ -744,14 +889,14 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setLong(index++, permId);
         setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
-        statement.setString(index++, noFlightDates(flight));
+        statement.setString(index++, noFlightDatesForStorage(flight));
         statement.setString(index++, flight.flightNumber());
-        setNullableString(statement, index++, flight.registration());
+        setNullableString(statement, index++, registrationForStorage(flight.registration()));
         statement.setString(index++, flight.fromAirport());
         statement.setString(index++, flight.toAirport());
         statement.setString(index++, flight.etd());
         setNullableString(statement, index++, flight.eta());
-        statement.setString(index++, flight.via());
+        statement.setString(index++, viaForStorage(flight.via()));
         statement.setString(index++, "0");
         statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
         statement.setString(index++, "AEROSYNC");
@@ -801,28 +946,29 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     private void bindNoDetailUpdate(PreparedStatement statement,
                                     long permId,
-                                    ScheduleFlight flight) throws SQLException {
+                                    ScheduleFlight flight,
+                                    ScheduleFlight matchingFlight) throws SQLException {
         int index = 1;
         setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
-        setNullableString(statement, index++, flight.registration());
+        setNullableString(statement, index++, registrationForStorage(flight.registration()));
         statement.setString(index++, flight.etd());
         setNullableString(statement, index++, flight.eta());
-        setNullableString(statement, index++, flight.via());
+        setNullableString(statement, index++, viaForStorage(flight.via()));
         statement.setString(index++, "0");
         statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
         statement.setString(index++, "AEROSYNC");
         statement.setString(index++, flight.purposeId());
         statement.setDate(index++, Date.valueOf(flight.endDate()));
         statement.setString(index++, truncateUtf8(flight.remark(), 4000));
-        statement.setString(index++, noFlightDates(flight));
+        statement.setString(index++, noFlightDatesForStorage(flight));
         statement.setString(index++, normalize(flight.fromAirport()));
         statement.setString(index++, normalize(flight.toAirport()));
         statement.setLong(index++, permId);
-        statement.setString(index++, normalize(flight.flightNumber()));
-        statement.setString(index++, normalize(flight.fromAirport()));
-        statement.setString(index++, normalize(flight.toAirport()));
-        statement.setString(index, noFlightDates(flight));
+        statement.setString(index++, normalize(matchingFlight.flightNumber()));
+        statement.setString(index++, normalize(matchingFlight.fromAirport()));
+        statement.setString(index++, normalize(matchingFlight.toAirport()));
+        statement.setString(index, noFlightDatesForStorage(matchingFlight));
     }
 
     private void bindNoDetailUpdateByCallsign(PreparedStatement statement,
@@ -831,33 +977,89 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         int index = 1;
         setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
-        setNullableString(statement, index++, flight.registration());
+        setNullableString(statement, index++, registrationForStorage(flight.registration()));
         statement.setString(index++, flight.etd());
         setNullableString(statement, index++, flight.eta());
-        setNullableString(statement, index++, flight.via());
+        setNullableString(statement, index++, viaForStorage(flight.via()));
         statement.setString(index++, "0");
         statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
         statement.setString(index++, "AEROSYNC");
         statement.setString(index++, flight.purposeId());
         statement.setDate(index++, Date.valueOf(flight.endDate()));
         statement.setString(index++, truncateUtf8(flight.remark(), 4000));
-        statement.setString(index++, noFlightDates(flight));
+        statement.setString(index++, noFlightDatesForStorage(flight));
         statement.setString(index++, normalize(flight.fromAirport()));
         statement.setString(index++, normalize(flight.toAirport()));
         statement.setLong(index++, permId);
         statement.setString(index, normalize(flight.flightNumber()));
     }
 
+    private List<RevisionUpdate> revisionUpdates(SchedulePermit permit,
+                                                 List<ExistingFlight> existing,
+                                                 List<ScheduleFlight> flights) {
+        if (!permit.importRevision() || permit.revisionCreatesNewPermit()) {
+            return List.of();
+        }
+        List<RevisionUpdate> updates = new ArrayList<>();
+        for (int index = 0; index < flights.size(); index++) {
+            ScheduleFlight flight = flights.get(index);
+            ScheduleFlight documentedOriginal = documentedOriginalFor(permit, flight, index);
+            RevisionUpdate update = revisionUpdate(existing, flight, documentedOriginal);
+            if (update != null) {
+                updates.add(update);
+            }
+        }
+        return List.copyOf(updates);
+    }
+
+    /**
+     * A non-scheduled revision must locate the target through the OLD row from
+     * the revision document. The replacement row may legitimately change its
+     * date, route, time and callsign, so it cannot be used as the database key.
+     */
     private RevisionUpdate revisionUpdate(List<ExistingFlight> existing,
-                                          ScheduleFlight flight) {
-        ExistingFlight expected = ExistingFlight.fromExpected(flight);
+                                          ScheduleFlight replacement,
+                                          ScheduleFlight documentedOriginal) {
+        if (documentedOriginal != null) {
+            ExistingFlight original = ExistingFlight.fromExpected(documentedOriginal);
+            if (existing.stream().anyMatch(row -> row.sameRevisionIdentity(original))) {
+                return new RevisionUpdate(replacement, documentedOriginal, false);
+            }
+        }
+        ExistingFlight expected = ExistingFlight.fromExpected(replacement);
         if (existing.stream().anyMatch(row -> row.sameRevisionIdentity(expected))) {
-            return new RevisionUpdate(flight, false);
+            return new RevisionUpdate(replacement, replacement, false);
         }
         long sameCallsign = existing.stream()
-                .filter(row -> sameText(row.flightNumber, flight.flightNumber()))
+                .filter(row -> sameText(row.flightNumber, replacement.flightNumber()))
                 .count();
-        return sameCallsign == 1 ? new RevisionUpdate(flight, true) : null;
+        return sameCallsign == 1 ? new RevisionUpdate(replacement, null, true) : null;
+    }
+
+    private ScheduleFlight documentedOriginalFor(SchedulePermit permit,
+                                                  ScheduleFlight replacement,
+                                                  int replacementIndex) {
+        List<ScheduleFlight> originals = permit.originalFlights();
+        if (originals.isEmpty()) {
+            return null;
+        }
+        List<ScheduleFlight> sameIdentity = originals.stream()
+                .filter(original -> sameRevisionIdentity(original, replacement))
+                .toList();
+        if (sameIdentity.size() == 1) {
+            return sameIdentity.getFirst();
+        }
+        List<ScheduleFlight> sameCallsign = originals.stream()
+                .filter(original -> sameText(original.flightNumber(), replacement.flightNumber()))
+                .toList();
+        if (sameCallsign.size() == 1) {
+            return sameCallsign.getFirst();
+        }
+        // CAAV OLD/NEW tables are paired by row. Positional pairing is safe
+        // only when both tables have the same cardinality.
+        return originals.size() == permit.flights().size()
+                ? originals.get(replacementIndex)
+                : null;
     }
 
     private boolean sameText(String left, String right) {
@@ -871,7 +1073,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 ExistingFlight.fromExpected(right));
     }
 
-    private record RevisionUpdate(ScheduleFlight flight, boolean byCallsign) {
+    private record RevisionUpdate(ScheduleFlight flight,
+                                  ScheduleFlight matchingFlight,
+                                  boolean byCallsign) {
     }
 
     private String noFlightDates(ScheduleFlight flight) {
@@ -892,6 +1096,31 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     .toUpperCase(java.util.Locale.ENGLISH));
         }
         return String.join(",", dates);
+    }
+
+    private String noFlightDatesForStorage(ScheduleFlight flight) {
+        return truncateDelimited(noFlightDates(flight), NO_DAYSFLIGHT_MAX_BYTES, ",");
+    }
+
+    private String registrationForStorage(String registration) {
+        return null;
+    }
+
+    static String truncateDelimited(String value, int maxBytes, String delimiterPattern) {
+        if (value == null || value.getBytes(StandardCharsets.UTF_8).length <= maxBytes) {
+            return value;
+        }
+        String[] entries = value.split(delimiterPattern);
+        StringBuilder result = new StringBuilder();
+        for (String entry : entries) {
+            String normalized = entry.trim();
+            if (normalized.isEmpty()) continue;
+            String candidate = result.isEmpty() ? normalized : result + "," + normalized;
+            if (candidate.getBytes(StandardCharsets.UTF_8).length > maxBytes) break;
+            result.setLength(0);
+            result.append(candidate);
+        }
+        return result.isEmpty() ? truncateUtf8(value, maxBytes) : result.toString();
     }
 
     private List<ExistingFlight> readExistingNoFlights(Connection connection,
@@ -919,7 +1148,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                                 normalize(rows.getString("TO_AIRP")),
                                 normalize(rows.getString("ETD")),
                                 normalize(rows.getString("ETA")),
-                                normalize(rows.getString("VIA")),
+                                viaForComparison(rows.getString("VIA")),
                                 date, date, normalize(rows.getString("REMARK"))));
                     }
                 }
@@ -1124,7 +1353,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         setNullableAircraftId(statement, index++, flight.craftId());
         statement.setBigDecimal(index++, flight.mtow());
         statement.setString(index++, flight.flightNumber());
-        setNullableString(statement, index++, flight.registration());
+        setNullableString(statement, index++, registrationForStorage(flight.registration()));
         for (int day = 0; day < 7; day++) {
             statement.setString(index++, String.valueOf(flight.serviceDays().charAt(day)));
         }
@@ -1132,7 +1361,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         statement.setString(index++, flight.toAirport());
         statement.setString(index++, flight.etd());
         setNullableString(statement, index++, flight.eta());
-        statement.setString(index++, flight.via());
+        statement.setString(index++, viaForStorage(flight.via()));
         statement.setString(index++, "0");
         statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
         statement.setString(index++, "AEROSYNC");
@@ -1234,7 +1463,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 normalize(row.getString("TO_AIRP")),
                 normalize(row.getString("ETD")),
                 normalize(row.getString("ETA")),
-                normalize(row.getString("VIA")),
+                viaForComparison(row.getString("VIA")),
                 begin == null ? null : begin.toLocalDate(),
                 end == null ? null : end.toLocalDate(),
                 normalize(row.getString("REMARK")));
@@ -1311,6 +1540,27 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         return result.toString();
     }
 
+    static String viaForStorage(String value) {
+        String route = viaForComparison(value);
+        return route == null ? null : VIA_PREFIX + route;
+    }
+
+    static String viaForComparison(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        String normalized = value.trim();
+        for (String prefix : List.of(VIA_PREFIX,
+                "Other permitted airways published in Viet Nam's AIP/",
+                "Other permitted airways published in Viet Nam" + (char) 0x2019 + "s AIP/")) {
+            if (normalized.regionMatches(true, 0, prefix, 0, prefix.length())) {
+                normalized = normalized.substring(prefix.length()).trim();
+                break;
+            }
+        }
+        return normalized.isBlank() ? null : normalized;
+    }
+
     private static String normalize(String value) {
         return value == null || value.isBlank() ? null : value.trim();
     }
@@ -1353,6 +1603,10 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             java.time.LocalDate endDate,
             String remark
     ) {
+        ExistingFlight {
+            // Registration is no longer persisted or compared, including revisions.
+            registration = null;
+        }
         /** Optional enrichment must not create a second copy of one schedule row. */
         boolean sameBusinessRow(ExistingFlight other) {
             return Objects.equals(flightNumber, other.flightNumber)
@@ -1384,7 +1638,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     flight.mtow() == null ? BigDecimal.ZERO : flight.mtow().stripTrailingZeros(),
                     normalize(flight.flightNumber()), normalize(flight.registration()), flight.serviceDays(),
                     normalize(flight.fromAirport()), normalize(flight.toAirport()), normalize(flight.etd()),
-                    normalize(flight.eta()), normalize(flight.via()), flight.beginDate(), flight.endDate(),
+                    normalize(flight.eta()), viaForComparison(flight.via()), flight.beginDate(), flight.endDate(),
                     normalize(flight.remark()));
         }
     }

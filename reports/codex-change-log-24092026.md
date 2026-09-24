@@ -1,0 +1,245 @@
+# Nhật ký chỉnh sửa — 24092026
+
+## Mục tiêu và phạm vi
+
+Chốt các thay đổi hiện có theo yêu cầu user trên nhánh fix/email-to-atfm-flow-integrity. Đây là commit tổng hợp các thay đổi từ nhiều lượt trước, không chỉ thay đổi trong ngày. Không push.
+
+## Nội dung và vị trí
+
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline: mở rộng chọn bảng Word DOC/DOCX, nhận diện profile, chuẩn hóa loại tàu, purpose và đường bay; hỗ trợ sector nhiều sân bay và các dòng airway nối tiếp. Carrier Name ưu tiên cho billingAddress. Giữ xử lý OLD/NEW và kế thừa dữ liệu revision.
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm: cập nhật đối chiếu ATFM, phân luồng SC/NO cho phép nhiều ngày và tra phép revision; kiểm tra phép mới ở cả hai bảng master. Registration ghi NULL. VIA dùng tiền tố Other permitted airways published in Viet Nams AIP/ và hỗ trợ đọc tiền tố cũ.
+- aerosync-worker/src/main/java/vatm/aerosync/worker/service/PermitImportCoordinator.java: phép mới trùng được bỏ qua, không nối thêm lịch bay; lưu thông báo tồn tại. Giữ nhánh retry FAILED/revision.
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/DatabaseWriterStep.java: remark phép mới chỉ lưu nhiều loại tàu, một loại để trống; giữ nhánh revision. Cập nhật cảnh báo xử lý và lưu trữ file lỗi.
+- aerosync-worker/src/main/resources/permit-formats và permit-reference: bổ sung/sửa các profile hãng, gồm SVA mùa cấp mới, bảng tham chiếu tàu bay/sân bay.
+- aerosync-ingest/src: cập nhật metadata email, deduplication và ingest phục vụ resend an toàn; bổ sung test liên quan.
+- aerosync-api/src: giới hạn request danh sách, dùng truy vấn đếm cho Dashboard, resend authorization, khôi phục job treo, retry sau commit transaction, thông báo lỗi và cấu hình/test API.
+- aerosync-common/src/main/java/vatm/aerosync/common/repository/SyncJobRepository.java: truy vấn phân trang, đếm và tra job quá hạn; bỏ khai báo trùng.
+- aerosync-ui: Dashboard chỉ lấy thống kê, bỏ bảng job/log; email chỉ tải tối đa 50 dòng; UI đọc file cấu hình service và hỗ trợ cấu hình cạnh executable; cập nhật layout và publish self-contained.
+- scripts/release.ps1, deployment/: tạo gói backend + UI x64, WinSW, checksum, cấu hình mẫu; từ chối ghi đè thư mục release; có tham số thư mục publish riêng và ZIP chứa file dot-env mẫu.
+- scripts/, reports/: lưu script audit, SQL kiểm tra/sửa dữ liệu và báo cáo Markdown đã có; không chạy các script sửa database trong lượt commit này.
+- README.md, .gitignore: cập nhật tài liệu vận hành và loại artifact theo thay đổi hiện có.
+- aerosync-*/src/test: bổ sung test parser/profile, revision, retry, giới hạn lưu trữ, API, ingest; cập nhật fixture API test và kỳ vọng thông báo theo hành vi hiện tại.
+
+## Quy tắc Codex toàn cục (ngoài repository)
+
+- Tạo C:/Users/QT/.codex/AGENTS.md, áp dụng mọi project dùng CODEX_HOME này; file C:/Users/QT/AGENTS.md tạo nhầm trong lượt này đã được xóa.
+- Kiểm tra yêu cầu trước khi sửa; yêu cầu mơ hồ cần phiếu plan với câu hỏi, phương án gợi ý và lựa chọn user tự nhập.
+- Nhật ký ddMMyyyy ghi thay đổi, file, kiểm tra và giới hạn; tự commit local phần hoàn tất, không push.
+- Nhật ký cấu hình riêng: C:/Users/QT/.codex/change-log-24092026.md. Không đưa cấu hình/token Codex vào repo.
+
+## Kiểm tra và giới hạn
+
+- Kết quả kiểm tra ở lượt build trước: common 23 test, ingest 57 (2 skip), worker 307 (28 skip), API 54; không failure/error ở lần kiểm tra cuối. UI Release x64 publish thành công. Không chạy lại test nghiệp vụ trong lượt chỉ commit này.
+- Lượt này kiểm tra danh sách staged, định dạng diff, không có file nhị phân/build/tài liệu bị loại hoặc token dạng khóa riêng trong staged. Chuẩn hóa dòng trống EOF tại 11 YAML seasonal và hai file deployment; không sửa logic ứng dụng.
+- Lỗi Bamboo LD-3454 đã được chẩn đoán ở lượt trước, CHƯA sửa parser cho lỗi đó; commit này không tuyên bố đã sửa.
+- Không đưa ảnh, Word, Excel, PDF, .doc.txt/.docx.txt (kể cả LD-672), log, archive, bin/obj/target/dist vào commit. Không xóa các file đó khỏi đĩa hoặc lịch sử Git.
+- Giữ file SQL và manifest phục vụ script audit nhưng không kèm bản trích xuất Word/corpus.
+
+## Danh sách file của commit
+- .gitignore
+- README.md
+- aerosync-api/src/main/java/vatm/aerosync/api/AerosyncApiApplication.java
+- aerosync-api/src/main/java/vatm/aerosync/api/config/EmailResendProperties.java
+- aerosync-api/src/main/java/vatm/aerosync/api/controller/AuditLogController.java
+- aerosync-api/src/main/java/vatm/aerosync/api/controller/EmailReportController.java
+- aerosync-api/src/main/java/vatm/aerosync/api/controller/SyncJobController.java
+- aerosync-api/src/main/java/vatm/aerosync/api/dto/EmailReportDetailResponse.java
+- aerosync-api/src/main/java/vatm/aerosync/api/dto/EmailReportRowResponse.java
+- aerosync-api/src/main/java/vatm/aerosync/api/dto/EmailResendRequest.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/AuditLogQueryService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/DashboardService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/EmailReportService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/EmailResendAuthorizationService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/EmailResendService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/IncomingReportService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/StaleSyncJobRecoveryService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/SyncJobService.java
+- aerosync-api/src/main/java/vatm/aerosync/api/service/VietnameseErrorMessageTranslator.java
+- aerosync-api/src/main/java/vatm/aerosync/api/web/ApiExceptionHandler.java
+- aerosync-api/src/main/resources/application.yaml
+- aerosync-api/src/test/java/vatm/aerosync/api/controller/EmailReportControllerTest.java
+- aerosync-api/src/test/java/vatm/aerosync/api/service/AlertServiceTest.java
+- aerosync-api/src/test/java/vatm/aerosync/api/service/EmailResendAuthorizationServiceTest.java
+- aerosync-api/src/test/java/vatm/aerosync/api/service/EmailResendServiceTest.java
+- aerosync-api/src/test/java/vatm/aerosync/api/service/StaleSyncJobRecoveryServiceTest.java
+- aerosync-api/src/test/java/vatm/aerosync/api/service/VietnameseErrorMessageTranslatorTest.java
+- aerosync-api/src/test/resources/application-test.yaml
+- aerosync-common/src/main/java/vatm/aerosync/common/repository/SyncJobRepository.java
+- aerosync-ingest/src/main/java/vatm/aerosync/ingest/email/EmailMessage.java
+- aerosync-ingest/src/main/java/vatm/aerosync/ingest/email/JavaMailEmailClient.java
+- aerosync-ingest/src/main/java/vatm/aerosync/ingest/service/DeduplicationService.java
+- aerosync-ingest/src/main/java/vatm/aerosync/ingest/service/EmailIngestService.java
+- aerosync-ingest/src/test/java/vatm/aerosync/ingest/email/JavaMailEmailClientTest.java
+- aerosync-ingest/src/test/java/vatm/aerosync/ingest/service/DeduplicationServiceTest.java
+- aerosync-ingest/src/test/java/vatm/aerosync/ingest/service/EmailIngestServiceTest.java
+- aerosync-ui/.env.example
+- aerosync-ui/AeroSync.UI.csproj
+- aerosync-ui/App.xaml.cs
+- aerosync-ui/MainWindow.xaml
+- aerosync-ui/Services/AeroSyncApiClient.cs
+- aerosync-ui/ViewModels/DashboardViewModel.cs
+- aerosync-ui/Views/DashboardPage.xaml
+- aerosync-ui/Views/DashboardPage.xaml.cs
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm/AtfmDocumentRouteException.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm/AtfmRevisionBaseline.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm/AtfmScheduleGateway.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm/AtfmViaResolver.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm/JdbcAtfmScheduleGateway.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/atfm/JdbcPermitOperatorResolver.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/model/ScheduleFlight.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/model/SchedulePermit.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/AircraftTypeNotation.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/AircraftTypeResolutionStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/BusinessRuleValidatorStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/DatabaseWriterStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/DocxPermitFormatProfile.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/DocxPermitProfileCatalog.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/DocxSchedulePermitParser.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/FileArchiverStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/FileProcessingPipeline.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/FormatValidatorStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/ParserStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/PermitOperatorCatalog.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/PurposeResolutionStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/RevisionReconciliationStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/ViaResolutionStep.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/WordPermitFormatDetector.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/service/PermitImportCoordinator.java
+- aerosync-worker/src/main/java/vatm/aerosync/worker/service/VietnameseStoredErrorMessage.java
+- aerosync-worker/src/main/resources/permit-formats/abl-english-seasonal-landing-cancellation.yaml
+- aerosync-worker/src/main/resources/permit-formats/ahk-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/aic-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/alk-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/box-caav-seasonal-overflight-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/bsc-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/caav-generic-landing-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/caav-generic-landing-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/caav-generic-overflight-issued-na-operator.yaml
+- aerosync-worker/src/main/resources/permit-formats/caav-generic-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/caav-generic-overflight-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/caav-medical-ambulance-landing-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/cal-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/ceb-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/cks-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/csz-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/cxa-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/dal-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/eth-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/fdx-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/ffm-caav-inline-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/fqa-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/gap-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/gec-english-landing-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/gfa-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/gti-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/hai-english-landing-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/hgb-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/hke-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/hvn-vietnamese-referenced-season-change.yaml
+- aerosync-worker/src/main/resources/permit-formats/icl-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/icv-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/irm-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/jja-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/kme-english-seasonal-overflight-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/kmi-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/lao-caav-inline-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/lao-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/lj-english-landing-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/mfx-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/mjets-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/mph-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/msr-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/mxd-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/pal-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/prv-air7-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/prv-jetex-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/prv-philippines-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/qtr-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/rba-english-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/rmy-caav-inline-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/rxi-english-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/sbi-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/spa017-vietnamese-seasonal-landing-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/spq-vietnamese-seasonal-landing-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/sva-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/swr-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/tha-english-overflight-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/thy-english-landing-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/tnu-caav-inline-overflight-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/tri-mg-caav-inline-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/tvr-caav-monthly-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/twy-english-landing-revision.yaml
+- aerosync-worker/src/main/resources/permit-formats/ual-caav-headerless-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/ups-caav-seasonal-overflight-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/vag-vietnamese-seasonal-landing-issued.yaml
+- aerosync-worker/src/main/resources/permit-formats/vfc-vietnamese-landing-change.yaml
+- aerosync-worker/src/main/resources/permit-formats/vjc-vietnamese-landing-issued.yaml
+- aerosync-worker/src/main/resources/permit-reference/aircraft-preferences.yaml
+- aerosync-worker/src/main/resources/permit-reference/airport-codes.yaml
+- aerosync-worker/src/test/java/vatm/aerosync/worker/atfm/AtfmViaResolverTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/atfm/JdbcAtfmScheduleGatewayTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/atfm/JdbcAtfmViaStorageTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/atfm/JdbcPermitOperatorResolverTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/atfm/NewPermitStoragePolicyTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/model/SchedulePermitMultiDayStorageTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/model/SchedulePermitRevisionNumberTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/AblSeasonalLandingCancellationProfileTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/AircraftTypeResolutionStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/AirlineSpecificPermitProfileRegressionTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/AtfmAircraftRouteAuditTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/CaavEnglishIssuedPermitRevisionProfileTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/CaavEnglishOverflightRevisionProfileTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/CaavGenericOverflightAircraftTableTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/DatabaseWriterStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/DocxSchedulePermitParserTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/ErrorFormatMissingCarrierProfilesTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/FileArchiverStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/FileProcessingPipelineTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/FormatValidatorStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/HvnReferencedSeasonNewPermitProfileTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/NewPermitRemarkTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/Ngay0307PermitProfilesRegressionTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/ParserStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/PermitOperatorCatalogTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/PurposeResolutionStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/RevisionReconciliationStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/SavedPermitRepair20260915Test.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/Spa017SeasonalLandingRevisionProfileTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/Spa066PermitProfileRegressionTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/Spa070PermitProfileRegressionTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/SvaSeasonalOverflightIssuedProfileTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/ViaResolutionStepTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/WordPermitCorpusRegressionTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/WordPermitFormatDetectorTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/service/PermitImportCoordinatorTest.java
+- aerosync-worker/src/test/java/vatm/aerosync/worker/service/VietnameseStoredErrorMessageTest.java
+- deployment/AEROSYNC-FLOW-CANVAS.html
+- deployment/AeroSync-Deploy.cmd
+- deployment/DEPLOYMENT-GUIDE.md
+- deployment/HUONG-DAN.txt
+- deployment/deploy/AeroSync-Deploy.ps1
+- deployment/deploy/Open-AeroSync.ps1
+- deployment/deploy/Run-Service.ps1
+- reports/codex-change-log-24092026.md
+- reports/error-format-audit-2026-09-14.md
+- reports/error-format-missing-carrier-yaml-2026-09-09.md
+- reports/latest-100-detail-rows.txt
+- reports/latest-100-saved-audit-2026-09-04.manifest.txt
+- reports/latest-100-saved-audit-2026-09-04.md
+- reports/latest-100-saved-permits-2026-08-17.manifest.txt
+- reports/saved-permit-repair-preview-2026-09-15.md
+- reports/saved-permit-repair-verification-2026-09-15.md
+- reports/saved-permits-audit-2026-09-15.md
+- reports/targeted-repair-run-2026-09-15/db-check2.sql
+- reports/targeted-repair-run-2026-09-15/db-final-check.sql
+- reports/targeted-repair-run-2026-09-15/db-lookup.sql
+- reports/targeted-repair-run-2026-09-15/db-of6517.sql
+- reports/targeted-repair-run-2026-09-15/manifest.txt
+- scripts/audit-latest-saved-permits.ps1
+- scripts/migrate-atfm-purpose-craft.sql
+- scripts/preview-saved-permit-repair.sql
+- scripts/release.ps1
+- scripts/resend-latest-word.ps1
+- scripts/run-db-check2.sh
+- scripts/run-sql-read-only.sh
+- scripts/run-targeted-corpus-20260915.sh

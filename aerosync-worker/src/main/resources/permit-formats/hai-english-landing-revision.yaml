@@ -39,7 +39,7 @@ reference:
   group: value
   required: false
 purpose:
-  defaultId: PAX
+  defaultId: BUS
   mappings:
   - pattern: (?iu)\bFERR?Y\b|TIẾP\s+NHẬN\s+TÀU\s+BAY|ĐI\s+SƠN\s+TÀU
     value: FER

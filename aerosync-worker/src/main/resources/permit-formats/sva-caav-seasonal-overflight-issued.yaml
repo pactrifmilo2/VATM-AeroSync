@@ -1,0 +1,40 @@
+id: sva-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 310
+
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*SV\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*SVA\b'
+  - '(?iu)SAUDI\s+ARABIAN\s+AIRLINES|\bSAUDIA\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b|\bORIGINAL\s+SCHEDULE\b|\bNEW\s+SCHEDULE\b)).*$'
+
+operator:
+  fixedValue: SVA
+
+schedule:
+  purposeId: PAX
+  includeEta: true
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+
+route:
+  tableRequired: true
+  allowEmpty: false
+  filterSchedule: false
+  fallbackToFirst: false
+
+# Aircraft type/registration are published in a separate table, not in Schedule.
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type]
+    registrationMarks: [Aircraft registration Mark, Aircraft registration mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+  defaultType: B77W
+  lastMatchingTable: false
+
+validation:
+  reviewOnly: false
+  allowIataAirports: false

@@ -101,7 +101,9 @@ public class IncomingReportService {
                 null,
                 jobStatus,
                 record != null && WordFormatRequirement.isRequired(
-                        record.getOriginalFileName(), record.getErrorMessage()));
+                        record.getOriginalFileName(), record.getErrorMessage()),
+                "folder",
+                2);
     }
 
     private Map<Long, FileRecord> latestRecords(List<Long> syncJobIds) {

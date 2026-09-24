@@ -1,432 +1,363 @@
 # VATM AeroSync
 
-Multi-module data sync platform: ingest files from email or a folder, process them through a pipeline, store flight data in Oracle Database, and monitor via a REST API and Windows desktop UI.
+VATM AeroSync tiếp nhận giấy phép bay từ email hoặc thư mục, đọc file Word, chuẩn hóa dữ liệu, đối chiếu với ATFM và ghi kết quả vào Oracle. Hệ thống gồm:
 
-| Module | Role |
-|--------|------|
-| `aerosync-ingest` | Watches incoming folder + IMAP email, publishes jobs to RabbitMQ |
-| `aerosync-worker` | Processes files, validates data, writes to Oracle Database |
-| `aerosync-api` | Dashboard REST API (stats, jobs, config, audit logs) |
-| `aerosync-ui` | WinUI operator dashboard |
-| `aerosync-common` | Shared entities, DTOs, repositories |
+| Module | Chức năng |
+|---|---|
+| `aerosync-ingest` | Quét `incoming`, đọc email IMAP, chống trùng và gửi job qua RabbitMQ |
+| `aerosync-worker` | Đọc giấy phép, nhận dạng mẫu YAML, chuẩn hóa và ghi Oracle ATFM |
+| `aerosync-api` | Dashboard REST API, job, báo cáo, audit log và gửi lại email |
+| `aerosync-ui` | Ứng dụng WinUI cho người vận hành |
+| `aerosync-common` | Entity, DTO và repository dùng chung |
 
----
+## Luồng xử lý
 
-## Development install (Windows)
+```mermaid
+flowchart LR
+ A[Email hoặc incoming] --> B[ingest]
+ B --> C[SHA-256 + SyncJob]
+ C --> D[RabbitMQ]
+ D --> E[worker]
+ E --> F[Mẫu YAML + đọc Word]
+ F --> G[Chuẩn hóa và đối chiếu]
+ G --> H{Loại phép}
+ H -->|Phép mùa hoặc HVN đặc biệt| I[permSC]
+ H -->|Phép không thường lệ| J[permNO]
+ I --> K[Trạng thái + lưu trữ]
+ J --> K
+ K --> L[API/UI]
+```
 
-Use this guide to set up AeroSync on a **new dev machine**.
+Worker thực hiện lần lượt: kiểm tra file, chọn profile, đọc số phép/ngày/lịch bay,
+chuẩn hóa callsign/sân bay/tàu bay/VIA, đối chiếu phép gốc hoặc revision, kiểm tra
+nghiệp vụ, ghi master/detail trong transaction, cập nhật trạng thái và lưu trữ file.
 
-### 1. Prerequisites
+| Trường hợp | Bảng ghi |
+|---|---|
+| Số phép có `/S/` hoặc `/W/` | `T_PERMMASTER_SC` / `T_PERMDETAIL_SC` |
+| Phép không thường lệ không có season | `T_PERMMASTER_NO` / `T_PERMDETAIL_NO` |
+| HVN đặc biệt tham chiếu phép mùa gốc | `T_PERMMASTER_SC` / `T_PERMDETAIL_SC` |
 
-Install the following before you start:
+Luồng `flight_data` cũ đã tắt trong môi trường vận hành; giấy phép Word được ghi vào các bảng ATFM.
 
-| Software | Version | Required for |
-|----------|---------|--------------|
-| **Windows** | 10/11 (64-bit) | All components |
-| **Git** | Latest | Clone the repository |
-| **Java JDK** | **21** | Backend services (Maven wrapper included) |
-| **.NET SDK** | **8** | Desktop UI only (optional) |
-| **Oracle Database XE** | 21c | Database |
-| **RabbitMQ** | 4.x | Message queue (requires Erlang OTP) |
-| **Redis** | 7.x | Dedup, caching, distributed locks |
+### HVN đặc biệt
 
-Make sure Oracle Database XE, RabbitMQ, and Redis are running as Windows services before launching AeroSync.
+Mẫu `hvn-vietnamese-referenced-season-change` xử lý tài liệu HVN có lịch gốc,
+lịch mới và phép mùa gốc được tham chiếu. `SEASON` lấy từ bản ghi gốc trong
+`T_PERMMASTER_SC`, không tự đoán; `VERSION` mặc định là `A`; `FLIGHTTYPE` là `NO`,
+nhưng dữ liệu ghi vào `permSC`; các dòng lịch gốc được đánh dấu hủy tham chiếu.
 
-### 2. Clone the repository
+Ký tự của `PERMNBR` phải có thật trong số phép nguồn. `S/W` đứng sát số là season,
+không được ghép vào number:
+
+| Nguồn | `PERMNBR` | Identity khi season là `S` |
+|---|---:|---|
+| `LD-2994/8/2026VN` | `2994` | `LD 02994/S/CHK/2026` |
+| `LD-2994A/8/2026VN` | `2994A` | `LD 02994A/S/CHK/2026` |
+| `LD-2995S/8/2026VN` | `2995` | `LD 02995/S/CHK/2026` |
+
+### Trạng thái file
+
+| Kết quả | Thư mục lưu trữ |
+|---|---|
+| Thành công hoặc trùng | `processed/yyyy/MM/dd` |
+| Sai format | `error-format/yyyy/MM/dd` |
+| Sai nghiệp vụ/thiếu tham chiếu | `quarantine/yyyy/MM/dd` |
+| Lỗi runtime | `error/yyyy/MM/dd` |
+
+## Cài môi trường phát triển
+
+Yêu cầu: Windows 10/11 64-bit, Java JDK 21, Oracle XE 21c hoặc Oracle tương thích,
+RabbitMQ 4.x, Redis 7.x. Git và .NET SDK 8 là tùy chọn; .NET chỉ cần để build UI.
 
 ```powershell
 git clone <repository-url> VATM-AeroSync
 cd VATM-AeroSync
+Copy-Item .env.example .env
 ```
 
-You can also copy the project folder directly if Git is not used on that machine.
+Oracle phải có schema chứa bảng theo dõi AeroSync. Chạy bằng SYSDBA và schema ứng dụng:
 
-### 3. Create the database
-
-Oracle XE creates the `XEPDB1` pluggable database during installation. Create the AeroSync schema user by connecting as SYSDBA and running the supplied setup script:
-
-```powershell
-cd <oracle-home>\bin
-.\sqlplus.exe / as sysdba
+```sql
 @D:\path\to\VATM-AeroSync\scripts\setup-oracle.sql
+@D:\path\to\VATM-AeroSync\scripts\init-aerosync-oracle.sql
 ```
 
-The script prompts for the `VATM_USER` password. Put that same password in `.env`.
+Khi nâng cấp database cũ, chạy thêm migration còn thiếu:
 
-Initialize the AeroSync tables while connected as that schema user:
-
-```powershell
-.\sqlplus.exe vatm_user@//localhost:1521/XEPDB1 `
-  @D:\path\to\VATM-AeroSync\scripts\init-aerosync-oracle.sql
+```sql
+@D:\path\to\VATM-AeroSync\scripts\migrate-phase4-oracle.sql
+@D:\path\to\VATM-AeroSync\scripts\migrate-phase5-oracle.sql
 ```
 
-The initialization script creates only AeroSync-owned tables, indexes, and constraints.
-The legacy training/`FLIGHT_DATA` table and sequence are intentionally excluded. It can be run again safely: existing tables and
-indexes are kept. After initialization, set
-`SPRING_JPA_HIBERNATE_DDL_AUTO=validate` so application startup verifies the schema
-without modifying it.
+Sau khi khởi tạo môi trường vận hành, dùng `SPRING_JPA_HIBERNATE_DDL_AUTO=validate`.
 
-#### Use the existing ATFM schema
+### Các nhóm `.env` quan trọng
 
-To keep AeroSync's tracking data in the existing ATFM schema, connect as the ATFM
-schema user and run the same initialization script:
+| Nhóm | Mục đích |
+|---|---|
+| `SPRING_DATASOURCE_*` | Database theo dõi AeroSync của ingest/API |
+| `APP_ATFM_DATASOURCE_*` | Database/schema ATFM đích và worker |
+| `APP_ATFM_WRITE_ENABLED` | Cho phép ghi thật vào ATFM |
+| `APP_ATFM_MANUAL_REVIEW_ENABLED` | Cho phép/chặn profile cần review |
+| `SPRING_RABBITMQ_*` | RabbitMQ |
+| `SPRING_DATA_REDIS_*` | Redis |
+| `APP_FILE_PATHS_*` | incoming, processed, error, quarantine |
+| `APP_EMAIL_*` | IMAP |
+| `APP_EMAIL_RESEND_*` | SMTP gửi lại email |
+| `SERVER_PORT` | Cổng API, mặc định `8080`; đổi giá trị nếu cổng 8080 đang bị chiếm |
 
-```powershell
-sqlplus <ATFM_USER>@//172.29.187.90:1521/PDBORCL `
-  @D:\path\to\VATM-AeroSync\scripts\init-aerosync-oracle.sql
-```
+Không commit `.env`. Giữ `APP_ATFM_WRITE_ENABLED=false` trong lần kiểm tra đầu tiên,
+chỉ bật sau khi đã xác nhận đúng database và dữ liệu dry-run.
 
-Then configure all three services with the ATFM schema as their primary datasource:
+## Chạy local
 
-```env
-SPRING_DATASOURCE_URL=jdbc:oracle:thin:@//172.29.187.90:1521/PDBORCL
-SPRING_DATASOURCE_USERNAME=<ATFM_USER>
-SPRING_DATASOURCE_PASSWORD=<PASSWORD>
-SPRING_JPA_HIBERNATE_DDL_AUTO=validate
-```
-
-The script does not change `T_PERMMASTER_SC`, `T_PERMDETAIL_SC`, or other existing
-ATFM tables. The connected user needs `CREATE TABLE`, `CREATE SEQUENCE`, and
-tablespace quota for the first run.
-
-### 4. Create environment config
-
-```powershell
-copy .env.example .env
-```
-
-Edit `.env` with a text editor. For a basic local setup, the defaults point to localhost. Change these only if needed:
-
-| Setting | Default | Notes |
-|---------|---------|-------|
-| `SPRING_DATASOURCE_*` | `localhost:1521/XEPDB1` | Oracle XE connection |
-| `SPRING_RABBITMQ_*` | `localhost:5672` | guest / guest |
-| `SPRING_DATA_REDIS_*` | `localhost:6379` | |
-| `APP_FILE_PATHS_*` | `D:/vatm-storage/...` | Created automatically on first run |
-| `APP_INGEST_SCHEDULER_FIXED_DELAY_MS` | `300000` (5 min) | Use `30000` for faster dev testing |
-| `APP_EMAIL_*` | Empty password | Optional — see [Email ingest](#email-ingest-optional) |
-
-> **Never commit `.env`** — it may contain passwords. Only `.env.example` belongs in Git.
-
-### 5. Start the stack (one command)
-
-From the repository root:
+Chạy toàn bộ backend bằng một lệnh:
 
 ```powershell
 .\run-aerosync.bat
 ```
 
-On first run, if `.env` does not exist, the script copies `.env.example` and exits — edit `.env`, then run again.
-
-The script will:
-
-1. Create file storage folders (`incoming`, `processed`, `error`, `quarantine`). Archived files are automatically partitioned below the last three as `yyyy/MM/dd`.
-2. Verify Oracle XE, RabbitMQ, and Redis are running
-3. Build Java apps with Maven
-4. Open three PowerShell windows: **worker**, **ingest**, **api**
-
-When finished, you should see:
-
-| Endpoint | URL |
-|----------|-----|
-| API stats | http://localhost:8080/api/dashboard/stats |
-| API jobs | http://localhost:8080/api/jobs |
-| RabbitMQ UI | http://localhost:15672 (guest / guest) |
-
-**Optional flags:**
+Script kiểm tra `.env`, Oracle, RabbitMQ, Redis; tạo thư mục lưu trữ; build và mở
+ba cửa sổ worker/ingest/API. Tùy chọn:
 
 ```powershell
-.\run-aerosync.bat -SkipBuild     # Skip Maven build (JARs already built)
-```
-
-**Stop apps:**
-
-```powershell
+.\run-aerosync.bat -SkipBuild
 .\run-aerosync.bat stop
 ```
 
-### 6. Run the desktop UI (optional)
+Build thủ công:
 
-The UI is separate from `run-aerosync.bat`. Build and launch it after the API is running:
+```powershell
+.\aerosync-worker\mvnw.cmd -f pom.xml package "-DskipTests" `
+  -pl aerosync-ingest,aerosync-worker,aerosync-api -am
+```
+
+Chỉ build worker:
+
+```powershell
+.\aerosync-worker\mvnw.cmd -f pom.xml -pl aerosync-worker -am package "-DskipTests"
+```
+
+Không dùng `"-DshipTests"`; tham số đúng là `"-DskipTests"`. Nếu `mvn clean` báo
+không xóa được JAR, hãy dừng service/process đang chạy hoặc dùng `package` không có `clean`.
+
+UI tùy chọn:
 
 ```powershell
 dotnet build aerosync-ui\AeroSync.UI.csproj -p:Platform=x64
 .\aerosync-ui\bin\x64\Debug\net8.0-windows10.0.19041.0\AeroSync.UI.exe
 ```
 
-The UI connects to `http://localhost:8080` and auto-refreshes every 3 seconds.
+UI kết nối tới `http://localhost:8080`.
 
-### 7. Verify with a test file
+## Nhận file và email
 
-Copy the sample CSV into the incoming folder:
+Chép file Word vào thư mục incoming:
 
 ```powershell
-copy aerosync-worker\src\test\resources\samples\valid-flights.csv D:\vatm-storage\incoming\
+Copy-Item 'C:\source-permits\*.doc*' 'D:\vatm-storage\incoming'
 ```
 
-Wait for the next ingest cycle (or set `APP_INGEST_SCHEDULER_FIXED_DELAY_MS=30000` in `.env` and restart). Then check:
-
-- http://localhost:8080/api/dashboard/stats — `SUCCESS` count should increase
-- UI dashboard — job appears in the sync list
-
-### 8. Confirm data in Oracle Database (optional)
-
-The legacy CSV/training `flight_data` writer is currently disabled. Permit
-documents are verified in the ATFM master/detail tables instead; the old
-`flight_data` query is intentionally not used.
-
----
-
-## Email ingest (optional)
-
-To ingest attachments from a real mailbox:
-
-1. Set credentials in `.env`:
-
-   ```env
-   APP_EMAIL_HOST=imap.gmail.com
-   APP_EMAIL_USERNAME=you@gmail.com
-   APP_EMAIL_PASSWORD=your-app-password
-   APP_EMAIL_FOLDER=INBOX
-   APP_EMAIL_PROCESSED_FOLDER=AeroSync/Processed
-   APP_EMAIL_ERROR_FOLDER=AeroSync/Error
-   APP_EMAIL_OLDEST_MESSAGES_PER_CYCLE=5
-   APP_EMAIL_BLACKLIST_SENDERS_0=you@gmail.com
-   ```
-
-2. Test IMAP connectivity:
-
-   ```powershell
-   .\scripts\test-imap.ps1
-   ```
-
-3. Restart ingest (close its PowerShell window and run `.\scripts\start-ingest.ps1`, or restart `.\run-aerosync.bat`).
-
-Email envelopes are checked newest-first before attachment bodies are downloaded. The ingest service combines an IMAP received-today search with a bounded recent window (500 messages by default) and a small old-backlog window, so a large mailbox does not delay current mail. Completed IMAP UIDs and Message-IDs are skipped in Oracle, five slots per cycle are reserved for old backlog by default, and unsupported attachment types are recorded as skipped without creating worker jobs. Automatic moves to `AeroSync/Processed` or `AeroSync/Error` are disabled by default; enable them only after testing with `APP_EMAIL_ACKNOWLEDGEMENT_ENABLED=true`. Run `scripts/migrate-phase4-oracle.sql` once when upgrading an existing database.
-
-### Gmail resend
-
-The desktop **Resend email** screen can create a new Gmail message containing only attachments whose processing statuses were selected. Configure a Gmail account with an App Password in `.env`, then restart `aerosync-api`:
+Mặc định ingest nhận tối đa 100 file mỗi chu kỳ và quét mỗi 300.000 ms:
 
 ```env
-APP_EMAIL_RESEND_ENABLED=true
-APP_EMAIL_RESEND_SMTP_HOST=smtp.gmail.com
-APP_EMAIL_RESEND_SMTP_PORT=587
-APP_EMAIL_RESEND_USERNAME=your-resend-account@gmail.com
-APP_EMAIL_RESEND_PASSWORD=your-gmail-app-password
-APP_EMAIL_RESEND_RECIPIENT=mailbox-monitored-by-aerosync@vatm.vn
-APP_EMAIL_RESEND_STARTTLS=true
+APP_INGEST_MAX_FILES_PER_CYCLE=100
+APP_INGEST_SCHEDULER_FIXED_DELAY_MS=300000
 ```
 
-Each resend receives a new `Message-ID`. It does not delete existing ATFM data. Normal ingest and SHA-256 duplicate checks still apply when the new email reaches the monitored mailbox.
+IMAP tối thiểu:
 
-### Scheduled permit Word import
+```env
+APP_EMAIL_HOST=imap.gmail.com
+APP_EMAIL_PORT=993
+APP_EMAIL_PROTOCOL=imaps
+APP_EMAIL_USERNAME=you@gmail.com
+APP_EMAIL_PASSWORD=your-app-password
+APP_EMAIL_FOLDER=INBOX
+APP_EMAIL_PROCESSED_FOLDER=AeroSync/Processed
+APP_EMAIL_ERROR_FOLDER=AeroSync/Error
+APP_EMAIL_ACKNOWLEDGEMENT_ENABLED=true
+```
 
-The worker recognizes CAAV landing and overflight permits in both `.doc` and `.docx`
-files. This includes issued and revised forms, English and Vietnamese headers,
-IATA/ICAO airport variants, IATA/ICAO flight-number prefixes, and the recurring
-aircraft and schedule layouts used by CAAV.
+Kiểm tra IMAP bằng `.\scripts\test-imap.ps1`. Gmail phải dùng App Password.
 
-You do not need to import files one at a time. Copy a whole folder into the incoming
-directory:
+Gửi lại email cần bật `APP_EMAIL_RESEND_ENABLED=true`, cấu hình nhóm
+`APP_EMAIL_RESEND_*`, rồi khởi động lại API.
+
+## Mẫu giấy phép và kiểm thử
+
+Mẫu YAML nằm tại `aerosync-worker/src/main/resources/permit-formats`.
+Dữ liệu mã sân bay/tàu bay nằm tại `aerosync-worker/src/main/resources/permit-reference`.
+Định dạng Word mới cần thêm mẫu và kiểm thử hồi quy; không có bước huấn luyện machine learning.
+
+Test toàn bộ:
 
 ```powershell
-Copy-Item -Path 'C:\source-permits\*.doc*' -Destination 'D:\vatm-storage\incoming'
+.\aerosync-worker\mvnw.cmd -f pom.xml test
 ```
 
-The ingest service accepts up to 100 files per scan by default, so 50 documents are
-discovered in one cycle and then processed independently. Set
-`APP_INGEST_MAX_FILES_PER_CYCLE` if a larger batch is required. Each permit still
-uses its own target transaction: one master row in `T_PERMMASTER_SC`, followed by
-its schedule rows in `T_PERMDETAIL_SC` using the generated `PERM_ID`.
-
-Format recognition is profile-based rather than automatic machine-learning
-training. The legacy `flight_data`/training persistence path is intentionally
-disabled and is not part of the active worker schema. The reusable profiles are
-stored under `aerosync-worker/src/main/resources/permit-formats`, while airport
-and aircraft normalization data is under `permit-reference`. New files with one
-of the configured layouts are handled automatically; a genuinely new layout
-requires another YAML profile or reference mapping.
-
-Revision forms are parsed and validated, but are marked `REVISION_REVIEW` instead
-of being written automatically. This prevents a revision from silently replacing
-an existing ATFM permit. For legacy revisions such as `LD-06/A/S/2026VN/REV8`, the
-worker uses only the new-schedule table and normalizes the permit identity as
-`LD-06/A/S/2026`.
-
-To regression-test a local directory of Word permits without importing anything:
+Test corpus Word mà không ghi ATFM:
 
 ```powershell
 .\aerosync-worker\mvnw.cmd -f pom.xml test -pl aerosync-worker -am `
-  '-Dtest=WordPermitCorpusRegressionTest' `
-  '-Dsurefire.failIfNoSpecifiedTests=false' `
-  '-Dpermit.corpus.dir=C:\source-permits'
+  "-Dtest=WordPermitCorpusRegressionTest" `
+  "-Dsurefire.failIfNoSpecifiedTests=false" `
+  "-Dpermit.corpus.dir=C:\source-permits"
 ```
 
-Configure the legacy target separately from AeroSync's own tracking database:
+## Đóng gói bản phát hành
 
-```env
-APP_ATFM_DATASOURCE_URL=jdbc:oracle:thin:@//172.29.187.90:1521/PDBORCL
-APP_ATFM_DATASOURCE_USERNAME=atfm
-APP_ATFM_DATASOURCE_PASSWORD=your-password
-APP_ATFM_WRITE_ENABLED=false
-APP_ATFM_MANUAL_REVIEW_ENABLED=true
+Từ thư mục gốc:
+
+```powershell
+.\scripts\release.ps1
 ```
 
-Writes are disabled by default. With the flag disabled, a valid permit is recorded as `DRY_RUN` and quarantined so it cannot be mistaken for a successful target insert. Run `scripts/migrate-phase5-oracle.sql` against the AeroSync tracking schema before enabling imports. After review, set `APP_ATFM_WRITE_ENABLED=true` and restart only the worker.
+Script build ba dịch vụ backend, đặt tên JAR ổn định, đưa WinSW và bộ triển khai vào ZIP, tạo
+version và SHA-256. Kết quả ở `dist\aerosync-<version>-<timestamp>.zip`.
 
-Manual review is enabled by default. Set `APP_ATFM_MANUAL_REVIEW_ENABLED=false`
-to allow non-revision permits from review-only format profiles to continue through
-the normal duplicate checks and ATFM write path. This bypass applies to every
-review-only format, so use it only when that behavior is intended.
+Khi chỉ cần đóng gói lại các JAR đã có:
 
-Duplicate handling uses both the original SHA-256 file hash and the target ATFM schedule. The same normalized permit with the same schedule is skipped successfully; changed schedule data reuses the existing permit master and appends only detail rows that are not already present.
+```powershell
+.\scripts\release.ps1 -SkipBuild
+```
 
-For revision documents that contain an original schedule, AeroSync normalizes the
-single permit value from the original schedule's `Original permit` / `Số phép bay
-đã cấp` column and uses it as the ATFM target. The current document permit number
-is retained as source data. Revision imports lock and compare the referenced
-master, append only missing detail rows, and do not overwrite that master's
-permit identity or metadata. If the original schedule names multiple different
-permits, AeroSync does not choose one implicitly and retains the profile's
-existing current-permit behavior.
+Gói phát hành không chứa `.env` hoặc mật khẩu môi trường vận hành.
 
-### Replay a permit during local testing
+## Deploy và cập nhật trên máy Windows khác
 
-The API can replay the exact archived email attachment without editing its permit number or sending the email again. This helper deletes the recorded ATFM master/detail rows first, but only when the master row still has `LASTUSER=AEROSYNC` and its IDs and normalized permit ID all match the tracking record.
+### Người dùng máy đích
 
-Enable it only in a disposable test environment, with ATFM writes enabled:
+1. Giải nén toàn bộ file `aerosync-*.zip`.
+2. Bấm đúp `AeroSync-Deploy.cmd`.
+3. Chọn **Yes** khi Windows hỏi quyền Administrator.
+4. Chờ thông báo `AeroSync da san sang`.
+
+Cùng một file dùng cho cài mới và cập nhật. Người dùng không cần biết Maven, Java
+command hay WinSW; không cần gỡ bản cũ.
+
+### Bộ triển khai tự động làm gì
+
+- Kiểm tra checksum và Java 21.
+- Giữ nguyên `C:\AeroSync\config\.env`.
+- Tự tìm `.env` từ bản service cũ khi có thể.
+- Dừng service, sao lưu JAR hiện tại và chép phiên bản mới.
+- Cài mới hoặc refresh `AeroSyncWorker`, `AeroSyncIngest`, `AeroSyncApi` bằng WinSW.
+- Khởi động service, kiểm tra API dashboard và tự khôi phục nếu thất bại.
+- Ghi nhật ký tại `C:\AeroSync\logs\deploy-*.log`.
+
+Lần cài đầu tiên trên máy hoàn toàn mới cần kỹ thuật cấu hình một lần:
+`C:\AeroSync\config\.env`. Các lần cập nhật sau không ghi đè file này.
+
+Lệnh hỗ trợ kỹ thuật dùng cùng file:
+
+```powershell
+.\AeroSync-Deploy.cmd status
+.\AeroSync-Deploy.cmd restart
+.\AeroSync-Deploy.cmd rollback
+```
+
+| Lệnh | Chức năng |
+|---|---|
+| Không tham số | Cài mới/cập nhật |
+| `status` | Xem trạng thái service và version |
+| `restart` | Khởi động lại và kiểm tra API |
+| `rollback` | Khôi phục bản sao lưu gần nhất |
+
+Cấu trúc sau khi triển khai:
+
+```text
+C:\AeroSync\
+├── app\                 # api.jar, ingest.jar, worker.jar
+├── config\.env          # giữ qua các lần update
+├── deploy\              # chương trình chạy service
+├── logs\                # nhật ký service/triển khai
+├── releases\            # bản sao lưu các phiên bản cũ
+├── runtime\             # đường dẫn Java 21
+├── services\            # XML WinSW
+├── tools\WinSW-x64.exe
+└── VERSION
+```
+
+Môi trường vận hành không chạy JAR từ thư mục mã nguồn, nên build/clean trên máy phát triển không
+còn bị service khóa JAR.
+
+## API và cổng
+
+| Dịch vụ | Địa chỉ |
+|---|---|
+| Dashboard stats | `http://localhost:8080/api/dashboard/stats` |
+| Danh sách job | `http://localhost:8080/api/jobs` |
+| Swagger UI | `http://localhost:8080/swagger-ui.html` |
+| OpenAPI | `http://localhost:8080/v3/api-docs` |
+| Oracle | `1521` |
+| RabbitMQ | `5672` / `15672` |
+| Redis | `6379` |
+
+## Replay test
+
+Chỉ bật ở môi trường test:
 
 ```env
 APP_ATFM_WRITE_ENABLED=true
 APP_TEST_REPLAY_ENABLED=true
 ```
 
-Then copy the job's `normalizedPermitId` from `GET /api/jobs/{id}` and use it as the explicit confirmation:
-
 ```powershell
 Invoke-RestMethod -Method Post `
   -Uri http://localhost:8080/api/testing/jobs/123/replay `
   -ContentType application/json `
-  -Body '{"confirmPermitId":"LD-06/A/S/2026"}'
+  -Body '{"confirmPermitId":"LD 00006A/S/CHK/2026"}'
 ```
 
-The endpoint refuses active jobs, non-email jobs, duplicate jobs that do not own the target row, missing archived files, mismatched confirmations, and target rows not written by AeroSync. Keep `APP_TEST_REPLAY_ENABLED=false` everywhere except the intended test system.
+Replay có thể xóa master/detail do AeroSync tạo rồi đọc lại attachment đã lưu trữ.
+Giữ `APP_TEST_REPLAY_ENABLED=false` ở môi trường vận hành.
 
-For Gmail, use an [App Password](https://support.google.com/accounts/answer/185833), not your normal login password.
+## Xử lý sự cố
 
----
+| Hiện tượng | Cách xử lý |
+|---|---|
+| Không kết nối Oracle | Kiểm tra listener, URL, user và password trong `.env` |
+| `ORA-12514` | Kiểm tra PDB/service name bằng `lsnrctl status` |
+| RabbitMQ/Redis không kết nối | Khởi động service và kiểm tra host/port |
+| Maven không xóa được JAR | Dừng process/service hoặc dùng `package` không `clean` |
+| `Unknown lifecycle phase` | Dùng `"-DskipTests"`, không dùng `"-DshipTests"` |
+| API không lên | Xem log API và gọi `/api/dashboard/stats` |
+| Email không nhận | Kiểm tra App Password, mailbox, blacklist và `test-imap.ps1` |
+| File vào `error-format` | Đọc log đi kèm, kiểm tra mẫu YAML và trường bắt buộc |
+| File vào `quarantine` | Kiểm tra write flag, phép gốc và audit/job detail |
+| Triển khai lỗi | Gửi ảnh màn hình và `C:\AeroSync\logs\deploy-*.log` cho kỹ thuật |
 
-## Manual start (individual services)
+## Cấu trúc repository
 
-If you prefer to run services yourself instead of `run-aerosync.bat`:
-
-```powershell
-# 1. Ensure Oracle XE, RabbitMQ, Redis are running locally
-
-# 2. Build (from repo root)
-.\aerosync-worker\mvnw.cmd -f pom.xml clean package -Dmaven.test.skip=true -pl aerosync-ingest,aerosync-worker,aerosync-api -am
-
-# 3. Start each app (separate terminals)
-.\scripts\start-worker.ps1
-.\scripts\start-ingest.ps1
-.\scripts\start-api.ps1
-```
-
----
-
-## API documentation
-
-With `aerosync-api` running locally:
-
-- Swagger UI: `http://localhost:8080/swagger-ui.html`
-- OpenAPI JSON: `http://localhost:8080/v3/api-docs`
-
-Swagger UI provides interactive documentation for the dashboard, job, configuration,
-audit-log, alert, and email-report endpoints.
-
----
-
-## Ports
-
-Ensure these ports are free on the dev machine:
-
-| Port | Service |
-|------|---------|
-| 1521 | Oracle Database listener |
-| 5500 | Oracle EM Express (optional) |
-| 5672 | RabbitMQ (AMQP) |
-| 6379 | Redis |
-| 8080 | AeroSync API |
-| 15672 | RabbitMQ management UI |
-
----
-
-## Troubleshooting
-
-| Symptom | Likely cause | Fix |
-|---------|--------------|-----|
-| Oracle listener unavailable | Oracle XE installation/service is incomplete or stopped | Start the Oracle XE database and `OracleOraDB21Home*TNSListener` services |
-| `ORA-01017` | Incorrect AeroSync username/password | Run `scripts\setup-oracle.sql` and copy the same password to `.env` |
-| `ORA-12514` | Wrong or unavailable service | Use `XEPDB1` and verify it appears in `lsnrctl status` |
-| RabbitMQ not running | Service stopped | Start `RabbitMQ` in Services |
-| Redis not running | Not installed or service stopped | Install Redis for Windows and start the service |
-| Maven build fails | Wrong Java version | Install **Java 21** (`java -version`) |
-| `API unavailable` in UI | API not started or port blocked | Check http://localhost:8080/api/dashboard/stats |
-| UI build fails | Missing .NET / Windows SDK | Install .NET 8 SDK |
-| Email not ingesting | Missing password or sender blacklisted | Fill `APP_EMAIL_*` in `.env`; run `.\scripts\test-imap.ps1` |
-| File copied but no new job | Same file content (hash dedup) | Change file content or use a different file |
-| Valid DOCX is quarantined with `ATFM-WRITE-DISABLED` | Target safety gate is active | Review the dry-run, enable `APP_ATFM_WRITE_ENABLED`, then retry |
-| Permit is quarantined with `PERMIT-REVISION-REVIEW` | Same permit number has different schedule data | Compare the documents and resolve manually; AeroSync will not overwrite the ATFM permit |
-| SUCCESS stays at 1 | Duplicate content re-ingested | Expected — only unique file hashes create new jobs |
-| `ORA-01918: user VATM_USER does not exist` | Schema user was not created in XEPDB1 | Run `scripts\setup-oracle.sql` as SYSDBA |
-
----
-
-## Project layout
-
-```
+```text
 VATM-AeroSync/
-├── aerosync-ingest/     # File + email ingest service
-├── aerosync-worker/     # Processing pipeline
 ├── aerosync-api/        # REST API
-├── aerosync-ui/         # WinUI dashboard
-├── aerosync-common/     # Shared library
-├── .env.example         # Config template
-├── run-aerosync.bat     # One-shot dev startup
-└── scripts/             # Helper scripts
+├── aerosync-common/     # Thành phần dùng chung
+├── aerosync-ingest/     # Nhận file/email
+├── aerosync-ui/         # WinUI
+├── aerosync-worker/     # Pipeline giấy phép
+├── deployment/          # Bộ triển khai một lần bấm
+├── scripts/             # Build, phát hành, SQL và vận hành
+├── .env.example         # Mẫu cấu hình không bí mật
+├── pom.xml              # Maven parent
+└── run-aerosync.bat     # Chạy local
 ```
 
----
-
-## Dev vs production
-
-| | Development | Production (customer) |
-|---|-------------|----------------------|
-| **Database** | Local Oracle Database XE 21c | Customer's Oracle Database instance |
-| **RabbitMQ / Redis** | Installed locally | Installed or managed servers |
-| **Apps** | JARs via `run-aerosync.bat` | JARs as Windows/Linux services |
-| **UI** | `dotnet build` + run EXE | Installed desktop app |
-
-For customer deployment, connect to the target Oracle Database, RabbitMQ, and Redis, then configure `.env` with production service names and credentials.
-
----
-
-## Quick reference
+## Lệnh nhanh
 
 ```powershell
-# First-time setup
-copy .env.example .env
-# edit .env if needed
+# Chạy local
 .\run-aerosync.bat
-
-# Desktop UI
-dotnet build aerosync-ui\AeroSync.UI.csproj -p:Platform=x64
-.\aerosync-ui\bin\x64\Debug\net8.0-windows10.0.19041.0\AeroSync.UI.exe
-
-# Test file ingest
-copy aerosync-worker\src\test\resources\samples\valid-flights.csv D:\vatm-storage\incoming\
-
-# Stop
 .\run-aerosync.bat stop
+
+# Kiểm thử
+.\aerosync-worker\mvnw.cmd -f pom.xml test
+
+# Tạo bản phát hành
+.\scripts\release.ps1
+
+# Máy đích
+.\AeroSync-Deploy.cmd
 ```

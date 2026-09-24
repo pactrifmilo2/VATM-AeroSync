@@ -10,3 +10,11 @@ detectionPatterns:
   - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\b|\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\bREVISED\s+(?:ITEM|SCHEDULE)\b|(?:/|-)\s*REV\d+\b)).*$'
 operator:
   fixedValue: TVR
+route:
+  staticAirways:
+    VHHH-OEDF: A1/A202/A206/R474/W21/B214
+    VHHH-OMDW: A1/A202/A206/R474/W21/B214
+  tableRequired: false
+  allowEmpty: false
+  fallbackToFirst: false
+  filterSchedule: false

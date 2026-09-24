@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import vatm.aerosync.api.service.VietnameseErrorMessageTranslator;
 
 import java.util.NoSuchElementException;
@@ -15,11 +16,8 @@ import java.util.NoSuchElementException;
 public class ApiExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(ApiExceptionHandler.class);
-    private final VietnameseErrorMessageTranslator errorMessageTranslator;
-
-    public ApiExceptionHandler(VietnameseErrorMessageTranslator errorMessageTranslator) {
-        this.errorMessageTranslator = errorMessageTranslator;
-    }
+    private final VietnameseErrorMessageTranslator errorMessageTranslator =
+            new VietnameseErrorMessageTranslator();
 
     @ExceptionHandler(NoSuchElementException.class)
     public ProblemDetail handleNotFound(NoSuchElementException ex) {
@@ -51,6 +49,15 @@ public class ApiExceptionHandler {
         ProblemDetail detail = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST, errorMessageTranslator.translate(ex.getMessage()));
         detail.setTitle("Yêu cầu không hợp lệ");
+        return detail;
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ProblemDetail handleArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        ProblemDetail detail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                errorMessageTranslator.translate("Invalid value for request parameter: " + ex.getName()));
+        detail.setTitle("YÃªu cáº§u khÃ´ng há»£p lá»‡");
         return detail;
     }
 

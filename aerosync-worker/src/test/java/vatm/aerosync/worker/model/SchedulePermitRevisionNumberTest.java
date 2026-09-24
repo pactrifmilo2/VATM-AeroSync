@@ -11,6 +11,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class SchedulePermitRevisionNumberTest {
 
     @Test
+    void recognizesVietnameseOtherDetailsUnchangedPhrase() {
+        SchedulePermit permit = permit(
+                "LD-32/C/S/2026VN/REV17", "LD 0032C/S/CHK/2026", "32C",
+                "CÁC CHI TIẾT KHÁC KHÔNG THAY ĐỔI");
+
+        assertThat(permit.otherDetailsUnchanged()).isTrue();
+    }
+
+    @Test
     void seasonalRevision_createsIndependentRNumberAndLookupKey() {
         SchedulePermit permit = permit(
                 "LD-01/A/S/2026VN /REV2",
@@ -67,15 +76,38 @@ class SchedulePermitRevisionNumberTest {
     }
 
     @Test
-    void nonScheduledRevision_requiresRevAndNewOrRevisedTableText() {
+    void nonScheduledRevision_revMarkerIsSufficientWithoutReplacementTable() {
         SchedulePermit withoutNewTable = permit(
                 "LD-2576/8/2026VN /REV1", "LD-2576/08/2026", "2576", "REV1");
         SchedulePermit withVietnameseTable = permit(
                 "LD-2576/8/2026VN /REV1", "LD-2576/08/2026", "2576",
                 "REV1\nBẢNG LỊCH BAY SỬA ĐỔI");
 
-        assertThat(withoutNewTable.importRevision()).isFalse();
+        assertThat(withoutNewTable.importRevision()).isTrue();
         assertThat(withVietnameseTable.importRevision()).isTrue();
+    }
+
+    @Test
+    void seasonalRevision_bareMarkerRequiresInferredNumber() {
+        SchedulePermit permit = permit(
+                "LD-01/A/S/2026VN /RVS", "LD 0001A/S/CHK/2026", "01A",
+                "OTHER DETAILS REMAIN UNCHANGED");
+
+        assertThat(permit.implicitTableRevision()).isTrue();
+
+        SchedulePermit numbered = permit.withRevisionNumber(3);
+        assertThat(numbered.importRevision()).isTrue();
+        assertThat(numbered.revisionPermitId()).isEqualTo("LD 0001AR3/S/CHK/2026");
+        assertThat(numbered.atfmTargetPermitId()).isEqualTo("LD 0001AR3/S/CHK/2026");
+    }
+
+    @Test
+    void nonScheduledReplacementTable_withoutRevMarker_isStillARevision() {
+        SchedulePermit permit = permit(
+                "LD-2576/8/2026VN", "LD-2576/08/2026", "2576",
+                "NEW FLIGHT SCHEDULE");
+
+        assertThat(permit.implicitTableRevision()).isTrue();
     }
 
     @Test
@@ -92,6 +124,15 @@ class SchedulePermitRevisionNumberTest {
         assertThat(vietnamese.otherDetailsUnchanged()).isTrue();
         assertThat(english.importRevision()).isTrue();
         assertThat(english.otherDetailsUnchanged()).isTrue();
+    }
+
+    @Test
+    void mainDetailsIsUnchanged_isRecognized() {
+        SchedulePermit permit = permit(
+                "LD-2576/8/2026VN /RVS1", "LD-2576/08/2026", "2576",
+                "RVS1\nOther main details is unchanged");
+
+        assertThat(permit.otherDetailsUnchanged()).isTrue();
     }
 
     @Test

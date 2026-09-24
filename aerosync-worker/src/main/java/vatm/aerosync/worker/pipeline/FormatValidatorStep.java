@@ -76,16 +76,16 @@ public class FormatValidatorStep {
         try {
             String firstLine = Files.lines(file, StandardCharsets.UTF_8).findFirst()
                     .orElseThrow(() -> new FormatValidationException(fileName, "CSV has no header row"));
-            String[] headers = firstLine.toLowerCase().split(",");
+            java.util.Set<String> headers = java.util.Arrays.stream(firstLine.split(","))
+                    .map(this::normalizeHeader)
+                    .collect(java.util.stream.Collectors.toSet());
+            java.util.Map<String, java.util.List<String>> aliases = java.util.Map.of(
+                    "callsign", java.util.List.of("callsign", "flightno", "flightnumber", "flt", "fltno"),
+                    "from", java.util.List.of("from", "dep", "departureairport", "depairport"),
+                    "to", java.util.List.of("to", "arr", "arrivalairport", "arrairport"),
+                    "dateflight", java.util.List.of("dateflight", "flightdate", "date"));
             for (String required : REQUIRED_HEADERS) {
-                boolean found = false;
-                for (String header : headers) {
-                    if (header.trim().equals(required)) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
+                if (aliases.get(required).stream().noneMatch(headers::contains)) {
                     throw new FormatValidationException(fileName, "Missing required column: " + required);
                 }
             }
@@ -94,5 +94,9 @@ public class FormatValidatorStep {
         } catch (IOException e) {
             throw new FormatValidationException(fileName, "Cannot read CSV header");
         }
+    }
+
+    private String normalizeHeader(String value) {
+        return value == null ? "" : value.trim().toLowerCase().replaceAll("[^a-z0-9]", "");
     }
 }

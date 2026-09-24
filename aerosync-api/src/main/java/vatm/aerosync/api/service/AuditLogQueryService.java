@@ -20,6 +20,8 @@ import java.util.stream.Stream;
 @Service
 public class AuditLogQueryService {
 
+    static final int MAX_SEARCH_LIMIT = 50;
+
     private final AuditLogRepository auditLogRepository;
     private final FileRecordRepository fileRecordRepository;
     private final VietnameseErrorMessageTranslator errorMessageTranslator;
@@ -44,6 +46,31 @@ public class AuditLogQueryService {
         List<AuditLog> logs = stream
                 .sorted(Comparator.comparing(AuditLog::getTimestamp).reversed())
                 .limit(500)
+                .toList();
+        Map<Long, FileSourceType> sourceTypes = resolveSourceTypes(logs);
+        return logs.stream()
+                .map(log -> toResponse(log, sourceTypes))
+                .filter(response -> source == null || response.sourceType() == source)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<AuditLogResponse> search(LocalDateTime from,
+                                         LocalDateTime to,
+                                         SyncStatus status,
+                                         FileSourceType source,
+                                         int limit) {
+        if (limit < 1 || limit > MAX_SEARCH_LIMIT) {
+            throw new IllegalArgumentException("'limit' must be between 1 and " + MAX_SEARCH_LIMIT);
+        }
+
+        Stream<AuditLog> stream = loadLogs(from, to);
+        if (status != null) {
+            stream = stream.filter(log -> log.getResultStatus() == status);
+        }
+        List<AuditLog> logs = stream
+                .sorted(Comparator.comparing(AuditLog::getTimestamp).reversed())
+                .limit(limit)
                 .toList();
         Map<Long, FileSourceType> sourceTypes = resolveSourceTypes(logs);
         return logs.stream()

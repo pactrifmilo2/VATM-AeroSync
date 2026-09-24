@@ -52,7 +52,9 @@ class AlertServiceTest {
         assertThat(saved).extracting(DashboardAlert::getAlertLevel)
                 .containsExactly(AlertLevel.WARNING, AlertLevel.CRITICAL);
         assertThat(saved).extracting(DashboardAlert::getMessage)
-                .allSatisfy(message -> assertThat(message).doesNotContain("retry pending", "email down"));
+                .containsExactly(
+                        new VietnameseErrorMessageTranslator().translate("retry pending"),
+                        new VietnameseErrorMessageTranslator().translate("email down"));
     }
 
     @Test

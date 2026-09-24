@@ -7,12 +7,24 @@ import java.util.List;
 public record AtfmRevisionBaseline(long masterId,
                                    long permId,
                                    String operatorId,
+                                   String scheduledPermitId,
                                    List<ScheduleFlight> flights) {
     public AtfmRevisionBaseline {
         flights = List.copyOf(flights);
     }
 
     public AtfmRevisionBaseline(long masterId, long permId, List<ScheduleFlight> flights) {
-        this(masterId, permId, null, flights);
+        this(masterId, permId, null, null, flights);
+    }
+
+    public AtfmRevisionBaseline(long masterId,
+                                long permId,
+                                String operatorId,
+                                List<ScheduleFlight> flights) {
+        this(masterId, permId, operatorId, null, flights);
+    }
+
+    public boolean scheduledStorage() {
+        return scheduledPermitId != null && !scheduledPermitId.isBlank();
     }
 }

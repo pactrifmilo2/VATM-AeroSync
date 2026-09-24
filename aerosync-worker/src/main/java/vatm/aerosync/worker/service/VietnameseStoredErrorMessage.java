@@ -9,6 +9,12 @@ public final class VietnameseStoredErrorMessage {
 
     private static final Pattern ORACLE_ERROR = Pattern.compile("(ORA-\\d+)", Pattern.CASE_INSENSITIVE);
     private static final Pattern ROW_NUMBER = Pattern.compile("(?i)(?:schedule )?row\\s+(\\d+)");
+    private static final Pattern AIRCRAFT_NOT_FOUND_DETAIL = Pattern.compile(
+            "(?i)(?:schedule )?row\\s+(\\d+):\\s*Aircraft type not found in ATFM dictionary"
+                    + "(?::\\s*(.+?)\\s*\\(tried:\\s*(.+?)\\))?"
+                    + "(?:\\s*\\(\\d+ aircraft resolution errors?\\))?");
+    private static final Pattern ROUTE_NOT_FOUND_DETAIL = Pattern.compile(
+            "(?i)(?:BR-ROUTE-NOT-FOUND:\\s*)?ATFM route not found:\\s*(.+?)\\s*->\\s*(.+?)(?:\\.|$)");
 
     private VietnameseStoredErrorMessage() {
     }
@@ -20,9 +26,16 @@ public final class VietnameseStoredErrorMessage {
         String value = message.trim();
         String lower = value.toLowerCase(Locale.ROOT);
 
+        if (lower.contains("br-route-document-unreadable")
+                || lower.contains("cannot read route from permit file")) {
+            return "Kh\u00f4ng \u0111\u1ecdc \u0111\u01b0\u1ee3c \u0111\u01b0\u1eddng bay trong file";
+        }
+
         if (lower.contains("đã xảy ra lỗi kỹ thuật trong quá trình xử lý file")
                 || lower.contains("đã xảy ra lỗi trong quá trình xử lý")) {
-            return "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể. Hãy gửi lại file để hệ thống kiểm tra và ghi nhận lỗi đầy đủ.";
+            return withReference(
+                    "Bản ghi lỗi cũ không lưu được nguyên nhân cụ thể; cần gửi lại file để phân tích lại",
+                    value);
         }
         if (isMissingWordFormat(lower)) {
             return "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.";
@@ -89,8 +102,42 @@ public final class VietnameseStoredErrorMessage {
         if (lower.contains("missing iata code")) {
             return "Không xác định được mã IATA của hãng khai thác.";
         }
+        Matcher aircraftNotFound = AIRCRAFT_NOT_FOUND_DETAIL.matcher(value);
+        if (aircraftNotFound.find()) {
+            String detail = "Dòng lịch bay " + aircraftNotFound.group(1)
+                    + ": Loại tàu bay không có trong từ điển ATFM";
+            if (aircraftNotFound.group(2) != null && aircraftNotFound.group(3) != null) {
+                detail += ". Mã đọc được: " + aircraftNotFound.group(2).trim()
+                        + "; đã thử: " + aircraftNotFound.group(3).trim();
+            }
+            return detail + "; đã ghi loại dự phòng A000.";
+        }
+        if (lower.contains("br-revision-aircraft-baseline-not-found")
+                || lower.contains("original permit not found to obtain aircraft type")) {
+            return "Không tìm thấy phép gốc để lấy ra tàu bay.";
+        }
+        if (lower.contains("br-aircraft-missing")
+                || lower.contains("missing aircraft type in permit file")) {
+            return withRow(value,
+                    "Thiếu loại tàu bay trong file; hệ thống đã ghi loại dự phòng A000.");
+        }
+        if (lower.contains("br-aircraft-not-found")
+                || lower.contains("aircraft type not found in atfm dictionary")) {
+            return withRow(value,
+                    "Loại tàu bay không có trong từ điển ATFM; hệ thống đã ghi loại dự phòng A000.");
+        }
         if (lower.contains("aircraft") || lower.contains("craft id")) {
             return withRow(value, "Loại tàu bay không hợp lệ hoặc không có dữ liệu đối chiếu trong ATFM.");
+        }
+        if (lower.contains("br-route-not-found")
+                || lower.contains("atfm route not found")) {
+            Matcher routeNotFound = ROUTE_NOT_FOUND_DETAIL.matcher(value);
+            String detail = routeNotFound.find()
+                    ? "Đường bay không có trong từ điển ATFM: "
+                            + routeNotFound.group(1).trim() + " -> "
+                            + routeNotFound.group(2).trim() + "."
+                    : "Đường bay không có trong từ điển ATFM.";
+            return withRow(value, detail);
         }
         if (lower.contains("airways") || lower.contains("route not found")) {
             return withRow(value, "Không tìm thấy đường bay hợp lệ hoặc dữ liệu đường bay đối chiếu trong ATFM.");
@@ -139,16 +186,16 @@ public final class VietnameseStoredErrorMessage {
         }
         if (lower.contains("nullpointerexception") || lower.contains("cannot invoke")
                 || lower.contains("must not be null")) {
-            return "Dữ liệu xử lý bị thiếu một trường bắt buộc nên không thể hoàn tất.";
+            return withReference("Dữ liệu xử lý bị thiếu một trường bắt buộc nên không thể hoàn tất", value);
         }
         if (lower.contains("parser") || lower.contains("parse")) {
-            return "Bộ phân tích không thể đọc cấu trúc nội dung của file.";
+            return withReference("Không thể phân tích cấu trúc nội dung file", value);
         }
         if (containsVietnamese(value) && !looksEnglish(lower)) {
             return value;
         }
 
-        return "Không thể hoàn tất xử lý file vì nguyên nhân chưa được phân loại. Mã tham chiếu: "
+        return "Lỗi xử lý file: " + value + ". Mã tham chiếu: "
                 + Integer.toUnsignedString(value.hashCode(), 16).toUpperCase(Locale.ROOT) + ".";
     }
 
@@ -170,6 +217,12 @@ public final class VietnameseStoredErrorMessage {
         return colon >= 0 && colon + 1 < value.length()
                 ? value.substring(colon + 1).trim()
                 : value;
+    }
+
+    private static String withReference(String summary, String technicalValue) {
+        return summary + ". Chi tiết kỹ thuật: " + technicalValue
+                + ". Mã tham chiếu: "
+                + Integer.toUnsignedString(technicalValue.hashCode(), 16).toUpperCase(Locale.ROOT) + ".";
     }
 
     private static boolean containsVietnamese(String value) {

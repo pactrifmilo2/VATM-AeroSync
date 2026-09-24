@@ -112,6 +112,10 @@ public class JdbcPermitOperatorResolver implements PermitOperatorResolver {
 
     @Override
     public Optional<String> resolveFromCallsign(String callsign, String carrierName) {
+        String source = callsign == null ? "" : callsign.trim().toUpperCase(Locale.ROOT);
+        if (source.matches("^[A-Z]{1,2}-[A-Z0-9]{3,5}$")) {
+            return Optional.empty();
+        }
         String compact = code(callsign);
         if (compact.length() >= 3) {
             String icaoPrefix = compact.substring(0, 3);

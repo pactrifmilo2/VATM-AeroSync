@@ -54,9 +54,11 @@ class AtfmViaResolverTest {
     }
 
     @Test
-    void resolve_usesFromToAndOperatorForTheHvnRoute() throws Exception {
-        assertThat(resolver.resolve(connection, "vvts", "vvca", "hvn", null))
-                .isEqualTo("Q2/Q7/Q1/W11/W1");
+    void resolve_rejectsLegacyViaRouteWhenAirportRouteCatalogIsMissing() throws Exception {
+        org.assertj.core.api.Assertions.assertThatThrownBy(
+                        () -> resolver.resolve(connection, "vvts", "vvca", "hvn", null))
+                .isInstanceOf(AtfmReferenceDataException.class)
+                .hasMessageContaining("ATFM route not found");
     }
 
     @Test
@@ -71,9 +73,11 @@ class AtfmViaResolverTest {
     }
 
     @Test
-    void resolve_usesTheGenericRouteWhenNoOperatorRouteExists() throws Exception {
-        assertThat(resolver.resolve(connection, "VVNB", "VVDN", "HVN", null))
-                .isEqualTo("Q1");
+    void resolve_rejectsGenericLegacyRouteWhenAirportRouteCatalogIsMissing() throws Exception {
+        org.assertj.core.api.Assertions.assertThatThrownBy(
+                        () -> resolver.resolve(connection, "VVNB", "VVDN", "HVN", null))
+                .isInstanceOf(AtfmReferenceDataException.class)
+                .hasMessageContaining("ATFM route not found");
     }
 
     @Test
@@ -89,20 +93,41 @@ class AtfmViaResolverTest {
     }
 
     @Test
-    void resolve_returnsEmptyRouteWhenTheDocumentAndDatabaseHaveNone() throws Exception {
-        assertThat(resolver.resolve(connection, "VVNB", "WSSS", "HVN", null))
-                .isEmpty();
+    void resolve_normalizesHyphenSeparatedDocumentRoutes() throws Exception {
+        assertThat(resolver.resolve(connection, "VVTS", "VVCA", "HVN", "M765-M771"))
+                .isEqualTo("M765/M771");
     }
 
     @Test
-    void resolve_selectsTheFirstRouteWhenMultipleOperatorRoutesMatch() throws Exception {
-        assertThat(resolver.resolve(connection, "VHHH", "WIII", "SKY", null))
-                .isEqualTo("L642");
+    void resolve_rejectsNotesReadFromTheDocumentRouteCell() {
+        org.assertj.core.api.Assertions.assertThatThrownBy(
+                        () -> resolver.resolve(connection, "VVTS", "VVCA", "HVN",
+                                "NOTE: SUBJECT TO ATC APPROVAL"))
+                .isInstanceOf(AtfmDocumentRouteException.class)
+                .hasMessageContaining("BR-ROUTE-DOCUMENT-UNREADABLE");
     }
 
     @Test
-    void resolve_selectsTheFirstRouteWhenNoOperatorRouteMatches() throws Exception {
-        assertThat(resolver.resolve(connection, "VVTS", "VVCA", "XXX", null))
-                .isEqualTo("Q2/Q7/Q1/W11/W1");
+    void resolve_rejectsWhenTheDocumentAndDatabaseHaveNoRoute() throws Exception {
+        org.assertj.core.api.Assertions.assertThatThrownBy(
+                        () -> resolver.resolve(connection, "VVNB", "WSSS", "HVN", null))
+                .isInstanceOf(AtfmReferenceDataException.class)
+                .hasMessageContaining("ATFM route not found");
+    }
+
+    @Test
+    void resolve_rejectsMultipleLegacyRoutesWithoutAirportRouteCatalog() throws Exception {
+        org.assertj.core.api.Assertions.assertThatThrownBy(
+                        () -> resolver.resolve(connection, "VHHH", "WIII", "SKY", null))
+                .isInstanceOf(AtfmReferenceDataException.class)
+                .hasMessageContaining("ATFM route not found");
+    }
+
+    @Test
+    void resolve_rejectsWhenAirportRouteCatalogHasNoMatchingRoute() throws Exception {
+        org.assertj.core.api.Assertions.assertThatThrownBy(
+                        () -> resolver.resolve(connection, "VVTS", "VVCA", "XXX", null))
+                .isInstanceOf(AtfmReferenceDataException.class)
+                .hasMessageContaining("ATFM route not found");
     }
 }

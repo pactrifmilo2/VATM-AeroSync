@@ -1,0 +1,11 @@
+id: mxd-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}[/.]\d{1,2}[/.]20\d{2}VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*MXD\b)'
+  - '(?iu)(?:Flight\s+number|Schedules?)'
+operator:
+  fixedValue: MXD
+validation:
+  reviewOnly: true

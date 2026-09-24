@@ -5,6 +5,7 @@ import vatm.aerosync.common.config.FilePathProperties;
 import vatm.aerosync.common.enums.FileSourceType;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -12,6 +13,8 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Component
 public class FileArchiverStep {
@@ -99,10 +102,38 @@ public class FileArchiverStep {
         if (prefix != null) {
             name.append('_').append(prefix);
         }
-        name.append('_').append(base).append(ext);
+        // Include a short content hash to distinguish files arriving in the same
+        // second (for example, two attachments with the same sender/name).
+        // Never replace an existing archive; resolve any residual collision with
+        // a monotonic suffix so each archived file remains recoverable.
+        name.append('_').append(base).append('_').append(shortFileHash(sourceFile));
+        Path target = datedTargetDir.resolve(name + ext);
+        int collision = 0;
+        while (true) {
+            Path candidate = collision == 0
+                    ? target
+                    : datedTargetDir.resolve(name + "_" + collision + ext);
+            try {
+                return Files.move(sourceFile, candidate);
+            } catch (FileAlreadyExistsException ex) {
+                collision++;
+            }
+        }
+    }
 
-        Path target = datedTargetDir.resolve(name.toString());
-        return Files.move(sourceFile, target, StandardCopyOption.REPLACE_EXISTING);
+    private String shortFileHash(Path sourceFile) {
+        try {
+            byte[] digest = MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(sourceFile));
+            StringBuilder hex = new StringBuilder(8);
+            for (int i = 0; i < 4; i++) {
+                hex.append(String.format("%02x", digest[i]));
+            }
+            return hex.toString();
+        } catch (IOException | NoSuchAlgorithmException ex) {
+            // Hashing is an enhancement; retain archiving if a filesystem read
+            // unexpectedly fails and let the collision suffix guarantee safety.
+            return "unhashed";
+        }
     }
 
     static String sanitizeSender(String sender) {

@@ -49,12 +49,16 @@ class PermitOperatorCatalog {
 
         String normalizedOperator = canonical(operatorId);
         if (candidates.size() > 1 && "PRV".equals(normalizedOperator)) {
-            return "PRV" + matcher.group("suffix");
+            return candidates.contains("PRV")
+                    ? "PRV" + matcher.group("suffix")
+                    : compact;
         }
         String icaoCode = candidates.stream()
                 .filter(candidate -> candidate.equals(normalizedOperator))
                 .findFirst()
-                .orElse(candidates.size() == 1 ? candidates.getFirst() : null);
+                .orElse(normalizedOperator.isBlank() && candidates.size() == 1
+                        ? candidates.getFirst()
+                        : null);
         if (icaoCode == null) {
             return compact;
         }

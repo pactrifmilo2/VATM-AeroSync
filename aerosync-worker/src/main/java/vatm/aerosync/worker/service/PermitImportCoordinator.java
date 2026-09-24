@@ -9,6 +9,7 @@ import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.atfm.AtfmPermitSnapshot;
+import vatm.aerosync.worker.atfm.AtfmRevisionBaseline;
 import vatm.aerosync.worker.atfm.AtfmScheduleGateway;
 import vatm.aerosync.worker.atfm.AtfmWriteResult;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
@@ -51,6 +52,8 @@ public class PermitImportCoordinator {
                 .orElseThrow(() -> new IllegalStateException("Sync job not found: " + syncJobId));
         String semanticHash = semanticHasher.hash(permit);
         Optional<PermitImport> existingAttempt = permitImportRepository.findBySyncJobId(syncJobId);
+        boolean retryFailed = existingAttempt
+                .map(previous -> previous.getStatus() == PermitImportStatus.FAILED).orElse(false);
         PermitImport attempt = existingAttempt.orElseGet(() -> reserve(job, permit, semanticHash));
 
         if (attempt.getStatus() == PermitImportStatus.SAVED
@@ -88,6 +91,21 @@ public class PermitImportCoordinator {
                 throw new BusinessRuleException(
                         "ATFM-WRITE-DISABLED",
                         "Permit parsed and validated, but ATFM writes are disabled");
+            }
+
+            if (!permit.revision() && !permit.implicitTableRevision()
+                    && !permit.referencedSeasonNewPermit() && !retryFailed
+                    && context.getRowValidationErrors().isEmpty()) {
+                Optional<AtfmPermitSnapshot> duplicate =
+                        atfmScheduleGateway.findNewPermitInEitherStore(permit);
+                if (duplicate.isPresent()) {
+                    AtfmPermitSnapshot snapshot = duplicate.get();
+                    markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), 0);
+                    attempt.setErrorMessage("Ph\u00e9p n\u00e0y \u0111\u00e3 t\u1ed3n t\u1ea1i r\u1ed3i.");
+                    permitImportRepository.save(attempt);
+                    return outcome(attempt);
+                }
+                return insertPermit(attempt, permit);
             }
 
             Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);
@@ -141,6 +159,19 @@ public class PermitImportCoordinator {
                 ? Optional.of(knownTarget)
                 : atfmScheduleGateway.findExisting(permit);
         if (target.isEmpty()) {
+            Optional<AtfmRevisionBaseline> crossStore =
+                    atfmScheduleGateway.findCrossStoreRevisionBaseline(permit);
+            if (crossStore.isPresent()) {
+                markRevision(attempt,
+                        "Original permit %s is stored in the non-scheduled (NO) table, but this revision "
+                                + "has a multi-day flight and must be stored in the seasonal (SC) table; "
+                                + "manual handling is required to move the data across storage tables."
+                                        .formatted(permit.atfmTargetPermitId()));
+                throw new BusinessRuleException(
+                        "BR-REVISION-BASE-WRONG-STORE",
+                        "Original ATFM permit found in a different storage table than the revision "
+                                + "requires: " + permit.atfmTargetPermitId());
+            }
             markRevision(attempt, "Original ATFM permit was not found");
             throw new BusinessRuleException(
                     "BR-REVISION-BASE-NOT-FOUND",

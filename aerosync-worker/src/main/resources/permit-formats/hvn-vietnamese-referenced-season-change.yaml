@@ -1,0 +1,38 @@
+id: hvn-vietnamese-referenced-season-change
+extends: hvn-vietnamese-landing-change
+priority: 500
+detectionPatterns:
+  - '(?iu)MÃ\s*ICAO(?:\s*\([^)]*\))?\s*:[ \t]*HVN\b'
+  - '(?iu)LỊCH\s+BAY\s+MÙA\s+IATA'
+  - '(?iu)2\.1\.\s*LỊCH\s+BAY\s+GỐC'
+  - '(?iu)2\.2\.\s*LỊCH\s+BAY\s+MỚI'
+  - '(?iu)SỐ\s+PHÉP\s+BAY\s+ĐÃ\s+CẤP'
+  - '(?iu)\bLD-\d{1,5}/[A-Z]/[SW]/20\d{2}VN\b'
+permit:
+  pattern: '(?iu)\bLD\s*-\s*0*(?=(?<numberRaw>[1-9]\d{0,4}[A-RT-VX-Z]?)(?:[SW])?\s*/)(?<number>[1-9]\d{0,4})(?<numberSuffix>[A-RT-VX-Z]?)(?:[SW])?\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
+  numberGroup: number
+  numberTemplate: '{numberRaw}'
+  sourceTemplate: 'LD-{numberRaw}/{month}/{year}VN'
+  normalizedTemplate: 'LD {number}{numberSuffix?}/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+reference:
+  source: RAW
+  pattern: '(?iu)ĐƯỜNG\s+HÀNG\s+KHÔNG(?:\s+KH(?:Á|Á)C)?\s*:\s*THEO\s+(?:PHÉP|PHEP)\s+BAY\s+(?<value>LD-\d{1,5}/[A-Z]/[SW]/20\d{2}VN)'
+  group: value
+  required: true
+master:
+  authorId: CHK
+  permitType: LD
+  version: A
+  season: null
+  validHours: 24
+  flightType: 'NO'
+  workflow: REFERENCED_SEASON_NEW_SC
+schedule:
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\.\s*LỊCH\s+BAY\s+MỚI'
+  originalTableContextPatterns:
+    - '(?iu)2\.1\.\s*LỊCH\s+BAY\s+GỐC'
+  supplementalTableContextPatterns:
+    - '(?iu)2\.(?:3\.\s*CB\s+TĂNG\s+CHUYẾN|5\.\s*CB\s+CHỞ\s+KHÁCH\s+SANG\s+CHUYẾN\s+SÂN)'

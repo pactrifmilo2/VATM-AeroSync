@@ -1,0 +1,27 @@
+id: pal-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 250
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bPAL\d+\b'
+  - '(?iu)(?:FLIGHT\s+NUMBER|EFFECTIVE\s+FROM|DAY\(S\)\s+OF\s+SERVICES)'
+operator:
+  fixedValue: PAL
+schedule:
+  includeEta: true
+  purposeId: PAX
+route:
+  staticAirways:
+    RPLL-OERK: L628/G474
+    OERK-RPLL: G474/L628
+    RPLL-OMDB: L628/G474
+    OMDB-RPLL: G474/L628
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryRequiredColumns: [aircraftType]
+  defaultType: A320
+validation:
+  reviewOnly: false
+  allowIataAirports: false

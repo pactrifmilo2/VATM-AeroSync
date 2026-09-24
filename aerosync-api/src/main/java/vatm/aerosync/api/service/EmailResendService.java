@@ -7,6 +7,7 @@ import vatm.aerosync.api.dto.EmailResendRequest;
 import vatm.aerosync.api.dto.EmailResendResponse;
 import vatm.aerosync.common.entity.EmailMetadata;
 import vatm.aerosync.common.entity.FileRecord;
+import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 
@@ -18,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Service
 public class EmailResendService {
@@ -26,19 +28,19 @@ public class EmailResendService {
     private final EmailMetadataRepository emailMetadataRepository;
     private final FileRecordRepository fileRecordRepository;
     private final OutboundEmailSender emailSender;
-    private final EmailResendCleanupService cleanupService;
+    private final EmailResendAuthorizationService authorizationService;
 
     @org.springframework.beans.factory.annotation.Autowired
     public EmailResendService(EmailResendProperties properties,
                               EmailMetadataRepository emailMetadataRepository,
                               FileRecordRepository fileRecordRepository,
                               OutboundEmailSender emailSender,
-                              EmailResendCleanupService cleanupService) {
+                              EmailResendAuthorizationService authorizationService) {
         this.properties = properties;
         this.emailMetadataRepository = emailMetadataRepository;
         this.fileRecordRepository = fileRecordRepository;
         this.emailSender = emailSender;
-        this.cleanupService = cleanupService;
+        this.authorizationService = authorizationService;
     }
 
     /** Compatibility constructor for focused unit tests. */
@@ -59,12 +61,15 @@ public class EmailResendService {
 
         List<EmailMetadata> selected = allMetadata.stream()
                 .filter(metadata -> request.statuses().contains(metadata.getProcessingStatus()))
+                .filter(metadata -> request.attachmentIds() == null || request.attachmentIds().isEmpty()
+                        || request.attachmentIds().contains(metadata.getId()))
                 .toList();
         if (selected.isEmpty()) {
             throw new IllegalArgumentException("No attachments match the selected processing statuses");
         }
 
         Map<String, OutboundEmailSender.Attachment> attachments = new LinkedHashMap<>();
+        Map<String, SyncJob> jobsByHash = new LinkedHashMap<>();
         int skipped = 0;
         for (EmailMetadata metadata : selected) {
             if (metadata.getSyncJob() == null) {
@@ -86,6 +91,7 @@ public class EmailResendService {
                     : latest.getOriginalFileName();
             attachments.putIfAbsent(storedPath.toString(),
                     new OutboundEmailSender.Attachment(storedPath, fileName));
+            jobsByHash.putIfAbsent(metadata.getSyncJob().getFileHash(), metadata.getSyncJob());
         }
         if (attachments.isEmpty()) {
             throw new IllegalStateException("No archived attachment files are available to resend");
@@ -103,15 +109,22 @@ public class EmailResendService {
                         .map(Enum::name)
                         .sorted()
                         .toList()));
-        OutboundEmailSender.SendResult result = emailSender.send(new OutboundEmailSender.OutboundEmail(
-                recipient,
-                original.getSubject(),
-                original.getBody(),
-                new ArrayList<>(attachments.values()),
-                headers));
-
-        if (cleanupService != null) {
-            cleanupService.cleanup(selected);
+        Set<String> authorizedHashes = authorizationService == null
+                ? Set.of()
+                : authorizationService.authorize(jobsByHash.values());
+        OutboundEmailSender.SendResult result;
+        try {
+            result = emailSender.send(new OutboundEmailSender.OutboundEmail(
+                    recipient,
+                    original.getSubject(),
+                    original.getBody(),
+                    new ArrayList<>(attachments.values()),
+                    headers));
+        } catch (RuntimeException exception) {
+            if (authorizationService != null) {
+                authorizationService.revoke(authorizedHashes);
+            }
+            throw exception;
         }
 
         return new EmailResendResponse(

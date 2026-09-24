@@ -35,6 +35,7 @@ public class FileProcessingPipeline {
     private final FormatValidatorStep formatValidatorStep;
     private final ParserStep parserStep;
     private final NormalizerStep normalizerStep;
+    private final PurposeResolutionStep purposeResolutionStep;
     private final RevisionReconciliationStep revisionReconciliationStep;
     private final AircraftTypeResolutionStep aircraftTypeResolutionStep;
     private final ViaResolutionStep viaResolutionStep;
@@ -51,6 +52,7 @@ public class FileProcessingPipeline {
                                   FormatValidatorStep formatValidatorStep,
                                   ParserStep parserStep,
                                   NormalizerStep normalizerStep,
+                                  PurposeResolutionStep purposeResolutionStep,
                                   RevisionReconciliationStep revisionReconciliationStep,
                                   AircraftTypeResolutionStep aircraftTypeResolutionStep,
                                   ViaResolutionStep viaResolutionStep,
@@ -65,6 +67,7 @@ public class FileProcessingPipeline {
         this.formatValidatorStep = formatValidatorStep;
         this.parserStep = parserStep;
         this.normalizerStep = normalizerStep;
+        this.purposeResolutionStep = purposeResolutionStep;
         this.revisionReconciliationStep = revisionReconciliationStep;
         this.aircraftTypeResolutionStep = aircraftTypeResolutionStep;
         this.viaResolutionStep = viaResolutionStep;
@@ -89,9 +92,10 @@ public class FileProcessingPipeline {
             formatValidatorStep.validate(context);
             parserStep.parse(context);
             normalizerStep.normalize(context);
+            purposeResolutionStep.resolve(context);
             revisionReconciliationStep.reconcile(context);
-            aircraftTypeResolutionStep.resolve(context);
-            viaResolutionStep.resolve(context);
+            aircraftTypeResolutionStep.resolveAllowingMissingForNonSeasonal(context);
+            viaResolutionStep.resolveAllowingMissingForNonSeasonal(context);
             businessRuleValidatorStep.validate(context);
             DatabaseWriteResult writeResult = databaseWriterStep.write(context);
             boolean completed = writeResult.status() == SyncStatus.SUCCESS
@@ -104,12 +108,20 @@ public class FileProcessingPipeline {
                             writeResult.message(), context.getSender()));
             if (archived != null) {
                 markArchived(event.getSyncJobId(), archived.toString());
+            } else if (completed) {
+                // Database write succeeded, but the source file is still in the
+                // staging area. Keep the job's SUCCESS/SKIPPED result while
+                // exposing the archival failure as an email error so mailbox
+                // acknowledgement cannot claim the message was processed.
+                updateEmailProcessingStatus(event.getSyncJobId(), EmailProcessingStatus.FAILED);
             }
-            updateEmailProcessingStatus(
-                    event.getSyncJobId(),
-                    writeResult.status() == SyncStatus.SKIPPED
-                            ? EmailProcessingStatus.SKIPPED
-                            : EmailProcessingStatus.SAVED);
+            if (archived != null) {
+                updateEmailProcessingStatus(
+                        event.getSyncJobId(),
+                        writeResult.status() == SyncStatus.SKIPPED
+                                ? EmailProcessingStatus.SKIPPED
+                                : EmailProcessingStatus.SAVED);
+            }
             DebugSessionLog.log("E", "FileProcessingPipeline.java:process", "archive attempted",
                     DebugSessionLog.map("syncJobId", event.getSyncJobId(), "archivedPath",
                             archived != null ? archived.toString() : null));
@@ -123,7 +135,9 @@ public class FileProcessingPipeline {
                     writeResult.status(),
                     duration);
             syncResultPublisher.publish(
-                    event.getSyncJobId(), writeResult.status(), AlertLevel.INFO, writeResult.message());
+                    event.getSyncJobId(), archived == null ? SyncStatus.FAILED : writeResult.status(),
+                    archived == null ? AlertLevel.WARNING : AlertLevel.INFO,
+                    archived == null ? "Database saved but archive failed; retry archive" : writeResult.message());
         } catch (NonPermitDocumentException e) {
             handleNonPermitDocument(context, event, e);
         } catch (FormatValidationException e) {

@@ -52,6 +52,8 @@ class FileProcessingPipelineTest {
     @Mock
     private NormalizerStep normalizerStep;
     @Mock
+    private PurposeResolutionStep purposeResolutionStep;
+    @Mock
     private RevisionReconciliationStep revisionReconciliationStep;
     @Mock
     private AircraftTypeResolutionStep aircraftTypeResolutionStep;
@@ -81,6 +83,7 @@ class FileProcessingPipelineTest {
                 formatValidatorStep,
                 parserStep,
                 normalizerStep,
+                purposeResolutionStep,
                 revisionReconciliationStep,
                 aircraftTypeResolutionStep,
                 viaResolutionStep,
@@ -132,8 +135,8 @@ class FileProcessingPipelineTest {
                 databaseWriterStep);
         processingOrder.verify(normalizerStep).normalize(any());
         processingOrder.verify(revisionReconciliationStep).reconcile(any());
-        processingOrder.verify(aircraftTypeResolutionStep).resolve(any());
-        processingOrder.verify(viaResolutionStep).resolve(any());
+        processingOrder.verify(aircraftTypeResolutionStep).resolveAllowingMissingForNonSeasonal(any());
+        processingOrder.verify(viaResolutionStep).resolveAllowingMissingForNonSeasonal(any());
         processingOrder.verify(businessRuleValidatorStep).validate(any());
         processingOrder.verify(databaseWriterStep).write(any());
 

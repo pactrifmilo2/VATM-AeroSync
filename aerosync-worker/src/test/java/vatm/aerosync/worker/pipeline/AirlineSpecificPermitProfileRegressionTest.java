@@ -3,6 +3,7 @@ package vatm.aerosync.worker.pipeline;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.io.TempDir;
 import vatm.aerosync.common.exception.FormatValidationException;
 import vatm.aerosync.worker.model.ScheduleFlight;
@@ -142,8 +143,53 @@ class AirlineSpecificPermitProfileRegressionTest {
                 .hasMessageContaining("Giờ dự kiến hạ cánh");
     }
 
+    @Test
+    void vjcProfile_readsAircraftTypeFromTheScheduleTable() throws Exception {
+        Path file = tempDir.resolve("vjc-aircraft-in-schedule.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("Hà Nội, ngày 11/8/2026");
+            document.createParagraph().createRun().setText("LD-2870/8/2026VN");
+            XWPFTable operator = document.createTable(2, 2);
+            operator.getRow(0).getCell(0).setText("Mã IATA: VJ");
+            operator.getRow(0).getCell(1).setText("Mã ICAO: VJC");
+            operator.getRow(1).getCell(0).setText("Địa chỉ bưu điện: Hà Nội");
+
+            XWPFTable schedule = document.createTable(2, 10);
+            String[] headers = {
+                    "Số hiệu chuyến bay", "Hiệu lực từ", "Hiệu lực đến",
+                    "Ngày trong tuần", "Sân bay cất cánh",
+                    "Giờ khởi hành dự kiến", "Sân bay hạ cánh",
+                    "Giờ hạ cánh dự kiến", "Loại tàu bay", "Số phép gốc"
+            };
+            String[] values = {
+                    "VJ30", "14Aug26", "14Aug26", "-----6-",
+                    "HAK", "0300", "HAN", "0430", "320/321/32Q",
+                    "LD-84/A/S/2026VN"
+            };
+            for (int index = 0; index < headers.length; index++) {
+                schedule.getRow(0).getCell(index).setText(headers[index]);
+                schedule.getRow(1).getCell(index).setText(values[index]);
+            }
+            XWPFTable route = document.createTable(2, 2);
+            route.getRow(0).getCell(0).setText("Chặng bay");
+            route.getRow(0).getCell(1).setText("Đường hàng không");
+            route.getRow(1).getCell(0).setText("HAK-HAN");
+            route.getRow(1).getCell(1).setText("G221");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.flights()).hasSize(1);
+        assertThat(permit.flights().getFirst().sourceAircraftType()).isEqualTo("320/321/32Q");
+    }
+
     private SchedulePermit parse(String fileName) {
         Path file = Path.of("..", fileName).toAbsolutePath().normalize();
+        Assumptions.assumeTrue(Files.isRegularFile(file), "External sample is not available: " + file);
         return parser.parse(file, file.getFileName().toString());
     }
 

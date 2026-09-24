@@ -1,0 +1,26 @@
+id: twy-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 260
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*TW\b|T[’\x27]?WAY\s+AIR\s+CO\.?|TWAY\s+AIR)'
+  - '(?iu)(?:CHANGE\s+SKED|CHANGE\s+SUBJECT|OLD\s+SKED|NEW\s+SKED)'
+operator:
+  fixedValue: TW
+schedule:
+  headerlessColumns:
+    flightNumber: 0
+    effectiveFrom: 1
+    effectiveTo: 2
+    serviceDays: 3
+    fromAirport: 4
+    etd: 5
+    toAirport: 6
+    eta: 7
+    aircraftType: 8
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  tableContextPatterns: []
+  preferredTableContextPatterns: []
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+validation:
+  reviewOnly: true

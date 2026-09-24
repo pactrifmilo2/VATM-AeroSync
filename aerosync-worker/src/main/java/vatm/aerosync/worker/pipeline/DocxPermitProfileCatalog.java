@@ -174,6 +174,11 @@ class DocxPermitProfileCatalog {
         if (profile.master() == null) {
             throw invalid(profile, "master defaults are required");
         }
+        if (!blank(profile.master().workflow())
+                && !vatm.aerosync.worker.model.SchedulePermit.REFERENCED_SEASON_NEW_SC
+                        .equalsIgnoreCase(profile.master().workflow())) {
+            throw invalid(profile, "unknown master workflow: " + profile.master().workflow());
+        }
         if (profile.schedule() == null
                 || profile.schedule().columns() == null
                 || profile.schedule().requiredColumns() == null
@@ -222,6 +227,13 @@ class DocxPermitProfileCatalog {
                 && !profile.aircraft().auxiliaryColumns().isEmpty();
         if (!hasDefaultType && !hasScheduleType && !hasAuxiliaryType) {
             throw invalid(profile, "aircraft must define a source column or default type");
+        }
+        if (hasScheduleType
+                && !profile.schedule().columns().containsKey(profile.aircraft().scheduleColumn())
+                && (profile.schedule().headerlessColumns() == null
+                    || !profile.schedule().headerlessColumns()
+                            .containsKey(profile.aircraft().scheduleColumn()))) {
+            throw invalid(profile, "aircraft scheduleColumn must be declared by schedule columns");
         }
     }
 

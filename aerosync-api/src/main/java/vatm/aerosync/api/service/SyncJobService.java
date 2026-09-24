@@ -3,7 +3,11 @@ package vatm.aerosync.api.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import vatm.aerosync.api.dto.FileRecordResponse;
 import vatm.aerosync.api.dto.SyncJobDetailResponse;
 import vatm.aerosync.api.dto.SyncJobSummaryResponse;
@@ -17,6 +21,7 @@ import vatm.aerosync.common.enums.FileArchiveStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.SyncStatus;
+import vatm.aerosync.common.enums.PermitImportStatus;
 import vatm.aerosync.common.repository.AuditLogRepository;
 import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
@@ -26,6 +31,7 @@ import vatm.aerosync.common.repository.SyncJobRepository;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +41,7 @@ import java.util.NoSuchElementException;
 public class SyncJobService {
 
     private static final int ORACLE_IN_QUERY_BATCH_SIZE = 900;
+    static final int MAX_LIST_LIMIT = 50;
 
     private final SyncJobRepository syncJobRepository;
     private final FileRecordRepository fileRecordRepository;
@@ -76,6 +83,39 @@ public class SyncJobService {
 
         return jobs.stream()
                 .sorted(Comparator.comparing(SyncJob::getCreatedAt).reversed())
+                .map(job -> toSummary(
+                        job,
+                        latestRecords.get(job.getId()),
+                        firstEmailMetadata.get(job.getId())))
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<SyncJobSummaryResponse> listJobs(SyncStatus statusFilter, int limit) {
+        if (limit < 1 || limit > MAX_LIST_LIMIT) {
+            throw new IllegalArgumentException("'limit' must be between 1 and " + MAX_LIST_LIMIT);
+        }
+
+        var pageRequest = PageRequest.of(
+                0,
+                limit,
+                Sort.by(Sort.Order.desc("createdAt")));
+        List<SyncJob> jobs = statusFilter == null
+                ? syncJobRepository.findAll(pageRequest).getContent()
+                : syncJobRepository.findByStatus(statusFilter, pageRequest).getContent();
+        return summarizeJobs(jobs);
+    }
+
+    private List<SyncJobSummaryResponse> summarizeJobs(List<SyncJob> jobs) {
+        List<Long> jobIds = jobs.stream().map(SyncJob::getId).toList();
+        Map<Long, FileRecord> latestRecords = findLatestRecords(jobIds);
+        List<Long> emailJobIds = latestRecords.entrySet().stream()
+                .filter(entry -> entry.getValue().getSourceType() == FileSourceType.EMAIL)
+                .map(Map.Entry::getKey)
+                .toList();
+        Map<Long, EmailMetadata> firstEmailMetadata = findFirstEmailMetadata(emailJobIds);
+
+        return jobs.stream()
                 .map(job -> toSummary(
                         job,
                         latestRecords.get(job.getId()),
@@ -160,6 +200,11 @@ public class SyncJobService {
     public void retryJob(Long id) {
         SyncJob job = syncJobRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Sync job not found: " + id));
+        if (!EnumSet.of(SyncStatus.FAILED, SyncStatus.SKIPPED, SyncStatus.QUARANTINED)
+                .contains(job.getStatus())) {
+            throw new IllegalStateException(
+                    "Only FAILED, SKIPPED, or QUARANTINED jobs can be retried: " + id);
+        }
         FileRecord latest = fileRecordRepository.findBySyncJobId(id).stream()
                 .max(Comparator.comparing(FileRecord::getCreatedAt))
                 .orElseThrow(() -> new IllegalStateException("No file records for job: " + id));
@@ -175,6 +220,20 @@ public class SyncJobService {
         latest.setErrorMessage(null);
         fileRecordRepository.save(latest);
 
+        permitImportRepository.findBySyncJobId(id).ifPresent(attempt -> {
+            if (attempt.getStatus() == PermitImportStatus.FAILED
+                    || attempt.getStatus() == PermitImportStatus.DRY_RUN
+                    || attempt.getStatus() == PermitImportStatus.REVISION_REVIEW
+                    || attempt.getStatus() == PermitImportStatus.RESERVED) {
+                attempt.setStatus(PermitImportStatus.RESERVED);
+                attempt.setTargetMasterId(null);
+                attempt.setTargetPermId(null);
+                attempt.setDetailCount(null);
+                attempt.setErrorMessage(null);
+                permitImportRepository.save(attempt);
+            }
+        });
+
         boolean priority = latest.getSourceType() == FileSourceType.EMAIL
                 && latest.getOriginalFileName() != null
                 && latest.getOriginalFileName().toUpperCase().contains("VIP");
@@ -184,7 +243,24 @@ public class SyncJobService {
                 job.getFileHash(),
                 latest.getSourceType(),
                 priority);
-        jobRetryPublisher.publish(event);
+        // Queue only after the database transaction commits.  Publishing while the
+        // transaction is still open lets the worker observe stale state (or race
+        // with a rollback), leaving the job stuck in PENDING/IN_PROGRESS.
+        publishAfterCommit(event);
+    }
+
+    private void publishAfterCommit(FileIngestedEvent event) {
+        if (!TransactionSynchronizationManager.isSynchronizationActive()) {
+            // Unit callers and non-transactional invocations still get the event.
+            jobRetryPublisher.publish(event);
+            return;
+        }
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            @Override
+            public void afterCommit() {
+                jobRetryPublisher.publish(event);
+            }
+        });
     }
 
     private SyncJobSummaryResponse toSummary(SyncJob job,

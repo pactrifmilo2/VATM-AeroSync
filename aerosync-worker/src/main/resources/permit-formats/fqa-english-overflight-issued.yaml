@@ -1,0 +1,23 @@
+id: fqa-english-overflight-issued
+extends: caav-english-overflight-scheduled
+priority: 260
+detectionPatterns:
+  - '(?iu)\bOF[-\s]?\d{1,5}/\d{1,2}/20\d{2}VN\b'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*QO\b|QUIKJET\s+AIRLINES?)'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*QFA\b|\bFQA\d{2,6}\b)'
+  - '(?iu)(?:SCHEDULES?|CARGO|FREIGHT)'
+  - '(?isu)^(?!.*(?:APPLICATION\s+FORM|\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b)).*$'
+permitDate:
+  pattern: '(?iu)(?<date>\d{1,2}(?:SEP|OCT|NOV|DEC|JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG)20\d{2}|\d{1,2}-[A-Z]{3}-\d{2,4}|\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [dMMMyyyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  locale: en
+operator:
+  fixedValue: FQA
+schedule:
+  includeEta: true
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+master:
+  flightType: NO

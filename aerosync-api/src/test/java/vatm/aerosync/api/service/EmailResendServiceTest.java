@@ -78,6 +78,56 @@ class EmailResendServiceTest {
                 .isEqualTo("mail-1");
     }
 
+    @Test
+    void resend_attachmentIdsSelectExactWordRecordAndAuthorizeOnlyItsJob() throws Exception {
+        properties.setRecipient("ingest@vatm.vn");
+        EmailResendAuthorizationService authorization = mock(EmailResendAuthorizationService.class);
+        EmailResendService selectiveService = new EmailResendService(
+                properties, metadataRepository, fileRecordRepository, emailSender, authorization);
+        SyncJob firstJob = mock(SyncJob.class);
+        SyncJob secondJob = mock(SyncJob.class);
+        when(firstJob.getId()).thenReturn(21L);
+        when(secondJob.getId()).thenReturn(22L);
+        EmailMetadata first = metadata(
+                firstJob, EmailProcessingStatus.SAVED, "first.docx", "Subject", "Body");
+        EmailMetadata second = metadata(
+                secondJob, EmailProcessingStatus.SAVED, "second.docx", "Subject", "Body");
+        when(first.getId()).thenReturn(201L);
+        when(second.getId()).thenReturn(202L);
+        when(metadataRepository.findByMessageIdOrderByAttachmentIndexAsc("mail-2"))
+                .thenReturn(List.of(first, second));
+        Path firstFile = Files.writeString(tempDir.resolve("first.docx"), "first");
+        Path secondFile = Files.writeString(tempDir.resolve("second.docx"), "second");
+        FileRecord firstRecord = record(firstFile, 301L);
+        FileRecord secondRecord = record(secondFile, 302L);
+        when(fileRecordRepository.findBySyncJobId(21L)).thenReturn(List.of(firstRecord));
+        when(fileRecordRepository.findBySyncJobId(22L)).thenReturn(List.of(secondRecord));
+        when(emailSender.send(org.mockito.ArgumentMatchers.any()))
+                .thenReturn(new OutboundEmailSender.SendResult("gmail-message-2", "ingest@vatm.vn"));
+
+        var response = selectiveService.resend(new EmailResendRequest(
+                "mail-2", Set.of(EmailProcessingStatus.SAVED), Set.of(202L)));
+
+        assertThat(response.attachmentsSent()).isOne();
+        ArgumentCaptor<OutboundEmailSender.OutboundEmail> emailCaptor =
+                ArgumentCaptor.forClass(OutboundEmailSender.OutboundEmail.class);
+        verify(emailSender).send(emailCaptor.capture());
+        assertThat(emailCaptor.getValue().attachments())
+                .extracting(OutboundEmailSender.Attachment::fileName)
+                .containsExactly("second.docx");
+        verify(authorization).authorize(org.mockito.ArgumentMatchers.argThat(jobs ->
+                jobs.size() == 1 && jobs.iterator().next() == secondJob));
+    }
+
+    private FileRecord record(Path path, long id) {
+        FileRecord record = mock(FileRecord.class);
+        when(record.getStoredPath()).thenReturn(path.toString());
+        when(record.getOriginalFileName()).thenReturn(path.getFileName().toString());
+        when(record.getCreatedAt()).thenReturn(LocalDateTime.now());
+        when(record.getId()).thenReturn(id);
+        return record;
+    }
+
     private EmailMetadata metadata(SyncJob job,
                                    EmailProcessingStatus status,
                                    String attachmentName,

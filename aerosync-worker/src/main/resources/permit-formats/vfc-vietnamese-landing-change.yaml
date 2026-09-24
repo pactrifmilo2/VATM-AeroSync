@@ -76,9 +76,10 @@ aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:
     aircraftType: [Loại tàu bay]
-    registrationMarks: [Số đăng ký, Số đăng ký tàu bay]
+    registrationMarks: [Số đăng ký, Số đăng ký tàu bay, Số đăng ký tàu bay/Registration mark]
   auxiliaryRequiredColumns: [aircraftType, registrationMarks]
   auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
   remarkPrefix: ''
 validation:
   allowIataAirports: false
