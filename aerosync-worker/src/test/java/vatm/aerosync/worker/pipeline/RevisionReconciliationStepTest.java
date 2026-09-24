@@ -156,7 +156,7 @@ class RevisionReconciliationStepTest {
         SchedulePermit result = context.getSchedulePermit();
         assertThat(result.revisionCreatesNewPermit()).isFalse();
         assertThat(result.atfmTargetPermitId()).isEqualTo("LD 02576A/CHK/2026");
-        assertThat(result.revisionReference()).isEqualTo("13082026 RVS(1)");
+        assertThat(result.revisionReference()).isEqualTo("EM 13082026 R(1)");
         assertThat(result.flights()).singleElement().satisfies(flight ->
                 assertThat(flight.remark()).isEqualTo("13082026 R(1)"));
     }
@@ -353,7 +353,7 @@ class RevisionReconciliationStepTest {
         assertThat(context.getSchedulePermit().atfmTargetPermitId())
                 .isEqualTo("LD 00032BR2/S/CHK/2026");
         assertThat(context.getSchedulePermit().reference())
-                .isEqualTo("LD-32/B/S/2026VN RVS(2)");
+                .isEqualTo("LD-32/B/S/2026VN");
         assertThat(context.getSchedulePermit().flights()).extracting(ScheduleFlight::remark)
                 .containsExactly("HUY TU LD-32/B/S/2026VN", "PAX 321");
     }

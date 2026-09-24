@@ -175,7 +175,19 @@ public class FileProcessingPipeline {
 
     private void lookupSender(Long syncJobId, ProcessingContext context) {
         emailMetadataRepository.findFirstBySyncJobIdOrderByIdAsc(syncJobId)
-                .ifPresent(metadata -> context.setSender(metadata.getSender()));
+                .ifPresent(metadata -> {
+                    context.setSender(metadata.getSender());
+                    if (metadata.getReceivedAt() != null) {
+                        context.setReceivedDate(metadata.getReceivedAt().toLocalDate());
+                    }
+                });
+        if (context.getReceivedDate() == null) {
+            fileRecordRepository.findBySyncJobId(syncJobId).stream()
+                    .map(vatm.aerosync.common.entity.FileRecord::getCreatedAt)
+                    .filter(java.util.Objects::nonNull)
+                    .min(java.time.LocalDateTime::compareTo)
+                    .ifPresent(date -> context.setReceivedDate(date.toLocalDate()));
+        }
     }
 
     private void markArchived(Long syncJobId, String storedPath) {

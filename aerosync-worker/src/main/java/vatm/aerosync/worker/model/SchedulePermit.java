@@ -295,11 +295,12 @@ public record SchedulePermit(
 
     public String revisionReference() {
         Integer number = revisionNumber();
-        if (number == null || permitDate == null) {
+        if (number == null) {
             return reference;
         }
-        return permitDate.format(java.time.format.DateTimeFormatter.ofPattern("ddMMyyyy"))
-                + " RVS(" + number + ")";
+        return (reference != null && reference.startsWith("EM ")
+                ? reference : "EM " + permitDate.format(java.time.format.DateTimeFormatter.ofPattern("ddMMyyyy")))
+                + " R(" + number + ")";
     }
 
     /** Remark placed on the exact flight row changed by a non-scheduled revision. */
@@ -313,15 +314,7 @@ public record SchedulePermit(
     }
 
     private String seasonalRevisionReference() {
-        Integer number = revisionNumber();
-        if (number == null) {
-            return reference;
-        }
-        String base = sourcePermitNumber == null || sourcePermitNumber.isBlank()
-                ? revisionBasePermitId()
-                : sourcePermitNumber.replaceFirst(
-                        "(?iu)\\s*/?\\s*(?:REV|RVS)\\s*[:._/-]?\\s*\\d+\\s*$", "").trim();
-        return base + " RVS(" + number + ")";
+        return reference;
     }
 
     private String revisedPermitNumber() {
@@ -368,6 +361,14 @@ public record SchedulePermit(
     public boolean usesScheduledStorage() {
         return seasonalPermit() || referencedSeasonNewPermit() || existingScheduledRevision()
                 || multiDayNonScheduled();
+    }
+
+    public SchedulePermit withReference(String newReference) {
+        return new SchedulePermit(sourcePermitNumber, normalizedPermitId, permitNumber,
+                authorId, permitType, version, season, permitDate, operatorId,
+                newReference, validHours, billingAddress, flightType, iataAirportsAllowed,
+                emptyAirwaysAllowed, reviewOnly, rawContent, flights, originalFlights,
+                referencedPermitId, revisionCreatesNewPermit, workflow);
     }
 
     /** Identifies a non-scheduled permit whose schedule contains a date range. */

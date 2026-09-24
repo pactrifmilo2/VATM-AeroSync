@@ -665,7 +665,7 @@ class JdbcAtfmScheduleGatewayTest {
                      """)) {
             master.next();
             assertThat(master.getString("REFERENCE"))
-                    .isEqualTo("01/08/2026 GOC" + System.lineSeparator() + "13082026 RVS(1)");
+                    .isEqualTo("01/08/2026 GOC" + System.lineSeparator() + "EM 13082026 R(1)");
             assertThat(master.getString("PERMCONTENT")).contains("NOI DUNG GOC", revisedContent);
             assertThat(master.getString("PERMCONTENT1")).contains("NOI DUNG GOC", revisedContent);
         }

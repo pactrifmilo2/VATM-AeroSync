@@ -752,9 +752,6 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             }
         }
 
-        if (existingMaster && permit.importRevision() && !permit.revisionCreatesNewPermit()) {
-            appendNoRevisionMaster(connection, masterId, permit);
-        }
         if (existingMaster && !permit.importRevision()) {
             updateNoReference(connection, masterId, permit);
         }
@@ -790,6 +787,10 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                         updated -> sameRevisionIdentity(updated.flight(), flight))).toList()
                 : missingFlights(existing, flights);
         if (missing.isEmpty()) {
+            if (existingMaster && !updates.isEmpty() && permit.importRevision()
+                    && !permit.revisionCreatesNewPermit()) {
+                appendNoRevisionMaster(connection, masterId, permit);
+            }
             return new AtfmWriteResult(masterId, permId, updates.size());
         }
         try (PreparedStatement statement = connection.prepareStatement(INSERT_NO_DETAIL_SQL)) {
@@ -803,6 +804,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     throw new SQLException("ATFM non-scheduled detail batch reported a failed row");
                 }
             }
+        }
+        if (existingMaster && permit.importRevision() && !permit.revisionCreatesNewPermit()) {
+            appendNoRevisionMaster(connection, masterId, permit);
         }
         return new AtfmWriteResult(masterId, permId, updates.size() + missing.size());
     }
@@ -848,7 +852,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private String appendDistinct(String existing, String addition) {
         String base = existing == null ? "" : existing.trim();
         String next = addition == null ? "" : addition.trim();
-        if (next.isEmpty() || base.contains(next)) {
+        if (next.isEmpty() || java.util.Arrays.stream(base.split("\\R"))
+                .anyMatch(line -> line.trim().equals(next))) {
             return base.isEmpty() ? null : base;
         }
         return base.isEmpty() ? next : base + System.lineSeparator() + next;

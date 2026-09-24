@@ -5,6 +5,7 @@ import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.enums.FileType;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class ProcessingContext {
     private Path filePath;
     private String originalFileName;
     private String sender;
+    private LocalDate receivedDate;
     private FileType fileType;
     private SchedulePermit schedulePermit;
     private final List<FlightRow> rows = new ArrayList<>();
@@ -44,6 +46,10 @@ public class ProcessingContext {
     public String getSender() {
         return sender;
     }
+
+    public LocalDate getReceivedDate() { return receivedDate; }
+
+    public void setReceivedDate(LocalDate receivedDate) { this.receivedDate = receivedDate; }
 
     public void setSender(String sender) {
         this.sender = sender;
