@@ -1542,7 +1542,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     static String viaForStorage(String value) {
         String route = viaForComparison(value);
-        return route == null ? null : VIA_PREFIX + route;
+        return route == null ? null : VIA_PREFIX + route.replaceAll(
+                "(?<=\\b[A-Z0-9]{2,15})\\s+(?=[A-Z0-9]{2,15}\\b)", "/");
     }
 
     static String viaForComparison(String value) {

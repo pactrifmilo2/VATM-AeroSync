@@ -79,6 +79,7 @@ public class AtfmViaResolver {
                 .replaceAll("(?iu)(?<=[A-Z0-9])-(?=[A-Z][A-Z0-9]{1,5}(?:$|[-/\\s]))", "/")
                 .replaceAll("(?iu)\\s*(?:,|;|\\bOR\\b)\\s*", "/")
                 .replaceAll("\\s*/\\s*", "/")
+                .replaceAll("(?<=\\b[A-Z0-9]{2,15})\\s+(?=[A-Z0-9]{2,15}\\b)", "/")
                 .replaceAll("/{2,}", "/")
                 .replaceAll("/+$", "");
     }

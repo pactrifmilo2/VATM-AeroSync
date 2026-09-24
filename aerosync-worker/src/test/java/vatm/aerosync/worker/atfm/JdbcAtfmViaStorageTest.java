@@ -15,6 +15,8 @@ class JdbcAtfmViaStorageTest {
                 "Other permitted airways published in Viet Nam" + (char) 0x2019
                         + "s AIP/G474/L628")).isEqualTo(expected);
         assertThat(JdbcAtfmScheduleGateway.viaForStorage("G474/L628")).isEqualTo(expected);
+        assertThat(JdbcAtfmScheduleGateway.viaForStorage("A1 A2 A3"))
+                .isEqualTo("Other permitted airways published in Viet Nams AIP/A1/A2/A3");
         assertThat(JdbcAtfmScheduleGateway.viaForStorage(expected)).isEqualTo(expected);
         assertThat(JdbcAtfmScheduleGateway.viaForComparison(expected)).isEqualTo("G474/L628");
         assertThat(JdbcAtfmScheduleGateway.viaForStorage(null)).isNull();
