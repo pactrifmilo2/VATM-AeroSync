@@ -554,6 +554,59 @@ class RevisionReconciliationStepTest {
         assertThat(reconciled.flights().getFirst().craftId()).isEqualTo(288L);
     }
 
+    @Test
+    void reconcile_ld79Rvs7MaterializesOnlyDocumentedOldRowsAndIsIdempotent() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight old1 = ld79Flight(1, 11, "0200");
+        ScheduleFlight old2 = ld79Flight(15, 23, "0200");
+        ScheduleFlight new1 = ld79Flight(1, 11, "0150");
+        ScheduleFlight new2 = ld79Flight(15, 23, "0150");
+        SchedulePermit revision = new SchedulePermit(
+                "LD-79/A/S/2026VN/REV7", "LD 0079A/S/CHK/2026", "79A",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 9, 23),
+                "VAG", "LD-79/A/S/2026VN", 24, "Vietravel Airlines", "SC",
+                false, false, false, "REV7\nOther details unchanged",
+                List.of(new1, new2), List.of(old1, old2));
+        // Existing base/revision data must enrich, never become additional OLD rows.
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(1L, 2L, "VAG", List.of(old1, old2, new1, new2))));
+        ProcessingContext context = context(revision, "LD-79-REV7.docx");
+        var step = new RevisionReconciliationStep(gateway);
+        step.reconcile(context);
+        SchedulePermit once = context.getSchedulePermit();
+        assertThat(once.atfmTargetPermitId()).isEqualTo("LD 0079AR7/S/CHK/2026");
+        assertThat(once.flights()).hasSize(4);
+        assertThat(once.flights()).extracting(ScheduleFlight::etd)
+                .containsExactly("0200", "0200", "0150", "0150");
+        assertThat(once.flights()).extracting(ScheduleFlight::beginDate).containsExactly(
+                LocalDate.of(2026, 10, 1), LocalDate.of(2026, 10, 15),
+                LocalDate.of(2026, 10, 1), LocalDate.of(2026, 10, 15));
+        step.reconcile(context);
+        assertThat(context.getSchedulePermit()).isEqualTo(once);
+        // A fresh retry parsed from Word also yields the same four rows.
+        ProcessingContext retry = context(revision, "LD-79-REV7.docx");
+        step.reconcile(retry);
+        assertThat(retry.getSchedulePermit()).isEqualTo(once);
+    }
+
+    @Test
+    void reconcile_keepsOldAndNewEvenWhenBusinessFieldsAreIdentical() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight row = ld79Flight(1, 11, "0150");
+        SchedulePermit revision = permit(List.of(row), List.of(row));
+        ProcessingContext context = context(revision);
+        new RevisionReconciliationStep(gateway).reconcile(context);
+        assertThat(context.getSchedulePermit().flights()).hasSize(2);
+        assertThat(context.getSchedulePermit().flights().getFirst().remark()).startsWith("HUY");
+        assertThat(context.getSchedulePermit().flights().getLast().remark()).doesNotContain("HUY");
+    }
+
+    private ScheduleFlight ld79Flight(int firstDay, int lastDay, String departure) {
+        return new ScheduleFlight("PAX", 1935L, java.math.BigDecimal.ZERO, "VAG672", null,
+                "1004507", "VVTS", "VVDN", departure, "0325", "Q2",
+                LocalDate.of(2026, 10, firstDay), LocalDate.of(2026, 10, lastDay), null, "A320");
+    }
+
     private ProcessingContext context(SchedulePermit permit) {
         return context(permit, "revision.docx");
     }

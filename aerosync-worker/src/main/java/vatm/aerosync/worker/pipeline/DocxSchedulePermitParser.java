@@ -1252,7 +1252,16 @@ public class DocxSchedulePermitParser {
     private ScheduleSection scheduleSection(
             TableMatch match,
             DocxPermitFormatProfile.ScheduleDefinition schedule) {
-        String context = scheduleSectionText(match);
+        // Prefer the actual heading. Appending column headers can make
+        // "Lich bay moi ... Gio du kien di" match ORIGINAL through "du kien".
+        ScheduleSection heading = scheduleSection(match.context(), schedule);
+        return heading != ScheduleSection.UNKNOWN
+                ? heading : scheduleSection(scheduleSectionText(match), schedule);
+    }
+
+    private ScheduleSection scheduleSection(
+            String context,
+            DocxPermitFormatProfile.ScheduleDefinition schedule) {
         // A profile-specific replacement marker must win if a broad context
         // happens to mention both the old and replacement schedule headings.
         boolean preferred = matchesAny(context, schedule.preferredTableContextPatterns());

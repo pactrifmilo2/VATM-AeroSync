@@ -61,6 +61,11 @@ public class RevisionReconciliationStep {
 
     public void reconcile(ProcessingContext context) {
         SchedulePermit permit = context.getSchedulePermit();
+        // asSeasonalRevision already materialized OLD + NEW. Reconciliation is
+        // repeatable on a context: never treat its cancellation rows as NEW.
+        if (permit != null && permit.revisionCreatesNewPermit()) {
+            return;
+        }
         if (permit != null && permit.referencedSeasonNewPermit()) {
             String referencedPermitId = permit.referencedPermitId();
             java.util.Optional<String> referencedSeason = gateway.findReferencedSeason(permit);
