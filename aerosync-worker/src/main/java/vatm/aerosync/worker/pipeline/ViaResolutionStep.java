@@ -78,9 +78,10 @@ public class ViaResolutionStep {
                                 "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file",
                                 flight.via()));
                     } catch (AtfmReferenceDataException exception) {
-                        if (!allowMissing || permit.replacesNonScheduledRows()) {
-                            throw exception;
-                        }
+                        // A missing ATFM route is a reference-data warning, not a
+                        // reason to discard fields that were read successfully
+                        // from the permit. Preserve the row and let the writer
+                        // expose the warning to the user.
                         String routeError = routeErrorMessage(from, to, exception.getMessage());
                         via = null;
                         routeMissing = true;

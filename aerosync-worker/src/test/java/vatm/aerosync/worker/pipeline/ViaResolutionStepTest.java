@@ -131,6 +131,23 @@ class ViaResolutionStepTest {
     }
 
     @Test
+    void resolve_keepsRowsWhenNoDatabaseRouteExistsForRegularPermit() {
+        ProcessingContext context = context("HVN", false);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst();
+        context.setSchedulePermit(context.getSchedulePermit().withFlights(List.of(
+                source.withResolvedRoute("SGN", "VVNB", null))));
+
+        step.resolve(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.fromAirport()).isEqualTo("VVTS");
+        assertThat(flight.toAirport()).isEqualTo("VVNB");
+        assertThat(flight.via()).isNull();
+        assertThat(context.getRowValidationErrors()).extracting("code")
+                .containsExactly("BR-ROUTE-NOT-FOUND");
+    }
+
+    @Test
     void resolve_keepsBlankViaAndWarningForDocumentRouteNotes() {
         ProcessingContext context = context("HVN", true);
         ScheduleFlight source = context.getSchedulePermit().flights().getFirst();

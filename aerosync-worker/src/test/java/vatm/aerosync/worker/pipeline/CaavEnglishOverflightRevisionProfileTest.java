@@ -64,7 +64,7 @@ class CaavEnglishOverflightRevisionProfileTest {
             assertThat(flight.fromAirport()).isEqualTo("WSSL");
             assertThat(flight.toAirport()).isEqualTo("RCSS");
             assertThat(flight.etd()).isEqualTo("0350");
-            assertThat(flight.eta()).isNull();
+            assertThat(flight.eta()).isEqualTo("0810");
             assertThat(flight.via()).isEqualTo("L625");
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 22));
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2026, 7, 22));
