@@ -2,7 +2,7 @@ id: airline-generic-landing-issued
 extends: caav-generic-landing-issued
 priority: -90
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)IATA\s*(?:CODE)?\s*:\s*[A-Z0-9]{2}\b'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*[A-Z0-9]{3}\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'

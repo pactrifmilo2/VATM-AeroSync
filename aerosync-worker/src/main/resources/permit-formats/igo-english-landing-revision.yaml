@@ -2,11 +2,11 @@ id: igo-english-landing-revision
 extends: caav-generic-landing-revision
 priority: 300
 detectionPatterns:
-  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}VN\s*/\s*(?:REV|RVS)\d*'
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}VN\s*/\s*(?:REV|RVS)\d*'
   - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*6E\b|ICAO\s*(?:CODE)?\s*:\s*IGO\b|INTERGLOBE\s+AVIATION|\bINDIGO\b)'
   - '(?iu)2\.2\.?\s*NEW\s+SCHEDULE'
 permit:
-  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})VN\s*/\s*(?:REV|RVS)\d*\b'
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})VN\s*/\s*(?:REV|RVS)\d*\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'

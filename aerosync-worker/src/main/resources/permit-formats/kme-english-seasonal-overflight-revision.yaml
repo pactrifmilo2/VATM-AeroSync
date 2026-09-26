@@ -2,13 +2,13 @@ id: kme-english-seasonal-overflight-revision
 extends: caav-generic-seasonal-overflight-revision
 priority: 260
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*KME\b|IATA\s*(?:CODE)?\s*:\s*KR\b|CAMBODIA\s+AIRWAYS)'
   - '(?iu)(?:SCHEDULE\s+CHANGE|CHANGE\s+TO\s+NEW|ORIGINAL\s+EFFECTIVE|NEW\s+EFFECTIVE|OLD\s+SCHEDULE|NEW\s+SCHEDULE)'
 operator:
   fixedValue: KME
 permit:
-  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
   numberGroup: number
   numberTemplate: '{number}{version}'
   sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'

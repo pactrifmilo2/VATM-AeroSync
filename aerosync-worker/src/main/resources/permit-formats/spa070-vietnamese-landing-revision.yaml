@@ -2,11 +2,11 @@ id: spa070-vietnamese-landing-revision
 priority: 100
 detectionPatterns:
   - '(?iu)PHÉP\s+BAY\s+SỬA\s+ĐỔI'
-  - '(?iu)PHÉP\s+BAY\s+SỐ:\s*LD-\d{1,5}/\d{1,2}/20\d{2}VN\s*/REV\d+'
+  - '(?iu)PHÉP\s+BAY\s+SỐ:\s*LD-\d{1,9}/\d{1,2}/20\d{2}VN\s*/REV\d+'
   - '(?iu)THAM\s+CHIẾU\s+PHÉP\s+BAY\s+SỐ'
   - '(?iu)2\.2\.\s*LỊCH\s+BAY\s+MỚI\s*\(SỬA\s+ĐỔI\)'
 permit:
-  pattern: '(?iu)\bLD-(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\s*/REV(?<revision>\d+)\b'
+  pattern: '(?iu)\bLD-(?<number>\d{1,9})/(?<month>\d{1,2})/(?<year>20\d{2})VN\s*/REV(?<revision>\d+)\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN/REV{revision}'
   normalizedTemplate: 'LD-{number}/{month}/{year}'
@@ -30,7 +30,7 @@ billingAddress:
   required: false
 reference:
   source: PARAGRAPH
-  pattern: '(?iu)THAM\s+CHIẾU\s+PHÉP\s+BAY\s+SỐ:\s*(?<value>LD-\d{1,5}/\d{1,2}/20\d{2}VN)'
+  pattern: '(?iu)THAM\s+CHIẾU\s+PHÉP\s+BAY\s+SỐ:\s*(?<value>LD-\d{1,9}/\d{1,2}/20\d{2}VN)'
   group: value
   required: true
 master:

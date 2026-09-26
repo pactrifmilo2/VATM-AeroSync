@@ -2,7 +2,7 @@ id: gap-english-seasonal-overflight-issued
 extends: airline-generic-seasonal-overflight-issued
 priority: 250
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:\bGAP\d+\b|AIR\s+PHILIPPINES|PAL\s+EXPRESS)'
   - '(?iu)(?:FLIGHT\s+NUMBER|EFFECTIVE\s+FROM|DAY\(S\)\s+OF\s+SERVICES)'
 operator:

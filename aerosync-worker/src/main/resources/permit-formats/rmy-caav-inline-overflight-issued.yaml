@@ -2,7 +2,7 @@ id: rmy-caav-inline-overflight-issued
 extends: caav-generic-overflight-issued
 priority: 270
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*RMY\b|RAYA\s+AIRWAYS)'
   - '(?iu)SCHEDULES?\s*:\s*ALL\s+TIMES\s+UTC'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'

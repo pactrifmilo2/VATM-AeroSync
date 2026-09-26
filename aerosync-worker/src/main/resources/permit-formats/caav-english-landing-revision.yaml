@@ -4,7 +4,7 @@ detectionPatterns:
   - '(?iu)(?:APPLICATION\s+FOR\s+)?REVISION\s+OF\s+LANDING(?:/OVERFLIGHT)?\s+PERMIT'
   - '(?iu)2\.2\.\s*NEW\s+SCHEDULE(?:\(S\))?'
 permit:
-  pattern: '(?iu)\bLD-(?<number>\d{1,5})/(?<version>[A-Z])/(?<season>S)/(?<year>20\d{2})VN(?:/REV(?<revision>\d+))?\b'
+  pattern: '(?iu)\bLD-(?<number>\d{1,9})/(?<version>[A-Z])/(?<season>S)/(?<year>20\d{2})VN(?:/REV(?<revision>\d+))?\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{version}/{season}/{year}'
   normalizedTemplate: 'LD-{number}/{version}/{season}/{year}'

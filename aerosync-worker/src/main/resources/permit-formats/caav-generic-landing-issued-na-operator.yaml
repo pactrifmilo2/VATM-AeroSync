@@ -2,7 +2,7 @@ id: caav-generic-landing-issued-na-operator
 extends: caav-generic-landing-issued
 priority: 150
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:IATA\s*(?:CODE)?|MA\s*IATA)\s*:\s*(?:N/A|NA)\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?|MA\s*ICAO)\s*:\s*(?:N/A|NA)\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|Flight\s+number)'

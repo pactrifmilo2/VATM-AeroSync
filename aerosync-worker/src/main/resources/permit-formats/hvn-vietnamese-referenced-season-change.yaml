@@ -7,7 +7,7 @@ detectionPatterns:
   - '(?iu)2\.1\.\s*LỊCH\s+BAY\s+GỐC'
   - '(?iu)2\.2\.\s*LỊCH\s+BAY\s+MỚI'
   - '(?iu)SỐ\s+PHÉP\s+BAY\s+ĐÃ\s+CẤP'
-  - '(?iu)\bLD-\d{1,5}/[A-Z]/[SW]/20\d{2}VN\b'
+  - '(?iu)\bLD-\d{1,9}/[A-Z]/[SW]/20\d{2}VN\b'
 permit:
   pattern: '(?iu)\bLD\s*-\s*0*(?=(?<numberRaw>[1-9]\d{0,4}[A-RT-VX-Z]?)(?:[SW])?\s*/)(?<number>[1-9]\d{0,4})(?<numberSuffix>[A-RT-VX-Z]?)(?:[SW])?\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
@@ -18,7 +18,7 @@ permit:
     number: 5
 reference:
   source: RAW
-  pattern: '(?iu)ĐƯỜNG\s+HÀNG\s+KHÔNG(?:\s+KH(?:Á|Á)C)?\s*:\s*THEO\s+(?:PHÉP|PHEP)\s+BAY\s+(?<value>LD-\d{1,5}/[A-Z]/[SW]/20\d{2}VN)'
+  pattern: '(?iu)ĐƯỜNG\s+HÀNG\s+KHÔNG(?:\s+KH(?:Á|Á)C)?\s*:\s*THEO\s+(?:PHÉP|PHEP)\s+BAY\s+(?<value>LD-\d{1,9}/[A-Z]/[SW]/20\d{2}VN)'
   group: value
   required: true
 master:

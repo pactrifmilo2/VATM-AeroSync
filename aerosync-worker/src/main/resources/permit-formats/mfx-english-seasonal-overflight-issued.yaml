@@ -2,7 +2,7 @@ id: mfx-english-seasonal-overflight-issued
 extends: airline-generic-seasonal-overflight-issued
 priority: 240
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*MFX\b|IATA\s*(?:CODE)?\s*:\s*C6\b|MYFREIGHTER)'
   - '(?iu)(?:Flight number|Effective from|Days of services|Aircraft Type)'
 operator:

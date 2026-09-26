@@ -3,7 +3,7 @@ extends: airline-generic-seasonal-overflight-issued
 # Observed in the September 2026 local corpus; exact ICAO scope.
 priority: 35
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*TGW\b'
   - '(?iu)SCHEDULES?'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'

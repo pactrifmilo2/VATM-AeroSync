@@ -2,7 +2,7 @@ id: ual-caav-headerless-overflight-issued
 extends: caav-generic-overflight-issued
 priority: 40
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*UAL\b'
   - '(?iu)SCHEDULES?'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b)).*$'

@@ -2,10 +2,10 @@ id: etd-english-landing-revision
 extends: caav-generic-landing-revision
 priority: 280
 detectionPatterns:
-  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN(?:\s*/\s*REV\d+)?'
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN(?:\s*/\s*REV\d+)?'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*ETD\b|ETIHAD\s+AIRWAYS)'
 permit:
-  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN(?:\s*/\s*REV\d+)?\b'
+  pattern: '(?iu)\bLD\s*-?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN(?:\s*/\s*REV\d+)?\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'

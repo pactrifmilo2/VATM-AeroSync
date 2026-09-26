@@ -2,10 +2,10 @@ id: uae-english-overflight-revision
 extends: caav-generic-overflight-revision
 priority: 280
 detectionPatterns:
-  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN\s*/\s*REV\d+'
+  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN\s*/\s*REV\d+'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*UAE\b|EMIRATES\s+AIRLINE)'
 permit:
-  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\s*/\s*REV\d+\b'
+  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\s*/\s*REV\d+\b'
   numberGroup: number
   sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'

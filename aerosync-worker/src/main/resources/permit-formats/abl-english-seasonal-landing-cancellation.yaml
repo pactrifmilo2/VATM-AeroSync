@@ -7,10 +7,10 @@ detectionPatterns:
   - '(?iu)\bAIRBUSAN\s+CO\.?\s*,?\s*LTD\.?(?:\s|$)'
   - '(?iu)IATA\s+2\s+LETTER\s+CODE\s*:\s*BX\b'
   - '(?iu)ICAO\s+3\s+LETTER\s+CODE\s*:\s*ABL\b'
-  - '(?iu)REF\s+TO\s+PERMIT\s+NUMBER\s*:\s*LD\s*-?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)REF\s+TO\s+PERMIT\s+NUMBER\s*:\s*LD\s*-?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
 
 permit:
-  pattern: '(?iu)REF\s+TO\s+PERMIT\s+NUMBER\s*:\s*LD\s*-?\s*(?<number>\d{1,5})\s*/?\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
+  pattern: '(?iu)REF\s+TO\s+PERMIT\s+NUMBER\s*:\s*LD\s*-?\s*(?<number>\d{1,9})\s*/?\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   numberTemplate: '{number}{version}'
   sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
@@ -31,7 +31,7 @@ operator:
 
 reference:
   source: RAW
-  pattern: '(?iu)REF\s+TO\s+PERMIT\s+NUMBER\s*:\s*(?<value>LD\s*-?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN)'
+  pattern: '(?iu)REF\s+TO\s+PERMIT\s+NUMBER\s*:\s*(?<value>LD\s*-?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN)'
   group: value
   required: true
 

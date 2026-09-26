@@ -3,7 +3,7 @@ extends: caav-generic-overflight-issued
 # Chỉ cao hơn profile CAAV dự phòng; không lấn át QLB hoặc profile chuyên biệt.
 priority: 40
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*AK\b'
   - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*AXM\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|FLT\s*NUMBER)'

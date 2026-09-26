@@ -5,7 +5,7 @@ detectionPatterns:
   - '(?iu)CAAV\s+XÁC\s+NHẬN\s+SỬA\s+ĐỔI\s+NHƯ\s+SAU'
   - '(?iu)2\.2\s*LỊCH\s+BAY\s+MỚI'
 permit:
-  pattern: '(?iu)\bLD-\s*(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
+  pattern: '(?iu)\bLD-\s*(?<number>\d{1,9})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN'
   normalizedTemplate: 'LD-{number}/{month}/{year}'

@@ -3,11 +3,11 @@ priority: 300
 detectionPatterns:
   - '(?iu)MÃ\s*IATA\s*:\s*VJ\b'
   - '(?iu)MÃ\s*ICAO\s*:\s*VJC\b'
-  - '(?iu)\bLD-\d{1,5}/\d{1,2}/20\d{2}VN\b'
+  - '(?iu)\bLD-\d{1,9}/\d{1,2}/20\d{2}VN\b'
   - '(?iu)SỐ\s+HIỆU\s+CHUYẾN\s+BAY'
   - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b|SỬA\s+ĐỔI|LỊCH\s+BAY\s+THAY\s+ĐỔI).*$'
 permit:
-  pattern: '(?iu)\bLD-(?<number>\d{1,5})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
+  pattern: '(?iu)\bLD-(?<number>\d{1,9})/(?<month>\d{1,2})/(?<year>20\d{2})VN\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN'
   normalizedTemplate: 'LD {number}/CHK/{year}'

@@ -3,7 +3,7 @@ extends: caav-generic-landing-issued
 # Chỉ cao hơn profile CAAV dự phòng; không lấn át QLB hoặc profile chuyên biệt.
 priority: 40
 detectionPatterns:
-  - '(?iu)\bLD(?:\s*-\s*|\s+)\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bLD(?:\s*-\s*|\s+)\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*CO\b'
   - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*CNW\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|FLT\s*NUMBER)'

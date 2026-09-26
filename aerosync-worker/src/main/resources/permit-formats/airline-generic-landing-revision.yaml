@@ -2,7 +2,7 @@ id: airline-generic-landing-revision
 extends: caav-generic-landing-revision
 priority: -90
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,5}'
+  - '(?iu)\bLD\s*-\s*\d{1,9}'
   - '(?iu)IATA\s*(?:CODE)?\s*:\s*[A-Z0-9]{2}\b'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*[A-Z0-9]{3}\b'
   - '(?iu)(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)'

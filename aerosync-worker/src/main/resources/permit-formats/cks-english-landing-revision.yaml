@@ -3,7 +3,7 @@ extends: caav-generic-landing-revision
 priority: 210
 
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
   - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*K4\b'
   - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*CKS\b'
   - '(?iu)(?:/|-)\s*REV\s*\d+\b'

@@ -2,7 +2,7 @@ id: bsc-english-overflight-issued
 extends: caav-generic-overflight-issued
 priority: 220
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}[/.]\d{1,2}[/.]20\d{2}VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}[/.]\d{1,2}[/.]20\d{2}VN\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*BSC\b|AIR\s+COMPANY\s+AEROSTAN)'
   - '(?iu)\bBSC\d{3,5}\b'
   - '(?iu)(?:Flight\s+number|Schedules?)'

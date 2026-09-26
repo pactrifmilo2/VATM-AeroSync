@@ -5,7 +5,7 @@ detectionPatterns:
 - (?iu)(?:IATA\s*(?:CODE)?|MÃ\s*IATA)(?:\s*\([^)]*\))?\s*:[ \t]*VN\b
 - (?iu)(?:ICAO\s*(?:CODE)?|MÃ\s*ICAO)(?:\s*\([^)]*\))?\s*:[ \t]*HVN\b
 permit:
-  pattern: (?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b
+  pattern: (?iu)\bLD\s*-\s*(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b
   numberGroup: number
   sourceTemplate: LD-{number}/{month}/{year}VN
   normalizedTemplate: LD {number}/CHK/{year}

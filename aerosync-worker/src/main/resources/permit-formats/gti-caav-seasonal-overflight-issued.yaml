@@ -2,7 +2,7 @@ id: gti-caav-seasonal-overflight-issued
 extends: airline-generic-seasonal-overflight-issued
 priority: 40
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*GTI\b'
   - '(?iu)SCHEDULES?'
   - '(?isu)^(?!.*(?:APPLICATION\s+(?:FORM|FOR)|\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b)).*$'

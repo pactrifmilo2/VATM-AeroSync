@@ -2,7 +2,7 @@ id: lj-english-landing-revision
 extends: caav-generic-landing-revision
 priority: 260
 detectionPatterns:
-  - '(?iu)\bLD\s*-?\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*LJ\b|\bJIN\s+AIR\b|\bLJ\d{3,4}\b)'
   - '(?iu)(?:CHG\s+SUBJECT|SKD\s+CHANGE|CHANGE|ORIGINAL\s+SKED)'
 operator:

@@ -2,10 +2,10 @@ id: cbj-english-overflight-issued
 extends: caav-generic-overflight-issued
 priority: 280
 detectionPatterns:
-  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN'
+  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CBJ\b|BEIJING\s+CAPITAL\s+AIRLINES)'
 permit:
-  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\b'
+  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\b'
   numberGroup: number
   sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'

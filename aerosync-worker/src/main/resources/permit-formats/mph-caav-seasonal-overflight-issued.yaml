@@ -2,7 +2,7 @@ id: mph-caav-seasonal-overflight-issued
 extends: airline-generic-seasonal-overflight-issued
 priority: 40
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*MPH\b|MARTINAIR\b'
   - '(?iu)(?:OVERFLIGHT\s+PERMIT|IATA\s+SEASONS?)'
   - '(?iu)(?:SCHEDULES?|LỊCH\s+BAY)'

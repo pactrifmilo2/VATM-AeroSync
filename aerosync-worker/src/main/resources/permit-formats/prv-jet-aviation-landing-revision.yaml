@@ -5,7 +5,7 @@ detectionPatterns:
 - (?iu)JET\s+AVIATION\s+BUSINESS\s+JETS
 - (?iu)(?:OLD\s+SCHEDULE|NEW\s+SCHEDULE)
 permit:
-  pattern: (?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN
+  pattern: (?iu)\bLD\s*-\s*(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN
   numberGroup: number
   sourceTemplate: LD-{number}/{month}/{year}VN
   normalizedTemplate: LD {number}/CHK/{year}

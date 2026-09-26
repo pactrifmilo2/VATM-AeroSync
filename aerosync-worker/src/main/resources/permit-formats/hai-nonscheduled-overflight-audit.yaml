@@ -2,7 +2,7 @@ id: hai-nonscheduled-overflight-audit
 extends: caav-generic-overflight-issued
 priority: 35
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*HAI\b'
   - '(?iu)SCHEDULES?'
 operator:

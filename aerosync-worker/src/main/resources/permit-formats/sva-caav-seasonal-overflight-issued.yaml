@@ -3,7 +3,7 @@ extends: airline-generic-seasonal-overflight-issued
 priority: 310
 
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*SV\b'
   - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*SVA\b'
   - '(?iu)SAUDI\s+ARABIAN\s+AIRLINES|\bSAUDIA\b'

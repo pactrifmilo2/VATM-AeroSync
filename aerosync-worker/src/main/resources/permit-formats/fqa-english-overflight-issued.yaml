@@ -2,7 +2,7 @@ id: fqa-english-overflight-issued
 extends: caav-english-overflight-scheduled
 priority: 260
 detectionPatterns:
-  - '(?iu)\bOF[-\s]?\d{1,5}/\d{1,2}/20\d{2}VN\b'
+  - '(?iu)\bOF[-\s]?\d{1,9}/\d{1,2}/20\d{2}VN\b'
   - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*QO\b|QUIKJET\s+AIRLINES?)'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*QFA\b|\bFQA\d{2,6}\b)'
   - '(?iu)(?:SCHEDULES?|CARGO|FREIGHT)'

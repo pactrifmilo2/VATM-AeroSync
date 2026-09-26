@@ -6,7 +6,7 @@ detectionPatterns:
 - (?iu)3\.1\.\s*OLD
 - (?iu)3\.2\.\s*NEW
 permit:
-  pattern: (?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,5})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN
+  pattern: (?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN
   numberGroup: number
   sourceTemplate: OF-{number}/{month}/{year}VN
   normalizedTemplate: O/F {number}/CHK/{year}

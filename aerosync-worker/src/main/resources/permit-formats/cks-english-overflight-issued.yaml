@@ -2,7 +2,7 @@ id: cks-english-overflight-issued
 extends: caav-generic-overflight-issued
 priority: 260
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CKS\b|\bCKS\d+[A-Z0-9]*\b|KALITTA\s+AIR)'
   - '(?iu)SCHEDULES?\s*:\s*ALL\s+TIMES\s+UTC'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'

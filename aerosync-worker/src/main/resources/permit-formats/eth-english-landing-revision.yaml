@@ -4,9 +4,9 @@ priority: 300
 detectionPatterns:
   - '(?iu)REVISION\s+OF\s+LANDING/OVERFLIGHT\s+PERMIT'
   - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*ET\b|ETHIOPIAN\s+AIRLINES)'
-  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
 permit:
-  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'

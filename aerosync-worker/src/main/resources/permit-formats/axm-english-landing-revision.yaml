@@ -2,11 +2,11 @@ id: axm-english-landing-revision
 extends: caav-generic-landing-revision
 priority: 310
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,5}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}\s*VN\s*/\s*R\d+\b'
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}\s*VN\s*/\s*R\d+\b'
   - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*AK\b|ICAO\s*(?:CODE)?\s*:\s*AXM\b|AIRASIA\s+BERHAD)'
   - '(?iu)2\.2\s*NEW\s+SCHEDULE'
 permit:
-  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,5})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})\s*VN\s*/\s*R\d+\b'
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})\s*VN\s*/\s*R\d+\b'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'

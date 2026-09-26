@@ -2,7 +2,7 @@ id: tnu-caav-inline-overflight-revision
 extends: caav-generic-overflight-revision
 priority: 40
 detectionPatterns:
-  - '(?iu)\bOF\s*-\s*\d{1,5}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\s*#\s*RVS\d+\b'
+  - '(?iu)\bOF\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\s*#\s*RVS\d+\b'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*TNU\b'
   - '(?imu)^Original\s*:\s*$'
   - '(?imu)^New\s*:\s*$'
