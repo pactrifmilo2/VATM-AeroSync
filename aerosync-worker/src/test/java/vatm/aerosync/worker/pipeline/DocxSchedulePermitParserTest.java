@@ -92,7 +92,7 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.fromAirport()).isEqualTo("WMKK");
             assertThat(flight.toAirport()).isEqualTo("VHHH");
             assertThat(flight.etd()).isEqualTo("1140");
-            assertThat(flight.eta()).isNull();
+            assertThat(flight.eta()).isEqualTo("1550");
             assertThat(flight.via()).isEqualTo("M765/M771");
             assertThat(flight.craftId()).isZero();
             assertThat(flight.mtow()).isNull();

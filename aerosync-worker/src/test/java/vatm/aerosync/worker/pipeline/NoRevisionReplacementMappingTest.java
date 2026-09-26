@@ -190,7 +190,7 @@ class NoRevisionReplacementMappingTest {
         var document = document("LFLL", true);
         var legacy = parser.parse(document, "OF-6916-REV1.docx");
         var replacement = parser.parseNoReplacement(document, "OF-6916-REV1.docx");
-        assertThat(legacy.flights().getFirst().eta()).isNull(); // original YAML includeEta:false
+        assertThat(legacy.flights().getFirst().eta()).isEqualTo("0830+");
         assertThat(replacement.flights().getFirst().eta()).isEqualTo("0830+");
     }
 

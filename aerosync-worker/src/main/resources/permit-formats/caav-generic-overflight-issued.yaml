@@ -63,7 +63,7 @@ schedule:
     fromAirport: [Departure Airport, Dep airport]
     etd: [ETD]
     toAirport: [Arrival Airport, Arr airport]
-    eta: [ETA]
+    eta: [ETA, EIBT]
     aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
     originalPermit: [Original permit]
     remark: [Notes, Note]
@@ -81,7 +81,7 @@ schedule:
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
   purposeId: PAX
-  includeEta: false
+  includeEta: true
   lastMatchingTable: false
   inferIataPrefix: true
 route:
