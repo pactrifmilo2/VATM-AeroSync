@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import vatm.aerosync.api.dto.EmailReportDetailResponse;
 import vatm.aerosync.api.dto.EmailReportRowResponse;
@@ -41,15 +42,27 @@ public class EmailReportService {
     private final PermitImportRepository permitImportRepository;
     private final FileRecordRepository fileRecordRepository;
     private final VietnameseErrorMessageTranslator errorMessageTranslator;
+    private final AtfmDatabaseStateGateway databaseStateGateway;
+
+    @Autowired
+    public EmailReportService(EmailMetadataRepository emailMetadataRepository,
+                              PermitImportRepository permitImportRepository,
+                              FileRecordRepository fileRecordRepository,
+                              VietnameseErrorMessageTranslator errorMessageTranslator,
+                              AtfmDatabaseStateGateway databaseStateGateway) {
+        this.emailMetadataRepository = emailMetadataRepository;
+        this.permitImportRepository = permitImportRepository;
+        this.fileRecordRepository = fileRecordRepository;
+        this.errorMessageTranslator = errorMessageTranslator;
+        this.databaseStateGateway = databaseStateGateway;
+    }
 
     public EmailReportService(EmailMetadataRepository emailMetadataRepository,
                               PermitImportRepository permitImportRepository,
                               FileRecordRepository fileRecordRepository,
                               VietnameseErrorMessageTranslator errorMessageTranslator) {
-        this.emailMetadataRepository = emailMetadataRepository;
-        this.permitImportRepository = permitImportRepository;
-        this.fileRecordRepository = fileRecordRepository;
-        this.errorMessageTranslator = errorMessageTranslator;
+        this(emailMetadataRepository, permitImportRepository, fileRecordRepository,
+                errorMessageTranslator, null);
     }
 
     @Transactional(readOnly = true)
@@ -177,6 +190,7 @@ public class EmailReportService {
         SyncJob job = metadata.getSyncJob();
         Long syncJobId = job != null ? job.getId() : null;
         FileRecord latestFileRecord = syncJobId != null ? latestFileRecords.get(syncJobId) : null;
+        DatabaseState databaseState = databaseState(job, latestFileRecord, metadata.getProcessingStatus());
         return new EmailReportRowResponse(
                 metadata.getId(),
                 syncJobId,
@@ -200,7 +214,22 @@ public class EmailReportService {
                 latestFileRecord != null && WordFormatRequirement.isRequired(
                         latestFileRecord.getOriginalFileName(), latestFileRecord.getErrorMessage()),
                 "email",
-                1);
+                1,
+                databaseState,
+                databaseState == DatabaseState.FOUND);
+    }
+
+    private DatabaseState databaseState(SyncJob job, FileRecord record, EmailProcessingStatus status) {
+        if (databaseStateGateway == null || job == null) return DatabaseState.UNKNOWN;
+        PermitImport permit = permitImportRepository.findBySyncJobId(job.getId()).orElse(null);
+        boolean terminal = status != null && status != EmailProcessingStatus.DISCOVERED
+                && status != EmailProcessingStatus.DOWNLOADED
+                && status != EmailProcessingStatus.PROCESSING;
+        boolean processingError = status == EmailProcessingStatus.FAILED
+                || status == EmailProcessingStatus.QUARANTINED;
+        return databaseStateGateway.state(permit == null ? null : permit.getTargetMasterId(),
+                permit == null ? null : permit.getTargetPermId(),
+                permit == null ? null : permit.getNormalizedPermitId(), terminal, processingError);
     }
 
     private Map<Long, String> permitNumbersFor(List<EmailMetadata> metadataRows) {

@@ -9,6 +9,7 @@ import vatm.aerosync.api.dto.EmailReportRowResponse;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.common.entity.AuditLog;
 import vatm.aerosync.common.entity.FileRecord;
+import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
 import vatm.aerosync.common.enums.FileProcessingStatus;
 import vatm.aerosync.common.enums.SyncStatus;
@@ -35,15 +36,26 @@ public class IncomingReportService {
     private final FileRecordRepository fileRecordRepository;
     private final PermitImportRepository permitImportRepository;
     private final VietnameseErrorMessageTranslator errorMessageTranslator;
+    private final AtfmDatabaseStateGateway databaseStateGateway;
+
+    public IncomingReportService(AuditLogRepository auditLogRepository,
+                                 FileRecordRepository fileRecordRepository,
+                                 PermitImportRepository permitImportRepository,
+                                 VietnameseErrorMessageTranslator errorMessageTranslator,
+                                 AtfmDatabaseStateGateway databaseStateGateway) {
+        this.auditLogRepository = auditLogRepository;
+        this.fileRecordRepository = fileRecordRepository;
+        this.permitImportRepository = permitImportRepository;
+        this.errorMessageTranslator = errorMessageTranslator;
+        this.databaseStateGateway = databaseStateGateway;
+    }
 
     public IncomingReportService(AuditLogRepository auditLogRepository,
                                  FileRecordRepository fileRecordRepository,
                                  PermitImportRepository permitImportRepository,
                                  VietnameseErrorMessageTranslator errorMessageTranslator) {
-        this.auditLogRepository = auditLogRepository;
-        this.fileRecordRepository = fileRecordRepository;
-        this.permitImportRepository = permitImportRepository;
-        this.errorMessageTranslator = errorMessageTranslator;
+        this(auditLogRepository, fileRecordRepository, permitImportRepository,
+                errorMessageTranslator, null);
     }
 
     @Transactional(readOnly = true)
@@ -82,6 +94,7 @@ public class IncomingReportService {
                 ? SyncStatus.SKIPPED
                 : event.getSyncJob() != null ? event.getSyncJob().getStatus() : event.getResultStatus();
 
+        DatabaseState databaseState = databaseState(event, record, fileStatus);
         return new EmailReportRowResponse(
                 event.getId(),
                 syncJobId,
@@ -103,7 +116,20 @@ public class IncomingReportService {
                 record != null && WordFormatRequirement.isRequired(
                         record.getOriginalFileName(), record.getErrorMessage()),
                 "folder",
-                2);
+                2,
+                databaseState,
+                databaseState == DatabaseState.FOUND);
+    }
+
+    private DatabaseState databaseState(AuditLog event, FileRecord record, FileProcessingStatus status) {
+        if (databaseStateGateway == null || event.getSyncJob() == null) return DatabaseState.UNKNOWN;
+        PermitImport permit = permitImportRepository.findBySyncJobId(event.getSyncJob().getId()).orElse(null);
+        boolean terminal = isComplete(status);
+        boolean processingError = status == FileProcessingStatus.FAILED
+                || status == FileProcessingStatus.QUARANTINED;
+        return databaseStateGateway.state(permit == null ? null : permit.getTargetMasterId(),
+                permit == null ? null : permit.getTargetPermId(),
+                permit == null ? null : permit.getNormalizedPermitId(), terminal, processingError);
     }
 
     private Map<Long, FileRecord> latestRecords(List<Long> syncJobIds) {

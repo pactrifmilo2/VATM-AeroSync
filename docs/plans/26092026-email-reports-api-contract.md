@@ -47,7 +47,7 @@ artifact `bin/obj/target`, log hoặc các thay đổi Git có sẵn ngoài ph�
   hook để nối datasource sau. An toàn về tính đúng, nhưng chưa đạt KPI.
 - **Phương án khác do user nhập:**
 
-**Lựa chọn của user:**
+**Lựa chọn của user:** A (1A + 2A + 3A, confirmed 27092026).
 
 ### 2. Đồng bộ snapshot giữa list và summary
 
@@ -60,7 +60,7 @@ artifact `bin/obj/target`, log hoặc các thay đổi Git có sẵn ngoài ph�
   triển khai nhất nhưng không đảm bảo phép đối chiếu chính xác.
 - **Phương án khác do user nhập:**
 
-**Lựa chọn của user:**
+**Lựa chọn của user:** A (1A + 2A + 3A, confirmed 27092026).
 
 ### 3. Bộ lọc và tương thích API hiện hữu
 
@@ -74,15 +74,16 @@ artifact `bin/obj/target`, log hoặc các thay đổi Git có sẵn ngoài ph�
   hơn nhưng hai API không hoàn toàn đồng nhất.
 - **Phương án khác do user nhập:**
 
-**Lựa chọn của user:**
+**Lựa chọn của user:** A (1A + 2A + 3A, confirmed 27092026).
 
 ## Mặc định Codex đề xuất
 
-Chọn `1A + 2A + 3A`, với điều kiện user cung cấp hoặc xác nhận schema/cách nối
-SC/NO. Sau khi xác nhận, triển khai theo thứ tự: model truy vấn và trạng thái
-DB, Email list/summary, Incoming list/summary/detail, test hợp đồng/biên, tài
-liệu và change log; mỗi phần được kiểm tra và commit local riêng.
-
+User confirmed 1A + 2A + 3A on 27092026. The verified schema is
+T_PERMMASTER_SC/T_PERMMASTER_NO; the backend will use the existing ATFM
+datasource and match targetMasterId, targetPermId, and normalizedPermitId.
+The API will retain filtered snapshots with an internal TTL and will not add a
+Web.config key. Implementation order remains DB-state model, Email list/summary,
+Incoming list/summary/detail, contract tests, documentation, and change log.
 ## Tiêu chí kiểm tra
 
 - Filter được áp dụng trước count và page limit; `totalElements` sau lọc.

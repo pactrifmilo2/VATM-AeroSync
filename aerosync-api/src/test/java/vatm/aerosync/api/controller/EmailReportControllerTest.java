@@ -77,7 +77,9 @@ class EmailReportControllerTest {
                 SyncStatus.FAILED,
                 true,
                 "email",
-                1);
+                1,
+                vatm.aerosync.api.service.DatabaseState.UNKNOWN,
+                false);
         PagedResponse<EmailReportRowResponse> response = new PagedResponse<>(
                 List.of(row), 1, 10, 11, 2, false, true);
         when(emailReportService.search(filter, 1, 10)).thenReturn(response);
