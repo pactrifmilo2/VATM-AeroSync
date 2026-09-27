@@ -13,6 +13,13 @@ public record EmailReportFilter(
         EmailAcknowledgementStatus acknowledgementStatus,
         SyncStatus jobStatus,
         String sender,
-        String query
+        String query,
+        ReportFileType fileType
 ) {
+    public EmailReportFilter(LocalDateTime from, LocalDateTime to,
+                             EmailProcessingStatus processingStatus,
+                             EmailAcknowledgementStatus acknowledgementStatus,
+                             SyncStatus jobStatus, String sender, String query) {
+        this(from, to, processingStatus, acknowledgementStatus, jobStatus, sender, query, null);
+    }
 }

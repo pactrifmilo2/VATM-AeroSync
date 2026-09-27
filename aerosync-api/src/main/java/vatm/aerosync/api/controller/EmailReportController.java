@@ -22,6 +22,7 @@ import vatm.aerosync.api.dto.EmailReportSummaryResponse;
 import vatm.aerosync.api.dto.PagedResponse;
 import vatm.aerosync.api.service.EmailReportFilter;
 import vatm.aerosync.api.service.EmailReportService;
+import vatm.aerosync.api.service.ReportFileType;
 import vatm.aerosync.api.service.EmailResendService;
 import vatm.aerosync.common.enums.EmailAcknowledgementStatus;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
@@ -68,6 +69,8 @@ public class EmailReportController {
             @RequestParam(required = false) String sender,
             @Parameter(description = "Search message ID, sender, subject, and attachment name")
             @RequestParam(required = false, name = "query") String searchQuery,
+            @RequestParam(required = false) ReportFileType fileType,
+            @RequestParam(required = false) String snapshotId,
             @Parameter(description = "Zero-based page number", example = "0")
             @RequestParam(defaultValue = "0") int page,
             @Parameter(description = "Page size from 1 to 100", example = "25")
@@ -79,8 +82,11 @@ public class EmailReportController {
                 acknowledgementStatus,
                 jobStatus,
                 sender,
-                searchQuery);
-        return emailReportService.search(filter, page, size);
+                searchQuery,
+                fileType);
+        return fileType == null && (snapshotId == null || snapshotId.isBlank())
+                ? emailReportService.search(filter, page, size)
+                : emailReportService.search(filter, page, size, snapshotId);
     }
 
     @GetMapping("/summary")
@@ -92,13 +98,21 @@ public class EmailReportController {
             @ApiResponse(responseCode = "400", description = "Invalid date range")
     })
     public EmailReportSummaryResponse summarize(
-            @Parameter(description = "Inclusive received-at lower bound")
-            @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
-            @Parameter(description = "Inclusive received-at upper bound")
-            @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to) {
-        return emailReportService.summarize(from, to);
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to,
+            @RequestParam(required = false) EmailProcessingStatus processingStatus,
+            @RequestParam(required = false) EmailAcknowledgementStatus acknowledgementStatus,
+            @RequestParam(required = false) SyncStatus jobStatus,
+            @RequestParam(required = false) String sender,
+            @RequestParam(required = false, name = "query") String searchQuery,
+            @RequestParam(required = false) ReportFileType fileType) {
+        if (processingStatus == null && acknowledgementStatus == null && jobStatus == null
+                && (sender == null || sender.isBlank()) && (searchQuery == null || searchQuery.isBlank())
+                && fileType == null) {
+            return emailReportService.summarize(from, to);
+        }
+        return emailReportService.summarize(new EmailReportFilter(from, to, processingStatus,
+                acknowledgementStatus, jobStatus, sender, searchQuery, fileType));
     }
 
     @GetMapping("/{id}")

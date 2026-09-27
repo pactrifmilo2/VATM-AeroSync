@@ -31,7 +31,10 @@ class OpenApiDocumentationTest {
                 .andExpect(jsonPath("$.info.version").value("1.0.0"))
                 .andExpect(jsonPath("$.paths['/api/reports/emails'].get").exists())
                 .andExpect(jsonPath("$.paths['/api/reports/emails/{id}'].get").exists())
-                .andExpect(jsonPath("$.paths['/api/reports/emails/summary'].get").exists());
+                .andExpect(jsonPath("$.paths['/api/reports/emails/summary'].get").exists())
+                .andExpect(jsonPath("$.paths['/api/reports/incoming'].get").exists())
+                .andExpect(jsonPath("$.paths['/api/reports/incoming/summary'].get").exists())
+                .andExpect(jsonPath("$.paths['/api/reports/incoming/{id}'].get").exists());
     }
 
     @Test

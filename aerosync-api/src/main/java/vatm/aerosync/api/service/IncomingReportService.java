@@ -1,12 +1,13 @@
 package vatm.aerosync.api.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vatm.aerosync.api.dto.EmailReportRowResponse;
 import vatm.aerosync.api.dto.PagedResponse;
+import vatm.aerosync.api.dto.EmailReportSummaryResponse;
 import vatm.aerosync.common.entity.AuditLog;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.PermitImport;
@@ -19,6 +20,9 @@ import vatm.aerosync.common.repository.PermitImportRepository;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -37,49 +41,108 @@ public class IncomingReportService {
     private final PermitImportRepository permitImportRepository;
     private final VietnameseErrorMessageTranslator errorMessageTranslator;
     private final AtfmDatabaseStateGateway databaseStateGateway;
+    private final ReportSnapshotStore snapshotStore;
+
+    @Autowired
+    public IncomingReportService(AuditLogRepository auditLogRepository,
+                                 FileRecordRepository fileRecordRepository,
+                                 PermitImportRepository permitImportRepository,
+                                 VietnameseErrorMessageTranslator errorMessageTranslator,
+                                 ObjectProvider<AtfmDatabaseStateGateway> gatewayProvider,
+                                 ObjectProvider<ReportSnapshotStore> snapshotProvider) {
+        this(auditLogRepository, fileRecordRepository, permitImportRepository, errorMessageTranslator,
+                gatewayProvider.getIfAvailable(), snapshotProvider.getIfAvailable(ReportSnapshotStore::new));
+    }
 
     public IncomingReportService(AuditLogRepository auditLogRepository,
                                  FileRecordRepository fileRecordRepository,
                                  PermitImportRepository permitImportRepository,
                                  VietnameseErrorMessageTranslator errorMessageTranslator,
-                                 AtfmDatabaseStateGateway databaseStateGateway) {
-        this.auditLogRepository = auditLogRepository;
-        this.fileRecordRepository = fileRecordRepository;
-        this.permitImportRepository = permitImportRepository;
-        this.errorMessageTranslator = errorMessageTranslator;
-        this.databaseStateGateway = databaseStateGateway;
+                                 AtfmDatabaseStateGateway databaseStateGateway,
+                                 ReportSnapshotStore snapshotStore) {
+        this.auditLogRepository = auditLogRepository; this.fileRecordRepository = fileRecordRepository;
+        this.permitImportRepository = permitImportRepository; this.errorMessageTranslator = errorMessageTranslator;
+        this.databaseStateGateway = databaseStateGateway; this.snapshotStore = snapshotStore;
     }
 
     public IncomingReportService(AuditLogRepository auditLogRepository,
                                  FileRecordRepository fileRecordRepository,
                                  PermitImportRepository permitImportRepository,
                                  VietnameseErrorMessageTranslator errorMessageTranslator) {
-        this(auditLogRepository, fileRecordRepository, permitImportRepository,
-                errorMessageTranslator, null);
+        this(auditLogRepository, fileRecordRepository, permitImportRepository, errorMessageTranslator,
+                null, new ReportSnapshotStore());
     }
 
     @Transactional(readOnly = true)
     public PagedResponse<EmailReportRowResponse> search(int page, int size) {
-        validate(page, size);
-        PageRequest request = PageRequest.of(page, size,
-                Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id")));
-        Page<AuditLog> eventPage = auditLogRepository
-                .findByActionStartingWith(INCOMING_ACTION_PREFIX, request);
-        List<Long> syncJobIds = eventPage.getContent().stream()
-                .filter(log -> log.getSyncJob() != null)
-                .map(log -> log.getSyncJob().getId())
-                .distinct()
+        return search(new IncomingReportFilter(null, null, null, null, null), page, size, null);
+    }
+
+    @Transactional(readOnly = true)
+    public PagedResponse<EmailReportRowResponse> search(IncomingReportFilter filter, int page, int size,
+                                                        String snapshotId) {
+        validate(filter, page, size);
+        ReportSnapshotStore.Snapshot snapshot = snapshotId == null || snapshotId.isBlank()
+                ? createSnapshot(filter) : snapshotStore.require(snapshotId, "incoming");
+        int from = Math.min(page * size, snapshot.rows().size());
+        int to = Math.min(from + size, snapshot.rows().size());
+        int pages = snapshot.rows().isEmpty() ? 0 : (snapshot.rows().size() + size - 1) / size;
+        return new PagedResponse<>(snapshot.rows().subList(from, to), page, size, snapshot.rows().size(),
+                pages, page + 1 < pages, page > 0, snapshot.id());
+    }
+
+    @Transactional(readOnly = true)
+    public EmailReportSummaryResponse summarize(IncomingReportFilter filter) {
+        validate(filter, 0, 25);
+        ReportSnapshotStore.Snapshot snapshot = createSnapshot(filter);
+        Map<String, Long> processing = enumMap(EmailProcessingStatus.values());
+        snapshot.rows().forEach(row -> processing.merge(row.processingStatus().name(), 1L, Long::sum));
+        Map<String, Long> acknowledgements = new LinkedHashMap<>();
+        long success = countState(snapshot.rows(), DatabaseState.FOUND);
+        long errors = countState(snapshot.rows(), DatabaseState.MISSING) + countState(snapshot.rows(), DatabaseState.ERROR);
+        long pending = countState(snapshot.rows(), DatabaseState.PENDING);
+        long unknown = countState(snapshot.rows(), DatabaseState.UNKNOWN);
+        long total = snapshot.rows().size();
+        return new EmailReportSummaryResponse(filter.from(), filter.to(), total, processing, acknowledgements,
+                total, success, errors, pending, unknown, snapshot.createdAt(), snapshot.id());
+    }
+
+    @Transactional(readOnly = true)
+    public EmailReportRowResponse get(Long id) {
+        AuditLog event = auditLogRepository.findById(id)
+                .filter(log -> log.getAction().startsWith(INCOMING_ACTION_PREFIX))
+                .orElseThrow(() -> new NoSuchElementException("Incoming report record not found: " + id));
+        List<Long> ids = event.getSyncJob() == null ? List.of() : List.of(event.getSyncJob().getId());
+        Map<Long, FileRecord> files = latestRecords(ids); Map<Long, PermitImport> permits = permits(ids);
+        Map<Long, DatabaseState> states = databaseStates(List.of(event), permits, files);
+        return toResponse(event, files, permitNumbers(permits), states);
+    }
+
+    private ReportSnapshotStore.Snapshot createSnapshot(IncomingReportFilter filter) {
+        List<AuditLog> events = auditLogRepository.findAll(
+                Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id"))).stream()
+                .filter(log -> log.getAction().startsWith(INCOMING_ACTION_PREFIX))
+                .filter(log -> filter.from() == null || !log.getTimestamp().isBefore(filter.from()))
+                .filter(log -> filter.to() == null || !log.getTimestamp().isAfter(filter.to()))
                 .toList();
-        Map<Long, FileRecord> latestRecords = latestRecords(syncJobIds);
-        Map<Long, String> permitNumbers = permitNumbers(syncJobIds);
-        Page<EmailReportRowResponse> rows = eventPage.map(log ->
-                toResponse(log, latestRecords, permitNumbers));
-        return PagedResponse.from(rows);
+        List<Long> ids = events.stream().filter(e -> e.getSyncJob() != null)
+                .map(e -> e.getSyncJob().getId()).distinct().toList();
+        Map<Long, FileRecord> files = latestRecords(ids); Map<Long, PermitImport> permits = permits(ids);
+        Map<Long, DatabaseState> states = databaseStates(events, permits, files);
+        Map<Long, String> permitNumbers = permitNumbers(permits);
+        List<EmailReportRowResponse> rows = events.stream()
+                .map(e -> toResponse(e, files, permitNumbers, states))
+                .filter(row -> filter.processingStatus() == null || row.processingStatus() == filter.processingStatus())
+                .filter(row -> matchesQuery(row, filter.query()))
+                .filter(row -> filter.fileType() == null || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
+                .toList();
+        return snapshotStore.create("incoming", rows);
     }
 
     private EmailReportRowResponse toResponse(AuditLog event,
                                               Map<Long, FileRecord> latestRecords,
-                                              Map<Long, String> permitNumbers) {
+                                              Map<Long, String> permitNumbers,
+                                              Map<Long, DatabaseState> states) {
         boolean duplicate = DUPLICATE_ACTION.equals(event.getAction());
         Long syncJobId = event.getSyncJob() != null ? event.getSyncJob().getId() : null;
         FileRecord record = syncJobId != null ? latestRecords.get(syncJobId) : null;
@@ -94,7 +157,8 @@ public class IncomingReportService {
                 ? SyncStatus.SKIPPED
                 : event.getSyncJob() != null ? event.getSyncJob().getStatus() : event.getResultStatus();
 
-        DatabaseState databaseState = databaseState(event, record, fileStatus);
+        DatabaseState databaseState = syncJobId == null ? DatabaseState.UNKNOWN
+                : states.getOrDefault(syncJobId, DatabaseState.UNKNOWN);
         return new EmailReportRowResponse(
                 event.getId(),
                 syncJobId,
@@ -121,15 +185,40 @@ public class IncomingReportService {
                 databaseState == DatabaseState.FOUND);
     }
 
-    private DatabaseState databaseState(AuditLog event, FileRecord record, FileProcessingStatus status) {
-        if (databaseStateGateway == null || event.getSyncJob() == null) return DatabaseState.UNKNOWN;
-        PermitImport permit = permitImportRepository.findBySyncJobId(event.getSyncJob().getId()).orElse(null);
-        boolean terminal = isComplete(status);
-        boolean processingError = status == FileProcessingStatus.FAILED
-                || status == FileProcessingStatus.QUARANTINED;
-        return databaseStateGateway.state(permit == null ? null : permit.getTargetMasterId(),
-                permit == null ? null : permit.getTargetPermId(),
-                permit == null ? null : permit.getNormalizedPermitId(), terminal, processingError);
+    private Map<Long, PermitImport> permits(List<Long> ids) {
+        if (ids.isEmpty()) return Map.of();
+        Map<Long, PermitImport> result = new HashMap<>();
+        permitImportRepository.findBySyncJobIdIn(ids).forEach(p -> result.put(p.getSyncJob().getId(), p));
+        return result;
+    }
+
+    private Map<Long, String> permitNumbers(Map<Long, PermitImport> permits) {
+        Map<Long, String> result = new HashMap<>(); permits.forEach((id, p) -> result.put(id, p.getNormalizedPermitId()));
+        return result;
+    }
+
+    private Map<Long, DatabaseState> databaseStates(List<AuditLog> events, Map<Long, PermitImport> permits, Map<Long, FileRecord> files) {
+        if (databaseStateGateway == null) return Map.of();
+        return databaseStateGateway.states(events.stream().filter(e -> e.getSyncJob() != null).map(e -> {
+            Long id = e.getSyncJob().getId(); PermitImport p = permits.get(id);
+            FileRecord file = files.get(id);
+            FileProcessingStatus status = file == null ? FileProcessingStatus.DOWNLOADED : file.getProcessingStatus();
+            return new AtfmDatabaseStateGateway.Candidate(id, p == null ? null : p.getTargetMasterId(),
+                    p == null ? null : p.getTargetPermId(), p == null ? null : p.getNormalizedPermitId(),
+                    isComplete(status), status == FileProcessingStatus.FAILED || status == FileProcessingStatus.QUARANTINED);
+        }).distinct().toList());
+    }
+
+    private boolean matchesQuery(EmailReportRowResponse row, String query) {
+        if (query == null || query.isBlank()) return true; String value = query.trim().toLowerCase(Locale.ROOT);
+        return contains(row.subject(), value) || contains(row.sender(), value) || contains(row.errorMessage(), value);
+    }
+    private boolean contains(String source, String value) { return source != null && source.toLowerCase(Locale.ROOT).contains(value); }
+    private long countState(List<EmailReportRowResponse> rows, DatabaseState state) {
+        return rows.stream().filter(row -> row.databaseState() == state).count();
+    }
+    private Map<String, Long> enumMap(Enum<?>[] values) {
+        Map<String, Long> result = new LinkedHashMap<>(); for (Enum<?> value : values) result.put(value.name(), 0L); return result;
     }
 
     private Map<Long, FileRecord> latestRecords(List<Long> syncJobIds) {
@@ -141,16 +230,6 @@ public class IncomingReportService {
             records.merge(candidate.getSyncJob().getId(), candidate, this::newerRecord);
         }
         return records;
-    }
-
-    private Map<Long, String> permitNumbers(List<Long> syncJobIds) {
-        if (syncJobIds.isEmpty()) {
-            return Map.of();
-        }
-        Map<Long, String> numbers = new HashMap<>();
-        permitImportRepository.findBySyncJobIdIn(syncJobIds).forEach(permitImport ->
-                numbers.put(permitImport.getSyncJob().getId(), permitImport.getNormalizedPermitId()));
-        return numbers;
     }
 
     private FileRecord newerRecord(FileRecord first, FileRecord second) {
@@ -192,12 +271,11 @@ public class IncomingReportService {
                 || status == FileProcessingStatus.SKIPPED;
     }
 
-    private void validate(int page, int size) {
-        if (page < 0) {
-            throw new IllegalArgumentException("'page' must be greater than or equal to 0");
-        }
-        if (size < 1 || size > MAX_PAGE_SIZE) {
+    private void validate(IncomingReportFilter filter, int page, int size) {
+        if (filter.from() != null && filter.to() != null && filter.from().isAfter(filter.to()))
+            throw new IllegalArgumentException("'from' must be before or equal to 'to'");
+        if (page < 0) throw new IllegalArgumentException("'page' must be greater than or equal to 0");
+        if (size < 1 || size > MAX_PAGE_SIZE)
             throw new IllegalArgumentException("'size' must be between 1 and " + MAX_PAGE_SIZE);
-        }
     }
 }

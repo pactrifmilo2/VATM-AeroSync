@@ -57,8 +57,8 @@ class EmailReportServiceTest {
         fileRecord.setErrorMessage("Unsupported Word permit format; no format profile matched");
         when(repository.findAll(
                 org.mockito.ArgumentMatchers.<Specification<EmailMetadata>>any(),
-                any(Pageable.class)))
-                .thenReturn(new PageImpl<>(List.of(metadata)));
+                any(org.springframework.data.domain.Sort.class)))
+                .thenReturn(List.of(metadata));
         when(permitImportRepository.findBySyncJobIdIn(any())).thenReturn(List.of());
         when(fileRecordRepository.findBySyncJobIdIn(any())).thenReturn(List.of(fileRecord));
 
@@ -143,8 +143,10 @@ class EmailReportServiceTest {
                 mock(EmailMetadataRepository.AcknowledgementStatusCount.class);
         when(acknowledgementCount.getStatus()).thenReturn(EmailAcknowledgementStatus.MOVED_PROCESSED);
         when(acknowledgementCount.getTotal()).thenReturn(3L);
-        when(repository.countByProcessingStatus(null, null)).thenReturn(List.of(processingCount));
-        when(repository.countByAcknowledgementStatus(null, null)).thenReturn(List.of(acknowledgementCount));
+        EmailMetadata saved = metadata("saved", "sender", "subject", LocalDateTime.now(), EmailProcessingStatus.SAVED);
+        saved.setAcknowledgementStatus(EmailAcknowledgementStatus.MOVED_PROCESSED);
+        when(repository.findAll(org.mockito.ArgumentMatchers.<Specification<EmailMetadata>>any(),
+                any(org.springframework.data.domain.Sort.class))).thenReturn(List.of(saved, saved, saved));
 
         var result = service.summarize(null, null);
 

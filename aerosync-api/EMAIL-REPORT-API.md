@@ -35,7 +35,9 @@ Optional query parameters:
 | `acknowledgementStatus` | enum | Mailbox acknowledgement status |
 | `jobStatus` | enum | Associated sync-job status |
 | `sender` | string | Case-insensitive partial sender match |
-| `query` | string | Case-insensitive search over message ID, sender, subject, and attachment name |
+| `query` | string | Case-insensitive search over message ID, sender, subject, body, and attachment name |
+| `fileType` | enum | `word`, `excel`, `pdf`, `image`, or `none`; extension matching is case-insensitive |
+| `snapshotId` | string | Snapshot returned by summary; use it to keep list and summary consistent |
 | `page` | integer | Zero-based page number; defaults to `0` |
 | `size` | integer | Page size from `1` to `100`; defaults to `25` |
 
@@ -67,7 +69,9 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
       "acknowledgementStatus": "MOVED_ERROR",
       "ingestComplete": true,
       "acknowledgedAt": "2026-07-24T09:16:00",
-      "jobStatus": "FAILED"
+      "jobStatus": "FAILED",
+      "databaseState": "unknown",
+      "hasDatabaseData": false
     }
   ],
   "page": 0,
@@ -75,7 +79,8 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
   "totalElements": 1,
   "totalPages": 1,
   "hasNext": false,
-  "hasPrevious": false
+  "hasPrevious": false,
+  "snapshotId": "snapshot-id-from-summary"
 }
 ```
 
@@ -140,6 +145,28 @@ statuses whose count is zero.
   }
 }
 ```
+
+## Database state fields
+
+Every list row includes `databaseState` (`found`, `missing`, `error`, `pending`,
+or `unknown`) and `hasDatabaseData`. `found` is returned only after the ATFM
+SC/NO master row matches the stored target master ID, permit ID, and normalized
+permit identity. Connection or lookup failures are `unknown`, not zero counts.
+
+## Incoming report API
+
+`/api/reports/incoming` uses the same row shape, paging rules, `query`,
+`processingStatus`, date bounds, `fileType`, and snapshot behavior. It also
+provides:
+
+```http
+GET /api/reports/incoming/summary
+GET /api/reports/incoming/{id}
+```
+
+The Incoming summary keeps `totalFiles`, `successFiles`, `errorFiles`,
+`pendingFiles`, `unknownFiles`, and `asOf`; in both Email and Incoming summaries
+`totalFiles` equals the filtered list `totalElements` for the same snapshot.
 
 ## Validation errors
 

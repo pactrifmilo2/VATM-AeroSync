@@ -11,8 +11,13 @@ public record PagedResponse<T>(
         long totalElements,
         int totalPages,
         boolean hasNext,
-        boolean hasPrevious
+        boolean hasPrevious,
+        String snapshotId
 ) {
+    public PagedResponse(List<T> content, int page, int size, long totalElements,
+                         int totalPages, boolean hasNext, boolean hasPrevious) {
+        this(content, page, size, totalElements, totalPages, hasNext, hasPrevious, null);
+    }
 
     public static <T> PagedResponse<T> from(Page<T> result) {
         return new PagedResponse<>(
@@ -22,6 +27,6 @@ public record PagedResponse<T>(
                 result.getTotalElements(),
                 result.getTotalPages(),
                 result.hasNext(),
-                result.hasPrevious());
+                result.hasPrevious(), null);
     }
 }
