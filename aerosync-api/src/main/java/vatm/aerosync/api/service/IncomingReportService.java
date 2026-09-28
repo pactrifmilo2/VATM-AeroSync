@@ -82,13 +82,36 @@ public class IncomingReportService {
     public PagedResponse<EmailReportRowResponse> search(IncomingReportFilter filter, int page, int size,
                                                         String snapshotId) {
         validate(filter, page, size);
-        ReportSnapshotStore.Snapshot snapshot = snapshotId == null || snapshotId.isBlank()
-                ? createSnapshot(filter) : snapshotStore.require(snapshotId, "incoming");
+        if (snapshotId == null || snapshotId.isBlank()) {
+            return searchPage(filter, page, size);
+        }
+        ReportSnapshotStore.Snapshot snapshot = snapshotStore.require(snapshotId, "incoming");
         int from = Math.min(page * size, snapshot.rows().size());
         int to = Math.min(from + size, snapshot.rows().size());
         int pages = snapshot.rows().isEmpty() ? 0 : (snapshot.rows().size() + size - 1) / size;
         return new PagedResponse<>(snapshot.rows().subList(from, to), page, size, snapshot.rows().size(),
                 pages, page + 1 < pages, page > 0, snapshot.id());
+    }
+
+    private PagedResponse<EmailReportRowResponse> searchPage(IncomingReportFilter filter, int page, int size) {
+        org.springframework.data.domain.Page<AuditLog> eventPage = auditLogRepository.findByActionStartingWith(
+                INCOMING_ACTION_PREFIX, org.springframework.data.domain.PageRequest.of(page, size,
+                        Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id"))));
+        List<AuditLog> events = eventPage.getContent().stream()
+                .filter(event -> filter.from() == null || !event.getTimestamp().isBefore(filter.from()))
+                .filter(event -> filter.to() == null || !event.getTimestamp().isAfter(filter.to()))
+                .toList();
+        List<Long> ids = events.stream().filter(e -> e.getSyncJob() != null).map(e -> e.getSyncJob().getId()).distinct().toList();
+        Map<Long, FileRecord> files = latestRecords(ids); Map<Long, PermitImport> permits = permits(ids);
+        Map<Long, DatabaseState> states = databaseStates(events, permits, files);
+        Map<Long, String> numbers = permitNumbers(permits);
+        List<EmailReportRowResponse> rows = events.stream().map(e -> toResponse(e, files, numbers, states))
+                .filter(row -> filter.processingStatus() == null || row.processingStatus() == filter.processingStatus())
+                .filter(row -> matchesQuery(row, filter.query()))
+                .filter(row -> filter.fileType() == null || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
+                .toList();
+        return new PagedResponse<>(rows, page, size, eventPage.getTotalElements(), eventPage.getTotalPages(),
+                eventPage.hasNext(), eventPage.hasPrevious(), null);
     }
 
     @Transactional(readOnly = true)

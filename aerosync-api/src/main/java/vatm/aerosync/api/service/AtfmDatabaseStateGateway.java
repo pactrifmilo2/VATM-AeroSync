@@ -55,20 +55,48 @@ public class AtfmDatabaseStateGateway {
         }
         if (lookups.isEmpty()) return result;
         try (Connection connection = openConnection()) {
+            java.util.Set<Target> found = new java.util.HashSet<>();
+            for (int offset = 0; offset < lookups.size(); offset += 500) {
+                java.util.List<Candidate> batch = lookups.subList(offset, Math.min(offset + 500, lookups.size()));
+                for (String table : MASTER_TABLES) found.addAll(findTargets(connection, table, batch));
+            }
             for (Candidate candidate : lookups) {
-                boolean found = false;
-                for (String table : MASTER_TABLES) {
-                    if (exists(connection, table, candidate.masterId(), candidate.permId(),
-                            candidate.normalizedPermitId())) {
-                        found = true; break;
-                    }
-                }
-                result.put(candidate.key(), found ? DatabaseState.FOUND : DatabaseState.MISSING);
+                result.put(candidate.key(), found.contains(Target.from(candidate))
+                        ? DatabaseState.FOUND : DatabaseState.MISSING);
             }
         } catch (SQLException | RuntimeException exception) {
             lookups.forEach(candidate -> result.put(candidate.key(), DatabaseState.UNKNOWN));
         }
         return result;
+    }
+
+    private java.util.Set<Target> findTargets(Connection connection, String table,
+                                               java.util.List<Candidate> candidates) throws SQLException {
+        String placeholders = String.join(",", java.util.Collections.nCopies(candidates.size(), "?"));
+        String sql = "SELECT ID, PERM_ID, UPPER(TRIM(PERMNBR_ID)) AS PERMNBR_ID FROM " + table
+                + " WHERE UPPER(TRIM(PERMNBR_ID)) IN (" + placeholders + ")";
+        java.util.Set<Target> targets = new java.util.HashSet<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setQueryTimeout(10);
+            int index = 1;
+            for (Candidate candidate : candidates)
+                statement.setString(index++, normalize(candidate.normalizedPermitId()));
+            try (ResultSet rows = statement.executeQuery()) {
+                while (rows.next()) targets.add(new Target(rows.getLong("ID"), rows.getLong("PERM_ID"),
+                        rows.getString("PERMNBR_ID")));
+            }
+        }
+        return targets;
+    }
+
+    private record Target(Long masterId, Long permId, String permitId) {
+        static Target from(Candidate candidate) {
+            return new Target(candidate.masterId(), candidate.permId(), normalize(candidate.normalizedPermitId()));
+        }
+    }
+
+    private static String normalize(String value) {
+        return value == null ? null : value.trim().toUpperCase(Locale.ROOT);
     }
 
     public record Candidate(Long key, Long masterId, Long permId, String normalizedPermitId,

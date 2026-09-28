@@ -4,6 +4,7 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -89,9 +90,34 @@ public class EmailReportService {
     public PagedResponse<EmailReportRowResponse> search(EmailReportFilter filter, int page, int size,
                                                         String snapshotId) {
         validateRange(filter.from(), filter.to()); validatePage(page, size);
-        ReportSnapshotStore.Snapshot snapshot = snapshotId == null || snapshotId.isBlank()
-                ? createSnapshot(filter) : snapshotStore.require(snapshotId, "email");
-        return page(snapshot, page, size);
+        if (snapshotId != null && !snapshotId.isBlank()) {
+            return page(snapshotStore.require(snapshotId, "email"), page, size);
+        }
+        return searchPage(filter, page, size);
+    }
+
+    private PagedResponse<EmailReportRowResponse> searchPage(EmailReportFilter filter, int page, int size) {
+        Page<EmailMetadata> metadataPage = emailMetadataRepository.findAll(
+                toSpecification(filter), PageRequest.of(page, size,
+                        Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id"))));
+        if (metadataPage == null) {
+            List<EmailMetadata> fallback = emailMetadataRepository.findAll(toSpecification(filter),
+                    Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id")));
+            metadataPage = new org.springframework.data.domain.PageImpl<>(fallback);
+        }
+        List<EmailMetadata> metadata = metadataPage.getContent();
+        Map<Long, PermitImport> permits = permitsFor(metadata);
+        Map<Long, FileRecord> files = latestFileRecordsFor(metadata);
+        Map<Long, DatabaseState> states = databaseStates(metadata, permits);
+        List<EmailReportRowResponse> rows = metadata.stream()
+                .filter(item -> matchesQuery(item, filter.query())
+                        || containsBody(item.getBody(), filter.query()))
+                .map(item -> toRowResponse(item, permits, files, states))
+                .filter(row -> filter.fileType() == null
+                        || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
+                .toList();
+        return new PagedResponse<>(rows, page, size, metadataPage.getTotalElements(),
+                metadataPage.getTotalPages(), metadataPage.hasNext(), metadataPage.hasPrevious(), null);
     }
 
     private ReportSnapshotStore.Snapshot createSnapshot(EmailReportFilter filter) {
@@ -212,7 +238,56 @@ public class EmailReportService {
                 predicates.add(containsIgnoreCase(
                         criteriaBuilder, root.get("sender"), filter.sender().trim()));
             }
+            if (hasText(filter.query())) {
+                String value = filter.query().trim();
+                predicates.add(criteriaBuilder.or(
+                        containsIgnoreCase(criteriaBuilder, root.get("messageId"), value),
+                        containsIgnoreCase(criteriaBuilder, root.get("sender"), value),
+                        containsIgnoreCase(criteriaBuilder, root.get("subject"), value),
+                        containsIgnoreCase(criteriaBuilder, root.get("attachmentName"), value)));
+            }
+            if (filter.fileType() != null) {
+                predicates.add(fileTypePredicate(root, query, criteriaBuilder, filter.fileType()));
+            }
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
+        };
+    }
+
+    private Predicate fileTypePredicate(jakarta.persistence.criteria.Root<EmailMetadata> root,
+                                         jakarta.persistence.criteria.CriteriaQuery<?> query,
+                                         jakarta.persistence.criteria.CriteriaBuilder cb,
+                                         ReportFileType type) {
+        jakarta.persistence.criteria.Subquery<Long> subquery = query.subquery(Long.class);
+        jakarta.persistence.criteria.Root<FileRecord> file = subquery.from(FileRecord.class);
+        Predicate sameJob = cb.equal(file.get("syncJob"), root.get("syncJob"));
+        if (type == ReportFileType.NONE) {
+            return cb.and(cb.isNull(root.get("attachmentName")),
+                    cb.not(cb.exists(subquery.select(file.get("id")).where(sameJob))));
+        }
+        List<Predicate> names = new ArrayList<>();
+        for (String extension : extensions(type)) {
+            String suffix = "%\\." + extension;
+            names.add(cb.or(cb.like(cb.lower(file.get("originalFileName")), suffix),
+                    cb.like(cb.lower(file.get("storedPath")), suffix)));
+        }
+        Predicate fileMatch = cb.exists(subquery.select(file.get("id")).where(cb.and(sameJob, cb.or(names.toArray(Predicate[]::new)))));
+        return cb.or(fileMatch, cb.and(cb.isNull(root.get("syncJob")), attachmentExtension(cb, root.get("attachmentName"), type)));
+    }
+
+    private Predicate attachmentExtension(jakarta.persistence.criteria.CriteriaBuilder cb,
+                                           jakarta.persistence.criteria.Path<String> path, ReportFileType type) {
+        List<Predicate> result = new ArrayList<>();
+        for (String extension : extensions(type)) result.add(cb.like(cb.lower(path), "%\\." + extension));
+        return cb.or(result.toArray(Predicate[]::new));
+    }
+
+    private List<String> extensions(ReportFileType type) {
+        return switch (type) {
+            case WORD -> List.of("doc", "docx", "rtf");
+            case EXCEL -> List.of("xls", "xlsx", "xlsm", "csv");
+            case PDF -> List.of("pdf");
+            case IMAGE -> List.of("png", "jpg", "jpeg", "gif", "bmp", "tif", "tiff", "webp");
+            case NONE -> List.of();
         };
     }
 
@@ -222,6 +297,10 @@ public class EmailReportService {
         return contains(metadata.getMessageId(), value) || contains(metadata.getSender(), value)
                 || contains(metadata.getSubject(), value) || contains(metadata.getBody(), value)
                 || contains(metadata.getAttachmentName(), value);
+    }
+
+    private boolean containsBody(String source, String query) {
+        return hasText(query) && contains(source, query.trim().toLowerCase(Locale.ROOT));
     }
 
     private boolean contains(String source, String lowerQuery) {
