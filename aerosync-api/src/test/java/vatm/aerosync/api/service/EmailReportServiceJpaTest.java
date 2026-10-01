@@ -143,6 +143,41 @@ class EmailReportServiceJpaTest {
     }
 
     @Test
+    void wordAndNoneUseEffectiveFilenameBeforeCountAndPaging() {
+        LocalDateTime base = LocalDateTime.parse("2026-09-28T08:00:00");
+        SyncJob storedJob = saveJob("d", SyncStatus.SUCCESS);
+        EmailMetadata stored = saveEmail("stored-word", "a@b.test", "Word", "fallback.pdf", base,
+                EmailProcessingStatus.SAVED, EmailAcknowledgementStatus.MOVED_PROCESSED, storedJob, 401L);
+        saveFileRecord(storedJob, "OF-7022.docx", "D:\\archive\\OF-7022.docx");
+        EmailMetadata fallback = saveEmail("fallback-word", "a@b.test", "Word", "OF-7023.DOCX",
+                base.minusMinutes(1), EmailProcessingStatus.SAVED,
+                EmailAcknowledgementStatus.MOVED_PROCESSED, null, 402L);
+        saveEmail("no-file", "a@b.test", "No file", null, base.minusMinutes(2),
+                EmailProcessingStatus.NO_ATTACHMENT, EmailAcknowledgementStatus.PENDING, null, 403L);
+        SyncJob replacedJob = saveJob("e", SyncStatus.SUCCESS);
+        saveEmail("replaced-word", "a@b.test", "Replaced", "older.docx", base.minusMinutes(3),
+                EmailProcessingStatus.SAVED, EmailAcknowledgementStatus.MOVED_PROCESSED, replacedJob, 404L);
+        saveFileRecord(replacedJob, "older.docx", "D:\\archive\\older.docx");
+        saveFileRecord(replacedJob, "newer.pdf", "D:\\archive\\newer.pdf");
+        EmailReportFilter wordFilter = new EmailReportFilter(null, null, null, null, null, null, null,
+                ReportFileType.WORD);
+        var word = service.search(wordFilter, 0, 25);
+        assertThat(word.content()).extracting("messageId").doesNotContain("replaced-word");
+        assertThat(word.totalElements()).isEqualTo(2);
+        assertThat(word.content()).extracting("id").containsExactly(stored.getId(), fallback.getId());
+        var none = service.search(new EmailReportFilter(null, null, null, null, null, null, null,
+                ReportFileType.NONE), 0, 25);
+        assertThat(none.totalElements()).isEqualTo(1);
+        assertThat(none.content().getFirst().messageId()).isEqualTo("no-file");
+        var pdf = service.search(new EmailReportFilter(null, null, null, null, null, null, null,
+                ReportFileType.PDF), 0, 25);
+        assertThat(pdf.content()).extracting("messageId").containsExactly("replaced-word");
+        var summary = service.summarize(wordFilter);
+        var snapshotList = service.search(wordFilter, 0, 25, summary.snapshotId());
+        assertThat(summary.totalFiles()).isEqualTo(word.totalElements());
+        assertThat(snapshotList.totalElements()).isEqualTo(summary.totalFiles());
+    }
+    @Test
     void summarizeRunsGroupedQueriesAndIncludesZeroStatuses() {
         LocalDateTime base = LocalDateTime.parse("2026-07-24T08:00:00");
         saveEmail(

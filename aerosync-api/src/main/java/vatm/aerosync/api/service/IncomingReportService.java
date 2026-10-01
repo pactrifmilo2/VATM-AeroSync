@@ -83,7 +83,7 @@ public class IncomingReportService {
                                                         String snapshotId) {
         validate(filter, page, size);
         if (snapshotId == null || snapshotId.isBlank()) {
-            return searchPage(filter, page, size);
+            return page(createSnapshotRows(filter), page, size);
         }
         ReportSnapshotStore.Snapshot snapshot = snapshotStore.require(snapshotId, "incoming");
         int from = Math.min(page * size, snapshot.rows().size());
@@ -93,27 +93,32 @@ public class IncomingReportService {
                 pages, page + 1 < pages, page > 0, snapshot.id());
     }
 
-    private PagedResponse<EmailReportRowResponse> searchPage(IncomingReportFilter filter, int page, int size) {
-        org.springframework.data.domain.Page<AuditLog> eventPage = auditLogRepository.findByActionStartingWith(
-                INCOMING_ACTION_PREFIX, org.springframework.data.domain.PageRequest.of(page, size,
-                        Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id"))));
-        List<AuditLog> events = eventPage.getContent().stream()
+    private List<EmailReportRowResponse> createSnapshotRows(IncomingReportFilter filter) {
+        List<AuditLog> events = auditLogRepository.findAll(
+                Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id"))).stream()
+                .filter(log -> log.getAction().startsWith(INCOMING_ACTION_PREFIX))
                 .filter(event -> filter.from() == null || !event.getTimestamp().isBefore(filter.from()))
                 .filter(event -> filter.to() == null || !event.getTimestamp().isAfter(filter.to()))
                 .toList();
-        List<Long> ids = events.stream().filter(e -> e.getSyncJob() != null).map(e -> e.getSyncJob().getId()).distinct().toList();
+        List<Long> ids = events.stream().filter(e -> e.getSyncJob() != null)
+                .map(e -> e.getSyncJob().getId()).distinct().toList();
         Map<Long, FileRecord> files = latestRecords(ids); Map<Long, PermitImport> permits = permits(ids);
         Map<Long, DatabaseState> states = databaseStates(events, permits, files);
         Map<Long, String> numbers = permitNumbers(permits);
-        List<EmailReportRowResponse> rows = events.stream().map(e -> toResponse(e, files, numbers, states))
+        return events.stream().map(e -> toResponse(e, files, numbers, states))
                 .filter(row -> filter.processingStatus() == null || row.processingStatus() == filter.processingStatus())
                 .filter(row -> matchesQuery(row, filter.query()))
                 .filter(row -> filter.fileType() == null || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
                 .toList();
-        return new PagedResponse<>(rows, page, size, eventPage.getTotalElements(), eventPage.getTotalPages(),
-                eventPage.hasNext(), eventPage.hasPrevious(), null);
     }
 
+    private PagedResponse<EmailReportRowResponse> page(List<EmailReportRowResponse> rows, int page, int size) {
+        int from = Math.min(page * size, rows.size());
+        int to = Math.min(from + size, rows.size());
+        int pages = rows.isEmpty() ? 0 : (rows.size() + size - 1) / size;
+        return new PagedResponse<>(rows.subList(from, to), page, size, rows.size(), pages,
+                page + 1 < pages, page > 0, null);
+    }
     @Transactional(readOnly = true)
     public EmailReportSummaryResponse summarize(IncomingReportFilter filter) {
         validate(filter, 0, 25);
@@ -142,26 +147,8 @@ public class IncomingReportService {
     }
 
     private ReportSnapshotStore.Snapshot createSnapshot(IncomingReportFilter filter) {
-        List<AuditLog> events = auditLogRepository.findAll(
-                Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id"))).stream()
-                .filter(log -> log.getAction().startsWith(INCOMING_ACTION_PREFIX))
-                .filter(log -> filter.from() == null || !log.getTimestamp().isBefore(filter.from()))
-                .filter(log -> filter.to() == null || !log.getTimestamp().isAfter(filter.to()))
-                .toList();
-        List<Long> ids = events.stream().filter(e -> e.getSyncJob() != null)
-                .map(e -> e.getSyncJob().getId()).distinct().toList();
-        Map<Long, FileRecord> files = latestRecords(ids); Map<Long, PermitImport> permits = permits(ids);
-        Map<Long, DatabaseState> states = databaseStates(events, permits, files);
-        Map<Long, String> permitNumbers = permitNumbers(permits);
-        List<EmailReportRowResponse> rows = events.stream()
-                .map(e -> toResponse(e, files, permitNumbers, states))
-                .filter(row -> filter.processingStatus() == null || row.processingStatus() == filter.processingStatus())
-                .filter(row -> matchesQuery(row, filter.query()))
-                .filter(row -> filter.fileType() == null || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
-                .toList();
-        return snapshotStore.create("incoming", rows);
+        return snapshotStore.create("incoming", createSnapshotRows(filter));
     }
-
     private EmailReportRowResponse toResponse(AuditLog event,
                                               Map<Long, FileRecord> latestRecords,
                                               Map<Long, String> permitNumbers,
@@ -273,7 +260,7 @@ public class IncomingReportService {
                 // Fall through to the persisted file record.
             }
         }
-        return record != null ? record.getOriginalFileName() : "(không xác định)";
+        return record != null ? record.getOriginalFileName() : null;
     }
 
     private EmailProcessingStatus toEmailStatus(FileProcessingStatus status) {

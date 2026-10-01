@@ -70,6 +70,30 @@ class IncomingReportServiceTest {
     }
 
     @Test
+    void listWithoutSnapshotCountsOnlyFilteredWordRows() {
+        AuditLog word = event(12L, "C:/incoming/permit.DOCX", LocalDateTime.parse("2026-09-27T10:00:00"));
+        AuditLog pdf = event(11L, "C:/incoming/report.pdf", LocalDateTime.parse("2026-09-27T09:00:00"));
+        when(audits.findAll(any(Sort.class))).thenReturn(List.of(word, pdf));
+        IncomingReportFilter filter = new IncomingReportFilter(null, null, null, null, ReportFileType.WORD);
+        var list = service.search(filter, 0, 25, null);
+        var summary = service.summarize(filter);
+        assertThat(list.totalElements()).isEqualTo(1);
+        assertThat(list.content()).hasSize(1);
+        assertThat(list.content().getFirst().storedFileName()).isEqualTo("permit.DOCX");
+        assertThat(summary.totalFiles()).isEqualTo(list.totalElements());
+    }
+    @Test
+    void noneMatchesIncomingEventWithoutAnyFilename() {
+        AuditLog noFile = event(13L, null, LocalDateTime.parse("2026-09-27T08:00:00"));
+        when(audits.findAll(any(Sort.class))).thenReturn(List.of(noFile));
+        IncomingReportFilter filter = new IncomingReportFilter(null, null, null, null, ReportFileType.NONE);
+        var summary = service.summarize(filter);
+        var list = service.search(filter, 0, 25, null);
+        assertThat(summary.totalFiles()).isEqualTo(1);
+        assertThat(list.totalElements()).isEqualTo(summary.totalFiles());
+        assertThat(list.content().getFirst().storedFileName()).isNull();
+    }
+    @Test
     void detailReturnsOneIncomingRecord() {
         AuditLog event = event(9L, "C:/incoming/permit.docx", LocalDateTime.now());
         when(audits.findById(9L)).thenReturn(Optional.of(event));

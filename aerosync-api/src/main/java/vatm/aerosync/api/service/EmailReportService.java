@@ -4,7 +4,6 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -254,30 +253,52 @@ public class EmailReportService {
     }
 
     private Predicate fileTypePredicate(jakarta.persistence.criteria.Root<EmailMetadata> root,
-                                         jakarta.persistence.criteria.CriteriaQuery<?> query,
-                                         jakarta.persistence.criteria.CriteriaBuilder cb,
-                                         ReportFileType type) {
-        jakarta.persistence.criteria.Subquery<Long> subquery = query.subquery(Long.class);
-        jakarta.persistence.criteria.Root<FileRecord> file = subquery.from(FileRecord.class);
-        Predicate sameJob = cb.equal(file.get("syncJob"), root.get("syncJob"));
+                                        jakarta.persistence.criteria.CriteriaQuery<?> query,
+                                        jakarta.persistence.criteria.CriteriaBuilder cb,
+                                        ReportFileType type) {
+        Predicate hasName = latestFileExists(root, query, cb, null);
         if (type == ReportFileType.NONE) {
-            return cb.and(cb.isNull(root.get("attachmentName")),
-                    cb.not(cb.exists(subquery.select(file.get("id")).where(sameJob))));
+            return cb.and(cb.not(hasName), cb.or(cb.isNull(root.get("attachmentName")),
+                    cb.isNull(cb.trim(root.get("attachmentName"))),
+                    cb.equal(cb.length(cb.trim(root.get("attachmentName"))), 0)));
         }
-        List<Predicate> names = new ArrayList<>();
-        for (String extension : extensions(type)) {
-            String suffix = "%\\." + extension;
-            names.add(cb.or(cb.like(cb.lower(file.get("originalFileName")), suffix),
-                    cb.like(cb.lower(file.get("storedPath")), suffix)));
-        }
-        Predicate fileMatch = cb.exists(subquery.select(file.get("id")).where(cb.and(sameJob, cb.or(names.toArray(Predicate[]::new)))));
-        return cb.or(fileMatch, cb.and(cb.isNull(root.get("syncJob")), attachmentExtension(cb, root.get("attachmentName"), type)));
+        return cb.or(latestFileExists(root, query, cb, type), cb.and(cb.not(hasName),
+                attachmentExtension(cb, root.get("attachmentName"), type)));
     }
 
+    private Predicate latestFileExists(jakarta.persistence.criteria.Root<EmailMetadata> root,
+                                       jakarta.persistence.criteria.CriteriaQuery<?> query,
+                                       jakarta.persistence.criteria.CriteriaBuilder cb,
+                                       ReportFileType type) {
+        jakarta.persistence.criteria.Subquery<Long> latest = query.subquery(Long.class);
+        jakarta.persistence.criteria.Root<FileRecord> file = latest.from(FileRecord.class);
+        jakarta.persistence.criteria.Subquery<Long> newer = latest.subquery(Long.class);
+        jakarta.persistence.criteria.Root<FileRecord> candidate = newer.from(FileRecord.class);
+        newer.select(candidate.get("id")).where(cb.and(
+                cb.equal(candidate.get("syncJob"), file.get("syncJob")),
+                cb.or(cb.greaterThan(candidate.get("createdAt"), file.get("createdAt")),
+                        cb.and(cb.equal(candidate.get("createdAt"), file.get("createdAt")),
+                                cb.greaterThan(candidate.get("id"), file.get("id"))))));
+        jakarta.persistence.criteria.Expression<String> path = cb.trim(file.get("storedPath"));
+        jakarta.persistence.criteria.Expression<String> name = cb.lower(cb.<String>selectCase()
+                .when(cb.greaterThan(cb.length(path), 0), file.get("storedPath"))
+                .otherwise(file.get("originalFileName")));
+        Predicate namePredicate;
+        if (type == null) {
+            namePredicate = cb.greaterThan(cb.length(cb.trim(name)), 0);
+        } else {
+            List<Predicate> suffixes = new ArrayList<>();
+            for (String extension : extensions(type)) suffixes.add(cb.like(name, "%." + extension));
+            namePredicate = cb.or(suffixes.toArray(Predicate[]::new));
+        }
+        return cb.exists(latest.select(file.get("id")).where(cb.and(
+                cb.equal(file.get("syncJob"), root.get("syncJob")),
+                cb.not(cb.exists(newer)), namePredicate)));
+    }
     private Predicate attachmentExtension(jakarta.persistence.criteria.CriteriaBuilder cb,
                                            jakarta.persistence.criteria.Path<String> path, ReportFileType type) {
         List<Predicate> result = new ArrayList<>();
-        for (String extension : extensions(type)) result.add(cb.like(cb.lower(path), "%\\." + extension));
+        for (String extension : extensions(type)) result.add(cb.like(cb.lower(path), "%." + extension));
         return cb.or(result.toArray(Predicate[]::new));
     }
 
