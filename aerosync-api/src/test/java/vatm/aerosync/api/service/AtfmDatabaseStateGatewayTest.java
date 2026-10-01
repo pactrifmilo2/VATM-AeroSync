@@ -35,11 +35,17 @@ class AtfmDatabaseStateGatewayTest {
                 new AtfmDatabaseStateGateway.Candidate(1L, 10L, 20L, "o/f 001/s/chk/2026", true, false),
                 new AtfmDatabaseStateGateway.Candidate(2L, 99L, 88L, "O/F 404/S/CHK/2026", true, false),
                 new AtfmDatabaseStateGateway.Candidate(3L, null, null, null, false, false),
-                new AtfmDatabaseStateGateway.Candidate(4L, null, null, null, true, true)));
+                new AtfmDatabaseStateGateway.Candidate(4L, null, null, null, true, true),
+                new AtfmDatabaseStateGateway.Candidate(5L, null, null, "o/f 001/s/chk/2026", true, false),
+                new AtfmDatabaseStateGateway.Candidate(6L, 10L, 999L, "O/F 001/S/CHK/2026", true, false),
+                new AtfmDatabaseStateGateway.Candidate(7L, 10L, 20L, "O/F 999/S/CHK/2026", true, false)));
         assertThat(states).containsEntry(1L, DatabaseState.FOUND)
                 .containsEntry(2L, DatabaseState.MISSING)
                 .containsEntry(3L, DatabaseState.PENDING)
-                .containsEntry(4L, DatabaseState.ERROR);
+                .containsEntry(4L, DatabaseState.ERROR)
+                .containsEntry(5L, DatabaseState.MISSING)
+                .containsEntry(6L, DatabaseState.MISSING)
+                .containsEntry(7L, DatabaseState.MISSING);
     }
 
     @Test

@@ -99,22 +99,12 @@ public class EmailReportService {
         Page<EmailMetadata> metadataPage = emailMetadataRepository.findAll(
                 toSpecification(filter), PageRequest.of(page, size,
                         Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id"))));
-        if (metadataPage == null) {
-            List<EmailMetadata> fallback = emailMetadataRepository.findAll(toSpecification(filter),
-                    Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id")));
-            metadataPage = new org.springframework.data.domain.PageImpl<>(fallback);
-        }
         List<EmailMetadata> metadata = metadataPage.getContent();
         Map<Long, PermitImport> permits = permitsFor(metadata);
         Map<Long, FileRecord> files = latestFileRecordsFor(metadata);
         Map<Long, DatabaseState> states = databaseStates(metadata, permits);
         List<EmailReportRowResponse> rows = metadata.stream()
-                .filter(item -> matchesQuery(item, filter.query())
-                        || containsBody(item.getBody(), filter.query()))
-                .map(item -> toRowResponse(item, permits, files, states))
-                .filter(row -> filter.fileType() == null
-                        || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
-                .toList();
+                .map(item -> toRowResponse(item, permits, files, states)).toList();
         return new PagedResponse<>(rows, page, size, metadataPage.getTotalElements(),
                 metadataPage.getTotalPages(), metadataPage.hasNext(), metadataPage.hasPrevious(), null);
     }
@@ -122,16 +112,12 @@ public class EmailReportService {
     private ReportSnapshotStore.Snapshot createSnapshot(EmailReportFilter filter) {
         if (snapshotStore == null) throw new IllegalStateException("Report snapshot store is unavailable");
         List<EmailMetadata> metadata = emailMetadataRepository.findAll(toSpecification(filter),
-                Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id"))).stream()
-                .filter(item -> matchesQuery(item, filter.query())).toList();
+                Sort.by(Sort.Order.desc("receivedAt"), Sort.Order.desc("id")));
         Map<Long, PermitImport> permits = permitsFor(metadata);
         Map<Long, FileRecord> files = latestFileRecordsFor(metadata);
         Map<Long, DatabaseState> states = databaseStates(metadata, permits);
         List<EmailReportRowResponse> rows = metadata.stream()
-                .map(item -> toRowResponse(item, permits, files, states))
-                .filter(row -> filter.fileType() == null
-                        || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
-                .toList();
+                .map(item -> toRowResponse(item, permits, files, states)).toList();
         return snapshotStore.create("email", rows);
     }
 
@@ -312,22 +298,6 @@ public class EmailReportService {
         };
     }
 
-    private boolean matchesQuery(EmailMetadata metadata, String query) {
-        if (!hasText(query)) return true;
-        String value = query.trim().toLowerCase(Locale.ROOT);
-        return contains(metadata.getMessageId(), value) || contains(metadata.getSender(), value)
-                || contains(metadata.getSubject(), value) || contains(metadata.getBody(), value)
-                || contains(metadata.getAttachmentName(), value);
-    }
-
-    private boolean containsBody(String source, String query) {
-        return hasText(query) && contains(source, query.trim().toLowerCase(Locale.ROOT));
-    }
-
-    private boolean contains(String source, String lowerQuery) {
-        return source != null && source.toLowerCase(Locale.ROOT).contains(lowerQuery);
-    }
-
     private Predicate containsIgnoreCase(jakarta.persistence.criteria.CriteriaBuilder criteriaBuilder,
                                          jakarta.persistence.criteria.Path<String> path,
                                          String value) {
@@ -376,7 +346,10 @@ public class EmailReportService {
         List<Long> ids = syncJobIds(metadataRows);
         if (ids.isEmpty()) return Map.of();
         Map<Long, PermitImport> result = new java.util.HashMap<>();
-        permitImportRepository.findBySyncJobIdIn(ids).forEach(p -> result.put(p.getSyncJob().getId(), p));
+        for (int offset = 0; offset < ids.size(); offset += 500) {
+            permitImportRepository.findBySyncJobIdIn(ids.subList(offset, Math.min(offset + 500, ids.size())))
+                    .forEach(p -> result.put(p.getSyncJob().getId(), p));
+        }
         return result;
     }
 
@@ -411,9 +384,11 @@ public class EmailReportService {
         }
 
         Map<Long, FileRecord> latestRecords = new java.util.HashMap<>();
-        for (FileRecord record : fileRecordRepository.findBySyncJobIdIn(syncJobIds)) {
-            Long syncJobId = record.getSyncJob().getId();
-            latestRecords.merge(syncJobId, record, this::newerRecord);
+        for (int offset = 0; offset < syncJobIds.size(); offset += 500) {
+            for (FileRecord record : fileRecordRepository.findBySyncJobIdIn(
+                    syncJobIds.subList(offset, Math.min(offset + 500, syncJobIds.size())))) {
+                latestRecords.merge(record.getSyncJob().getId(), record, this::newerRecord);
+            }
         }
         return latestRecords;
     }

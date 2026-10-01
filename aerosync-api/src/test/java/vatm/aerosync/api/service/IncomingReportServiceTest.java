@@ -31,7 +31,9 @@ class IncomingReportServiceTest {
     void filtersBeforeCountAndReusesSummarySnapshot() {
         AuditLog word = event(2L, "C:/incoming/PERMIT.DOCX", LocalDateTime.parse("2026-09-27T10:00:00"));
         AuditLog pdf = event(1L, "C:/incoming/report.pdf", LocalDateTime.parse("2026-09-27T09:00:00"));
-        when(audits.findAll(any(Sort.class))).thenReturn(List.of(word, pdf));
+        when(audits.findByActionStartingWith(org.mockito.ArgumentMatchers.eq("INCOMING_"),
+                any(org.springframework.data.domain.Pageable.class)))
+                .thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(word, pdf)));
         when(files.findBySyncJobIdIn(any())).thenReturn(List.of());
         when(permits.findBySyncJobIdIn(any())).thenReturn(List.of());
         IncomingReportFilter filter = new IncomingReportFilter(
@@ -56,7 +58,9 @@ class IncomingReportServiceTest {
             events.add(event(id, "C:/incoming/permit-" + id + ".DOCX",
                     LocalDateTime.parse("2026-09-27T10:00:00").minusSeconds(120 - id)));
         }
-        when(audits.findAll(any(Sort.class))).thenReturn(events);
+        when(audits.findByActionStartingWith(org.mockito.ArgumentMatchers.eq("INCOMING_"),
+                any(org.springframework.data.domain.Pageable.class)))
+                .thenReturn(new org.springframework.data.domain.PageImpl<>(events));
         IncomingReportFilter filter = new IncomingReportFilter(null, null, null, null, ReportFileType.WORD);
         var summary = service.summarize(filter);
         var first = service.search(filter, 0, 50, summary.snapshotId());
@@ -73,7 +77,9 @@ class IncomingReportServiceTest {
     void listWithoutSnapshotCountsOnlyFilteredWordRows() {
         AuditLog word = event(12L, "C:/incoming/permit.DOCX", LocalDateTime.parse("2026-09-27T10:00:00"));
         AuditLog pdf = event(11L, "C:/incoming/report.pdf", LocalDateTime.parse("2026-09-27T09:00:00"));
-        when(audits.findAll(any(Sort.class))).thenReturn(List.of(word, pdf));
+        when(audits.findByActionStartingWith(org.mockito.ArgumentMatchers.eq("INCOMING_"),
+                any(org.springframework.data.domain.Pageable.class)))
+                .thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(word, pdf)));
         IncomingReportFilter filter = new IncomingReportFilter(null, null, null, null, ReportFileType.WORD);
         var list = service.search(filter, 0, 25, null);
         var summary = service.summarize(filter);
@@ -85,7 +91,9 @@ class IncomingReportServiceTest {
     @Test
     void noneMatchesIncomingEventWithoutAnyFilename() {
         AuditLog noFile = event(13L, null, LocalDateTime.parse("2026-09-27T08:00:00"));
-        when(audits.findAll(any(Sort.class))).thenReturn(List.of(noFile));
+        when(audits.findByActionStartingWith(org.mockito.ArgumentMatchers.eq("INCOMING_"),
+                any(org.springframework.data.domain.Pageable.class)))
+                .thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(noFile)));
         IncomingReportFilter filter = new IncomingReportFilter(null, null, null, null, ReportFileType.NONE);
         var summary = service.summarize(filter);
         var list = service.search(filter, 0, 25, null);
@@ -102,6 +110,35 @@ class IncomingReportServiceTest {
         assertThat(service.get(9L).sourceType()).isEqualTo("folder");
     }
 
+    @Test
+    void excludesOtherFileTypesBeforeDatabaseVerification() {
+        var gateway = mock(AtfmDatabaseStateGateway.class);
+        var optimized = new IncomingReportService(audits, files, permits,
+                new VietnameseErrorMessageTranslator(), gateway, new ReportSnapshotStore());
+        SyncJob wordJob = mock(SyncJob.class);
+        SyncJob pdfJob = mock(SyncJob.class);
+        when(wordJob.getId()).thenReturn(111L);
+        when(pdfJob.getId()).thenReturn(112L);
+        AuditLog word = event(111L, "C:/incoming/permit.docx", LocalDateTime.parse("2026-09-27T10:00:00"));
+        AuditLog pdf = event(112L, "C:/incoming/other.pdf", LocalDateTime.parse("2026-09-27T09:00:00"));
+        when(word.getSyncJob()).thenReturn(wordJob);
+        when(pdf.getSyncJob()).thenReturn(pdfJob);
+        when(audits.findByActionStartingWith(org.mockito.ArgumentMatchers.eq("INCOMING_"),
+                any(org.springframework.data.domain.Pageable.class)))
+                .thenReturn(new org.springframework.data.domain.PageImpl<>(List.of(word, pdf)));
+        when(files.findBySyncJobIdIn(any())).thenReturn(List.of());
+        when(permits.findBySyncJobIdIn(any())).thenReturn(List.of());
+        when(gateway.states(any())).thenReturn(java.util.Map.of(111L, DatabaseState.PENDING));
+
+        var result = optimized.search(new IncomingReportFilter(null, null, null, null, ReportFileType.WORD),
+                0, 25, null);
+        assertThat(result.totalElements()).isEqualTo(1);
+        org.mockito.ArgumentCaptor<List<AtfmDatabaseStateGateway.Candidate>> candidates =
+                org.mockito.ArgumentCaptor.forClass((Class) List.class);
+        org.mockito.Mockito.verify(gateway).states(candidates.capture());
+        assertThat(candidates.getValue()).extracting(AtfmDatabaseStateGateway.Candidate::key)
+                .containsExactly(111L);
+    }
     private AuditLog event(Long id, String path, LocalDateTime timestamp) {
         AuditLog event = mock(AuditLog.class);
         when(event.getId()).thenReturn(id);

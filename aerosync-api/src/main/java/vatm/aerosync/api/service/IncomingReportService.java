@@ -94,24 +94,30 @@ public class IncomingReportService {
     }
 
     private List<EmailReportRowResponse> createSnapshotRows(IncomingReportFilter filter) {
-        List<AuditLog> events = auditLogRepository.findAll(
-                Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id"))).stream()
-                .filter(log -> log.getAction().startsWith(INCOMING_ACTION_PREFIX))
+        List<AuditLog> events = auditLogRepository.findByActionStartingWith(
+                INCOMING_ACTION_PREFIX, org.springframework.data.domain.Pageable.unpaged(
+                        Sort.by(Sort.Order.desc("timestamp"), Sort.Order.desc("id")))).getContent().stream()
                 .filter(event -> filter.from() == null || !event.getTimestamp().isBefore(filter.from()))
                 .filter(event -> filter.to() == null || !event.getTimestamp().isAfter(filter.to()))
                 .toList();
         List<Long> ids = events.stream().filter(e -> e.getSyncJob() != null)
                 .map(e -> e.getSyncJob().getId()).distinct().toList();
-        Map<Long, FileRecord> files = latestRecords(ids); Map<Long, PermitImport> permits = permits(ids);
-        Map<Long, DatabaseState> states = databaseStates(events, permits, files);
+        Map<Long, FileRecord> files = latestRecords(ids);
+        List<AuditLog> selected = events.stream()
+                .filter(event -> {
+                    EmailReportRowResponse row = toResponse(event, files, Map.of(), Map.of());
+                    return (filter.processingStatus() == null || row.processingStatus() == filter.processingStatus())
+                            && matchesQuery(row, filter.query())
+                            && (filter.fileType() == null || filter.fileType().matches(
+                                    row.storedFileName(), row.attachmentName()));
+                }).toList();
+        List<Long> selectedIds = selected.stream().filter(event -> event.getSyncJob() != null)
+                .map(event -> event.getSyncJob().getId()).distinct().toList();
+        Map<Long, PermitImport> permits = permits(selectedIds);
+        Map<Long, DatabaseState> states = databaseStates(selected, permits, files);
         Map<Long, String> numbers = permitNumbers(permits);
-        return events.stream().map(e -> toResponse(e, files, numbers, states))
-                .filter(row -> filter.processingStatus() == null || row.processingStatus() == filter.processingStatus())
-                .filter(row -> matchesQuery(row, filter.query()))
-                .filter(row -> filter.fileType() == null || filter.fileType().matches(row.storedFileName(), row.attachmentName()))
-                .toList();
+        return selected.stream().map(event -> toResponse(event, files, numbers, states)).toList();
     }
-
     private PagedResponse<EmailReportRowResponse> page(List<EmailReportRowResponse> rows, int page, int size) {
         int from = Math.min(page * size, rows.size());
         int to = Math.min(from + size, rows.size());
@@ -198,7 +204,10 @@ public class IncomingReportService {
     private Map<Long, PermitImport> permits(List<Long> ids) {
         if (ids.isEmpty()) return Map.of();
         Map<Long, PermitImport> result = new HashMap<>();
-        permitImportRepository.findBySyncJobIdIn(ids).forEach(p -> result.put(p.getSyncJob().getId(), p));
+        for (int offset = 0; offset < ids.size(); offset += 500) {
+            permitImportRepository.findBySyncJobIdIn(ids.subList(offset, Math.min(offset + 500, ids.size())))
+                    .forEach(p -> result.put(p.getSyncJob().getId(), p));
+        }
         return result;
     }
 
@@ -236,8 +245,11 @@ public class IncomingReportService {
             return Map.of();
         }
         Map<Long, FileRecord> records = new HashMap<>();
-        for (FileRecord candidate : fileRecordRepository.findBySyncJobIdIn(syncJobIds)) {
-            records.merge(candidate.getSyncJob().getId(), candidate, this::newerRecord);
+        for (int offset = 0; offset < syncJobIds.size(); offset += 500) {
+            for (FileRecord candidate : fileRecordRepository.findBySyncJobIdIn(
+                    syncJobIds.subList(offset, Math.min(offset + 500, syncJobIds.size())))) {
+                records.merge(candidate.getSyncJob().getId(), candidate, this::newerRecord);
+            }
         }
         return records;
     }

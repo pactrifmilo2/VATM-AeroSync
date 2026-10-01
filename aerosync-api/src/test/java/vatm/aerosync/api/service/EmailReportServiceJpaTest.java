@@ -178,6 +178,28 @@ class EmailReportServiceJpaTest {
         assertThat(snapshotList.totalElements()).isEqualTo(summary.totalFiles());
     }
     @Test
+    void filteredPageIsFullAndCountsAgreeWithoutSnapshot() {
+        LocalDateTime now = LocalDateTime.parse("2026-10-01T08:00:00");
+        saveEmail("word-a", "a@b.test", "Word", "a.docx", now,
+                EmailProcessingStatus.SAVED, EmailAcknowledgementStatus.PENDING, null, 601L);
+        saveEmail("pdf-between", "a@b.test", "PDF", "b.pdf", now.minusSeconds(1),
+                EmailProcessingStatus.SAVED, EmailAcknowledgementStatus.PENDING, null, 602L);
+        saveEmail("word-c", "a@b.test", "Word", "c.DOC", now.minusSeconds(2),
+                EmailProcessingStatus.SAVED, EmailAcknowledgementStatus.PENDING, null, 603L);
+        saveEmail("word-d", "a@b.test", "Word", "d.rtf", now.minusSeconds(3),
+                EmailProcessingStatus.SAVED, EmailAcknowledgementStatus.PENDING, null, 604L);
+        EmailReportFilter filter = new EmailReportFilter(null, null, null, null, null, null, null,
+                ReportFileType.WORD);
+        var first = service.search(filter, 0, 2);
+        var second = service.search(filter, 1, 2);
+        var summary = service.summarize(filter);
+        assertThat(first.content()).extracting("messageId").containsExactly("word-a", "word-c");
+        assertThat(second.content()).extracting("messageId").containsExactly("word-d");
+        assertThat(first.totalElements()).isEqualTo(3);
+        assertThat(second.totalElements()).isEqualTo(3);
+        assertThat(summary.totalFiles()).isEqualTo(3);
+    }
+    @Test
     void summarizeRunsGroupedQueriesAndIncludesZeroStatuses() {
         LocalDateTime base = LocalDateTime.parse("2026-07-24T08:00:00");
         saveEmail(

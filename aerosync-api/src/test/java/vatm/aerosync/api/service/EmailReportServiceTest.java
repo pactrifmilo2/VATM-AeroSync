@@ -57,8 +57,8 @@ class EmailReportServiceTest {
         fileRecord.setErrorMessage("Unsupported Word permit format; no format profile matched");
         when(repository.findAll(
                 org.mockito.ArgumentMatchers.<Specification<EmailMetadata>>any(),
-                any(org.springframework.data.domain.Sort.class)))
-                .thenReturn(List.of(metadata));
+                any(Pageable.class)))
+                .thenReturn(new PageImpl<>(List.of(metadata)));
         when(permitImportRepository.findBySyncJobIdIn(any())).thenReturn(List.of());
         when(fileRecordRepository.findBySyncJobIdIn(any())).thenReturn(List.of(fileRecord));
 
@@ -159,6 +159,30 @@ class EmailReportServiceTest {
                 .containsEntry("FAILED", 0L);
     }
 
+    @Test
+    void summaryLoadsFileAndPermitDataInBoundedBatches() {
+        List<EmailMetadata> rows = new java.util.ArrayList<>();
+        List<Long> ids = new java.util.ArrayList<>();
+        for (long id = 1; id <= 501; id++) {
+            SyncJob job = mock(SyncJob.class);
+            when(job.getId()).thenReturn(id);
+            EmailMetadata email = metadata("mail-" + id, "sender", "subject",
+                    LocalDateTime.parse("2026-10-01T08:00:00"), EmailProcessingStatus.SAVED);
+            email.setSyncJob(job);
+            rows.add(email);
+            ids.add(id);
+        }
+        when(repository.findAll(org.mockito.ArgumentMatchers.<Specification<EmailMetadata>>any(),
+                any(org.springframework.data.domain.Sort.class))).thenReturn(rows);
+        when(permitImportRepository.findBySyncJobIdIn(any())).thenReturn(List.of());
+        when(fileRecordRepository.findBySyncJobIdIn(any())).thenReturn(List.of());
+
+        assertThat(service.summarize(null, null).totalFiles()).isEqualTo(501);
+        org.mockito.Mockito.verify(permitImportRepository).findBySyncJobIdIn(ids.subList(0, 500));
+        org.mockito.Mockito.verify(permitImportRepository).findBySyncJobIdIn(ids.subList(500, 501));
+        org.mockito.Mockito.verify(fileRecordRepository).findBySyncJobIdIn(ids.subList(0, 500));
+        org.mockito.Mockito.verify(fileRecordRepository).findBySyncJobIdIn(ids.subList(500, 501));
+    }
     private EmailMetadata metadata(String messageId,
                                    String sender,
                                    String subject,
