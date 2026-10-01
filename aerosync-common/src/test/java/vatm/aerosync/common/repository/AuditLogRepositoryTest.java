@@ -37,6 +37,30 @@ class AuditLogRepositoryTest {
     }
 
     @Test
+    void unpagedIncomingQueryFiltersActionAndOrdersByUniqueId() {
+        AuditLog first = new AuditLog();
+        first.setAction("INCOMING_FILE");
+        first.setResultStatus(SyncStatus.PENDING);
+        repository.saveAndFlush(first);
+        AuditLog unrelated = new AuditLog();
+        unrelated.setAction("SYNC_SUCCESS");
+        unrelated.setResultStatus(SyncStatus.SUCCESS);
+        repository.saveAndFlush(unrelated);
+        AuditLog second = new AuditLog();
+        second.setAction("INCOMING_DUPLICATE_SKIPPED");
+        second.setResultStatus(SyncStatus.SKIPPED);
+        repository.saveAndFlush(second);
+
+        var page = repository.findByActionStartingWith("INCOMING_",
+                org.springframework.data.domain.Pageable.unpaged(
+                        org.springframework.data.domain.Sort.by(
+                                org.springframework.data.domain.Sort.Order.desc("timestamp"),
+                                org.springframework.data.domain.Sort.Order.desc("id"))));
+        assertThat(page.getContent()).extracting(AuditLog::getId)
+                .containsExactly(second.getId(), first.getId());
+        assertThat(page.getTotalElements()).isEqualTo(2);
+    }
+    @Test
     void findsByResultStatus() {
         AuditLog success = new AuditLog();
         success.setAction("SYNC_SUCCESS");
