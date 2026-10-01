@@ -1178,14 +1178,8 @@ public class DocxSchedulePermitParser {
     private String remark(DocxPermitFormatProfile.AircraftDefinition aircraft,
                           String purposeId,
                           String aircraftType) {
-        String prefix = aircraft == null || aircraft.remarkPrefix() == null
-                ? purposeId
-                : aircraft.remarkPrefix().trim();
-        if (prefix.isBlank()) {
-            prefix = purposeId;
-        }
         String type = aircraftType == null ? "" : aircraftType.trim();
-        return (prefix + " " + type).trim();
+        return type.isBlank() ? null : type;
     }
 
     private List<List<String>> findTable(List<List<List<String>>> tables,

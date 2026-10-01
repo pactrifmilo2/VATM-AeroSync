@@ -379,9 +379,8 @@ class JdbcAtfmScheduleGatewayTest {
             assertThat(master.getString("REFERENCE"))
                     .isEqualTo("OF-5199/A/S/2026VN");
             assertThat(master.getString("BILLINGADDRESS")).isEqualTo("RAYA AIRWAYS");
-            assertThat(master.getString("PERMCONTENT").getBytes(StandardCharsets.UTF_8).length)
-                    .isLessThanOrEqualTo(4000);
-            assertThat(master.getString("PERMCONTENT1")).isEqualTo(fullContent);
+            assertThat(master.getString("PERMCONTENT")).isNull();
+            assertThat(master.getString("PERMCONTENT1")).isNull();
         }
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword());

@@ -25,7 +25,7 @@ class PurposeResolutionStepTest {
                 flight);
 
         assertThat(purpose).isEqualTo("CAR");
-        assertThat(flight.withPurposeId(purpose).remark()).isEqualTo("CAR A321");
+        assertThat(flight.withPurposeId(purpose).remark()).isEqualTo("PAX A321");
     }
 
     @Test

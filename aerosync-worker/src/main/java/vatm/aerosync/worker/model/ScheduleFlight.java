@@ -83,16 +83,10 @@ public record ScheduleFlight(
 
     public ScheduleFlight withPurposeId(String resolvedPurposeId) {
         String purpose = resolvedPurposeId == null ? "" : resolvedPurposeId.trim();
-        String revisedRemark = remark;
-        if (!purpose.isBlank() && remark != null && !remark.isBlank()) {
-            String trimmed = remark.trim();
-            int separator = trimmed.indexOf(' ');
-            revisedRemark = separator < 0 ? purpose : purpose + trimmed.substring(separator);
-        }
         return new ScheduleFlight(
                 purpose.isBlank() ? purposeId : purpose, craftId, mtow, flightNumber,
                 registration, serviceDays, fromAirport, toAirport, etd, eta, via,
-                beginDate, endDate, revisedRemark, sourceAircraftType, aircraftTablePresent);
+                beginDate, endDate, remark, sourceAircraftType, aircraftTablePresent);
     }
 
     public ScheduleFlight withFlightNumber(String normalizedFlightNumber) {
@@ -173,7 +167,7 @@ public record ScheduleFlight(
         String aircraft = sourceAircraftType == null ? "" : sourceAircraftType.trim();
         String revisedRemark = aircraft.isBlank()
                 ? (remark == null ? null : remark.trim())
-                : ((purposeId == null ? "" : purposeId.trim()) + " " + aircraft).trim();
+                : aircraft;
         return new ScheduleFlight(
                 purposeId, craftId, mtow, flightNumber, registration, serviceDays,
                 fromAirport, toAirport, etd, eta, via, beginDate, endDate,

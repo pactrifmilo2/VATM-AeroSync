@@ -565,8 +565,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
                 statement.setString(index++, "AEROSYNC");
                 statement.setString(index++, "0");
-                statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
-                setFullContent(statement, index++, permit.rawContent());
+                statement.setString(index++, permit.seasonalPermit()
+                        ? null : truncateUtf8(permit.rawContent(), 4000));
+                setFullContent(statement, index++, permit.seasonalPermit() ? null : permit.rawContent());
                 statement.setString(index++, truncateUtf8(billingAddress, 4000));
                 statement.setString(index++, permit.flightType());
                 statement.setLong(index, masterId);
@@ -654,8 +655,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
             statement.setString(index++, "AEROSYNC");
             statement.setString(index++, "0");
-            statement.setString(index++, truncateUtf8(permit.rawContent(), 4000));
-            setFullContent(statement, index++, permit.rawContent());
+            statement.setString(index++, permit.seasonalPermit()
+                    ? null : truncateUtf8(permit.rawContent(), 4000));
+            setFullContent(statement, index++, permit.seasonalPermit() ? null : permit.rawContent());
             statement.setString(index++, truncateUtf8(billingAddress, 4000));
             statement.setString(index++, permit.flightType());
             statement.registerOutParameter(index++, Types.NUMERIC);

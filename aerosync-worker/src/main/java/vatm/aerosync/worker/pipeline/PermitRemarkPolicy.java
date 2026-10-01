@@ -17,11 +17,11 @@ final class PermitRemarkPolicy {
     private PermitRemarkPolicy() {}
 
     static String newFlight(ScheduleFlight flight) {
-        return join(special(flight), DatabaseWriterStep.newPermitRemark(flight.sourceAircraftType()));
+        return DatabaseWriterStep.newPermitRemark(flight.sourceAircraftType());
     }
 
     static String suddenRevision(ScheduleFlight flight, LocalDate receivedDate, int revision) {
-        return join(special(flight), "EM", DATE.format(receivedDate), "R(" + revision + ")",
+        return join("EM", DATE.format(receivedDate), "R(" + revision + ")",
                 DatabaseWriterStep.newPermitRemark(flight.sourceAircraftType()));
     }
 
@@ -31,7 +31,7 @@ final class PermitRemarkPolicy {
     }
 
     static String seasonalNew(ScheduleFlight flight, String newPermit, String originalPermit) {
-        return join(special(flight), "EM", "LAY", seasonalId(newPermit), "REF",
+        return join("EM", "LAY", seasonalId(newPermit), "REF",
                 seasonalId(originalPermit), DatabaseWriterStep.newPermitRemark(flight.sourceAircraftType()));
     }
 

@@ -15,9 +15,9 @@ class PermitRemarkPolicyTest {
     @Test
     void newFlightAddsOnlySpecialPurposeAndMultipleCraft() {
         for (String purpose : new String[]{"CAR", "FER", "TECH", "AMB", "VIP"}) {
-            assertThat(PermitRemarkPolicy.newFlight(flight(purpose, "A321"))).isEqualTo(purpose);
+            assertThat(PermitRemarkPolicy.newFlight(flight(purpose, "A321"))).isNull();
             assertThat(PermitRemarkPolicy.newFlight(flight(purpose, "A321/A320")))
-                    .isEqualTo(purpose + " A321/A320");
+                    .isEqualTo("A321/A320");
         }
         assertThat(PermitRemarkPolicy.newFlight(flight("PAX", "A321"))).isNull();
         assertThat(PermitRemarkPolicy.newFlight(flight("PAX", "A321/A320")))
@@ -29,11 +29,11 @@ class PermitRemarkPolicyTest {
         var date = LocalDate.of(2026, 9, 24);
         var flight = flight("CAR", "A321/A320");
         assertThat(PermitRemarkPolicy.suddenRevision(flight, date, 7))
-                .isEqualTo("CAR EM 24092026 R(7) A321/A320");
+                .isEqualTo("EM 24092026 R(7) A321/A320");
         assertThat(PermitRemarkPolicy.seasonalOld(flight, "LD-00079/A/S/CHK/2026"))
                 .isEqualTo("HUY REF LD-00079/A/S A321/A320");
         assertThat(PermitRemarkPolicy.seasonalNew(flight,
                 "LD 00079AR7/S/CHK/2026", "LD-00079/A/S/CHK/2026"))
-                .isEqualTo("CAR EM LAY LD 00079AR7/S REF LD-00079/A/S A321/A320");
+                .isEqualTo("EM LAY LD 00079AR7/S REF LD-00079/A/S A321/A320");
     }
 }
