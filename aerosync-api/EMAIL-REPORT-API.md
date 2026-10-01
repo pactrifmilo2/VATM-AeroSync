@@ -64,6 +64,7 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
       "attachmentIndex": 0,
       "attachmentName": "permit.docx",
       "storedFileName": "operator_20260724_091600_email_permit.docx",
+      "storage": "vatm-storage\\processed\\2026\\07\\24\\operator_20260724_091600_email_permit.docx",
       "errorMessage": "Unsupported Word permit format; no format profile matched",
       "processingStatus": "FAILED",
       "acknowledgementStatus": "MOVED_ERROR",
@@ -86,7 +87,9 @@ GET /api/reports/emails?from=2026-07-01T00:00:00&processingStatus=FAILED&page=0&
 
 `attachmentName` is the original name from the email. `storedFileName` is the
 actual archived filename, including the sender and processing timestamp, or
-`null` when no file was stored. `errorMessage` contains the latest file-processing
+`null` when no file was stored. `storage` is the raw persisted path from
+`FileRecord.storedPath`, or `null` when no stored path exists. `errorMessage`
+contains the latest file-processing
 failure reason, such as an unsupported permit format, and is `null` when no
 processing error was recorded.
 

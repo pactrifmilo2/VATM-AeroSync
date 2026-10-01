@@ -165,6 +165,9 @@ class EmailReportServiceJpaTest {
         assertThat(word.content()).extracting("messageId").doesNotContain("replaced-word");
         assertThat(word.totalElements()).isEqualTo(2);
         assertThat(word.content()).extracting("id").containsExactly(stored.getId(), fallback.getId());
+        assertThat(word.content().stream()
+                .filter(row -> row.id().equals(fallback.getId())).findFirst().orElseThrow().storage())
+                .isNull();
         var none = service.search(new EmailReportFilter(null, null, null, null, null, null, null,
                 ReportFileType.NONE), 0, 25);
         assertThat(none.totalElements()).isEqualTo(1);

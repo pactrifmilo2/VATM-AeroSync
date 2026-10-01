@@ -69,6 +69,8 @@ class EmailReportServiceTest {
         assertThat(result.content().getFirst().processingStatus()).isEqualTo(EmailProcessingStatus.FAILED);
         assertThat(result.content().getFirst().storedFileName())
                 .isEqualTo("operator_20260724_091500_email_permit.docx");
+        assertThat(result.content().getFirst().storage())
+                .isEqualTo("D:\\vatm-storage\\error\\2026\\07\\24\\operator_20260724_091500_email_permit.docx");
         assertThat(result.content().getFirst().errorMessage())
                 .isEqualTo("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.");
         assertThat(result.totalElements()).isEqualTo(1);

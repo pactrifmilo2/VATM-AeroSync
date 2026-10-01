@@ -69,6 +69,7 @@ class EmailReportControllerTest {
                 0,
                 "permit.docx",
                 "operator_20260724_091600_email_permit.docx",
+                "vatm-storage\\processed\\2026\\07\\24\\operator_20260724_091600_email_permit.docx",
                 "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.",
                 EmailProcessingStatus.FAILED,
                 EmailAcknowledgementStatus.MOVED_ERROR,
@@ -100,6 +101,8 @@ class EmailReportControllerTest {
                 .andExpect(jsonPath("$.content[0].attachmentName").value("permit.docx"))
                 .andExpect(jsonPath("$.content[0].storedFileName")
                         .value("operator_20260724_091600_email_permit.docx"))
+                .andExpect(jsonPath("$.content[0].storage")
+                        .value("vatm-storage\\processed\\2026\\07\\24\\operator_20260724_091600_email_permit.docx"))
                 .andExpect(jsonPath("$.content[0].errorMessage")
                         .value("CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp."))
                 .andExpect(jsonPath("$.content[0].requiresFormat").value(true))

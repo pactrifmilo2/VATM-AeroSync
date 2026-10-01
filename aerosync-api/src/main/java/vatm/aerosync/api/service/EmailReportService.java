@@ -326,6 +326,7 @@ public class EmailReportService {
                 metadata.getAttachmentIndex(),
                 metadata.getAttachmentName(),
                 StoredFileName.from(latestFileRecord),
+                storagePath(latestFileRecord),
                 latestFileRecord != null
                         ? errorMessageTranslator.translate(latestFileRecord.getErrorMessage())
                         : null,
@@ -342,6 +343,12 @@ public class EmailReportService {
                 databaseState == DatabaseState.FOUND);
     }
 
+    private String storagePath(FileRecord record) {
+        if (record == null || record.getStoredPath() == null || record.getStoredPath().isBlank()) {
+            return null;
+        }
+        return record.getStoredPath();
+    }
     private Map<Long, PermitImport> permitsFor(List<EmailMetadata> metadataRows) {
         List<Long> ids = syncJobIds(metadataRows);
         if (ids.isEmpty()) return Map.of();
