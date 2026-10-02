@@ -1,0 +1,50 @@
+id: pic-vietnamese-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*:\s*PIC\b|PACIFIC\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b|SỬA\s+ĐỔI)).*$'
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}\s+tháng\s+\d{1,2}\s+năm\s+20\d{2})'
+  group: date
+  formats: ["d 'tháng' M 'năm' uuuu"]
+  locale: vi
+operator:
+  fixedValue: PIC
+schedule:
+  columns:
+    flightNumber: [Số hiệu chuyến bay]
+    effectiveFrom: [Hiệu lực từ]
+    effectiveTo: [Hiệu lực đến]
+    serviceDays: [Ngày trong tuần]
+    fromAirport: [Sân bay đi]
+    etd: [Giờ dự kiến đi]
+    toAirport: [Sân bay đến]
+    eta: [Giờ dự kiến đến]
+    aircraftType: [Loại tàu bay]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  preferredTableContextPatterns:
+    - '(?iu)^\s*2\.\s*LỊCH\s+BAY'
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Chặng bay]
+    airways: [Đường hàng không]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Loại tàu bay]
+    registrationMarks: [Số đăng ký]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A321

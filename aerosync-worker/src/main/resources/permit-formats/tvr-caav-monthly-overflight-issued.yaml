@@ -10,6 +10,9 @@ detectionPatterns:
   - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\b|\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\bREVISED\s+(?:ITEM|SCHEDULE)\b|(?:/|-)\s*REV\d+\b)).*$'
 operator:
   fixedValue: TVR
+schedule:
+  columns:
+    fromAirport: [Departure Airport, Dep airport, Depature airport]
 route:
   staticAirways:
     VHHH-OEDF: A1/A202/A206/R474/W21/B214

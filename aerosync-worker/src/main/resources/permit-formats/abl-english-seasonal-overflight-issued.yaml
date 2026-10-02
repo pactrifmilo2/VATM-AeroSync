@@ -1,0 +1,24 @@
+id: abl-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*ABL\b|AIR\s+BUSAN)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b|CANCEL)).*$'
+operator:
+  fixedValue: ABL
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A321

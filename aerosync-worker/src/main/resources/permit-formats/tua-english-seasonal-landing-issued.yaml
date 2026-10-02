@@ -1,0 +1,20 @@
+id: tua-english-seasonal-landing-issued
+extends: tua-english-landing-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*TUA\b|TURKMENISTAN\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+permit:
+  pattern: '(?iu)\bLD\s*[-/]?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'LD-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+operator:
+  fixedValue: TUA
+schedule:
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+  includeEta: true

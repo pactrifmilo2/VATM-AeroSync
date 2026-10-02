@@ -1,0 +1,16 @@
+id: uzb-english-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*UZB\b|UZBEKISTAN\s+AIRWAYS)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: UZB
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (IATA code)]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A320

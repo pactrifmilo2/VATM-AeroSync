@@ -1,0 +1,20 @@
+id: egy-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:EGYPTIAN\s+AIR\s+FORCE|\bEGY\d{1,4}\b)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: EGY
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight number/ Callsign, Flight number/Callsign]
+  purposeId: OTH
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (ICAO code)]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: B748

@@ -1,0 +1,18 @@
+id: cyz-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CYZ\b|CHINA\s+POSTAL\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: CYZ
+schedule:
+  purposeId: CAR
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, A/C TYPE]
+    registrationMarks: [Registration Mark, Registration Marks, A/C REG]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: B738
