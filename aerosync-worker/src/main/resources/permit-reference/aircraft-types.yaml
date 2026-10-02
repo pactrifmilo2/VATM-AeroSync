@@ -80,7 +80,7 @@ entries:
     type: B777
   - aliases: ['77W']
     type: B77W
-  - aliases: ['33X', 'A330-200F']
+  - aliases: ['33X', 'A330', 'A330-200F']
     type: A33X
 
   # Stable direct aliases retained for existing documents.

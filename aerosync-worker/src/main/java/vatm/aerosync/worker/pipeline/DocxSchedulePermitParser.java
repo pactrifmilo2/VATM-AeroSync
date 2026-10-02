@@ -992,10 +992,14 @@ public class DocxSchedulePermitParser {
         Map<String, Integer> columns = resolveColumns(table.getFirst(), aircraft.auxiliaryColumns());
         LinkedHashSet<String> types = new LinkedHashSet<>();
         for (int rowIndex = 1; rowIndex < table.size(); rowIndex++) {
-            String type = value(table.get(rowIndex), columns, aircraft.auxiliaryTypeColumn())
-                    .toUpperCase(Locale.ROOT);
-            if (!type.isBlank() && type.matches(".*[A-Z0-9].*")) {
-                types.add(type);
+            String type = AircraftTypeNotation.normalize(
+                    value(table.get(rowIndex), columns, aircraft.auxiliaryTypeColumn()));
+            if (type != null && !type.isBlank()) {
+                for (String token : type.split("/")) {
+                    if (!token.equalsIgnoreCase("SUB") && !token.equalsIgnoreCase("SUBS")) {
+                        types.add(token);
+                    }
+                }
             }
         }
         return types.isEmpty() ? null : String.join("/", types);

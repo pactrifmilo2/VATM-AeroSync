@@ -18,6 +18,7 @@ import vatm.aerosync.common.repository.EmailMetadataRepository;
 import vatm.aerosync.common.repository.FileRecordRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
 import vatm.aerosync.worker.model.ProcessingContext;
+import vatm.aerosync.worker.model.SchedulePermit;
 import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 import vatm.aerosync.worker.service.AuditLogService;
 import vatm.aerosync.worker.service.VietnameseStoredErrorMessage;
@@ -91,6 +92,7 @@ public class FileProcessingPipeline {
         try {
             formatValidatorStep.validate(context);
             parserStep.parse(context);
+            applySubjectDirective(context);
             normalizerStep.normalize(context);
             purposeResolutionStep.resolve(context);
             revisionReconciliationStep.reconcile(context);
@@ -173,6 +175,18 @@ public class FileProcessingPipeline {
             syncResultPublisher.publish(
                     event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING,
                     e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage());
+        }
+    }
+
+    private void applySubjectDirective(ProcessingContext context) {
+        String subject = context.getEvent().getSubject();
+        if (subject == null || subject.isBlank() || context.getSchedulePermit() == null) {
+            return;
+        }
+        if (java.util.regex.Pattern.compile("(?iu)\\b(?:CORRECT|UPDATE|CORR)\\b")
+                .matcher(subject).find()) {
+            context.setSchedulePermit(context.getSchedulePermit()
+                    .withWorkflow(SchedulePermit.SUBJECT_CORRECTION));
         }
     }
 

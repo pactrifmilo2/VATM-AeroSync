@@ -124,7 +124,8 @@ class ViaResolutionStepTest {
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
         assertThat(flight.fromAirport()).isEqualTo("VVTS");
         assertThat(flight.toAirport()).isEqualTo("VVNB");
-        assertThat(flight.via()).isNull();
+        assertThat(flight.via()).isEqualTo(
+                "Other permitted airways published in Viet Nams AIP/");
         assertThat(context.getRowValidationErrors()).extracting("code")
                 .containsExactly("BR-ROUTE-NOT-FOUND");
         new BusinessRuleValidatorStep().validate(context);
@@ -142,7 +143,8 @@ class ViaResolutionStepTest {
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
         assertThat(flight.fromAirport()).isEqualTo("VVTS");
         assertThat(flight.toAirport()).isEqualTo("VVNB");
-        assertThat(flight.via()).isNull();
+        assertThat(flight.via()).isEqualTo(
+                "Other permitted airways published in Viet Nams AIP/");
         assertThat(context.getRowValidationErrors()).extracting("code")
                 .containsExactly("BR-ROUTE-NOT-FOUND");
     }
@@ -156,7 +158,8 @@ class ViaResolutionStepTest {
 
         step.resolveAllowingMissingForNonSeasonal(context);
 
-        assertThat(context.getSchedulePermit().flights().getFirst().via()).isNull();
+        assertThat(context.getSchedulePermit().flights().getFirst().via())
+                .startsWith("Other permitted airways published in Viet Nams AIP/");
         assertThat(context.getRowValidationErrors())
                 .extracting("code", "field")
                 .containsExactly(org.assertj.core.groups.Tuple.tuple(

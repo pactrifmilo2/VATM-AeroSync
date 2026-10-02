@@ -515,6 +515,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private AtfmWriteResult updateWithinTransaction(Connection connection,
                                                     SchedulePermit permit) throws SQLException {
         List<ScheduleFlight> resolvedFlights = resolveAirportCodes(connection, permit.flights());
+        if (permit.subjectCorrection()) {
+            return replaceAllDetailsForCorrection(connection, permit, resolvedFlights);
+        }
         List<ScheduleFlight> resolvedOriginalFlights = resolveAirportCodes(
                 connection, permit.originalFlights());
         SchedulePermit resolvedPermit = permit.withFlightsAndOriginals(
@@ -528,6 +531,161 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 ? null
                 : upsertNoWithinTransaction(connection, resolvedPermit.withFlights(noFlights), noFlights);
         return combine(scheduledResult, noResult);
+    }
+
+    private AtfmWriteResult replaceAllDetailsForCorrection(Connection connection,
+                                                           SchedulePermit permit,
+                                                           List<ScheduleFlight> resolvedFlights)
+            throws SQLException {
+        if (resolvedFlights.isEmpty()) {
+            throw new AtfmReferenceDataException(
+                    "Subject correction has no validated replacement detail rows");
+        }
+        validateReferenceData(connection, permit.withFlights(resolvedFlights));
+        if (permit.usesScheduledStorage()) {
+            return replaceScheduledDetailsForCorrection(connection, permit, resolvedFlights);
+        }
+        return replaceNonScheduledDetailsForCorrection(connection, permit, resolvedFlights);
+    }
+
+    private AtfmWriteResult replaceScheduledDetailsForCorrection(Connection connection,
+                                                                  SchedulePermit permit,
+                                                                  List<ScheduleFlight> flights)
+            throws SQLException {
+        long masterId;
+        long permId;
+        try (PreparedStatement statement = connection.prepareStatement(LOCK_EXISTING_SQL)) {
+            statement.setString(1, permit.atfmTargetPermitId());
+            statement.setString(2, requiredPermitYear(permit));
+            try (ResultSet rows = statement.executeQuery()) {
+                if (!rows.next()) {
+                    throw new AtfmReferenceDataException(
+                            "Subject correction master not found: " + permit.atfmTargetPermitId());
+                }
+                masterId = rows.getLong("ID");
+                permId = rows.getLong("PERM_ID");
+            }
+        }
+        updateScheduledMaster(connection, masterId, permit);
+        try (PreparedStatement delete = connection.prepareStatement(
+                "DELETE FROM T_PERMDETAIL_SC WHERE PERM_ID = ?")) {
+            delete.setLong(1, permId);
+            delete.executeUpdate();
+        }
+        insertScheduledDetails(connection, permId, flights);
+        return new AtfmWriteResult(masterId, permId, flights.size());
+    }
+
+    private AtfmWriteResult replaceNonScheduledDetailsForCorrection(Connection connection,
+                                                                     SchedulePermit permit,
+                                                                     List<ScheduleFlight> flights)
+            throws SQLException {
+        long masterId;
+        long permId;
+        try (PreparedStatement statement = connection.prepareStatement(LOCK_NO_MASTER_SQL)) {
+            statement.setString(1, noPermitId(permit));
+            statement.setString(2, requiredPermitYear(permit));
+            try (ResultSet rows = statement.executeQuery()) {
+                if (!rows.next()) {
+                    throw new AtfmReferenceDataException(
+                            "Subject correction master not found: " + noPermitId(permit));
+                }
+                masterId = rows.getLong("ID");
+                permId = rows.getLong("PERM_ID");
+            }
+        }
+        updateNoCorrectionMaster(connection, masterId, permit);
+        try (PreparedStatement delete = connection.prepareStatement(
+                "DELETE FROM T_PERMDETAIL_NO WHERE PERM_ID = ?")) {
+            delete.setLong(1, permId);
+            delete.executeUpdate();
+        }
+        insertNonScheduledDetails(connection, permId, flights);
+        return new AtfmWriteResult(masterId, permId, flights.size());
+    }
+
+    private void updateScheduledMaster(Connection connection,
+                                       long masterId,
+                                       SchedulePermit permit) throws SQLException {
+        String billingAddress = operatorName(connection, permit);
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_MASTER_SQL)) {
+            int index = 1;
+            statement.setString(index++, permit.authorId());
+            statement.setString(index++, permit.permitType());
+            statement.setString(index++, permit.permitNumber());
+            statement.setString(index++, permit.version());
+            statement.setString(index++, permit.season());
+            statement.setDate(index++, Date.valueOf(permit.permitDate()));
+            statement.setString(index++, permit.operatorId());
+            statement.setString(index++, truncateUtf8(masterReference(permit), 4000));
+            statement.setInt(index++, permit.validHours());
+            statement.setTimestamp(index++, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(index++, "AEROSYNC");
+            statement.setString(index++, "0");
+            statement.setString(index++, permit.seasonalPermit()
+                    ? null : truncateUtf8(permit.rawContent(), 4000));
+            setFullContent(statement, index++, permit.seasonalPermit() ? null : permit.rawContent());
+            statement.setString(index++, truncateUtf8(billingAddress, 4000));
+            statement.setString(index++, permit.flightType());
+            statement.setLong(index, masterId);
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException("Subject correction master update affected an unexpected number of rows");
+            }
+        }
+    }
+
+    private void updateNoCorrectionMaster(Connection connection,
+                                          long masterId,
+                                          SchedulePermit permit) throws SQLException {
+        String reference = masterReference(permit);
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_NO_REVISION_MASTER_SQL)) {
+            statement.setString(1, truncateUtf8(reference, 4000));
+            statement.setString(2, truncateUtf8(permit.rawContent(), 4000));
+            if (permit.rawContent() == null) {
+                statement.setNull(3, Types.CLOB);
+            } else {
+                statement.setCharacterStream(3, new StringReader(permit.rawContent()),
+                        permit.rawContent().length());
+            }
+            statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(5, "AEROSYNC");
+            statement.setLong(6, masterId);
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException("Subject correction NO master update affected an unexpected number of rows");
+            }
+        }
+    }
+
+    private void insertScheduledDetails(Connection connection,
+                                        long permId,
+                                        List<ScheduleFlight> flights) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
+            for (ScheduleFlight flight : flights) {
+                bindDetail(statement, permId, flight);
+                statement.addBatch();
+            }
+            for (int count : statement.executeBatch()) {
+                if (count == PreparedStatement.EXECUTE_FAILED) {
+                    throw new SQLException("Subject correction SC detail insert failed");
+                }
+            }
+        }
+    }
+
+    private void insertNonScheduledDetails(Connection connection,
+                                           long permId,
+                                           List<ScheduleFlight> flights) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_NO_DETAIL_SQL)) {
+            for (ScheduleFlight flight : flights) {
+                bindNoDetail(statement, permId, flight);
+                statement.addBatch();
+            }
+            for (int count : statement.executeBatch()) {
+                if (count == PreparedStatement.EXECUTE_FAILED) {
+                    throw new SQLException("Subject correction NO detail insert failed");
+                }
+            }
+        }
     }
 
     private AtfmWriteResult updateScWithinTransaction(Connection connection,

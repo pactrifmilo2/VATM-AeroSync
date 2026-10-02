@@ -89,7 +89,7 @@ class AtfmViaResolverTest {
     @Test
     void resolve_prefersTheRouteWrittenInThePermitOverReferenceAlternatives() throws Exception {
         assertThat(resolver.resolve(connection, "VVTS", "VVCA", "XXX", " dct / q1 / "))
-                .isEqualTo("DCT/Q1");
+                .isEqualTo("Q1");
     }
 
     @Test

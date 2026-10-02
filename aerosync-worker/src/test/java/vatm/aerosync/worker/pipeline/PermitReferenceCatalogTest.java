@@ -30,11 +30,11 @@ class PermitReferenceCatalogTest {
         assertThat(aircraft.candidates("74Y/77F/76Y"))
                 .containsExactly("B74Y");
         assertThat(aircraft.candidates("unknown / GLF6"))
-                .containsExactly("unknown", "GLF6");
+                .containsExactly("UNKNOWN", "GLF6");
         assertThat(aircraft.candidates("B787-900"))
                 .containsExactly("B789");
         assertThat(aircraft.candidates("unmapped"))
-                .containsExactly("unmapped");
+                .containsExactly("UNMAPPED");
     }
 
     @ParameterizedTest

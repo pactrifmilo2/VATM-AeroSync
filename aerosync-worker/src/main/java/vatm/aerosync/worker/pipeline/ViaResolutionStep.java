@@ -71,7 +71,7 @@ public class ViaResolutionStep {
                         via = resolveVia(connection, permit, flight, from, to);
                     } catch (AtfmDocumentRouteException exception) {
                         if (permit.replacesNonScheduledRows()) throw exception;
-                        via = null;
+                        via = permit.seasonalPermit() ? null : fallbackVia(null);
                         routeMissing = true;
                         context.getRowValidationErrors().add(new RowValidationError(
                                 index + 1, "via", "BR-ROUTE-DOCUMENT-UNREADABLE",
@@ -83,7 +83,7 @@ public class ViaResolutionStep {
                         // from the permit. Preserve the row and let the writer
                         // expose the warning to the user.
                         String routeError = routeErrorMessage(from, to, exception.getMessage());
-                        via = null;
+                        via = permit.seasonalPermit() ? null : fallbackVia(flight.via());
                         routeMissing = true;
                         context.getRowValidationErrors().add(new RowValidationError(
                                 index + 1, "via", "BR-ROUTE-NOT-FOUND",
@@ -102,6 +102,7 @@ public class ViaResolutionStep {
                             routeError,
                             from + " -> " + to));
                 }
+                addLongTokenWarnings(context, index + 1, via);
                 resolvedFlights.add(flight.withResolvedRoute(from, to, via));
             }
             context.setSchedulePermit(permit.withFlights(resolvedFlights));
@@ -139,6 +140,26 @@ public class ViaResolutionStep {
     private String routeErrorMessage(String from, String to, String detail) {
         String route = "ATFM route not found: " + from + " -> " + to;
         return detail == null || detail.isBlank() ? route : detail;
+    }
+
+    private String fallbackVia(String documentVia) {
+        String normalized = documentVia == null ? "" : documentVia.trim();
+        return normalized.isBlank()
+                ? AtfmViaResolver.DEFAULT_VIA_PREFIX
+                : AtfmViaResolver.DEFAULT_VIA_PREFIX + normalized.replaceAll("\\s+", "/");
+    }
+
+    private void addLongTokenWarnings(ProcessingContext context, int rowNumber, String via) {
+        if (via == null || via.startsWith(AtfmViaResolver.DEFAULT_VIA_PREFIX)) {
+            return;
+        }
+        for (String token : via.split("/")) {
+            if (token.length() >= 6 && token.matches("[A-Z0-9]+")) {
+                context.getRowValidationErrors().add(new RowValidationError(
+                        rowNumber, "via", "BR-ROUTE-LONG-TOKEN",
+                        "Route token is unusually long but was saved: " + token, token));
+            }
+        }
     }
 
 }

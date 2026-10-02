@@ -103,6 +103,26 @@ class EmailIngestServiceTest {
     }
 
     @Test
+    void ingestUpTo_archivesCancellationAndDoesNotPublishProcessingJob() {
+        EmailMessage message = new EmailMessage(
+                "msg-cancel", "ops@vatm.local", "CANCEL permit LD-123",
+                LocalDateTime.now(),
+                List.of(new EmailAttachment("permit.docx", "docx".getBytes())), false, "");
+        when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
+        when(emailMetadataRepository
+                .findByMailboxFolderAndUidValidityAndMessageUidAndAttachmentIndex(
+                        anyString(), any(Long.class), any(Long.class), any(Integer.class)))
+                .thenReturn(Optional.empty());
+
+        assertThat(emailIngestService.ingestUpTo(10)).isZero();
+        verify(emailMetadataRepository).save(org.mockito.ArgumentMatchers.argThat(metadata ->
+                metadata.getProcessingStatus() == EmailProcessingStatus.SKIPPED
+                        && "CANCEL permit LD-123".equals(metadata.getSubject())));
+        verify(ingestPublisher, never()).publish(any());
+        verify(emailAcknowledgementService).markIngestComplete(message.reference());
+    }
+
+    @Test
     void ingestUpTo_skipsMessageWithNoAttachment_alt06() {
         EmailMessage message = new EmailMessage(
                 "msg-2", "ops@vatm.local", "No files", LocalDateTime.now(), List.of(), false, "");
@@ -150,7 +170,9 @@ class EmailIngestServiceTest {
         assertThat(savedRecord.getChecksum()).hasSize(64);
 
         verify(ingestPublisher).publish(org.mockito.ArgumentMatchers.argThat(event ->
-                event.getSourceType() == FileSourceType.EMAIL && event.isPriority()));
+                event.getSourceType() == FileSourceType.EMAIL
+                        && event.isPriority()
+                        && "URGENT flight data".equals(event.getSubject())));
     }
 
     @Test

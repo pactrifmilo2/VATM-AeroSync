@@ -1,12 +1,17 @@
 package vatm.aerosync.worker.pipeline;
 
 import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.springframework.core.io.ClassPathResource;
 import vatm.aerosync.worker.atfm.AtfmReferenceDataException;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.ScheduleFlight;
 import vatm.aerosync.worker.model.SchedulePermit;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +30,8 @@ import java.util.regex.Pattern;
 @Component
 public class PurposeResolutionStep {
 
+    private static final String PURPOSE_CATALOG_RESOURCE = "permit-reference/purposes.yaml";
+
     private static final String LOAD_PURPOSES_SQL = """
             SELECT PURPOSE_CODE, PURPOSE_NAME
               FROM M_FLY_PURPOSE
@@ -34,9 +41,11 @@ public class PurposeResolutionStep {
             """;
 
     private final AtfmDatabaseProperties properties;
+    private final List<PurposeEntry> yamlEntries;
 
     public PurposeResolutionStep(AtfmDatabaseProperties properties) {
         this.properties = properties;
+        this.yamlEntries = loadYamlAliases();
     }
 
     public void resolve(ProcessingContext context) {
@@ -51,7 +60,7 @@ public class PurposeResolutionStep {
 
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
-            List<PurposeEntry> entries = load(connection);
+            List<PurposeEntry> entries = mergeCatalog(load(connection));
             List<ScheduleFlight> resolved = new ArrayList<>(permit.flights().size());
             for (ScheduleFlight flight : permit.flights()) {
                 String content = context.isNoReplacementMapped()
@@ -79,6 +88,38 @@ public class PurposeResolutionStep {
             }
         }
         return List.copyOf(entries);
+    }
+
+    private List<PurposeEntry> mergeCatalog(List<PurposeEntry> databaseEntries) {
+        java.util.Map<String, PurposeEntry> byCode = new java.util.LinkedHashMap<>();
+        for (PurposeEntry entry : databaseEntries) {
+            String code = entry.code().toUpperCase(Locale.ROOT);
+            PurposeEntry yaml = yamlEntries.stream()
+                    .filter(candidate -> candidate.code().equalsIgnoreCase(code))
+                    .findFirst().orElse(null);
+            byCode.put(code, yaml == null
+                    ? entry
+                    : new PurposeEntry(entry.code(), yaml.name() + ";" + entry.name()));
+        }
+        return List.copyOf(byCode.values());
+    }
+
+    private List<PurposeEntry> loadYamlAliases() {
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory()).findAndRegisterModules();
+        try (InputStream input = new ClassPathResource(PURPOSE_CATALOG_RESOURCE).getInputStream()) {
+            PurposeCatalog catalog = mapper.readValue(input, PurposeCatalog.class);
+            if (catalog.entries() == null) {
+                return List.of();
+            }
+            return catalog.entries().stream()
+                    .filter(entry -> entry.code() != null && !entry.code().isBlank())
+                    .map(entry -> new PurposeEntry(entry.code(),
+                            entry.aliases() == null ? "" : String.join(";", entry.aliases())))
+                    .toList();
+        } catch (IOException exception) {
+            throw new IllegalStateException("Failed to load purpose catalog " + PURPOSE_CATALOG_RESOURCE,
+                    exception);
+        }
     }
 
     static String resolvePurpose(List<PurposeEntry> entries,
@@ -225,6 +266,12 @@ public class PurposeResolutionStep {
             }
             return values.stream().distinct().toList();
         }
+    }
+
+    private record PurposeCatalog(List<PurposeAliasEntry> entries) {
+    }
+
+    private record PurposeAliasEntry(String code, List<String> aliases) {
     }
 
     private record Match(String code, String synonym, int score) {

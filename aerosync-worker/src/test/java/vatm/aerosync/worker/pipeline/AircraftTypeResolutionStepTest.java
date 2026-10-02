@@ -66,7 +66,7 @@ class AircraftTypeResolutionStepTest {
                         (6865, 'A321', NULL, 'Airbus 321'),
                         (6866, 'A320', NULL, 'Airbus 320'),
                         (6867, 'A333', NULL, 'Airbus 333'),
-                        (6868, 'B768', NULL, 'Boeing 768'),
+                        (6868, 'B768', '768', 'Boeing 768'),
                         (1712, 'GLF6', NULL, 'Gulfstream 6'),
                         (4102, 'GA6C', NULL, 'Gulfstream 6C'),
                         (4941, 'GA6C', NULL, 'Gulfstream 6C'),
@@ -87,7 +87,7 @@ class AircraftTypeResolutionStepTest {
         step.resolve(context);
 
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
-        assertThat(flight.sourceAircraftType()).isEqualTo("A330-200F B777-200FB747-400F");
+        assertThat(flight.sourceAircraftType()).isEqualTo("A330-200F/B777-200F/B747-400F");
         assertThat(flight.craftId()).isEqualTo(6864L);
         assertThat(flight.mtow()).isZero();
     }
@@ -141,7 +141,7 @@ class AircraftTypeResolutionStepTest {
         step.resolveAllowingMissingForNonSeasonal(context);
 
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
-        assertThat(flight.sourceAircraftType()).isEqualTo("A321");
+        assertThat(flight.sourceAircraftType()).isEqualTo("321");
         assertThat(flight.craftId()).isEqualTo(6865L);
         assertThat(context.getRowValidationErrors()).isEmpty();
     }
@@ -163,8 +163,8 @@ class AircraftTypeResolutionStepTest {
         step.resolveAllowingMissingForNonSeasonal(context);
 
         ScheduleFlight resolved = context.getSchedulePermit().flights().getFirst();
-        assertThat(resolved.sourceAircraftType()).isEqualTo("B768/A321/A320/A333");
-        assertThat(resolved.remark()).isEqualTo("PAX B768/A321/A320/A333");
+        assertThat(resolved.sourceAircraftType()).isEqualTo("768/321/320/333");
+        assertThat(resolved.remark()).isEqualTo("PAX 768/321/320/333");
         assertThat(resolved.craftId()).isEqualTo(6868L);
     }
 
@@ -175,7 +175,7 @@ class AircraftTypeResolutionStepTest {
         step.resolveAllowingMissingForNonSeasonal(context);
 
         assertThat(context.getSchedulePermit().flights().getFirst().sourceAircraftType())
-                .isEqualTo("B768/A321/A320/A333");
+                .isEqualTo("768/321/320/333");
     }
 
     @Test
@@ -185,7 +185,7 @@ class AircraftTypeResolutionStepTest {
         step.resolveAllowingMissingForNonSeasonal(context);
 
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
-        assertThat(flight.sourceAircraftType()).isEqualTo("B799");
+        assertThat(flight.sourceAircraftType()).isEqualTo("799");
         assertThat(flight.craftId()).isEqualTo(6881L);
         assertThat(context.getRowValidationErrors())
                 .extracting("code")

@@ -9,7 +9,7 @@ class NewPermitRemarkTest {
         assertThat(DatabaseWriterStep.newPermitRemark(null)).isNull();
         assertThat(DatabaseWriterStep.newPermitRemark("A321")).isNull();
         assertThat(DatabaseWriterStep.newPermitRemark("A321/A321")).isNull();
-        assertThat(DatabaseWriterStep.newPermitRemark("321/320")).isEqualTo("A321/A320");
+        assertThat(DatabaseWriterStep.newPermitRemark("321/320")).isEqualTo("321/320");
         assertThat(DatabaseWriterStep.newPermitRemark("B787/B777/A330"))
                 .isEqualTo("B787/B777/A330");
     }

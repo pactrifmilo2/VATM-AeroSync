@@ -9,17 +9,24 @@ public class FileIngestedEvent {
     private String fileHash;
     private FileSourceType sourceType;
     private boolean priority;
+    private String subject;
 
     public FileIngestedEvent() {
     }
 
     public FileIngestedEvent(Long syncJobId, String tempFilePath, String fileHash,
                              FileSourceType sourceType, boolean priority) {
+        this(syncJobId, tempFilePath, fileHash, sourceType, priority, null);
+    }
+
+    public FileIngestedEvent(Long syncJobId, String tempFilePath, String fileHash,
+                             FileSourceType sourceType, boolean priority, String subject) {
         this.syncJobId = syncJobId;
         this.tempFilePath = tempFilePath;
         this.fileHash = fileHash;
         this.sourceType = sourceType;
         this.priority = priority;
+        this.subject = subject;
     }
 
     public Long getSyncJobId() {
@@ -60,5 +67,13 @@ public class FileIngestedEvent {
 
     public void setPriority(boolean priority) {
         this.priority = priority;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

@@ -37,7 +37,8 @@ class AircraftTypeCatalog {
         }
 
         Set<String> candidates = new LinkedHashSet<>();
-        for (String token : value.split("(?iu)\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
+        for (String token : AircraftTypeNotation.normalize(value)
+                .split("\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
             String clean = token.trim();
             if (!clean.isBlank()) {
                 candidates.add(aliases.getOrDefault(canonical(clean), clean));

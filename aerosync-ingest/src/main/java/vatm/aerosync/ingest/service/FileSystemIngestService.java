@@ -127,7 +127,8 @@ public class FileSystemIngestService {
                 record.getStoredPath(),
                 hash,
                 FileSourceType.FILESYSTEM,
-                priority);
+                priority,
+                null);
         ingestPublisher.publish(event);
         saveIncomingNotice(saved, "INCOMING_FILE_ACCEPTED", SyncStatus.PENDING,
                 file, "Đã nhận file từ Incoming và đưa vào hàng đợi xử lý: " + file.getFileName());

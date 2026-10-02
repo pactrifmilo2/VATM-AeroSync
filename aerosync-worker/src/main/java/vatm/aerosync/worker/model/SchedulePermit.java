@@ -30,6 +30,7 @@ public record SchedulePermit(
 ) {
     public static final String REFERENCED_SEASON_NEW_SC = "REFERENCED_SEASON_NEW_SC";
     public static final String EXISTING_SC_REVISION = "EXISTING_SC_REVISION";
+    public static final String SUBJECT_CORRECTION = "SUBJECT_CORRECTION";
     private static final Pattern REVISION_MARKER = Pattern.compile(
             "(?iu)(?:\\bREV(?:ISION)?\\s*\\d*\\b|\\bRVS\\s*\\d*\\b|"
                     + "SỬA\\s*ĐỔI|SUA\\s*DOI|LỊCH\\s*BAY\\s*GỐC|LICH\\s*BAY\\s*GOC|"
@@ -356,6 +357,18 @@ public record SchedulePermit(
 
     public boolean existingScheduledRevision() {
         return EXISTING_SC_REVISION.equalsIgnoreCase(workflow);
+    }
+
+    public boolean subjectCorrection() {
+        return SUBJECT_CORRECTION.equalsIgnoreCase(workflow);
+    }
+
+    public SchedulePermit withWorkflow(String newWorkflow) {
+        return new SchedulePermit(sourcePermitNumber, normalizedPermitId, permitNumber,
+                authorId, permitType, version, season, permitDate, operatorId, reference,
+                validHours, billingAddress, flightType, iataAirportsAllowed,
+                emptyAirwaysAllowed, reviewOnly, rawContent, flights, originalFlights,
+                referencedPermitId, revisionCreatesNewPermit, newWorkflow);
     }
 
     /** Only the actual NO destination uses OLD deletion / NEW insertion. */

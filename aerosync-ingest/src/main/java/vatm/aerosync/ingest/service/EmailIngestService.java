@@ -37,6 +37,8 @@ public class EmailIngestService {
     private static final Logger log = LoggerFactory.getLogger(EmailIngestService.class);
     private static final List<String> SUPPORTED_EXTENSIONS = List.of(
             ".csv", ".xlsx", ".doc", ".docx", ".xml", ".json");
+    private static final java.util.regex.Pattern CANCELLATION_SUBJECT =
+            java.util.regex.Pattern.compile("(?iu)\\b(?:CANCEL(?:LED|LATION)?|HUY(?:\\s+BO)?|HUY\\s+BỎ)\\b");
 
     private final EmailClient emailClient;
     private final EmailProperties emailProperties;
@@ -94,6 +96,19 @@ public class EmailIngestService {
                     break;
                 }
                 preserveAllAttachments(message);
+                if (isCancellationSubject(message.subject())) {
+                    if (message.attachments().isEmpty()) {
+                        persistTerminalMessage(message, EmailProcessingStatus.SKIPPED);
+                    } else {
+                        for (int attachmentIndex = 0;
+                             attachmentIndex < message.attachments().size(); attachmentIndex++) {
+                            persistSkippedAttachment(message, message.attachments().get(attachmentIndex), attachmentIndex);
+                        }
+                    }
+                    emailAcknowledgementService.markIngestComplete(message.reference());
+                    log.info("Skipping cancelled email {} without publishing a processing job", message.messageId());
+                    continue;
+                }
                 if (isBlockedByBlacklist(message.sender())) {
                     persistTerminalMessage(message, EmailProcessingStatus.BLOCKED);
                     emailAcknowledgementService.markIngestComplete(message.reference());
@@ -221,7 +236,8 @@ public class EmailIngestService {
                     record.getStoredPath(),
                     hash,
                     FileSourceType.EMAIL,
-                    priority));
+                    priority,
+                    message.subject()));
             return true;
         } catch (IOException e) {
             throw new IllegalStateException("Failed to store email attachment", e);
@@ -234,6 +250,10 @@ public class EmailIngestService {
         }
         String normalized = fileName.trim().toLowerCase(java.util.Locale.ROOT);
         return SUPPORTED_EXTENSIONS.stream().anyMatch(normalized::endsWith);
+    }
+
+    private boolean isCancellationSubject(String subject) {
+        return subject != null && CANCELLATION_SUBJECT.matcher(subject).find();
     }
 
     private void preserveEmailDownload(EmailMessage message,

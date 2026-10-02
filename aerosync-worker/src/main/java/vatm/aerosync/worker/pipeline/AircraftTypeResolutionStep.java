@@ -57,7 +57,8 @@ public class AircraftTypeResolutionStep {
                 resolvedFlights.add(flight);
                 continue;
             }
-            String sourceType = AircraftTypeNotation.normalize(flight.sourceAircraftType());
+            String rawSourceType = flight.sourceAircraftType();
+            String sourceType = AircraftTypeNotation.normalize(rawSourceType);
             ScheduleFlight normalizedFlight = Objects.equals(sourceType, flight.sourceAircraftType())
                     ? flight
                     : flight.withSourceAircraftType(sourceType);
@@ -79,7 +80,7 @@ public class AircraftTypeResolutionStep {
                 resolvedFlights.add(withFallbackAircraft(normalizedFlight, allowMissing));
                 continue;
             }
-            List<String> candidates = aliases.candidates(sourceType);
+            List<String> candidates = aliases.candidates(rawSourceType);
             try {
                 AtfmAircraftTypeResolver.ResolvedAircraft resolved = resolver.resolve(candidates);
                 resolvedFlights.add(normalizedFlight.withResolvedAircraft(

@@ -1,0 +1,19 @@
+# Human-language aliases for the authoritative M_FLY_PURPOSE.PURPOSE_CODE list.
+# Database codes remain authoritative; this file only supplies bilingual aliases.
+entries:
+  - code: PAX
+    aliases: ["passenger", "passengers", "transporting passengers", "cho khach", "hanh khach"]
+  - code: CAR
+    aliases: ["cargo", "freighter", "transporting cargo", "cho hang", "hang hoa"]
+  - code: FER
+    aliases: ["ferry", "ferry flight", "chuyen bay ferry"]
+  - code: OTH
+    aliases: ["other", "technical stop", "tech stop", "refuel", "khac", "ky thuat"]
+  - code: BUS
+    aliases: ["business", "business aviation", "cong vu"]
+  - code: VIP
+    aliases: ["vip", "vip flight", "private vip"]
+  - code: AMB
+    aliases: ["ambulance", "medical", "medical evacuation", "cap cuu"]
+  - code: CHT
+    aliases: ["charter", "charter flight", "thue chuyen", "thue chuyen cho khach"]

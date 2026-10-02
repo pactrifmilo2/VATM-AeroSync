@@ -26,6 +26,9 @@ public class AtfmViaResolver {
             "NIL", "NONE", "ROUTE", "SUBJECT", "APPROVAL", "ATTACHED",
             "ABOVE", "BELOW", "SAME");
 
+    public static final String DEFAULT_VIA_PREFIX =
+            "Other permitted airways published in Viet Nams AIP/";
+
     public String resolve(Connection connection,
                           String fromAirport,
                           String toAirport,
@@ -33,9 +36,10 @@ public class AtfmViaResolver {
                           String documentVia) throws SQLException {
         String from = normalize(fromAirport);
         String to = normalize(toAirport);
+        String rawDocumentRoute = normalize(documentVia);
         String existing = normalizeRoute(documentVia);
-        if (!existing.isBlank()) {
-            if (!isReadableRoute(existing)) {
+        if (!rawDocumentRoute.isBlank()) {
+            if (existing.isBlank() || !isReadableRoute(existing)) {
                 throw new AtfmDocumentRouteException(
                         "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file");
             }
@@ -73,7 +77,7 @@ public class AtfmViaResolver {
                 || lower.contains("đường bay không có trong từ điển atfm")) {
             return "";
         }
-        return normalized
+        String route = normalized
                 .replaceAll("(?iu)\\s+(?:-|\\u2013|\\u2014)\\s+", "/")
                 .replaceAll("(?iu)\\s+HOẶC\\s+", "/")
                 .replaceAll("(?iu)(?<=[A-Z0-9])-(?=[A-Z][A-Z0-9]{1,5}(?:$|[-/\\s]))", "/")
@@ -82,6 +86,12 @@ public class AtfmViaResolver {
                 .replaceAll("(?<=\\b[A-Z0-9]{2,15})\\s+(?=[A-Z0-9]{2,15}\\b)", "/")
                 .replaceAll("/{2,}", "/")
                 .replaceAll("/+$", "");
+        return java.util.Arrays.stream(route.split("/"))
+                .map(String::trim)
+                .filter(token -> !token.isBlank())
+                .filter(token -> !token.matches("[A-Z]+"))
+                .reduce((left, right) -> left + "/" + right)
+                .orElse("");
     }
 
     private boolean isReadableRoute(String value) {
