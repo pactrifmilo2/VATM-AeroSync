@@ -53,27 +53,26 @@ class AircraftTypeResolutionStepTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("""
-                    CREATE TABLE M_CRAFT_TYPE (
-                        CRAFT_ID NUMBER,
-                        MA VARCHAR2(64),
-                        SOHIEU VARCHAR2(64),
-                        SOHIEU2 VARCHAR2(64),
-                        TAITRONG NUMBER
+                    CREATE TABLE M_CRAFT (
+                        ID NUMBER,
+                        CRAFT_ICAO VARCHAR2(4),
+                        CRAFT_IATA VARCHAR2(3),
+                        CRAFT_NAME VARCHAR2(100)
                     )
                     """);
             connection.createStatement().execute("""
-                    INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG) VALUES
-                        (6864, 'A33X', 'A33X', NULL, 230),
-                        (6865, 'A321', 'A321', NULL, 90),
-                        (6866, 'A320', 'A320', NULL, 78),
-                        (6867, 'A333', 'A333', NULL, 230),
-                        (6868, 'B768', 'B768', NULL, 180),
-                        (1712, 'GLF6', NULL, NULL, 46),
-                        (4102, 'GA6C', 'GA6C', NULL, 94600),
-                        (4941, 'GA6C', 'GA6C', NULL, 42),
-                        (9001, 'AMB', 'AMB', NULL, 10),
-                        (9002, 'AMB', 'AMB', NULL, 20),
-                        (6881, 'A000', 'A000', NULL, 0)
+                    INSERT INTO M_CRAFT (ID, CRAFT_ICAO, CRAFT_IATA, CRAFT_NAME) VALUES
+                        (6864, 'A33X', NULL, 'Airbus 33X'),
+                        (6865, 'A321', NULL, 'Airbus 321'),
+                        (6866, 'A320', NULL, 'Airbus 320'),
+                        (6867, 'A333', NULL, 'Airbus 333'),
+                        (6868, 'B768', NULL, 'Boeing 768'),
+                        (1712, 'GLF6', NULL, 'Gulfstream 6'),
+                        (4102, 'GA6C', NULL, 'Gulfstream 6C'),
+                        (4941, 'GA6C', NULL, 'Gulfstream 6C'),
+                        (9001, 'XAMB', 'AMB', 'Ambiguous'),
+                        (9002, 'YAMB', 'AMB', 'Ambiguous'),
+                        (6881, 'A000', NULL, 'Unknown aircraft')
                     """);
         }
         step = new AircraftTypeResolutionStep(
@@ -90,7 +89,7 @@ class AircraftTypeResolutionStepTest {
         ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
         assertThat(flight.sourceAircraftType()).isEqualTo("A330-200F B777-200FB747-400F");
         assertThat(flight.craftId()).isEqualTo(6864L);
-        assertThat(flight.mtow()).isEqualByComparingTo(new BigDecimal("230"));
+        assertThat(flight.mtow()).isZero();
     }
 
     @Test

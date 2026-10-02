@@ -1,6 +1,6 @@
 # Approved selections retained from the former aircraft catalog.
-# These entries only disambiguate duplicate M_CRAFT_TYPE rows. Aircraft details
-# and MTOW are still read from the selected ATFM database record.
+# These entries only disambiguate duplicate M_CRAFT rows. The selected ATFM
+# database ID is retained as the aircraft identity.
 entries:
   - code: B77X
     craftId: 4082

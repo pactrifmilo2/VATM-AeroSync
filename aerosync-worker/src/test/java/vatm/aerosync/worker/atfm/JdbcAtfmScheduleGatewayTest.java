@@ -300,11 +300,11 @@ class JdbcAtfmScheduleGatewayTest {
             connection.createStatement().execute(
                     "CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
+            connection.createStatement().execute("CREATE TABLE M_CRAFT (ID NUMBER, CRAFT_ICAO VARCHAR2(4), CRAFT_IATA VARCHAR2(3), CRAFT_NAME VARCHAR2(100))");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             connection.createStatement().execute("INSERT INTO M_OPER VALUES ('RMY', 'RAYA AIRWAYS')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('CAR')");
-            connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
+            connection.createStatement().execute("INSERT INTO M_CRAFT (ID) VALUES (1935)");
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMMASTER_SC (
                         ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL,
@@ -414,11 +414,11 @@ class JdbcAtfmScheduleGatewayTest {
             connection.createStatement().execute(
                     "CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
+            connection.createStatement().execute("CREATE TABLE M_CRAFT (ID NUMBER, CRAFT_ICAO VARCHAR2(4), CRAFT_IATA VARCHAR2(3), CRAFT_NAME VARCHAR2(100))");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN', 'VIETNAM AIRLINES')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('PAX')");
-            connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
+            connection.createStatement().execute("INSERT INTO M_CRAFT (ID) VALUES (1935)");
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMMASTER_SC (
                         ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL,
@@ -516,11 +516,11 @@ class JdbcAtfmScheduleGatewayTest {
             connection.createStatement().execute(
                     "CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
+            connection.createStatement().execute("CREATE TABLE M_CRAFT (ID NUMBER, CRAFT_ICAO VARCHAR2(4), CRAFT_IATA VARCHAR2(3), CRAFT_NAME VARCHAR2(100))");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN', 'VIETNAM AIRLINES')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('PAX')");
-            connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
+            connection.createStatement().execute("INSERT INTO M_CRAFT (ID) VALUES (1935)");
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMMASTER_NO (
                         ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL,
@@ -602,11 +602,11 @@ class JdbcAtfmScheduleGatewayTest {
             connection.createStatement().execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
             connection.createStatement().execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
             connection.createStatement().execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
-            connection.createStatement().execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER)");
+            connection.createStatement().execute("CREATE TABLE M_CRAFT (ID NUMBER, CRAFT_ICAO VARCHAR2(4), CRAFT_IATA VARCHAR2(3), CRAFT_NAME VARCHAR2(100))");
             connection.createStatement().execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             connection.createStatement().execute("INSERT INTO M_OPER VALUES ('HVN')");
             connection.createStatement().execute("INSERT INTO M_FLY_PURPOSE VALUES ('PAX')");
-            connection.createStatement().execute("INSERT INTO M_CRAFT_TYPE VALUES (1935)");
+            connection.createStatement().execute("INSERT INTO M_CRAFT (ID) VALUES (1935)");
             connection.createStatement().execute("""
                     CREATE TABLE T_PERMMASTER_NO (
                         ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL, PERMNBR_ID VARCHAR2(100),

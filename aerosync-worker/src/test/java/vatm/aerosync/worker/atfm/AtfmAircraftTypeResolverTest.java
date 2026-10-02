@@ -30,26 +30,25 @@ class AtfmAircraftTypeResolverTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("""
-                    CREATE TABLE M_CRAFT_TYPE (
-                        CRAFT_ID NUMBER,
-                        MA VARCHAR2(64),
-                        SOHIEU VARCHAR2(64),
-                        SOHIEU2 VARCHAR2(64),
-                        TAITRONG NUMBER
+                    CREATE TABLE M_CRAFT (
+                        ID NUMBER,
+                        CRAFT_ICAO VARCHAR2(4),
+                        CRAFT_IATA VARCHAR2(3),
+                        CRAFT_NAME VARCHAR2(100)
                     )
                     """);
             connection.createStatement().execute("""
-                    INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG) VALUES
-                        (249, 'B738', '738', NULL, 79),
-                        (1631, 'B788', '788', NULL, 219),
-                        (1226, 'B77W', '77W', NULL, 351),
-                        (6765, '77W', '77W', NULL, 12),
-                        (4082, 'B77X', 'B77X', NULL, 347),
-                        (6801, 'B77X', 'B77X', NULL, 45),
-                        (6484, 'A32X', 'A32X', NULL, 12),
-                        (6485, 'A32X', 'A32X', NULL, 12),
-                        (6481, '73Y', '73Y', NULL, 15),
-                        (6482, '73Y', '73Y', NULL, 15)
+                    INSERT INTO M_CRAFT (ID, CRAFT_ICAO, CRAFT_IATA, CRAFT_NAME) VALUES
+                        (249, 'B738', '738', 'Boeing 738'),
+                        (1631, 'B788', '788', 'Boeing 788'),
+                        (1226, 'B77W', '77W', 'Boeing 77W'),
+                        (6765, 'B77Y', '77W', 'Boeing 77W'),
+                        (4082, 'B77X', '77X', 'Boeing 77X'),
+                        (6801, 'B77X', '77X', 'Boeing 77X'),
+                        (6484, 'A32X', '32X', 'Airbus 32X'),
+                        (6485, 'A32X', '32X', 'Airbus 32X'),
+                        (6481, 'B73Y', '73Y', 'Boeing 73Y'),
+                        (6482, 'B73Y', '73Y', 'Boeing 73Y')
                     """);
         }
         resolver = new AtfmAircraftTypeResolver(
@@ -62,7 +61,7 @@ class AtfmAircraftTypeResolverTest {
         AtfmAircraftTypeResolver.ResolvedAircraft aircraft = resolver.resolve(List.of("B738"));
 
         assertThat(aircraft.craftId()).isEqualTo(249L);
-        assertThat(aircraft.mtow()).isEqualByComparingTo(new BigDecimal("79"));
+        assertThat(aircraft.mtow()).isZero();
         assertThat(aircraft.matchedCode()).isEqualTo("B738");
     }
 
@@ -89,7 +88,7 @@ class AtfmAircraftTypeResolverTest {
         AtfmAircraftTypeResolver.ResolvedAircraft aircraft = resolver.resolve(List.of("B77X"));
 
         assertThat(aircraft.craftId()).isEqualTo(4082L);
-        assertThat(aircraft.mtow()).isEqualByComparingTo(new BigDecimal("347"));
+        assertThat(aircraft.mtow()).isZero();
     }
 
     @Test
@@ -111,8 +110,8 @@ class AtfmAircraftTypeResolverTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("""
-                    INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG)
-                    VALUES (5441, 'DF7', 'DF7', NULL, 32)
+                    INSERT INTO M_CRAFT (ID, CRAFT_ICAO, CRAFT_IATA, CRAFT_NAME)
+                    VALUES (5441, 'DF7', 'DF7', 'Dassault 7')
                     """);
         }
 

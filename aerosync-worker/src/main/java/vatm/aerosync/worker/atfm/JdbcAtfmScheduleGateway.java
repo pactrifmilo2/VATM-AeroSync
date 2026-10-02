@@ -1197,7 +1197,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             ensureLookupExists(connection, "M_FLY_PURPOSE", "PURPOSE_CODE", purposeId);
         }
         for (Long craftId : permit.flights().stream().map(ScheduleFlight::craftId).distinct().toList()) {
-            ensureLookupExists(connection, "M_CRAFT_TYPE", "CRAFT_ID", craftId);
+            ensureLookupExists(connection, "M_CRAFT", "ID", craftId);
         }
     }
 

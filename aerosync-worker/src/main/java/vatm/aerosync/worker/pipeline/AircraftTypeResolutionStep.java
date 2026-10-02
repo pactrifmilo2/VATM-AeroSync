@@ -132,7 +132,7 @@ public class AircraftTypeResolutionStep {
                  | AtfmAircraftTypeResolver.AmbiguousAircraftTypeException exception) {
             throw new BusinessRuleException(
                     "BR-AIRCRAFT-FALLBACK-MISSING",
-                    "Fallback aircraft type A000 is missing or ambiguous in M_CRAFT_TYPE; "
+                    "Fallback aircraft type A000 is missing or ambiguous in M_CRAFT; "
                             + "cannot write an unresolved aircraft safely");
         }
     }

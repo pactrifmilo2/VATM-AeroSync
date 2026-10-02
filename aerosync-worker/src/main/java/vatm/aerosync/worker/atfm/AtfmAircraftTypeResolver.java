@@ -23,10 +23,10 @@ import java.util.Objects;
 public class AtfmAircraftTypeResolver {
 
     private static final String LOAD_AIRCRAFT_TYPES_SQL = """
-            SELECT CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG
-              FROM M_CRAFT_TYPE
-             WHERE CRAFT_ID IS NOT NULL
-             ORDER BY CRAFT_ID
+            SELECT ID, CRAFT_ICAO, CRAFT_IATA
+              FROM M_CRAFT
+             WHERE ID IS NOT NULL
+             ORDER BY ID
             """;
 
     private final AtfmDatabaseProperties properties;
@@ -67,7 +67,7 @@ public class AtfmAircraftTypeResolver {
                         .toList();
         Snapshot current = currentSnapshot();
         for (String candidate : candidates) {
-            List<AircraftRecord> matches = current.byCode().getOrDefault(canonical(candidate), List.of());
+            List<AircraftRecord> matches = current.byCode().getOrDefault(lookupKey(candidate), List.of());
             if (matches.isEmpty()) {
                 continue;
             }
@@ -80,7 +80,7 @@ public class AtfmAircraftTypeResolver {
                         .filter(match -> match.craftId() == preferredCraftId)
                         .findFirst()
                         .orElseThrow(() -> new IllegalStateException(
-                                "Preferred aircraft craftId %d for %s is not present in M_CRAFT_TYPE"
+                                "Preferred aircraft craftId %d for %s is not present in M_CRAFT"
                                         .formatted(preferredCraftId, candidate)));
                 return resolved(preferred, candidate);
             }
@@ -92,7 +92,7 @@ public class AtfmAircraftTypeResolver {
     private ResolvedAircraft resolved(AircraftRecord record, String candidate) {
         return new ResolvedAircraft(
                 record.craftId(),
-                Objects.requireNonNullElse(record.mtow(), BigDecimal.ZERO),
+                BigDecimal.ZERO,
                 candidate);
     }
 
@@ -123,14 +123,11 @@ public class AtfmAircraftTypeResolver {
              ResultSet rows = statement.executeQuery()) {
             while (rows.next()) {
                 AircraftRecord record = new AircraftRecord(
-                        rows.getLong("CRAFT_ID"),
-                        clean(rows.getString("MA")),
-                        clean(rows.getString("SOHIEU")),
-                        clean(rows.getString("SOHIEU2")),
-                        rows.getBigDecimal("TAITRONG"));
-                index(indexed, record.ma(), record);
-                index(indexed, record.sohieu(), record);
-                index(indexed, record.sohieu2(), record);
+                        rows.getLong("ID"),
+                        clean(rows.getString("CRAFT_ICAO")),
+                        clean(rows.getString("CRAFT_IATA")));
+                index(indexed, "ICAO", record.icao(), record);
+                index(indexed, "IATA", record.iata(), record);
             }
         } catch (SQLException exception) {
             throw new IllegalStateException(
@@ -145,13 +142,23 @@ public class AtfmAircraftTypeResolver {
     }
 
     private void index(Map<String, LinkedHashMap<Long, AircraftRecord>> indexed,
+                       String codeType,
                        String value,
                        AircraftRecord record) {
         String code = canonical(value);
         if (!code.isBlank()) {
-            indexed.computeIfAbsent(code, ignored -> new LinkedHashMap<>())
+            indexed.computeIfAbsent(codeType + ":" + code, ignored -> new LinkedHashMap<>())
                     .putIfAbsent(record.craftId(), record);
         }
+    }
+
+    private String lookupKey(String candidate) {
+        String code = canonical(candidate);
+        return switch (code.length()) {
+            case 3 -> "IATA:" + code;
+            case 4 -> "ICAO:" + code;
+            default -> code + ":unsupported";
+        };
     }
 
     private String clean(String value) {
@@ -208,10 +215,8 @@ public class AtfmAircraftTypeResolver {
 
     private record AircraftRecord(
             long craftId,
-            String ma,
-            String sohieu,
-            String sohieu2,
-            BigDecimal mtow
+            String icao,
+            String iata
     ) {
     }
 
