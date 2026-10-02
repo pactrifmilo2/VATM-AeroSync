@@ -216,7 +216,7 @@ public class DocxSchedulePermitParser {
         var t = p.schedule();
         // Keep YAML aliases/date/time mappings; override NO replacement selection only.
         var schedule = new DocxPermitFormatProfile.ScheduleDefinition(t.columns(), t.headerlessColumns(),
-                t.requiredColumns(), t.excludeColumns(), t.tableContextPatterns(),
+                t.carryForwardColumns(), t.requiredColumns(), t.excludeColumns(), t.tableContextPatterns(),
                 revisionMarkers(t.preferredTableContextPatterns(), "(?iu)(?:^|\\s)(?:NEW|REVISED|REVISE)\\b|LỊCH\\s+BAY\\s+MỚI"),
                 revisionMarkers(t.originalTableContextPatterns(), "(?iu)(?:^|\\s)(?:OLD|ORIGINAL|ORIGIN)\\b|LỊCH\\s+BAY\\s+(?:GỐC|CŨ)"),
                 t.supplementalTableContextPatterns(), t.dateFormats(), t.timeFormats(), t.locale(),
@@ -747,21 +747,24 @@ public class DocxSchedulePermitParser {
         }
         List<ScheduleFlight> flights = new ArrayList<>();
         String previousServiceDays = null;
+        Map<String, String> carriedValues = new LinkedHashMap<>();
         for (int rowIndex = firstDataRow; rowIndex < table.size(); rowIndex++) {
             List<String> row = table.get(rowIndex);
             if (isRepeatedScheduleHeader(row, columns)) {
                 continue;
             }
+            Map<String, String> rowValues = scheduleRowValues(
+                    row, columns, schedule.carryForwardColumns(), carriedValues);
             String flightNumber = normalizeFlightNumber(
-                    value(row, columns, "flightNumber"), operatorId, iataPrefix);
+                    rowValues.getOrDefault("flightNumber", ""), operatorId, iataPrefix);
             if (flightNumber.isBlank()) {
                 continue;
             }
             if (isScheduleSectionLabel(row, columns)) {
                 continue;
             }
-            String rawFrom = value(row, columns, "fromAirport").toUpperCase(Locale.ROOT);
-            String rawTo = value(row, columns, "toAirport").toUpperCase(Locale.ROOT);
+            String rawFrom = rowValues.getOrDefault("fromAirport", "").toUpperCase(Locale.ROOT);
+            String rawTo = rowValues.getOrDefault("toAirport", "").toUpperCase(Locale.ROOT);
             String from = normalizeAirport(rawFrom, normalizeAirportsToIcao);
             String to = normalizeAirport(rawTo, normalizeAirportsToIcao);
             String[] routeCorrected = exactSchedule ? new String[] {from, to}
@@ -784,7 +787,7 @@ public class DocxSchedulePermitParser {
             }
             String aircraftType = aircraftSource.value();
             String purposeId = purposeId(
-                    profile, rawContent, rawFrom, rawTo, value(row, columns, "remark"));
+                    profile, rawContent, rawFrom, rawTo, rowValues.getOrDefault("remark", ""));
             String routeFrom = from;
             String routeTo = to;
             RouteRow matchedRoute = routes.stream()
@@ -805,8 +808,8 @@ public class DocxSchedulePermitParser {
                             : null)
                     : matchedRoute.airways();
             String[] effectiveDates = splitConcatenatedDateRange(
-                    value(row, columns, "effectiveFrom"),
-                    value(row, columns, "effectiveTo"));
+                    rowValues.getOrDefault("effectiveFrom", ""),
+                    rowValues.getOrDefault("effectiveTo", ""));
             LocalDate beginDate = parseDate(
                     effectiveDates[0],
                     schedule.dateFormats(), schedule.locale(), fileName, "effective-from date",
@@ -817,7 +820,7 @@ public class DocxSchedulePermitParser {
                     permitYear(rawContent));
             if (!exactSchedule) beginDate = correctClearlyMistypedEffectiveYear(
                     beginDate, endDate, permitYear(rawContent));
-            String rawServiceDays = value(row, columns, "serviceDays");
+            String rawServiceDays = rowValues.getOrDefault("serviceDays", "");
             String serviceDays = rawServiceDays.isBlank() && previousServiceDays != null
                     ? previousServiceDays
                     : normalizeDays(rawServiceDays, fileName);
@@ -849,10 +852,10 @@ public class DocxSchedulePermitParser {
                     from,
                     to,
                     normalizeTime(
-                            value(row, columns, "etd"), schedule.timeFormats(), schedule.locale(),
+                            rowValues.getOrDefault("etd", ""), schedule.timeFormats(), schedule.locale(),
                             fileName, "ETD", false),
                     schedule.includeEta() ? normalizeTime(
-                            value(row, columns, "eta"), schedule.timeFormats(), schedule.locale(),
+                            rowValues.getOrDefault("eta", ""), schedule.timeFormats(), schedule.locale(),
                             fileName, "ETA", true) : null,
                     via,
                     beginDate,
@@ -862,6 +865,25 @@ public class DocxSchedulePermitParser {
                     aircraftTablePresent));
         }
         return flights;
+    }
+
+    private Map<String, String> scheduleRowValues(
+            List<String> row,
+            Map<String, Integer> columns,
+            List<String> carryForwardColumns,
+            Map<String, String> carriedValues) {
+        Map<String, String> values = new LinkedHashMap<>();
+        for (String field : columns.keySet()) {
+            String current = value(row, columns, field);
+            if (current.isBlank() && safeList(carryForwardColumns).contains(field)) {
+                current = carriedValues.getOrDefault(field, "");
+            }
+            values.put(field, current);
+            if (!current.isBlank() && safeList(carryForwardColumns).contains(field)) {
+                carriedValues.put(field, current);
+            }
+        }
+        return values;
     }
 
     static LocalDate correctClearlyMistypedEffectiveYear(LocalDate beginDate,

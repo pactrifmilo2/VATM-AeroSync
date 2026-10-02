@@ -73,6 +73,7 @@ record DocxPermitFormatProfile(
     record ScheduleDefinition(
             Map<String, List<String>> columns,
             Map<String, Integer> headerlessColumns,
+            List<String> carryForwardColumns,
             List<String> requiredColumns,
             List<String> excludeColumns,
             List<String> tableContextPatterns,

@@ -1,0 +1,30 @@
+id: apj-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*APJ\b|PEACH\s+AVIATION)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: APJ
+schedule:
+  carryForwardColumns: [flightNumber, fromAirport, toAirport, etd, eta]
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: true
+  allowEmpty: false
+  fallbackToFirst: false
+  filterSchedule: true
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A320
+  remarkPrefix: ''

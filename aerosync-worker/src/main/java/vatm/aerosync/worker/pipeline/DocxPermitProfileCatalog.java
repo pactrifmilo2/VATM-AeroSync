@@ -209,6 +209,12 @@ class DocxPermitProfileCatalog {
                                 || entry.getValue() < 0)) {
             throw invalid(profile, "headerless schedule columns require non-negative indexes");
         }
+        if (profile.schedule().carryForwardColumns() != null
+                && profile.schedule().carryForwardColumns().stream()
+                        .anyMatch(field -> blank(field)
+                                || !profile.schedule().columns().containsKey(field))) {
+            throw invalid(profile, "carry-forward schedule columns must reference declared columns");
+        }
         if (profile.route() != null && profile.route().staticAirways() != null) {
             profile.route().staticAirways().forEach((sector, airways) -> {
                 if (blank(sector) || blank(airways)
