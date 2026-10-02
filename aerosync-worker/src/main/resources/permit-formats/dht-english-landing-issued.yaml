@@ -1,0 +1,13 @@
+id: dht-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d+'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*DHT\b|AUSTRALIA.*DHT|DHT.*AUSTRALIA)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: DHT
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B738
+  auxiliaryRequiredColumns: []

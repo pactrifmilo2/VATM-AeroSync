@@ -70,7 +70,7 @@ schedule:
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
   purposeId: PAX
-  includeEta: false
+  includeEta: true
   lastMatchingTable: true
   inferIataPrefix: true
 route:

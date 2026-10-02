@@ -1,0 +1,22 @@
+id: uae-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[A-Z]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*UAE\b|EMIRATES\s+AIRLINE)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<category>[A-Z])\s*/\s*(?<year>20\d{2})\s*VN\b'
+  numberGroup: number
+  sourceTemplate: 'OF-{number}/{version}/{category}/{year}VN'
+  normalizedTemplate: 'O/F {number}/CHK/{year}'
+  zeroPadGroups:
+    number: 5
+operator:
+  fixedValue: UAE
+schedule:
+  includeEta: true
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B77W
+  auxiliaryRequiredColumns: []

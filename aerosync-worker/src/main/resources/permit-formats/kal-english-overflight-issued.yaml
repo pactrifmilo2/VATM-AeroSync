@@ -112,7 +112,7 @@ schedule:
   - HH:mm
   locale: en
   purposeId: PAX
-  includeEta: false
+  includeEta: true
   lastMatchingTable: false
   inferIataPrefix: true
 route:

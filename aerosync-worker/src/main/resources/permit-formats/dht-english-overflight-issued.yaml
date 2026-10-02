@@ -1,0 +1,15 @@
+id: dht-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*DHT\b|AUSTRALIA.*DHT|DHT.*AUSTRALIA)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: DHT
+schedule:
+  includeEta: true
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B738
+  auxiliaryRequiredColumns: []

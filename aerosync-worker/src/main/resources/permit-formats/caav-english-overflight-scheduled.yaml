@@ -67,7 +67,7 @@ schedule:
     - HH:mm
   locale: en
   purposeId: CAR
-  includeEta: false
+  includeEta: true
 route:
   columns:
     sector: [Sector]

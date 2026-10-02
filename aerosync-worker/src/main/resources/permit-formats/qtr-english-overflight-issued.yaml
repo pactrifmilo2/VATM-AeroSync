@@ -1,10 +1,15 @@
 id: qtr-english-overflight-issued
-extends: airline-generic-overflight-issued
-priority: 80
+extends: caav-generic-overflight-issued
+priority: 200
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
-  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*QTR\b|IATA\s*(?:CODE)?\s*:\s*QR\b|QATAR\s+AIRWAYS)'
-  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|FLT\s*NUMBER)'
-  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*QTR\b|QATAR\s+AIRWAYS|QATAR\s+CARGO)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
 operator:
   fixedValue: QTR
+schedule:
+  includeEta: true
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B77L
+  auxiliaryRequiredColumns: []

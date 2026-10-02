@@ -1,0 +1,15 @@
+id: box-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*BOX\b|AEROLOGIC\s+GMBH)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: BOX
+schedule:
+  includeEta: true
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B77W
+  auxiliaryRequiredColumns: []

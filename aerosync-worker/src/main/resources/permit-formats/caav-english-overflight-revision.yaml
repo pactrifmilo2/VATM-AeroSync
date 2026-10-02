@@ -60,7 +60,7 @@ schedule:
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
   purposeId: CHT
-  includeEta: false
+  includeEta: true
 route:
   columns:
     sector: [Sector]

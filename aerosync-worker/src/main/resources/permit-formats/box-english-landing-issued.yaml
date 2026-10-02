@@ -1,0 +1,13 @@
+id: box-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*BOX\b|AEROLOGIC\s+GMBH)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: BOX
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B77W
+  auxiliaryRequiredColumns: []

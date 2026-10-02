@@ -1,0 +1,15 @@
+id: rja-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 200
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}'
+  - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*RJA\b|ROYAL\s+JORDANIAN)'
+  - '(?isu)^(?!.*(?:/|-)\s*REV\d+\b).*$'
+operator:
+  fixedValue: RJA
+schedule:
+  includeEta: true
+aircraft:
+  scheduleColumn: aircraftType
+  defaultType: B788
+  auxiliaryRequiredColumns: []
