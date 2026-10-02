@@ -25,6 +25,14 @@ final class PermitRemarkPolicy {
                 DatabaseWriterStep.newPermitRemark(flight.sourceAircraftType()));
     }
 
+    static String multiDayRevisionOld(String newPermit, LocalDate receivedDate, int revision) {
+        return join("HUY", newPermit, "EM", DATE.format(receivedDate), "R(" + revision + ")");
+    }
+
+    static String multiDayRevisionNew(String newPermit, LocalDate receivedDate, int revision) {
+        return join("LAY", newPermit, "EM", DATE.format(receivedDate), "R(" + revision + ")");
+    }
+
     static String seasonalOld(ScheduleFlight flight, String originalPermit) {
         return join("HUY", "REF", seasonalId(originalPermit),
                 DatabaseWriterStep.newPermitRemark(flight.sourceAircraftType()));

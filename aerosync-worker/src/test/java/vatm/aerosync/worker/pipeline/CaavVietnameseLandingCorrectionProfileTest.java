@@ -74,7 +74,7 @@ class CaavVietnameseLandingCorrectionProfileTest {
             assertThat(flight.via()).isNull();
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2025, 2, 14));
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2025, 2, 15));
-            assertThat(flight.remark()).isEqualTo("PAX 320/32Q/32N/321");
+            assertThat(flight.remark()).isEqualTo("320/32Q/32N/321");
         });
         assertThat(permit.flights().get(1)).satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("QH263");

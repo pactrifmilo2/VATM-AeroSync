@@ -101,6 +101,23 @@ class SchedulePermitMultiDayStorageTest {
         assertThat(retargeted.season()).isEqualTo("S");
     }
 
+    @Test
+    void verifiedMultiDayNonScheduledRevision_keepsScStorageAndDedicatedWorkflow() {
+        SchedulePermit revision = new SchedulePermit(
+                "LD-3248/9/2026VN/REV2", "LD 03248/CHK/2026", "3248",
+                "CHK", "LD", "A", "S", date(2026, 9, 15), "VJC",
+                "LD-3248/9/2026VN", 24, "Vietjet", "NO",
+                false, false, false, "REV2", List.of(
+                        flight("VJ405", date(2026, 9, 11), date(2026, 9, 30))), List.of(),
+                "LD 03248/CHK/2026").withMultiDayNonScheduledRevisionTarget(
+                        "LD 03248/CHK/2026");
+
+        assertThat(revision.multiDayNonScheduledRevision()).isTrue();
+        assertThat(revision.seasonalPermit()).isFalse();
+        assertThat(revision.usesScheduledStorage()).isTrue();
+        assertThat(revision.atfmTargetPermitId()).isEqualTo("LD 03248/CHK/2026");
+    }
+
     private String seasonFor(LocalDate begin, LocalDate end) {
         return nonScheduledPermit(List.of(flight("VJ405", begin, end))).season();
     }

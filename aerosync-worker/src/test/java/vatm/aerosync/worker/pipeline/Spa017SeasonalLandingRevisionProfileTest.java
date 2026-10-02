@@ -68,7 +68,7 @@ class Spa017SeasonalLandingRevisionProfileTest {
             assertThat(flight.via()).isEqualTo("W15/W1/W17");
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 23));
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2026, 7, 31));
-            assertThat(flight.remark()).isEqualTo("PAX 321/32Q/32N");
+            assertThat(flight.remark()).isNull();
         });
         assertThat(permit.flights().get(1)).satisfies(flight -> {
             assertThat(flight.flightNumber()).isEqualTo("9G1978");

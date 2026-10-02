@@ -98,7 +98,7 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.mtow()).isNull();
             assertThat(flight.sourceAircraftType()).isEqualTo("76X/32X");
             assertThat(flight.aircraftTablePresent()).isTrue();
-            assertThat(flight.remark()).isEqualTo("CAR 76X/32X");
+            assertThat(flight.remark()).isEqualTo("76X/32X");
         });
     }
 
@@ -165,7 +165,7 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.sourceAircraftType()).isEqualTo("77X/33X");
             assertThat(flight.aircraftTablePresent()).isTrue();
             assertThat(flight.purposeId()).isEqualTo("CAR");
-            assertThat(flight.remark()).isEqualTo("CAR 77X/33X");
+            assertThat(flight.remark()).isEqualTo("77X/33X");
         });
     }
 

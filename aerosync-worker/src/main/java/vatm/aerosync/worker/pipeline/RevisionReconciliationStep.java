@@ -81,6 +81,24 @@ public class RevisionReconciliationStep {
         }
         if (permit != null && permit.importRevision()) {
             AtfmRevisionBaseline baselinePermit = gateway.findRevisionBaseline(permit).orElse(null);
+            if (isMultiDayNonScheduledRevisionCandidate(permit)) {
+                validateReferencedScheduledBaseline(permit, baselinePermit);
+                if (baselinePermit.multiDayNonScheduledStorage()) {
+                    permit = permit.withMultiDayNonScheduledRevisionTarget(
+                            baselinePermit.scheduledPermitId());
+                    if (baselinePermit.operatorId() != null
+                            && !baselinePermit.operatorId().isBlank()) {
+                        permit = permit.withOperatorId(baselinePermit.operatorId());
+                    }
+                    context.setSchedulePermit(permit.withFlights(
+                            materializeMultiDayNonScheduledRevision(
+                                    permit, baselinePermit.flights())));
+                    return;
+                }
+                permit = permit.withExistingScheduledTarget(
+                        baselinePermit.scheduledPermitId());
+                context.setSchedulePermit(permit);
+            }
             if (baselinePermit != null && baselinePermit.scheduledStorage()
                     && !permit.usesScheduledStorage()) {
                 permit = permit.withExistingScheduledTarget(baselinePermit.scheduledPermitId());
@@ -237,6 +255,130 @@ public class RevisionReconciliationStep {
                 context.setSchedulePermit(permit.withFlights(reconciled));
             }
         }
+    }
+
+    private boolean isMultiDayNonScheduledRevisionCandidate(SchedulePermit permit) {
+        return !permit.seasonalPermit() && permit.multiDayNonScheduled();
+    }
+
+    private void validateReferencedScheduledBaseline(SchedulePermit permit,
+                                                     AtfmRevisionBaseline baseline) {
+        if (permit.referencedPermitId() == null || permit.referencedPermitId().isBlank()) {
+            throw new BusinessRuleException(
+                    "BR-MULTI-DAY-REVISION-REFERENCE-REQUIRED",
+                    "Multi-day non-scheduled revision requires an explicit referenced permit number");
+        }
+        if (baseline == null || !baseline.scheduledStorage()) {
+            throw new BusinessRuleException(
+                    "BR-MULTI-DAY-REVISION-BASE-NOT-FOUND",
+                    "Referenced scheduled permit was not found: " + permit.referencedPermitId());
+        }
+        if (!sameText(permit.referencedPermitId(), baseline.scheduledPermitId())) {
+            throw new BusinessRuleException(
+                    "BR-MULTI-DAY-REVISION-REFERENCE-MISMATCH",
+                    "Referenced permit does not match the locked scheduled master");
+        }
+    }
+
+    private List<ScheduleFlight> materializeMultiDayNonScheduledRevision(
+            SchedulePermit permit,
+            List<ScheduleFlight> baseline) {
+        if (permit.originalFlights().isEmpty()) {
+            throw new BusinessRuleException(
+                    "BR-MULTI-DAY-REVISION-OLD-REQUIRED",
+                    "Multi-day non-scheduled revision requires an OLD schedule table");
+        }
+        List<ScheduleFlight> oldRows = new ArrayList<>();
+        for (ScheduleFlight old : permit.originalFlights()) {
+            List<ScheduleFlight> matches = baseline.stream()
+                    .filter(candidate -> sameRevisionIdentity(candidate, old))
+                    .toList();
+            if (matches.size() != 1) {
+                throw new BusinessRuleException(
+                        "BR-MULTI-DAY-REVISION-OLD-NOT-UNIQUE",
+                        "OLD schedule does not match exactly one row in the referenced permit: "
+                                + old.flightNumber());
+            }
+            oldRows.add(inheritDetailsAndAircraft(old, matches.getFirst()));
+        }
+
+        List<ScheduleFlight> newRows = new ArrayList<>();
+        for (int index = 0; index < permit.flights().size(); index++) {
+            ScheduleFlight current = permit.flights().get(index);
+            ScheduleFlight documentedOld = findMatchingFlight(permit.originalFlights(), current);
+            if (documentedOld == null) {
+                documentedOld = findUniqueByCallsign(permit.originalFlights(), current);
+            }
+            if (documentedOld == null
+                    && permit.originalFlights().size() == permit.flights().size()) {
+                documentedOld = permit.originalFlights().get(index);
+            }
+            if (documentedOld == null) {
+                throw new BusinessRuleException(
+                        "BR-MULTI-DAY-REVISION-ROW-MAPPING-AMBIGUOUS",
+                        "Cannot pair NEW with OLD for " + current.flightNumber());
+            }
+            ScheduleFlight matchedOld = documentedOld;
+            ScheduleFlight baselineRow = baseline.stream()
+                    .filter(candidate -> sameRevisionIdentity(candidate, matchedOld))
+                    .findFirst()
+                    .orElseThrow(() -> new BusinessRuleException(
+                            "BR-MULTI-DAY-REVISION-OLD-NOT-FOUND",
+                            "Referenced OLD schedule disappeared before reconciliation"));
+            newRows.add(inheritUnchangedMultiDayFields(
+                    permit, current, documentedOld, baselineRow));
+        }
+        List<ScheduleFlight> materialized = new ArrayList<>(oldRows.size() + newRows.size());
+        materialized.addAll(oldRows);
+        materialized.addAll(newRows);
+        return materialized;
+    }
+
+    private ScheduleFlight inheritUnchangedMultiDayFields(SchedulePermit permit,
+                                                           ScheduleFlight current,
+                                                           ScheduleFlight documentedOld,
+                                                           ScheduleFlight baseline) {
+        String purpose = PurposeResolutionStep.hasExplicitNewPurpose(permit.rawContent(), current)
+                ? current.purposeId() : baseline.purposeId();
+        boolean hasNewAircraft = current.craftId() > 0
+                || (current.sourceAircraftType() != null
+                        && !current.sourceAircraftType().isBlank());
+        String via = current.via();
+        if ((via == null || via.isBlank())
+                && sameAirport(baseline.fromAirport(), current.fromAirport())
+                && sameAirport(baseline.toAirport(), current.toAirport())) {
+            via = baseline.via();
+        }
+        if ((via == null || via.isBlank())
+                && (!sameAirport(baseline.fromAirport(), current.fromAirport())
+                        || !sameAirport(baseline.toAirport(), current.toAirport()))) {
+            throw new BusinessRuleException(
+                    "BR-MULTI-DAY-REVISION-NEW-VIA-REQUIRED",
+                    "Changed sector requires an explicit NEW route: "
+                            + current.fromAirport() + " -> " + current.toAirport());
+        }
+        return new ScheduleFlight(
+                purpose,
+                hasNewAircraft ? current.craftId() : baseline.craftId(),
+                hasNewAircraft ? current.mtow() : baseline.mtow(),
+                current.flightNumber(),
+                hasNewAircraft ? current.registration() : baseline.registration(),
+                current.serviceDays(), current.fromAirport(), current.toAirport(),
+                current.etd(), current.eta(), via, current.beginDate(), current.endDate(),
+                current.remark(),
+                hasNewAircraft ? current.sourceAircraftType() : baseline.sourceAircraftType(),
+                current.aircraftTablePresent());
+    }
+
+    private boolean sameRevisionIdentity(ScheduleFlight stored, ScheduleFlight old) {
+        return sameText(stored.flightNumber(), old.flightNumber())
+                && sameAirport(stored.fromAirport(), old.fromAirport())
+                && sameAirport(stored.toAirport(), old.toAirport())
+                && java.util.Objects.equals(stored.beginDate(), old.beginDate())
+                && java.util.Objects.equals(stored.endDate(), old.endDate())
+                && sameText(stored.etd(), old.etd())
+                && (old.eta() == null || old.eta().isBlank()
+                        || sameText(stored.eta(), old.eta()));
     }
 
     private SchedulePermit reconcileNoReplacement(SchedulePermit permit, List<ScheduleFlight> baseline) {

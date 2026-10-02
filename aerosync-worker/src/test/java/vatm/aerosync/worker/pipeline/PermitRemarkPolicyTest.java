@@ -30,6 +30,12 @@ class PermitRemarkPolicyTest {
         var flight = flight("CAR", "A321/A320");
         assertThat(PermitRemarkPolicy.suddenRevision(flight, date, 7))
                 .isEqualTo("EM 24092026 R(7) A321/A320");
+        assertThat(PermitRemarkPolicy.multiDayRevisionOld(
+                "LD-2993/8/2026VN/REV7", date, 7))
+                .isEqualTo("HUY LD-2993/8/2026VN/REV7 EM 24092026 R(7)");
+        assertThat(PermitRemarkPolicy.multiDayRevisionNew(
+                "LD-2993/8/2026VN/REV7", date, 7))
+                .isEqualTo("LAY LD-2993/8/2026VN/REV7 EM 24092026 R(7)");
         assertThat(PermitRemarkPolicy.seasonalOld(flight, "LD-00079/A/S/CHK/2026"))
                 .isEqualTo("HUY REF LD-00079/A/S A321/A320");
         assertThat(PermitRemarkPolicy.seasonalNew(flight,

@@ -119,7 +119,28 @@ public class DatabaseWriterStep {
         } else if (permit.importRevision() && context.getReceivedDate() != null) {
             final var revision = permit;
             final var date = context.getReceivedDate();
-            if (!permit.seasonalPermit() && !permit.revisionCreatesNewPermit()) {
+            if (permit.multiDayNonScheduledRevision()) {
+                int oldCount = permit.originalFlights().size();
+                if (permit.flights().size() <= oldCount) {
+                    throw new vatm.aerosync.common.exception.BusinessRuleException(
+                            "BR-MULTI-DAY-REVISION-ROWS-MISSING",
+                            "Multi-day non-scheduled revision has no NEW rows");
+                }
+                var materialized = new java.util.ArrayList<vatm.aerosync.worker.model.ScheduleFlight>();
+                for (int index = 0; index < oldCount; index++) {
+                    materialized.add(permit.flights().get(index).withRemark(
+                            PermitRemarkPolicy.multiDayRevisionOld(
+                                    revision.sourcePermitNumber(), date,
+                                    revision.revisionNumber())));
+                }
+                for (int index = oldCount; index < permit.flights().size(); index++) {
+                    materialized.add(permit.flights().get(index).withRemark(
+                            PermitRemarkPolicy.multiDayRevisionNew(
+                                    revision.sourcePermitNumber(), date,
+                                    revision.revisionNumber())));
+                }
+                context.setSchedulePermit(permit.withFlights(materialized));
+            } else if (!permit.seasonalPermit() && !permit.revisionCreatesNewPermit()) {
                 context.setSchedulePermit(permit.withFlights(permit.flights().stream()
                         .map(flight -> flight.withRemark(PermitRemarkPolicy.suddenRevision(
                                 flight, date, revision.revisionNumber())))

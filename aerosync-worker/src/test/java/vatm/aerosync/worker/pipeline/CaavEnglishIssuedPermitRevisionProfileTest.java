@@ -67,7 +67,7 @@ class CaavEnglishIssuedPermitRevisionProfileTest {
             assertThat(flight.via()).isNull();
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 21));
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2026, 7, 21));
-            assertThat(flight.remark()).isEqualTo("PAX 738/7M8");
+            assertThat(flight.remark()).isEqualTo("738/7M8");
         });
 
     }

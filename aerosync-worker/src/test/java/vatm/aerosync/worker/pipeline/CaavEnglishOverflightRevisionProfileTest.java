@@ -68,7 +68,7 @@ class CaavEnglishOverflightRevisionProfileTest {
             assertThat(flight.via()).isEqualTo("L625");
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 22));
             assertThat(flight.endDate()).isEqualTo(LocalDate.of(2026, 7, 22));
-            assertThat(flight.remark()).isEqualTo("CHT");
+            assertThat(flight.remark()).isNull();
         });
 
     }

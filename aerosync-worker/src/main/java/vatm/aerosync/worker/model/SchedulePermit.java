@@ -31,6 +31,7 @@ public record SchedulePermit(
     public static final String REFERENCED_SEASON_NEW_SC = "REFERENCED_SEASON_NEW_SC";
     public static final String EXISTING_SC_REVISION = "EXISTING_SC_REVISION";
     public static final String SUBJECT_CORRECTION = "SUBJECT_CORRECTION";
+    public static final String MULTI_DAY_NO_REVISION = "MULTI_DAY_NO_REVISION";
     private static final Pattern REVISION_MARKER = Pattern.compile(
             "(?iu)(?:\\bREV(?:ISION)?\\s*\\d*\\b|\\bRVS\\s*\\d*\\b|"
                     + "SỬA\\s*ĐỔI|SUA\\s*DOI|LỊCH\\s*BAY\\s*GỐC|LICH\\s*BAY\\s*GOC|"
@@ -363,6 +364,10 @@ public record SchedulePermit(
         return SUBJECT_CORRECTION.equalsIgnoreCase(workflow);
     }
 
+    public boolean multiDayNonScheduledRevision() {
+        return MULTI_DAY_NO_REVISION.equalsIgnoreCase(workflow);
+    }
+
     public SchedulePermit withWorkflow(String newWorkflow) {
         return new SchedulePermit(sourcePermitNumber, normalizedPermitId, permitNumber,
                 authorId, permitType, version, season, permitDate, operatorId, reference,
@@ -378,7 +383,7 @@ public record SchedulePermit(
 
     public boolean usesScheduledStorage() {
         return seasonalPermit() || referencedSeasonNewPermit() || existingScheduledRevision()
-                || multiDayNonScheduled();
+                || multiDayNonScheduledRevision() || multiDayNonScheduled();
     }
 
     public SchedulePermit withReference(String newReference) {
@@ -449,6 +454,11 @@ public record SchedulePermit(
                 operatorId, reference, validHours, billingAddress, flightType,
                 iataAirportsAllowed, emptyAirwaysAllowed, reviewOnly, rawContent,
                 flights, originalFlights, target, false, EXISTING_SC_REVISION);
+    }
+
+    public SchedulePermit withMultiDayNonScheduledRevisionTarget(String scheduledPermitId) {
+        SchedulePermit targeted = withExistingScheduledTarget(scheduledPermitId);
+        return targeted.withWorkflow(MULTI_DAY_NO_REVISION);
     }
 
     public SchedulePermit withReferencedSeason(String inheritedSeason) {

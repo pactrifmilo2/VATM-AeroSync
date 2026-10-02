@@ -187,6 +187,37 @@ class DatabaseWriterStepTest {
                 .contains("Dòng lịch bay 1", "B799", "A000");
     }
 
+    @Test
+    void write_multiDayNonScheduledRevisionAssignsOldAndNewRemarks() {
+        TestFixture fixture = createFixture("multi-day-revision-remarks");
+        ProcessingContext context = contextFor(fixture);
+        context.setReceivedDate(LocalDate.of(2026, 8, 21));
+        ScheduleFlight old = new ScheduleFlight(
+                "CAR", 1935L, BigDecimal.valueOf(75), "HVN123", null, "1234567",
+                "VVNB", "VVTS", "0100", "0300", "W1/DAN/W2",
+                LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 20), null, "B738");
+        ScheduleFlight revised = new ScheduleFlight(
+                "CAR", 1935L, BigDecimal.valueOf(75), "HVN123", null, "1234567",
+                "VVNB", "VVTS", "0200", "0400", "W1/DAN/W2",
+                LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 20), null, "B738");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-2576/8/2026VN/REV2", "LD 02576/CHK/2026", "2576",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 8, 21),
+                "HVN", null, 24, "VIETNAM AIRLINES", "NO",
+                false, false, false, "REV2 CONTENT", List.of(old, revised), List.of(old),
+                "LD 02576/CHK/2026", false, SchedulePermit.MULTI_DAY_NO_REVISION));
+        when(permitImportCoordinator.importPermit(any()))
+                .thenReturn(new PermitImportOutcome(PermitImportStatus.SAVED, 2, 10L, 20L));
+
+        databaseWriterStep.write(context);
+
+        assertThat(context.getSchedulePermit().flights())
+                .extracting(ScheduleFlight::remark)
+                .containsExactly(
+                        "HUY LD-2576/8/2026VN/REV2 EM 21082026 R(2)",
+                        "LAY LD-2576/8/2026VN/REV2 EM 21082026 R(2)");
+    }
+
     private TestFixture createFixture(String hash) {
         SyncJob job = new SyncJob();
         job.setFileHash(hash);

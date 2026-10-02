@@ -27,4 +27,13 @@ public record AtfmRevisionBaseline(long masterId,
     public boolean scheduledStorage() {
         return scheduledPermitId != null && !scheduledPermitId.isBlank();
     }
+
+    public boolean seasonalStorage() {
+        return scheduledStorage()
+                && scheduledPermitId.matches("(?i).*/(?:S|W)/.*");
+    }
+
+    public boolean multiDayNonScheduledStorage() {
+        return scheduledStorage() && !seasonalStorage();
+    }
 }

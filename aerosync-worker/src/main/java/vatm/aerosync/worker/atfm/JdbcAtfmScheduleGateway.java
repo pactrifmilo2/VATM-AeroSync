@@ -134,6 +134,19 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
              WHERE ID = ?
             """;
 
+    private static final String FIND_SC_REVISION_MASTER_CONTENT_SQL = """
+            SELECT REFERENCE, PERMCONTENT, PERMCONTENT1
+              FROM T_PERMMASTER_SC
+             WHERE ID = ?
+            """;
+
+    private static final String UPDATE_SC_REVISION_MASTER_SQL = """
+            UPDATE T_PERMMASTER_SC
+               SET REFERENCE = ?, PERMCONTENT = ?, PERMCONTENT1 = ?,
+                   LASTMODIFY = ?, LASTUSER = ?
+             WHERE ID = ?
+            """;
+
     private static final String INSERT_NO_MASTER_SQL = """
             BEGIN
               INSERT INTO T_PERMMASTER_NO (
@@ -209,7 +222,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                     return Optional.of(new AtfmPermitSnapshot(
                             masterId,
                             permId,
-                            permit.importRevision()
+                            permit.multiDayNonScheduledRevision()
+                                    ? false
+                                    : permit.importRevision()
                                     ? flightsContain(existingFlights, scheduledFlights)
                                     : masterMatches && flightsMatch(existingFlights, scheduledFlights)
                                             && (noFlights.isEmpty()
@@ -251,6 +266,15 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     public Optional<AtfmRevisionBaseline> findRevisionBaseline(SchedulePermit permit) {
         try (Connection connection = openConnection()) {
             if (!permit.seasonalPermit()) {
+                if (permit.multiDayNonScheduled()
+                        && permit.referencedPermitId() != null
+                        && !permit.referencedPermitId().isBlank()) {
+                    Optional<AtfmRevisionBaseline> referenced = findScRevisionBaseline(
+                            connection, permit.referencedPermitId(), requiredPermitYear(permit));
+                    if (referenced.isPresent()) {
+                        return referenced;
+                    }
+                }
                 Optional<AtfmRevisionBaseline> nonScheduled = findNoRevisionBaseline(connection, permit);
                 return nonScheduled.isPresent()
                         ? nonScheduled
@@ -707,6 +731,10 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             }
         }
 
+        if (permit.multiDayNonScheduledRevision()) {
+            return appendMultiDayNoRevisionToSc(connection, masterId, permId, permit, resolvedFlights);
+        }
+
         if (!permit.importRevision()) {
             String billingAddress = operatorName(connection, permit);
             try (PreparedStatement statement = connection.prepareStatement(UPDATE_MASTER_SQL)) {
@@ -752,6 +780,147 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             }
         }
         return new AtfmWriteResult(masterId, permId, missingFlights.size());
+    }
+
+    private AtfmWriteResult appendMultiDayNoRevisionToSc(Connection connection,
+                                                          long masterId,
+                                                          long permId,
+                                                          SchedulePermit permit,
+                                                          List<ScheduleFlight> rows) throws SQLException {
+        if (permit.originalFlights().isEmpty() || rows.size() <= permit.originalFlights().size()) {
+            throw new AtfmReferenceDataException(
+                    "Multi-day non-scheduled revision requires OLD and NEW rows");
+        }
+        List<ExistingFlight> stored = readExistingFlights(connection, permId);
+        verifyMultiDayOldRowsStillMatch(stored, permit.originalFlights());
+        if (multiDayRevisionAlreadyApplied(connection, masterId, stored, rows, permit)) {
+            return new AtfmWriteResult(masterId, permId, 0);
+        }
+
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
+            for (ScheduleFlight flight : rows) {
+                bindDetail(statement, permId, flight);
+                statement.addBatch();
+            }
+            for (int count : statement.executeBatch()) {
+                if (count == PreparedStatement.EXECUTE_FAILED) {
+                    throw new SQLException("Multi-day non-scheduled revision SC append failed");
+                }
+            }
+        }
+        appendScRevisionMaster(connection, masterId, permit);
+        return new AtfmWriteResult(masterId, permId, rows.size());
+    }
+
+    private void verifyMultiDayOldRowsStillMatch(List<ExistingFlight> stored,
+                                                 List<ScheduleFlight> oldRows)
+            throws SQLException {
+        java.util.Set<Integer> consumed = new java.util.HashSet<>();
+        for (ScheduleFlight old : oldRows) {
+            List<Integer> matches = new ArrayList<>();
+            for (int index = 0; index < stored.size(); index++) {
+                if (sameScOldIdentity(stored.get(index), old)
+                        && !isCancelledRevisionRow(stored.get(index).remark())) {
+                    matches.add(index);
+                }
+            }
+            if (matches.isEmpty() || !consumed.add(matches.getLast())) {
+                throw new AtfmReferenceDataException(
+                        "Referenced SC permit OLD row is missing or repeated: "
+                                + old.flightNumber());
+            }
+            ExistingFlight original = stored.get(matches.getLast());
+            if (old.craftId() > 0 && old.craftId() != original.craftId()) {
+                throw new AtfmReferenceDataException(
+                        "Referenced SC permit OLD aircraft changed before revision append");
+            }
+            if (old.purposeId() != null && !Objects.equals(
+                    normalize(old.purposeId()), normalize(original.purposeId()))) {
+                throw new AtfmReferenceDataException(
+                        "Referenced SC permit OLD purpose changed before revision append");
+            }
+        }
+    }
+
+    private boolean sameScOldIdentity(ExistingFlight stored, ScheduleFlight old) {
+        return Objects.equals(normalize(stored.flightNumber()), normalize(old.flightNumber()))
+                && Objects.equals(normalize(stored.fromAirport()), normalize(old.fromAirport()))
+                && Objects.equals(normalize(stored.toAirport()), normalize(old.toAirport()))
+                && Objects.equals(stored.beginDate(), old.beginDate())
+                && Objects.equals(stored.endDate(), old.endDate())
+                && Objects.equals(normalize(stored.etd()), normalize(old.etd()))
+                && ((old.eta() == null || old.eta().isBlank())
+                        || Objects.equals(normalize(stored.eta()), normalize(old.eta())));
+    }
+
+    private boolean isCancelledRevisionRow(String remark) {
+        return remark != null && remark.trim().toUpperCase(java.util.Locale.ROOT).startsWith("HUY ");
+    }
+
+    private boolean multiDayRevisionAlreadyApplied(Connection connection,
+                                                     long masterId,
+                                                     List<ExistingFlight> stored,
+                                                     List<ScheduleFlight> rows,
+                                                     SchedulePermit permit) throws SQLException {
+        boolean oldRowsPresent = rows.subList(0, permit.originalFlights().size()).stream()
+                .allMatch(old -> stored.stream().anyMatch(existing ->
+                        sameScOldIdentity(existing, old)
+                                && Objects.equals(normalize(existing.remark()), normalize(old.remark()))));
+        boolean newRowsPresent = rows.subList(permit.originalFlights().size(), rows.size()).stream()
+                .allMatch(newRow -> stored.stream().anyMatch(existing ->
+                        existing.equals(ExistingFlight.fromExpected(newRow))));
+        if (!oldRowsPresent || !newRowsPresent) {
+            return false;
+        }
+        try (PreparedStatement statement = connection.prepareStatement(
+                FIND_SC_REVISION_MASTER_CONTENT_SQL)) {
+            statement.setLong(1, masterId);
+            try (ResultSet result = statement.executeQuery()) {
+                if (!result.next()) return false;
+                String fullContent = result.getString("PERMCONTENT1");
+                return fullContent != null && fullContent.contains(permit.rawContent());
+            }
+        }
+    }
+
+    private void appendScRevisionMaster(Connection connection,
+                                        long masterId,
+                                        SchedulePermit permit) throws SQLException {
+        String existingReference;
+        String existingShortContent;
+        String existingFullContent;
+        try (PreparedStatement statement = connection.prepareStatement(
+                FIND_SC_REVISION_MASTER_CONTENT_SQL)) {
+            statement.setLong(1, masterId);
+            try (ResultSet rows = statement.executeQuery()) {
+                if (!rows.next()) {
+                    throw new SQLException("Multi-day revision SC master disappeared while locked");
+                }
+                existingReference = rows.getString("REFERENCE");
+                existingShortContent = rows.getString("PERMCONTENT");
+                existingFullContent = rows.getString("PERMCONTENT1");
+            }
+        }
+        String reference = appendDistinct(existingReference, permit.revisionReference());
+        String shortContent = truncateUtf8(
+                appendDistinct(existingShortContent, permit.rawContent()), 4000);
+        String fullContent = appendDistinct(existingFullContent, permit.rawContent());
+        try (PreparedStatement statement = connection.prepareStatement(
+                UPDATE_SC_REVISION_MASTER_SQL)) {
+            statement.setString(1, reference);
+            statement.setString(2, shortContent);
+            if (fullContent == null) {
+                statement.setNull(3, Types.CLOB);
+            } else {
+                statement.setCharacterStream(3, new StringReader(fullContent), fullContent.length());
+            }
+            statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(5, "AEROSYNC");
+            statement.setLong(6, masterId);
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException("Multi-day revision SC master update affected an unexpected row count");
+            }
+        }
     }
 
     private List<ExistingFlight> readExistingFlights(Connection connection,

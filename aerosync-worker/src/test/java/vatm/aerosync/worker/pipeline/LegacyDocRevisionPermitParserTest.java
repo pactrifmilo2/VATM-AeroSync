@@ -47,7 +47,7 @@ class LegacyDocRevisionPermitParserTest {
             assertThat(flight.craftId()).isZero();
             assertThat(flight.mtow()).isNull();
             assertThat(flight.sourceAircraftType()).isEqualTo("767F");
-            assertThat(flight.remark()).isEqualTo("CAR 767F");
+            assertThat(flight.remark()).isEqualTo("767F");
         });
         assertThat(permit.flights().get(1)).satisfies(flight -> {
             assertThat(flight.beginDate()).isEqualTo(LocalDate.of(2026, 7, 17));

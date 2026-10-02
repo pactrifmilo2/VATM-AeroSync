@@ -67,7 +67,7 @@ class HvnReferencedSeasonNewPermitProfileTest {
         assertThat(result.flights().getFirst().remark()).isEqualTo("HUY REF LD-68/A/S/2026VN");
         assertThat(result.flights().subList(1, 4))
                 .extracting(flight -> flight.remark())
-                .containsExactly("PAX 321/320", "PAX 321/320", "PAX 321/320");
+                .containsExactly("321/320", "321/320", "321/320");
     }
 
     @Test
