@@ -243,6 +243,25 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
+    void importPermit_doesNotInsertSubjectCorrectionWhenTargetMasterIsMissing() {
+        SchedulePermit correction = new SchedulePermit(
+                "LD-5199/7/2026VN", "LD 05199/S/CHK/2026", "5199",
+                "CHK", "LD", "A", "S", LocalDate.of(2026, 7, 17),
+                "RMY", "CORRECT", 72, "Cyberjaya", "SC",
+                false, false, false, "corrected content", permit().flights(), List.of(),
+                null, false, SchedulePermit.SUBJECT_CORRECTION);
+        context.setSchedulePermit(correction);
+        when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> coordinator.importPermit(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("Subject correction master not found");
+        verify(atfmScheduleGateway, never()).insert(any());
+        verify(permitImportRepository, atLeastOnce()).save(argThat(attempt ->
+                attempt.getStatus() == PermitImportStatus.REVISION_REVIEW));
+    }
+
+    @Test
     void importPermit_writesReviewOnlyPermitWhenManualReviewIsDisabled() {
         properties.setManualReviewEnabled(false);
         context.setSchedulePermit(nonRevisionReviewOnlyPermit());

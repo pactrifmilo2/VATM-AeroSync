@@ -93,6 +93,17 @@ public class PermitImportCoordinator {
                         "Permit parsed and validated, but ATFM writes are disabled");
             }
 
+            if (permit.subjectCorrection()) {
+                Optional<AtfmPermitSnapshot> correctionTarget = atfmScheduleGateway.findExisting(permit);
+                if (correctionTarget.isEmpty()) {
+                    markRevision(attempt, "Subject correction target master was not found");
+                    throw new BusinessRuleException(
+                            "BR-SUBJECT-CORRECTION-BASE-NOT-FOUND",
+                            "Subject correction master not found: " + permit.atfmTargetPermitId());
+                }
+                return updateExistingPermit(attempt, permit, correctionTarget.get());
+            }
+
             if (!permit.revision() && !permit.implicitTableRevision()
                     && !permit.referencedSeasonNewPermit() && !retryFailed
                     && context.getRowValidationErrors().isEmpty()) {
