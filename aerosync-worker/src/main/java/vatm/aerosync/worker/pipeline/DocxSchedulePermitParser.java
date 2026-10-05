@@ -853,10 +853,10 @@ public class DocxSchedulePermitParser {
                     to,
                     normalizeTime(
                             rowValues.getOrDefault("etd", ""), schedule.timeFormats(), schedule.locale(),
-                            fileName, "ETD", false),
+                            fileName, "ETD", false, rowIndex),
                     schedule.includeEta() ? normalizeTime(
                             rowValues.getOrDefault("eta", ""), schedule.timeFormats(), schedule.locale(),
-                            fileName, "ETA", true) : null,
+                            fileName, "ETA", true, rowIndex) : null,
                     via,
                     beginDate,
                     endDate,
@@ -1988,7 +1988,8 @@ public class DocxSchedulePermitParser {
                                  String localeTag,
                                  String fileName,
                                  String field,
-                                 boolean nullable) {
+                                 boolean nullable,
+                                 int rowNumber) {
         String cleanValue = clean(value);
         if (cleanValue.isBlank() && nullable) {
             return null;
@@ -2015,7 +2016,8 @@ public class DocxSchedulePermitParser {
                 // Try the next configured format.
             }
         }
-        throw invalid(fileName, "Invalid " + field + ": " + value);
+        throw invalid(fileName, "Schedule row " + rowNumber + " has invalid " + field
+                + " format; detected " + field + " = " + value);
     }
 
     private String value(List<String> row, Map<String, Integer> columns, String name) {

@@ -141,7 +141,8 @@ class BusinessRuleValidatorStepTest {
         assertThatThrownBy(() -> validator.validate(context))
                 .isInstanceOf(BusinessRuleException.class)
                 .hasMessageContaining("BR-EFFECTIVE-DATES")
-                .hasMessageContaining("begin date must not be after end date");
+                .hasMessageContaining("Schedule row 1 has end date before start date")
+                .hasMessageContaining("Effective from: 2026-08-06 - Effective to: 2026-08-04");
     }
 
     private ProcessingContext contextWith(FlightRow row) {

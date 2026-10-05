@@ -48,7 +48,8 @@ class October45MissingFormatProfilesTest {
         add(result, "giangpth_20261005_110907_email_001_OF-69_A_W_2026VN_CJX_c7942fa3.doc",
                 "cjx-english-seasonal-overflight-issued", "CJX", 2, null);
         add(result, "giangpth_20261005_113235_email_001_LD-2456.RVS.05OCT26_b6c9449a.docx",
-                "cao-english-seasonal-landing-revision", "CAO", 0, "Invalid ETD: 22:80");
+                "cao-english-seasonal-landing-revision", "CAO", 0,
+                "Schedule row 1 has invalid ETD format; detected ETD = 22:80");
         add(result, "haanhlv_20261005_084423_email_001_OF-7246-LXJ969_07OCT26_48dadf0d.docx",
                 "lxj-english-overflight-issued", "LXJ", 1, null);
         add(result, "haanhlv_20261005_085932_email_002_OF-75.A.W.2026VN.ACA_271835a1.docx",
