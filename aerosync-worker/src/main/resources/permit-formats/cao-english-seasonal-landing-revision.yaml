@@ -1,0 +1,59 @@
+id: cao-english-seasonal-landing-revision
+extends: caav-generic-landing-revision
+priority: 220
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*\.\s*RVS\s*\.\s*\d{1,2}[A-Z]{3}\d{2}'
+  - '(?iu)\bLD\s*-\s*\d{1,9}\.RVS\.\d{1,2}[A-Z]{3}\d{2}'
+  - '(?iu)(?:ICAO(?:\s*/\s*ICAO)?\s*(?:CODE)?\s*:\s*CAO\b|AIR\s+CHINA\s+CARGO)'
+  - '(?iu)(?:OLD\s+SCHEDULES?|RE[- ]SCHEDULES?)'
+operator:
+  fixedValue: CAO
+permit:
+  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,9})\s*\.\s*RVS\s*\.\s*\d{1,2}[A-Z]{3}(?<year>\d{2})\b'
+  numberGroup: number
+  sourceTemplate: 'LD-{number}.RVS.05OCT26'
+  normalizedTemplate: 'LD {number}/CHK/2026'
+  zeroPadGroups:
+    number: 5
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}[A-Z]{3}\d{2})'
+  group: date
+  formats: [dMMMuu]
+  locale: en
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from, DDMMMYY]
+    effectiveTo: [Effective to, DDMMMYY]
+    serviceDays: [Days of services, 1234567]
+    fromAirport: [Departure Airport, IATA code]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport]
+    eta: [ETA, EIBT]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  originalTableContextPatterns:
+    - '(?iu)2\.1\s+OLD\s+SCHEDULES?'
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\s+RE[- ]SCHEDULES?'
+  purposeId: CAR
+  includeEta: true
+  lastMatchingTable: false
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: true
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Aircraft registration mark, Aircraft Registration Mark]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: B74Y
+  lastMatchingTable: true
+validation:
+  reviewOnly: true

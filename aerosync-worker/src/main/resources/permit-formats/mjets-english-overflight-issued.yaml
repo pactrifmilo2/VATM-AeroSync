@@ -17,3 +17,6 @@ purpose:
       value: PAX
 aircraft:
   remarkPrefix: ''
+schedule:
+  columns:
+    fromAirport: [Departure Airport, Dep airport, Depature airport]

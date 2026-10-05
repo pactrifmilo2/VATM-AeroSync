@@ -1,0 +1,51 @@
+id: ld-3588-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 240
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*3588\s*/\s*\d{1,2}\s*/\s*20\d{2}VN\s*/\s*REV1\b'
+  - '(?iu)AMBER\s+AVIATION\s+LIMITED'
+  - '(?iu)2\.2\.\s*NEW'
+operator:
+  fixedValue: PRV
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}/\d{1,2}/20\d{2})'
+  group: date
+  formats: [d/M/uuuu]
+  locale: en
+schedule:
+  columns:
+    flightNumber: [Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    fromAirport: [Departure Airport]
+    etd: [EOBT]
+    toAirport: [Arrival Airport]
+    eta: [EIBT]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  originalTableContextPatterns:
+    - '(?iu)2\.1\s+ORIGINAL'
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\s+NEW'
+  purposeId: FER
+  includeEta: true
+  lastMatchingTable: false
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: true
+aircraft:
+  defaultType: A320
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  lastMatchingTable: true
+validation:
+  reviewOnly: true

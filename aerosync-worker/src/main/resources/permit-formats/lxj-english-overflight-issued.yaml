@@ -1,0 +1,16 @@
+id: lxj-english-overflight-issued
+extends: caav-generic-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*LXJ\b|FLEXJET\s+LLC)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: LXJ
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft type, Aircraft Type]
+    registrationMarks: [Aircraft registration marks, Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: GLEX
