@@ -1,0 +1,37 @@
+id: esr-vietnamese-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:MÃ\s*ICAO|ICAO\s*(?:CODE)?)\s*:\s*ESR\b|EASTAR\s+JET'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: ESR
+schedule:
+  columns:
+    flightNumber: [Số hiệu chuyến bay, Flight number]
+    effectiveFrom: [Hiệu lực từ, Effective from]
+    effectiveTo: [Hiệu lực đến, Effective to]
+    serviceDays: [Ngày trong tuần, Days of services]
+    fromAirport: [Sân bay đi, Departure Airport]
+    etd: [Giờ dự kiến đi, EOBT]
+    toAirport: [Sân bay đến, Arrival Airport]
+    eta: [Giờ dự kiến đến, EIBT]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Aircraft registration mark]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: B738
