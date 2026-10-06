@@ -33,11 +33,11 @@ class MultiDayNonScheduledRevisionGatewayTest {
             sql.execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
             sql.execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             sql.execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
-            sql.execute("CREATE TABLE M_CRAFT (ID NUMBER)");
+            sql.execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER, MA VARCHAR2(4), SOHIEU VARCHAR2(3), SOHIEU2 VARCHAR2(20), TAITRONG NUMBER)");
             sql.execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             sql.execute("INSERT INTO M_OPER VALUES ('HVN', 'VIETNAM AIRLINES')");
             sql.execute("INSERT INTO M_FLY_PURPOSE VALUES ('CAR')");
-            sql.execute("INSERT INTO M_CRAFT VALUES (1935)");
+            sql.execute("INSERT INTO M_CRAFT_TYPE (CRAFT_ID) VALUES (1935)");
             sql.execute("""
                     CREATE TABLE T_PERMMASTER_SC (
                         ID NUMBER PRIMARY KEY, PERM_ID NUMBER NOT NULL,

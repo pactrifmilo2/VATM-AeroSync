@@ -26,11 +26,11 @@ class NoRevisionReplacementGatewayTest {
             sql.execute("CREATE TABLE M_FPAUTHOR (AUTHOR_CODE VARCHAR2(20))");
             sql.execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
             sql.execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
-            sql.execute("CREATE TABLE M_CRAFT (ID NUMBER, CRAFT_ICAO VARCHAR2(4), CRAFT_IATA VARCHAR2(3), CRAFT_NAME VARCHAR2(100))");
+            sql.execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER, MA VARCHAR2(4), SOHIEU VARCHAR2(3), SOHIEU2 VARCHAR2(20), TAITRONG NUMBER)");
             sql.execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             sql.execute("INSERT INTO M_OPER VALUES ('TBJ')");
             sql.execute("INSERT INTO M_FLY_PURPOSE VALUES ('VIP')");
-            sql.execute("INSERT INTO M_CRAFT (ID) VALUES (321)");
+            sql.execute("INSERT INTO M_CRAFT_TYPE (CRAFT_ID) VALUES (321)");
             sql.execute("""
                     CREATE TABLE T_PERMMASTER_NO (
                       ID NUMBER PRIMARY KEY, PERM_ID NUMBER, PERMNBR_ID VARCHAR2(100), OPER_ID VARCHAR2(20),

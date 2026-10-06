@@ -64,7 +64,7 @@ class AtfmAircraftRouteAuditTest {
              var inventory = Files.newBufferedWriter(output.resolve("inventory.jsonl"), StandardCharsets.UTF_8)) {
             connection.setReadOnly(true);
             // All SQL used here and in the reference resolvers is SELECT-only.
-            for (String table : List.of("M_CRAFT", "M_AIRPORT_ROUTE", "M_AERO")) {
+            for (String table : List.of("M_CRAFT_TYPE", "M_AIRPORT_ROUTE", "M_AERO")) {
                 try (var statement = connection.createStatement();
                      var rows = statement.executeQuery("SELECT COUNT(*) FROM " + table)) {
                     rows.next();
@@ -72,11 +72,11 @@ class AtfmAircraftRouteAuditTest {
                 }
             }
             try (var statement = connection.createStatement();
-                 var rows = statement.executeQuery("SELECT ID, CRAFT_ICAO, CRAFT_IATA FROM M_CRAFT");
+                 var rows = statement.executeQuery("SELECT CRAFT_ID, MA, SOHIEU FROM M_CRAFT_TYPE");
                  var dictionary = Files.newBufferedWriter(output.resolve("aircraft-dictionary.jsonl"))) {
                 while (rows.next()) {
                     Map<String, Object> item = new LinkedHashMap<>();
-                    for (String column : List.of("ID", "CRAFT_ICAO", "CRAFT_IATA")) {
+                    for (String column : List.of("CRAFT_ID", "MA", "SOHIEU")) {
                         item.put(column, rows.getObject(column));
                     }
                     dictionary.write(json.writeValueAsString(item));

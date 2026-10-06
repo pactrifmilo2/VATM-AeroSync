@@ -23,10 +23,10 @@ import java.util.Objects;
 public class AtfmAircraftTypeResolver {
 
     private static final String LOAD_AIRCRAFT_TYPES_SQL = """
-            SELECT ID, CRAFT_ICAO, CRAFT_IATA
-              FROM M_CRAFT
-             WHERE ID IS NOT NULL
-             ORDER BY ID
+            SELECT CRAFT_ID, MA, SOHIEU
+              FROM M_CRAFT_TYPE
+             WHERE CRAFT_ID IS NOT NULL
+             ORDER BY CRAFT_ID
             """;
 
     private final AtfmDatabaseProperties properties;
@@ -80,7 +80,7 @@ public class AtfmAircraftTypeResolver {
                         .filter(match -> match.craftId() == preferredCraftId)
                         .findFirst()
                         .orElseThrow(() -> new IllegalStateException(
-                                "Preferred aircraft craftId %d for %s is not present in M_CRAFT"
+                                "Preferred aircraft CRAFT_ID %d for %s is not present in M_CRAFT_TYPE"
                                         .formatted(preferredCraftId, candidate)));
                 return resolved(preferred, candidate);
             }
@@ -123,9 +123,9 @@ public class AtfmAircraftTypeResolver {
              ResultSet rows = statement.executeQuery()) {
             while (rows.next()) {
                 AircraftRecord record = new AircraftRecord(
-                        rows.getLong("ID"),
-                        clean(rows.getString("CRAFT_ICAO")),
-                        clean(rows.getString("CRAFT_IATA")));
+                        rows.getLong("CRAFT_ID"),
+                        clean(rows.getString("MA")),
+                        clean(rows.getString("SOHIEU")));
                 index(indexed, "ICAO", record.icao(), record);
                 index(indexed, "IATA", record.iata(), record);
             }

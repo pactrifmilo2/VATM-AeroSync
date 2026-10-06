@@ -53,26 +53,27 @@ class AircraftTypeResolutionStepTest {
         try (Connection connection = DriverManager.getConnection(
                 properties.getUrl(), properties.getUsername(), properties.getPassword())) {
             connection.createStatement().execute("""
-                    CREATE TABLE M_CRAFT (
-                        ID NUMBER,
-                        CRAFT_ICAO VARCHAR2(4),
-                        CRAFT_IATA VARCHAR2(3),
-                        CRAFT_NAME VARCHAR2(100)
+                    CREATE TABLE M_CRAFT_TYPE (
+                        CRAFT_ID NUMBER,
+                        MA VARCHAR2(4),
+                        SOHIEU VARCHAR2(3),
+                        SOHIEU2 VARCHAR2(20),
+                        TAITRONG NUMBER
                     )
                     """);
             connection.createStatement().execute("""
-                    INSERT INTO M_CRAFT (ID, CRAFT_ICAO, CRAFT_IATA, CRAFT_NAME) VALUES
-                        (6864, 'A33X', NULL, 'Airbus 33X'),
-                        (6865, 'A321', NULL, 'Airbus 321'),
-                        (6866, 'A320', NULL, 'Airbus 320'),
-                        (6867, 'A333', NULL, 'Airbus 333'),
-                        (6868, 'B768', '768', 'Boeing 768'),
-                        (1712, 'GLF6', NULL, 'Gulfstream 6'),
-                        (4102, 'GA6C', NULL, 'Gulfstream 6C'),
-                        (4941, 'GA6C', NULL, 'Gulfstream 6C'),
-                        (9001, 'XAMB', 'AMB', 'Ambiguous'),
-                        (9002, 'YAMB', 'AMB', 'Ambiguous'),
-                        (6881, 'A000', NULL, 'Unknown aircraft')
+                    INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG) VALUES
+                        (6864, 'A33X', NULL, 'Airbus 33X', 0),
+                        (6865, 'A321', NULL, 'Airbus 321', 0),
+                        (6866, 'A320', NULL, 'Airbus 320', 0),
+                        (6867, 'A333', NULL, 'Airbus 333', 0),
+                        (6868, 'B768', '768', 'Boeing 768', 0),
+                        (1712, 'GLF6', NULL, 'Gulfstream 6', 0),
+                        (4102, 'GA6C', NULL, 'Gulfstream 6C', 0),
+                        (4941, 'GA6C', NULL, 'Gulfstream 6C', 0),
+                        (9001, 'XAMB', 'AMB', 'Ambiguous', 0),
+                        (9002, 'YAMB', 'AMB', 'Ambiguous', 0),
+                        (6881, 'A000', NULL, 'Unknown aircraft', 0)
                     """);
         }
         step = new AircraftTypeResolutionStep(
