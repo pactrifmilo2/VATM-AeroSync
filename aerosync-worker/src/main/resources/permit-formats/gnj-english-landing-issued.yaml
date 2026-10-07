@@ -1,0 +1,17 @@
+id: gnj-english-landing-issued
+extends: caav-generic-landing-issued
+priority: 220
+
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*GNJ\b'
+  - '(?iu)GAIN\s*JET\s+AVIATION'
+
+operator:
+  fixedValue: GNJ
+
+schedule:
+  lastMatchingTable: true
+
+aircraft:
+  lastMatchingTable: true

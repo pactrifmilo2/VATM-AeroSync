@@ -1,0 +1,44 @@
+id: arl-english-landing-revision
+extends: caav-generic-landing-revision
+priority: 220
+
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*ARL\b'
+  - '(?iu)AIRLEC\s+AIR\s+ESPACE'
+  - '(?iu)(?:/|-)\s*REV\s*\d+\b'
+  - '(?iu)\b(?:ORIGINAL|NEW)\b'
+
+operator:
+  fixedValue: ARL
+
+schedule:
+  columns:
+    flightNumber: [Flight number, Flt number]
+    effectiveFrom: [Effective from, Eff from]
+    effectiveTo: [Effective to, Eff to]
+    serviceDays: [Days of services, Day(s) of services, Days of service]
+    fromAirport: [Departure Airport, Dep airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport, Arr airport]
+    eta: [ETA, EIBT]
+    aircraftType: [Aircraft Type, Aircraft type]
+    originalPermit: [Original permit]
+    remark: [Notes, Note]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, d-MMM-yy, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+  purposeId: PAX
+  includeEta: true
+  inferIataPrefix: true
+  originalTableContextPatterns:
+    - '(?iu)2\.1\.\s*ORIGINAL'
+  lastMatchingTable: true
+
+route:
+  filterSchedule: false
+  lastMatchingTable: true
+
+aircraft:
+  lastMatchingTable: true
