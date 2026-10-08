@@ -38,13 +38,23 @@ public class EmailAcknowledgementService {
     private final EmailMetadataRepository emailMetadataRepository;
     private final EmailClient emailClient;
     private final EmailProperties emailProperties;
+    private final RuntimeIngestionConfig runtimeIngestionConfig;
+
+    @org.springframework.beans.factory.annotation.Autowired
+    public EmailAcknowledgementService(EmailMetadataRepository emailMetadataRepository,
+                                       EmailClient emailClient,
+                                       EmailProperties emailProperties,
+                                       RuntimeIngestionConfig runtimeIngestionConfig) {
+        this.emailMetadataRepository = emailMetadataRepository;
+        this.emailClient = emailClient;
+        this.emailProperties = emailProperties;
+        this.runtimeIngestionConfig = runtimeIngestionConfig;
+    }
 
     public EmailAcknowledgementService(EmailMetadataRepository emailMetadataRepository,
                                        EmailClient emailClient,
                                        EmailProperties emailProperties) {
-        this.emailMetadataRepository = emailMetadataRepository;
-        this.emailClient = emailClient;
-        this.emailProperties = emailProperties;
+        this(emailMetadataRepository, emailClient, emailProperties, null);
     }
 
     public boolean shouldDownload(EmailEnvelope envelope) {
@@ -53,7 +63,8 @@ public class EmailAcknowledgementService {
                         envelope.mailboxFolder(), envelope.uidValidity(), envelope.messageUid())) {
             return false;
         }
-        return !emailMetadataRepository.existsByMessageIdAndIngestCompleteTrue(envelope.messageId());
+        return (runtimeIngestionConfig == null || runtimeIngestionConfig.mayReadSender(envelope.sender()))
+                && !emailMetadataRepository.existsByMessageIdAndIngestCompleteTrue(envelope.messageId());
     }
 
     public void markIngestComplete(EmailReference reference) {

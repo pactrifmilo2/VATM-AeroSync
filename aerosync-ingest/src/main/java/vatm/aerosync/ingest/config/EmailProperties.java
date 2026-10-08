@@ -21,6 +21,7 @@ public class EmailProperties {
     private int mailboxScanWindowSize = 500;
     private boolean acknowledgementEnabled;
     private List<String> blacklistSenders = new ArrayList<>();
+    private List<String> allowedSenders = new ArrayList<>();
     private int connectionTimeoutMs = 10_000;
     private Path stagingDir = Path.of(System.getProperty("java.io.tmpdir"), "aerosync-email-staging");
 
@@ -118,6 +119,14 @@ public class EmailProperties {
 
     public void setBlacklistSenders(List<String> blacklistSenders) {
         this.blacklistSenders = blacklistSenders;
+    }
+
+    public List<String> getAllowedSenders() {
+        return allowedSenders;
+    }
+
+    public void setAllowedSenders(List<String> allowedSenders) {
+        this.allowedSenders = allowedSenders;
     }
 
     public int getConnectionTimeoutMs() {

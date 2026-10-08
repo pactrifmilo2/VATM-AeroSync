@@ -72,10 +72,19 @@ public class RuntimeConfigEntity {
     @Column(name = "send_zalo_alert", nullable = false)
     private boolean sendZaloAlert;
 
+    @org.hibernate.annotations.ColumnDefault("0")
+    @Column(name = "allowlist_initialized", nullable = false)
+    private boolean allowlistInitialized;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "runtime_config_blacklist", joinColumns = @JoinColumn(name = "config_id"))
     @Column(name = "sender")
     private List<String> blacklistSenders = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "runtime_config_allowlist", joinColumns = @JoinColumn(name = "config_id"))
+    @Column(name = "sender")
+    private List<String> allowedSenders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -123,6 +132,22 @@ public class RuntimeConfigEntity {
 
     public void setBlacklistSenders(List<String> blacklistSenders) {
         this.blacklistSenders = new ArrayList<>(blacklistSenders);
+    }
+
+    public List<String> getAllowedSenders() {
+        return allowedSenders;
+    }
+
+    public void setAllowedSenders(List<String> allowedSenders) {
+        this.allowedSenders = new ArrayList<>(allowedSenders);
+    }
+
+    public boolean isAllowlistInitialized() {
+        return allowlistInitialized;
+    }
+
+    public void setAllowlistInitialized(boolean allowlistInitialized) {
+        this.allowlistInitialized = allowlistInitialized;
     }
 
     public String getIncomingDir() {

@@ -180,6 +180,7 @@ public sealed class RuntimeConfigModel : ObservableObject
     private long folderPollingIntervalMs = 60_000;
     private int maxFilesPerCycle = 100;
     private List<string> blacklistSenders = [];
+    private List<string> allowedSenders = [];
     private string incomingDir = "";
     private string processedDir = "";
     private string errorDir = "";
@@ -222,6 +223,12 @@ public sealed class RuntimeConfigModel : ObservableObject
     {
         get => blacklistSenders;
         set => SetProperty(ref blacklistSenders, value);
+    }
+
+    public List<string> AllowedSenders
+    {
+        get => allowedSenders;
+        set => SetProperty(ref allowedSenders, value);
     }
 
     public string IncomingDir

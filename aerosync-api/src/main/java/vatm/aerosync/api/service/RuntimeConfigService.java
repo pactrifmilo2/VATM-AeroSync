@@ -22,7 +22,15 @@ public class RuntimeConfigService {
     @PostConstruct
     @Transactional
     void ensureDefaults() {
-        if (runtimeConfigRepository.existsById(RuntimeConfigEntity.SINGLETON_ID)) {
+        java.util.Optional<RuntimeConfigEntity> existing =
+                runtimeConfigRepository.findById(RuntimeConfigEntity.SINGLETON_ID);
+        if (existing.isPresent()) {
+            RuntimeConfigEntity entity = existing.get();
+            if (!entity.isAllowlistInitialized()) {
+                entity.setAllowedSenders(apiProperties.getDefaults().getAllowedSenders());
+                entity.setAllowlistInitialized(true);
+                runtimeConfigRepository.save(entity);
+            }
             return;
         }
         ApiProperties.Defaults defaults = apiProperties.getDefaults();
@@ -33,6 +41,8 @@ public class RuntimeConfigService {
         entity.setFolderPollingIntervalMs(defaults.getFolderPollingIntervalMs());
         entity.setMaxFilesPerCycle(defaults.getMaxFilesPerCycle());
         entity.setBlacklistSenders(defaults.getBlacklistSenders());
+        entity.setAllowedSenders(defaults.getAllowedSenders());
+        entity.setAllowlistInitialized(true);
         entity.setIncomingDir(defaults.getIncomingDir());
         entity.setProcessedDir(defaults.getProcessedDir());
         entity.setErrorDir(defaults.getErrorDir());
@@ -62,6 +72,8 @@ public class RuntimeConfigService {
         entity.setFolderPollingIntervalMs(dto.folderPollingIntervalMs());
         entity.setMaxFilesPerCycle(dto.maxFilesPerCycle());
         entity.setBlacklistSenders(dto.blacklistSenders());
+        entity.setAllowedSenders(normalizeSenders(dto.allowedSenders()));
+        entity.setAllowlistInitialized(true);
         entity.setIncomingDir(dto.incomingDir());
         entity.setProcessedDir(dto.processedDir());
         entity.setErrorDir(dto.errorDir());
@@ -91,6 +103,7 @@ public class RuntimeConfigService {
                 entity.getFolderPollingIntervalMs(),
                 entity.getMaxFilesPerCycle(),
                 entity.getBlacklistSenders(),
+                entity.getAllowedSenders(),
                 entity.getIncomingDir(),
                 entity.getProcessedDir(),
                 entity.getErrorDir(),
@@ -104,5 +117,18 @@ public class RuntimeConfigService {
                 entity.isAutoQuarantine(),
                 entity.isSkipDuplicateIdempotency(),
                 entity.isSendZaloAlert());
+    }
+
+    private java.util.List<String> normalizeSenders(java.util.List<String> senders) {
+        if (senders == null) {
+            return java.util.List.of();
+        }
+        return senders.stream()
+                .filter(java.util.Objects::nonNull)
+                .map(String::trim)
+                .filter(value -> !value.isEmpty())
+                .map(value -> value.toLowerCase(java.util.Locale.ROOT))
+                .distinct()
+                .toList();
     }
 }

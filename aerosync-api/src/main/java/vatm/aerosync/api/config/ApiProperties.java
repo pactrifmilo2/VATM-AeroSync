@@ -21,6 +21,7 @@ public class ApiProperties {
         private long folderPollingIntervalMs = 60_000L;
         private int maxFilesPerCycle = 100;
         private List<String> blacklistSenders = new ArrayList<>(List.of("ops@vatm.local"));
+        private List<String> allowedSenders = new ArrayList<>();
         private String incomingDir = "D:/vatm-storage/incoming";
         private String processedDir = "D:/vatm-storage/processed";
         private String errorDir = "D:/vatm-storage/error";
@@ -73,6 +74,14 @@ public class ApiProperties {
 
         public void setBlacklistSenders(List<String> blacklistSenders) {
             this.blacklistSenders = blacklistSenders;
+        }
+
+        public List<String> getAllowedSenders() {
+            return allowedSenders;
+        }
+
+        public void setAllowedSenders(List<String> allowedSenders) {
+            this.allowedSenders = allowedSenders;
         }
 
         public String getIncomingDir() {

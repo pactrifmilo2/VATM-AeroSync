@@ -49,6 +49,7 @@ public class EmailIngestService {
     private final EmailFailureTracker emailFailureTracker;
     private final EmailAcknowledgementService emailAcknowledgementService;
     private final FilePathProperties filePathProperties;
+    private final RuntimeIngestionConfig runtimeIngestionConfig;
 
     @Autowired
     public EmailIngestService(EmailClient emailClient,
@@ -59,7 +60,8 @@ public class EmailIngestService {
                               EmailMetadataRepository emailMetadataRepository,
                               EmailFailureTracker emailFailureTracker,
                               EmailAcknowledgementService emailAcknowledgementService,
-                              FilePathProperties filePathProperties) {
+                              FilePathProperties filePathProperties,
+                              RuntimeIngestionConfig runtimeIngestionConfig) {
         this.emailClient = emailClient;
         this.emailProperties = emailProperties;
         this.deduplicationService = deduplicationService;
@@ -69,6 +71,22 @@ public class EmailIngestService {
         this.emailFailureTracker = emailFailureTracker;
         this.emailAcknowledgementService = emailAcknowledgementService;
         this.filePathProperties = filePathProperties;
+        this.runtimeIngestionConfig = runtimeIngestionConfig;
+    }
+
+    /** Compatibility constructor used by unit tests and small embedded callers. */
+    public EmailIngestService(EmailClient emailClient,
+                              EmailProperties emailProperties,
+                              DeduplicationService deduplicationService,
+                              IngestPublisher ingestPublisher,
+                              FileRecordRepository fileRecordRepository,
+                              EmailMetadataRepository emailMetadataRepository,
+                              EmailFailureTracker emailFailureTracker,
+                              EmailAcknowledgementService emailAcknowledgementService,
+                              FilePathProperties filePathProperties) {
+        this(emailClient, emailProperties, deduplicationService, ingestPublisher,
+                fileRecordRepository, emailMetadataRepository, emailFailureTracker,
+                emailAcknowledgementService, filePathProperties, null);
     }
 
     /** Compatibility constructor used by unit tests and small embedded callers. */
@@ -82,7 +100,7 @@ public class EmailIngestService {
                               EmailAcknowledgementService emailAcknowledgementService) {
         this(emailClient, emailProperties, deduplicationService, ingestPublisher,
                 fileRecordRepository, emailMetadataRepository, emailFailureTracker,
-                emailAcknowledgementService, null);
+                emailAcknowledgementService, null, null);
     }
 
     public int ingestUpTo(int limit) {
@@ -94,6 +112,10 @@ public class EmailIngestService {
             for (EmailMessage message : messages) {
                 if (ingested >= limit) {
                     break;
+                }
+                if (!mayReadSender(message.sender())) {
+                    log.debug("Ignoring email from sender outside allowlist: {}", message.sender());
+                    continue;
                 }
                 preserveAllAttachments(message);
                 if (isCancellationSubject(message.subject())) {
@@ -150,6 +172,14 @@ public class EmailIngestService {
     private boolean isBlockedByBlacklist(String sender) {
         return emailProperties.getBlacklistSenders().stream()
                 .anyMatch(blocked -> blocked.equalsIgnoreCase(sender));
+    }
+
+    private boolean mayReadSender(String sender) {
+        if (runtimeIngestionConfig != null) {
+            return runtimeIngestionConfig.mayReadSender(sender);
+        }
+        return sender != null && !sender.isBlank()
+                && !isBlockedByBlacklist(sender);
     }
 
     private boolean ingestAttachment(EmailMessage message,

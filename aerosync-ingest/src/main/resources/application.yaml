@@ -64,6 +64,7 @@ app:
     mailbox-scan-window-size: 500
     acknowledgement-enabled: ${APP_EMAIL_ACKNOWLEDGEMENT_ENABLED:false}
     blacklist-senders: []
+    allowed-senders: []
     connection-timeout-ms: 10000
     staging-dir: ${APP_EMAIL_STAGING_DIR:${APP_FILE_PATHS_INCOMING:D:/vatm-storage/incoming}/email-staging}
   rabbit:

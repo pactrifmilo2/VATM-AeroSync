@@ -71,6 +71,9 @@ class EmailIngestServiceTest {
     @Mock
     private EmailAcknowledgementService emailAcknowledgementService;
 
+    @Mock
+    private RuntimeIngestionConfig runtimeIngestionConfig;
+
     private EmailIngestService emailIngestService;
 
     @BeforeEach
@@ -250,18 +253,13 @@ class EmailIngestServiceTest {
 
     @Test
     void ingestUpToPreservesUnsupportedAndBlockedAttachmentsInIncomingArchive() throws Exception {
+        when(emailProperties.getAllowedSenders()).thenReturn(List.of("ops@vatm.local"));
         FilePathProperties paths = new FilePathProperties();
         paths.setIncoming(tempDir.resolve("incoming").toString());
         emailIngestService = new EmailIngestService(
-                emailClient,
-                emailProperties,
-                deduplicationService,
-                ingestPublisher,
-                fileRecordRepository,
-                emailMetadataRepository,
-                emailFailureTracker,
-                emailAcknowledgementService,
-                paths);
+                emailClient, emailProperties, deduplicationService, ingestPublisher,
+                fileRecordRepository, emailMetadataRepository, emailFailureTracker,
+                emailAcknowledgementService, paths);
 
         EmailMessage unsupported = new EmailMessage(
                 "msg-unsupported-archive", "ops@vatm.local", "Images", LocalDateTime.now(),
@@ -281,14 +279,34 @@ class EmailIngestServiceTest {
 
         try (var files = Files.walk(tempDir.resolve("incoming").resolve("email-attachments"))) {
             var names = files.filter(Files::isRegularFile)
-                    .map(path -> path.getFileName().toString())
+                    .map(pathValue -> pathValue.getFileName().toString())
                     .toList();
             assertThat(names)
                     .anyMatch(name -> name.contains("401") && name.endsWith("signature.png"))
-                    .anyMatch(name -> name.contains("402") && name.endsWith("permit.docx"));
+                    .noneMatch(name -> name.contains("402") && name.endsWith("permit.docx"));
         }
     }
 
+    @Test
+    void ingestUpToIgnoresSenderOutsideAllowlistBeforeArchiving() throws Exception {
+        FilePathProperties paths = new FilePathProperties();
+        paths.setIncoming(tempDir.resolve("incoming-filtered").toString());
+        emailIngestService = new EmailIngestService(
+                emailClient, emailProperties, deduplicationService, ingestPublisher,
+                fileRecordRepository, emailMetadataRepository, emailFailureTracker,
+                emailAcknowledgementService, paths, runtimeIngestionConfig);
+        when(runtimeIngestionConfig.mayReadSender("blocked@example.com")).thenReturn(false);
+        when(emailProperties.getAllowedSenders()).thenReturn(List.of("allowed@example.com"));
+        EmailMessage message = new EmailMessage(
+                "msg-not-allowed", "blocked@example.com", "Permit", LocalDateTime.now(),
+                List.of(new EmailAttachment("permit.docx", "docx-data".getBytes())),
+                false, "", "INBOX", 100L, 499L);
+        when(emailClient.fetchMessages(eq(10), any())).thenReturn(List.of(message));
+
+        assertThat(emailIngestService.ingestUpTo(10)).isZero();
+        verify(deduplicationService, never()).createPendingJob(anyString());
+        assertThat(Files.exists(tempDir.resolve("incoming-filtered"))).isFalse();
+    }
     @Test
     void ingestUpTo_keepsSameNamedAttachmentsSeparateByMailboxUidAndIndex() {
         EmailMessage message = new EmailMessage(

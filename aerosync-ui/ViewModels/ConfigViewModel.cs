@@ -15,7 +15,7 @@ public sealed partial class ConfigViewModel : ObservableObject
     private string newSender = "";
     private bool isBusy;
 
-    public ObservableCollection<string> BlacklistSenders { get; } = [];
+    public ObservableCollection<string> AllowedSenders { get; } = [];
 
     public ConfigViewModel(AeroSyncApiClient apiClient)
     {
@@ -112,7 +112,7 @@ public sealed partial class ConfigViewModel : ObservableObject
         {
             IsBusy = true;
             Config = await apiClient.GetConfigAsync();
-            ReplaceSenders(Config.BlacklistSenders);
+            ReplaceSenders(Config.AllowedSenders);
             StatusMessage = "Đã tải cấu hình.";
         }
         catch (Exception ex)
@@ -131,9 +131,9 @@ public sealed partial class ConfigViewModel : ObservableObject
         try
         {
             IsBusy = true;
-            Config.BlacklistSenders = BlacklistSenders.ToList();
+            Config.AllowedSenders = AllowedSenders.ToList();
             Config = await apiClient.SaveConfigAsync(Config);
-            ReplaceSenders(Config.BlacklistSenders);
+            ReplaceSenders(Config.AllowedSenders);
             StatusMessage = "Đã lưu cấu hình.";
         }
         catch (Exception ex)
@@ -154,14 +154,18 @@ public sealed partial class ConfigViewModel : ObservableObject
             return;
         }
 
-        BlacklistSenders.Add(NewSender.Trim());
+        var sender = NewSender.Trim().ToLowerInvariant();
+        if (!AllowedSenders.Any(existing => string.Equals(existing, sender, StringComparison.OrdinalIgnoreCase)))
+        {
+            AllowedSenders.Add(sender);
+        }
         NewSender = "";
     }
 
     [RelayCommand]
     public void RemoveSender(string sender)
     {
-        BlacklistSenders.Remove(sender);
+        AllowedSenders.Remove(sender);
     }
 
     [RelayCommand]
@@ -185,16 +189,24 @@ public sealed partial class ConfigViewModel : ObservableObject
             AutoQuarantine = true,
             SkipDuplicateIdempotency = true
         };
-        ReplaceSenders(["ops@vatm.local"]);
+        ReplaceSenders(new[]
+        {
+            "hiepdongbay@vatm.vn", "atd@caa.gov.vn", "dangbm@caa.gov.vn",
+            "thaopt@caa.gov.vn", "nhithao169@mail.com", "dungdn@caa.gov.vn",
+            "anhkd@caa.gov.vn", "giangpth@caa.gov.vn", "sontt@caa.gov.vn",
+            "haanhlv@caa.gov.vn", "haanhlv@gmail.com", "thanhntm@caa.gov.vn",
+            "anhld@caa.gov.vn", "duongvtt@caa.gov.vn", "lynk@caa.gov.vn",
+            "tupt@caa.gov.vn"
+        });
         StatusMessage = "Đã khôi phục cấu hình mặc định trên giao diện. Hãy bấm Lưu để áp dụng.";
     }
 
     private void ReplaceSenders(IEnumerable<string> senders)
     {
-        BlacklistSenders.Clear();
+        AllowedSenders.Clear();
         foreach (var sender in senders)
         {
-            BlacklistSenders.Add(sender);
+            AllowedSenders.Add(sender);
         }
     }
 }

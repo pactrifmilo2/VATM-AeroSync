@@ -56,6 +56,23 @@ app:
       email-user: ${APP_EMAIL_USERNAME:}
       blacklist-senders:
         - ops@vatm.local
+      allowed-senders:
+        - hiepdongbay@vatm.vn
+        - atd@caa.gov.vn
+        - dangbm@caa.gov.vn
+        - thaopt@caa.gov.vn
+        - nhithao169@mail.com
+        - dungdn@caa.gov.vn
+        - anhkd@caa.gov.vn
+        - giangpth@caa.gov.vn
+        - sontt@caa.gov.vn
+        - haanhlv@caa.gov.vn
+        - haanhlv@gmail.com
+        - thanhntm@caa.gov.vn
+        - anhld@caa.gov.vn
+        - duongvtt@caa.gov.vn
+        - lynk@caa.gov.vn
+        - tupt@caa.gov.vn
   test-replay:
     enabled: ${APP_TEST_REPLAY_ENABLED:false}
     atfm-write-enabled: ${APP_ATFM_WRITE_ENABLED:false}

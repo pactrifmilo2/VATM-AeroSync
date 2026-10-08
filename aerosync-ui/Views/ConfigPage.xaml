@@ -1,4 +1,5 @@
 <Page
+    x:Name="ConfigPageRoot"
     x:Class="AeroSync.UI.Views.ConfigPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -56,16 +57,29 @@
 
                         <Border BorderBrush="#D6E3F3" BorderThickness="1" CornerRadius="8" Padding="16">
                             <StackPanel Spacing="10">
-                                <TextBlock Text="BLACKLIST SENDERS (IP/EMAIL)" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
+                                <TextBlock Text="ĐỊA CHỈ EMAIL ĐƯỢC ĐỌC" FontSize="18" FontWeight="Bold" Foreground="#0B4EA2" />
                                 <Grid ColumnSpacing="8">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBox Grid.Column="0" PlaceholderText="finance@airline.com" Text="{Binding NewSender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                    <Button Grid.Column="1" Content="+ Thêm mới" Command="{Binding AddSenderCommand}" />
+                                    <TextBox Grid.Column="0" PlaceholderText="email@example.com" Text="{Binding NewSender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <Button Grid.Column="1" Content="Thêm địa chỉ email cần đọc" Command="{Binding AddSenderCommand}" />
                                 </Grid>
-                                <ListView ItemsSource="{Binding BlacklistSenders}" MaxHeight="140" />
+                                <ListView ItemsSource="{Binding AllowedSenders}" MaxHeight="220">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid ColumnSpacing="8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding}" VerticalAlignment="Center" />
+                                                <Button Grid.Column="1" Content="Xóa" Command="{Binding DataContext.RemoveSenderCommand, ElementName=ConfigPageRoot}" CommandParameter="{Binding}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </StackPanel>
                         </Border>
                     </StackPanel>
