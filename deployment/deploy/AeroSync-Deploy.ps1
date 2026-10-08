@@ -49,6 +49,85 @@ function Read-DotEnvValues {
     return $values
 }
 
+function Resolve-DotEnvValues {
+    param([hashtable] $Values)
+    $resolved = @{} + $Values
+    for ($pass = 0; $pass -lt $Values.Count; $pass++) {
+        $changed = $false
+        foreach ($name in @($resolved.Keys)) {
+            $value = [string]$resolved[$name]
+            if ($value -match '^\$\{([A-Z][A-Z0-9_]*)\}$' -and $resolved.ContainsKey($Matches[1])) {
+                $replacement = [string]$resolved[$Matches[1]]
+                if ($replacement -ne $value) {
+                    $resolved[$name] = $replacement
+                    $changed = $true
+                }
+            }
+        }
+        if (-not $changed) { break }
+    }
+    return $resolved
+}
+
+function Invoke-RuntimeConfigMigration {
+    param([string] $EnvironmentFile)
+
+    $migration = Join-Path $packageRoot "tools\migrate-aerosync-runtime-config.sql"
+    if (-not (Test-Path -LiteralPath $migration -PathType Leaf)) {
+        throw "Goi deploy thieu migration runtime config: $migration"
+    }
+
+    $sqlPlus = Get-Command sqlplus.exe -ErrorAction Stop
+    $values = Resolve-DotEnvValues (Read-DotEnvValues $EnvironmentFile)
+    $username = [string]$values["SPRING_DATASOURCE_USERNAME"]
+    $password = [string]$values["SPRING_DATASOURCE_PASSWORD"]
+    $jdbc = [string]$values["SPRING_DATASOURCE_URL"]
+    if ([string]::IsNullOrWhiteSpace($username) -or [string]::IsNullOrWhiteSpace($password)) {
+        throw "Thieu SPRING_DATASOURCE_USERNAME hoac SPRING_DATASOURCE_PASSWORD trong config\.env."
+    }
+    if ($username -notmatch '^[A-Za-z][A-Za-z0-9_$#]*$') {
+        throw "SPRING_DATASOURCE_USERNAME khong phai Oracle username hop le cho migration tu dong."
+    }
+    $databaseMatch = [regex]::Match(
+        $jdbc,
+        '^jdbc:oracle:thin:@//(?<host>[^:/]+):(?<port>\d+)/(?<service>[^/?]+)$')
+    if (-not $databaseMatch.Success) {
+        throw "SPRING_DATASOURCE_URL khong dung dinh dang jdbc:oracle:thin:@//host:port/service cho migration."
+    }
+    if ($password.Contains("`r") -or $password.Contains("`n") -or $password.Contains('"')) {
+        throw "SPRING_DATASOURCE_PASSWORD co ky tu xuong dong hoac dau ngoac kep khong ho tro cho migration tu dong."
+    }
+
+    $connect = 'CONNECT {0}/"{1}"@//{2}:{3}/{4}' -f `
+        $username, $password, $databaseMatch.Groups['host'].Value,
+        $databaseMatch.Groups['port'].Value, $databaseMatch.Groups['service'].Value
+    $sqlInput = @(
+        "SET ECHO OFF",
+        "SET DEFINE OFF",
+        "WHENEVER OSERROR EXIT FAILURE ROLLBACK",
+        "WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK",
+        $connect,
+        ('@"{0}"' -f $migration),
+        "EXIT SUCCESS"
+    ) -join "`n"
+
+    Write-Step "Cap nhat schema runtime config Oracle"
+    $output = @($sqlInput | & $sqlPlus.Source -L -S /nolog 2>&1)
+    $exitCode = $LASTEXITCODE
+    $validationReported = $false
+    foreach ($line in $output) {
+        $safeLine = [string]$line
+        if ($password.Length -gt 0) { $safeLine = $safeLine.Replace($password, "[REDACTED]") }
+        Write-Host $safeLine
+        if ($safeLine -match 'Validated runtime allowlist schema\.') {
+            $validationReported = $true
+        }
+    }
+    if ($exitCode -ne 0 -or -not $validationReported) {
+        throw "Oracle runtime-config migration failed with SQL*Plus exit code $exitCode. Services were not stopped."
+    }
+}
+
 function Invoke-Preflight {
     Write-Step "Kiem tra moi truong truoc khi deploy"
     $script:preflightFailed = 0
@@ -69,11 +148,14 @@ function Invoke-Preflight {
 
     $packageFiles = @("app\api.jar", "app\ingest.jar", "app\worker.jar",
         "ui\AeroSync.UI.exe", "deploy\Run-Service.ps1", "deploy\Open-AeroSync.ps1",
-        "tools\WinSW-x64.exe", "SHA256SUMS.txt")
+        "tools\WinSW-x64.exe", "tools\migrate-aerosync-runtime-config.sql", "SHA256SUMS.txt")
     foreach ($relative in $packageFiles) {
         $exists = Test-Path -LiteralPath (Join-Path $packageRoot $relative) -PathType Leaf
         Report $exists "Goi deploy" $relative
     }
+    $sqlPlus = Get-Command sqlplus.exe -ErrorAction SilentlyContinue
+    $sqlPlusDetail = if ($sqlPlus) { $sqlPlus.Source } else { "Khong tim thay sqlplus.exe" }
+    Report ([bool]$sqlPlus) "Oracle SQL*Plus" $sqlPlusDetail
 
     foreach ($name in $serviceOrder) {
         $service = Get-Service -Name $name -ErrorAction SilentlyContinue
@@ -92,7 +174,7 @@ function Invoke-Preflight {
     Report ([bool]$envPath) "Cau hinh .env" $envDetail
 
     if ($envPath) {
-        $values = Read-DotEnvValues $envPath
+        $values = Resolve-DotEnvValues (Read-DotEnvValues $envPath)
         foreach ($name in @("SPRING_DATASOURCE_URL", "SPRING_DATASOURCE_USERNAME",
             "SPRING_DATASOURCE_PASSWORD", "SERVER_PORT")) {
             $present = $values.ContainsKey($name) -and -not [string]::IsNullOrWhiteSpace($values[$name])
@@ -525,6 +607,10 @@ $packageWinSw = Join-Path $packageRoot "tools\WinSW-x64.exe"
 if (-not (Test-Path -LiteralPath $packageWinSw -PathType Leaf)) {
     throw "Goi cap nhat thieu tools\WinSW-x64.exe."
 }
+$packageRuntimeMigration = Join-Path $packageRoot "tools\migrate-aerosync-runtime-config.sql"
+if (-not (Test-Path -LiteralPath $packageRuntimeMigration -PathType Leaf)) {
+    throw "Goi cap nhat thieu tools\migrate-aerosync-runtime-config.sql."
+}
 Write-Step "Kiem tra tinh toan ven cua goi cap nhat"
 Test-PackageChecksums
 
@@ -545,6 +631,8 @@ try {
         -Value $java -Encoding UTF8
     Ensure-Environment
     Test-ServerPortAvailable
+
+    Invoke-RuntimeConfigMigration -EnvironmentFile (Join-Path $InstallRoot "config\.env")
 
     Write-Step "Dung cac service AeroSync"
     Stop-AeroSyncServices
@@ -573,6 +661,8 @@ try {
         -Destination (Join-Path $InstallRoot "ui") -Recurse -Force
     Copy-Item -LiteralPath $packageWinSw `
         -Destination (Join-Path $InstallRoot "tools\WinSW-x64.exe") -Force
+    Copy-Item -LiteralPath $packageRuntimeMigration `
+        -Destination (Join-Path $InstallRoot "tools\migrate-aerosync-runtime-config.sql") -Force
     $packageVersion = Join-Path $packageRoot "VERSION"
     if (Test-Path -LiteralPath $packageVersion) {
         Copy-Item -LiteralPath $packageVersion -Destination (Join-Path $InstallRoot "VERSION") -Force

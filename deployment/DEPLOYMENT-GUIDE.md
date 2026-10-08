@@ -64,6 +64,19 @@ SPRING_DATA_REDIS_PORT=6379
 SERVER_PORT=8081
 ```
 
+## Runtime-config schema migration
+
+The deployment package runs `tools\migrate-aerosync-runtime-config.sql` before stopping any service. The migration only adds `runtime_config.allowlist_initialized`, `runtime_config_allowlist`, and its config index. It is safe to rerun. If the migration fails, deployment stops before service downtime.
+
+For a manual run, use the application schema account and do not put the password in a command or log. Start SQL*Plus with `sqlplus -L -S /nolog`, then run these commands at its prompt. Replace the path with the folder where the deployment package was extracted:
+
+```sql
+CONNECT <username>/<password>@//<oracle-host>:1521/<service-name>
+@<extracted-package>\tools\migrate-aerosync-runtime-config.sql
+```
+
+Do not save the SQL*Plus command containing the password in shell history or logs. Confirm `Validated runtime allowlist schema.` appears before deploying.
+
 TÃªn biáº¿n pháº£i dÃ¹ng `_` bÃ¬nh thÆ°á»ng, khÃ´ng thÃªm `\`. KhÃ´ng Ä‘Æ°a máº­t kháº©u tháº­t vÃ o Git hoáº·c log.
 
 ## 4. Kiá»ƒm tra trÆ°á»›c khi deploy

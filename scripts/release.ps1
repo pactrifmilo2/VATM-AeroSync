@@ -92,6 +92,8 @@ Copy-Item -LiteralPath (Join-Path $root ".env.example") `
     -Destination (Join-Path $stage "config\.env.example")
 Copy-Item -LiteralPath (Join-Path $root "scripts\migrate-atfm-purpose-craft.sql") `
     -Destination (Join-Path $stage "tools\migrate-atfm-purpose-craft.sql")
+Copy-Item -LiteralPath (Join-Path $root "scripts\migrate-aerosync-runtime-config.sql") `
+    -Destination (Join-Path $stage "tools\migrate-aerosync-runtime-config.sql")
 Copy-Item -LiteralPath $WinSwPath -Destination (Join-Path $stage "tools\WinSW-x64.exe")
 foreach ($entry in $artifacts.GetEnumerator()) {
     Copy-Item -LiteralPath (Join-Path $root $entry.Key) `

@@ -227,6 +227,7 @@ BEGIN
             auto_quarantine             NUMBER(1,0) DEFAULT 0 NOT NULL,
             skip_duplicate_idempotency  NUMBER(1,0) DEFAULT 0 NOT NULL,
             send_zalo_alert             NUMBER(1,0) DEFAULT 0 NOT NULL,
+            allowlist_initialized       NUMBER(1,0) DEFAULT 0 NOT NULL,
             CONSTRAINT pk_runtime_config PRIMARY KEY (id),
             CONSTRAINT ck_runtime_auto_quarantine
                 CHECK (auto_quarantine IN (0, 1)),
@@ -245,12 +246,25 @@ BEGIN
         'runtime_config', 'folder_polling_interval_ms',
         'ALTER TABLE runtime_config ADD folder_polling_interval_ms NUMBER(19,0) DEFAULT 60000 NOT NULL'
     );
+    add_column_if_missing(
+        'runtime_config', 'allowlist_initialized',
+        'ALTER TABLE runtime_config ADD allowlist_initialized NUMBER(1,0) DEFAULT 0 NOT NULL'
+    );
 
     create_table_if_missing('runtime_config_blacklist', q'[
         CREATE TABLE runtime_config_blacklist (
             config_id  NUMBER(19,0) NOT NULL,
             sender     VARCHAR2(255 CHAR),
             CONSTRAINT fk_runtime_blacklist_config
+                FOREIGN KEY (config_id) REFERENCES runtime_config(id)
+        )
+    ]');
+
+    create_table_if_missing('runtime_config_allowlist', q'[
+        CREATE TABLE runtime_config_allowlist (
+            config_id  NUMBER(19,0) NOT NULL,
+            sender     VARCHAR2(255 CHAR),
+            CONSTRAINT fk_runtime_allowlist_config
                 FOREIGN KEY (config_id) REFERENCES runtime_config(id)
         )
     ]');
@@ -297,6 +311,10 @@ BEGIN
         'ix_runtime_blacklist_config',
         'CREATE INDEX ix_runtime_blacklist_config ON runtime_config_blacklist(config_id)'
     );
+    create_index_if_missing(
+        'ix_runtime_allowlist_config',
+        'CREATE INDEX ix_runtime_allowlist_config ON runtime_config_allowlist(config_id)'
+    );
 END;
 /
 
@@ -315,7 +333,8 @@ SELECT table_name
        'PERMIT_IMPORTS',
        'DASHBOARD_ALERTS',
        'RUNTIME_CONFIG',
-       'RUNTIME_CONFIG_BLACKLIST'
+       'RUNTIME_CONFIG_BLACKLIST',
+       'RUNTIME_CONFIG_ALLOWLIST'
  )
  ORDER BY table_name;
 

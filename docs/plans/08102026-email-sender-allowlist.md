@@ -97,3 +97,9 @@ User cung cấp danh sách trong ảnh và yêu cầu dùng làm allowlist mặc
 - `aerosync-ingest`: properties/runtime config, IMAP filtering, ingest tests.
 - `aerosync-ui`: model, API client, ViewModel, `ConfigPage.xaml`.
 - `docs/change-log/08102026.md` sau khi phần triển khai được xác nhận.
+
+## Follow-up: deploy schema migration
+
+- Root cause: the new API requires `runtime_config.allowlist_initialized` and `runtime_config_allowlist`, while production uses Hibernate `ddl-auto=validate`.
+- Remediation: package an idempotent, scoped Oracle migration and run it before stopping services. If it fails, deployment exits without stopping services or replacing application files.
+- Production migration/deploy is not run by this change; an operator must run the deployment package.
