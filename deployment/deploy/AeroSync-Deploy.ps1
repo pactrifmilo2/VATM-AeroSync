@@ -123,6 +123,12 @@ function Invoke-RuntimeConfigMigration {
             $validationReported = $true
         }
     }
+    $oracleArchiverError = @($output | Where-Object {
+        ([string]$_) -match 'ORA-00257|Archiver error'
+    })
+    if ($oracleArchiverError.Count -gt 0) {
+        throw "Oracle tra ORA-00257: archiver khong the ghi archive redo log. DBA can kiem tra FRA/archive destination va dung luong dia; khong co service nao bi dung."
+    }
     if ($exitCode -ne 0 -or -not $validationReported) {
         throw "Oracle runtime-config migration failed with SQL*Plus exit code $exitCode. Services were not stopped."
     }

@@ -77,6 +77,26 @@ CONNECT <username>/<password>@//<oracle-host>:1521/<service-name>
 
 Do not save the SQL*Plus command containing the password in shell history or logs. Confirm `Validated runtime allowlist schema.` appears before deploying.
 
+## Oracle ORA-00257
+
+If deployment prints `ORA-00257: Archiver error`, the Oracle instance cannot archive redo logs. This is a database storage/archive-destination problem, not a Java, WinSW, checksum, or allowlist-schema problem. The deployment script stops before stopping any AeroSync service.
+
+Ask the Oracle DBA to inspect the instance with SYSDBA privileges:
+
+```sql
+SELECT name, space_limit, space_used, space_reclaimable
+  FROM v$recovery_file_dest;
+
+SELECT file_type, percent_space_used, percent_space_reclaimable
+  FROM v$flash_recovery_area_usage;
+
+SELECT dest_id, status, target, destination, error
+  FROM v$archive_dest
+ WHERE status <> 'INACTIVE';
+```
+
+The DBA must resolve the archive destination according to the database retention policy, for example by completing the approved RMAN archive-log backup and cleanup, increasing the FRA capacity, or fixing an unavailable archive destination. Do not delete archive files directly from the operating system. After the DBA confirms archiving is healthy, rerun the deployment package.
+
 TÃªn biáº¿n pháº£i dÃ¹ng `_` bÃ¬nh thÆ°á»ng, khÃ´ng thÃªm `\`. KhÃ´ng Ä‘Æ°a máº­t kháº©u tháº­t vÃ o Git hoáº·c log.
 
 ## 4. Kiá»ƒm tra trÆ°á»›c khi deploy
