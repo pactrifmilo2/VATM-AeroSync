@@ -2,7 +2,8 @@
     x:Name="ConfigPageRoot"
     x:Class="AeroSync.UI.Views.ConfigPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls">
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="14">
             <Grid>
@@ -66,20 +67,19 @@
                                     <TextBox Grid.Column="0" PlaceholderText="email@example.com" Text="{Binding NewSender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <Button Grid.Column="1" Content="Thêm địa chỉ email cần đọc" Command="{Binding AddSenderCommand}" />
                                 </Grid>
-                                <ListView ItemsSource="{Binding AllowedSenders}" MaxHeight="220">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid ColumnSpacing="8">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0" Text="{Binding}" VerticalAlignment="Center" />
-                                                <Button Grid.Column="1" Content="Xóa" Command="{Binding DataContext.RemoveSenderCommand, ElementName=ConfigPageRoot}" CommandParameter="{Binding}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                <controls:DataGrid ItemsSource="{Binding AllowedSenders}" AutoGenerateColumns="False" HeadersVisibility="Column" MaxHeight="260" IsReadOnly="True">
+                                    <controls:DataGrid.Columns>
+                                        <controls:DataGridTextColumn Header="STT" Width="60" />
+                                        <controls:DataGridTextColumn Header="EMAIL" Binding="{Binding}" Width="*" />
+                                        <controls:DataGridTemplateColumn Header="THAO TAC" Width="100">
+                                            <controls:DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="Xóa" Command="{Binding DataContext.RemoveSenderCommand, ElementName=ConfigPageRoot}" CommandParameter="{Binding}" />
+                                                </DataTemplate>
+                                            </controls:DataGridTemplateColumn.CellTemplate>
+                                        </controls:DataGridTemplateColumn>
+                                    </controls:DataGrid.Columns>
+                                </controls:DataGrid>
                             </StackPanel>
                         </Border>
                     </StackPanel>
