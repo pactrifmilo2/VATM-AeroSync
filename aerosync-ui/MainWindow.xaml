@@ -1,8 +1,7 @@
 <Window
     x:Class="AeroSync.UI.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="HTSLB AeroSync">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Grid Background="#F6F8FC">
         <NavigationView x:Name="RootNav" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
                         PaneDisplayMode="Left" SelectionChanged="RootNav_SelectionChanged">
