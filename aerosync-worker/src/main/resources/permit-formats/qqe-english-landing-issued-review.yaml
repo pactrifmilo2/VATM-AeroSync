@@ -1,0 +1,12 @@
+id: qqe-english-landing-issued-review
+extends: airline-generic-landing-issued
+priority: 225
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*QQE\b'
+  - '(?iu)QATAR\s+EXECUTIVE'
+  - '(?isu)^(?!.*(?:/\s*REV\d+|\bREVISED\s*#)).*$'
+operator:
+  fixedValue: QQE
+validation:
+  reviewOnly: true

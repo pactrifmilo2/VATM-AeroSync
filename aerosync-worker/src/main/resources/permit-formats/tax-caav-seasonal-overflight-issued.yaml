@@ -1,0 +1,17 @@
+id: tax-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 205
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*XJ\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*TAX\b'
+  - '(?iu)THAI\s+AIR\s*ASIA\s*X'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b)).*$'
+operator:
+  fixedValue: TAX
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+validation:
+  reviewOnly: true

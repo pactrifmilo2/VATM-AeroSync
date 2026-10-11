@@ -1,0 +1,17 @@
+id: oah-english-landing-issued-review
+extends: airline-generic-landing-issued
+priority: 175
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*OAH\b'
+  - '(?iu)AFCOM\s+HOLDINGS'
+operator:
+  fixedValue: OAH
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+# NMI is absent from ATFM.M_AERO: parse for review, never auto-write.
+validation:
+  allowIataAirports: false
+  reviewOnly: true

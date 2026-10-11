@@ -1,0 +1,20 @@
+id: kxp-caav-landing-revision
+extends: caav-generic-landing-revision
+priority: 175
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*KXP\b'
+  - '(?iu)2\.2\s*Revised\s+Schedule'
+operator:
+  fixedValue: KXP
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\s*Revised\s+Schedule'
+  lastMatchingTable: true
+route:
+  filterSchedule: false
+validation:
+  reviewOnly: true

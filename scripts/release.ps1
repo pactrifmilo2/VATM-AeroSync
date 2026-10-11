@@ -73,6 +73,16 @@ if (-not (Test-Path -LiteralPath (Join-Path $uiPublish "AeroSync.UI.exe") -PathT
     throw "Published UI not found at $uiPublish. Run without -SkipBuild or publish the UI first."
 }
 
+# WinUI unpackaged publish may omit the app PRI even when the build output
+# contains it. XAML resources cannot load without this file at runtime.
+$uiPri = Join-Path $uiPublish "AeroSync.UI.pri"
+if (-not (Test-Path -LiteralPath $uiPri -PathType Leaf)) {
+    $uiPri = Join-Path (Split-Path -Parent $uiPublish) "AeroSync.UI.pri"
+}
+if (-not (Test-Path -LiteralPath $uiPri -PathType Leaf)) {
+    throw "Missing AeroSync.UI.pri (WinUI XAML resources). Publish the UI again."
+}
+
 if (Test-Path -LiteralPath $stage) {
     throw "Release directory already exists: $stage"
 }
@@ -100,6 +110,7 @@ foreach ($entry in $artifacts.GetEnumerator()) {
         -Destination (Join-Path $stage "app\$($entry.Value)")
 }
 Copy-Item -Path (Join-Path $uiPublish "*") -Destination (Join-Path $stage "ui") -Recurse -Force
+Copy-Item -LiteralPath $uiPri -Destination (Join-Path $stage "ui\AeroSync.UI.pri") -Force
 Copy-Item -LiteralPath (Join-Path $root "aerosync-ui\.env.example") `
     -Destination (Join-Path $stage "ui\.env") -Force
 Set-Content -LiteralPath (Join-Path $stage "VERSION") -Value $version -Encoding ASCII

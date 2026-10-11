@@ -157,3 +157,11 @@ C:\AeroSync\logs\worker\AeroSyncWorker.out.log
 - Service cháº¡y rá»“i dá»«ng: xem log `.out.log` tÆ°Æ¡ng á»©ng.
 
 Khi gá»­i log cho ká»¹ thuáº­t, pháº£i che máº­t kháº©u, token vÃ  dá»¯ liá»‡u nháº¡y cáº£m.
+
+## Release 11/10/2026: service va WinUI
+
+- `scripts/release.ps1` dong goi `AeroSync.UI.pri` tu build output vao thu muc `ui` (WinUI `dotnet publish` co the khong copy PRI). PRI nam trong `SHA256SUMS.txt`. Neu `check` bao thieu PRI, dong goi lai, khong copy file PRI tu ban build khac phien ban.
+- Script deploy cho API tra loi xong van doi 15 giay va kiem tra ca ba service. Khong bao "thanh cong" neu ingest/worker da dung ngay sau startup; xem `C:\AeroSync\logs\ingest\AeroSyncIngest.out.log`.
+- Sua loi khoi tao `RuntimeIngestionConfig` trong JAR ingest; can dong goi lai ca ingest JAR, khong chi copy script.
+- Truoc khi nang cap tren he thong co `APP_ATFM_WRITE_ENABLED=true`, sao luu va kiem tra `config\.env`, khong tu dong replay Word/cu qua `incoming`. Cac profile moi `reviewOnly`; dam bao `APP_ATFM_MANUAL_REVIEW_ENABLED=true`. File thieu ma san bay duoc xac minh trong ATFM van phai review.
+- `C:\AeroSync\ui` can `AeroSync.UI.pri` dung cung ban voi `AeroSync.UI.dll`/`.exe`. Test giao dien khi dang nhap tai desktop; neu loi xem `%LOCALAPPDATA%\VATM-AeroSync\ui-errors.log`.

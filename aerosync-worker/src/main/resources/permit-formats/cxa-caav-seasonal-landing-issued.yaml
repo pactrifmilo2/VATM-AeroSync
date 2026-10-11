@@ -1,0 +1,18 @@
+id: cxa-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 45
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*MF\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*CXA\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: CXA
+schedule:
+  columns:
+    etd: [ETD, EOBT, Estimated departure time]
+    eta: [ETA, EIBT, Estimated Arrival time]
+# FOC maps to both ZSFC and ZSFZ in ATFM.M_AERO; block automatic write.
+validation:
+  allowIataAirports: false
+  reviewOnly: true

@@ -1,0 +1,24 @@
+id: prv-sinojet-landing-revision
+extends: caav-generic-landing-revision
+priority: 160
+detectionPatterns:
+  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)SINOJET\s*\(SINGAPORE\)'
+  - '(?iu)REVISED\s*#\s*\d+'
+  - '(?iu)2\.2\s*NEW'
+operator:
+  fixedValue: PRV
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\s*NEW'
+  lastMatchingTable: true
+route:
+  filterSchedule: false
+aircraft:
+  # Revision only publishes routes; aircraft must be confirmed from the original.
+  auxiliaryRequiredColumns: []
+validation:
+  reviewOnly: true

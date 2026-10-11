@@ -97,3 +97,15 @@ VDO: VVVD
 VII: VVVH
 VTE: VLVT
 XSP: WSSL
+# IATA/ICAO codes confirmed as unique in ATFM.M_AERO (read-only, 11/10/2026).
+HGH: ZSHC
+PEK: ZBAA
+XMN: ZSAM
+TAO: ZSQD
+NKG: ZSNJ
+PKX: ZBAD
+KMG: ZPPP
+# Additional unique ATFM.M_AERO codes in 08/10 permits; FOC is ambiguous and NMI is absent.
+MAA: VOMM
+NGB: ZSNB
+BKI: WBKK

@@ -153,7 +153,7 @@ function Invoke-Preflight {
     }
 
     $packageFiles = @("app\api.jar", "app\ingest.jar", "app\worker.jar",
-        "ui\AeroSync.UI.exe", "deploy\Run-Service.ps1", "deploy\Open-AeroSync.ps1",
+        "ui\AeroSync.UI.exe", "ui\AeroSync.UI.pri", "deploy\Run-Service.ps1", "deploy\Open-AeroSync.ps1",
         "tools\WinSW-x64.exe", "tools\migrate-aerosync-runtime-config.sql", "SHA256SUMS.txt")
     foreach ($relative in $packageFiles) {
         $exists = Test-Path -LiteralPath (Join-Path $packageRoot $relative) -PathType Leaf
@@ -435,13 +435,15 @@ function Test-PackageChecksums {
         if ($line -notmatch '^(?<hash>[A-Fa-f0-9]{64})\s{2}(?<path>.+)$') {
             throw "Dong checksum khong hop le: $line"
         }
-        $file = Join-Path $packageRoot $Matches.path
+        $relative = $Matches.path
+        $expected = $Matches.hash
+        $file = Join-Path $packageRoot $relative
         if (-not (Test-Path -LiteralPath $file -PathType Leaf)) {
-            throw "Goi cap nhat thieu file: $($Matches.path)"
+            throw "Goi cap nhat thieu file: $relative"
         }
         $actual = (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash
-        if ($actual -ne $Matches.hash) {
-            throw "File bi loi hoac chua copy xong: $($Matches.path)"
+        if ($actual -ne $expected) {
+            throw "File bi loi hoac chua copy xong: $relative"
         }
     }
 }
@@ -497,23 +499,44 @@ function Test-ServerPortAvailable {
 
 function Wait-Healthy {
     $deadline = (Get-Date).AddSeconds($HealthTimeoutSeconds)
-    foreach ($name in $serviceOrder) {
-        $service = Get-Service -Name $name -ErrorAction Stop
-        $remaining = $deadline - (Get-Date)
-        if ($remaining.TotalSeconds -le 0) { throw "Service startup timed out." }
-        $service.WaitForStatus("Running", $remaining)
-    }
     $port = Get-ServerPort
     $uri = "http://localhost:$port/api/dashboard/stats"
     while ((Get-Date) -lt $deadline) {
-        try {
-            $response = Invoke-WebRequest -UseBasicParsing -Uri $uri -TimeoutSec 5
-            if ($response.StatusCode -ge 200 -and $response.StatusCode -lt 500) { return }
-        } catch {
-            Start-Sleep -Seconds 3
+        foreach ($name in $serviceOrder) {
+            $service = Get-Service -Name $name -ErrorAction Stop
+            if ($service.Status -ne 'Running') {
+                $app = [string]$serviceApps[$name]
+                $outLog = Join-Path $InstallRoot "logs\$app\$name.out.log"
+                $hint = if (Test-Path -LiteralPath $outLog) {
+                    (Get-Content -LiteralPath $outLog -Tail 20 -ErrorAction SilentlyContinue) -join "`n"
+                } else { "Khong co log $outLog" }
+                throw "Service $name da dung (trang thai: $($service.Status)).`n$hint"
+            }
         }
+        try {
+            $response = Invoke-WebRequest -UseBasicParsing -Uri $uri -TimeoutSec 5 -ErrorAction Stop
+            if ($response.StatusCode -ge 200 -and $response.StatusCode -lt 400) {
+                # WinSW can report Running before the Java child has finished startup.
+                # Recheck all services after a short stabilization window.
+                $stableUntil = (Get-Date).AddSeconds(15)
+                while ((Get-Date) -lt $stableUntil) {
+                    $stopped = @($serviceOrder | Where-Object {
+                        (Get-Service -Name $_ -ErrorAction Stop).Status -ne 'Running'
+                    })
+                    if ($stopped.Count -gt 0) {
+                        throw "Service stopped after API startup: $($stopped -join ', ')"
+                    }
+                    Start-Sleep -Seconds 2
+                }
+                return
+            }
+        } catch {
+            if ($_.Exception.Message -like 'Service stopped after API startup:*') { throw }
+        }
+        Start-Sleep -Seconds 3
     }
-    throw "API khong san sang tai $uri sau $HealthTimeoutSeconds giay."
+    throw "API khong san sang tai $uri sau $HealthTimeoutSeconds giay; kiem tra log va SERVER_PORT."
+
 }
 
 function Show-Status {

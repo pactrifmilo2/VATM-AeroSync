@@ -1,5 +1,6 @@
 package vatm.aerosync.ingest.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import vatm.aerosync.ingest.config.IngestProperties;
@@ -22,6 +23,7 @@ public class RuntimeIngestionConfig {
 
     private static final long CACHE_MILLIS = 5_000L;
 
+    @Autowired
     public RuntimeIngestionConfig(JdbcTemplate jdbcTemplate, IngestProperties defaults) {
         this(jdbcTemplate, defaults, Clock.systemUTC());
     }

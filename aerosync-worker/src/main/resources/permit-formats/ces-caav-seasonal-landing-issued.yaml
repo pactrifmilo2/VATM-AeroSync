@@ -1,0 +1,16 @@
+id: ces-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 45
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*MU\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*CES\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: CES
+schedule:
+  columns:
+    etd: [ETD, EOBT, Estimated departure time]
+    eta: [ETA, EIBT, Estimated Arrival time]
+validation:
+  reviewOnly: true

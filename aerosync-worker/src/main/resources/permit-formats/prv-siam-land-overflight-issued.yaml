@@ -1,0 +1,22 @@
+id: prv-siam-land-overflight-issued
+extends: caav-generic-overflight-issued-na-operator
+priority: 210
+detectionPatterns:
+  - '(?iu)\bOF\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iu)SIAM\s+LAND\s+FLYING\s+CO'
+  - '(?iu)IATA\s*CODE\s*:\s*N/A\b'
+  - '(?iu)ICAO\s*CODE\s*:\s*N/A\b'
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  # The airway table is unrelated to the issued flight; do not filter it.
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryRequiredColumns: [aircraftType]
+  defaultType: H25B
+validation:
+  reviewOnly: true
