@@ -33,3 +33,29 @@
 ## Remaining limits
 - Installed `C:\AeroSync` still has old files and previously showed ingest failure / UI XamlParseException. Install the final repackaged release only during an approved service maintenance window after backing up .env and confirming manual-review settings. Do not replay user documents automatically.
 - Verify FOC/NMI with data owner/ATFM and check quarantine revisions against the original permit before reprocessing; these are not safe auto-fixes. Smoke launch is not a full deployed UI test.
+
+
+## Word corpus 13/10/2026 (E:\Email_NOT_FORMAT\13)
+
+### Scope and assumptions
+- One Word file: `haanhlv_20261013_103551_email_005_OF-93.A.W.2026VN.CLX_7287ce4f.docx`. Files were read only; the source document was not modified and no ATFM write was performed.
+- Before the change the corpus test failed with "File chua co dinh dang YAML phu hop", identity IATA=CV / ICAO=CLX: no carrier profile existed.
+
+### Files changed
+- `aerosync-worker/src/main/resources/permit-formats/clx-caav-seasonal-overflight-issued.yaml` (new): scoped Cargolux seasonal CAAV overflight profile extending `airline-generic-seasonal-overflight-issued`, detecting `OF-<n>/A/W/<year>VN` together with IATA CV, ICAO CLX and the "Cargolux" carrier name; declares EOBT/EIBT column wording and the aircraft table wording used by this carrier; `reviewOnly: true`.
+- `aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/October13CargoluxProfileTest.java` (new): regression test pinned to the real file via `-Dpermit.october13.corpus.dir`, asserting profile id, permit id `O/F 0093A/W/CHK/2026`, operator CLX, 66 flights, purpose CAR, ICAO 4-letter airports and review-only.
+
+### Behaviour before and after
+- Before: 0 success / 1 failure, no profile matched.
+- After: 1 success / 0 failure; profile `clx-caav-seasonal-overflight-issued`; the profile stays review-only, so this permit is not auto-written to ATFM.
+
+### Checks run
+- `WordPermitCorpusRegressionTest` on `E:\Email_NOT_FORMAT\13`: 1 success / 0 failure / 0 non-permit.
+- `October13CargoluxProfileTest` with `-Dpermit.october13.corpus.dir=E:\Email_NOT_FORMAT\13`: pass.
+- Regression: corpus `E:\09` 23/23 pass; 08/10 corpus unchanged at 26 success / 2 known failures (FOC ambiguous in ATFM, NMI absent in ATFM).
+- Full non-Docker unit/API suite (`-Dtest=*,!IngestIntegrationTest,!WorkerIntegrationTest,!ApiIntegrationTest`): pass.
+
+### Remaining limits
+- Docker/Testcontainers integration tests were not run (no Docker on this host), same as the earlier 11/10 task.
+- The permit is parsed but still `reviewOnly`; enabling automatic import needs ATFM review (reference data, aircraft types B747-8F/B747-400F and baseline) and a separate decision.
+- No release package was rebuilt for this profile change; `dist\` artifacts and `C:\AeroSync` still carry the 11/10 build.

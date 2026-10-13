@@ -1,0 +1,31 @@
+id: clx-caav-seasonal-overflight-issued
+# Scoped to Cargolux seasonal CAAV overflight permits observed on 13/10/2026
+# (OF-93/A/W/2026VN). Reuse the shared seasonal parsing and only declare the
+# carrier identity plus the carrier's EOBT/EIBT column wording.
+extends: airline-generic-seasonal-overflight-issued
+priority: 205
+
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*CV\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*CLX\b'
+  - '(?iu)CARGOLUX'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b)).*$'
+
+operator:
+  fixedValue: CLX
+
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
+    registrationMarks: [Aircraft registration mark, Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+
+validation:
+  reviewOnly: true
