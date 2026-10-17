@@ -159,6 +159,29 @@ class RevisionReconciliationStepTest {
     }
 
     @Test
+    void reconcile_nonScheduledRevisionPairsChangedEndpointByStableScheduleFields() {
+        AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
+        ScheduleFlight original = nonScheduledFlight("VPCDI", "WSSL", "320")
+                .withResolvedRoute("WSSL", "RCSS", "M771");
+        ScheduleFlight revised = nonScheduledFlight("VPCDI", "WSSS", "320")
+                .withResolvedRoute("WSSS", "RCSS", "M771");
+        SchedulePermit revision = nonScheduledPermit(revised, original,
+                "REV1\n3.1 OLD\n3.2 NEW\nOTHER DETAILS REMAIN UNCHANGED");
+        when(gateway.findRevisionBaseline(revision)).thenReturn(java.util.Optional.of(
+                new AtfmRevisionBaseline(10L, 20L, "HVN", List.of(original))));
+
+        ProcessingContext context = context(revision, "OF-7563-REV1.docx");
+        new RevisionReconciliationStep(gateway).reconcile(context);
+
+        assertThat(context.getSchedulePermit().flights()).singleElement()
+                .satisfies(flight -> {
+                    assertThat(flight.flightNumber()).isEqualTo("VPCDI");
+                    assertThat(flight.fromAirport()).isEqualTo("WSSS");
+                    assertThat(flight.toAirport()).isEqualTo("RCSS");
+                });
+    }
+
+    @Test
     void reconcile_nonScheduledRevisionWithSameCallsignUpdatesOriginalPermit() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
         ScheduleFlight original = nonScheduledFlight("HVN123", "VVTS", "320");

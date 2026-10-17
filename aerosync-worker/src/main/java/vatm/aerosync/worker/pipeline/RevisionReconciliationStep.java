@@ -148,6 +148,10 @@ public class RevisionReconciliationStep {
                 if (documentedOriginal == null) {
                     documentedOriginal = findUniqueByCallsign(permit.originalFlights(), current);
                 }
+                if (documentedOriginal == null && !permit.seasonalPermit()) {
+                    documentedOriginal = findUniqueByStableScheduleFields(
+                            permit.originalFlights(), current);
+                }
                 if (documentedOriginal == null
                         && permit.originalFlights().size() == permit.flights().size()) {
                     // OLD/NEW tables are paired by position only after exact
@@ -581,6 +585,29 @@ public class RevisionReconciliationStep {
                 .filter(candidate -> sameFlightRoute(candidate, expected))
                 .findFirst()
                 .orElse(null);
+    }
+
+    /**
+     * A non-seasonal revision may change one endpoint while retaining the
+     * callsign, effective interval and UTC times. Pair only when those fields
+     * identify exactly one OLD row; otherwise the ambiguity guard remains.
+     */
+    private ScheduleFlight findUniqueByStableScheduleFields(
+            List<ScheduleFlight> candidates,
+            ScheduleFlight expected) {
+        if (expected == null || expected.flightNumber() == null
+                || expected.flightNumber().isBlank()) {
+            return null;
+        }
+        List<ScheduleFlight> matches = candidates.stream()
+                .filter(candidate -> sameText(candidate.flightNumber(), expected.flightNumber()))
+                .filter(candidate -> java.util.Objects.equals(candidate.beginDate(), expected.beginDate()))
+                .filter(candidate -> java.util.Objects.equals(candidate.endDate(), expected.endDate()))
+                .filter(candidate -> sameText(candidate.etd(), expected.etd()))
+                .filter(candidate -> expected.eta() == null || expected.eta().isBlank()
+                        || sameText(candidate.eta(), expected.eta()))
+                .toList();
+        return matches.size() == 1 ? matches.getFirst() : null;
     }
 
     private ScheduleFlight findUniqueByCallsign(List<ScheduleFlight> candidates,

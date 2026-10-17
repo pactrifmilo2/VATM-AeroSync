@@ -59,3 +59,43 @@
 - Docker/Testcontainers integration tests were not run (no Docker on this host), same as the earlier 11/10 task.
 - The permit is parsed but still `reviewOnly`; enabling automatic import needs ATFM review (reference data, aircraft types B747-8F/B747-400F and baseline) and a separate decision.
 - No release package was rebuilt for this profile change; `dist\` artifacts and `C:\AeroSync` still carry the 11/10 build.
+
+
+## Fix revision 17/10/2026 - job 18867 (OF-7563 REV1)
+
+### Root cause
+- Job `18867` failed with `BR-REVISION-ROW-MAPPING-AMBIGUOUS: Cannot pair NEW with OLD for
+  unchanged fields: VPCDI`. The CAAV revision document keeps the same flight number, effective
+  interval and UTC times but changes one endpoint (`WSSL` -> `WSSS` on 18/10/2026). The reconciler
+  paired OLD/NEW rows only by exact route or by a unique callsign, so the changed endpoint produced
+  no match even though the pairing was unique.
+- Secondary symptom: after the quarantine archive, the job was republished many times and failed
+  with "File does not exist or is not a regular file" because the retry used the archived path
+  from `file_records.stored_path` while the event referenced the staging path.
+
+### Files changed
+- `aerosync-worker/src/main/java/vatm/aerosync/worker/pipeline/RevisionReconciliationStep.java`:
+  added `findUniqueByStableScheduleFields`, used only for non-seasonal revisions and only when the
+  flight number, effective interval, ETD and ETA identify exactly one OLD row. Ambiguous cases
+  still raise `BR-REVISION-ROW-MAPPING-AMBIGUOUS`.
+- `aerosync-worker/src/test/java/vatm/aerosync/worker/pipeline/RevisionReconciliationStepTest.java`:
+  added `reconcile_nonScheduledRevisionPairsChangedEndpointByStableScheduleFields` covering the
+  WSSL -> WSSS case.
+
+### Behaviour before and after
+- Before: revision quarantined with `BR-REVISION-ROW-MAPPING-AMBIGUOUS`.
+- After: the same document parses to `O/F 07563/CHK/2026` with 2 schedule rows; reconciliation
+  pairs the OLD row for `VPCDI` without relying on row position.
+
+### Checks run
+- `RevisionReconciliationStepTest`: pass (including the new test).
+- `WordPermitCorpusRegressionTest` on the job 18867 file: 1 success / 0 failure, and the same
+  result with `-Dpermit.corpus.resolve-aircraft=true` against live ATFM reference data.
+- Regression: `E:\09` 23/23 pass.
+- Non-Docker unit/API suite: pass.
+
+### Remaining limits
+- The deployed `C:\AeroSync\app\worker.jar` (build 13/10 16:40) does NOT contain this fix; the
+  corrected worker must be rebuilt and redeployed before job 18867 can be retried.
+- The repeated archive-path retries were observed but not changed; only the revision mapping fix
+  is implemented here. The retry loop needs a separate decision on which path is republished.
