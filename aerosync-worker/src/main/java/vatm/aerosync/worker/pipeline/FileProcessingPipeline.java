@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vatm.aerosync.common.debug.DebugSessionLog;
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.AlertLevel;
 import vatm.aerosync.common.enums.EmailProcessingStatus;
@@ -26,6 +27,7 @@ import vatm.aerosync.worker.service.SyncResultPublisher;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 @Service
 public class FileProcessingPipeline {
@@ -81,7 +83,7 @@ public class FileProcessingPipeline {
 
     public void process(FileIngestedEvent event) {
         ProcessingContext context = new ProcessingContext(event);
-        context.setFilePath(Path.of(event.getTempFilePath()));
+        context.setFilePath(resolveProcessingPath(event));
 
         lookupSender(event.getSyncJobId(), context);
 
@@ -143,6 +145,7 @@ public class FileProcessingPipeline {
                     event.getSyncJobId(), archived == null ? SyncStatus.FAILED : writeResult.status(),
                     archived == null ? AlertLevel.WARNING : AlertLevel.INFO,
                     archived == null ? "Database saved but archive failed; retry archive" : writeResult.message());
+            publishImportWarnings(context, event, writeResult, archived);
         } catch (NonPermitDocumentException e) {
             handleNonPermitDocument(context, event, e);
         } catch (FormatValidationException e) {
@@ -176,6 +179,54 @@ public class FileProcessingPipeline {
                     event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING,
                     e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage());
         }
+    }
+
+    /**
+     * A permit can be stored even when a soft check is not satisfied; operators
+     * still need to see which rows must be corrected in the source document.
+     */
+    private void publishImportWarnings(ProcessingContext context,
+                                       FileIngestedEvent event,
+                                       DatabaseWriteResult writeResult,
+                                       Path archived) {
+        if (context.getWarnings().isEmpty()
+                || writeResult.status() == SyncStatus.SKIPPED
+                || archived == null) {
+            return;
+        }
+        String rows = context.getWarnings().stream()
+                .map(warning -> "row %d (%s)".formatted(warning.rowNumber(), warning.value()))
+                .distinct()
+                .reduce((left, right) -> left + ", " + right)
+                .orElse("");
+        String message = ("Permit %s was saved but %d schedule row(s) need manual correction: %s")
+                .formatted(context.getSchedulePermit().normalizedPermitId(),
+                        context.getWarnings().size(), rows);
+        auditLogService.record(
+                event.getSyncJobId(), "SYNC_IMPORT_WARNING", summaryInput(context), message,
+                writeResult.status(), context.elapsedMillis());
+        syncResultPublisher.publish(
+                event.getSyncJobId(), writeResult.status(), AlertLevel.WARNING, message);
+    }
+
+    /**
+     * A retry republished after the first attempt was archived carries the old
+     * staging path in the event. Prefer the path recorded for the job so a
+     * quarantined or failed document can be reprocessed from where it now
+     * lives instead of failing repeatedly with a missing-file error.
+     */
+    private Path resolveProcessingPath(FileIngestedEvent event) {
+        Path eventPath = Path.of(event.getTempFilePath());
+        if (java.nio.file.Files.isRegularFile(eventPath)) {
+            return eventPath;
+        }
+        return fileRecordRepository.findBySyncJobId(event.getSyncJobId()).stream()
+                .map(FileRecord::getStoredPath)
+                .filter(path -> path != null && !path.isBlank())
+                .map(Path::of)
+                .filter(java.nio.file.Files::isRegularFile)
+                .max(Comparator.comparing(path -> path.toFile().lastModified()))
+                .orElse(eventPath);
     }
 
     private void applySubjectDirective(ProcessingContext context) {

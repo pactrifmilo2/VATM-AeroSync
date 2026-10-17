@@ -45,6 +45,11 @@ public class StaleSyncJobRecoveryService {
             FileRecord record = fileRecordRepository.findBySyncJobId(job.getId()).stream()
                     .max(Comparator.comparing(FileRecord::getCreatedAt)).orElse(null);
             if (record == null || record.getStoredPath() == null) continue;
+            // Never republish a job whose archived file has disappeared: the
+            // worker would fail the same way on every cycle.
+            if (!java.nio.file.Files.isRegularFile(java.nio.file.Path.of(record.getStoredPath()))) {
+                continue;
+            }
             boolean priority = record.getSourceType() == FileSourceType.EMAIL
                     && record.getOriginalFileName() != null
                     && record.getOriginalFileName().toUpperCase(java.util.Locale.ROOT).contains("VIP");

@@ -178,6 +178,86 @@ class FileProcessingPipelineTest {
     }
 
     @Test
+    void process_usesArchivedPathWhenEventPathIsGone(
+            @org.junit.jupiter.api.io.TempDir java.nio.file.Path tempDir) throws Exception {
+        Path archived = java.nio.file.Files.writeString(tempDir.resolve("quarantined.docx"), "archived");
+        record.setStoredPath(archived.toString());
+        when(fileRecordRepository.findBySyncJobId(7L)).thenReturn(List.of(record));
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);
+        var captor = org.mockito.ArgumentCaptor.forClass(vatm.aerosync.worker.model.ProcessingContext.class);
+        // The event path points at a staging file that no longer exists.
+        doAnswer(invocation -> {
+            captor.capture();
+            return null;
+        }).when(parserStep).parse(any());
+
+        try {
+            pipeline.process(event);
+        } catch (RuntimeException exception) {
+            throw new AssertionError("pipeline failed: " + exception, exception);
+        }
+
+        verify(parserStep).parse(captor.capture());
+        org.assertj.core.api.Assertions.assertThat(captor.getValue().getFilePath())
+                .isEqualTo(archived);
+    }
+
+    @Test
+    void process_publishesWarningAfterSavingPermitThatNeedsManualCorrection() throws Exception {
+        Path archived = Path.of("C:/archive/processed/permit.docx");
+        when(fileArchiverStep.archiveProcessed(any(), any(), any())).thenReturn(archived);
+        doAnswer(invocation -> {
+            vatm.aerosync.worker.model.ProcessingContext context = invocation.getArgument(0);
+            context.setSchedulePermit(new vatm.aerosync.worker.model.SchedulePermit(
+                    "LD-21/A/W/2026VN", "LD 0021A/W/CHK/2026", "21",
+                    "CHK", "LD", "A", "S", java.time.LocalDate.of(2026, 10, 12),
+                    "ABL", null, 24, null, "SC", "raw", List.of()));
+            context.getWarnings().add(new vatm.aerosync.common.dto.RowValidationError(
+                    21, "serviceDays", "BR-SERVICE-DAYS-RANGE",
+                    "No selected operating day falls in the effective date range", "0000500"));
+            return null;
+        }).when(businessRuleValidatorStep).validate(any());
+
+        pipeline.process(event);
+
+        verify(auditLogService).record(
+                org.mockito.ArgumentMatchers.eq(7L),
+                org.mockito.ArgumentMatchers.eq("SYNC_IMPORT_WARNING"),
+                any(),
+                org.mockito.ArgumentMatchers.contains("LD 0021A/W/CHK/2026"),
+                org.mockito.ArgumentMatchers.eq(SyncStatus.SUCCESS),
+                org.mockito.ArgumentMatchers.anyLong());
+        verify(syncResultPublisher).publish(
+                org.mockito.ArgumentMatchers.eq(7L),
+                org.mockito.ArgumentMatchers.eq(SyncStatus.SUCCESS),
+                org.mockito.ArgumentMatchers.eq(vatm.aerosync.common.enums.AlertLevel.WARNING),
+                org.mockito.ArgumentMatchers.contains("row 21"));
+    }
+
+    @Test
+    void process_doesNotWarnWhenArchiveFailed() throws Exception {
+        when(fileArchiverStep.archiveProcessed(any(), any(), any()))
+                .thenThrow(new IOException("archive unavailable"));
+        doAnswer(invocation -> {
+            vatm.aerosync.worker.model.ProcessingContext context = invocation.getArgument(0);
+            context.setSchedulePermit(new vatm.aerosync.worker.model.SchedulePermit(
+                    "LD-21/A/W/2026VN", "LD 0021A/W/CHK/2026", "21",
+                    "CHK", "LD", "A", "S", java.time.LocalDate.of(2026, 10, 12),
+                    "ABL", null, 24, null, "SC", "raw", List.of()));
+            context.getWarnings().add(new vatm.aerosync.common.dto.RowValidationError(
+                    21, "serviceDays", "BR-SERVICE-DAYS-RANGE",
+                    "No selected operating day falls in the effective date range", "0000500"));
+            return null;
+        }).when(businessRuleValidatorStep).validate(any());
+
+        pipeline.process(event);
+
+        verify(auditLogService, org.mockito.Mockito.never())
+                .record(any(), org.mockito.ArgumentMatchers.eq("SYNC_IMPORT_WARNING"), any(), any(), any(),
+                        org.mockito.ArgumentMatchers.anyLong());
+    }
+
+    @Test
     void process_preservesDatabaseSuccessWhenArchiveFails() throws Exception {
         when(fileArchiverStep.archiveProcessed(any(), any(), any()))
                 .thenThrow(new IOException("archive unavailable"));

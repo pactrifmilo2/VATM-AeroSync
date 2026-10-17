@@ -21,19 +21,43 @@ class StaleSyncJobRecoveryServiceTest {
     private final JobRetryPublisher publisher = mock(JobRetryPublisher.class);
 
     @Test
-    void republishesStalePendingJobFromLatestRecord() {
-        SyncJob job = new SyncJob();
-        job.setFileHash("hash");
-        job.setStatus(SyncStatus.PENDING);
-        FileRecord record = new FileRecord();
-        record.setSyncJob(job);
-        record.setStoredPath("/tmp/permit.docx");
-        record.setSourceType(FileSourceType.FILESYSTEM);
+    void republishesStalePendingJobFromLatestRecord(
+            @org.junit.jupiter.api.io.TempDir java.nio.file.Path tempDir) throws Exception {
+        SyncJob job = pendingJob();
+        FileRecord record = recordFor(job, java.nio.file.Files.writeString(
+                tempDir.resolve("permit.docx"), "x").toString());
         when(jobs.findByStatusAndUpdatedAtBefore(eq(SyncStatus.PENDING), any())).thenReturn(List.of(job));
         when(records.findBySyncJobId(any())).thenReturn(List.of(record));
 
         var service = new StaleSyncJobRecoveryService(jobs, records, publisher, 15);
         assertThat(service.recoverStalePendingJobs(LocalDateTime.now())).isEqualTo(1);
         verify(publisher).publish(any());
+    }
+
+    @Test
+    void skipsStalePendingJobWhoseArchivedFileIsGone() {
+        SyncJob job = pendingJob();
+        FileRecord record = recordFor(job, "C:/missing/permit.docx");
+        when(jobs.findByStatusAndUpdatedAtBefore(eq(SyncStatus.PENDING), any())).thenReturn(List.of(job));
+        when(records.findBySyncJobId(any())).thenReturn(List.of(record));
+
+        var service = new StaleSyncJobRecoveryService(jobs, records, publisher, 15);
+        assertThat(service.recoverStalePendingJobs(LocalDateTime.now())).isZero();
+        verify(publisher, never()).publish(any());
+    }
+
+    private SyncJob pendingJob() {
+        SyncJob job = new SyncJob();
+        job.setFileHash("hash");
+        job.setStatus(SyncStatus.PENDING);
+        return job;
+    }
+
+    private FileRecord recordFor(SyncJob job, String storedPath) {
+        FileRecord record = new FileRecord();
+        record.setSyncJob(job);
+        record.setStoredPath(storedPath);
+        record.setSourceType(FileSourceType.FILESYSTEM);
+        return record;
     }
 }

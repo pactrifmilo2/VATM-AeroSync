@@ -97,5 +97,23 @@
 ### Remaining limits
 - The deployed `C:\AeroSync\app\worker.jar` (build 13/10 16:40) does NOT contain this fix; the
   corrected worker must be rebuilt and redeployed before job 18867 can be retried.
-- The repeated archive-path retries were observed but not changed; only the revision mapping fix
-  is implemented here. The retry loop needs a separate decision on which path is republished.
+### Retry loop fix
+- Root cause of the repeated "File does not exist or is not a regular file" failures: after the
+  first attempt archived the document, every republished event still carried the original staging
+  path, so the worker could not find the file again.
+- `aerosync-worker/.../pipeline/FileProcessingPipeline.java`: `resolveProcessingPath` now uses the
+  event path when it exists and otherwise falls back to the current `file_records.stored_path`, so a
+  retry processes the archived document.
+- `aerosync-api/.../service/StaleSyncJobRecoveryService.java`: recovery skips jobs whose archived
+  file no longer exists instead of republishing them on every cycle.
+- Tests: `FileProcessingPipelineTest.process_usesArchivedPathWhenEventPathIsGone` and
+  `StaleSyncJobRecoveryServiceTest.skipsStalePendingJobWhoseArchivedFileIsGone`.
+
+### Checks after both fixes
+- Non-Docker unit/API suite: pass.
+- Job 18867 document: 1 success / 0 failure.
+- Regression: `E:\09` 23/23 pass.
+
+### Remaining limits
+- The deployed `C:\AeroSync` build (13/10 16:40) still contains none of these fixes; a rebuild and
+  redeploy with Administrator rights is required before job 18867 can be retried successfully.
