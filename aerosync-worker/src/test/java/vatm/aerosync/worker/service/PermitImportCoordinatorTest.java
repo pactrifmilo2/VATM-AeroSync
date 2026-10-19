@@ -12,6 +12,7 @@ import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.FileSourceType;
 import vatm.aerosync.common.enums.PermitImportStatus;
+import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
@@ -56,6 +57,8 @@ class PermitImportCoordinatorTest {
     private StringRedisTemplate redisTemplate;
     @Mock
     private ValueOperations<String, String> valueOperations;
+    @Mock
+    private AuditLogService auditLogService;
 
     private AtfmDatabaseProperties properties;
     private PermitImportCoordinator coordinator;
@@ -73,7 +76,8 @@ class PermitImportCoordinatorTest {
                 semanticHasher,
                 atfmScheduleGateway,
                 properties,
-                redisTemplate);
+                redisTemplate,
+                auditLogService);
         job = org.mockito.Mockito.mock(SyncJob.class);
         when(job.getFileHash()).thenReturn("f".repeat(64));
         when(syncJobRepository.findById(7L)).thenReturn(Optional.of(job));
@@ -99,6 +103,52 @@ class PermitImportCoordinatorTest {
         assertThat(outcome.targetPermId()).isEqualTo(202510L);
         assertThat(outcome.detailCount()).isOne();
         verify(redisTemplate).delete("aerosync:permit-lock:O/F 05199/S/CHK/2026");
+        verify(auditLogService).record(
+                eq(7L),
+                eq("ATFM_INSERT"),
+                anyString(),
+                argThat(value -> value != null
+                        && value.contains("result=SUCCESS")
+                        && value.contains("masterId=203001")
+                        && value.contains("permId=202510")
+                        && value.contains("detailCount=1")),
+                eq(SyncStatus.SUCCESS),
+                org.mockito.ArgumentMatchers.anyLong());
+    }
+
+    @Test
+    void importPermit_recordsDetailedAuditWhenAtfmInsertFails() {
+        when(atfmScheduleGateway.findNewPermitInEitherStore(any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.insert(any())).thenThrow(new IllegalStateException(
+                "Failed to insert permit O/F 05199/S/CHK/2026: ORA-00001"));
+
+        assertThatThrownBy(() -> coordinator.importPermit(context))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("ORA-00001");
+
+        verify(auditLogService).record(
+                eq(7L),
+                eq("ATFM_INSERT_FAILED"),
+                anyString(),
+                argThat(value -> value != null
+                        && value.contains("result=FAILED")
+                        && value.contains("ORA-00001")),
+                eq(SyncStatus.FAILED),
+                org.mockito.ArgumentMatchers.anyLong());
+    }
+
+    @Test
+    void importPermit_auditPersistenceFailureDoesNotChangeAtfmInsertSuccess() {
+        when(atfmScheduleGateway.findNewPermitInEitherStore(any())).thenReturn(Optional.empty());
+        when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(203001L, 202510L, 1));
+        org.mockito.Mockito.doThrow(new IllegalStateException("audit storage unavailable"))
+                .when(auditLogService)
+                .record(any(), anyString(), anyString(), anyString(), any(), org.mockito.ArgumentMatchers.anyLong());
+
+        PermitImportOutcome outcome = coordinator.importPermit(context);
+
+        assertThat(outcome.status()).isEqualTo(PermitImportStatus.SAVED);
+        assertThat(outcome.targetMasterId()).isEqualTo(203001L);
     }
 
     @Test
@@ -144,6 +194,16 @@ class PermitImportCoordinatorTest {
         verify(atfmScheduleGateway).findExisting(any());
         verify(atfmScheduleGateway).update(any());
         verify(atfmScheduleGateway, never()).insert(any());
+        verify(auditLogService).record(
+                eq(7L),
+                eq("ATFM_UPDATE"),
+                anyString(),
+                argThat(value -> value != null
+                        && value.contains("result=SUCCESS")
+                        && value.contains("masterId=203001")
+                        && value.contains("permId=202510")),
+                eq(SyncStatus.SUCCESS),
+                org.mockito.ArgumentMatchers.anyLong());
     }
 
     @Test

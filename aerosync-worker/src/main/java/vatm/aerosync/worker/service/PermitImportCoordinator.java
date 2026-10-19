@@ -1,10 +1,13 @@
 package vatm.aerosync.worker.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import vatm.aerosync.common.entity.PermitImport;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.PermitImportStatus;
+import vatm.aerosync.common.enums.SyncStatus;
 import vatm.aerosync.common.exception.BusinessRuleException;
 import vatm.aerosync.common.repository.PermitImportRepository;
 import vatm.aerosync.common.repository.SyncJobRepository;
@@ -17,10 +20,19 @@ import vatm.aerosync.worker.model.ProcessingContext;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.time.Duration;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PermitImportCoordinator {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PermitImportCoordinator.class);
+    private static final ZoneId AUDIT_ZONE = ZoneId.of("Asia/Ho_Chi_Minh");
+    private static final DateTimeFormatter AUDIT_TIME = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
     static final String LOCK_PREFIX = "aerosync:permit-lock:";
 
@@ -30,19 +42,22 @@ public class PermitImportCoordinator {
     private final AtfmScheduleGateway atfmScheduleGateway;
     private final AtfmDatabaseProperties properties;
     private final StringRedisTemplate redisTemplate;
+    private final AuditLogService auditLogService;
 
     public PermitImportCoordinator(PermitImportRepository permitImportRepository,
                                    SyncJobRepository syncJobRepository,
                                    PermitSemanticHasher semanticHasher,
                                    AtfmScheduleGateway atfmScheduleGateway,
                                    AtfmDatabaseProperties properties,
-                                   StringRedisTemplate redisTemplate) {
+                                   StringRedisTemplate redisTemplate,
+                                   AuditLogService auditLogService) {
         this.permitImportRepository = permitImportRepository;
         this.syncJobRepository = syncJobRepository;
         this.semanticHasher = semanticHasher;
         this.atfmScheduleGateway = atfmScheduleGateway;
         this.properties = properties;
         this.redisTemplate = redisTemplate;
+        this.auditLogService = auditLogService;
     }
 
     public PermitImportOutcome importPermit(ProcessingContext context) {
@@ -80,7 +95,7 @@ public class PermitImportCoordinator {
 
         try {
             if (permit.importRevision()) {
-                return importRevision(attempt, permit);
+                return importRevision(syncJobId, attempt, permit);
             }
 
             if (!properties.isWriteEnabled()) {
@@ -101,7 +116,7 @@ public class PermitImportCoordinator {
                             "BR-SUBJECT-CORRECTION-BASE-NOT-FOUND",
                             "Subject correction master not found: " + permit.atfmTargetPermitId());
                 }
-                return updateExistingPermit(attempt, permit, correctionTarget.get());
+                return updateExistingPermit(syncJobId, attempt, permit, correctionTarget.get());
             }
 
             if (!permit.revision() && !permit.implicitTableRevision()
@@ -116,7 +131,7 @@ public class PermitImportCoordinator {
                     permitImportRepository.save(attempt);
                     return outcome(attempt);
                 }
-                return insertPermit(attempt, permit);
+                return insertPermit(syncJobId, attempt, permit);
             }
 
             Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);
@@ -126,17 +141,10 @@ public class PermitImportCoordinator {
                     markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
                     return outcome(attempt);
                 }
-                return updateExistingPermit(attempt, permit, snapshot);
+                return updateExistingPermit(syncJobId, attempt, permit, snapshot);
             }
 
-            AtfmWriteResult result = atfmScheduleGateway.insert(permit);
-            attempt.setStatus(PermitImportStatus.SAVED);
-            attempt.setTargetMasterId(result.masterId());
-            attempt.setTargetPermId(result.permId());
-            attempt.setDetailCount(result.detailCount());
-            attempt.setErrorMessage(null);
-            permitImportRepository.save(attempt);
-            return outcome(attempt);
+            return insertPermit(syncJobId, attempt, permit);
         } catch (BusinessRuleException exception) {
             throw exception;
         } catch (RuntimeException exception) {
@@ -149,11 +157,14 @@ public class PermitImportCoordinator {
         }
     }
 
-    private PermitImportOutcome updateExistingPermit(PermitImport attempt, SchedulePermit permit) {
-        return updateExistingPermit(attempt, permit, null);
+    private PermitImportOutcome updateExistingPermit(Long syncJobId,
+                                                      PermitImport attempt,
+                                                      SchedulePermit permit) {
+        return updateExistingPermit(syncJobId, attempt, permit, null);
     }
 
-    private PermitImportOutcome updateExistingPermit(PermitImport attempt,
+    private PermitImportOutcome updateExistingPermit(Long syncJobId,
+                                                      PermitImport attempt,
                                                       SchedulePermit permit,
                                                       AtfmPermitSnapshot knownTarget) {
         if (!properties.isWriteEnabled()) {
@@ -194,7 +205,8 @@ public class PermitImportCoordinator {
             return outcome(attempt);
         }
 
-        AtfmWriteResult result = atfmScheduleGateway.update(permit);
+        AtfmWriteResult result = writeAtfm(syncJobId, permit, "UPDATE",
+                () -> atfmScheduleGateway.update(permit));
         if (result.detailCount() == 0) {
             markDuplicate(attempt, result.masterId(), result.permId(), permit.flights().size());
             return outcome(attempt);
@@ -209,7 +221,9 @@ public class PermitImportCoordinator {
     }
 
     /** Revision path after the parser has selected replacement/new rows. */
-    private PermitImportOutcome importRevision(PermitImport attempt, SchedulePermit permit) {
+    private PermitImportOutcome importRevision(Long syncJobId,
+                                                PermitImport attempt,
+                                                SchedulePermit permit) {
         if (!properties.isWriteEnabled()) {
             attempt.setStatus(PermitImportStatus.DRY_RUN);
             attempt.setDetailCount(permit.flights().size());
@@ -223,23 +237,26 @@ public class PermitImportCoordinator {
         if (!permit.seasonalPermit()) {
             // Sudden/non-scheduled revisions update the original NO permit.
             // Only seasonal revisions may create a separate R(n) permit.
-            return updateExistingPermit(attempt, permit);
+            return updateExistingPermit(syncJobId, attempt, permit);
         }
 
         Optional<AtfmPermitSnapshot> target = atfmScheduleGateway.findExisting(permit);
         if (target.isEmpty()) {
-            return insertPermit(attempt, permit);
+            return insertPermit(syncJobId, attempt, permit);
         }
         AtfmPermitSnapshot snapshot = target.get();
         if (snapshot.matchesExpectedPermit()) {
             markDuplicate(attempt, snapshot.masterId(), snapshot.permId(), permit.flights().size());
             return outcome(attempt);
         }
-        return updateExistingPermit(attempt, permit, snapshot);
+        return updateExistingPermit(syncJobId, attempt, permit, snapshot);
     }
 
-    private PermitImportOutcome insertPermit(PermitImport attempt, SchedulePermit permit) {
-        AtfmWriteResult result = atfmScheduleGateway.insert(permit);
+    private PermitImportOutcome insertPermit(Long syncJobId,
+                                             PermitImport attempt,
+                                             SchedulePermit permit) {
+        AtfmWriteResult result = writeAtfm(syncJobId, permit, "INSERT",
+                () -> atfmScheduleGateway.insert(permit));
         attempt.setStatus(PermitImportStatus.SAVED);
         attempt.setTargetMasterId(result.masterId());
         attempt.setTargetPermId(result.permId());
@@ -247,6 +264,96 @@ public class PermitImportCoordinator {
         attempt.setErrorMessage(null);
         permitImportRepository.save(attempt);
         return outcome(attempt);
+    }
+
+    /**
+     * Persists a best-effort audit record around each transaction that reaches
+     * the ATFM JDBC write gateway. The audit database is not authoritative for
+     * ATFM: an audit persistence failure must never turn a committed ATFM write
+     * into an application failure (or mask the original ATFM exception).
+     */
+    private AtfmWriteResult writeAtfm(Long syncJobId,
+                                      SchedulePermit permit,
+                                      String operation,
+                                      AtfmWriteAction action) {
+        OffsetDateTime startedAt = OffsetDateTime.now(AUDIT_ZONE);
+        String tables = storageTables(permit);
+        String input = "operation=" + operation
+                + "; permit=" + permit.atfmTargetPermitId()
+                + "; tables=" + tables
+                + "; startedAt=" + AUDIT_TIME.format(startedAt);
+        try {
+            AtfmWriteResult result = action.execute();
+            OffsetDateTime finishedAt = OffsetDateTime.now(AUDIT_ZONE);
+            long durationMs = durationMs(startedAt, finishedAt);
+            recordAtfmAudit(syncJobId, "ATFM_" + operation, input,
+                    "result=SUCCESS"
+                            + "; operation=" + operation
+                            + "; permit=" + permit.atfmTargetPermitId()
+                            + "; tables=" + tables
+                            + "; startedAt=" + AUDIT_TIME.format(startedAt)
+                            + "; finishedAt=" + AUDIT_TIME.format(finishedAt)
+                            + "; durationMs=" + durationMs
+                            + "; masterId=" + result.masterId()
+                            + "; permId=" + result.permId()
+                            + "; detailCount=" + result.detailCount(),
+                    SyncStatus.SUCCESS, durationMs);
+            return result;
+        } catch (RuntimeException exception) {
+            OffsetDateTime finishedAt = OffsetDateTime.now(AUDIT_ZONE);
+            long durationMs = durationMs(startedAt, finishedAt);
+            recordAtfmAudit(syncJobId, "ATFM_" + operation + "_FAILED", input,
+                    "result=FAILED"
+                            + "; operation=" + operation
+                            + "; permit=" + permit.atfmTargetPermitId()
+                            + "; tables=" + tables
+                            + "; startedAt=" + AUDIT_TIME.format(startedAt)
+                            + "; finishedAt=" + AUDIT_TIME.format(finishedAt)
+                            + "; durationMs=" + durationMs
+                            + "; errorType=" + exception.getClass().getName()
+                            + "; error=" + exceptionDetails(exception),
+                    SyncStatus.FAILED, durationMs);
+            throw exception;
+        }
+    }
+
+    @FunctionalInterface
+    private interface AtfmWriteAction {
+        AtfmWriteResult execute();
+    }
+
+    private void recordAtfmAudit(Long syncJobId,
+                                 String action,
+                                 String input,
+                                 String output,
+                                 SyncStatus status,
+                                 long durationMs) {
+        try {
+            auditLogService.record(syncJobId, action, input, output, status, durationMs);
+        } catch (RuntimeException auditException) {
+            LOGGER.error("ATFM audit persistence failed action={} syncJobId={} error={}",
+                    action, syncJobId, exceptionDetails(auditException), auditException);
+        }
+    }
+
+    private String storageTables(SchedulePermit permit) {
+        return permit.usesScheduledStorage()
+                ? "T_PERMMASTER_SC/T_PERMDETAIL_SC"
+                : "T_PERMMASTER_NO/T_PERMDETAIL_NO";
+    }
+
+    private long durationMs(OffsetDateTime startedAt, OffsetDateTime finishedAt) {
+        return Duration.between(startedAt.toInstant(), finishedAt.toInstant()).toMillis();
+    }
+
+    private String exceptionDetails(Throwable exception) {
+        List<String> messages = new ArrayList<>();
+        for (Throwable current = exception; current != null; current = current.getCause()) {
+            if (current.getMessage() != null && !messages.contains(current.getMessage())) {
+                messages.add(current.getMessage());
+            }
+        }
+        return messages.isEmpty() ? exception.getClass().getSimpleName() : String.join(" | ", messages);
     }
 
     private PermitImport reserve(SyncJob job, SchedulePermit permit, String semanticHash) {

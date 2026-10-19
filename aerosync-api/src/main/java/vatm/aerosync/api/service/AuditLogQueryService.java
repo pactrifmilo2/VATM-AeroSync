@@ -101,7 +101,8 @@ public class AuditLogQueryService {
     private AuditLogResponse toResponse(AuditLog log, Map<Long, FileSourceType> sourceTypes) {
         Long syncJobId = log.getSyncJob() != null ? log.getSyncJob().getId() : null;
         boolean incomingNotice = log.getAction() != null && log.getAction().startsWith("INCOMING_");
-        FileSourceType sourceType = incomingNotice ? FileSourceType.FILESYSTEM : sourceTypes.get(syncJobId);
+        FileSourceType sourceType = incomingNotice ? FileSourceType.FILESYSTEM
+                : syncJobId == null ? null : sourceTypes.get(syncJobId);
         return new AuditLogResponse(
                 log.getId(),
                 syncJobId,
@@ -110,7 +111,12 @@ public class AuditLogQueryService {
                 log.getTimestamp(),
                 log.getDurationMs(),
                 sourceType,
-                incomingNotice ? errorMessageTranslator.translate(log.getOutputSummary()) : null);
+                incomingNotice ? errorMessageTranslator.translate(log.getOutputSummary())
+                        : isAtfmWriteAudit(log) ? log.getOutputSummary() : null);
+    }
+
+    private boolean isAtfmWriteAudit(AuditLog log) {
+        return log.getAction() != null && log.getAction().startsWith("ATFM_");
     }
 
     private Map<Long, FileSourceType> resolveSourceTypes(List<AuditLog> logs) {

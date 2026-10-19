@@ -145,7 +145,13 @@ public sealed class AeroSyncApiClient
             ?? [];
         foreach (var log in logs)
         {
-            log.Message = VietnameseErrorMessage.FromServerMessage(log.Message);
+            // ATFM audit rows deliberately carry technical database evidence
+            // (timestamps, IDs and Oracle error chain); do not replace it with
+            // the generic UI error reference used for ordinary job messages.
+            if (!log.Action.StartsWith("ATFM_", StringComparison.OrdinalIgnoreCase))
+            {
+                log.Message = VietnameseErrorMessage.FromServerMessage(log.Message);
+            }
         }
         return logs;
     }

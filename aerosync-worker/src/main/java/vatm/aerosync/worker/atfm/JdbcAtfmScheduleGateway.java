@@ -1,5 +1,7 @@
 package vatm.aerosync.worker.atfm;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.worker.config.AtfmDatabaseProperties;
 import vatm.aerosync.worker.model.ScheduleFlight;
@@ -17,8 +19,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
@@ -36,6 +41,11 @@ import java.util.regex.Pattern;
 
 @Component
 public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JdbcAtfmScheduleGateway.class);
+    private static final ZoneId LOG_ZONE = ZoneId.of("Asia/Ho_Chi_Minh");
+    private static final java.time.format.DateTimeFormatter LOG_TIME =
+            java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
     private static final int NO_DAYSFLIGHT_MAX_BYTES = 200;
     static final String VIA_PREFIX = "Other permitted airways published in Viet Nams AIP/";
@@ -506,36 +516,89 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     @Override
     public AtfmWriteResult insert(SchedulePermit permit) {
-        try (Connection connection = openConnection()) {
-            connection.setAutoCommit(false);
-            try {
-                AtfmWriteResult result = insertWithinTransaction(connection, permit);
-                connection.commit();
-                return result;
-            } catch (SQLException | RuntimeException exception) {
-                rollback(connection, exception);
-                throw exception;
-            }
-        } catch (SQLException exception) {
-            throw databaseFailure(writeOperation("insert", permit), exception);
-        }
+        return executeWrite("insert", permit, this::insertWithinTransaction);
     }
 
     @Override
     public AtfmWriteResult update(SchedulePermit permit) {
+        return executeWrite("update", permit, this::updateWithinTransaction);
+    }
+
+    private AtfmWriteResult executeWrite(String action,
+                                         SchedulePermit permit,
+                                         AtfmTransaction transaction) {
+        OffsetDateTime startedAt = nowForLog();
+        String tables = storageTables(permit);
+        String operation = writeOperation(action, permit);
+        LOGGER.info("ATFM_DB_WRITE_START operation={} permit={} tables={} startedAt={}",
+                action, permit.atfmTargetPermitId(), tables, LOG_TIME.format(startedAt));
         try (Connection connection = openConnection()) {
             connection.setAutoCommit(false);
             try {
-                AtfmWriteResult result = updateWithinTransaction(connection, permit);
+                AtfmWriteResult result = transaction.execute(connection, permit);
                 connection.commit();
+                OffsetDateTime finishedAt = nowForLog();
+                LOGGER.info(
+                        "ATFM_DB_WRITE_SUCCESS operation={} permit={} tables={} startedAt={} finishedAt={} durationMs={} masterId={} permId={} detailCount={}",
+                        action, permit.atfmTargetPermitId(), tables, LOG_TIME.format(startedAt),
+                        LOG_TIME.format(finishedAt), durationMs(startedAt, finishedAt),
+                        result.masterId(), result.permId(), result.detailCount());
                 return result;
             } catch (SQLException | RuntimeException exception) {
                 rollback(connection, exception);
                 throw exception;
             }
         } catch (SQLException exception) {
-            throw databaseFailure(writeOperation("update", permit), exception);
+            IllegalStateException failure = databaseFailure(operation, exception);
+            logWriteFailure(action, permit, tables, startedAt, failure);
+            throw failure;
+        } catch (RuntimeException exception) {
+            logWriteFailure(action, permit, tables, startedAt, exception);
+            throw exception;
         }
+    }
+
+    @FunctionalInterface
+    private interface AtfmTransaction {
+        AtfmWriteResult execute(Connection connection, SchedulePermit permit) throws SQLException;
+    }
+
+    private void logWriteFailure(String action,
+                                 SchedulePermit permit,
+                                 String tables,
+                                 OffsetDateTime startedAt,
+                                 Throwable exception) {
+        OffsetDateTime finishedAt = nowForLog();
+        LOGGER.error(
+                "ATFM_DB_WRITE_FAILURE operation={} permit={} tables={} startedAt={} finishedAt={} durationMs={} errorType={} error={}",
+                action, permit.atfmTargetPermitId(), tables, LOG_TIME.format(startedAt),
+                LOG_TIME.format(finishedAt), durationMs(startedAt, finishedAt),
+                exception.getClass().getName(), exceptionDetails(exception), exception);
+    }
+
+    private OffsetDateTime nowForLog() {
+        return OffsetDateTime.now(LOG_ZONE);
+    }
+
+    private long durationMs(OffsetDateTime startedAt, OffsetDateTime finishedAt) {
+        return Duration.between(startedAt.toInstant(), finishedAt.toInstant()).toMillis();
+    }
+
+    private String exceptionDetails(Throwable exception) {
+        List<String> messages = new ArrayList<>();
+        for (Throwable current = exception; current != null; current = current.getCause()) {
+            if (current.getMessage() != null && !messages.contains(current.getMessage())) {
+                messages.add(current.getMessage());
+            }
+            if (current instanceof SQLException sqlException) {
+                for (SQLException next = sqlException.getNextException(); next != null; next = next.getNextException()) {
+                    if (next.getMessage() != null && !messages.contains(next.getMessage())) {
+                        messages.add(next.getMessage());
+                    }
+                }
+            }
+        }
+        return messages.isEmpty() ? exception.getClass().getSimpleName() : String.join(" | ", messages);
     }
 
     private AtfmWriteResult updateWithinTransaction(Connection connection,
@@ -1840,11 +1903,14 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         return value == null ? BigDecimal.ZERO : value.stripTrailingZeros();
     }
 
+    private String storageTables(SchedulePermit permit) {
+        return permit.usesScheduledStorage()
+                ? "T_PERMMASTER_SC/T_PERMDETAIL_SC"
+                : "T_PERMMASTER_NO/T_PERMDETAIL_NO";
+    }
+
     private String writeOperation(String action, SchedulePermit permit) {
-        String tables = permit.usesScheduledStorage()
-                ? "scheduled tables T_PERMMASTER_SC/T_PERMDETAIL_SC"
-                : "non-scheduled tables T_PERMMASTER_NO/T_PERMDETAIL_NO";
-        return "%s permit %s in %s".formatted(action, permit.atfmTargetPermitId(), tables);
+        return "%s permit %s in %s".formatted(action, permit.atfmTargetPermitId(), storageTables(permit));
     }
 
     private IllegalStateException databaseFailure(String operation, SQLException exception) {
