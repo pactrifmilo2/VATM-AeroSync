@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 public final class VietnameseStoredErrorMessage {
 
     private static final Pattern ORACLE_ERROR = Pattern.compile("(ORA-\\d+)", Pattern.CASE_INSENSITIVE);
+    private static final Pattern ORACLE_CONSTRAINT = Pattern.compile(
+            "(?i)unique constraint \\(([^)]+)\\) violated");
+    private static final Pattern CONSTRAINT_METADATA = Pattern.compile(
+            "(?i)Constraint metadata: owner=([^,]+), table=([^,]+), columns=(.+?)(?:\\.|$)");
     private static final Pattern ROW_NUMBER = Pattern.compile("(?i)(?:schedule )?row\\s+(\\d+)");
     private static final Pattern AIRCRAFT_NOT_FOUND_DETAIL = Pattern.compile(
             "(?i)(?:schedule )?row\\s+(\\d+):\\s*Aircraft type not found in ATFM dictionary"
@@ -25,6 +29,26 @@ public final class VietnameseStoredErrorMessage {
         }
         String value = message.trim();
         String lower = value.toLowerCase(Locale.ROOT);
+
+        Matcher oracle = ORACLE_ERROR.matcher(value);
+        if (oracle.find()) {
+            String oracleCode = oracle.group(1).toUpperCase(Locale.ROOT);
+            if ("ORA-00001".equals(oracleCode)) {
+                Matcher constraint = ORACLE_CONSTRAINT.matcher(value);
+                String constraintName = constraint.find() ? constraint.group(1) : "unknown";
+                Matcher metadata = CONSTRAINT_METADATA.matcher(value);
+                String constraintColumns = metadata.find()
+                        ? " B\u1ea3ng/c\u1ed9t: " + metadata.group(1) + "." + metadata.group(2)
+                                + " (" + metadata.group(3) + ")."
+                        : " Kh\u00f4ng tra \u0111\u01b0\u1ee3c b\u1ea3ng/c\u1ed9t constraint; g\u1eedi t\u00ean constraint cho DBA \u0111\u1ed1i chi\u1ebfu.";
+                return "ATFM t\u1eeb ch\u1ed1i ghi do vi ph\u1ea1m kh\u00f3a duy nh\u1ea5t (ORA-00001). "
+                        + "Constraint Oracle: " + constraintName + "." + constraintColumns + " "
+                        + "Ki\u1ec3m tra ph\u00e9p bay ho\u1eb7c d\u00f2ng l\u1ecbch c\u00f3 gi\u00e1 tr\u1ecb duy nh\u1ea5t b\u1ecb tr\u00f9ng. "
+                        + "Oracle kh\u00f4ng cung c\u1ea5p tr\u1ef1c ti\u1ebfp gi\u00e1 tr\u1ecb \u0111ang tr\u00f9ng. Chi ti\u1ebft Oracle: " + value;
+            }
+            return "ATFM t\u1eeb ch\u1ed1i ghi d\u1eef li\u1ec7u. M\u00e3 l\u1ed7i Oracle: "
+                    + oracleCode + ". Chi ti\u1ebft Oracle: " + value;
+        }
 
         if (lower.contains("br-route-document-unreadable")
                 || lower.contains("cannot read route from permit file")) {
@@ -169,11 +193,6 @@ public final class VietnameseStoredErrorMessage {
         }
         if (lower.startsWith("archive failed") || lower.contains("archive unavailable")) {
             return "Đã xử lý dữ liệu nhưng không thể chuyển file vào thư mục lưu trữ.";
-        }
-        Matcher oracle = ORACLE_ERROR.matcher(value);
-        if (oracle.find()) {
-            return "Không thể ghi dữ liệu vào ATFM. Mã lỗi Oracle: "
-                    + oracle.group(1).toUpperCase(Locale.ROOT) + ".";
         }
         if (lower.contains("duplicate") || lower.contains("already exists")) {
             return "Dữ liệu đã tồn tại nên file được bỏ qua để tránh nhập trùng.";

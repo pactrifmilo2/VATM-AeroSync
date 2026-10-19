@@ -64,4 +64,27 @@ class VietnameseErrorMessageTranslatorTest {
         assertThat(translator.translate("Aircraft mapping is required"))
                 .isEqualTo("Không ánh xạ được loại tàu bay với dữ liệu ATFM.");
     }
+    @Test
+    void preservesDetailedAtfmUniqueConstraintMessageForOperators() {
+        String message = "ATFM t\u1eeb ch\u1ed1i ghi do tr\u00f9ng kh\u00f3a duy nh\u1ea5t (ORA-00001). "
+                + "Constraint Oracle: ATFM.UK_PERMDETAIL_SC_FLIGHT. "
+                + "Chi ti\u1ebft Oracle: ORA-00001: unique constraint "
+                + "(ATFM.UK_PERMDETAIL_SC_FLIGHT) violated";
+
+        assertThat(translator.translate(message))
+                .isEqualTo(message)
+                .contains("ATFM.UK_PERMDETAIL_SC_FLIGHT")
+                .contains("ORA-00001");
+    }
+
+    @Test
+    void clarifiesLegacyOracleUniqueConstraintMessage() {
+        assertThat(translator.translate(
+                "Failed to insert scheduled permit in ATFM: ORA-00001: unique constraint "
+                        + "(ATFM.UK_PERMMASTER_SC) violated"))
+                .contains("tr\u00f9ng kh\u00f3a duy nh\u1ea5t")
+                .contains("ORA-00001")
+                .contains("ATFM.UK_PERMMASTER_SC");
+    }
+
 }

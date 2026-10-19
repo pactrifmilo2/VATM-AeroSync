@@ -40,4 +40,39 @@ class VietnameseStoredErrorMessageTest {
                 "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file"))
                 .isEqualTo("Kh\u00f4ng \u0111\u1ecdc \u0111\u01b0\u1ee3c \u0111\u01b0\u1eddng bay trong file");
     }
+    @Test
+    void explainsOracleUniqueConstraintViolationsWithConstraintAndOriginalDetail() {
+        String translated = VietnameseStoredErrorMessage.translate(
+                "Failed to insert permit O/F 05199/S/CHK/2026 in scheduled tables "
+                        + "T_PERMMASTER_SC/T_PERMDETAIL_SC in ATFM: ORA-00001: unique constraint "
+                        + "(ATFM.UK_PERMDETAIL_SC_FLIGHT) violated. "
+                        + "Constraint metadata: owner=ATFM, table=T_PERMDETAIL_SC, columns=FLIGHTNBR, BEGINDATE");
+
+        assertThat(translated)
+                .contains("vi ph\u1ea1m kh\u00f3a duy nh\u1ea5t")
+                .contains("ATFM.UK_PERMDETAIL_SC_FLIGHT")
+                .contains("ORA-00001")
+                .contains("unique constraint")
+                .contains("Oracle kh\u00f4ng cung c\u1ea5p tr\u1ef1c ti\u1ebfp")
+                .contains("T_PERMDETAIL_SC")
+                .contains("FLIGHTNBR, BEGINDATE");
+
+        assertThat(VietnameseStoredErrorMessage.translate(
+                "ORA-00001: unique constraint (ATFM.UK_AIRPORT_PERMIT) violated"))
+                .contains("vi ph\u1ea1m kh\u00f3a duy nh\u1ea5t")
+                .contains("ATFM.UK_AIRPORT_PERMIT");
+    }
+
+    @Test
+    void keepsDetailedOracleMessageForOtherDatabaseErrors() {
+        String translated = VietnameseStoredErrorMessage.translate(
+                "Failed to update permit in ATFM: ORA-01400: cannot insert NULL into "
+                        + "(ATFM.T_PERMMASTER_SC.OPER_ID)");
+
+        assertThat(translated)
+                .contains("M\u00e3 l\u1ed7i Oracle: ORA-01400")
+                .contains("Chi ti\u1ebft Oracle")
+                .contains("OPER_ID");
+    }
+
 }

@@ -316,11 +316,27 @@ public class VietnameseErrorMessageTranslator {
             return "BR-ATFM-REFERENCE: Có nhiều ánh xạ sân bay trong M_AERO, không thể tự chọn: "
                     + value.substring("BR-ATFM-REFERENCE: Ambiguous M_AERO airport mapping".length()).trim() + ".";
         }
-        if (lower.startsWith("failed to insert scheduled permit in atfm:")) {
-            String oracleCode = value.contains("ORA-")
+        if (lower.startsWith("failed to insert scheduled permit in atfm:")
+                || lower.startsWith("failed to insert permit ")
+                || lower.startsWith("failed to update permit ")
+                || lower.startsWith("atfm t\u1eeb ch\u1ed1i ghi")) {
+            String oracleDetail = value.contains("ORA-")
                     ? value.substring(value.indexOf("ORA-")).replaceAll("(?s)https://docs\\.oracle\\.com/.*", "").trim()
                     : "";
-            return "Không thể ghi giấy phép bay vào ATFM. Lỗi Oracle: " + oracleCode;
+            if (oracleDetail.toUpperCase(Locale.ROOT).startsWith("ORA-00001")
+                    || lower.contains("ora-00001")) {
+                if (lower.startsWith("atfm ")) {
+                    return value;
+                }
+                return "ATFM t\u1eeb ch\u1ed1i ghi do tr\u00f9ng kh\u00f3a duy nh\u1ea5t (ORA-00001). "
+                        + "H\u00e3y ki\u1ec3m tra ph\u00e9p bay, c\u00e1c d\u00f2ng l\u1ecbch v\u00e0 constraint Oracle trong chi ti\u1ebft. "
+                        + "Chi ti\u1ebft Oracle: " + oracleDetail;
+            }
+            if (lower.startsWith("atfm ") && !oracleDetail.isBlank()) {
+                return value;
+            }
+            return "ATFM t\u1eeb ch\u1ed1i ghi d\u1eef li\u1ec7u. M\u00e3 l\u1ed7i Oracle: " + oracleDetail
+                    + (oracleDetail.isBlank() ? "" : ". Chi ti\u1ebft Oracle: " + oracleDetail);
         }
         if (lower.equals("lettuceconnectionfactory is stopping")) {
             return "Kết nối Redis đang dừng; vui lòng thử lại sau khi dịch vụ khởi động xong.";

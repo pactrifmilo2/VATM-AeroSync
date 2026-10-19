@@ -39,6 +39,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
 
     private static final int NO_DAYSFLIGHT_MAX_BYTES = 200;
     static final String VIA_PREFIX = "Other permitted airways published in Viet Nams AIP/";
+    private static final java.util.regex.Pattern ORACLE_UNIQUE_CONSTRAINT = java.util.regex.Pattern.compile(
+            "(?i)ORA-00001[^\\r\\n]*?unique constraint \\(([^)]+)\\) violated");
 
     private static final String FIND_SC_PERMIT_IDS_BY_YEAR_SQL = """
             SELECT PERMNBR_ID FROM T_PERMMASTER_SC
@@ -515,7 +517,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 throw exception;
             }
         } catch (SQLException exception) {
-            throw databaseFailure("insert scheduled permit", exception);
+            throw databaseFailure(writeOperation("insert", permit), exception);
         }
     }
 
@@ -532,7 +534,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 throw exception;
             }
         } catch (SQLException exception) {
-            throw databaseFailure("update scheduled permit", exception);
+            throw databaseFailure(writeOperation("update", permit), exception);
         }
     }
 
@@ -1838,8 +1840,79 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         return value == null ? BigDecimal.ZERO : value.stripTrailingZeros();
     }
 
+    private String writeOperation(String action, SchedulePermit permit) {
+        String tables = permit.usesScheduledStorage()
+                ? "scheduled tables T_PERMMASTER_SC/T_PERMDETAIL_SC"
+                : "non-scheduled tables T_PERMMASTER_NO/T_PERMDETAIL_NO";
+        return "%s permit %s in %s".formatted(action, permit.atfmTargetPermitId(), tables);
+    }
+
     private IllegalStateException databaseFailure(String operation, SQLException exception) {
-        return new IllegalStateException("Failed to " + operation + " in ATFM: " + exception.getMessage(), exception);
+        String oracleMessage = sqlExceptionDetails(exception);
+        String error = "Failed to " + operation + " in ATFM: " + oracleMessage;
+        String constraintDetails = describeUniqueConstraint(oracleMessage);
+        if (constraintDetails != null) {
+            error += ". Constraint metadata: " + constraintDetails;
+        }
+        return new IllegalStateException(error, exception);
+    }
+
+    private String sqlExceptionDetails(SQLException exception) {
+        List<String> messages = new ArrayList<>();
+        for (SQLException current = exception; current != null; current = current.getNextException()) {
+            if (current.getMessage() != null && !messages.contains(current.getMessage())) {
+                messages.add(current.getMessage());
+            }
+        }
+        return messages.isEmpty() ? exception.getClass().getSimpleName() : String.join(" | ", messages);
+    }
+
+    private String describeUniqueConstraint(String oracleMessage) {
+        if (oracleMessage == null) {
+            return null;
+        }
+        java.util.regex.Matcher matcher = ORACLE_UNIQUE_CONSTRAINT.matcher(oracleMessage);
+        if (!matcher.find()) {
+            return null;
+        }
+
+        String[] parts = matcher.group(1).split("\\.", 2);
+        String owner = parts.length == 2 ? parts[0].replace("\"", "") : null;
+        String constraint = parts.length == 2 ? parts[1].replace("\"", "") : parts[0];
+        String sql = """
+                SELECT c.owner, c.table_name, cc.column_name
+                  FROM ALL_CONSTRAINTS c
+                  JOIN ALL_CONS_COLUMNS cc
+                    ON cc.owner = c.owner AND cc.constraint_name = c.constraint_name
+                 WHERE c.constraint_name = ?
+                   AND (? IS NULL OR c.owner = ?)
+                   AND c.constraint_type IN ('P', 'U')
+                 ORDER BY cc.position
+                """;
+        try (Connection connection = openConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, constraint);
+            statement.setString(2, owner);
+            statement.setString(3, owner);
+            List<String> columns = new ArrayList<>();
+            Set<String> tables = new HashSet<>();
+            Set<String> owners = new HashSet<>();
+            try (ResultSet rows = statement.executeQuery()) {
+                while (rows.next()) {
+                    owners.add(rows.getString("OWNER"));
+                    tables.add(rows.getString("TABLE_NAME"));
+                    columns.add(rows.getString("COLUMN_NAME"));
+                }
+            }
+            if (tables.size() != 1 || owners.size() != 1 || columns.isEmpty()) {
+                return null;
+            }
+            return "owner=" + owners.iterator().next()
+                    + ", table=" + tables.iterator().next()
+                    + ", columns=" + String.join(", ", columns);
+        } catch (SQLException | RuntimeException metadataFailure) {
+            return null;
+        }
     }
 
     private record ExistingFlight(

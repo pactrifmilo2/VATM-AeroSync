@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -932,4 +933,41 @@ class JdbcAtfmScheduleGatewayTest {
                 "WMKK", "VHHH", etd, null, "M765/M771",
                 LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 27), "CAR 76X/32X");
     }
+    @Test
+    void databaseFailureAddsUniqueConstraintTableAndColumnsFromMetadata() throws Exception {
+        AtfmDatabaseProperties properties = new AtfmDatabaseProperties();
+        properties.setUrl("jdbc:h2:mem:atfm-ora-error-" + System.nanoTime()
+                + ";MODE=Oracle;DB_CLOSE_DELAY=-1");
+        properties.setUsername("sa");
+        properties.setPassword("");
+        try (Connection connection = DriverManager.getConnection(properties.getUrl(), "sa", "")) {
+            var statement = connection.createStatement();
+            statement.execute("CREATE TABLE ALL_CONSTRAINTS (OWNER VARCHAR(30), CONSTRAINT_NAME VARCHAR(128), "
+                    + "TABLE_NAME VARCHAR(128), CONSTRAINT_TYPE VARCHAR(1))");
+            statement.execute("CREATE TABLE ALL_CONS_COLUMNS (OWNER VARCHAR(30), CONSTRAINT_NAME VARCHAR(128), "
+                    + "COLUMN_NAME VARCHAR(128), POSITION NUMBER)");
+            statement.execute("INSERT INTO ALL_CONSTRAINTS VALUES "
+                    + "('ATFM', 'UK_TEST_FLIGHT', 'T_PERMDETAIL_SC', 'U')");
+            statement.execute("INSERT INTO ALL_CONS_COLUMNS VALUES "
+                    + "('ATFM', 'UK_TEST_FLIGHT', 'FLIGHTNBR', 1)");
+            statement.execute("INSERT INTO ALL_CONS_COLUMNS VALUES "
+                    + "('ATFM', 'UK_TEST_FLIGHT', 'BEGINDATE', 2)");
+        }
+
+        SQLException batchFailure = new SQLException("Batch update failed");
+        batchFailure.setNextException(new SQLException(
+                "ORA-00001: unique constraint (ATFM.UK_TEST_FLIGHT) violated"));
+        JdbcAtfmScheduleGateway gateway = new JdbcAtfmScheduleGateway(
+                properties, new AtfmAirportCodeResolver());
+        var method = JdbcAtfmScheduleGateway.class.getDeclaredMethod(
+                "databaseFailure", String.class, SQLException.class);
+        method.setAccessible(true);
+        var failure = (IllegalStateException) method.invoke(gateway, "insert permit LD-1", batchFailure);
+
+        assertThat(failure.getMessage())
+                .contains("Batch update failed")
+                .contains("ORA-00001")
+                .contains("Constraint metadata: owner=ATFM, table=T_PERMDETAIL_SC, columns=FLIGHTNBR, BEGINDATE");
+    }
+
 }
