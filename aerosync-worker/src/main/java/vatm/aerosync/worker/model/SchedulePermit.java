@@ -32,6 +32,7 @@ public record SchedulePermit(
     public static final String EXISTING_SC_REVISION = "EXISTING_SC_REVISION";
     public static final String SUBJECT_CORRECTION = "SUBJECT_CORRECTION";
     public static final String MULTI_DAY_NO_REVISION = "MULTI_DAY_NO_REVISION";
+    public static final String CANCEL_SEASONAL_PERMIT = "CANCEL_SEASONAL_PERMIT";
     private static final Pattern REVISION_MARKER = Pattern.compile(
             "(?iu)(?:\\bREV(?:ISION)?\\s*\\d*\\b|\\bRVS\\s*\\d*\\b|"
                     + "SỬA\\s*ĐỔI|SUA\\s*DOI|LỊCH\\s*BAY\\s*GỐC|LICH\\s*BAY\\s*GOC|"
@@ -136,8 +137,13 @@ public record SchedulePermit(
     }
 
     public boolean cancellationRevision() {
-        return seasonalPermit() && SCHEDULE_CANCELLATION.matcher(
-                rawContent == null ? "" : rawContent).find();
+        return seasonalPermit() && (cancellationOnlyNotice()
+                || SCHEDULE_CANCELLATION.matcher(
+                        rawContent == null ? "" : rawContent).find());
+    }
+
+    public boolean cancellationOnlyNotice() {
+        return CANCEL_SEASONAL_PERMIT.equalsIgnoreCase(workflow);
     }
 
     private boolean hasRevisionToken() {

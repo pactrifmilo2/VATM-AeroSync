@@ -1,0 +1,47 @@
+id: cnk-caav-landing-issued
+extends: caav-generic-landing-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*CNK\b'
+  - '(?iu)(?:SUNWEST\s+AVIATION|SCHEDULES?)'
+operator:
+  fixedValue: CNK
+purpose:
+  defaultId: PAX
+  mappings:
+    - pattern: '(?iu)\b(?:MEDICAL|MEDEVAC|AMBULANCE)\b'
+      value: MED
+    - pattern: '(?iu)\bFERR?Y\b'
+      value: FER
+    - pattern: '(?iu)\bCARGO\b|\bFREIGHTER\b'
+      value: CAR
+    - pattern: '(?iu)\bPASSENGER\b|\bPAX\b'
+      value: PAX
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  dateFormats: [dMMMyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  inferIataPrefix: false
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (ICAO code)]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+  defaultType: null
+validation:
+  allowIataAirports: true
+  reviewOnly: true

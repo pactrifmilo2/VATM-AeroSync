@@ -110,6 +110,16 @@ public class RevisionReconciliationStep {
             List<ScheduleFlight> baseline = baselinePermit == null
                     ? List.of()
                     : baselinePermit.flights();
+            if (permit.cancellationOnlyNotice() && baseline.isEmpty()) {
+                throw new BusinessRuleException(
+                        "BR-CANCELLATION-BASE-NOT-FOUND",
+                        "Cannot cancel seasonal permit without an ATFM baseline: "
+                                + permit.revisionBasePermitId());
+            }
+            if (permit.cancellationOnlyNotice() && permit.originalFlights().isEmpty()) {
+                permit = permit.withFlightsAndOriginals(permit.flights(), baseline);
+                context.setSchedulePermit(permit);
+            }
             String inheritedOperator = baselinePermit == null ? null : baselinePermit.operatorId();
             if ((permit.operatorId() == null || "PRV".equalsIgnoreCase(permit.operatorId()))
                     && inheritedOperator != null && inheritedOperator.matches("(?i)[A-Z0-9]{3}")) {

@@ -1,0 +1,22 @@
+id: aiq-caav-seasonal-landing-cancellation-notice
+extends: airline-generic-seasonal-landing-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*FD\b|ICAO\s*(?:CODE)?\s*:\s*AIQ\b|THAI\s+AIRASIA)'
+  - '(?iu)THE\s+CAAV\s+CONFIRMS\s+CANCELLATION'
+  - '(?iu)\bCANCELLED\b'
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}[A-Z]{3,9}20\d{2})'
+  group: date
+  formats: [dMMMuuuu, dMMMMuuuu]
+  locale: en
+operator:
+  fixedValue: AIQ
+schedule:
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+validation:
+  reviewOnly: true
+master:
+  workflow: CANCEL_SEASONAL_PERMIT

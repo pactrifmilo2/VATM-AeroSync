@@ -79,7 +79,7 @@ public class BusinessRuleValidatorStep {
                     "Permit type and flight type are required",
                     permit.permitType() + "/" + permit.flightType()));
         }
-        if (permit.flights().isEmpty()) {
+        if (permit.flights().isEmpty() && !permit.cancellationOnlyNotice()) {
             errors.add(error(0, "flights", "BR-SCHEDULE-EMPTY", "At least one schedule row is required", null));
         }
         for (int index = 0; index < permit.flights().size(); index++) {
@@ -116,7 +116,7 @@ public class BusinessRuleValidatorStep {
                     "Departure and arrival airports must differ",
                     flight.fromAirport() + " -> " + flight.toAirport()));
         }
-        if (flight.etd() == null || !TIME_PATTERN.matcher(flight.etd()).matches()) {
+        if (flight.etd() == null || !TIME_PATTERN.matcher(flight.etd().replace("+", "")).matches()) {
             errors.add(error(rowNumber, "etd", "BR-ETD", "Invalid UTC ETD", flight.etd()));
         }
         if (flight.eta() != null && !TIME_PATTERN.matcher(flight.eta().replace("+", "")).matches()) {

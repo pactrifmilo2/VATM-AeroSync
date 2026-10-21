@@ -1,11 +1,11 @@
 id: cbj-english-overflight-issued
 extends: caav-generic-overflight-issued
-priority: 280
+priority: 220
 detectionPatterns:
-  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*S\s*/\s*20\d{2}VN'
+  - '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CBJ\b|BEIJING\s+CAPITAL\s+AIRLINES)'
 permit:
-  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>S)\s*/\s*(?<year>20\d{2})VN\b'
+  pattern: '(?iu)\b(?:OF|O\s*/\s*F)\s*-?\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
   normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
@@ -15,7 +15,7 @@ permitDate:
   source: RAW
   pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>\d{1,2}(?:st|nd|rd|th)?\s+[A-Z]{3,9}\s+20\d{2}|\d{1,2}/\d{1,2}/20\d{2})'
   group: date
-  formats: [d MMMM uuuu, d MMM uuuu, d/M/uuuu]
+  formats: ["d MMMM uuuu", "d MMM uuuu", d/M/uuuu]
   locale: en
 operator:
   fixedValue: CBJ
@@ -30,24 +30,26 @@ schedule:
     toAirport: [Arrival Airport]
     eta: [EIBT, ETA]
   requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
-  dateFormats: [dMMMyy, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en
-  purposeId: CAR
+  purposeId: PAX
   includeEta: true
 route:
   columns:
-    sector: [Sector]
-    airways: [Airways]
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
   requiredColumns: [sector, airways]
   tableRequired: false
   allowEmpty: true
+  filterSchedule: false
 aircraft:
   auxiliaryColumns:
     aircraftType: [Aircraft Type, Aircraft Type (ICAO code)]
-    registrationMarks: [Aircraft registration mark, Registration Mark]
-  auxiliaryRequiredColumns: []
+    registrationMarks: [Aircraft registration mark, Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
   defaultType: A330
 validation:
-  reviewOnly: false
+  reviewOnly: true
   allowIataAirports: false

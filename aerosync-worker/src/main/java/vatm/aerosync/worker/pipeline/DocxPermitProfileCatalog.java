@@ -175,8 +175,10 @@ class DocxPermitProfileCatalog {
             throw invalid(profile, "master defaults are required");
         }
         if (!blank(profile.master().workflow())
-                && !vatm.aerosync.worker.model.SchedulePermit.REFERENCED_SEASON_NEW_SC
-                        .equalsIgnoreCase(profile.master().workflow())) {
+                && !(vatm.aerosync.worker.model.SchedulePermit.REFERENCED_SEASON_NEW_SC
+                                .equalsIgnoreCase(profile.master().workflow())
+                        || vatm.aerosync.worker.model.SchedulePermit.CANCEL_SEASONAL_PERMIT
+                                .equalsIgnoreCase(profile.master().workflow()))) {
             throw invalid(profile, "unknown master workflow: " + profile.master().workflow());
         }
         if (profile.schedule() == null

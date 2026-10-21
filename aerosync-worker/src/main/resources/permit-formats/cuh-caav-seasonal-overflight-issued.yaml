@@ -1,0 +1,39 @@
+id: cuh-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CUH\b|IATA\s*(?:CODE)?\s*:\s*UQ\b|URUMQI\s+AIRLINES)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: CUH
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?<date>\d{1,2}(?:ST|ND|RD|TH)?\s+[A-Z]{3,9}\s+20\d{2})'
+  group: date
+  formats: [d MMM uuuu, d MMMM uuuu]
+  locale: en
+schedule:
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (ICAO code)]
+    registrationMarks: [Aircraft registration mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: null
+purpose:
+  defaultId: PAX
+validation:
+  reviewOnly: true

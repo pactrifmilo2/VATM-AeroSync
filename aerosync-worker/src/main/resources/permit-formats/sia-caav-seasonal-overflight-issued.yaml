@@ -1,0 +1,51 @@
+id: sia-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*SIA\b|IATA\s*(?:CODE)?\s*:\s*SQ\b|SINGAPORE\s+AIRLINES)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: SIA
+permitDate:
+  source: RAW
+  pattern: '(?iu)(?:HANOI|HA\s+NOI)\s*,?\s*(?<date>[A-Z]+\s+\d{1,2},\s*20\d{2})'
+  group: date
+  formats: ["MMMM d, uuuu", "MMMM dd, uuuu"]
+  locale: en
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number, Flt number]
+    effectiveFrom: [Effective from, Eff from]
+    effectiveTo: [Effective to, Eff to]
+    serviceDays: [Days of services, Day(s) of services]
+    fromAirport: [Departure Airport, Dep airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport, Arr airport]
+    eta: [ETA, EIBT]
+    aircraftType: [Aircraft Type, Aircraft Type (IATA code)]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (IATA code)]
+    registrationMarks: [Aircraft registration mark, Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: null
+validation:
+  allowIataAirports: false
+  reviewOnly: true

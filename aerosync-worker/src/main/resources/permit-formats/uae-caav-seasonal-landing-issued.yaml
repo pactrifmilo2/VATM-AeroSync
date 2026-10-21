@@ -1,0 +1,36 @@
+id: uae-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*UAE\b|IATA\s*(?:CODE)?\s*:\s*EK\b|EMIRATES\s+AIRLINE)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: UAE
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+    aircraftType: [Aircraft Type, Aircraft type]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type]
+    registrationMarks: [Aircraft registration mark, Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: null
+validation:
+  allowIataAirports: true
+  reviewOnly: true

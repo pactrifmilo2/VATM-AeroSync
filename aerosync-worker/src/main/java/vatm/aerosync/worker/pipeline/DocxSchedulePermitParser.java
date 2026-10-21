@@ -283,6 +283,8 @@ public class DocxSchedulePermitParser {
                 profile.billingAddress(), document, fileName, "billing address");
 
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
+        boolean cancellationOnly = SchedulePermit.CANCEL_SEASONAL_PERMIT
+                .equalsIgnoreCase(profile.master().workflow());
         List<List<List<String>>> scheduleTables = selectScheduleTables(schedule, document);
         List<List<List<String>>> originalScheduleTables = selectOriginalScheduleTables(schedule, document);
         if (scheduleTables.isEmpty()) {
@@ -296,7 +298,8 @@ public class DocxSchedulePermitParser {
                         inlineScheduleSection(document.paragraphText(), schedule, true));
             }
         }
-        if (scheduleTables.isEmpty() || scheduleTables.getFirst().size() < 2) {
+        if ((scheduleTables.isEmpty() || scheduleTables.getFirst().size() < 2)
+                && !cancellationOnly) {
             throw invalid(fileName, missingScheduleFields(profile, document));
         }
         String iataCode = extractIataPrefix(document.rawContent());
@@ -402,7 +405,7 @@ public class DocxSchedulePermitParser {
                         document.rawContent(), resolvedOperatorId, iataPrefix,
                         normalizeAirportsToIcao, true, fileName, noReplacement).stream())
                 .toList();
-        if (flights.isEmpty()) {
+        if (flights.isEmpty() && !cancellationOnly) {
             throw invalid(fileName, "No schedule rows found for profile " + profile.id());
         }
 
