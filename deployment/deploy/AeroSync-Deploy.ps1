@@ -277,6 +277,44 @@ function Stop-AeroSyncServices {
     }
 }
 
+function Stop-AeroSyncUi {
+    $processes = @(Get-Process -Name "AeroSync.UI" -ErrorAction SilentlyContinue)
+    foreach ($process in $processes) {
+        Write-Host ("[..] AeroSync UI         Dang dong (PID: {0})" -f $process.Id) -ForegroundColor Yellow
+        try {
+            $null = $process.CloseMainWindow()
+            if (-not $process.WaitForExit(10000)) {
+                Stop-Process -Id $process.Id -Force -ErrorAction Stop
+                $process.WaitForExit(10000)
+            }
+        } catch {
+            throw "Khong the dong AeroSync UI PID $($process.Id): $($_.Exception.Message)"
+        }
+    }
+
+    $mui = Join-Path $InstallRoot "ui\en-us\Microsoft.ui.xaml.dll.mui"
+    if (-not (Test-Path -LiteralPath $mui -PathType Leaf)) {
+        return
+    }
+    $deadline = (Get-Date).AddSeconds(10)
+    do {
+        $stream = $null
+        try {
+            $stream = [IO.File]::Open(
+                $mui,
+                [IO.FileMode]::Open,
+                [IO.FileAccess]::ReadWrite,
+                [IO.FileShare]::None)
+            return
+        } catch {
+            Start-Sleep -Milliseconds 250
+        } finally {
+            if ($stream) { $stream.Dispose() }
+        }
+    } while ((Get-Date) -lt $deadline)
+    throw "UI van dang khoa file $mui sau khi dong AeroSync.UI."
+}
+
 function Start-AeroSyncServices {
     foreach ($name in $serviceOrder) {
         $service = Get-Service -Name $name -ErrorAction Stop
@@ -662,6 +700,9 @@ try {
     Test-ServerPortAvailable
 
     Invoke-RuntimeConfigMigration -EnvironmentFile (Join-Path $InstallRoot "config\.env")
+
+    Write-Step "Dong AeroSync UI"
+    Stop-AeroSyncUi
 
     Write-Step "Dung cac service AeroSync"
     Stop-AeroSyncServices
