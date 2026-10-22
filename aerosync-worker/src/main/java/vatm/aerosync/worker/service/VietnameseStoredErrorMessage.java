@@ -31,15 +31,16 @@ public final class VietnameseStoredErrorMessage {
         if (message == null || message.getBytes(StandardCharsets.UTF_8).length <= ERROR_MESSAGE_MAX_BYTES) {
             return message;
         }
-        final String marker = "?";
+        final String marker = "\u2026";
         int byteBudget = ERROR_MESSAGE_MAX_BYTES - marker.getBytes(StandardCharsets.UTF_8).length;
         StringBuilder result = new StringBuilder(message.length());
         int bytes = 0;
         for (int offset = 0; offset < message.length();) {
             int codePoint = message.codePointAt(offset);
             int charCount = Character.charCount(codePoint);
-            int codePointBytes = message.substring(offset, offset + charCount)
-                    .getBytes(StandardCharsets.UTF_8).length;
+            int codePointBytes = codePoint <= 0x7F ? 1
+                    : codePoint <= 0x7FF ? 2
+                    : codePoint <= 0xFFFF ? 3 : 4;
             if (bytes + codePointBytes > byteBudget) {
                 break;
             }

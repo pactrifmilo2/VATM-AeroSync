@@ -29,6 +29,29 @@ class VietnameseStoredErrorMessageTest {
     }
 
     @Test
+    void truncatesLongVietnameseMessagesToOracleByteLimitWithoutReplacementCharacters() {
+        String input = "l\u1ed7i ".repeat(700);
+
+        String stored = VietnameseStoredErrorMessage.fitErrorMessageColumn(input);
+
+        assertThat(stored.getBytes(java.nio.charset.StandardCharsets.UTF_8))
+                .hasSizeLessThanOrEqualTo(2000);
+        assertThat(stored).endsWith("\u2026");
+        assertThat(stored).doesNotContain("\uFFFD");
+    }
+
+    @Test
+    void truncatesLongVietnameseErrorToOracleUtf8ByteLimit() {
+        String value = "l\u1ed7i ".repeat(700);
+
+        String fitted = VietnameseStoredErrorMessage.fitErrorMessageColumn(value);
+
+        assertThat(fitted.getBytes(java.nio.charset.StandardCharsets.UTF_8))
+                .hasSizeLessThanOrEqualTo(2000);
+        assertThat(fitted).endsWith("\u2026").doesNotContain("\uFFFD");
+    }
+
+    @Test
     void keepsRowAndLookupValuesForAircraftAndRouteErrors() {
         assertThat(VietnameseStoredErrorMessage.translate(
                 "Schedule row 2: Aircraft type not found in ATFM dictionary: B799 (tried: B799) (1 aircraft resolution errors)"))

@@ -25,7 +25,7 @@ class StoredErrorMessageLocalizationMigrationTest {
         FileRecordRepository fileRecords = mock(FileRecordRepository.class);
         PermitImportRepository permitImports = mock(PermitImportRepository.class);
         FileRecord fileRecord = new FileRecord();
-        fileRecord.setErrorMessage("ORA-12899: " + "l?i ".repeat(500));
+        fileRecord.setErrorMessage("ORA-12899: " + "l\u1ed7i ".repeat(500));
         when(fileRecords.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(fileRecord)));
         when(permitImports.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of()));
 
@@ -34,7 +34,7 @@ class StoredErrorMessageLocalizationMigrationTest {
 
         assertThat(fileRecord.getErrorMessage().getBytes(java.nio.charset.StandardCharsets.UTF_8))
                 .hasSizeLessThanOrEqualTo(2000);
-        assertThat(fileRecord.getErrorMessage()).endsWith("?");
+        assertThat(fileRecord.getErrorMessage()).endsWith("\u2026");
         verify(fileRecords).saveAll(List.of(fileRecord));
     }
 
