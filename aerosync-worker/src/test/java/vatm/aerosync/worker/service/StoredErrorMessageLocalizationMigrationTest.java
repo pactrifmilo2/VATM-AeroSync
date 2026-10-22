@@ -19,6 +19,25 @@ import static org.mockito.Mockito.when;
 
 class StoredErrorMessageLocalizationMigrationTest {
 
+
+    @Test
+    void localizesAndTruncatesTranslatedErrorMessageToOracleByteLimit() throws Exception {
+        FileRecordRepository fileRecords = mock(FileRecordRepository.class);
+        PermitImportRepository permitImports = mock(PermitImportRepository.class);
+        FileRecord fileRecord = new FileRecord();
+        fileRecord.setErrorMessage("ORA-12899: " + "l?i ".repeat(500));
+        when(fileRecords.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(fileRecord)));
+        when(permitImports.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of()));
+
+        new StoredErrorMessageLocalizationMigration(fileRecords, permitImports)
+                .run(new DefaultApplicationArguments(new String[0]));
+
+        assertThat(fileRecord.getErrorMessage().getBytes(java.nio.charset.StandardCharsets.UTF_8))
+                .hasSizeLessThanOrEqualTo(2000);
+        assertThat(fileRecord.getErrorMessage()).endsWith("?");
+        verify(fileRecords).saveAll(List.of(fileRecord));
+    }
+
     @Test
     void convertsLegacyEnglishErrorMessageValues() throws Exception {
         FileRecordRepository fileRecords = mock(FileRecordRepository.class);

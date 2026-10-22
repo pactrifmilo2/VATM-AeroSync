@@ -1,5 +1,6 @@
 package vatm.aerosync.worker.service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,33 @@ public final class VietnameseStoredErrorMessage {
     private static final Pattern ROUTE_NOT_FOUND_DETAIL = Pattern.compile(
             "(?i)(?:BR-ROUTE-NOT-FOUND:\\s*)?ATFM route not found:\\s*(.+?)\\s*->\\s*(.+?)(?:\\.|$)");
 
+    private static final int ERROR_MESSAGE_MAX_BYTES = 2000;
+
     private VietnameseStoredErrorMessage() {
+    }
+
+    /** Oracle ERROR_MESSAGE columns use a 2000-byte limit; keep UTF-8 characters intact. */
+    public static String fitErrorMessageColumn(String message) {
+        if (message == null || message.getBytes(StandardCharsets.UTF_8).length <= ERROR_MESSAGE_MAX_BYTES) {
+            return message;
+        }
+        final String marker = "?";
+        int byteBudget = ERROR_MESSAGE_MAX_BYTES - marker.getBytes(StandardCharsets.UTF_8).length;
+        StringBuilder result = new StringBuilder(message.length());
+        int bytes = 0;
+        for (int offset = 0; offset < message.length();) {
+            int codePoint = message.codePointAt(offset);
+            int charCount = Character.charCount(codePoint);
+            int codePointBytes = message.substring(offset, offset + charCount)
+                    .getBytes(StandardCharsets.UTF_8).length;
+            if (bytes + codePointBytes > byteBudget) {
+                break;
+            }
+            result.appendCodePoint(codePoint);
+            bytes += codePointBytes;
+            offset += charCount;
+        }
+        return result.append(marker).toString();
     }
 
     public static String translate(String message) {

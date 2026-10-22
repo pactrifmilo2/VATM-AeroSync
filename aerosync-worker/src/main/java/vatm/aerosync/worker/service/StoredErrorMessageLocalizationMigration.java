@@ -52,7 +52,8 @@ public class StoredErrorMessageLocalizationMigration implements ApplicationRunne
             Page<FileRecord> page = fileRecordRepository.findAll(pageable);
             List<FileRecord> changed = new ArrayList<>();
             for (FileRecord record : page.getContent()) {
-                String translated = VietnameseStoredErrorMessage.translate(record.getErrorMessage());
+                String translated = VietnameseStoredErrorMessage.fitErrorMessageColumn(
+                        VietnameseStoredErrorMessage.translate(record.getErrorMessage()));
                 if (translated != null && !translated.equals(record.getErrorMessage())) {
                     record.setErrorMessage(translated);
                     changed.add(record);
@@ -74,7 +75,8 @@ public class StoredErrorMessageLocalizationMigration implements ApplicationRunne
             Page<PermitImport> page = permitImportRepository.findAll(pageable);
             List<PermitImport> changed = new ArrayList<>();
             for (PermitImport permitImport : page.getContent()) {
-                String translated = VietnameseStoredErrorMessage.translate(permitImport.getErrorMessage());
+                String translated = VietnameseStoredErrorMessage.fitErrorMessageColumn(
+                        VietnameseStoredErrorMessage.translate(permitImport.getErrorMessage()));
                 if (translated != null && !translated.equals(permitImport.getErrorMessage())) {
                     permitImport.setErrorMessage(translated);
                     changed.add(permitImport);
