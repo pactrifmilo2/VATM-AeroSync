@@ -6,4 +6,6 @@ detectionPatterns:
   - '(?iu)IATA\s*(?:CODE)?\s*:\s*[A-Z0-9]{2}\b'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*[A-Z0-9]{3}\b'
   - '(?iu)SCHEDULES?\s*:\s*UTC\s*TIME'
+  - '(?iu)CARGO\s+FLIGHT'
   - '(?isu)^(?!.*NON[-\s]+SCHEDULED).*$'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*[:._/-]?\s*\d+\b|\bRVS\s*[:._/-]?\s*\d+\b|(?:/|-)\s*REV\d+\b)).*$'
