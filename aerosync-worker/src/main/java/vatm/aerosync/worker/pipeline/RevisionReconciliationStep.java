@@ -277,20 +277,27 @@ public class RevisionReconciliationStep {
 
     private void validateReferencedScheduledBaseline(SchedulePermit permit,
                                                      AtfmRevisionBaseline baseline) {
-        if (permit.referencedPermitId() == null || permit.referencedPermitId().isBlank()) {
+        boolean explicitReference = permit.referencedPermitId() != null
+                && !permit.referencedPermitId().isBlank();
+        if (!explicitReference && permit.originalFlights().isEmpty()) {
             throw new BusinessRuleException(
                     "BR-MULTI-DAY-REVISION-REFERENCE-REQUIRED",
-                    "Multi-day non-scheduled revision requires an explicit referenced permit number");
+                    "Multi-day non-scheduled revision without a referenced permit requires an OLD schedule table");
         }
         if (baseline == null || !baseline.scheduledStorage()) {
             throw new BusinessRuleException(
                     "BR-MULTI-DAY-REVISION-BASE-NOT-FOUND",
-                    "Referenced scheduled permit was not found: " + permit.referencedPermitId());
+                    "Referenced scheduled permit was not found: " + permit.revisionBasePermitId());
         }
-        if (!sameText(permit.referencedPermitId(), baseline.scheduledPermitId())) {
+        String expectedPermitId = explicitReference
+                ? permit.referencedPermitId()
+                : permit.revisionBasePermitId();
+        if (!sameText(expectedPermitId, baseline.scheduledPermitId())) {
             throw new BusinessRuleException(
                     "BR-MULTI-DAY-REVISION-REFERENCE-MISMATCH",
-                    "Referenced permit does not match the locked scheduled master");
+                    explicitReference
+                            ? "Referenced permit does not match the locked scheduled master"
+                            : "Revision permit does not match the locked scheduled master");
         }
     }
 

@@ -52,4 +52,4 @@ Tạo ngoại lệ profile hãng AXM.
 
 ## Lựa chọn của user
 
-Chờ xác nhận.
+Phương án A đã được user xác nhận ngày 23102026.
