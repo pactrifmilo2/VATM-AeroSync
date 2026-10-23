@@ -399,7 +399,15 @@ public class RevisionReconciliationStep {
                 && java.util.Objects.equals(stored.endDate(), old.endDate())
                 && sameText(stored.etd(), old.etd())
                 && (old.eta() == null || old.eta().isBlank()
-                        || sameText(stored.eta(), old.eta()));
+                        || sameArrivalTime(stored.eta(), old.eta()));
+    }
+
+    private boolean sameArrivalTime(String stored, String documented) {
+        return sameText(stripArrivalDayOffset(stored), stripArrivalDayOffset(documented));
+    }
+
+    private String stripArrivalDayOffset(String value) {
+        return value == null ? "" : value.trim().replaceFirst("\\+$", "");
     }
 
     private SchedulePermit reconcileNoReplacement(SchedulePermit permit, List<ScheduleFlight> baseline) {

@@ -390,7 +390,7 @@ class RevisionReconciliationStepTest {
     }
 
     @Test
-    void reconcile_multiDayNonScheduledRevisionUsesSamePermitScBaselineWithoutExplicitReference() {
+    void reconcile_multiDayNonScheduledRevisionNormalizesStoredArrivalDayOffset() {
         AtfmScheduleGateway gateway = mock(AtfmScheduleGateway.class);
         ScheduleFlight old = new ScheduleFlight(
                 null, 0L, null, "HVN123", null, "1234567",
@@ -402,7 +402,7 @@ class RevisionReconciliationStepTest {
                 LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 20), null, null);
         ScheduleFlight stored = new ScheduleFlight(
                 "CAR", 1935L, java.math.BigDecimal.valueOf(75), "HVN123", null, "1234567",
-                "VVNB", "VVTS", "0100", "0300", "W1/DAN/W2",
+                "VVNB", "VVTS", "0100", "0300+", "W1/DAN/W2",
                 LocalDate.of(2026, 8, 12), LocalDate.of(2026, 8, 20), null, "B738");
         SchedulePermit revision = new SchedulePermit(
                 "LD-2576/8/2026VN/REV2", "LD 02576/CHK/2026", "2576",
