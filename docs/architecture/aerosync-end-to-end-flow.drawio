@@ -1,58 +1,387 @@
-<mxfile host="app.diagrams.net" modified="2026-10-23T14:20:00.000Z" agent="Codex" version="26.0.14">
-<diagram id="e2e" name="End-to-end production flow"><mxGraphModel grid="1" gridSize="10" page="1" pageWidth="3200" pageHeight="1800"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
-<mxCell id="title" value="VATM AeroSync - luong production tu khoi dong den thanh cong" style="text;html=1;fontSize=24;fontStyle=1;align=center" vertex="1" parent="1"><mxGeometry x="1050" y="20" width="1000" height="40" as="geometry"/></mxCell>
-<mxCell id="start" value="KHOI DONG&#xa;WinSW -> Run-Service.ps1 -> Java 21&#xa;AeroSyncApi | AeroSyncIngest | AeroSyncWorker" style="swimlane;html=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1"><mxGeometry x="30" y="90" width="510" height="310" as="geometry"/></mxCell>
-<mxCell id="s1" value="Nap application.yaml + C:/AeroSync/config/.env&#xa;Tao DataSource, RabbitTemplate, Redis client" style="rounded=1;whiteSpace=wrap;html=1" vertex="1" parent="start"><mxGeometry x="30" y="50" width="210" height="70" as="geometry"/></mxCell>
-<mxCell id="s2" value="API: ensureDefaults runtime_config&#xa;allowlist/blacklist, scheduler settings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" vertex="1" parent="start"><mxGeometry x="270" y="50" width="210" height="70" as="geometry"/></mxCell>
-<mxCell id="s3" value="Ingest: @Scheduled tick 10s&#xa;mode EMAIL | FOLDER | BOTH&#xa;config cache 5s" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="start"><mxGeometry x="30" y="160" width="210" height="70" as="geometry"/></mxCell>
-<mxCell id="s4" value="Worker: nap permit-formats/*.yaml&#xa;validate id/extends/regex/schema&#xa;listener + retry interceptor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="start"><mxGeometry x="270" y="160" width="210" height="70" as="geometry"/></mxCell>
-<mxCell id="source" value="NGUON DU LIEU" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1"><mxGeometry x="30" y="470" width="510" height="720" as="geometry"/></mxCell>
-<mxCell id="folder" value="Incoming folder&#xa;Files.list regular files, sort name&#xa;limit maxFilesPerCycle&#xa;SHA-256 -> Redis path-seen&#xa;dedupe hash -> duplicate: SyncJob SKIPPED + audit&#xa;new: SyncJob PENDING + FileRecord DOWNLOADED/PENDING&#xa;register hash + detect priority" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" vertex="1" parent="source"><mxGeometry x="25" y="50" width="220" height="220" as="geometry"/></mxCell>
-<mxCell id="email" value="IMAP email&#xa;fetchMessages(shouldDownload): UID + Message-ID + allowlist/blacklist&#xa;luu tat ca attachment vao incoming/email-attachments/yyyyMMdd&#xa;cancelled/blocked/no attachment/unsupported: EmailMetadata terminal, no event&#xa;attachment hop le: SHA-256/dedupe -> SyncJob PENDING + FileRecord EMAIL + EmailMetadata&#xa;markIngestComplete khi du attachment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" vertex="1" parent="source"><mxGeometry x="265" y="50" width="220" height="290" as="geometry"/></mxCell>
-<mxCell id="publish" value="IngestPublisher&#xa;FileIngestedEvent(jobId,path,hash,source,priority,subject)&#xa;file.ingested / routing key file.processing&#xa;Audit INCOMING_FILE_ACCEPTED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="source"><mxGeometry x="130" y="410" width="250" height="100" as="geometry"/></mxCell>
-<mxCell id="rabbit" value="RABBITMQ&#xa;file.ingested (direct)&#xa;file.processing.queue durable, priority 10&#xa;sync.result (fanout)&#xa;file.processing.failed.queue durable" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" vertex="1" parent="1"><mxGeometry x="650" y="600" width="290" height="145" as="geometry"/></mxCell>
-<mxCell id="worker" value="WORKER PIPELINE: FileProcessingPipeline.process(event)" style="swimlane;html=1;startSize=25;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="1"><mxGeometry x="1030" y="90" width="2100" height="1100" as="geometry"/></mxCell>
-<mxCell id="w1" value="1. @RabbitListener&#xa;resolveProcessingPath: event path; fallback FileRecord storedPath moi nhat&#xa;lookup sender/receivedDate&#xa;SyncJob=IN_PROGRESS; FileRecord/EmailMetadata=PROCESSING" style="rounded=1;whiteSpace=wrap;html=1" vertex="1" parent="worker"><mxGeometry x="25" y="50" width="260" height="115" as="geometry"/></mxCell>
-<mxCell id="w2" value="2. FormatValidator&#xa;regular file, extension, non-empty&#xa;size &lt;= 10 MB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="worker"><mxGeometry x="320" y="65" width="170" height="85" as="geometry"/></mxCell>
-<mxCell id="w3" value="3. ParserStep&#xa;DOCX: XWPF + DocxSchedulePermitParser&#xa;DOC: legacy revision parser&#xa;doc paragraph/table/context" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="worker"><mxGeometry x="525" y="55" width="210" height="105" as="geometry"/></mxCell>
-<mxCell id="w4" value="4. Format detector&#xa;IATA/ICAO + detection patterns&#xa;direct/relaxed revision rules&#xa;highest profile priority; tie => error" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="worker"><mxGeometry x="770" y="55" width="210" height="105" as="geometry"/></mxCell>
-<mxCell id="w5" value="5. YAML profile parse&#xa;permit no/date/operator/purpose&#xa;OLD/NEW schedule, route, aircraft, time, service days&#xa;=> SchedulePermit + ScheduleFlight[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="worker"><mxGeometry x="1015" y="50" width="230" height="115" as="geometry"/></mxCell>
-<mxCell id="w6" value="6. Normalize + subject directive&#xa;normalize callsign/airport/time/date/route&#xa;CORRECT/UPDATE/CORR => SUBJECT_CORRECTION&#xa;PurposeResolution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" vertex="1" parent="worker"><mxGeometry x="1280" y="55" width="220" height="105" as="geometry"/></mxCell>
-<mxCell id="w7" value="7. RevisionReconciliation&#xa;new/revision/cancel/reference-season&#xa;tim baseline ATFM theo permit + OLD rows&#xa;OLD phai match duy nhat; materialize OLD/NEW" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" vertex="1" parent="worker"><mxGeometry x="1535" y="50" width="245" height="115" as="geometry"/></mxCell>
-<mxCell id="w8" value="8. Resolve aircraft + Via&#xa;ATFM dictionary/cache&#xa;BusinessRuleValidator&#xa;permit/operator/flight/route/ETD/ETA/date/service/craft" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" vertex="1" parent="worker"><mxGeometry x="1815" y="50" width="240" height="115" as="geometry"/></mxCell>
-<mxCell id="w9" value="9. DatabaseWriter&#xa;LandingFlightFilter, remarks, EM ddMMyyyy reference&#xa;PermitImport RESERVED: semantic/source hash, lock, idempotency&#xa;duplicate/revision-review guard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="worker"><mxGeometry x="25" y="270" width="305" height="120" as="geometry"/></mxCell>
-<mxCell id="gate" value="APP_ATFM_WRITE_ENABLED?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="worker"><mxGeometry x="375" y="280" width="130" height="100" as="geometry"/></mxCell>
-<mxCell id="w10" value="10. ATFM transaction&#xa;seasonal/HVN referenced -> T_PERMMASTER_SC/T_PERMDETAIL_SC&#xa;non-seasonal -> T_PERMMASTER_NO/T_PERMDETAIL_NO&#xa;insert/replace/cancel workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="worker"><mxGeometry x="550" y="265" width="310" height="130" as="geometry"/></mxCell>
-<mxCell id="w11" value="11. Tracking transaction&#xa;PermitImport=SAVED or DUPLICATE&#xa;FileRecord=SAVED/SKIPPED + rows/count/date&#xa;SyncJob=SUCCESS/SKIPPED&#xa;Audit SYNC_SUCCESS/SYNC_DUPLICATE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="worker"><mxGeometry x="905" y="265" width="260" height="130" as="geometry"/></mxCell>
-<mxCell id="w12" value="12. Archive&#xa;short SHA-256 suffix; no overwrite&#xa;processed/yyyy/MM/dd (filesystem: processed/incoming)&#xa;FileRecord storedPath/archiveStatus=ARCHIVED&#xa;EmailMetadata=SAVED/SKIPPED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="worker"><mxGeometry x="1210" y="265" width="270" height="130" as="geometry"/></mxCell>
-<mxCell id="w13" value="13. Publish SyncResultEvent&#xa;SUCCESS/SKIPPED, INFO, message, timestamp&#xa;import warning: audit + WARNING result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" vertex="1" parent="worker"><mxGeometry x="1525" y="270" width="240" height="115" as="geometry"/></mxCell>
-<mxCell id="fail" value="LOI / RETRY&#xa;Format => error-format&#xa;Business/reference => quarantine&#xa;Runtime => error&#xa;cap nhat job/file/email + audit + WARNING&#xa;retry max 2, het retry -> file.processing.failed.queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="worker"><mxGeometry x="1810" y="265" width="250" height="130" as="geometry"/></mxCell>
-<mxCell id="atfm" value="ORACLE ATFM&#xa;permit master/detail&#xa;airport, aircraft, route dictionaries" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366" vertex="1" parent="1"><mxGeometry x="1240" y="1270" width="280" height="85" as="geometry"/></mxCell>
-<mxCell id="db" value="ORACLE AEROSYNC TRACKING&#xa;sync_job | file_record | email_metadata | permit_import | audit_log | runtime_config | dashboard_alert" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366" vertex="1" parent="1"><mxGeometry x="1650" y="1265" width="430" height="95" as="geometry"/></mxCell>
-<mxCell id="finish" value="HOAN TAT THANH CONG&#xa;ATFM committed; tracking SUCCESS/SAVED; file archived; result published;&#xa;neu email: IMAP acknowledgement move vao AeroSync/Processed" style="shape=doubleEllipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1"><mxGeometry x="2300" y="1265" width="450" height="100" as="geometry"/></mxCell>
-<mxCell id="end" value="SAU sync.result fanout&#xa;API: dashboard.alerts.queue -> AlertService (WARNING/CRITICAL -> DashboardAlert); UI REST doc jobs/reports/audit&#xa;Ingest: email.acknowledgement.queue -> EmailMetadata status; khi ingestComplete + tat ca attachment terminal:&#xa;all SAVED/SKIPPED -> IMAP AeroSync/Processed, MOVED_PROCESSED; con lai -> AeroSync/Error, MOVED_ERROR; loi move -> retry scheduler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" vertex="1" parent="1"><mxGeometry x="650" y="1470" width="2100" height="150" as="geometry"/></mxCell>
-<mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="s1" target="s3"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="s1" target="s4"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00" edge="1" parent="1" source="publish" target="rabbit"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00" edge="1" parent="1" source="rabbit" target="w1"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w1" target="w2"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w2" target="w3"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w3" target="w4"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w4" target="w5"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w5" target="w6"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w6" target="w7"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w7" target="w8"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w8" target="w9"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w9" target="gate"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e15" value="Co" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="gate" target="w10"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w10" target="w11"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w11" target="w12"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" edge="1" parent="1" source="w12" target="w13"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00" edge="1" parent="1" source="w13" target="rabbit"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366" edge="1" parent="1" source="w10" target="atfm"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366" edge="1" parent="1" source="w11" target="db"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366;strokeWidth=2" edge="1" parent="1" source="w13" target="finish"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e23" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1;strokeColor=#b85450" edge="1" parent="1" source="w8" target="fail"><mxGeometry relative="1" as="geometry"/></mxCell>
-<mxCell id="e24" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#9673a6" edge="1" parent="1" source="rabbit" target="end"><mxGeometry relative="1" as="geometry"/></mxCell>
-</root></mxGraphModel></diagram></mxfile>
+<mxfile host="app.diagrams.net" agent="Codex">
+  <diagram id="e2e" name="End-to-end production flow">
+    <mxGraphModel dx="3142" dy="1727" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3200" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=24;fontStyle=1;align=center" value="VATM AeroSync - luồng production từ khởi động cho đến xử lý thành công" vertex="1">
+          <mxGeometry height="40" width="1000" x="1020" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="swimlane;html=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="KHOI DONG&#xa;WinSW -&gt; Run-Service.ps1 -&gt; Java 21&#xa;AeroSyncApi | AeroSyncIngest | AeroSyncWorker" vertex="1">
+          <mxGeometry height="310" width="510" x="30" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="start" style="rounded=1;whiteSpace=wrap;html=1" value="Nap application.yaml + C:/AeroSync/config/.env&#xa;Tao DataSource, RabbitTemplate, Redis client" vertex="1">
+          <mxGeometry height="70" width="210" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="API: ensureDefaults runtime_config&#xa;allowlist/blacklist, scheduler settings" vertex="1">
+          <mxGeometry height="70" width="210" x="270" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Ingest: @Scheduled tick 10s&#xa;mode EMAIL | FOLDER | BOTH&#xa;config cache 5s" vertex="1">
+          <mxGeometry height="70" width="210" x="30" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Worker: nap permit-formats/*.yaml&#xa;validate id/extends/regex/schema&#xa;listener + retry interceptor" vertex="1">
+          <mxGeometry height="70" width="210" x="270" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="source" parent="1" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="NGUON DU LIEU" vertex="1">
+          <mxGeometry height="720" width="510" x="30" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="folder" parent="source" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="Incoming folder&#xa;Files.list regular files, sort name&#xa;limit maxFilesPerCycle&#xa;SHA-256 -&gt; Redis path-seen&#xa;dedupe hash -&gt; duplicate: SyncJob SKIPPED + audit&#xa;new: SyncJob PENDING + FileRecord DOWNLOADED/PENDING&#xa;register hash + detect priority" vertex="1">
+          <mxGeometry height="220" width="220" x="25" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="email" parent="source" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="IMAP email&#xa;fetchMessages(shouldDownload): UID + Message-ID + allowlist/blacklist&#xa;luu tat ca attachment vao incoming/email-attachments/yyyyMMdd&#xa;cancelled/blocked/no attachment/unsupported: EmailMetadata terminal, no event&#xa;attachment hop le: SHA-256/dedupe -&gt; SyncJob PENDING + FileRecord EMAIL + EmailMetadata&#xa;markIngestComplete khi du attachment" vertex="1">
+          <mxGeometry height="290" width="220" x="265" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="publish" parent="source" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="IngestPublisher&#xa;FileIngestedEvent(jobId,path,hash,source,priority,subject)&#xa;file.ingested / routing key file.processing&#xa;Audit INCOMING_FILE_ACCEPTED" vertex="1">
+          <mxGeometry height="100" width="250" x="130" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="rabbit" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" value="RABBITMQ&#xa;file.ingested (direct)&#xa;file.processing.queue durable, priority 10&#xa;sync.result (fanout)&#xa;file.processing.failed.queue durable" vertex="1">
+          <mxGeometry height="145" width="290" x="650" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="worker" parent="1" style="swimlane;html=1;startSize=25;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" value="WORKER PIPELINE: FileProcessingPipeline.process(event)" vertex="1">
+          <mxGeometry height="1100" width="2100" x="1030" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="w1" parent="worker" style="rounded=1;whiteSpace=wrap;html=1" value="1. @RabbitListener&#xa;resolveProcessingPath: event path; fallback FileRecord storedPath moi nhat&#xa;lookup sender/receivedDate&#xa;SyncJob=IN_PROGRESS; FileRecord/EmailMetadata=PROCESSING" vertex="1">
+          <mxGeometry height="115" width="260" x="25" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="2. FormatValidator&#xa;regular file, extension, non-empty&#xa;size &lt;= 10 MB" vertex="1">
+          <mxGeometry height="85" width="170" x="320" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="3. ParserStep&#xa;DOCX: XWPF + DocxSchedulePermitParser&#xa;DOC: legacy revision parser&#xa;doc paragraph/table/context" vertex="1">
+          <mxGeometry height="105" width="210" x="525" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="w4" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="4. Format detector&#xa;IATA/ICAO + detection patterns&#xa;direct/relaxed revision rules&#xa;highest profile priority; tie =&gt; error" vertex="1">
+          <mxGeometry height="105" width="210" x="770" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="w5" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="5. YAML profile parse&#xa;permit no/date/operator/purpose&#xa;OLD/NEW schedule, route, aircraft, time, service days&#xa;=&gt; SchedulePermit + ScheduleFlight[]" vertex="1">
+          <mxGeometry height="115" width="230" x="1015" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w6" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="6. Normalize + subject directive&#xa;normalize callsign/airport/time/date/route&#xa;CORRECT/UPDATE/CORR =&gt; SUBJECT_CORRECTION&#xa;PurposeResolution" vertex="1">
+          <mxGeometry height="105" width="220" x="1280" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="w7" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="7. RevisionReconciliation&#xa;new/revision/cancel/reference-season&#xa;tim baseline ATFM theo permit + OLD rows&#xa;OLD phai match duy nhat; materialize OLD/NEW" vertex="1">
+          <mxGeometry height="115" width="245" x="1535" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w8" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="8. Resolve aircraft + Via&#xa;ATFM dictionary/cache&#xa;BusinessRuleValidator&#xa;permit/operator/flight/route/ETD/ETA/date/service/craft" vertex="1">
+          <mxGeometry height="115" width="240" x="1815" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="w9" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="9. DatabaseWriter&#xa;LandingFlightFilter, remarks, EM ddMMyyyy reference&#xa;PermitImport RESERVED: semantic/source hash, lock, idempotency&#xa;duplicate/revision-review guard" vertex="1">
+          <mxGeometry height="120" width="305" x="25" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="gate" parent="worker" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="APP_ATFM_WRITE_ENABLED?" vertex="1">
+          <mxGeometry height="100" width="130" x="375" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="w10" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="10. ATFM transaction&#xa;seasonal/HVN referenced -&gt; T_PERMMASTER_SC/T_PERMDETAIL_SC&#xa;non-seasonal -&gt; T_PERMMASTER_NO/T_PERMDETAIL_NO&#xa;insert/replace/cancel workflow" vertex="1">
+          <mxGeometry height="130" width="310" x="550" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="w11" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="11. Tracking transaction&#xa;PermitImport=SAVED or DUPLICATE&#xa;FileRecord=SAVED/SKIPPED + rows/count/date&#xa;SyncJob=SUCCESS/SKIPPED&#xa;Audit SYNC_SUCCESS/SYNC_DUPLICATE" vertex="1">
+          <mxGeometry height="130" width="260" x="905" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="w12" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="12. Archive&#xa;short SHA-256 suffix; no overwrite&#xa;processed/yyyy/MM/dd (filesystem: processed/incoming)&#xa;FileRecord storedPath/archiveStatus=ARCHIVED&#xa;EmailMetadata=SAVED/SKIPPED" vertex="1">
+          <mxGeometry height="130" width="270" x="1210" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="w13" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="13. Publish SyncResultEvent&#xa;SUCCESS/SKIPPED, INFO, message, timestamp&#xa;import warning: audit + WARNING result" vertex="1">
+          <mxGeometry height="115" width="240" x="1525" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="fail" parent="worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="LOI / RETRY&#xa;Format =&gt; error-format&#xa;Business/reference =&gt; quarantine&#xa;Runtime =&gt; error&#xa;cap nhat job/file/email + audit + WARNING&#xa;retry max 2, het retry -&gt; file.processing.failed.queue" vertex="1">
+          <mxGeometry height="130" width="250" x="1810" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="atfm" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366" value="ORACLE ATFM&#xa;permit master/detail&#xa;airport, aircraft, route dictionaries" vertex="1">
+          <mxGeometry height="85" width="280" x="1240" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366" value="ORACLE AEROSYNC TRACKING&#xa;sync_job | file_record | email_metadata | permit_import | audit_log | runtime_config | dashboard_alert" vertex="1">
+          <mxGeometry height="95" width="430" x="1650" y="1265" as="geometry" />
+        </mxCell>
+        <mxCell id="finish" parent="1" style="shape=doubleEllipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="HOAN TAT THANH CONG&#xa;ATFM committed; tracking SUCCESS/SAVED; file archived; result published;&#xa;neu email: IMAP acknowledgement move vao AeroSync/Processed" vertex="1">
+          <mxGeometry height="100" width="450" x="2300" y="1265" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="SAU sync.result fanout&#xa;API: dashboard.alerts.queue -&gt; AlertService (WARNING/CRITICAL -&gt; DashboardAlert); UI REST doc jobs/reports/audit&#xa;Ingest: email.acknowledgement.queue -&gt; EmailMetadata status; khi ingestComplete + tat ca attachment terminal:&#xa;all SAVED/SKIPPED -&gt; IMAP AeroSync/Processed, MOVED_PROCESSED; con lai -&gt; AeroSync/Error, MOVED_ERROR; loi move -&gt; retry scheduler" vertex="1">
+          <mxGeometry height="150" width="2100" x="650" y="1470" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="publish" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00" target="rabbit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="rabbit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00" target="w1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="w1" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="w2" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="w3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="w4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="w5" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="w6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="w7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" source="w8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="w9" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="gate" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w10" value="Co">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="w10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="w11" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="w12" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1" target="w13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="w13" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00" target="rabbit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="1" source="w10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366" target="atfm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e21" edge="1" parent="1" source="w11" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e22" edge="1" parent="1" source="w13" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366;strokeWidth=2" target="finish">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" edge="1" parent="1" source="w8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1;strokeColor=#b85450" target="fail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e24" edge="1" parent="1" source="rabbit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#9673a6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="word-read-detail" name="05 - Doc file Word chi tiet">
+    <mxGraphModel dx="2600" dy="1600" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2800" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rd-title" parent="1" style="text;html=1;fontSize=24;fontStyle=1;align=center" value="05. Chi tiet doc file Word - WordPermitDocumentReader" vertex="1"><mxGeometry x="700" y="20" width="1400" height="40" as="geometry" /></mxCell>
+        <mxCell id="rd-input" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="FileProcessingPipeline ParserStep&#xa;Path da duoc FormatValidator chap nhan&#xa;.docx hoac .doc" vertex="1"><mxGeometry x="30" y="170" width="240" height="100" as="geometry" /></mxCell>
+        <mxCell id="rd-route" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Duoi file?" vertex="1"><mxGeometry x="330" y="175" width="130" height="90" as="geometry" /></mxCell>
+        <mxCell id="rd-unsupported" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Khong phai .doc/.docx&#xa;IOException: unsupported extension&#xa;Pipeline phan loai loi format" vertex="1"><mxGeometry x="500" y="45" width="240" height="90" as="geometry" /></mxCell>
+        <mxCell id="rd-bytes" parent="1" style="swimlane;html=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="readFileBytes(path) - dung chung cho DOCX/DOC" vertex="1"><mxGeometry x="500" y="180" width="440" height="340" as="geometry" /></mxCell>
+        <mxCell id="rd-read" parent="rd-bytes" style="rounded=1;whiteSpace=wrap;html=1" value="Files.readAllBytes(path)&#xa;doc to byte[] truoc khi mo parser" vertex="1"><mxGeometry x="25" y="50" width="180" height="70" as="geometry" /></mxCell>
+        <mxCell id="rd-lock" parent="rd-bytes" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="FileSystemException?" vertex="1"><mxGeometry x="245" y="43" width="150" height="80" as="geometry" /></mxCell>
+        <mxCell id="rd-retry" parent="rd-bytes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="attempt &lt; 3&#xa;cho 100 ms * attempt&#xa;thu doc lai" vertex="1"><mxGeometry x="25" y="175" width="180" height="80" as="geometry" /></mxCell>
+        <mxCell id="rd-no-file" parent="rd-bytes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="NoSuchFileException&#xa;throw ngay&#xa;khong retry" vertex="1"><mxGeometry x="245" y="170" width="160" height="70" as="geometry" /></mxCell>
+        <mxCell id="rd-locked-fail" parent="rd-bytes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Qua 3 lan van loi&#xa;IOException: temporarily locked or unreadable&#xa;pipeline -> error/retry" vertex="1"><mxGeometry x="100" y="270" width="240" height="55" as="geometry" /></mxCell>
+        <mxCell id="rd-docx-lane" parent="1" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="Nhanh .docx - Apache POI XWPF" vertex="1"><mxGeometry x="1010" y="95" width="790" height="610" as="geometry" /></mxCell>
+        <mxCell id="rd-docx-open" parent="rd-docx-lane" style="rounded=1;whiteSpace=wrap;html=1" value="ByteArrayInputStream(byte[])&#xa;new XWPFDocument(stream)" vertex="1"><mxGeometry x="25" y="50" width="190" height="70" as="geometry" /></mxCell>
+        <mxCell id="rd-docx-body" parent="rd-docx-lane" style="rounded=1;whiteSpace=wrap;html=1" value="getBodyElements() theo dung thu tu tai lieu&#xa;phan biet paragraph va table" vertex="1"><mxGeometry x="265" y="50" width="220" height="70" as="geometry" /></mxCell>
+        <mxCell id="rd-docx-para" parent="rd-docx-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Paragraph&#xa;cleanText&#xa;them paragraphs + contentBlocks&#xa;cong don pendingContext" vertex="1"><mxGeometry x="30" y="175" width="190" height="100" as="geometry" /></mxCell>
+        <mxCell id="rd-docx-table" parent="rd-docx-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Table&#xa;duyet row/cell&#xa;clean tung cell&#xa;tab giua cot, newline giua dong" vertex="1"><mxGeometry x="280" y="175" width="190" height="100" as="geometry" /></mxCell>
+        <mxCell id="rd-docx-context" parent="rd-docx-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Gan toan bo pendingContext lam tableContext&#xa;luu logical table; clear pendingContext" vertex="1"><mxGeometry x="530" y="175" width="220" height="100" as="geometry" /></mxCell>
+        <mxCell id="rd-date-docx" parent="rd-docx-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="CoreProperties.created&#xa;chuyen sang UTC&#xa;=> authoredDate" vertex="1"><mxGeometry x="290" y="335" width="190" height="75" as="geometry" /></mxCell>
+        <mxCell id="rd-doc-lane" parent="1" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="Nhanh .doc - Apache POI HWPF" vertex="1"><mxGeometry x="1880" y="95" width="790" height="610" as="geometry" /></mxCell>
+        <mxCell id="rd-doc-open" parent="rd-doc-lane" style="rounded=1;whiteSpace=wrap;html=1" value="ByteArrayInputStream(byte[])&#xa;new HWPFDocument(stream)&#xa;lay Range + TableIterator" vertex="1"><mxGeometry x="25" y="50" width="200" height="75" as="geometry" /></mxCell>
+        <mxCell id="rd-doc-before" parent="rd-doc-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Text segment truoc moi table&#xa;cleanText&#xa;tro thanh tableContext" vertex="1"><mxGeometry x="270" y="50" width="190" height="75" as="geometry" /></mxCell>
+        <mxCell id="rd-doc-table" parent="rd-doc-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Legacy table&#xa;duyet row/cell&#xa;serialize tab/newline&#xa;luu table + context" vertex="1"><mxGeometry x="520" y="50" width="200" height="75" as="geometry" /></mxCell>
+        <mxCell id="rd-doc-tail" parent="rd-doc-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Text sau table cuoi&#xa;giu lai trong paragraphs/contentBlocks" vertex="1"><mxGeometry x="55" y="185" width="200" height="75" as="geometry" /></mxCell>
+        <mxCell id="rd-date-doc" parent="rd-doc-lane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="SummaryInformation.createDateTime&#xa;chuyen sang UTC&#xa;=> authoredDate" vertex="1"><mxGeometry x="325" y="185" width="210" height="75" as="geometry" /></mxCell>
+        <mxCell id="rd-clean" parent="1" style="swimlane;html=1;startSize=25;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" value="Chuan hoa va fallback schedule inline" vertex="1"><mxGeometry x="420" y="790" width="1700" height="250" as="geometry" /></mxCell>
+        <mxCell id="rd-clean-text" parent="rd-clean" style="rounded=1;whiteSpace=wrap;html=1" value="cleanText&#xa;bo BEL, replacement char, NBSP&#xa;bo control/format characters&#xa;normalize whitespace" vertex="1"><mxGeometry x="30" y="55" width="240" height="100" as="geometry" /></mxCell>
+        <mxCell id="rd-no-table" parent="rd-clean" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Khong co table?" vertex="1"><mxGeometry x="350" y="55" width="130" height="90" as="geometry" /></mxCell>
+        <mxCell id="rd-inline" parent="rd-clean" style="rounded=1;whiteSpace=wrap;html=1" value="Thu HYPHENATED_INLINE_SCHEDULE&#xa;neu khong: SPACED_INLINE_SCHEDULE&#xa;match -> tao logical table header chuan + row" vertex="1"><mxGeometry x="550" y="50" width="280" height="105" as="geometry" /></mxCell>
+        <mxCell id="rd-output" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="WordPermitDocument&#xa;paragraphText | tableText | rawContent&#xa;tables | tableContexts | authoredDate&#xa;chuyen sang DocxSchedulePermitParser" vertex="1"><mxGeometry x="2210" y="800" width="360" height="130" as="geometry" /></mxCell>
+        <mxCell id="rd-e1" edge="1" parent="1" source="rd-input" target="rd-route" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e2" value="khac" edge="1" parent="1" source="rd-route" target="rd-unsupported" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e3" value=".docx / .doc" edge="1" parent="1" source="rd-route" target="rd-read" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e4" edge="1" parent="1" source="rd-read" target="rd-lock" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e5" value="co" edge="1" parent="1" source="rd-lock" target="rd-retry" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e6" edge="1" parent="1" source="rd-retry" target="rd-read" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e7" edge="1" parent="1" source="rd-lock" target="rd-no-file" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e8" edge="1" parent="1" source="rd-retry" target="rd-locked-fail" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e9" value="docx" edge="1" parent="1" source="rd-lock" target="rd-docx-open" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e10" edge="1" parent="1" source="rd-docx-open" target="rd-docx-body" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e11" edge="1" parent="1" source="rd-docx-body" target="rd-docx-para" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e12" edge="1" parent="1" source="rd-docx-body" target="rd-docx-table" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e13" edge="1" parent="1" source="rd-docx-table" target="rd-docx-context" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e14" edge="1" parent="1" source="rd-docx-context" target="rd-date-docx" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e15" value="doc" edge="1" parent="1" source="rd-lock" target="rd-doc-open" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e16" edge="1" parent="1" source="rd-doc-open" target="rd-doc-before" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e17" edge="1" parent="1" source="rd-doc-before" target="rd-doc-table" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e18" edge="1" parent="1" source="rd-doc-table" target="rd-doc-tail" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e19" edge="1" parent="1" source="rd-doc-tail" target="rd-date-doc" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e20" edge="1" parent="1" source="rd-date-docx" target="rd-clean-text" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e21" edge="1" parent="1" source="rd-date-doc" target="rd-clean-text" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e22" edge="1" parent="1" source="rd-clean-text" target="rd-no-table" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e23" value="co" edge="1" parent="1" source="rd-no-table" target="rd-inline" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e24" edge="1" parent="1" source="rd-inline" target="rd-output" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rd-e25" value="khong" edge="1" parent="1" source="rd-no-table" target="rd-output" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="permit-parse-revision-detail" name="06 - Parse permit va revision chi tiet">
+    <mxGraphModel dx="3200" dy="1800" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="3600" pageHeight="2200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="pp-title" parent="1" style="text;html=1;fontSize=24;fontStyle=1;align=center" value="06. Chi tiet phan tich permit va doi soat revision" vertex="1"><mxGeometry x="950" y="20" width="1500" height="40" as="geometry" /></mxCell>
+        <mxCell id="pp-input" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="WordPermitDocument&#xa;rawContent, tables, tableContexts, authoredDate" vertex="1"><mxGeometry x="30" y="150" width="250" height="95" as="geometry" /></mxCell>
+        <mxCell id="pp-guard" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Non-permit guard&#xa;application/passenger list/flight plan?" vertex="1"><mxGeometry x="340" y="145" width="170" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-not-permit" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="NonPermitDocumentException&#xa;khong dua vao ATFM&#xa;pipeline phan loai loi nghiep vu" vertex="1"><mxGeometry x="580" y="40" width="230" height="90" as="geometry" /></mxCell>
+        <mxCell id="pp-detect" parent="1" style="swimlane;html=1;startSize=25;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" value="WordPermitFormatDetector + DocxPermitProfileCatalog" vertex="1"><mxGeometry x="580" y="170" width="1050" height="400" as="geometry" /></mxCell>
+        <mxCell id="pp-codes" parent="pp-detect" style="rounded=1;whiteSpace=wrap;html=1" value="Trich IATA/ICAO&#xa;tu rawContent va metadata" vertex="1"><mxGeometry x="30" y="55" width="190" height="70" as="geometry" /></mxCell>
+        <mxCell id="pp-direct" parent="pp-detect" style="rounded=1;whiteSpace=wrap;html=1" value="Direct match&#xa;detectionPatterns + operator/carrier guard&#xa;profile support?" vertex="1"><mxGeometry x="270" y="50" width="220" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-relax" parent="pp-detect" style="rounded=1;whiteSpace=wrap;html=1" value="Khong direct? Relaxed match&#xa;bo qua revision exclusion patterns&#xa;van ap dung carrier guard" vertex="1"><mxGeometry x="540" y="50" width="230" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-priority" parent="pp-detect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Uu tien profile carrier-specific&#xa;hon CAAV generic fallback&#xa;chon priority cao nhat" vertex="1"><mxGeometry x="810" y="50" width="210" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-ambiguous" parent="pp-detect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Khong co profile hoac&#xa;nhieu profile dong priority&#xa;=> format/ambiguity error" vertex="1"><mxGeometry x="310" y="225" width="250" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-profile" parent="pp-detect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="Permit format YAML duoc chon&#xa;id, aliases, regex, table rules, mapping, revision rules" vertex="1"><mxGeometry x="650" y="220" width="300" height="90" as="geometry" /></mxCell>
+        <mxCell id="pp-extract" parent="1" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="DocxSchedulePermitParser - metadata va bang schedule" vertex="1"><mxGeometry x="1700" y="105" width="1750" height="650" as="geometry" /></mxCell>
+        <mxCell id="pp-meta" parent="pp-extract" style="rounded=1;whiteSpace=wrap;html=1" value="Extract YAML fields&#xa;permit number -> normalize template&#xa;permit date, operator, billing/reference, purpose&#xa;workflow/revision attributes + raw text" vertex="1"><mxGeometry x="30" y="50" width="300" height="115" as="geometry" /></mxCell>
+        <mxCell id="pp-tables" parent="pp-extract" style="rounded=1;whiteSpace=wrap;html=1" value="Chon bang schedule/original schedule&#xa;header aliases hoac headerless configured indexes&#xa;required/excluded columns + tableContext patterns" vertex="1"><mxGeometry x="390" y="50" width="310" height="115" as="geometry" /></mxCell>
+        <mxCell id="pp-role" parent="pp-extract" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Role OLD hay NEW?&#xa;RevisionDocumentText + YAML rules" vertex="1"><mxGeometry x="770" y="60" width="165" height="100" as="geometry" /></mxCell>
+        <mxCell id="pp-supplement" parent="pp-extract" style="rounded=1;whiteSpace=wrap;html=1" value="Dong bo sung&#xa;supplemental tables&#xa;gop vao dung OLD/NEW collection" vertex="1"><mxGeometry x="1000" y="50" width="215" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-row-skip" parent="pp-extract" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Tung row&#xa;bo repeated header / section label&#xa;carry-forward field duoc cau hinh" vertex="1"><mxGeometry x="1280" y="50" width="210" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-row-map" parent="pp-extract" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Normalize flight number (operator/IATA prefix)&#xa;parse date/time/service days&#xa;map airport, route/VIA, aircraft/registration" vertex="1"><mxGeometry x="200" y="255" width="310" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-flight" parent="pp-extract" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="ScheduleFlight[]&#xa;currentFlights (NEW)&#xa;originalFlights (OLD)" vertex="1"><mxGeometry x="600" y="260" width="230" height="90" as="geometry" /></mxCell>
+        <mxCell id="pp-permit" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="SchedulePermit&#xa;permitId normalized | workflow | revision flags&#xa;flights + originalFlights | source/raw text" vertex="1"><mxGeometry x="1980" y="840" width="360" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-rev" parent="1" style="swimlane;html=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="RevisionReconciliationStep.reconcile(context)" vertex="1"><mxGeometry x="30" y="1050" width="3420" height="840" as="geometry" /></mxCell>
+        <mxCell id="pp-is-revision" parent="pp-rev" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Revision?" vertex="1"><mxGeometry x="35" y="60" width="130" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-new" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="Permit moi / revision tao permit moi&#xa;tra materialized path neu da du thong tin" vertex="1"><mxGeometry x="215" y="60" width="250" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-kind" parent="pp-rev" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Loai revision?" vertex="1"><mxGeometry x="530" y="60" width="145" height="85" as="geometry" /></mxCell>
+        <mxCell id="pp-season-ref" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1" value="Referenced season NEW&#xa;resolve referenced season qua gateway&#xa;revision number: filename hoac first available&#xa;tim revision baseline" vertex="1"><mxGeometry x="730" y="45" width="300" height="115" as="geometry" /></mxCell>
+        <mxCell id="pp-base" parent="pp-rev" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf" value="Gateway baseline&#xa;scheduled/non-scheduled storage&#xa;permit id, operator, flights" vertex="1"><mxGeometry x="1100" y="55" width="230" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-season-old" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1" value="Seasonal / multi-day referenced&#xa;neu reference missing: bat buoc co OLD&#xa;baseline phai SC + exact permit identity" vertex="1"><mxGeometry x="1405" y="45" width="305" height="115" as="geometry" /></mxCell>
+        <mxCell id="pp-season-match" parent="pp-rev" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Moi OLD match&#xa;duy nhat 1 baseline row?" vertex="1"><mxGeometry x="1780" y="55" width="170" height="100" as="geometry" /></mxCell>
+        <mxCell id="pp-no-replace" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1" value="Non-seasonal PERMNO replacement&#xa;OLD bat buoc&#xa;normalize operator + airports" vertex="1"><mxGeometry x="730" y="275" width="275" height="100" as="geometry" /></mxCell>
+        <mxCell id="pp-pair" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1" value="Pair NEW-OLD&#xa;route; callsign unique; hoac only OLD row&#xa;OLD phai match duy nhat baseline&#xa;committed NEW exact = retry enrichment only" vertex="1"><mxGeometry x="1080" y="260" width="320" height="125" as="geometry" /></mxCell>
+        <mxCell id="pp-inherit" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" value="Chi duoc inherit purpose/aircraft/VIA khi rule cho phep&#xa;doi sector bat buoc co NEW route ro rang" vertex="1"><mxGeometry x="1480" y="270" width="310" height="100" as="geometry" /></mxCell>
+        <mxCell id="pp-review" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Thieu / ambiguous baseline, OLD khong match, OLD missing&#xa;Business-rule failure -> REVISION_REVIEW / quarantine&#xa;khong doan replacement" vertex="1"><mxGeometry x="2050" y="55" width="330" height="110" as="geometry" /></mxCell>
+        <mxCell id="pp-materialize" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="Materialize rows&#xa;cancelled OLD rows + NEW rows&#xa;giu identity va field da duoc phep inherit" vertex="1"><mxGeometry x="2460" y="55" width="270" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-after" parent="pp-rev" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="Sau reconcile&#xa;resolve aircraft + VIA qua dictionary/cache&#xa;BusinessRuleValidator&#xa;=> DatabaseWriterStep" vertex="1"><mxGeometry x="2820" y="55" width="280" height="105" as="geometry" /></mxCell>
+        <mxCell id="pp-e1" edge="1" parent="1" source="pp-input" target="pp-guard" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e2" value="co" edge="1" parent="1" source="pp-guard" target="pp-not-permit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e3" value="khong" edge="1" parent="1" source="pp-guard" target="pp-codes" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e4" edge="1" parent="1" source="pp-codes" target="pp-direct" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e5" edge="1" parent="1" source="pp-direct" target="pp-relax" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e6" edge="1" parent="1" source="pp-relax" target="pp-priority" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e7" edge="1" parent="1" source="pp-priority" target="pp-profile" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e8" edge="1" parent="1" source="pp-profile" target="pp-meta" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e9" edge="1" parent="1" source="pp-meta" target="pp-tables" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e10" edge="1" parent="1" source="pp-tables" target="pp-role" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e11" edge="1" parent="1" source="pp-role" target="pp-supplement" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e12" edge="1" parent="1" source="pp-supplement" target="pp-row-skip" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e13" edge="1" parent="1" source="pp-row-skip" target="pp-row-map" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e14" edge="1" parent="1" source="pp-row-map" target="pp-flight" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e15" edge="1" parent="1" source="pp-flight" target="pp-permit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e16" edge="1" parent="1" source="pp-permit" target="pp-is-revision" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e17" value="khong" edge="1" parent="1" source="pp-is-revision" target="pp-new" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e18" value="co" edge="1" parent="1" source="pp-is-revision" target="pp-kind" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e19" value="season referenced" edge="1" parent="1" source="pp-kind" target="pp-season-ref" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e20" edge="1" parent="1" source="pp-season-ref" target="pp-base" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e21" edge="1" parent="1" source="pp-base" target="pp-season-old" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e22" edge="1" parent="1" source="pp-season-old" target="pp-season-match" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e23" value="khong" edge="1" parent="1" source="pp-season-match" target="pp-review" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e24" value="co" edge="1" parent="1" source="pp-season-match" target="pp-materialize" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e25" value="PERMNO non-seasonal" edge="1" parent="1" source="pp-kind" target="pp-no-replace" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e26" edge="1" parent="1" source="pp-no-replace" target="pp-pair" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e27" edge="1" parent="1" source="pp-pair" target="pp-inherit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e28" edge="1" parent="1" source="pp-inherit" target="pp-materialize" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e29" edge="1" parent="1" source="pp-new" target="pp-after" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="pp-e30" edge="1" parent="1" source="pp-materialize" target="pp-after" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="atfm-write-detail" name="07 - Ghi ATFM chi tiet">
+    <mxGraphModel dx="3400" dy="1900" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="3800" pageHeight="2200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" /><mxCell id="1" parent="0" />
+        <mxCell id="wr-title" parent="1" style="text;html=1;fontSize=24;fontStyle=1;align=center" value="07. Chi tiet ghi permit vao ATFM va cap nhat tracking" vertex="1"><mxGeometry x="1050" y="20" width="1600" height="40" as="geometry" /></mxCell>
+        <mxCell id="wr-input" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="SchedulePermit da validate&#xa;rows da reconcile, aircraft/VIA da resolve" vertex="1"><mxGeometry x="30" y="170" width="270" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-dbwriter" parent="1" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="DatabaseWriterStep.writeSchedulePermit" vertex="1"><mxGeometry x="360" y="100" width="970" height="420" as="geometry" /></mxCell>
+        <mxCell id="wr-landing" parent="wr-dbwriter" style="rounded=1;whiteSpace=wrap;html=1" value="LandingFlightFilter&#xa;loc cac landing flights cua permit" vertex="1"><mxGeometry x="30" y="55" width="190" height="75" as="geometry" /></mxCell>
+        <mxCell id="wr-partial" parent="wr-dbwriter" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Non-scheduled replacement&#xa;bi loc mat NEW leg?" vertex="1"><mxGeometry x="270" y="48" width="160" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-partial-fail" parent="wr-dbwriter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Tu choi partial replacement&#xa;business-rule failure&#xa;khong ghi mot phan revision" vertex="1"><mxGeometry x="490" y="45" width="230" height="95" as="geometry" /></mxCell>
+        <mxCell id="wr-remarks" parent="wr-dbwriter" style="rounded=1;whiteSpace=wrap;html=1" value="Bo sung reference EM ddMMyyyy&#xa;apply remarks cho new/revision rows" vertex="1"><mxGeometry x="180" y="215" width="245" height="80" as="geometry" /></mxCell>
+        <mxCell id="wr-coordinate" parent="wr-dbwriter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" value="PermitImportCoordinator.importPermit" vertex="1"><mxGeometry x="500" y="220" width="270" height="70" as="geometry" /></mxCell>
+        <mxCell id="wr-import" parent="1" style="swimlane;html=1;startSize=25;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" value="PermitImportCoordinator - reservation, lock, idempotency" vertex="1"><mxGeometry x="1410" y="100" width="1220" height="620" as="geometry" /></mxCell>
+        <mxCell id="wr-hash" parent="wr-import" style="rounded=1;whiteSpace=wrap;html=1" value="Tinh semantic hash + source hash&#xa;lookup PermitImport theo sync job" vertex="1"><mxGeometry x="30" y="55" width="230" height="80" as="geometry" /></mxCell>
+        <mxCell id="wr-existing" parent="wr-import" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="PermitImport ton tai?" vertex="1"><mxGeometry x="320" y="50" width="145" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-saved" parent="wr-import" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366" value="SAVED / DUPLICATE&#xa;tra outcome cu&#xa;khong goi ATFM lan nua" vertex="1"><mxGeometry x="515" y="50" width="210" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-failed" parent="wr-import" style="rounded=1;whiteSpace=wrap;html=1" value="FAILED retry&#xa;reset attempt va reserve lai" vertex="1"><mxGeometry x="785" y="50" width="180" height="75" as="geometry" /></mxCell>
+        <mxCell id="wr-reserve" parent="wr-import" style="rounded=1;whiteSpace=wrap;html=1" value="Tao/giu reservation&#xa;PermitImport=RESERVED&#xa;normalized permit ID + detail count" vertex="1"><mxGeometry x="50" y="230" width="230" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-lock" parent="wr-import" style="rounded=1;whiteSpace=wrap;html=1" value="Permit lock&#xa;kiem tra idempotency + concurrent writer" vertex="1"><mxGeometry x="350" y="235" width="220" height="80" as="geometry" /></mxCell>
+        <mxCell id="wr-enabled" parent="wr-import" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="APP_ATFM_WRITE_ENABLED?" vertex="1"><mxGeometry x="650" y="225" width="170" height="100" as="geometry" /></mxCell>
+        <mxCell id="wr-dryrun" parent="wr-import" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="No&#xa;DRY_RUN outcome&#xa;khong goi ATFM" vertex="1"><mxGeometry x="900" y="235" width="180" height="80" as="geometry" /></mxCell>
+        <mxCell id="wr-gateway" parent="1" style="swimlane;html=1;startSize=25;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="JdbcAtfmScheduleGateway - mot giao dich Oracle ATFM" vertex="1"><mxGeometry x="2700" y="100" width="1040" height="930" as="geometry" /></mxCell>
+        <mxCell id="wr-conn" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1" value="Mo JDBC connection&#xa;setAutoCommit(false)" vertex="1"><mxGeometry x="30" y="50" width="180" height="75" as="geometry" /></mxCell>
+        <mxCell id="wr-ref" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1" value="Resolve airport codes&#xa;validate ATFM reference data&#xa;validate operator" vertex="1"><mxGeometry x="255" y="50" width="210" height="85" as="geometry" /></mxCell>
+        <mxCell id="wr-type" parent="wr-gateway" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" value="Operation / storage?" vertex="1"><mxGeometry x="525" y="50" width="160" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-sc" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1" value="Scheduled / HVN referenced&#xa;T_PERMMASTER_SC + T_PERMDETAIL_SC&#xa;insert/replace/cancel" vertex="1"><mxGeometry x="50" y="205" width="250" height="95" as="geometry" /></mxCell>
+        <mxCell id="wr-no" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1" value="Non-scheduled&#xa;T_PERMMASTER_NO + T_PERMDETAIL_NO&#xa;insert hoac replacement" vertex="1"><mxGeometry x="355" y="205" width="250" height="95" as="geometry" /></mxCell>
+        <mxCell id="wr-correct" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1" value="Subject correction&#xa;lock master hien co&#xa;delete all details; update master&#xa;insert validated details" vertex="1"><mxGeometry x="660" y="195" width="270" height="110" as="geometry" /></mxCell>
+        <mxCell id="wr-replace" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1" value="Non-seasonal replacement&#xa;find/lock NO master&#xa;doc old rows FOR UPDATE&#xa;receipt/idempotency check&#xa;delete documented OLD; insert NEW&#xa;missing base: refuse create master" vertex="1"><mxGeometry x="140" y="390" width="350" height="150" as="geometry" /></mxCell>
+        <mxCell id="wr-commit" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="Thanh cong: connection.commit()&#xa;tra target master/detail IDs" vertex="1"><mxGeometry x="600" y="420" width="260" height="80" as="geometry" /></mxCell>
+        <mxCell id="wr-rollback" parent="wr-gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Exception&#xa;connection.rollback()&#xa;rethrow loi da dich" vertex="1"><mxGeometry x="610" y="585" width="220" height="80" as="geometry" /></mxCell>
+        <mxCell id="wr-atfm-db" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366" value="ORACLE ATFM&#xa;T_PERMMASTER_SC / T_PERMDETAIL_SC&#xa;T_PERMMASTER_NO / T_PERMDETAIL_NO&#xa;airport/operator/aircraft dictionaries" vertex="1"><mxGeometry x="2820" y="1130" width="420" height="115" as="geometry" /></mxCell>
+        <mxCell id="wr-track" parent="1" style="swimlane;html=1;startSize=25;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1" value="Tracking va hoan tat sau ghi" vertex="1"><mxGeometry x="150" y="820" width="2420" height="440" as="geometry" /></mxCell>
+        <mxCell id="wr-outcome" parent="wr-track" style="rounded=1;whiteSpace=wrap;html=1" value="Thanh cong ghi: PermitImport=SAVED&#xa;hoac idempotent = DUPLICATE&#xa;luu target IDs + detail count" vertex="1"><mxGeometry x="30" y="55" width="260" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-tracking-tx" parent="wr-track" style="rounded=1;whiteSpace=wrap;html=1" value="Tracking transaction&#xa;FileRecord=SAVED/SKIPPED + rows + databaseSavedAt&#xa;SyncJob=SUCCESS/SKIPPED" vertex="1"><mxGeometry x="360" y="50" width="300" height="100" as="geometry" /></mxCell>
+        <mxCell id="wr-audit" parent="wr-track" style="rounded=1;whiteSpace=wrap;html=1" value="Audit SYNC_SUCCESS / SYNC_DUPLICATE&#xa;publish SyncResultEvent" vertex="1"><mxGeometry x="730" y="55" width="230" height="90" as="geometry" /></mxCell>
+        <mxCell id="wr-archive" parent="wr-track" style="rounded=1;whiteSpace=wrap;html=1" value="Archive file&#xa;processed/yyyy/MM/dd, short hash suffix&#xa;FileRecord.archiveStatus=ARCHIVED&#xa;markArchived" vertex="1"><mxGeometry x="1030" y="50" width="280" height="100" as="geometry" /></mxCell>
+        <mxCell id="wr-email" parent="wr-track" style="rounded=1;whiteSpace=wrap;html=1" value="Email source: cap nhat EmailMetadata&#xa;acknowledgement flow quyet dinh&#xa;AeroSync/Processed hoac AeroSync/Error" vertex="1"><mxGeometry x="1370" y="50" width="300" height="100" as="geometry" /></mxCell>
+        <mxCell id="wr-ok" parent="wr-track" style="shape=doubleEllipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" value="Xu ly thanh cong&#xa;ATFM committed + tracking saved&#xa;file archived + result published" vertex="1"><mxGeometry x="1770" y="50" width="290" height="100" as="geometry" /></mxCell>
+        <mxCell id="wr-failed-import" parent="wr-track" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" value="Runtime error: PermitImport=FAILED&#xa;translated error; pipeline retry/quarantine rule&#xa;unsafe revision => REVISION_REVIEW" vertex="1"><mxGeometry x="450" y="245" width="350" height="95" as="geometry" /></mxCell>
+        <mxCell id="wr-tracking-db" parent="1" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6" value="ORACLE AEROSYNC TRACKING&#xa;permit_import | file_record | sync_job&#xa;email_metadata | audit_log" vertex="1"><mxGeometry x="760" y="1390" width="380" height="105" as="geometry" /></mxCell>
+        <mxCell id="wr-e1" edge="1" parent="1" source="wr-input" target="wr-landing" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e2" edge="1" parent="1" source="wr-landing" target="wr-partial" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e3" value="co" edge="1" parent="1" source="wr-partial" target="wr-partial-fail" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e4" value="khong" edge="1" parent="1" source="wr-partial" target="wr-remarks" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e5" edge="1" parent="1" source="wr-remarks" target="wr-coordinate" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e6" edge="1" parent="1" source="wr-coordinate" target="wr-hash" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e7" edge="1" parent="1" source="wr-hash" target="wr-existing" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e8" value="SAVED/DUPLICATE" edge="1" parent="1" source="wr-existing" target="wr-saved" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e9" value="FAILED" edge="1" parent="1" source="wr-existing" target="wr-failed" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e10" value="moi/retry" edge="1" parent="1" source="wr-existing" target="wr-reserve" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e11" edge="1" parent="1" source="wr-failed" target="wr-reserve" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e12" edge="1" parent="1" source="wr-reserve" target="wr-lock" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e13" edge="1" parent="1" source="wr-lock" target="wr-enabled" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e14" value="no" edge="1" parent="1" source="wr-enabled" target="wr-dryrun" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e15" value="yes" edge="1" parent="1" source="wr-enabled" target="wr-conn" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e16" edge="1" parent="1" source="wr-conn" target="wr-ref" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e17" edge="1" parent="1" source="wr-ref" target="wr-type" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e18" edge="1" parent="1" source="wr-type" target="wr-sc" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e19" edge="1" parent="1" source="wr-type" target="wr-no" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e20" edge="1" parent="1" source="wr-type" target="wr-correct" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e21" edge="1" parent="1" source="wr-no" target="wr-replace" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e22" edge="1" parent="1" source="wr-sc" target="wr-commit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e23" edge="1" parent="1" source="wr-replace" target="wr-commit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e24" edge="1" parent="1" source="wr-correct" target="wr-commit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e25" edge="1" parent="1" source="wr-commit" target="wr-atfm-db" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#82b366"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e26" edge="1" parent="1" source="wr-commit" target="wr-outcome" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e27" edge="1" parent="1" source="wr-dryrun" target="wr-outcome" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e28" edge="1" parent="1" source="wr-saved" target="wr-outcome" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e29" edge="1" parent="1" source="wr-outcome" target="wr-tracking-tx" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e30" edge="1" parent="1" source="wr-tracking-tx" target="wr-audit" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e31" edge="1" parent="1" source="wr-audit" target="wr-archive" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e32" edge="1" parent="1" source="wr-archive" target="wr-email" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e33" edge="1" parent="1" source="wr-email" target="wr-ok" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e34" edge="1" parent="1" source="wr-outcome" target="wr-tracking-db" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#9673a6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e35" edge="1" parent="1" source="wr-tracking-tx" target="wr-tracking-db" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#9673a6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="wr-e36" edge="1" parent="1" source="wr-rollback" target="wr-failed-import" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#b85450"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
