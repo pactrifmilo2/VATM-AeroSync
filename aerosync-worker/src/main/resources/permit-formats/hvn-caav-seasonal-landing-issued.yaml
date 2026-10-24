@@ -1,0 +1,35 @@
+id: hvn-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+# Vietnam Airlines issued seasonal landing permit observed as LD-69/A/W/2026VN.
+priority: 260
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)\bHVN\b'
+  - '(?iu)\bVN\d+\b'
+  - '(?iu)(?:SCHEDULES?|LỊCH\s+BAY)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d*\b|/\s*REV\d+\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'
+operator:
+  fixedValue: HVN
+permit:
+  pattern: '(?iu)\bLD\s*[-/]?\s*(?=(?<numberRaw>\d{1,9})\s*/)(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'LD-{numberRaw}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'LD {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+permitDate:
+  source: PARAGRAPH
+  pattern: '(?iu)(?<date>\d{1,2}\s+tháng\s+\d{1,2}\s+năm\s+20\d{2})'
+  group: date
+  formats: ["d 'th\u00e1ng' M 'n\u0103m' uuuu"]
+  locale: vi
+  fallbackToDocumentCreatedDate: false
+schedule:
+  dateFormats: [d-MMM-yy, d-MMM-uuuu, dMMMyy, dMMMuuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+purpose:
+  defaultId: PAX
+validation:
+  reviewOnly: false
