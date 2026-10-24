@@ -37,6 +37,9 @@ public class DocxSchedulePermitParser {
     private static final Pattern GROUPED_ROUTE_PATTERN = Pattern.compile(
             "^([A-Z]{3,4}(?:\\s*/\\s*[A-Z]{3,4})*)\\s*[-\\u2013\\u2014]\\s*"
                     + "([A-Z]{3,4}(?:\\s*/\\s*[A-Z]{3,4})*)$");
+    private static final Pattern SLASH_ROUTE_PATTERN = Pattern.compile(
+            "^([A-Z]{3,4})\\s*/\\s*"
+                    + "([A-Z]{3,4}(?:\\s*,\\s*[A-Z]{3,4})*)$");
     private static final Pattern ICAO_LABEL_PATTERN = Pattern.compile(
             "(?iu)(?:ICAO\\s*(?:CODE)?|MA\\s*ICAO)(?:\\s*\\([^)]*\\))?"
                     + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
@@ -958,14 +961,14 @@ public class DocxSchedulePermitParser {
             List<String> row = table.get(rowIndex);
             String sector = clean(value(row, columns, "sector")).toUpperCase(Locale.ROOT);
             String rawAirways = value(row, columns, "airways");
-            Matcher matcher = GROUPED_ROUTE_PATTERN.matcher(sector);
+            Matcher matcher = routeMatcher(sector);
             if (!matcher.matches()) {
                 // Some CAAV airway tables append the corresponding flight number
                 // to a valid sector, e.g. TPE-CGK(CI5869). Strip only that strict
                 // parenthesized callsign suffix, then require a full sector match.
                 String sectorWithoutFlight = sector.replaceFirst("\\s*\\([A-Z0-9]{2,10}\\)$", "");
                 if (!sectorWithoutFlight.equals(sector)) {
-                    matcher = GROUPED_ROUTE_PATTERN.matcher(sectorWithoutFlight);
+                    matcher = routeMatcher(sectorWithoutFlight);
                 }
             }
             if (matcher.matches()) {
@@ -981,7 +984,7 @@ public class DocxSchedulePermitParser {
                     .add(rawAirways);
         }
         for (Map.Entry<String, List<String>> entry : airwaysBySector.entrySet()) {
-            Matcher matcher = GROUPED_ROUTE_PATTERN.matcher(entry.getKey());
+            Matcher matcher = routeMatcher(entry.getKey());
             if (!matcher.matches()) {
                 continue;
             }
@@ -989,8 +992,8 @@ public class DocxSchedulePermitParser {
             if (airways.isBlank()) {
                 throw invalid(fileName, "Airways table is missing airways for sector " + entry.getKey());
             }
-            for (String from : matcher.group(1).split("\\s*/\\s*")) {
-                for (String to : matcher.group(2).split("\\s*/\\s*")) {
+            for (String from : matcher.group(1).split("\\s*[/,]\\s*")) {
+                for (String to : matcher.group(2).split("\\s*[/,]\\s*")) {
                     routes.add(new RouteRow(
                             normalizeAirport(from, normalizeAirportsToIcao),
                             normalizeAirport(to, normalizeAirportsToIcao),
@@ -1002,6 +1005,11 @@ public class DocxSchedulePermitParser {
             throw invalid(fileName, "Airways table is present but contains no valid route rows");
         }
         return routes;
+    }
+
+    private Matcher routeMatcher(String value) {
+        Matcher grouped = GROUPED_ROUTE_PATTERN.matcher(value);
+        return grouped.matches() ? grouped : SLASH_ROUTE_PATTERN.matcher(value);
     }
 
     private List<RouteRow> inferHeaderlessRoutes(

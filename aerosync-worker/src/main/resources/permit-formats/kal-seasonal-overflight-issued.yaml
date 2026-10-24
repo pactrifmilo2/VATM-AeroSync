@@ -1,0 +1,48 @@
+id: kal-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+# Korean Air issued seasonal overflight permit observed as OF-1051/B/W/2026VN.
+priority: 260
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)IATA\s*(?:CODE)?\s*:\s*KE\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*KAL\b'
+  - '(?iu)KOREAN\s+AIR'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d*\b|/\s*REV\d+\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'
+operator:
+  fixedValue: KAL
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*(?=(?<numberRaw>\d{1,9})\s*/)(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
+  numberGroup: number
+  numberTemplate: '{number}{version}'
+  sourceTemplate: 'OF-{numberRaw}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}{version}/{season}/CHK/{year}'
+  zeroPadGroups:
+    number: 4
+schedule:
+  columns:
+    etd: [ETD, EOBT, ETD (UTC)]
+    eta: [ETA, EIBT, ETA (UTC)]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  locale: en
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, Airway, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: true
+  allowEmpty: false
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type, AircraftType (ICAO code), Aircraft Type (ICAO code)]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark]
+  auxiliaryRequiredColumns: [aircraftType, registrationMarks]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+  defaultType: B748
+  lastMatchingTable: false
+validation:
+  allowIataAirports: false
+  reviewOnly: false
