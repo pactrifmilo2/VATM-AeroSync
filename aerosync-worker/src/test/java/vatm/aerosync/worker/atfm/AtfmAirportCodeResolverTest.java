@@ -54,6 +54,14 @@ class AtfmAirportCodeResolverTest {
     }
 
     @Test
+    void resolve_acceptsFourLetterCodeWhenAtfmHasDuplicateRows() throws Exception {
+        connection.createStatement().execute(
+                "INSERT INTO M_AERO (AE_IATA, AE_CODE) VALUES ('PHH', 'WSSS')");
+
+        assertThat(resolver.resolve(connection, "WSSS")).isEqualTo("WSSS");
+    }
+
+    @Test
     void resolve_rejectsUnknownFourLetterCode() {
         assertThatThrownBy(() -> resolver.resolve(connection, "XXXX"))
                 .isInstanceOf(AtfmReferenceDataException.class)

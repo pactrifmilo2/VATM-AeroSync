@@ -33,7 +33,7 @@ public class AtfmAirportCodeResolver {
                 statement.setString(1, normalized);
                 try (ResultSet rows = statement.executeQuery()) {
                     rows.next();
-                    if (rows.getInt("MATCH_COUNT") != 1) {
+                    if (rows.getInt("MATCH_COUNT") == 0) {
                         throw new AtfmReferenceDataException(
                                 "ATFM airport mapping not found: M_AERO.AE_CODE=" + normalized);
                     }
