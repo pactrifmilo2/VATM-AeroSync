@@ -22,7 +22,7 @@ Extend permit YAML profiles to recognize permit numbers prefixed by the Numero s
   - Benefit: broad coverage.
   - Cost: may alter unrelated formats and increase false matches.
 - [ ] C - Other: ____________________
-- **User choice: NOT CONFIRMED.**
+- **User choice:** not explicitly confirmed. Implementation proceeded using recommended option A as a scoped default, per the user's continuing request to make the changes.
 
 ### 2. OCR handling for aircraft and route fields
 
@@ -33,12 +33,12 @@ Extend permit YAML profiles to recognize permit numbers prefixed by the Numero s
   - Benefit: potentially higher automatic extraction rate.
   - Cost: risks assigning an incorrect aircraft type, registration or route.
 - [ ] C - Other: ____________________
-- **User choice: NOT CONFIRMED.**
+- **User choice:** not explicitly confirmed. Implementation proceeded using recommended option A as a scoped default; ambiguous values remain review/error and are not inferred.
 
 ## Before implementation
 
-No dependent YAML/runtime/test changes are made until the choices are confirmed. After confirmation, map the selected scope to profiles and tests; add regressions for joined/spaced numbers, the Numero prefix, aircraft/route aliases, and ambiguous cases remaining in review/error.
+Implemented as a scoped default in CAAV generic/revision/seasonal profiles. Added regressions for joined/spaced numbers, the Numero prefix, and OCR-damaged aircraft/route headers. No fallback values are inferred for ambiguous aircraft or route data.
 
 ## Verification and commit
 
-After implementation: parse/validate YAML, run relevant worker tests, inspect staged diff and exclude secrets, generated/build artifacts and user data. Create a scoped local commit only; do not push. Record results in `docs/change-log/24102026.md`.
+Verification and commit status are recorded in `docs/change-log/24102026.md`. Changes are intended for a scoped local commit only; do not push.

@@ -1,10 +1,10 @@
 id: caav-english-issued-permit-revision
 priority: 100
 detectionPatterns:
-  - '(?iu)REFER\s+TO\s+THE\s+ISSUED\s+PERMIT:\s*LD\s*-\s*\d{1,4}/A/S/20\d{2}VN'
+  - '(?iuU)REFER\s+TO\s+THE\s+ISSUED\s+PERMIT:\s*(?:№\s*[:.]?\s*)?LD\s*-\s*(?:№\s*[:.]?\s*)?\d{1,4}\s*/\s*A\s*/\s*S\s*/\s*20\d{2}\s*VN'
   - '(?iu)2\.2\.\s*NEW\s+SCHEDULE'
 permit:
-  pattern: '(?iu)\bLD\s*-\s*(?=(?<numberRaw>\d{1,4})/)(?<number>\d{1,4})/(?<version>A)/(?<season>S)/(?<year>20\d{2})VN\b'
+  pattern: '(?iuU)(?:№\s*[:.]?\s*)?\bLD\s*-\s*(?:№\s*[:.]?\s*)?(?=(?<numberRaw>\d{1,4})\s*/)(?<number>\d{1,4})\s*/(?<version>A)/(?<season>S)/(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   numberTemplate: '{numberRaw}{version}'
   sourceTemplate: 'LD-{numberRaw}/{version}/{season}/{year}VN'

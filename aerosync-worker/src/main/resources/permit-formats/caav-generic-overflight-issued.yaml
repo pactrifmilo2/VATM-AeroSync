@@ -1,12 +1,12 @@
 id: caav-generic-overflight-issued
 priority: -100
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
+  - '(?iuU)(?:№\s*[:.]?\s*)?\b(?:O\s*/\s*F|OF)\s*-\s*(?:№\s*[:.]?\s*)?\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?|SỐ\s+HIỆU\s+CHUYẾN\s+BAY|LỊCH\s+BAY)'
   - '(?isu)^(?!.*(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b)).*$'
   - '(?isu)(?:NON[-\s]+SCHEDULED|^(?!.*\bCARGO\s+FLIGHT\b).*$)'
 permit:
-  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
+  pattern: '(?iuU)(?:№\s*[:.]?\s*)?\b(?:O\s*/\s*F|OF)\s*-\s*(?:№\s*[:.]?\s*)?(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
   sourceTemplate: 'OF-{number}/{month}/{year}VN'
   normalizedTemplate: 'O/F {number}/CHK/{year}'
@@ -64,7 +64,7 @@ schedule:
     etd: [ETD]
     toAirport: [Arrival Airport, Arr airport]
     eta: [ETA, EIBT]
-    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
+    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code), Aircrafl Type, Aircraft Tyoe, Aircraft Model, Type of Aircraft]
     originalPermit: [Original permit]
     remark: [Notes, Note]
   requiredColumns:
@@ -86,8 +86,8 @@ schedule:
   inferIataPrefix: true
 route:
   columns:
-    sector: [Sector]
-    airways: [Airways]
+    sector: [Sector, Sectors, Setor, Setors, Flight Sector]
+    airways: [Airways, Airway, ATS Route, Route (ATS)]
   requiredColumns: [sector, airways]
   tableRequired: false
   allowEmpty: true
@@ -97,8 +97,8 @@ route:
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:
-    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code)]
-    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark, Aircraft registration marks]
+    aircraftType: [Aircraft Type, Aircraft type, Aircraft Type (ICAO code), Aircraft type (ICAO code), Aircrafl Type, Aircraft Tyoe, Aircraft Model, Type of Aircraft]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft registration mark, Aircraft registration marks, Aircraft Registralion Mark]
   auxiliaryRequiredColumns: [aircraftType, registrationMarks]
   auxiliaryTypeColumn: aircraftType
   registrationColumn: registrationMarks

@@ -90,6 +90,40 @@ class CaavGenericOverflightAircraftTableTest {
                 .containsExactly("M765/L637/Q2/A1", "Q1/W1/L644/L642");
     }
 
+    @Test
+    void readsAircraftAndRouteTablesWithCommonOcrHeaderErrors() throws Exception {
+        Path file = tempDir.resolve("OF-6049-ocr-headers.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            paragraph(document, "HA NOI, 25 AUG 2026");
+            paragraph(document, "PERMIT NUMBER: OF-6049/8/2026VN");
+            paragraph(document, "1. Carrier/Operator Name: PPG INDUSTRIES");
+            paragraph(document, "3. Schedules: UTC Time");
+            table(document,
+                    new String[] {"Flight number", "Effective from", "Effective to", "Days of services",
+                            "Departure Airport", "EOBT", "Arrival Airport", "EIBT"},
+                    new String[][] {{"N857GA", "27AUG26", "27AUG26", "---4---",
+                            "VABB", "1815", "RJCC", "0325+1"}});
+            paragraph(document, "5. Aircraft:");
+            table(document,
+                    new String[] {"Aircrafl Type", "Aircraft Registralion Mark"},
+                    new String[][] {{"G550", "N857GA"}});
+            paragraph(document, "6. Airways:");
+            table(document, new String[] {"Setor", "Airway"},
+                    new String[][] {{"VABB-RJCC", "R474"}});
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.sourceAircraftType()).isEqualTo("G550");
+            assertThat(flight.registration()).isEqualTo("N857GA");
+            assertThat(flight.via()).isEqualTo("R474");
+        });
+    }
+
     private void paragraph(XWPFDocument document, String value) {
         document.createParagraph().createRun().setText(value);
     }

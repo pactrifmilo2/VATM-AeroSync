@@ -1,12 +1,12 @@
 id: caav-generic-landing-revision
 priority: -100
 detectionPatterns:
-  - '(?iu)\bLD\s*-\s*\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
+  - '(?iuU)(?:№\s*[:.]?\s*)?\bLD\s*-\s*(?:№\s*[:.]?\s*)?\d{1,9}\s*/\s*\d{1,2}\s*/\s*20\d{2}\s*VN'
   - '(?iu)(?:\bREVISE#?\b|\bREVISION\s+OF\b|(?:/|-)\s*REV\d+\b)'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?|SỐ\s+HIỆU\s+CHUYẾN\s+BAY|LỊCH\s+BAY)'
   - '(?isu)^(?!.*PHÉP\s+BAY\s+KHÔNG\s+THƯỜNG\s+LỆ\s+ĐI/ĐẾN\s+VIỆT\s+NAM).*$'
 permit:
-  pattern: '(?iu)\bLD\s*-\s*(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN'
+  pattern: '(?iuU)(?:№\s*[:.]?\s*)?\bLD\s*-\s*(?:№\s*[:.]?\s*)?(?<number>\d{1,9})\s*/\s*(?<month>\d{1,2})\s*/\s*(?<year>20\d{2})\s*VN'
   numberGroup: number
   sourceTemplate: 'LD-{number}/{month}/{year}VN'
   normalizedTemplate: 'LD {number}/CHK/{year}'
@@ -77,8 +77,8 @@ schedule:
   inferIataPrefix: true
 route:
   columns:
-    sector: [Sector, Chặng bay]
-    airways: [Airways, Đường hàng không]
+    sector: [Sector, Sectors, Setor, Setors, Flight Sector, Chặng bay]
+    airways: [Airways, Airway, ATS Route, Route (ATS), Đường hàng không]
   requiredColumns: [sector, airways]
   tableRequired: false
   allowEmpty: true
@@ -88,8 +88,8 @@ route:
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:
-    aircraftType: [Aircraft Type, Loại tàu bay]
-    registrationMarks: [Registration Mark, Registration Marks, Số đăng ký]
+    aircraftType: [Aircraft Type, Loại tàu bay, Tàu bay, Aircrafl Type, Aircraft Tyoe, Aircraft Model, Type of Aircraft]
+    registrationMarks: [Registration Mark, Registration Marks, Aircraft Registration Mark, Aircraft Registration Marks, Aircraft Registralion Mark, Số đăng ký]
   # Registration marks are optional on CAAV landing permit aircraft tables.
   auxiliaryRequiredColumns: [aircraftType]
   auxiliaryTypeColumn: aircraftType
