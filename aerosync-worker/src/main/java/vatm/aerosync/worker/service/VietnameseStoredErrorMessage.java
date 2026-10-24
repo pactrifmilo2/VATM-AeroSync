@@ -194,6 +194,21 @@ public final class VietnameseStoredErrorMessage {
         if (lower.contains("airways") || lower.contains("route not found")) {
             return withRow(value, "Không tìm thấy đường bay hợp lệ hoặc dữ liệu đường bay đối chiếu trong ATFM.");
         }
+        if (lower.contains("br-airport-fallback")
+                || lower.contains("airport code not found in atfm")) {
+            Matcher airportFallback = Pattern.compile(
+                    "(?i)(?:schedule )?row\\s+(\\d+):\\s*"
+                            + "Airport code not found in ATFM:\\s*(.+?)"
+                            + ";\\s*fallback\\s+VVVV\\s+applied")
+                    .matcher(value);
+            if (airportFallback.find()) {
+                return "Dòng lịch bay " + airportFallback.group(1)
+                        + ": Mã sân bay đọc được " + airportFallback.group(2).trim()
+                        + " không có dữ liệu đối chiếu trong ATFM; đã ghi mã dự phòng VVVV.";
+            }
+            return withRow(value,
+                    "Mã sân bay không có dữ liệu đối chiếu trong ATFM; đã ghi mã dự phòng VVVV.");
+        }
         if (lower.contains("airport") || lower.contains("m_aero")) {
             return withRow(value, "Mã sân bay không hợp lệ hoặc không có dữ liệu đối chiếu trong ATFM.");
         }
@@ -207,7 +222,8 @@ public final class VietnameseStoredErrorMessage {
         if (lower.contains("atfm writes are disabled")) {
             return "Chức năng ghi dữ liệu vào ATFM đang bị tắt trong cấu hình.";
         }
-        if (lower.contains("manual review")) {
+        if (lower.contains("manual review")
+                || lower.contains("giấy phép bay cần được kiểm tra thủ công trước khi ghi vào atfm")) {
             return "Permit đã được phân tích; cờ reviewOnly không còn chặn ghi vào ATFM.";
         }
         if (lower.contains("revision") || lower.contains("original atfm permit")) {

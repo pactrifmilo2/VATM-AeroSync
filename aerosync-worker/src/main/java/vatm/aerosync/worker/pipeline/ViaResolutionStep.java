@@ -22,6 +22,8 @@ import java.util.Map;
 @Component
 public class ViaResolutionStep {
 
+    static final String FALLBACK_AIRPORT = "VVVV";
+
     private final AtfmDatabaseProperties properties;
     private final AtfmAirportCodeResolver airportCodeResolver;
     private final AtfmViaResolver viaResolver;
@@ -59,8 +61,10 @@ public class ViaResolutionStep {
             List<ScheduleFlight> resolvedFlights = new ArrayList<>(permit.flights().size());
             for (int index = 0; index < permit.flights().size(); index++) {
                 ScheduleFlight flight = permit.flights().get(index);
-                String from = resolveAirport(connection, airports, flight.fromAirport());
-                String to = resolveAirport(connection, airports, flight.toAirport());
+                String from = resolveAirportOrFallback(
+                        connection, airports, flight.fromAirport(), index + 1, "fromAirport", context);
+                String to = resolveAirportOrFallback(
+                        connection, airports, flight.toAirport(), index + 1, "toAirport", context);
                 RouteKey routeKey = new RouteKey(from, to, permit.operatorId(), flight.via());
                 String via;
                 boolean routeMissing = false;
@@ -123,6 +127,26 @@ public class ViaResolutionStep {
         String resolved = airportCodeResolver.resolve(connection, sourceCode);
         airports.put(sourceCode, resolved);
         return resolved;
+    }
+
+    private String resolveAirportOrFallback(Connection connection,
+                                            Map<String, String> airports,
+                                            String sourceCode,
+                                            int rowNumber,
+                                            String field,
+                                            ProcessingContext context) throws SQLException {
+        try {
+            return resolveAirport(connection, airports, sourceCode);
+        } catch (AtfmReferenceDataException exception) {
+            context.getRowValidationErrors().add(new RowValidationError(
+                    rowNumber,
+                    field,
+                    "BR-AIRPORT-FALLBACK",
+                    "Airport code not found in ATFM: " + sourceCode
+                            + "; fallback " + FALLBACK_AIRPORT + " applied",
+                    sourceCode));
+            return FALLBACK_AIRPORT;
+        }
     }
 
     private String resolveVia(Connection connection,

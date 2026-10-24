@@ -17,10 +17,28 @@ public class AtfmAirportCodeResolver {
              WHERE UPPER(TRIM(AE_IATA)) = ?
                AND AE_CODE IS NOT NULL
             """;
+    private static final String FIND_BY_ICAO_SQL = """
+            SELECT COUNT(*) AS MATCH_COUNT
+              FROM M_AERO
+             WHERE UPPER(TRIM(AE_CODE)) = ?
+            """;
 
     public String resolve(Connection connection, String sourceCode) throws SQLException {
         String normalized = normalize(sourceCode);
         if (normalized.length() == 4) {
+            if ("VVVV".equals(normalized)) {
+                return normalized;
+            }
+            try (PreparedStatement statement = connection.prepareStatement(FIND_BY_ICAO_SQL)) {
+                statement.setString(1, normalized);
+                try (ResultSet rows = statement.executeQuery()) {
+                    rows.next();
+                    if (rows.getInt("MATCH_COUNT") != 1) {
+                        throw new AtfmReferenceDataException(
+                                "ATFM airport mapping not found: M_AERO.AE_CODE=" + normalized);
+                    }
+                }
+            }
             return normalized;
         }
         if (normalized.length() != 3) {

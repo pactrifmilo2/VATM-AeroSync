@@ -188,6 +188,25 @@ class DatabaseWriterStepTest {
     }
 
     @Test
+    void write_schedulePermitKeepsAirportFallbackWarningAfterInsert() {
+        TestFixture fixture = createFixture("permit-airport-fallback-warning");
+        ProcessingContext context = contextFor(fixture);
+        context.setSchedulePermit(schedulePermit());
+        context.getRowValidationErrors().add(new RowValidationError(
+                1, "fromAirport", "BR-AIRPORT-FALLBACK",
+                "Airport code not found in ATFM: XXX; fallback VVVV applied", "XXX"));
+        when(permitImportCoordinator.importPermit(any()))
+                .thenReturn(new PermitImportOutcome(PermitImportStatus.SAVED, 1, 101L, 202L));
+
+        databaseWriterStep.write(context);
+
+        FileRecord record = fileRecordRepository.findBySyncJobId(fixture.job().getId()).getFirst();
+        assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.SAVED);
+        assertThat(record.getErrorMessage())
+                .contains("Dòng lịch bay 1", "XXX", "VVVV");
+    }
+
+    @Test
     void write_multiDayNonScheduledRevisionAssignsOldAndNewRemarks() {
         TestFixture fixture = createFixture("multi-day-revision-remarks");
         ProcessingContext context = contextFor(fixture);

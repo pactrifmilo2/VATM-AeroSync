@@ -40,7 +40,8 @@ class ViaResolutionStepTest {
             connection.createStatement().execute("""
                     INSERT INTO M_AERO (AE_IATA, AE_CODE) VALUES
                         ('SGN', 'VVTS'),
-                        ('VCL', 'VVCA')
+                        ('VCL', 'VVCA'),
+                        ('HAN', 'VVNB')
                     """);
             connection.createStatement().execute("""
                     CREATE TABLE M_VIA (
@@ -128,6 +129,25 @@ class ViaResolutionStepTest {
                 "Other permitted airways published in Viet Nams AIP/");
         assertThat(context.getRowValidationErrors()).extracting("code")
                 .containsExactly("BR-ROUTE-NOT-FOUND");
+        new BusinessRuleValidatorStep().validate(context);
+    }
+
+    @Test
+    void resolve_usesVvvvAndWarningWhenAirportIsMissingFromAtfm() {
+        ProcessingContext context = context("HVN", false);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst();
+        context.setSchedulePermit(context.getSchedulePermit().withFlights(List.of(
+                source.withResolvedRoute("XXX", "VCL", null))));
+
+        step.resolve(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.fromAirport()).isEqualTo("VVVV");
+        assertThat(flight.toAirport()).isEqualTo("VVCA");
+        assertThat(context.getRowValidationErrors())
+                .extracting("code", "field", "value")
+                .contains(org.assertj.core.groups.Tuple.tuple(
+                        "BR-AIRPORT-FALLBACK", "fromAirport", "XXX"));
         new BusinessRuleValidatorStep().validate(context);
     }
 

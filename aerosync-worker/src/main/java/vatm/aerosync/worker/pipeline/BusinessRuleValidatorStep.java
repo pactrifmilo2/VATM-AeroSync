@@ -1,5 +1,6 @@
 package vatm.aerosync.worker.pipeline;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.exception.BusinessRuleException;
@@ -11,11 +12,24 @@ import vatm.aerosync.worker.model.SchedulePermit;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 @Component
 public class BusinessRuleValidatorStep {
+
+    private final Set<String> softServiceDaysRangeOperators;
+
+    public BusinessRuleValidatorStep() {
+        this("");
+    }
+
+    public BusinessRuleValidatorStep(@Value("${aerosync.validation.soft-service-days-range-operators:}")
+                                     String operators) {
+        this.softServiceDaysRangeOperators = parseOperators(operators);
+    }
 
     static final Pattern CALLSIGN_PATTERN = Pattern.compile("^[A-Z0-9]{2,10}$");
     static final Pattern AIRPORT_PATTERN = Pattern.compile("^[A-Z]{3}$");
@@ -54,6 +68,7 @@ public class BusinessRuleValidatorStep {
 
     private void validateSchedulePermit(ProcessingContext context) {
         SchedulePermit permit = context.getSchedulePermit();
+        String operator = permit.operatorId() == null ? "" : permit.operatorId().toUpperCase(Locale.ROOT);
         List<RowValidationError> errors = new ArrayList<>();
         if (permit.normalizedPermitId() == null
                 || permit.normalizedPermitId().isBlank()
@@ -88,7 +103,9 @@ public class BusinessRuleValidatorStep {
                     index + 1,
                     permit.iataAirportsAllowed(),
                     permit.usesScheduledStorage(),
-                    errors);
+                    operator,
+                    errors,
+                    context.getWarnings());
         }
         if (!errors.isEmpty()) {
             context.getRowValidationErrors().addAll(errors);
@@ -104,14 +121,18 @@ public class BusinessRuleValidatorStep {
                                         int rowNumber,
                                         boolean allowIataAirport,
                                         boolean seasonalPermit,
-                                        List<RowValidationError> errors) {
+                                        String operator,
+                                        List<RowValidationError> errors,
+                                        List<RowValidationError> warnings) {
         if (flight.flightNumber() == null || !flight.flightNumber().matches("^[A-Z0-9]{2,20}$")) {
             errors.add(error(rowNumber, "flightNumber", "BR-FLIGHT-NUMBER",
                     "Invalid flight number", flight.flightNumber()));
         }
         validateScheduleAirport(flight.fromAirport(), "fromAirport", rowNumber, allowIataAirport, errors);
         validateScheduleAirport(flight.toAirport(), "toAirport", rowNumber, allowIataAirport, errors);
-        if (Objects.equals(flight.fromAirport(), flight.toAirport())) {
+        if (!ViaResolutionStep.FALLBACK_AIRPORT.equals(flight.fromAirport())
+                && !ViaResolutionStep.FALLBACK_AIRPORT.equals(flight.toAirport())
+                && Objects.equals(flight.fromAirport(), flight.toAirport())) {
             errors.add(error(rowNumber, "route", "BR-FROM-TO",
                     "Departure and arrival airports must differ",
                     flight.fromAirport() + " -> " + flight.toAirport()));
@@ -135,8 +156,13 @@ public class BusinessRuleValidatorStep {
                     "Invalid day-of-service flags", flight.serviceDays()));
         } else if (flight.beginDate() != null && flight.endDate() != null
                 && !hasOperatingDate(flight)) {
-            errors.add(error(rowNumber, "serviceDays", "BR-SERVICE-DAYS-RANGE",
-                    "No selected operating day falls in the effective date range", flight.serviceDays()));
+            RowValidationError warning = error(rowNumber, "serviceDays", "BR-SERVICE-DAYS-RANGE",
+                    "No selected operating day falls in the effective date range", flight.serviceDays());
+            if (softServiceDaysRangeOperators.contains(operator)) {
+                warnings.add(warning);
+            } else {
+                errors.add(warning);
+            }
         }
             if (flight.craftId() <= 0 && seasonalPermit) {
                 errors.add(error(rowNumber, "craftId", "BR-CRAFT", "Aircraft mapping is required",
@@ -226,6 +252,17 @@ public class BusinessRuleValidatorStep {
             errors.add(error(rowNum, "dateFlight", "BR-DATEFLIGHT", "dateFlight is too far in the future",
                     dateFlight.toString()));
         }
+    }
+
+    private static Set<String> parseOperators(String operators) {
+        if (operators == null || operators.isBlank()) {
+            return Set.of();
+        }
+        return java.util.Arrays.stream(operators.split(","))
+                .map(String::trim)
+                .filter(value -> !value.isBlank())
+                .map(value -> value.toUpperCase(Locale.ROOT))
+                .collect(java.util.stream.Collectors.toUnmodifiableSet());
     }
 
     private RowValidationError error(int rowNum, String field, String code, String message, String value) {

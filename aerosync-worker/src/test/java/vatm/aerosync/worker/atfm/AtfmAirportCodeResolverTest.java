@@ -30,7 +30,8 @@ class AtfmAirportCodeResolverTest {
                     ('HAN', 'VVNB'),
                     ('SGN', 'VVTS'),
                     ('PQC', 'VVPQ'),
-                    ('ICN', 'RKSI')
+                    ('ICN', 'RKSI'),
+                    (NULL, 'WSSS')
                 """);
     }
 
@@ -50,6 +51,18 @@ class AtfmAirportCodeResolverTest {
     @Test
     void resolve_preservesAnExistingFourLetterCode() throws Exception {
         assertThat(resolver.resolve(connection, "wsss")).isEqualTo("WSSS");
+    }
+
+    @Test
+    void resolve_rejectsUnknownFourLetterCode() {
+        assertThatThrownBy(() -> resolver.resolve(connection, "XXXX"))
+                .isInstanceOf(AtfmReferenceDataException.class)
+                .hasMessageContaining("M_AERO.AE_CODE=XXXX");
+    }
+
+    @Test
+    void resolve_preservesVvvvFallbackWithoutReferenceRow() throws Exception {
+        assertThat(resolver.resolve(connection, "VVVV")).isEqualTo("VVVV");
     }
 
     @Test
