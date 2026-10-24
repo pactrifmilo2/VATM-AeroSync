@@ -4,13 +4,16 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import vatm.aerosync.common.exception.FormatValidationException;
 import vatm.aerosync.worker.model.SchedulePermit;
 
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CaavGenericOverflightAircraftTableTest {
 
@@ -122,6 +125,52 @@ class CaavGenericOverflightAircraftTableTest {
             assertThat(flight.registration()).isEqualTo("N857GA");
             assertThat(flight.via()).isEqualTo("R474");
         });
+    }
+
+    @Test
+    void infersAircraftAndRouteFromHeaderlessTablesWhenCandidatesAreUnique() throws Exception {
+        WordPermitDocument document = new WordPermitDocument(
+                "HA NOI, 25 AUG 2026\nPERMIT NUMBER: OF-6050/8/2026VN\n"
+                        + "Flight number\nSchedules\nNon-scheduled",
+                "", "OF-6050/8/2026VN\nFlight number\nSchedules\nNon-scheduled", List.of(
+                        List.of(
+                                List.of("Flight number", "Effective from", "Effective to", "Days of services",
+                                        "Departure Airport", "EOBT", "Arrival Airport", "EIBT"),
+                                List.of("XYZ501", "27AUG26", "27AUG26", "---4---",
+                                        "VABB", "1815", "RJCC", "0325+1")),
+                        List.of(List.of("B738", "N857GA")),
+                        List.of(List.of("VABB-RJCC", "R474"))),
+                List.of("Schedules", "Aircraft", "Airways"));
+
+        SchedulePermit permit = parser.parse(document, "OF-6050.docx");
+
+        assertThat(permit.flights()).singleElement().satisfies(flight -> {
+            assertThat(flight.sourceAircraftType()).isEqualTo("B738");
+            assertThat(flight.registration()).isEqualTo("N857GA");
+            assertThat(flight.fromAirport()).as("inferred route origin").isEqualTo("VABB");
+            assertThat(flight.toAirport()).as("inferred route destination").isEqualTo("RJCC");
+            assertThat(flight.via()).as("inferred airway for route %s-%s", flight.fromAirport(), flight.toAirport())
+                    .isEqualTo("R474");
+        });
+    }
+
+    @Test
+    void refusesHeaderlessAircraftTablesWithMultipleKnownTypes() {
+        WordPermitDocument document = new WordPermitDocument(
+                "HA NOI, 25 AUG 2026\nPERMIT NUMBER: OF-6051/8/2026VN\n"
+                        + "Flight number\nSchedules\nNon-scheduled",
+                "", "OF-6051/8/2026VN\nFlight number\nSchedules\nNon-scheduled", List.of(
+                        List.of(
+                                List.of("Flight number", "Effective from", "Effective to", "Days of services",
+                                        "Departure Airport", "EOBT", "Arrival Airport", "EIBT"),
+                                List.of("XYZ501", "27AUG26", "27AUG26", "---4---",
+                                        "VABB", "1815", "RJCC", "0325+1")),
+                        List.of(List.of("B738", "A320", "N857GA"))),
+                List.of("Schedules", "Aircraft"));
+
+        assertThatThrownBy(() -> parser.parse(document, "OF-6051.docx"))
+                .isInstanceOf(FormatValidationException.class)
+                .hasMessageContaining("Headerless aircraft table is ambiguous");
     }
 
     private void paragraph(XWPFDocument document, String value) {

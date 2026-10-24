@@ -26,12 +26,13 @@ class WordPermitFormatDetector {
     }
 
     DocxPermitFormatProfile detect(WordPermitDocument document, String fileName) {
-        CarrierIdentity carrier = carrierIdentity(document.rawContent());
+        String permitText = PermitIdentityText.normalize(document.rawContent());
+        CarrierIdentity carrier = carrierIdentity(permitText);
         List<DocxPermitFormatProfile> directMatches = profiles.stream()
-                .filter(profile -> supports(profile, document, false))
+                .filter(profile -> supports(profile, permitText, false))
                 .toList();
         List<DocxPermitFormatProfile> relaxedMatches = profiles.stream()
-                .filter(profile -> supports(profile, document, true))
+                .filter(profile -> supports(profile, permitText, true))
                 .toList();
         List<DocxPermitFormatProfile> matches = preferredMatchSet(directMatches, relaxedMatches);
         if (carrier.icao() != null) {
@@ -48,7 +49,7 @@ class WordPermitFormatDetector {
                         "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
             }
             matches = carrierMatches.stream()
-                    .filter(profile -> permitIdentityMatches(profile, document.rawContent()))
+                    .filter(profile -> permitIdentityMatches(profile, permitText))
                     .toList();
             if (matches.isEmpty()) {
                 throw invalid(fileName,
@@ -89,7 +90,7 @@ class WordPermitFormatDetector {
         return profile.permit() != null
                 && profile.permit().pattern() != null
                 && Pattern.compile(profile.permit().pattern())
-                        .matcher(joinSplitDigits(rawContent)).find();
+                        .matcher(joinSplitDigits(PermitIdentityText.normalize(rawContent))).find();
     }
 
     private boolean isCaavFallback(DocxPermitFormatProfile profile) {
@@ -122,9 +123,9 @@ class WordPermitFormatDetector {
     }
 
     private boolean supports(DocxPermitFormatProfile profile,
-                             WordPermitDocument document,
+                             String permitText,
                              boolean ignoreRevisionExclusion) {
-        CarrierIdentity identity = carrierIdentity(document.rawContent());
+        CarrierIdentity identity = carrierIdentity(permitText);
         // Missing ICAO is not permission to match every carrier. Relax an ICAO
         // guard only when an unambiguous catalog IATA maps to this fixed operator.
         String inferredOperator = identity.iata() == null ? null : operatorCatalog.operatorForIata(identity.iata());
@@ -133,12 +134,12 @@ class WordPermitFormatDetector {
                 && inferredOperator.equalsIgnoreCase(profile.operator().fixedValue());
         boolean detectionMatches = profile.detectionPatterns().stream()
                 .allMatch(pattern -> (ignoreRevisionExclusion && isRevisionExclusionPattern(pattern))
-                        || matchesPattern(pattern, document.rawContent())
+                        || matchesPattern(pattern, permitText)
                         || (confirmedIataOnly && isIcaoIdentificationPattern(pattern)));
         return detectionMatches
                 && (!ignoreRevisionExclusion
                 || Pattern.compile(profile.permit().pattern())
-                        .matcher(joinSplitDigits(document.rawContent())).find());
+                        .matcher(joinSplitDigits(permitText)).find());
     }
 
     private boolean matchesPattern(String pattern, String rawContent) {

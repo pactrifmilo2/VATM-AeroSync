@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,6 +113,7 @@ public class DocxSchedulePermitParser {
     private final PermitOperatorCatalog permitOperatorCatalog;
     private final PermitOperatorResolver permitOperatorResolver;
     private final Clock clock;
+    private final AircraftTypeCatalog aircraftTypeCatalog = new AircraftTypeCatalog();
 
     /**
      * Retained for callers that constructed the former DOCX-only parser directly.
@@ -264,7 +266,8 @@ public class DocxSchedulePermitParser {
                                         WordPermitDocument document,
                                         String fileName, boolean noReplacement) {
         Matcher permitMatcher = require(
-                profile.permit().pattern(), joinSplitDigits(document.rawContent()), fileName,
+                profile.permit().pattern(),
+                joinSplitDigits(PermitIdentityText.normalize(document.rawContent())), fileName,
                 "Permit number not found for profile " + profile.id());
         String permitNumber = profile.permit().numberTemplate() == null
                 || profile.permit().numberTemplate().isBlank()
@@ -362,9 +365,15 @@ public class DocxSchedulePermitParser {
         boolean normalizeAirportsToIcao = profile.validation() == null
                 || !profile.validation().allowIataAirports();
         List<List<List<String>>> newValueTables = noReplacement ? revisionValueTables(document, false) : document.tables();
+        List<List<List<String>>> scheduleAndOriginalTables = new ArrayList<>(scheduleTables);
+        scheduleAndOriginalTables.addAll(originalScheduleTables);
         List<RouteRow> routes = noReplacement
                 ? revisionRoutes(profile.route(), newValueTables, normalizeAirportsToIcao, fileName)
                 : routeRows(profile.route(), newValueTables, normalizeAirportsToIcao, fileName);
+        if (profile.route() != null && routes.isEmpty()) {
+            routes = inferHeaderlessRoutes(newValueTables, scheduleAndOriginalTables, normalizeAirportsToIcao,
+                    fileName);
+        }
         List<RouteRow> oldRoutes = noReplacement ? revisionRoutes(profile.route(), revisionValueTables(document, true),
                 normalizeAirportsToIcao, fileName) : routes;
         String purposeContent = noReplacement ? RevisionDocumentText.newValues(document.rawContent()) : document.rawContent();
@@ -390,18 +399,32 @@ public class DocxSchedulePermitParser {
             parsedAuxiliaryAircraftTypes = inferAircraftTypesFromAircraftTables(
                     newValueTables, allScheduleTables);
         }
+        if ((parsedAuxiliaryAircraftTypes == null || parsedAuxiliaryAircraftTypes.isBlank())
+                && !aircraftTablePresent) {
+            HeaderlessAircraft inferred = inferHeaderlessAircraft(
+                    newValueTables, allScheduleTables, profile.schedule().columns(), fileName);
+            parsedAuxiliaryAircraftTypes = inferred == null ? null : inferred.aircraftType();
+            if (auxiliaryRegistration == null && inferred != null) {
+                auxiliaryRegistration = inferred.registration();
+            }
+            aircraftTablePresent = inferred != null;
+        }
         String auxiliaryAircraftTypes = parsedAuxiliaryAircraftTypes;
+        boolean hasAuxiliaryAircraftTable = aircraftTablePresent;
+        String selectedAuxiliaryRegistration = auxiliaryRegistration;
+        List<RouteRow> selectedRoutes = List.copyOf(routes);
+        List<RouteRow> selectedOldRoutes = List.copyOf(oldRoutes);
         List<ScheduleFlight> flights = scheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
-                        profile, table, routes, auxiliaryAircraftTypes,
-                        auxiliaryRegistration, aircraftTablePresent,
+                        profile, table, selectedRoutes, auxiliaryAircraftTypes,
+                        selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
                         purposeContent, resolvedOperatorId, iataPrefix,
                         normalizeAirportsToIcao, false, fileName, noReplacement).stream())
                 .toList();
         List<ScheduleFlight> originalFlights = originalScheduleTables.stream()
                 .flatMap(table -> scheduleFlights(
-                        profile, table, oldRoutes, auxiliaryAircraftTypes,
-                        auxiliaryRegistration, aircraftTablePresent,
+                        profile, table, selectedOldRoutes, auxiliaryAircraftTypes,
+                        selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
                         document.rawContent(), resolvedOperatorId, iataPrefix,
                         normalizeAirportsToIcao, true, fileName, noReplacement).stream())
                 .toList();
@@ -936,6 +959,15 @@ public class DocxSchedulePermitParser {
             String sector = clean(value(row, columns, "sector")).toUpperCase(Locale.ROOT);
             String rawAirways = value(row, columns, "airways");
             Matcher matcher = GROUPED_ROUTE_PATTERN.matcher(sector);
+            if (!matcher.matches()) {
+                // Some CAAV airway tables append the corresponding flight number
+                // to a valid sector, e.g. TPE-CGK(CI5869). Strip only that strict
+                // parenthesized callsign suffix, then require a full sector match.
+                String sectorWithoutFlight = sector.replaceFirst("\\s*\\([A-Z0-9]{2,10}\\)$", "");
+                if (!sectorWithoutFlight.equals(sector)) {
+                    matcher = GROUPED_ROUTE_PATTERN.matcher(sectorWithoutFlight);
+                }
+            }
             if (matcher.matches()) {
                 currentSector = matcher.group();
                 hasRouteRow = true;
@@ -970,6 +1002,210 @@ public class DocxSchedulePermitParser {
             throw invalid(fileName, "Airways table is present but contains no valid route rows");
         }
         return routes;
+    }
+
+    private List<RouteRow> inferHeaderlessRoutes(
+            List<List<List<String>>> tables,
+            List<List<List<String>>> scheduleTables,
+            boolean normalizeAirportsToIcao,
+            String fileName) {
+        Set<List<List<String>>> schedules = new java.util.HashSet<>(scheduleTables);
+        List<RouteRow> candidates = new ArrayList<>();
+        boolean routeLikeTable = false;
+        boolean ambiguousRouteRow = false;
+        for (List<List<String>> table : safeList(tables)) {
+            if (table == null || table.isEmpty() || schedules.contains(table)) {
+                continue;
+            }
+            List<List<String>> rows = table;
+            if (table.size() > 1 && rowLooksLikeRouteHeader(table.getFirst())) {
+                continue;
+            }
+            for (List<String> row : rows) {
+                LinkedHashSet<String> airportSet = new LinkedHashSet<>();
+                for (String cell : row) {
+                    String cleanCell = clean(cell).toUpperCase(Locale.ROOT).trim();
+                    Matcher sectorMatcher = GROUPED_ROUTE_PATTERN.matcher(cleanCell);
+                    if (sectorMatcher.matches()) {
+                        Arrays.stream(sectorMatcher.group(1).split("\\s*/\\s*"))
+                                .filter(this::looksLikeAirportCode)
+                                .forEach(airportSet::add);
+                        Arrays.stream(sectorMatcher.group(2).split("\\s*/\\s*"))
+                                .filter(this::looksLikeAirportCode)
+                                .forEach(airportSet::add);
+                    } else if (looksLikeAirportCode(cleanCell)) {
+                        airportSet.add(cleanCell);
+                    }
+                }
+                List<String> airportCodes = List.copyOf(airportSet);
+                List<String> airwayCandidates = row.stream()
+                        .map(this::clean)
+                        .filter(value -> !GROUPED_ROUTE_PATTERN.matcher(
+                                value.toUpperCase(Locale.ROOT).trim()).matches())
+                        .filter(this::looksLikeAirwaySequence)
+                        .distinct().toList();
+                if (airportCodes.size() >= 2 && !airwayCandidates.isEmpty()) {
+                    routeLikeTable = true;
+                    if (airportCodes.size() == 2 && airwayCandidates.size() == 1) {
+                        String from = normalizeAirport(airportCodes.get(0), normalizeAirportsToIcao);
+                        String to = normalizeAirport(airportCodes.get(1), normalizeAirportsToIcao);
+                        String airway = normalizeAirways(airwayCandidates.getFirst());
+                        if (!from.equals(to) && !airway.isBlank()) {
+                            candidates.add(new RouteRow(from, to, airway));
+                        } else {
+                            ambiguousRouteRow = true;
+                        }
+                    } else {
+                        ambiguousRouteRow = true;
+                    }
+                }
+            }
+        }
+        List<RouteRow> uniqueRoutes = candidates.stream().distinct().toList();
+        if (routeLikeTable && (uniqueRoutes.isEmpty() || ambiguousRouteRow)) {
+            throw invalid(fileName,
+                    "Headerless route table is ambiguous; airport/airway values could not be mapped uniquely");
+        }
+        return uniqueRoutes;
+    }
+
+    private boolean rowLooksLikeRouteHeader(List<String> row) {
+        String normalized = row.stream().map(this::canonical).collect(java.util.stream.Collectors.joining(" "));
+        return normalized.contains("sector") || normalized.contains("airway")
+                || normalized.contains("route") || normalized.contains("from")
+                || normalized.contains("to") || normalized.contains("airport");
+    }
+
+    private boolean tableLooksLikeSchedule(List<List<String>> table,
+                                           Map<String, List<String>> scheduleAliases) {
+        if (table == null || table.isEmpty()) {
+            return false;
+        }
+        if (table.size() > 1 && headerLooksLikeSchedule(table.getFirst(), scheduleAliases)) {
+            return true;
+        }
+        int scheduleRows = 0;
+        for (List<String> row : table) {
+            long dates = row.stream().filter(this::looksLikeScheduleDate).count();
+            long airports = row.stream().filter(cell -> airportCodeCatalog.isKnown(clean(cell))).count();
+            long times = row.stream().filter(cell -> clean(cell).matches("(?iu)\\d{3,4}(?:\\+1)?")).count();
+            boolean flightNumber = row.stream().map(this::clean)
+                    .anyMatch(cell -> cell.matches("(?iu)[A-Z0-9]{2,3}\\d{2,5}[A-Z]?"));
+            if (flightNumber && dates >= 2 && airports >= 2 && times >= 1) {
+                scheduleRows++;
+            }
+        }
+        return scheduleRows > 0;
+    }
+
+    private boolean looksLikeScheduleDate(String value) {
+        return Pattern.compile("(?iu)^(?:\\d{1,2}[A-Z]{3}\\d{2,4}|\\d{1,2}/\\d{1,2}/20\\d{2}|"
+                        + "\\d{1,2}-[A-Z]{3}-\\d{2,4})$")
+                .matcher(clean(value).replaceAll("\\s+", ""))
+                .matches();
+    }
+
+    private boolean looksLikeAirwaySequence(String value) {
+        String tokenized = clean(value).toUpperCase(Locale.ROOT).trim();
+        if (tokenized.length() < 2 || tokenized.length() > 120) {
+            return false;
+        }
+        String[] tokens = tokenized.split("\\s*[-/;\\n]\\s*");
+        if (tokens.length == 0 || tokens.length > 20) {
+            return false;
+        }
+        return Arrays.stream(tokens).allMatch(token ->
+                token.matches("[A-Z]{1,2}\\d{1,4}[A-Z]?") || token.matches("DCT"));
+    }
+
+    private HeaderlessAircraft inferHeaderlessAircraft(
+            List<List<List<String>>> tables,
+            List<List<List<String>>> scheduleTables,
+            Map<String, List<String>> scheduleAliases,
+            String fileName) {
+        Set<List<List<String>>> schedules = new java.util.HashSet<>(scheduleTables);
+        LinkedHashSet<String> aircraftTypes = new LinkedHashSet<>();
+        LinkedHashSet<String> registrations = new LinkedHashSet<>();
+        boolean aircraftLikeTable = false;
+        boolean ambiguousAircraftRow = false;
+        for (List<List<String>> table : safeList(tables)) {
+            if (table == null || table.isEmpty() || schedules.contains(table)
+                    || tableLooksLikeSchedule(table, Map.of())) {
+                continue;
+            }
+            List<String> header = table.getFirst();
+            if (table.size() > 1 && tableLooksLikeSchedule(table, scheduleAliases)) {
+                continue;
+            }
+            List<List<String>> dataRows = table.size() > 1 ? table.subList(1, table.size()) : table;
+            for (List<String> row : dataRows) {
+                if (looksLikeScheduleDataRow(row)) {
+                    continue;
+                }
+                List<List<String>> typeCells = row.stream()
+                        .map(cell -> aircraftTypeCatalog.knownCandidates(clean(cell)))
+                        .filter(candidates -> !candidates.isEmpty())
+                        .toList();
+                List<String> knownAircraft = typeCells.stream().flatMap(List::stream).distinct().toList();
+                List<String> registrationCodes = row.stream()
+                        .map(this::clean)
+                        .map(String::trim)
+                        .filter(this::looksLikeRegistration)
+                        .distinct()
+                        .toList();
+                if (!knownAircraft.isEmpty()) {
+                    aircraftLikeTable = true;
+                    if (typeCells.size() > 1 || typeCells.stream().anyMatch(candidates -> candidates.size() > 1)) {
+                        ambiguousAircraftRow = true;
+                    }
+                    if (knownAircraft.size() == 1 && typeCells.stream().allMatch(candidates -> candidates.size() == 1)) {
+                        aircraftTypes.add(knownAircraft.getFirst());
+                    } else {
+                        aircraftTypes.addAll(knownAircraft);
+                    }
+                    registrations.addAll(registrationCodes);
+                }
+            }
+        }
+        if (!aircraftLikeTable) {
+            return null;
+        }
+        if (ambiguousAircraftRow || aircraftTypes.size() != 1 || registrations.size() > 1) {
+            throw invalid(fileName,
+                    "Headerless aircraft table is ambiguous; aircraft type/registration could not be mapped uniquely");
+        }
+        return new HeaderlessAircraft(aircraftTypes.getFirst(),
+                registrations.isEmpty() ? null : registrations.getFirst());
+    }
+
+    private boolean headerLooksLikeSchedule(List<String> header,
+                                            Map<String, List<String>> aliases) {
+        Map<String, Integer> mapped = resolveColumns(header, aliases);
+        return mapped.containsKey("flightNumber")
+                || mapped.containsKey("effectiveFrom")
+                || mapped.containsKey("fromAirport")
+                || mapped.containsKey("toAirport");
+    }
+
+    private boolean looksLikeRegistration(String value) {
+        String compact = value.toUpperCase(Locale.ROOT).replaceAll("[^A-Z0-9]", "");
+        return compact.matches("[A-Z0-9]{2,3}-?[A-Z0-9]{3,5}")
+                && !airportCodeCatalog.isKnown(compact)
+                && aircraftTypeCatalog.knownCandidates(compact).isEmpty();
+    }
+
+    private boolean looksLikeAirportCode(String value) {
+        String code = airportCodeCatalog.canonicalize(value);
+        return airportCodeCatalog.isKnown(code) || code.matches("[A-Z]{4}");
+    }
+
+    private boolean looksLikeScheduleDataRow(List<String> row) {
+        long dates = row.stream().filter(this::looksLikeScheduleDate).count();
+        long airports = row.stream().filter(cell -> looksLikeAirportCode(clean(cell))).count();
+        long times = row.stream().filter(cell -> clean(cell).matches("(?iu)\\d{3,4}(?:\\+1)?")).count();
+        boolean flightNumber = row.stream().map(this::clean)
+                .anyMatch(cell -> cell.matches("(?iu)[A-Z0-9]{2,3}\\d{2,5}[A-Z]?"));
+        return flightNumber && dates >= 2 && airports >= 2 && times >= 1;
     }
 
     private boolean isRevisionDocument(String permitNumber,
@@ -2070,5 +2306,8 @@ public class DocxSchedulePermitParser {
     }
 
     private record AircraftSource(String value, boolean defaulted) {
+    }
+
+    private record HeaderlessAircraft(String aircraftType, String registration) {
     }
 }

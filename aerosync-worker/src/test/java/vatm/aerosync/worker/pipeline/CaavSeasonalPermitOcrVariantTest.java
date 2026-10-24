@@ -44,4 +44,22 @@ class CaavSeasonalPermitOcrVariantTest {
         assertThat(matcher.group("month")).isEqualTo("8");
         assertThat(matcher.group("year")).isEqualTo("2026");
     }
+    @Test
+    void everyPermitProfileCanUseTheSharedNumeroNormalization() {
+        var profiles = catalog.profiles().stream()
+                .filter(profile -> profile.permit() != null && profile.permit().pattern() != null)
+                .toList();
+
+        assertThat(profiles).hasSize(358);
+        String normalized = PermitIdentityText.normalize(
+                new String(Character.toChars(0x2116)) + ": OF-123/8/2026VN");
+        assertThat(profiles.stream()
+                .filter(profile -> Pattern.compile(profile.permit().pattern()).matcher(normalized).find())
+                .count()).isGreaterThan(0);
+    }
+    @Test
+    void sharedPermitNormalizerRemovesNumeroAndPreservesPermitText() {
+        assertThat(PermitIdentityText.normalize("№: LD\u00a0\u00a0-    72/A/W/2026VN"))
+                .isEqualTo("LD\u00a0\u00a0-    72/A/W/2026VN");
+    }
 }

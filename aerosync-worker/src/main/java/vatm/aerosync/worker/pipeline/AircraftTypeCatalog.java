@@ -47,6 +47,26 @@ class AircraftTypeCatalog {
         return List.copyOf(candidates);
     }
 
+    List<String> knownCandidates(String value) {
+        if (value == null || value.isBlank()) {
+            return List.of();
+        }
+        String exact = aliases.get(canonical(value));
+        if (exact != null) {
+            return List.of(exact);
+        }
+        Set<String> candidates = new LinkedHashSet<>();
+        for (String token : AircraftTypeNotation.normalize(value)
+                .split("\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
+            String clean = token.trim();
+            String known = aliases.get(canonical(clean));
+            if (known != null) {
+                candidates.add(known);
+            }
+        }
+        return List.copyOf(candidates);
+    }
+
     private Map<String, String> load() {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory()).findAndRegisterModules();
         try (InputStream input = new ClassPathResource(RESOURCE).getInputStream()) {

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 class AirportCodeCatalog {
@@ -18,9 +19,13 @@ class AirportCodeCatalog {
     private static final String RESOURCE = "permit-reference/airport-codes.yaml";
 
     private final Map<String, String> iataToIcao;
+    private final Set<String> knownCodes;
 
     AirportCodeCatalog() {
         this.iataToIcao = load();
+        this.knownCodes = java.util.stream.Stream.concat(
+                        iataToIcao.keySet().stream(), iataToIcao.values().stream())
+                .collect(java.util.stream.Collectors.toUnmodifiableSet());
     }
 
     String normalize(String value) {
@@ -32,6 +37,10 @@ class AirportCodeCatalog {
         return value == null
                 ? ""
                 : value.replaceAll("[^A-Za-z0-9]", "").toUpperCase(Locale.ROOT);
+    }
+
+    boolean isKnown(String value) {
+        return knownCodes.contains(canonicalize(value));
     }
 
     private Map<String, String> load() {
