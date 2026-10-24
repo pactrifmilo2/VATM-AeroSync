@@ -154,7 +154,7 @@ public record SchedulePermit(
 
     private boolean hasReplacementScheduleSection() {
         String folded = foldVietnamese(rawContent);
-        return Pattern.compile(
+        boolean replacementHeading = Pattern.compile(
                 "(?iu)(?:NEW|REVISED|AMENDED|REPLACEMENT|SUA\\s+DOI|"
                         + "THAY\\s+DOI|DIEU\\s+CHINH|BO\\s+SUNG|MOI)"
                         + ".{0,80}(?:SCHEDULES?|FLIGHTS?|PHEP\\s+BAY|LICH\\s+BAY|CHUYEN\\s+BAY)|"
@@ -162,6 +162,13 @@ public record SchedulePermit(
                         + ".{0,80}(?:NEW|REVISED|AMENDED|REPLACEMENT|SUA\\s+DOI|"
                         + "THAY\\s+DOI|DIEU\\s+CHINH|BO\\s+SUNG|MOI)")
                 .matcher(folded).find();
+        boolean pairedOldNewSections = Pattern.compile("(?iu)\\b(?:OLD|ORIGINAL)\\b")
+                .matcher(folded).find()
+                && Pattern.compile("(?iu)\\bNEW\\b")
+                .matcher(folded).find()
+                && Pattern.compile("(?iu)\\bSCHEDULES?\\b")
+                .matcher(folded).find();
+        return replacementHeading || pairedOldNewSections;
     }
 
     public boolean otherDetailsUnchanged() {
