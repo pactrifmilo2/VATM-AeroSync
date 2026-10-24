@@ -775,7 +775,7 @@ public class DocxSchedulePermitParser {
         String previousServiceDays = null;
         Map<String, String> carriedValues = new LinkedHashMap<>();
         for (int rowIndex = firstDataRow; rowIndex < table.size(); rowIndex++) {
-            List<String> row = table.get(rowIndex);
+            List<String> row = normalizeScheduleRow(table.get(rowIndex), columns);
             if (isRepeatedScheduleHeader(row, columns)) {
                 continue;
             }
@@ -1208,6 +1208,45 @@ public class DocxSchedulePermitParser {
         return flightNumber && dates >= 2 && airports >= 2 && times >= 1;
     }
 
+    private List<String> normalizeScheduleRow(List<String> row, Map<String, Integer> columns) {
+        if (row.size() >= 8
+                && clean(row.get(1)).matches("[1-7]")
+                && looksLikeScheduleDate(clean(row.get(2)))
+                && looksLikeScheduleDate(clean(row.get(3)))
+                && looksLikeAirportCode(clean(row.get(4)))
+                && looksLikeAirportCode(clean(row.get(5)))
+                && clean(row.get(6)).matches("\\d{1,2}:\\d{2}")) {
+            return List.of(row.get(0), row.get(2), row.get(3), row.get(1),
+                    row.get(4), row.get(6), row.get(5), row.get(7));
+        }
+        Integer serviceIndex = columns.get("serviceDays");
+        Integer effectiveIndex = columns.get("effectiveFrom");
+        if (serviceIndex == null || effectiveIndex == null
+                || effectiveIndex >= row.size()) {
+            return row;
+        }
+        String service = clean(row.get(serviceIndex));
+        String effective = clean(row.get(effectiveIndex));
+        if (serviceIndex != effectiveIndex + 1
+                && service.matches("[1-7]")
+                && looksLikeScheduleDate(effective)) {
+            List<String> normalized = new ArrayList<>(row);
+            normalized.remove(serviceIndex);
+            return normalized;
+        }
+        if (effective.matches("[1-7]") && effectiveIndex + 1 < row.size()
+                && looksLikeScheduleDate(clean(row.get(effectiveIndex + 1)))) {
+            List<String> normalized = new ArrayList<>(row);
+            normalized.remove(effectiveIndex);
+            return normalized;
+        }
+        if (service.matches("[1-7]") && looksLikeScheduleDate(effective)) {
+            List<String> normalized = new ArrayList<>(row);
+            normalized.remove(serviceIndex);
+            return normalized;
+        }
+        return row;
+    }
     private boolean isRevisionDocument(String permitNumber,
                                        String normalizedPermitId,
                                        String rawContent) {
@@ -2056,6 +2095,7 @@ public class DocxSchedulePermitParser {
         }
         throw invalid(fileName, "Invalid " + field + ": " + value);
     }
+
 
     /** Some CAAV tables store equal start/end dates in one cell, e.g. 09APR09APR. */
     private String[] splitConcatenatedDateRange(String from, String to) {

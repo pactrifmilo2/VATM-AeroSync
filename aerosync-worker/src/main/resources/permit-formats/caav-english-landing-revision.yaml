@@ -55,7 +55,11 @@ schedule:
     - toAirport
     - eta
     - aircraftType
-  excludeColumns: [originalPermit]
+  excludeColumns: []
+  tableContextPatterns:
+    - '(?iu)2\.2\.?\s*(?:NEW|REVISED)\s+SCHEDULE(?:\(S\))?'
+  preferredTableContextPatterns:
+    - '(?iu)2\.2\.?\s*(?:NEW|REVISED)\s+SCHEDULE(?:\(S\))?'
   dateFormats: [dMMMyy, d-MMM-yy]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en

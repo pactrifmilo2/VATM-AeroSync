@@ -2,10 +2,18 @@ id: tha-english-overflight-revision
 extends: caav-generic-overflight-revision
 priority: 220
 detectionPatterns:
-  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}VN'
+  - '(?iu)(?:\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}VN|\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*-\s*THA\d+[A-Z0-9_]*\d{1,2}[A-Z]{3}\d{2}\s*/\s*REV\s*\d+\b)'
   - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*THA\b|THAI\s+AIRWAYS)'
   - '(?iu)(?:REV(?:ISION)?|RVS|CHANGE|SCHEDULE)'
 operator:
   fixedValue: THA
+permit:
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,9})\s*-\s*THA\d+[A-Z0-9_]*\d{1,2}[A-Z]{3}(?<year>\d{2})\s*/\s*REV\s*(?<revision>\d+)\b'
+  numberGroup: number
+  sourceTemplate: 'OF-{number}/2026VN'
+  normalizedTemplate: 'O/F {number}/CHK/2026'
+  zeroPadGroups:
+    number: 5
+    month: 0
 validation:
   reviewOnly: true

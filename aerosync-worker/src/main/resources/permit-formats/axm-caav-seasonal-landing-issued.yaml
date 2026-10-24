@@ -1,0 +1,15 @@
+id: axm-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\bLD\s*-?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)IATA\s*(?:CODE)?\s*:\s*AK\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*AXM\b'
+  - '(?iu)SCHEDULES?'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: AXM
+purpose:
+  defaultId: PAX
+validation:
+  reviewOnly: false

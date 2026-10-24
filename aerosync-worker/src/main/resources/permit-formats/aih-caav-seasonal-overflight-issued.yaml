@@ -1,0 +1,14 @@
+id: aih-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\b(?:№\s*[:.]?\s*)?(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|MÃ\s*ICAO)\s*:\s*AIH\b'
+  - '(?iu)SCHEDULES?'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: AIH
+purpose:
+  defaultId: CAR
+validation:
+  reviewOnly: false
