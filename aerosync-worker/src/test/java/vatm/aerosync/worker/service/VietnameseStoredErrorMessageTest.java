@@ -29,6 +29,16 @@ class VietnameseStoredErrorMessageTest {
     }
 
     @Test
+    void replacesLegacyManualReviewMessageWithNonBlockingExplanation() {
+        String translated = VietnameseStoredErrorMessage.translate(
+                "Giấy phép bay cần được kiểm tra thủ công trước khi ghi vào ATFM.");
+
+        assertThat(translated)
+                .isEqualTo("Permit đã được phân tích; cờ reviewOnly không còn chặn ghi vào ATFM.")
+                .doesNotContain("Giấy phép bay cần được kiểm tra thủ công trước khi ghi vào ATFM.");
+    }
+
+    @Test
     void truncatesLongVietnameseMessagesToOracleByteLimitWithoutReplacementCharacters() {
         String input = "l\u1ed7i ".repeat(700);
 

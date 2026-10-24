@@ -208,7 +208,7 @@ public final class VietnameseStoredErrorMessage {
             return "Chức năng ghi dữ liệu vào ATFM đang bị tắt trong cấu hình.";
         }
         if (lower.contains("manual review")) {
-            return "Giấy phép bay cần được kiểm tra thủ công trước khi ghi vào ATFM.";
+            return "Permit đã được phân tích; cờ reviewOnly không còn chặn ghi vào ATFM.";
         }
         if (lower.contains("revision") || lower.contains("original atfm permit")) {
             return "Không thể tự động xử lý bản sửa đổi vì không tìm thấy hoặc không xác định được giấy phép bay gốc trong ATFM.";

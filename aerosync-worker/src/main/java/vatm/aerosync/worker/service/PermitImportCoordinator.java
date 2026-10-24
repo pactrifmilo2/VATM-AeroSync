@@ -78,13 +78,7 @@ public class PermitImportCoordinator {
         if (existingAttempt.isPresent()) {
             refreshAttempt(attempt, job, permit, semanticHash);
         }
-        if (properties.isManualReviewEnabled() && permit.reviewOnly()) {
-            markRevision(attempt, "Permit profile requires manual review");
-            throw new BusinessRuleException(
-                    "PERMIT-MANUAL-REVIEW",
-                    "Permit %s requires manual review before ATFM update"
-                            .formatted(permit.normalizedPermitId()));
-        }
+
         String targetPermitId = permit.atfmTargetPermitId();
         String lockKey = LOCK_PREFIX + targetPermitId;
         Boolean acquired = redisTemplate.opsForValue().setIfAbsent(

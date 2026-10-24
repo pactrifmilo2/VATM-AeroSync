@@ -179,8 +179,7 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
-    void importPermit_updatesConfiguredRevisionAfterAtfmComparison() {
-        properties.setManualReviewEnabled(false);
+    void importPermit_updatesReviewOnlyRevisionAfterAtfmComparison() {
         context.setSchedulePermit(reviewOnlyPermit());
         when(atfmScheduleGateway.findExisting(any()))
                 .thenReturn(Optional.of(new AtfmPermitSnapshot(203001L, 202510L, false)));
@@ -208,7 +207,6 @@ class PermitImportCoordinatorTest {
 
     @Test
     void importPermit_quarantinesNonSeasonalRevisionWhenNormalizedIdContainsSeason() {
-        properties.setManualReviewEnabled(false);
         context.setSchedulePermit(reviewOnlyPermit());
         when(atfmScheduleGateway.findExisting(any())).thenReturn(Optional.empty());
 
@@ -294,28 +292,6 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
-    void importPermit_blocksReviewOnlyPermitWhenManualReviewIsEnabled() {
-        context.setSchedulePermit(nonRevisionReviewOnlyPermit());
-
-        assertThatThrownBy(() -> coordinator.importPermit(context))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("PERMIT-MANUAL-REVIEW");
-        verify(atfmScheduleGateway, never()).findExisting(any());
-        verify(atfmScheduleGateway, never()).insert(any());
-    }
-
-    @Test
-    void importPermit_blocksReviewOnlyRevisionBeforeAtfmWrite() {
-        context.setSchedulePermit(reviewOnlyPermit());
-        assertThatThrownBy(() -> coordinator.importPermit(context))
-                .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("PERMIT-MANUAL-REVIEW");
-        verify(atfmScheduleGateway, never()).findExisting(any());
-        verify(atfmScheduleGateway, never()).update(any());
-        verify(atfmScheduleGateway, never()).insert(any());
-    }
-
-    @Test
     void importPermit_doesNotInsertSubjectCorrectionWhenTargetMasterIsMissing() {
         SchedulePermit correction = new SchedulePermit(
                 "LD-5199/7/2026VN", "LD 05199/S/CHK/2026", "5199",
@@ -335,8 +311,7 @@ class PermitImportCoordinatorTest {
     }
 
     @Test
-    void importPermit_writesReviewOnlyPermitWhenManualReviewIsDisabled() {
-        properties.setManualReviewEnabled(false);
+    void importPermit_writesReviewOnlyPermitWithoutManualReviewBlock() {
         context.setSchedulePermit(nonRevisionReviewOnlyPermit());
         when(atfmScheduleGateway.findNewPermitInEitherStore(any())).thenReturn(Optional.empty());
         when(atfmScheduleGateway.insert(any())).thenReturn(new AtfmWriteResult(203001L, 202510L, 1));

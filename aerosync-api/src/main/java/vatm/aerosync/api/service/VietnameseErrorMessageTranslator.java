@@ -122,6 +122,9 @@ public class VietnameseErrorMessageTranslator {
         }
 
         String lower = value.toLowerCase(Locale.ROOT);
+        if (lower.contains("manual review")) {
+            return "Permit đã được phân tích; cờ reviewOnly không còn chặn ghi vào ATFM.";
+        }
         String directTranslation = switch (lower) {
             case "callsign is required" -> "Thiếu số hiệu chuyến bay.";
             case "invalid callsign" -> "Số hiệu chuyến bay không hợp lệ.";

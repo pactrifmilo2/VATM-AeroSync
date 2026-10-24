@@ -33,6 +33,13 @@ class VietnameseErrorMessageTranslatorTest {
     }
 
     @Test
+    void doesNotExposeLegacyManualReviewMessage() {
+        assertThat(translator.translate(
+                "Giấy phép bay cần được kiểm tra thủ công trước khi ghi vào ATFM."))
+                .isEqualTo("Permit đã được phân tích; cờ reviewOnly không còn chặn ghi vào ATFM.");
+    }
+
+    @Test
     void replacesUnknownEnglishTechnicalErrorsWithVietnameseFallback() {
         assertThat(translator.translate("Some new internal technical failure"))
                 .startsWith("Lỗi xử lý chi tiết: Some new internal technical failure. Mã tham chiếu: ");
