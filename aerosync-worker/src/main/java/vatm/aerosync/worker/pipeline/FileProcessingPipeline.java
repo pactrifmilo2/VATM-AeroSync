@@ -2,10 +2,13 @@ package vatm.aerosync.worker.pipeline;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vatm.aerosync.common.debug.DebugSessionLog;
 import vatm.aerosync.common.dto.FileIngestedEvent;
+import vatm.aerosync.common.dto.RowValidationError;
 import vatm.aerosync.common.entity.FileRecord;
 import vatm.aerosync.common.entity.SyncJob;
 import vatm.aerosync.common.enums.AlertLevel;
@@ -28,9 +31,14 @@ import vatm.aerosync.worker.service.SyncResultPublisher;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class FileProcessingPipeline {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileProcessingPipeline.class);
 
     private final SyncJobRepository syncJobRepository;
     private final EmailMetadataRepository emailMetadataRepository;
@@ -151,8 +159,10 @@ public class FileProcessingPipeline {
         } catch (FormatValidationException e) {
             handleFormatError(context, event, e);
         } catch (BusinessRuleException e) {
+            logAirportValidationFailure(context, event, e);
             handleBusinessRuleError(context, event, e);
         } catch (AtfmReferenceDataException e) {
+            logAtfmReferenceFailure(context, event, e);
             handleBusinessRuleError(
                     context,
                     event,
@@ -179,6 +189,61 @@ public class FileProcessingPipeline {
                     event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING,
                     e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage());
         }
+    }
+
+    private void logAirportValidationFailure(ProcessingContext context,
+                                             FileIngestedEvent event,
+                                             BusinessRuleException exception) {
+        List<RowValidationError> airportErrors = exception.getRowErrors().stream()
+                .filter(error -> error.code() != null
+                        && (error.code().contains("AIRPORT")
+                        || error.field() != null && error.field().toLowerCase(Locale.ROOT).contains("airport")))
+                .toList();
+        if (airportErrors.isEmpty()) {
+            return;
+        }
+        LOGGER.warn(
+                "AIRPORT_VALIDATION_FAILURE syncJobId={} file={} permit={} operator={} rule={} errors={}",
+                event.getSyncJobId(), context.getOriginalFileName(), permitId(context),
+                operator(context), exception.getRuleCode(), airportErrors);
+    }
+
+    private void logAtfmReferenceFailure(ProcessingContext context,
+                                         FileIngestedEvent event,
+                                         AtfmReferenceDataException exception) {
+        String detail = exception.getMessage() == null ? "" : exception.getMessage();
+        if (!detail.toLowerCase(Locale.ROOT).contains("airport")
+                && !detail.toLowerCase(Locale.ROOT).contains("m_aero")) {
+            return;
+        }
+        LOGGER.error(
+                "ATFM_AIRPORT_REFERENCE_FAILURE syncJobId={} file={} permit={} operator={} message={} airports={}",
+                event.getSyncJobId(), context.getOriginalFileName(), permitId(context),
+                operator(context), detail, permitAirports(context));
+    }
+
+    private String permitId(ProcessingContext context) {
+        return context.getSchedulePermit() == null
+                ? "-"
+                : context.getSchedulePermit().normalizedPermitId();
+    }
+
+    private String operator(ProcessingContext context) {
+        return context.getSchedulePermit() == null
+                ? "-"
+                : context.getSchedulePermit().operatorId();
+    }
+
+    private String permitAirports(ProcessingContext context) {
+        if (context.getSchedulePermit() == null) {
+            return "-";
+        }
+        return context.getSchedulePermit().flights().stream()
+                .flatMap(flight -> java.util.stream.Stream.of(
+                        flight.fromAirport(), flight.toAirport()))
+                .filter(value -> value != null && !value.isBlank())
+                .distinct()
+                .collect(Collectors.joining(","));
     }
 
     /**
