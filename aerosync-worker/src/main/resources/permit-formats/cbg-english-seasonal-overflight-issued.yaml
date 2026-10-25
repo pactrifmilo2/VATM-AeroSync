@@ -1,0 +1,39 @@
+id: cbg-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CBG\b|IATA\s*(?:CODE)?\s*:\s*GX\b|GUANGXI\s+BEIBU\s+GULF\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: CBG
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number]
+    effectiveFrom: [Effective from, Effective From]
+    effectiveTo: [Effective to, Effective To]
+    serviceDays: [Days of services, Days of service]
+    fromAirport: [Departure Airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport]
+    eta: [ETA, EIBT]
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, Airway]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: null
+validation:
+  reviewOnly: true
+  allowIataAirports: false

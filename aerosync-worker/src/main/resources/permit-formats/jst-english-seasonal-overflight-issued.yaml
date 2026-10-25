@@ -1,0 +1,30 @@
+id: jst-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*JST\b|JETSTAR\s+AIRWAYS)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: JST
+schedule:
+  columns:
+    flightNumber: [Flight Number, Flight number]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to, EffectiveTo]
+    serviceDays: [Day(s) of services, Days of services]
+    fromAirport: [Departure Airport]
+    etd: [EOBT, ETD]
+    toAirport: [Arrival Airport]
+    eta: [EIBT, ETA]
+  includeEta: true
+  purposeId: PAX
+aircraft:
+  scheduleColumn: ''
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Aircraft registration mark, Registration marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+  defaultType: A320

@@ -1,0 +1,12 @@
+id: jna-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*JNA\b|IATA\s*(?:CODE)?\s*:\s*LJ\b|JINAIR)'
+  - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SCHEDULES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: JNA
+validation:
+  reviewOnly: true

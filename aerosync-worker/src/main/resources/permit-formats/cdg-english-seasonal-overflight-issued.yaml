@@ -1,0 +1,39 @@
+id: cdg-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*CDG\b|IATA\s*(?:CODE)?\s*:\s*SC\b|SHANDONG\s+AIRLINES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: CDG
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number]
+    effectiveFrom: [Effective from, Effective from DDMMMYY]
+    effectiveTo: [Effective to, Effective To, Effective to DDMMMYY]
+    serviceDays: [Day(s) of services, Days of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport]
+    eta: [ETA, EIBT]
+  purposeId: PAX
+  includeEta: true
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airway, Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type]
+    registrationMarks: [Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: null
+validation:
+  reviewOnly: true
+  allowIataAirports: false

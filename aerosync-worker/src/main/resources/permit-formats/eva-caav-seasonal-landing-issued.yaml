@@ -1,0 +1,15 @@
+id: eva-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 210
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|M(?:ã|Ã|A)\s*ICAO)\s*:\s*EVA\b'
+  - '(?iu)(?:IATA\s*(?:CODE)?|M(?:ã|Ã|A)\s*IATA)\s*:\s*BR\b'
+  - '(?iu)(?:SCHEDULES?|LỊCH\s+BAY)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: EVA
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]

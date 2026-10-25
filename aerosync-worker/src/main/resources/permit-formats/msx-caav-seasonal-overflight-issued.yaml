@@ -1,0 +1,34 @@
+id: msx-caav-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*MSX\b|EGYPT\s+AIR\s+CARGO)'
+  - '(?iu)(?:FLIGHT\s+NUMBER|EFFECTIVE\s+FROM|DAY\(S\)\s+OF\s+SERVICES|SCHEDULES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: MSX
+schedule:
+  columns:
+    etd: [ETD, EOTB, EOBT]
+    eta: [ETA, EIBT]
+  includeEta: true
+  purposeId: CAR
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Route, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft type]
+    registrationMarks: [Aircraft registration mark, Registration Mark, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+validation:
+  reviewOnly: true
+  allowIataAirports: false

@@ -1,0 +1,17 @@
+id: jst-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 210
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*JQ\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*JST\b'
+  - '(?iu)JETSTAR\s+AIRWAYS'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: JST
+schedule:
+  columns:
+    etd: [EOBT, ETD, ETD (UTC)]
+    eta: [EIBT, ETA, ETA (UTC)]
+validation:
+  reviewOnly: true

@@ -1,0 +1,36 @@
+id: pal-english-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*PAL\b|PHILIPPINE\s+AIRLINES)'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*PR\b)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: PAL
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number]
+    effectiveFrom: [Effective from, Effective From]
+    effectiveTo: [Effective to, Effective To]
+    fromAirport: [Departure Airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport]
+    eta: [ETA, EIBT]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, fromAirport, etd, toAirport]
+  includeEta: true
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type (IATA code)]
+    registrationMarks: [Aircraft registration mark, Registration Mark]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: A320

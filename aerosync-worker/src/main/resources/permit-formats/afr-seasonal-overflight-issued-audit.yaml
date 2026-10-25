@@ -1,0 +1,43 @@
+id: afr-seasonal-overflight-issued-audit
+extends: airline-generic-seasonal-overflight-issued
+# Observed in the OF20 September 2026 local corpus; exact ICAO scope.
+priority: 35
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*AFR\b'
+  - '(?iu)AIR\s+FRANCE'
+  - '(?iu)(?:FLIGHT\s+NUMBER|FLIGHT\s+NUMBER\d+|SCHEDULES?|ATS\s+ROUTES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'
+operator:
+  fixedValue: AFR
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number, Flight Number1]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to, Effective To]
+    serviceDays: [Days of services, Day(s) of services]
+    fromAirport: [Departure Airport, Departure Airport2]
+    etd: [ETD, EOTB]
+    toAirport: [Arrival Airport, Arrival Airport3]
+    eta: [ETA, EIBT]
+    aircraftType: [Aircraft Type, Aircraft Type4]
+  includeEta: true
+  purposeId: PAX
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Route, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, Aircraft Type4]
+    registrationMarks: [Registration Mark, Registration marks, Registration Marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  registrationColumn: registrationMarks
+validation:
+  reviewOnly: true
+  allowIataAirports: false

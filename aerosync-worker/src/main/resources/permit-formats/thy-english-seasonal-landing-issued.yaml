@@ -1,0 +1,28 @@
+id: thy-english-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 220
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*THY\b|TURKISH\s+AIRLINES)'
+  - '(?iu)(?:IATA\s*(?:CODE)?\s*:\s*TK\b)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: THY
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number]
+    effectiveFrom: [Effective from, Effective From]
+    effectiveTo: [Effective to, Effective To]
+    fromAirport: [Departure Airport]
+    etd: [ETD, EOBT]
+    toAirport: [Arrival Airport]
+    eta: [ETA, EIBT]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, fromAirport, etd, toAirport]
+  includeEta: true
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Aircraft registration mark, Aircraft registration marks]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: B77W

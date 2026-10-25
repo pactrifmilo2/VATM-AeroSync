@@ -1,0 +1,44 @@
+id: klm-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*KLM\b|KLM\s*[-–]\s*ROYAL\s+DUTCH\s+AIRLINES)'
+  - '(?iu)(?:FLIGHT|SCHEDULES?|ATS\s+ROUTES)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: KLM
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number, Flight]
+    effectiveFrom: [Effective from]
+    effectiveTo: [Effective to, Effective To]
+    serviceDays: [Days of services, Day(s) of services]
+    fromAirport: [Departure Airport]
+    etd: [ETD, ETD (UTC)]
+    toAirport: [Arrival Airport]
+    eta: [ETA, ETA (UTC)]
+    aircraftType: [Aircraft Type]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu]
+  timeFormats: [HHmm, H:mm, HH:mm]
+  includeEta: true
+  inferIataPrefix: true
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  scheduleColumn: aircraftType
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type]
+    registrationMarks: [Registration marks, Registration Mark]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: B77W
+validation:
+  reviewOnly: true

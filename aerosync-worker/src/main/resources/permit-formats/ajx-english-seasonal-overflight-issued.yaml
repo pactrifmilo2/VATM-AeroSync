@@ -1,0 +1,25 @@
+id: ajx-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 240
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)(?:ICAO\s*(?:CODE)?|MÃ\s*ICAO)\s*:\s*AJX\b|(?:IATA\s*(?:CODE)?|MÃ\s*IATA)\s*:\s*AJX\b|AIR\s+JAPAN'
+  - '(?iu)(?:AIR\s+JAPAN|LỊCH\s+BAY|SCHEDULES?)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: AJX
+schedule:
+  columns:
+    flightNumber: [Flight number, Flight Number, Số hiệu chuyến bay]
+    effectiveFrom: [Effective from, Hiệu lực từ]
+    effectiveTo: [Effective to, Hiệu lực đến]
+    serviceDays: [Days of services, Day(s) of services, Ngày trong tuần]
+    fromAirport: [Departure Airport, Dep airport, Sân bay đi]
+    etd: [ETD, EOBT, Giờ dự kiến đi]
+    toAirport: [Arrival Airport, Arr airport, Sân bay đến]
+    eta: [ETA, EIBT, Giờ dự kiến đến]
+  requiredColumns: [flightNumber, effectiveFrom, effectiveTo, serviceDays, fromAirport, etd, toAirport]
+  includeEta: true
+  inferIataPrefix: true
+validation:
+  reviewOnly: true
