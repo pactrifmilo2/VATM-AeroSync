@@ -50,7 +50,7 @@ class CaavSeasonalPermitOcrVariantTest {
                 .filter(profile -> profile.permit() != null && profile.permit().pattern() != null)
                 .toList();
 
-        assertThat(profiles).hasSize(358);
+        assertThat(profiles).hasSize(365);
         String normalized = PermitIdentityText.normalize(
                 new String(Character.toChars(0x2116)) + ": OF-123/8/2026VN");
         assertThat(profiles.stream()

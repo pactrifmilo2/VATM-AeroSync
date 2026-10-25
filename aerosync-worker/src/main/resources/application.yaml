@@ -47,6 +47,13 @@ spring:
           database-major-version: 21
           database-minor-version: 3
 
+aerosync:
+  validation:
+    # Operators whose permits are stored even when a schedule row declares no
+    # operating day inside its effective range. The affected rows are still
+    # reported as warnings so an operator can correct the source document.
+    soft-service-days-range-operators: ${APP_SOFT_SERVICE_DAYS_RANGE_OPERATORS:}
+
 app:
   atfm:
     url: ${APP_ATFM_DATASOURCE_URL:}

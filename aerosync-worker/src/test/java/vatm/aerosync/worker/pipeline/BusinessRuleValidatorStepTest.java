@@ -134,6 +134,53 @@ class BusinessRuleValidatorStepTest {
     }
 
     @Test
+    void validate_warnsInsteadOfBlockingForConfiguredOperator() {
+        BusinessRuleValidatorStep softValidator = new BusinessRuleValidatorStep("abl, clx");
+        // 20/07/2026 is a Monday; the row only marks Tuesday.
+        ProcessingContext context = ablScheduleContext("0200000",
+                LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20));
+
+        org.assertj.core.api.Assertions.assertThatCode(() -> softValidator.validate(context))
+                .doesNotThrowAnyException();
+        org.assertj.core.api.Assertions.assertThat(context.getWarnings())
+                .extracting("code", "rowNumber")
+                .containsExactly(
+                        org.assertj.core.groups.Tuple.tuple("BR-SERVICE-DAYS-RANGE", 1));
+        org.assertj.core.api.Assertions.assertThat(context.getRowValidationErrors()).isEmpty();
+    }
+
+    @Test
+    void validate_stillBlocksUnconfiguredOperator() {
+        BusinessRuleValidatorStep softValidator = new BusinessRuleValidatorStep("CAL");
+        ProcessingContext context = ablScheduleContext("0200000",
+                LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20));
+
+        assertThatThrownBy(() -> softValidator.validate(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("BR-SERVICE-DAYS-RANGE");
+        org.assertj.core.api.Assertions.assertThat(context.getWarnings()).isEmpty();
+    }
+
+    @Test
+    void validate_stillBlocksOtherErrorsForConfiguredOperator() {
+        BusinessRuleValidatorStep softValidator = new BusinessRuleValidatorStep("ABL");
+        ProcessingContext context = scheduleContext("0200000",
+                LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20));
+        context.setSchedulePermit(new SchedulePermit(
+                "OF-5199/7/2026VN", "O/F 05199/CHK/2026", "5199",
+                "CHK", "O/F", "A", "S", LocalDate.of(2026, 7, 17),
+                "RMY", "G17.44", 72, "Cyberjaya", "SC", "raw",
+                List.of(new ScheduleFlight(
+                        "CAR", 0L, BigDecimal.ZERO, "RMY685", null, "0200000",
+                        "ZZZ", "VHHH", "1140", null, null,
+                        LocalDate.of(2026, 7, 20), LocalDate.of(2026, 7, 20), null))));
+
+        assertThatThrownBy(() -> softValidator.validate(context))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("BR-SCHEDULE-AIRPORT");
+    }
+
+    @Test
     void validate_rejectsBeginDateAfterEndDate() {
         ProcessingContext context = scheduleContext(
                 "1000000", LocalDate.of(2026, 8, 6), LocalDate.of(2026, 8, 4));
@@ -149,6 +196,19 @@ class BusinessRuleValidatorStepTest {
         ProcessingContext context = new ProcessingContext(
                 new FileIngestedEvent(1L, "/tmp/f.csv", "h", FileSourceType.FILESYSTEM, false));
         context.getRows().add(row);
+        return context;
+    }
+
+    private ProcessingContext ablScheduleContext(String days, LocalDate begin, LocalDate end) {
+        ProcessingContext context = scheduleContext(days, begin, end);
+        SchedulePermit permit = context.getSchedulePermit();
+        context.setSchedulePermit(new SchedulePermit(
+                permit.sourcePermitNumber(), permit.normalizedPermitId(), permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), "ABL", permit.reference(), permit.validHours(),
+                permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
+                permit.emptyAirwaysAllowed(), permit.reviewOnly(), permit.rawContent(),
+                permit.flights(), permit.originalFlights()));
         return context;
     }
 

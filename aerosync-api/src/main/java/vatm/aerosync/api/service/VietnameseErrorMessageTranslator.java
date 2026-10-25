@@ -122,7 +122,8 @@ public class VietnameseErrorMessageTranslator {
         }
 
         String lower = value.toLowerCase(Locale.ROOT);
-        if (lower.contains("manual review")) {
+        if (lower.contains("manual review")
+                || lower.contains("giấy phép bay cần được kiểm tra thủ công trước khi ghi vào atfm")) {
             return "Permit đã được phân tích; cờ reviewOnly không còn chặn ghi vào ATFM.";
         }
         String directTranslation = switch (lower) {

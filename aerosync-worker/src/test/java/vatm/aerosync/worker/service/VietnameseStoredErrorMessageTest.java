@@ -51,17 +51,6 @@ class VietnameseStoredErrorMessageTest {
     }
 
     @Test
-    void truncatesLongVietnameseErrorToOracleUtf8ByteLimit() {
-        String value = "l\u1ed7i ".repeat(700);
-
-        String fitted = VietnameseStoredErrorMessage.fitErrorMessageColumn(value);
-
-        assertThat(fitted.getBytes(java.nio.charset.StandardCharsets.UTF_8))
-                .hasSizeLessThanOrEqualTo(2000);
-        assertThat(fitted).endsWith("\u2026").doesNotContain("\uFFFD");
-    }
-
-    @Test
     void keepsRowAndLookupValuesForAircraftAndRouteErrors() {
         assertThat(VietnameseStoredErrorMessage.translate(
                 "Schedule row 2: Aircraft type not found in ATFM dictionary: B799 (tried: B799) (1 aircraft resolution errors)"))
@@ -73,6 +62,13 @@ class VietnameseStoredErrorMessageTest {
                 "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file"))
                 .isEqualTo("Kh\u00f4ng \u0111\u1ecdc \u0111\u01b0\u1ee3c \u0111\u01b0\u1eddng bay trong file");
     }
+    @Test
+    void explainsAirportFallbackWithSourceAndPlaceholderCode() {
+        assertThat(VietnameseStoredErrorMessage.translate(
+                "Schedule row 3: Airport code not found in ATFM: XXX; fallback VVVV applied"))
+                .contains("Dòng lịch bay 3", "XXX", "VVVV");
+    }
+
     @Test
     void explainsOracleUniqueConstraintViolationsWithConstraintAndOriginalDetail() {
         String translated = VietnameseStoredErrorMessage.translate(

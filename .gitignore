@@ -10,11 +10,39 @@ dist/
 bin/
 obj/
 
+# Logs
 *.log
+debug-*.log
 
-## file word
-.doc
-.docx
+# Microsoft Office documents (should not be versioned)
+*.doc
+*.docx
+*.xlsx
+*.xls
+*.ppt
+*.pptx
+
+# Generated text files from Word
+*.docx.txt
+
+# PDF files
+*.pdf
+
+# Image files (screenshots, diagrams should be in docs/ with intention)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+
+# Temporary files
+*.tmp
 .tmp/
+*.txt
 
-*.log
+# Reports generated at runtime
+reports/*.xlsx
+reports/*.pdf
+reports/corpus-run/
+reports/permit-format-audit-*.xlsx

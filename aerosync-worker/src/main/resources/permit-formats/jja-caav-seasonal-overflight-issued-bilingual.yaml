@@ -1,0 +1,22 @@
+id: jja-caav-seasonal-overflight-issued-bilingual
+extends: jja-caav-seasonal-overflight-issued
+priority: 215
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*7C\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*JJA\b'
+  - '(?iu)JEJU\s+AIR'
+  - '(?iu)SCHEDULES?'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: JJA
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+validation:
+  reviewOnly: true

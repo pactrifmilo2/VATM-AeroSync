@@ -26,6 +26,11 @@ permitDate:
   locale: vi
   fallbackToDocumentCreatedDate: false
 schedule:
+  columns:
+    eta:
+      - ETA
+      - Giờ hạ cánh dự kiến
+      - Giờ dự kiến hạ cánh
   dateFormats: [d-MMM-yy, d-MMM-uuuu, dMMMyy, dMMMuuuu, d/M/uuuu]
   timeFormats: [HHmm, H:mm, HH:mm]
   locale: en

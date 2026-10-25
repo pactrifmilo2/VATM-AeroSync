@@ -28,4 +28,4 @@ aircraft:
   auxiliaryRequiredColumns: [aircraftType, registrationMarks]
 
 validation:
-  reviewOnly: true
+  reviewOnly: false

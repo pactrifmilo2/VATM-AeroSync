@@ -24,6 +24,7 @@ public class ProcessingContext {
 
     private final List<FlightRow> rows = new ArrayList<>();
     private final List<RowValidationError> rowValidationErrors = new ArrayList<>();
+    private final List<RowValidationError> warnings = new ArrayList<>();
     private long startedAtMillis = System.currentTimeMillis();
 
     public ProcessingContext(FileIngestedEvent event) {
@@ -97,6 +98,14 @@ public class ProcessingContext {
 
     public List<RowValidationError> getRowValidationErrors() {
         return rowValidationErrors;
+    }
+
+    /**
+     * Non-blocking findings. The permit is still imported, but the caller
+     * reports these rows so an operator can correct the source document.
+     */
+    public List<RowValidationError> getWarnings() {
+        return warnings;
     }
 
     public long getStartedAtMillis() {

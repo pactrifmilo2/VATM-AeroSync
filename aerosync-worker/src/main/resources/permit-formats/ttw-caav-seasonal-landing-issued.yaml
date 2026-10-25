@@ -1,0 +1,17 @@
+id: ttw-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+priority: 210
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*IT\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*TTW\b'
+  - '(?iu)TIGERAIR\s+TAIWAN'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: TTW
+schedule:
+  columns:
+    etd: [EOBT, EOBT, ETD (UTC)]
+    eta: [EIBT, EIBT, ETA (UTC)]
+validation:
+  reviewOnly: true

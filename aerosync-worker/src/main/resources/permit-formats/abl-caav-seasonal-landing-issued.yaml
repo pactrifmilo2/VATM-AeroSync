@@ -1,0 +1,29 @@
+id: abl-caav-seasonal-landing-issued
+extends: airline-generic-seasonal-landing-issued
+# Observed 13/10/2026 (LD-21/A/W/2026VN). Scoped to Air Busan seasonal
+# landing permits; several rows in that document print a spaced two-digit year
+# ("31Jan 27") and hyphen day flags ("12-4--7").
+priority: 210
+detectionPatterns:
+  - '(?iu)\bLD\s*[-/]?\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)IATA\s*(?:CODE)?[ \t]*:[ \t]*BX\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*ABL\b'
+  - '(?iu)AIR\s+BUSAN'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: ABL
+schedule:
+  columns:
+    etd: [ETD, EOBT, ETD (UTC)]
+    eta: [ETA, EIBT, ETA (UTC)]
+  dateFormats: [dMMMyy, dMMMuuuu, dMMM uu, dMMM uuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
+route:
+  columns:
+    sector: [Sector, Sectors]
+    airways: [Airways, ATS Routes]
+  requiredColumns: [sector, airways]
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+validation:
+  reviewOnly: true
