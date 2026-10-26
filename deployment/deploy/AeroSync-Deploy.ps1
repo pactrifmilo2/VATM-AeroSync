@@ -486,31 +486,77 @@ function Test-PackageChecksums {
     }
 }
 
+function Get-ServiceWrapperDirectory {
+    param([string] $ServiceName)
+    return (Join-Path $InstallRoot "services\$ServiceName")
+}
+
+function Invoke-WinSw {
+    param(
+        [string] $Executable,
+        [string[]] $Arguments
+    )
+
+    $lines = @(& $Executable @Arguments 2>&1 | ForEach-Object { [string]$_ })
+    $exitCode = $LASTEXITCODE
+    if ($exitCode -ne 0) {
+        foreach ($line in $lines) { Write-Host ("    " + $line) -ForegroundColor DarkGray }
+    }
+    return [pscustomobject]@{ ExitCode = $exitCode; Output = $lines }
+}
+
 function Install-Or-RefreshServices {
-    $winsw = Join-Path $InstallRoot "tools\WinSW-x64.exe"
-    foreach ($entry in $serviceApps.GetEnumerator()) {
+    param([System.Collections.IDictionary] $Services = $serviceApps)
+
+    # WinSW 2.x resolves its configuration as "<executable name>.xml" inside the
+    # executable directory; the config path is not accepted as an argument and
+    # there is no "refresh" command. Each service therefore gets its own wrapper
+    # executable named after the service, with a matching XML beside it.
+    $source = Join-Path $InstallRoot "tools\WinSW-x64.exe"
+    if (-not (Test-Path -LiteralPath $source -PathType Leaf)) {
+        throw "Goi deploy thieu tools\WinSW-x64.exe: $source"
+    }
+
+    foreach ($entry in $Services.GetEnumerator()) {
         $name = [string]$entry.Key
         $app = [string]$entry.Value
-        $xmlPath = Join-Path $InstallRoot "services\$name.xml"
+        $wrapperDirectory = Get-ServiceWrapperDirectory -ServiceName $name
+        New-Item -ItemType Directory -Force -Path $wrapperDirectory | Out-Null
+        $wrapper = Join-Path $wrapperDirectory "$name.exe"
+        Copy-Item -LiteralPath $source -Destination $wrapper -Force
+        $xmlPath = Join-Path $wrapperDirectory "$name.xml"
         New-ServiceXml -ServiceName $name -App $app |
             Set-Content -LiteralPath $xmlPath -Encoding UTF8
 
         $existing = Get-CimInstance Win32_Service -Filter "Name='$name'" -ErrorAction SilentlyContinue
-        $managedPath = '"' + $winsw + '"'
-        if ($existing -and -not $existing.PathName.StartsWith($managedPath, [StringComparison]::OrdinalIgnoreCase)) {
-            & sc.exe delete $name | Out-Null
-            $deadline = (Get-Date).AddSeconds(30)
+        if ($existing) {
+            Write-Host ("[..] {0,-20} Go cau hinh service cu" -f $name) -ForegroundColor Yellow
+            $null = Invoke-WinSw -Executable $wrapper -Arguments @("stopwait")
+            $removed = Invoke-WinSw -Executable $wrapper -Arguments @("uninstall")
+            if ($removed.ExitCode -ne 0) {
+                & sc.exe delete $name | Out-Null
+            }
+            $deadline = (Get-Date).AddSeconds(60)
             while ((Get-Date) -lt $deadline -and (Get-Service -Name $name -ErrorAction SilentlyContinue)) {
                 Start-Sleep -Milliseconds 500
             }
-            $existing = $null
+            if (Get-Service -Name $name -ErrorAction SilentlyContinue) {
+                throw "Service $name van ton tai sau khi go cai dat (co the dang o trang thai marked for deletion). Khoi dong lai may roi chay lai AeroSync-Deploy.cmd."
+            }
         }
-        if ($existing) {
-            & $winsw refresh $xmlPath | Out-Null
-        } else {
-            & $winsw install $xmlPath | Out-Null
+
+        $installed = $false
+        $result = $null
+        for ($attempt = 1; $attempt -le 5; $attempt++) {
+            $result = Invoke-WinSw -Executable $wrapper -Arguments @("install")
+            if ($result.ExitCode -eq 0) { $installed = $true; break }
+            Start-Sleep -Seconds ([math]::Min(2 * $attempt, 10))
         }
-        if ($LASTEXITCODE -ne 0) { throw "Khong the cai dat service $name." }
+        if (-not $installed) {
+            $exit = if ($result) { $result.ExitCode } else { "unknown" }
+            throw ("Khong the cai dat service {0} (WinSW exit {1}). Wrapper: {2}. Log WinSW: {3}" -f `
+                $name, $exit, $wrapper, (Join-Path $InstallRoot "logs\$app"))
+        }
     }
 }
 

@@ -2077,6 +2077,8 @@ public class DocxSchedulePermitParser {
         String normalizedValue = value.trim()
                 .replaceFirst("(?iu)^([0-3]?\\d)OOCT(?=\\d{2}(?:\\d{2})?$)", "$1OCT")
                 .replaceFirst("(?iu)^(\\d{1,2})(?:ST|ND|RD|TH)(?=\\s)", "$1")
+                // Two Bamboo Airways permits print October as "Octorber".
+                .replaceAll("(?iu)(?<=\\d\\s)Octorber(?=\\s\\d{4}$)", "October")
                 // A recurring Air Busan form typo writes May as "Mau".
                 .replaceAll("(?iu)(?<=\\d)Mau(?=\\s|\\d|$)", "May");
         List<String> acceptedFormats = new ArrayList<>(safeList(formats));
