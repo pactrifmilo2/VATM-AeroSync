@@ -90,6 +90,18 @@ class SeptemberCorpusProfilesTest {
         assertThat(permit.flights().getFirst().eta()).isEqualTo("0615+");
     }
 
+    @org.junit.jupiter.api.Test
+    void readsParenthesizedNextDayArrivalWithoutExplicitOne() {
+        var original = document("TGW", "OF-77/B/S/2026VN", "Schedules: UTC Time");
+        var schedule = List.of(
+                List.of("Flight number", "Effective from", "Effective to", "Days of services", "Departure Airport", "EOBT (UTC)", "Arrival Airport", "EIBT (UTC)"),
+                List.of("IGO841", "01Sep26", "24Oct26", "1234567", "RKSI", "2030", "VABB", "0105(+)"));
+        var doc = new WordPermitDocument(original.paragraphText(), original.tableText(), original.rawContent(),
+                List.of(schedule, original.tables().get(1)), List.of("Schedules: UTC Time", "Aircraft"));
+        var permit = new DocxSchedulePermitParser().parse(doc, "igo.docx");
+        assertThat(permit.flights().getFirst().eta()).isEqualTo("0105+");
+    }
+
     private WordPermitDocument document(String carrier, String number, String scheduleHeading) {
         String text = "HA NOI, 18 SEP 2026\n" + number + "\n1. Carrier\nName: Example airline\n"
                 + "IATA Code: N/A\nICAO Code: " + carrier + "\n" + scheduleHeading

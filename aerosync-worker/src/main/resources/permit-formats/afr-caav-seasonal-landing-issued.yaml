@@ -13,3 +13,6 @@ schedule:
   columns:
     etd: [ETD, EOBT]
     eta: [ETA, EIBT]
+  timeFormats: [HHmm, H:mm, HH:mm, "H'h'mm", "H'h'mm 'D'"]
+validation:
+  allowIataAirports: true

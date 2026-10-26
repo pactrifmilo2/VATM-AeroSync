@@ -37,4 +37,5 @@ schedule:
 purpose:
   defaultId: PAX
 validation:
+  allowIataAirports: true
   reviewOnly: false

@@ -13,3 +13,5 @@ purpose:
   mappings:
     - pattern: '(?iu)\b(?:MEDICAL|MEDEVAC|AMBULANCE)\b'
       value: MED
+validation:
+  allowIataAirports: true

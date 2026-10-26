@@ -26,3 +26,5 @@ aircraft:
   auxiliaryRequiredColumns: [aircraftType]
   auxiliaryTypeColumn: aircraftType
   defaultType: B77W
+validation:
+  allowIataAirports: true

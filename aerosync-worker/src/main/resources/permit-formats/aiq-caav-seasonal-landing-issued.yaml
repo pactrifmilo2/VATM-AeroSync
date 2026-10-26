@@ -11,5 +11,8 @@ operator:
   fixedValue: AIQ
 schedule:
   columns:
+    effectiveFrom: [Effective from, Eff from, Effective support, Hiệu lực từ]
     etd: [ETD, EOBT]
     eta: [ETA, EIBT]
+validation:
+  allowIataAirports: true

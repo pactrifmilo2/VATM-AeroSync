@@ -2,20 +2,23 @@ id: qfa-english-overflight-issued
 extends: caav-generic-overflight-issued
 priority: 200
 detectionPatterns:
-  - '(?iu)\bOF\s*-\s*\d+'
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
   - '(?iu)(?:ICAO\s*(?:CODE)?[ \t]*:[ \t]*QFA\b|QANTAS\s+AIRWAYS)'
   - '(?isu)^(?!.*(?:/REV\d+|\bREVISED\s+ITEM\b)).*$'
 permit:
-  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,9}[A-Z]?)'
+  pattern: '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*(?<number>\d{1,9})\s*/\s*(?<version>[A-Z])\s*/\s*(?<season>[SW])\s*/\s*(?<year>20\d{2})\s*VN\b'
   numberGroup: number
-  sourceTemplate: 'OF-{number}/CHK/{year}'
-  normalizedTemplate: 'O/F {number}/CHK/{year}'
+  sourceTemplate: 'OF-{number}/{version}/{season}/{year}VN'
+  normalizedTemplate: 'O/F {number}/{version}/{season}/CHK/{year}'
   zeroPadGroups:
     number: 5
 operator:
   fixedValue: QFA
 schedule:
   includeEta: true
+  columns:
+    etd: [ETD, EOBT, EOTB]
+    eta: [ETA, EIBT]
 aircraft:
   scheduleColumn: aircraftType
   defaultType: B789

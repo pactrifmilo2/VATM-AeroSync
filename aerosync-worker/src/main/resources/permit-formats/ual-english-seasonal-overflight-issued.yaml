@@ -1,0 +1,23 @@
+id: ual-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 210
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*UAL\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: UAL
+schedule:
+  headerlessColumns:
+    flightNumber: 0
+    effectiveFrom: 1
+    effectiveTo: 2
+    serviceDays: 3
+    fromAirport: 4
+    etd: 5
+    toAirport: 6
+    eta: 7
+    aircraftType: 8
+  tableContextPatterns:
+    - '(?iu)3\.\s*SCHEDULES?'
+  includeEta: true

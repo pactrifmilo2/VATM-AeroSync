@@ -8,6 +8,9 @@ detectionPatterns:
 operator:
   fixedValue: MSR
 schedule:
+  columns:
+    etd: [ETD, EOBT, EOTB]
+    eta: [ETA, EIBT]
   includeEta: true
   purposeId: PAX
 route:

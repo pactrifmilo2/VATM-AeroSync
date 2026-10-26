@@ -4,8 +4,7 @@ priority: 40
 detectionPatterns:
   - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*ICV\b'
-  - '(?iu)OVERFLIGHT\s+PERMIT'
-  - '(?iu)SCHEDULES?'
+  - '(?iu)(?:OVERFLIGHT\s+PERMIT|SCHEDULES?)'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
 operator:
   fixedValue: ICV

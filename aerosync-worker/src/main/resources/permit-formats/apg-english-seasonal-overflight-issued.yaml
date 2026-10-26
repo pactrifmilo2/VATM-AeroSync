@@ -1,0 +1,16 @@
+id: apg-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 210
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)ICAO\s*(?:CODE)?[ \t]*:[ \t]*APG\b'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: APG
+schedule:
+  columns:
+    fromAirport: [Depature airport, Departure Airport]
+    toAirport: [Arrival airport, Arrival Airport]
+    etd: [EOBT, ETD]
+    eta: [EIBT, ETA]
+    aircraftType: [Aircraft type, Aircraft Type]

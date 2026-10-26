@@ -20,3 +20,67 @@ aircraft:
   scheduleColumn: aircraftType
   defaultType: B77W
   auxiliaryRequiredColumns: []
+route:
+  staticAirways:
+    "OMDB - ZSPD": A1
+    "ZSPD - OMDB": A206
+    "OMDB - ZBAA": A1
+    "ZBAA - OMDB": A206
+    "OMDB - RJTT": A1
+    "RJTT - OMDB": A1
+    "OMDB - RJBB": A1
+    "RJBB - OMDB": A1
+    "OMDB - RJAA": A1
+    "RJAA - OMDB": A1
+    "OMDB - RKSI": A1
+    "OMDB - WADD": N891
+    "WADD - OMDB": N891
+    "RKSI - OMDB": A1
+    "OMDB - RCTP": A1
+    "RCTP - OMDB": A1
+    "OMDB - RPLL": G474 L628
+    "RPLL - OMDB": L628 G474
+    "OMDB - RPLC": G474 L628
+    "RPLC - OMDB": L628 G474
+    "OMDB - RPVM": G474 L628
+    "OMDB - WMKK": N891
+    "OMDB - WSSS": N891
+    "WMKK - OMDB": N891
+    "WSSS - OMDB": N891
+    "OMDB - ZGGG": A1
+    "ZGGG - OMDB": A206
+    "OMDB - VHHH": A1
+    "VHHH - OMDB": A206
+    "VTBS - VHHH": A202
+    "VHHH - VTBS": A206
+    "OMDB - YMML": R478/M768
+    "VTBS - RPLL": A1
+    "RPLL - VTBS": A206
+    "YSSY - VTBS": M771
+    "YMML - OMDB": M768/R478
+    "OMDB - YSSY": R478/M768
+    "YSSY - OMDB": M768/R478
+    "OMDB - YPPH": R344/M753
+    "YPPH - OMDB": M753/R344
+    "OMDB - YBBN": R478/M768
+    "YBBN - OMDB": M768/R478
+    "OMDB - YPAD": R478/M768
+    "YPAD - OMDB": M768/R478
+    "VTBS - YSSY": A206
+    "RPVM - OMDB": A206
+    "OMDB - NZAA": R478/M768
+    "NZAA - OMDB": M768/R478
+    "OMDB - ZBAD": B214/W21/R474
+    "ZBAD - OMDB": R474
+    "OMDB - ZSAM": B214/W21/R474
+    "ZSAM - OMDB": R474
+    "VGHS - VHHH": A206/W2/A1
+    "VHHH - VGHS": R474/W21/B214
+    "OMDB - ZSHC": A1
+    "ZSHC - OMDB": A206
+    "OMDB - ZGSZ": A1
+    "ZGSZ - OMDB": A206
+    "VDTI - WSSS": M755/M753
+    "WSSS - VDTI": M753/M755
+    "OMDB - ZUUU": A1
+    "ZUUU - OMDB": A206

@@ -13,4 +13,5 @@ schedule:
     etd: [ETD, EOBT, Estimated departure time]
     eta: [ETA, EIBT, Estimated Arrival time]
 validation:
+  allowIataAirports: true
   reviewOnly: true

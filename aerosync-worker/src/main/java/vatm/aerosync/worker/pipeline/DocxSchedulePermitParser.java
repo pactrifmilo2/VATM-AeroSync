@@ -2285,7 +2285,7 @@ public class DocxSchedulePermitParser {
             return null;
         }
         // Parenthesized timetable offsets carry the same meaning as +1.
-        cleanValue = cleanValue.replaceFirst("\\(\\s*\\+\\s*1\\s*\\)$", "+1");
+        cleanValue = cleanValue.replaceFirst("\\(\\s*\\+\\s*(?:1)?\\s*\\)$", "+1");
         // Forms use both ICAO-style "+1" and timetable-style "/1" to mark
         // an arrival on the following UTC day (for example 0045/1).
         boolean nextDay = cleanValue.matches(".*(?:\\+\\s*(?:1)?|/\\s*1)$");

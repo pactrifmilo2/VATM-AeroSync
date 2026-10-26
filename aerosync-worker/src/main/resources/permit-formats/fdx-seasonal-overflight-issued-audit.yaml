@@ -9,5 +9,9 @@ detectionPatterns:
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'
 operator:
   fixedValue: FDX
+schedule:
+  columns:
+    etd: [ETD, EOBT, EOTB]
+    eta: [ETA, EIBT]
 validation:
   reviewOnly: true

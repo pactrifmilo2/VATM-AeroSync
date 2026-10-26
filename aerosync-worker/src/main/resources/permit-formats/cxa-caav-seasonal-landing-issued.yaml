@@ -14,5 +14,5 @@ schedule:
     eta: [ETA, EIBT, Estimated Arrival time]
 # FOC maps to both ZSFC and ZSFZ in ATFM.M_AERO; block automatic write.
 validation:
-  allowIataAirports: false
+  allowIataAirports: true
   reviewOnly: true

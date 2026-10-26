@@ -14,3 +14,5 @@ aircraft:
   auxiliaryRequiredColumns: [aircraftType]
   auxiliaryTypeColumn: aircraftType
   defaultType: A320
+validation:
+  allowIataAirports: true

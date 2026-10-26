@@ -1,0 +1,41 @@
+id: box-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 230
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*[-/]?\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN'
+  - '(?iu)(?:ICAO\s*(?:CODE)?\s*:\s*BOX\b|AEROLOGIC\s+GMBH)'
+  - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
+operator:
+  fixedValue: BOX
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  purposeId: CAR
+aircraft:
+  defaultType: B777F
+route:
+  staticAirways:
+    "EDDF - RCTP": A206/W2/A1
+    "EDDP - RCTP": A206/W2/A1
+    "EDDP - VHHH": A1/W2/A206
+    "LIMC - VHHH": A1/W2/A206
+    "OBBI - VHHH": A1/W2/A206
+    "OBBI - ZGSZ": A206/W2/A1
+    "OERK - VHHH": A1/W2/A206
+    "OMDB - VHHH": A1/W2/A206
+    "RCTP - OMDW": A1/W2/A206
+    "UZTT - VHHH": A1/W2/A206
+    "VHHH - EBBR": A1/W2/A206
+    "VHHH - EDDF": A1/W2/A206
+    "VHHH - EDDP": A1/W2/A206
+    "VHHH - OBBI": A1/W2/A206
+    "VHHH - OMDB": A1/W2/A206
+    "VHHH - OMDW": A1/W2/A206
+    "VHHH - VIDP": A1/W2/A206
+    "VHHH - VOBL": A1/W2/A206
+    "VIDP - VHHH": A206/W2/A1
+    "VTBS - RJAA": A206/W2/A1
+    "VTBS - VHHH": A1/W2/A206
+    "VTBS - ZGSZ": A206/W2/A1
+    "WSSS - VHHH": A1/W2/A206

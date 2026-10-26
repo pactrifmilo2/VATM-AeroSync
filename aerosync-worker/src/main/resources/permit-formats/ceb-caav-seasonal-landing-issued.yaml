@@ -13,3 +13,5 @@ schedule:
   columns:
     etd: [ETD, EOBT]
     eta: [ETA, EIBT]
+validation:
+  allowIataAirports: true

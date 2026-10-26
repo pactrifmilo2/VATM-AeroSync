@@ -11,5 +11,12 @@ operator:
   fixedValue: VFC
 schedule:
   columns:
-    etd: [ETD, EOBT]
-    eta: [ETA, EIBT]
+    effectiveFrom: [Effective from, Eff from, Hiệu lực từ]
+    effectiveTo: [Effective to, Hiệu lực đến]
+    serviceDays: [Days of services, Ngày trong tuần]
+    departureAirport: [Departure Airport, Sân bay cất cánh]
+    etd: [ETD, EOBT, EOTD, Giờ khởi hành dự kiến]
+    arrivalAirport: [Arrival Airport, Sân bay hạ cánh]
+    eta: [ETA, EIBT, Giờ hạ cánh dự kiến, Giờ dựkiến hạcánh]
+validation:
+  allowIataAirports: true

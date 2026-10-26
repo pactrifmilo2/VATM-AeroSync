@@ -11,5 +11,12 @@ operator:
   fixedValue: UPS
 schedule:
   columns:
-    etd: [ETD, EOBT]
-    eta: [ETA, EIBT]
+    effectiveFrom: [Effective from, Eff from]
+    effectiveTo: [Effective to]
+    serviceDays: [Days of services]
+    departureAirport: [Departure Airport]
+    etd: [ETD, EOBT, EOTD]
+    arrivalAirport: [Arrival Airport]
+    eta: [ETA, EIBT, EIBT]
+validation:
+  allowIataAirports: true

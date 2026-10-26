@@ -9,5 +9,12 @@ detectionPatterns:
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\b(?:OLD|ORIGINAL|NEW)\s+(?:FLIGHT\s+)?SCHEDULE)).*$'
 operator:
   fixedValue: CSS
+aircraft:
+  auxiliaryColumns:
+    aircraftType: [Aircraft Type, A/C TYPE]
+    registrationMarks: [Registration Mark, Registration Marks, A/C REG]
+  auxiliaryRequiredColumns: [aircraftType]
+  auxiliaryTypeColumn: aircraftType
+  defaultType: ''
 validation:
   reviewOnly: true

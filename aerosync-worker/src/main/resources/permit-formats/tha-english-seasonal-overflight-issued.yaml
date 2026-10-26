@@ -1,0 +1,22 @@
+id: tha-english-seasonal-overflight-issued
+extends: airline-generic-seasonal-overflight-issued
+priority: 215
+detectionPatterns:
+  - '(?iu)\b(?:O\s*/\s*F|OF)\s*-\s*\d{1,9}\s*/?\s*[A-Z]\s*/\s*[SW]\s*/\s*20\d{2}\s*VN\b'
+  - '(?iu)ICAO\s*(?:CODE)?\s*:\s*THA\b'
+  - '(?iu)THAI\s+AIRWAYS'
+operator:
+  fixedValue: THA
+schedule:
+  columns:
+    etd: [ETD, EOBT]
+    eta: [ETA, EIBT]
+  includeEta: true
+route:
+  tableRequired: false
+  allowEmpty: true
+  filterSchedule: false
+aircraft:
+  defaultType: B777
+validation:
+  allowIataAirports: true

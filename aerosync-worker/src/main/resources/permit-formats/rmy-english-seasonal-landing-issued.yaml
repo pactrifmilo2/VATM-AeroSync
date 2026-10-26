@@ -24,3 +24,5 @@ aircraft:
   auxiliaryRequiredColumns: [aircraftType]
   auxiliaryTypeColumn: aircraftType
   defaultType: B763
+validation:
+  allowIataAirports: true
