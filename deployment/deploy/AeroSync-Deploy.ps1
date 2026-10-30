@@ -508,10 +508,8 @@ function Invoke-WinSw {
 function Install-Or-RefreshServices {
     param([System.Collections.IDictionary] $Services = $serviceApps)
 
-    # WinSW 2.x resolves its configuration as "<executable name>.xml" inside the
-    # executable directory; the config path is not accepted as an argument and
-    # there is no "refresh" command. Each service therefore gets its own wrapper
-    # executable named after the service, with a matching XML beside it.
+    # WinSW 3.x requires the matching XML path for service commands. Each service
+    # gets its own wrapper executable and configuration in a dedicated directory.
     $source = Join-Path $InstallRoot "tools\WinSW-x64.exe"
     if (-not (Test-Path -LiteralPath $source -PathType Leaf)) {
         throw "Goi deploy thieu tools\WinSW-x64.exe: $source"
@@ -531,8 +529,32 @@ function Install-Or-RefreshServices {
         $existing = Get-CimInstance Win32_Service -Filter "Name='$name'" -ErrorAction SilentlyContinue
         if ($existing) {
             Write-Host ("[..] {0,-20} Go cau hinh service cu" -f $name) -ForegroundColor Yellow
-            $null = Invoke-WinSw -Executable $wrapper -Arguments @("stopwait")
-            $removed = Invoke-WinSw -Executable $wrapper -Arguments @("uninstall")
+            $stopResult = Invoke-WinSw -Executable $wrapper -Arguments @("stop", $xmlPath)
+            $deadline = (Get-Date).AddSeconds(60)
+            do {
+                $service = Get-Service -Name $name -ErrorAction SilentlyContinue
+                if (-not $service -or $service.Status -eq "Stopped") { break }
+                Start-Sleep -Milliseconds 500
+            } while ((Get-Date) -lt $deadline)
+
+            if ($service -and $service.Status -ne "Stopped") {
+                # SCM can stop a service even if the wrapper's stop command failed.
+                & sc.exe stop $name | Out-Null
+                $deadline = (Get-Date).AddSeconds(60)
+                do {
+                    Start-Sleep -Milliseconds 500
+                    $service = Get-Service -Name $name -ErrorAction SilentlyContinue
+                    if (-not $service -or $service.Status -eq "Stopped") { break }
+                } while ((Get-Date) -lt $deadline)
+            }
+            if ($service -and $service.Status -ne "Stopped") {
+                $detail = if ($stopResult.ExitCode -ne 0) {
+                    "; WinSW exit $($stopResult.ExitCode): $($stopResult.Output -join ' ')"
+                } else { "" }
+                throw "Service $name khong dung duoc truoc khi go cai dat$detail"
+            }
+
+            $removed = Invoke-WinSw -Executable $wrapper -Arguments @("uninstall", $xmlPath)
             if ($removed.ExitCode -ne 0) {
                 & sc.exe delete $name | Out-Null
             }
@@ -548,7 +570,7 @@ function Install-Or-RefreshServices {
         $installed = $false
         $result = $null
         for ($attempt = 1; $attempt -le 5; $attempt++) {
-            $result = Invoke-WinSw -Executable $wrapper -Arguments @("install")
+            $result = Invoke-WinSw -Executable $wrapper -Arguments @("install", $xmlPath)
             if ($result.ExitCode -eq 0) { $installed = $true; break }
             Start-Sleep -Seconds ([math]::Min(2 * $attempt, 10))
         }
