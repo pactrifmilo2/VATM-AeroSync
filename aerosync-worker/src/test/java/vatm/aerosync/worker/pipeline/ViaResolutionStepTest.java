@@ -41,7 +41,9 @@ class ViaResolutionStepTest {
                     INSERT INTO M_AERO (AE_IATA, AE_CODE) VALUES
                         ('SGN', 'VVTS'),
                         ('VCL', 'VVCA'),
-                        ('HAN', 'VVNB')
+                        ('HAN', 'VVNB'),
+                        ('KUL', 'WMKK'),
+                        ('HKG', 'VHHH')
                     """);
             connection.createStatement().execute("""
                     CREATE TABLE M_VIA (
@@ -203,6 +205,44 @@ class ViaResolutionStepTest {
         assertThat(context.getSchedulePermit().flights().getFirst().via()).isNull();
         assertThat(context.getRowValidationErrors()).extracting("code")
                 .containsExactly("BR-ROUTE-DOCUMENT-UNREADABLE");
+    }
+
+    @Test
+    void resolve_warnsForSeasonalLandingTransitAfterAirportIataIsResolved() {
+        ProcessingContext context = context("HVN", true);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst()
+                .withResolvedRoute("WMKK", "VHHH", "M765");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-11111/A/W/2026VN", "LD 11111A/W/CHK/2026", "11111",
+                "CHK", "LD", "A", "W", LocalDate.of(2026, 7, 1),
+                "HVN", null, 24, null, "SC", false, true, false,
+                "raw", List.of(source), List.of()));
+
+        step.resolve(context);
+
+        assertThat(context.getSchedulePermit().flights()).hasSize(1);
+        assertThat(context.getSchedulePermit().flights().getFirst().fromAirport()).isEqualTo("WMKK");
+        assertThat(context.getSchedulePermit().flights().getFirst().toAirport()).isEqualTo("VHHH");
+        assertThat(context.getWarnings()).extracting("rowNumber", "message")
+                .containsExactly(org.assertj.core.groups.Tuple.tuple(
+                        1, "Chuyến bay này là chuyến bay quá cảnh"));
+        assertThat(context.getRowValidationErrors()).isEmpty();
+    }
+
+    @Test
+    void resolve_doesNotWarnForNonSeasonalLandingTransit() {
+        ProcessingContext context = context("HVN", true);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst()
+                .withResolvedRoute("WMKK", "VHHH", "M765");
+        context.setSchedulePermit(new SchedulePermit(
+                "LD-11111/A/2026VN", "LD 11111A/CHK/2026", "11111",
+                "CHK", "LD", "A", null, LocalDate.of(2026, 7, 1),
+                "HVN", null, 24, null, "NO", false, true, false,
+                "raw", List.of(source), List.of()));
+
+        step.resolve(context);
+
+        assertThat(context.getWarnings()).isEmpty();
     }
 
     private ProcessingContext context() {

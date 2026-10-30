@@ -231,7 +231,7 @@ class FileProcessingPipelineTest {
                 org.mockito.ArgumentMatchers.eq(7L),
                 org.mockito.ArgumentMatchers.eq(SyncStatus.SUCCESS),
                 org.mockito.ArgumentMatchers.eq(vatm.aerosync.common.enums.AlertLevel.WARNING),
-                org.mockito.ArgumentMatchers.contains("row 21"));
+                org.mockito.ArgumentMatchers.contains("dòng 21: No selected operating day"));
     }
 
     @Test

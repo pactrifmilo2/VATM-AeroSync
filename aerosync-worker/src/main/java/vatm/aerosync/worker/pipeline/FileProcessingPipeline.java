@@ -260,11 +260,12 @@ public class FileProcessingPipeline {
             return;
         }
         String rows = context.getWarnings().stream()
-                .map(warning -> "row %d (%s)".formatted(warning.rowNumber(), warning.value()))
+                .map(warning -> "dòng %d: %s".formatted(
+                        warning.rowNumber(), warning.message()))
                 .distinct()
-                .reduce((left, right) -> left + ", " + right)
+                .reduce((left, right) -> left + "; " + right)
                 .orElse("");
-        String message = ("Permit %s was saved but %d schedule row(s) need manual correction: %s")
+        String message = ("Permit %s đã được lưu; cảnh báo %d dòng lịch bay: %s")
                 .formatted(context.getSchedulePermit().normalizedPermitId(),
                         context.getWarnings().size(), rows);
         auditLogService.record(

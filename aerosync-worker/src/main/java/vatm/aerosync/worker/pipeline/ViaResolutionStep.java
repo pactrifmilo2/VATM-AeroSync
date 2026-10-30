@@ -107,6 +107,14 @@ public class ViaResolutionStep {
                             from + " -> " + to));
                 }
                 addLongTokenWarnings(context, index + 1, via);
+                if (isSeasonalLandingTransit(permit, from, to)) {
+                    context.getWarnings().add(new RowValidationError(
+                            index + 1,
+                            "route",
+                            "BR-SEASONAL-LD-TRANSIT",
+                            "Chuyến bay này là chuyến bay quá cảnh",
+                            from + " -> " + to));
+                }
                 resolvedFlights.add(flight.withResolvedRoute(from, to, via));
             }
             context.setSchedulePermit(permit.withFlights(resolvedFlights));
@@ -156,6 +164,13 @@ public class ViaResolutionStep {
                               String to) throws SQLException {
         return viaResolver.resolve(
                 connection, from, to, permit.operatorId(), flight.via());
+    }
+
+    private boolean isSeasonalLandingTransit(SchedulePermit permit, String from, String to) {
+        return permit.seasonalPermit()
+                && "LD".equalsIgnoreCase(permit.permitType())
+                && from != null && to != null
+                && !from.startsWith("VV") && !to.startsWith("VV");
     }
 
     private record RouteKey(String from, String to, String operator, String documentVia) {
