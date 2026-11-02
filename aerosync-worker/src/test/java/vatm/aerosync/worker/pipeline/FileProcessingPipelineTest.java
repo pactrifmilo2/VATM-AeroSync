@@ -316,7 +316,7 @@ class FileProcessingPipelineTest {
         record.setStoredPath("C:/staging/permit.docx");
         Path archived = Path.of("C:/archive/error-format/permit.docx");
         doThrow(new FormatValidationException(
-                "permit.docx", "Unsupported Word permit format; no format profile matched"))
+                "permit.docx", "WORD_FORMAT_MISSING: No YAML format profile matched"))
                 .when(parserStep).parse(any());
         when(fileArchiverStep.archiveFormatError(any(), any(), any(), any())).thenReturn(archived);
 
@@ -325,6 +325,11 @@ class FileProcessingPipelineTest {
         assertThat(record.getProcessingStatus()).isEqualTo(FileProcessingStatus.FAILED);
         assertThat(record.getStoredPath()).isEqualTo(archived.toString());
         verify(fileArchiverStep).archiveFormatError(any(), any(), any(), any());
+        verify(syncResultPublisher).publish(
+                org.mockito.ArgumentMatchers.eq(7L),
+                org.mockito.ArgumentMatchers.eq(SyncStatus.FAILED),
+                any(),
+                org.mockito.ArgumentMatchers.eq("WORD_FORMAT_MISSING: No YAML format profile matched"));
     }
 
     @Test

@@ -16,6 +16,7 @@ final class WordFormatRequirement {
                 || lower.contains("file word chưa có format yaml phù hợp")
                 || lower.contains("không hỗ trợ định dạng file word này vì chưa có format yaml phù hợp")
                 || lower.contains("không hỗ trợ định dạng giấy phép bay word này; không có format yaml nào phù hợp")
+                || lower.contains("word_format_missing:")
                 || lower.contains("unsupported word permit format")
                 || lower.contains("no format profile matched");
     }

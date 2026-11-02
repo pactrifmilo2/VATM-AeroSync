@@ -26,7 +26,7 @@ class WordPermitFormatDetectorTest {
 
         assertThatThrownBy(() -> detector.detect(document, "OF-MFX7632-11AUG26.docx"))
                 .isInstanceOf(FormatValidationException.class)
-                .hasMessageContaining("File chưa có định dạng YAML phù hợp");
+                .hasMessageContaining("WORD_FORMAT_MISSING");
     }
 
     @Test

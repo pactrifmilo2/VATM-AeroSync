@@ -11,6 +11,8 @@ class WordFormatRequirementTest {
         assertThat(WordFormatRequirement.isRequired(
                 "permit.docx", "Unsupported Word permit format; no format profile matched")).isTrue();
         assertThat(WordFormatRequirement.isRequired(
+                "permit.docx", "WORD_FORMAT_MISSING: No YAML format profile matched")).isTrue();
+        assertThat(WordFormatRequirement.isRequired(
                 "permit.doc", "Không hỗ trợ định dạng file Word này vì chưa có format YAML phù hợp.")).isTrue();
         assertThat(WordFormatRequirement.isRequired(
                 "permit.xlsx", "Unsupported Word permit format; no format profile matched")).isFalse();

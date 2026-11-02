@@ -417,20 +417,22 @@ public class DocxSchedulePermitParser {
         String selectedAuxiliaryRegistration = auxiliaryRegistration;
         List<RouteRow> selectedRoutes = List.copyOf(routes);
         List<RouteRow> selectedOldRoutes = List.copyOf(oldRoutes);
-        List<ScheduleFlight> flights = scheduleTables.stream()
-                .flatMap(table -> scheduleFlights(
-                        profile, table, selectedRoutes, auxiliaryAircraftTypes,
-                        selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
-                        purposeContent, resolvedOperatorId, iataPrefix,
-                        normalizeAirportsToIcao, false, fileName, noReplacement).stream())
-                .toList();
-        List<ScheduleFlight> originalFlights = originalScheduleTables.stream()
-                .flatMap(table -> scheduleFlights(
-                        profile, table, selectedOldRoutes, auxiliaryAircraftTypes,
-                        selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
-                        document.rawContent(), resolvedOperatorId, iataPrefix,
-                        normalizeAirportsToIcao, true, fileName, noReplacement).stream())
-                .toList();
+        List<ScheduleFlight> flights = new ArrayList<>();
+        for (List<List<String>> table : scheduleTables) {
+            flights.addAll(scheduleFlights(
+                    profile, table, documentTableIndex(document, table), selectedRoutes,
+                    auxiliaryAircraftTypes, selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
+                    purposeContent, resolvedOperatorId, iataPrefix, normalizeAirportsToIcao,
+                    false, fileName, noReplacement));
+        }
+        List<ScheduleFlight> originalFlights = new ArrayList<>();
+        for (List<List<String>> table : originalScheduleTables) {
+            originalFlights.addAll(scheduleFlights(
+                    profile, table, documentTableIndex(document, table), selectedOldRoutes,
+                    auxiliaryAircraftTypes, selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
+                    document.rawContent(), resolvedOperatorId, iataPrefix, normalizeAirportsToIcao,
+                    true, fileName, noReplacement));
+        }
         if (flights.isEmpty() && !cancellationOnly) {
             throw invalid(fileName, "No schedule rows found for profile " + profile.id());
         }
@@ -756,6 +758,7 @@ public class DocxSchedulePermitParser {
 
     private List<ScheduleFlight> scheduleFlights(DocxPermitFormatProfile profile,
                                                  List<List<String>> table,
+                                                 int documentTableIndex,
                                                  List<RouteRow> routes,
                                                  String auxiliaryAircraftTypes,
                                                  String auxiliaryRegistration,
@@ -839,14 +842,22 @@ public class DocxSchedulePermitParser {
             String[] effectiveDates = splitConcatenatedDateRange(
                     rowValues.getOrDefault("effectiveFrom", ""),
                     rowValues.getOrDefault("effectiveTo", ""));
-            LocalDate beginDate = parseDate(
-                    effectiveDates[0],
-                    schedule.dateFormats(), schedule.locale(), fileName, "effective-from date",
-                    permitYear(rawContent));
-            LocalDate endDate = parseDate(
-                    effectiveDates[1],
-                    schedule.dateFormats(), schedule.locale(), fileName, "effective-to date",
-                    permitYear(rawContent));
+            LocalDate beginDate;
+            try {
+                beginDate = parseDate(effectiveDates[0], schedule.dateFormats(), schedule.locale(),
+                        fileName, "effective-from date", permitYear(rawContent));
+            } catch (FormatValidationException exception) {
+                throw invalid(fileName, formatValueMismatch(profile, documentTableIndex, rowIndex,
+                        "effectiveFrom", effectiveDates[0], schedule.dateFormats()));
+            }
+            LocalDate endDate;
+            try {
+                endDate = parseDate(effectiveDates[1], schedule.dateFormats(), schedule.locale(),
+                        fileName, "effective-to date", permitYear(rawContent));
+            } catch (FormatValidationException exception) {
+                throw invalid(fileName, formatValueMismatch(profile, documentTableIndex, rowIndex,
+                        "effectiveTo", effectiveDates[1], schedule.dateFormats()));
+            }
             if (!exactSchedule) beginDate = correctClearlyMistypedEffectiveYear(
                     beginDate, endDate, permitYear(rawContent));
             String rawServiceDays = rowValues.getOrDefault("serviceDays", "");
@@ -880,12 +891,12 @@ public class DocxSchedulePermitParser {
                     serviceDays,
                     from,
                     to,
-                    normalizeTime(
-                            rowValues.getOrDefault("etd", ""), schedule.timeFormats(), schedule.locale(),
-                            fileName, "ETD", false, rowIndex),
-                    schedule.includeEta() ? normalizeTime(
-                            rowValues.getOrDefault("eta", ""), schedule.timeFormats(), schedule.locale(),
-                            fileName, "ETA", true, rowIndex) : null,
+                    normalizeScheduleTime(profile, documentTableIndex, rowIndex, "etd",
+                            rowValues.getOrDefault("etd", ""), schedule.timeFormats(),
+                            schedule.locale(), fileName, false),
+                    schedule.includeEta() ? normalizeScheduleTime(profile, documentTableIndex,
+                            rowIndex, "eta", rowValues.getOrDefault("eta", ""),
+                            schedule.timeFormats(), schedule.locale(), fileName, true) : null,
                     via,
                     beginDate,
                     endDate,
@@ -894,6 +905,45 @@ public class DocxSchedulePermitParser {
                     aircraftTablePresent));
         }
         return flights;
+    }
+
+    private int documentTableIndex(WordPermitDocument document, List<List<String>> table) {
+        for (int index = 0; index < document.tables().size(); index++) {
+            if (document.tables().get(index) == table) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    private String normalizeScheduleTime(DocxPermitFormatProfile profile, int tableIndex,
+                                         int rowIndex, String field, String value,
+                                         List<String> formats, String locale, String fileName,
+                                         boolean nullable) {
+        try {
+            return normalizeTime(value, formats, locale, fileName,
+                    field.equals("etd") ? "ETD" : "ETA", nullable, rowIndex);
+        } catch (FormatValidationException exception) {
+            throw invalid(fileName, formatValueMismatch(
+                    profile, tableIndex, rowIndex, field, value, formats));
+        }
+    }
+
+    private String formatValueMismatch(DocxPermitFormatProfile profile, int tableIndex,
+                                       int rowIndex, String field, String value,
+                                       List<String> expectedFormats) {
+        String column = expectedAliases(profile.schedule(), List.of(field));
+        String location = tableIndex < 0
+                ? "d\u00f2ng " + (rowIndex + 1)
+                : "B\u1ea3ng " + (tableIndex + 1) + ", d\u00f2ng " + (rowIndex + 1);
+        return "WORD_FORMAT_MISMATCH: Format YAML: " + profile.id()
+                + ". V\u1ecb tr\u00ed: " + location
+                + ". C\u1ed9t/tr\u01b0\u1eddng: " + column
+                + ". Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: '" + displayHeader(value) + "'. "
+                + "Kh\u00e1c bi\u1ec7t: gi\u00e1 tr\u1ecb kh\u00f4ng kh\u1edbp ki\u1ec3u/ng\u00e0y gi\u1edd c\u1ee7a format. "
+                + "Gi\u00e1 tr\u1ecb/format mong \u0111\u1ee3i: "
+                + safeList(expectedFormats).stream().limit(8).collect(java.util.stream.Collectors.joining(" | "))
+                + ". C\u00e1ch ch\u1ec9nh: s\u1eeda gi\u00e1 tr\u1ecb t\u1ea1i d\u00f2ng/c\u1ed9t n\u00eau tr\u00ean theo m\u1ed9t format \u0111\u01b0\u1ee3c li\u1ec7t k\u00ea.";
     }
 
     private Map<String, String> scheduleRowValues(
@@ -1827,33 +1877,72 @@ public class DocxSchedulePermitParser {
     private String missingScheduleFields(DocxPermitFormatProfile profile,
                                          WordPermitDocument document) {
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
-        List<String> closestMissing = null;
-        for (List<List<String>> table : document.tables()) {
-            if (table.isEmpty()) {
-                continue;
-            }
+        ScheduleTableDifference closest = null;
+        for (int tableIndex = 0; tableIndex < document.tables().size(); tableIndex++) {
+            List<List<String>> table = document.tables().get(tableIndex);
+            if (table.isEmpty()) continue;
             Map<String, Integer> columns = resolveColumns(table.getFirst(), schedule.columns());
             List<String> missing = safeList(schedule.requiredColumns()).stream()
-                    .filter(required -> !columns.containsKey(required))
-                    .toList();
-            if (closestMissing == null || missing.size() < closestMissing.size()) {
-                closestMissing = missing;
-            }
+                    .filter(required -> !columns.containsKey(required)).toList();
+            ScheduleTableDifference candidate = new ScheduleTableDifference(
+                    tableIndex, table.getFirst(), columns, missing);
+            if (closest == null || candidate.missingFields().size() < closest.missingFields().size()
+                    || (candidate.missingFields().size() == closest.missingFields().size()
+                    && candidate.matchedColumns().size() > closest.matchedColumns().size())) closest = candidate;
         }
-        if (closestMissing == null) {
-            return "Schedule table not found for profile " + profile.id()
-                    + "; missing required fields: " + String.join(", ", schedule.requiredColumns());
+        if (closest == null) {
+            return "WORD_FORMAT_MISMATCH: Format YAML: " + profile.id()
+                    + ". V\u1ecb tr\u00ed: to\u00e0n b\u1ed9 t\u00e0i li\u1ec7u Word. Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: kh\u00f4ng c\u00f3 b\u1ea3ng n\u00e0o. "
+                    + "Kh\u00e1c bi\u1ec7t: thi\u1ebfu b\u1ea3ng l\u1ecbch bay. Gi\u00e1 tr\u1ecb/alias mong \u0111\u1ee3i: "
+                    + expectedAliases(schedule, schedule.requiredColumns())
+                    + ". C\u00e1ch ch\u1ec9nh: th\u00eam b\u1ea3ng l\u1ecbch bay theo \u0111\u00fang c\u00e1c c\u1ed9t b\u1eaft bu\u1ed9c c\u1ee7a format YAML n\u00e0y.";
         }
-        if (closestMissing.isEmpty()) {
-            return "Schedule table columns matched profile " + profile.id()
-                    + ", but the required table section/context was not found";
+        ScheduleTableDifference difference = closest;
+        String location = "B\u1ea3ng " + (difference.tableIndex() + 1) + ", d\u00f2ng ti\u00eau \u0111\u1ec1 1";
+        String actualHeaders = indexedHeaders(difference.header());
+        if (difference.missingFields().isEmpty()) {
+            return "WORD_FORMAT_MISMATCH: Format YAML: " + profile.id()
+                    + ". V\u1ecb tr\u00ed: " + location + ". Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: " + actualHeaders
+                    + ". Kh\u00e1c bi\u1ec7t: c\u00e1c c\u1ed9t \u0111\u00e3 kh\u1edbp nh\u01b0ng b\u1ea3ng n\u1eb1m sai ph\u1ea7n/ti\u00eau \u0111\u1ec1 ng\u1eef c\u1ea3nh c\u1ee7a m\u1eabu. "
+                    + "Gi\u00e1 tr\u1ecb/alias mong \u0111\u1ee3i: ti\u00eau \u0111\u1ec1 ph\u1ea7n l\u1ecbch bay theo format YAML. "
+                    + "C\u00e1ch ch\u1ec9nh: \u0111\u1eb7t b\u1ea3ng d\u01b0\u1edbi \u0111\u00fang ti\u00eau \u0111\u1ec1 ph\u1ea7n l\u1ecbch bay m\u1edbi/\u0111\u01b0\u1ee3c s\u1eeda \u0111\u1ed5i c\u1ee7a m\u1eabu; "
+                    + "n\u1ebfu t\u00e0i li\u1ec7u d\u00f9ng b\u1ed1 c\u1ee5c m\u1edbi, g\u1eedi file m\u1eabu cho qu\u1ea3n tr\u1ecb \u0111\u1ec3 c\u1eadp nh\u1eadt YAML.";
         }
-        String details = closestMissing.stream()
-                .map(field -> field + " (accepted headers: "
-                        + String.join(" | ", safeList(schedule.columns().get(field))) + ")")
-                .collect(java.util.stream.Collectors.joining("; "));
-        return "Schedule table not found for profile " + profile.id()
-                + "; missing required fields: " + details;
+        Set<Integer> recognizedIndexes = new LinkedHashSet<>(difference.matchedColumns().values());
+        String unrecognized = java.util.stream.IntStream.range(0, difference.header().size())
+                .filter(index -> !recognizedIndexes.contains(index))
+                .mapToObj(index -> "C" + (index + 1) + "='" + displayHeader(difference.header().get(index)) + "'")
+                .collect(java.util.stream.Collectors.joining(", "));
+        return "WORD_FORMAT_MISMATCH: Format YAML: " + profile.id()
+                + ". V\u1ecb tr\u00ed: " + location + ". Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: " + actualHeaders
+                + (unrecognized.isBlank() ? "" : ". C\u1ed9t ch\u01b0a nh\u1eadn di\u1ec7n: " + unrecognized)
+                + ". Kh\u00e1c bi\u1ec7t: thi\u1ebfu/kh\u00f4ng kh\u1edbp tr\u01b0\u1eddng b\u1eaft bu\u1ed9c "
+                + String.join(", ", difference.missingFields())
+                + ". Gi\u00e1 tr\u1ecb/alias mong \u0111\u1ee3i: " + expectedAliases(schedule, difference.missingFields())
+                + ". C\u00e1ch ch\u1ec9nh: \u0111\u1ed5i t\u00ean ho\u1eb7c b\u1ed5 sung c\u1ed9t t\u1ea1i d\u00f2ng ti\u00eau \u0111\u1ec1 b\u1eb1ng m\u1ed9t alias \u0111\u01b0\u1ee3c li\u1ec7t k\u00ea; "
+                + "kh\u00f4ng thay \u0111\u1ed5i d\u1eef li\u1ec7u c\u00e1c d\u00f2ng n\u1ebfu ch\u1ec9 sai t\u00ean c\u1ed9t.";
+    }
+
+    private String expectedAliases(DocxPermitFormatProfile.ScheduleDefinition schedule, List<String> fields) {
+        return fields.stream().map(field -> {
+            LinkedHashSet<String> aliases = new LinkedHashSet<>();
+            aliases.addAll(safeList(schedule.columns().get(field)));
+            aliases.addAll(safeList(UNIVERSAL_COLUMN_ALIASES.get(field)));
+            return field + " = [" + aliases.stream().limit(8)
+                    .collect(java.util.stream.Collectors.joining(" | ")) + "]";
+        }).collect(java.util.stream.Collectors.joining("; "));
+    }
+
+    private String indexedHeaders(List<String> header) {
+        if (header.isEmpty()) return "d\u00f2ng ti\u00eau \u0111\u1ec1 tr\u1ed1ng";
+        return java.util.stream.IntStream.range(0, header.size())
+                .mapToObj(index -> "C" + (index + 1) + "='" + displayHeader(header.get(index)) + "'")
+                .collect(java.util.stream.Collectors.joining(", "));
+    }
+
+    private String displayHeader(String value) {
+        String header = clean(value);
+        return header.isBlank() ? "<tr\u1ed1ng>" : header.replace("'", "\u2019");
     }
 
     private String joinedColumnValues(List<List<List<String>>> tables,
@@ -2347,6 +2436,13 @@ public class DocxSchedulePermitParser {
 
     private FormatValidationException invalid(String fileName, String detail) {
         return new FormatValidationException(fileName, detail);
+    }
+
+    private record ScheduleTableDifference(
+            int tableIndex,
+            List<String> header,
+            Map<String, Integer> matchedColumns,
+            List<String> missingFields) {
     }
 
     private record RouteRow(String from, String to, String airways) {

@@ -46,22 +46,22 @@ class WordPermitFormatDetector {
                     directCarrierMatches, relaxedCarrierMatches);
             if (carrierMatches.isEmpty()) {
                 throw invalid(fileName,
-                        "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
+                        "WORD_FORMAT_MISSING: No YAML format profile matched");
             }
             matches = carrierMatches.stream()
                     .filter(profile -> permitIdentityMatches(profile, permitText))
                     .toList();
             if (matches.isEmpty()) {
                 throw invalid(fileName,
-                        "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
+                        "WORD_FORMAT_MISSING: No YAML format profile matched");
             }
         }
         if (matches.isEmpty()) {
             if (carrier.icao() != null) {
                 throw invalid(fileName,
-                        "File ch\u01b0a c\u00f3 \u0111\u1ecbnh d\u1ea1ng YAML ph\u00f9 h\u1ee3p.");
+                        "WORD_FORMAT_MISSING: No YAML format profile matched");
             }
-            throw invalid(fileName, "Unsupported Word permit format; no format profile matched");
+            throw invalid(fileName, "WORD_FORMAT_MISSING: No YAML format profile matched");
         }
         int highestPriority = matches.stream()
                 .mapToInt(DocxPermitFormatProfile::priority)

@@ -33,6 +33,18 @@ class VietnameseErrorMessageTranslatorTest {
     }
 
     @Test
+    void preservesDetailedWordFormatMismatchAndGuidesMissingProfileSubmission() {
+        String mismatch = "WORD_FORMAT_MISMATCH: Format YAML: vfc-test. V\u1ecb tr\u00ed: B\u1ea3ng 2, d\u00f2ng ti\u00eau \u0111\u1ec1 1. "
+                + "Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: C2='Start date'. Kh\u00e1c bi\u1ec7t: thi\u1ebfu effectiveFrom. "
+                + "Gi\u00e1 tr\u1ecb/alias mong \u0111\u1ee3i: effectiveFrom = [Eff from]. C\u00e1ch ch\u1ec9nh: \u0111\u1ed5i t\u00ean c\u1ed9t.";
+        assertThat(translator.translate(mismatch))
+                .contains("Format YAML: vfc-test", "B\u1ea3ng 2", "Start date", "Eff from", "C\u00e1ch ch\u1ec9nh");
+        assertThat(translator.translate("WORD_FORMAT_MISSING: No YAML format profile matched"))
+                .contains("ch\u01b0a c\u00f3 format YAML/m\u1eabu ph\u00f9 h\u1ee3p",
+                        "g\u1eedi file Word m\u1eabu", "qu\u1ea3n tr\u1ecb vi\u00ean");
+    }
+
+    @Test
     void doesNotExposeLegacyManualReviewMessage() {
         assertThat(translator.translate(
                 "Giấy phép bay cần được kiểm tra thủ công trước khi ghi vào ATFM."))

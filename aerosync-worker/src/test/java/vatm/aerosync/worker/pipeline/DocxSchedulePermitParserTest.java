@@ -70,6 +70,35 @@ class DocxSchedulePermitParserTest {
     private final DocxSchedulePermitParser parser = new DocxSchedulePermitParser();
 
     @Test
+    void reportsWordScheduleHeaderMismatchWithLocationActualAndExpectedAliases() throws Exception {
+        Path file = createPermitDocument("M765-M771", true);
+
+        assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
+                .isInstanceOf(vatm.aerosync.common.exception.FormatValidationException.class)
+                .hasMessageContaining("WORD_FORMAT_MISMATCH")
+                .hasMessageContaining("B\u1ea3ng 2")
+                .hasMessageContaining("C2='Start date'")
+                .hasMessageContaining("effectiveFrom")
+                .hasMessageContaining("Gi\u00e1 tr\u1ecb/alias mong \u0111\u1ee3i")
+                .hasMessageContaining("C\u00e1ch ch\u1ec9nh")
+                .hasMessageContaining("Eff from");
+    }
+
+    @Test
+    void reportsWordScheduleDateValueMismatchWithTableRowAndExpectedFormats() throws Exception {
+        Path file = createPermitDocument("M765-M771", false, true);
+
+        assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
+                .isInstanceOf(vatm.aerosync.common.exception.FormatValidationException.class)
+                .hasMessageContaining("WORD_FORMAT_MISMATCH")
+                .hasMessageContaining("B\u1ea3ng 2")
+                .hasMessageContaining("d\u00f2ng 2")
+                .hasMessageContaining("02BAD26")
+                .hasMessageContaining("dMMMyy")
+                .hasMessageContaining("C\u00e1ch ch\u1ec9nh");
+    }
+
+    @Test
     void parse_mapsNonScheduledOverflightPermitAndStripsUtcSuffix() throws Exception {
         Path file = createPermitDocument();
 
@@ -335,6 +364,15 @@ class DocxSchedulePermitParserTest {
     }
 
     private Path createPermitDocument(String routeAirways) throws Exception {
+        return createPermitDocument(routeAirways, false);
+    }
+
+    private Path createPermitDocument(String routeAirways, boolean wrongScheduleHeader) throws Exception {
+        return createPermitDocument(routeAirways, wrongScheduleHeader, false);
+    }
+
+    private Path createPermitDocument(String routeAirways, boolean wrongScheduleHeader,
+                                      boolean invalidScheduleDate) throws Exception {
         Path file = tempDir.resolve("OF-5199.docx");
         try (XWPFDocument document = new XWPFDocument()) {
             document.createParagraph().createRun().setText("HANOI, 17-Jul-26");
@@ -350,9 +388,10 @@ class DocxSchedulePermitParserTest {
             operator.getRow(1).getCell(0).setText("Postal address: Cyberjaya, Malaysia");
 
             XWPFTable schedule = document.createTable(2, 8);
-            String[] headers = {"Flight number", "Eff from", "Eff to", "Day(s) of services",
-                    "Dep airport", "ETD", "Arr airport", "ETA"};
-            String[] values = {"RMY685", "20JUL26", "27JUL26", "1------",
+            String[] headers = {"Flight number", wrongScheduleHeader ? "Start date" : "Eff from",
+                    "Eff to", "Day(s) of services", "Dep airport", "ETD", "Arr airport", "ETA"};
+            String[] values = {"RMY685", invalidScheduleDate ? "02BAD26" : "20JUL26",
+                    "27JUL26", "1------",
                     "WMKK", "1140Z", "VHHH", "1550Z"};
             for (int index = 0; index < headers.length; index++) {
                 schedule.getRow(0).getCell(index).setText(headers[index]);

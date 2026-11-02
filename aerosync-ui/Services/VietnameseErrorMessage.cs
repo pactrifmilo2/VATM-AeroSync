@@ -140,6 +140,15 @@ public static class VietnameseErrorMessage
         }
 
         var normalized = detail.ToLowerInvariant();
+        if (normalized.StartsWith("word_format_mismatch:", StringComparison.Ordinal))
+        {
+            return detail[(detail.IndexOf(':') + 1)..].Trim();
+        }
+        if (normalized.StartsWith("word_format_missing:", StringComparison.Ordinal))
+        {
+            return "C\u1ea6N TH\u00caM FORMAT YAML: File Word ch\u01b0a c\u00f3 format YAML/m\u1eabu ph\u00f9 h\u1ee3p. "
+                + "Vui l\u00f2ng g\u1eedi file Word m\u1eabu cho qu\u1ea3n tr\u1ecb vi\u00ean b\u1ed5 sung format YAML.";
+        }
         if (normalized.Contains("đã xảy ra lỗi kỹ thuật trong quá trình xử lý file")
             || normalized.Contains("đã xảy ra lỗi trong quá trình xử lý"))
         {

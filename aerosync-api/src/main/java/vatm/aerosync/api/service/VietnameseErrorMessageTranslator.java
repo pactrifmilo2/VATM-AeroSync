@@ -72,6 +72,13 @@ public class VietnameseErrorMessageTranslator {
             return "CẦN THÊM FORMAT YAML: File Word chưa có format YAML phù hợp.";
         }
 
+        if (normalizedValue.startsWith("word_format_mismatch:")) {
+            return value.substring(value.indexOf(':') + 1).trim();
+        }
+        if (normalizedValue.startsWith("word_format_missing:")) {
+            return "C\u1ea6N TH\u00caM FORMAT YAML: File Word ch\u01b0a c\u00f3 format YAML/m\u1eabu ph\u00f9 h\u1ee3p. "
+                    + "Vui l\u00f2ng g\u1eedi file Word m\u1eabu cho qu\u1ea3n tr\u1ecb vi\u00ean b\u1ed5 sung format YAML.";
+        }
         Matcher matcher = REVISION_DIFFERENT.matcher(value);
         if (matcher.matches()) {
             return "PERMIT-REVISION-REVIEW: Phép bay " + matcher.group(1)

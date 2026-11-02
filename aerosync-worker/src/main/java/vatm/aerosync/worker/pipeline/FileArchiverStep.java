@@ -69,7 +69,8 @@ public class FileArchiverStep {
             return false;
         }
         String detail = errorDetail.toLowerCase(Locale.ROOT);
-        return detail.contains("unsupported word permit format")
+        return detail.contains("word_format_missing:")
+                || detail.contains("unsupported word permit format")
                 || detail.contains("no format profile matched")
                 || detail.contains("file word ch\u01b0a c\u00f3 format yaml ph\u00f9 h\u1ee3p");
     }

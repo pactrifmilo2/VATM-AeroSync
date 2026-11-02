@@ -359,7 +359,7 @@ public class FileProcessingPipeline {
                 SyncStatus.FAILED,
                 context.elapsedMillis());
         syncResultPublisher.publish(
-                event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING, e.getMessage());
+                event.getSyncJobId(), SyncStatus.FAILED, AlertLevel.WARNING, e.getErrorDetail());
     }
 
     private void handleNonPermitDocument(ProcessingContext context,
