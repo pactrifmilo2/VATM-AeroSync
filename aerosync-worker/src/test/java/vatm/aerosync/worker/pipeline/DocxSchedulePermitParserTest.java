@@ -1,4 +1,4 @@
-﻿package vatm.aerosync.worker.pipeline;
+package vatm.aerosync.worker.pipeline;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
