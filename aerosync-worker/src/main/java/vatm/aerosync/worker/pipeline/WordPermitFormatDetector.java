@@ -27,12 +27,13 @@ class WordPermitFormatDetector {
 
     DocxPermitFormatProfile detect(WordPermitDocument document, String fileName) {
         String permitText = PermitIdentityText.normalize(document.rawContent());
+        String recognitionText = permitText.replaceAll("(?iu)(\\bLD\\s*)-+\\s*(?=\\d)", "$1-");
         CarrierIdentity carrier = carrierIdentity(permitText);
         List<DocxPermitFormatProfile> directMatches = profiles.stream()
-                .filter(profile -> supports(profile, permitText, false))
+                .filter(profile -> supports(profile, recognitionText, false))
                 .toList();
         List<DocxPermitFormatProfile> relaxedMatches = profiles.stream()
-                .filter(profile -> supports(profile, permitText, true))
+                .filter(profile -> supports(profile, recognitionText, true))
                 .toList();
         List<DocxPermitFormatProfile> matches = preferredMatchSet(directMatches, relaxedMatches);
         if (carrier.icao() != null) {
@@ -49,7 +50,7 @@ class WordPermitFormatDetector {
                         "WORD_FORMAT_MISSING: No YAML format profile matched");
             }
             matches = carrierMatches.stream()
-                    .filter(profile -> permitIdentityMatches(profile, permitText))
+                    .filter(profile -> permitIdentityMatches(profile, recognitionText))
                     .toList();
             if (matches.isEmpty()) {
                 throw invalid(fileName,

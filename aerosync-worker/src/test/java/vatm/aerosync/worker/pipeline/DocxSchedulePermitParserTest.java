@@ -1,4 +1,4 @@
-package vatm.aerosync.worker.pipeline;
+﻿package vatm.aerosync.worker.pipeline;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
@@ -71,7 +71,7 @@ class DocxSchedulePermitParserTest {
 
     @Test
     void reportsWordScheduleHeaderMismatchWithLocationActualAndExpectedAliases() throws Exception {
-        Path file = createPermitDocument("M765-M771", true);
+        Path file = createPermitDocument("M765-M771", true, false);
 
         assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
                 .isInstanceOf(vatm.aerosync.common.exception.FormatValidationException.class)
@@ -82,6 +82,37 @@ class DocxSchedulePermitParserTest {
                 .hasMessageContaining("Gi\u00e1 tr\u1ecb/alias mong \u0111\u1ee3i")
                 .hasMessageContaining("C\u00e1ch ch\u1ec9nh")
                 .hasMessageContaining("Eff from");
+    }
+
+    @Test
+    void reportsEffHeaderMismatchBeforeInlineFallbackDropsScheduleRows() throws Exception {
+        Path file = createSeasonalLandingDocument("LD-150/A/W/2026VN", "Eff");
+
+        assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
+                .isInstanceOf(vatm.aerosync.common.exception.FormatValidationException.class)
+                .hasMessageContaining("WORD_FORMAT_MISMATCH")
+                .hasMessageContaining("cxa-caav-seasonal-landing-issued")
+                .hasMessageContaining("B\u1ea3ng 2")
+                .hasMessageContaining("C3='Eff'")
+                .hasMessageContaining("effectiveTo")
+                .hasMessageContaining("Eff to")
+                .hasMessageContaining("Effective to")
+                .hasMessageContaining("C\u00e1ch ch\u1ec9nh");
+    }
+
+    @Test
+    void reportsMalformedPermitSeparatorAgainstRecognizedCarrierProfile() throws Exception {
+        Path file = createSeasonalLandingDocument("LD -- 150/A/W/2026VN", "Eff");
+
+        assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
+                .isInstanceOf(vatm.aerosync.common.exception.FormatValidationException.class)
+                .hasMessageContaining("WORD_FORMAT_MISMATCH")
+                .hasMessageContaining("cxa-caav-seasonal-landing-issued")
+                .hasMessageContaining("gi\u1ea5y ph\u00e9p")
+                .hasMessageContaining("LD -- 150/A/W/2026VN")
+                .hasMessageContaining("C3='Eff'")
+                .hasMessageContaining("LD-{number}/{version}/{season}/{year}VN")
+                .hasMessageContaining("C\u00e1ch ch\u1ec9nh");
     }
 
     @Test
@@ -357,6 +388,38 @@ class DocxSchedulePermitParserTest {
         assertThat(context.getSchedulePermit().flights())
                 .extracting(flight -> flight.flightNumber())
                 .containsExactly("HVN1822", "HVN7158", "HVN7056", "HVN7058", "HVN7060");
+    }
+
+    private Path createSeasonalLandingDocument(String permitNumber, String effectiveToHeader) throws Exception {
+        Path file = tempDir.resolve("LD-150-CXA.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("Ha Noi, 05 October 2026");
+            document.createParagraph().createRun().setText(permitNumber);
+            document.createParagraph().createRun().setText("Season: Winter 2026");
+            document.createParagraph().createRun().setText("1. Carrier");
+            document.createParagraph().createRun().setText("2. Schedules (UTC Time)");
+            document.createParagraph().createRun().setText("3. Purpose of flight(s): Passenger");
+            XWPFTable carrier = document.createTable(2, 2);
+            carrier.getRow(0).getCell(0).setText("Name: Xiamen Airlines Co., Ltd");
+            carrier.getRow(0).getCell(1).setText("IATA code: MF");
+            carrier.getRow(1).getCell(0).setText("ICAO code: CXA");
+            XWPFTable schedule = document.createTable(3, 8);
+            String[] headers = {"Flight number", "Effective from", effectiveToHeader,
+                    "Days of services", "Departure Airport", "EOBT", "Arrival Airport", "EIBT"};
+            String[][] rows = {
+                    {"MF859", "25Oct26", "27Mar27", "1234567", "XMN", "0500", "HAN", "0740"},
+                    {"MF860", "25Oct26", "27Mar27", "1234567", "HAN", "0840", "XMN", "1040"}
+            };
+            for (int column = 0; column < headers.length; column++) {
+                schedule.getRow(0).getCell(column).setText(headers[column]);
+                schedule.getRow(1).getCell(column).setText(rows[0][column]);
+                schedule.getRow(2).getCell(column).setText(rows[1][column]);
+            }
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+        return file;
     }
 
     private Path createPermitDocument() throws Exception {

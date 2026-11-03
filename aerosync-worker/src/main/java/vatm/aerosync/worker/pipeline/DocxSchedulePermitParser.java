@@ -268,10 +268,17 @@ public class DocxSchedulePermitParser {
     private SchedulePermit parseProfile(DocxPermitFormatProfile profile,
                                         WordPermitDocument document,
                                         String fileName, boolean noReplacement) {
-        Matcher permitMatcher = require(
-                profile.permit().pattern(),
-                joinSplitDigits(PermitIdentityText.normalize(document.rawContent())), fileName,
-                "Permit number not found for profile " + profile.id());
+        Matcher permitMatcher = Pattern.compile(profile.permit().pattern())
+                .matcher(joinSplitDigits(PermitIdentityText.normalize(document.rawContent())));
+        if (!permitMatcher.find()) {
+            String permitMismatch = permitIdentityMismatch(profile, document);
+            if (hasScheduleTableEvidence(profile.schedule(), document)) {
+                String scheduleMismatch = missingScheduleFields(profile, document);
+                permitMismatch += " ??ng th?i: "
+                        + scheduleMismatch.substring("WORD_FORMAT_MISMATCH: ".length());
+            }
+            throw invalid(fileName, permitMismatch);
+        }
         String permitNumber = profile.permit().numberTemplate() == null
                 || profile.permit().numberTemplate().isBlank()
                 ? requireGroup(
@@ -294,6 +301,9 @@ public class DocxSchedulePermitParser {
         List<List<List<String>>> scheduleTables = selectScheduleTables(schedule, document);
         List<List<List<String>>> originalScheduleTables = selectOriginalScheduleTables(schedule, document);
         if (scheduleTables.isEmpty()) {
+            if (hasScheduleTableEvidence(schedule, document)) {
+                throw invalid(fileName, missingScheduleFields(profile, document));
+            }
             boolean hasInlineSections = !safeList(schedule.originalTableContextPatterns()).isEmpty()
                     && !safeList(schedule.preferredTableContextPatterns()).isEmpty();
             scheduleTables = inlineScheduleTables(hasInlineSections
@@ -1872,6 +1882,40 @@ public class DocxSchedulePermitParser {
         return flight.equals("flight") || flight.equals("flightnumber")
                 || effectiveFrom.equals("effective")
                 || effectiveFrom.equals("effectivefrom");
+    }
+
+    private boolean hasScheduleTableEvidence(DocxPermitFormatProfile.ScheduleDefinition schedule,
+                                            WordPermitDocument document) {
+        for (List<List<String>> table : document.tables()) {
+            if (table.isEmpty()) continue;
+            if (resolveColumns(table.getFirst(), schedule.columns()).size() >= 2
+                    || tableLooksLikeSchedule(table, schedule.columns())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String permitIdentityMismatch(DocxPermitFormatProfile profile,
+                                          WordPermitDocument document) {
+        List<String> lines = document.rawContent().lines().toList();
+        Pattern permitLabel = Pattern.compile("(?iu)\\b(?:LD|O\\s*/\\s*F|OF)\\b[^\\r\\n]{0,80}");
+        for (int index = 0; index < lines.size(); index++) {
+            Matcher actual = permitLabel.matcher(lines.get(index));
+            if (!actual.find()) continue;
+            String expected = profile.permit().sourceTemplate();
+            if (expected == null || expected.isBlank()) expected = profile.permit().pattern();
+            return "WORD_FORMAT_MISMATCH: Format YAML: " + profile.id()
+                    + ". V\u1ecb tr\u00ed: d\u00f2ng " + (index + 1)
+                    + ". Tr\u01b0\u1eddng: s\u1ed1 gi\u1ea5y ph\u00e9p. Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: '"
+                    + displayHeader(actual.group().trim()) + "'. Kh\u00e1c bi\u1ec7t: m\u00e3 kh\u00f4ng kh\u1edbp pattern permit c\u1ee7a profile. "
+                    + "Gi\u00e1 tr\u1ecb/format mong \u0111\u1ee3i: " + expected
+                    + ". C\u00e1ch ch\u1ec9nh: d\u00f9ng m\u1ed9t d\u1ea5u ph\u00e2n c\u00e1ch sau LD, gi\u1eef c\u00e1c ph\u1ea7n version/m\u00f9a/n\u0103m theo m\u1eabu.";
+        }
+        return "WORD_FORMAT_MISMATCH: Format YAML: " + profile.id()
+                + ". V\u1ecb tr\u00ed: to\u00e0n v\u0103n b\u1ea3n permit. Tr\u01b0\u1eddng: s\u1ed1 gi\u1ea5y ph\u00e9p. "
+                + "Gi\u00e1 tr\u1ecb hi\u1ec7n c\u00f3: kh\u00f4ng t\u00ecm th\u1ea5y. Gi\u00e1 tr\u1ecb/format mong \u0111\u1ee3i: "
+                + profile.permit().sourceTemplate() + ". C\u00e1ch ch\u1ec9nh: b\u1ed5 sung s\u1ed1 permit theo m\u1eabu c\u1ee7a format YAML.";
     }
 
     private String missingScheduleFields(DocxPermitFormatProfile profile,
