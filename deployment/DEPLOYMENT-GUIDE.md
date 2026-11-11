@@ -68,6 +68,8 @@ SERVER_PORT=8081
 
 The deployment package runs `tools\migrate-aerosync-runtime-config.sql` before stopping any service. The migration only adds `runtime_config.allowlist_initialized`, `runtime_config_allowlist`, and its config index. It is safe to rerun. If the migration fails, deployment stops before service downtime.
 
+The package also runs `tools\migrate-atfm-revision-backup.sql` using `APP_ATFM_DATASOURCE_*`. It creates the four `T_PERMMASTER_*_BACKUP` and `T_PERMDETAIL_*_BACKUP` tables in the ATFM schema before services are stopped. The migration is safe to rerun and requires the four source ATFM tables to exist.
+
 For a manual run, use the application schema account and do not put the password in a command or log. Start SQL*Plus with `sqlplus -L -S /nolog`, then run these commands at its prompt. Replace the path with the folder where the deployment package was extracted:
 
 ```sql

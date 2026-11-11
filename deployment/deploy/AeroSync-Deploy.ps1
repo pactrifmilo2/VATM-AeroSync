@@ -69,19 +69,26 @@ function Resolve-DotEnvValues {
     return $resolved
 }
 
-function Invoke-RuntimeConfigMigration {
-    param([string] $EnvironmentFile)
+function Invoke-OracleMigration {
+    param(
+        [string] $EnvironmentFile,
+        [string] $MigrationPath,
+        [string] $MigrationName,
+        [string] $SuccessMarker,
+        [string] $UsernameKey,
+        [string] $PasswordKey,
+        [string] $UrlKey
+    )
 
-    $migration = Join-Path $packageRoot "tools\migrate-aerosync-runtime-config.sql"
-    if (-not (Test-Path -LiteralPath $migration -PathType Leaf)) {
-        throw "Goi deploy thieu migration runtime config: $migration"
+    if (-not (Test-Path -LiteralPath $MigrationPath -PathType Leaf)) {
+        throw "Goi deploy thieu migration $MigrationName`: $MigrationPath"
     }
 
     $sqlPlus = Get-Command sqlplus.exe -ErrorAction Stop
     $values = Resolve-DotEnvValues (Read-DotEnvValues $EnvironmentFile)
-    $username = [string]$values["SPRING_DATASOURCE_USERNAME"]
-    $password = [string]$values["SPRING_DATASOURCE_PASSWORD"]
-    $jdbc = [string]$values["SPRING_DATASOURCE_URL"]
+    $username = [string]$values[$UsernameKey]
+    $password = [string]$values[$PasswordKey]
+    $jdbc = [string]$values[$UrlKey]
     if ([string]::IsNullOrWhiteSpace($username) -or [string]::IsNullOrWhiteSpace($password)) {
         throw "Thieu SPRING_DATASOURCE_USERNAME hoac SPRING_DATASOURCE_PASSWORD trong config\.env."
     }
@@ -101,17 +108,18 @@ function Invoke-RuntimeConfigMigration {
     $connect = 'CONNECT {0}/"{1}"@//{2}:{3}/{4}' -f `
         $username, $password, $databaseMatch.Groups['host'].Value,
         $databaseMatch.Groups['port'].Value, $databaseMatch.Groups['service'].Value
+
     $sqlInput = @(
         "SET ECHO OFF",
         "SET DEFINE OFF",
         "WHENEVER OSERROR EXIT FAILURE ROLLBACK",
         "WHENEVER SQLERROR EXIT SQL.SQLCODE ROLLBACK",
         $connect,
-        ('@"{0}"' -f $migration),
+        ('@"{0}"' -f $MigrationPath),
         "EXIT SUCCESS"
     ) -join "`n"
 
-    Write-Step "Cap nhat schema runtime config Oracle"
+    Write-Step "Cap nhat schema $MigrationName Oracle"
     $output = @($sqlInput | & $sqlPlus.Source -L -S /nolog 2>&1)
     $exitCode = $LASTEXITCODE
     $validationReported = $false
@@ -119,7 +127,7 @@ function Invoke-RuntimeConfigMigration {
         $safeLine = [string]$line
         if ($password.Length -gt 0) { $safeLine = $safeLine.Replace($password, "[REDACTED]") }
         Write-Host $safeLine
-        if ($safeLine -match 'Validated runtime allowlist schema\.') {
+        if ($safeLine -match [regex]::Escape($SuccessMarker)) {
             $validationReported = $true
         }
     }
@@ -130,7 +138,7 @@ function Invoke-RuntimeConfigMigration {
         throw "Oracle tra ORA-00257: archiver khong the ghi archive redo log. DBA can kiem tra FRA/archive destination va dung luong dia; khong co service nao bi dung."
     }
     if ($exitCode -ne 0 -or -not $validationReported) {
-        throw "Oracle runtime-config migration failed with SQL*Plus exit code $exitCode. Services were not stopped."
+        throw "Oracle $MigrationName migration failed with SQL*Plus exit code $exitCode. Services were not stopped."
     }
 }
 
@@ -154,7 +162,8 @@ function Invoke-Preflight {
 
     $packageFiles = @("app\api.jar", "app\ingest.jar", "app\worker.jar",
         "ui\AeroSync.UI.exe", "ui\AeroSync.UI.pri", "deploy\Run-Service.ps1", "deploy\Open-AeroSync.ps1",
-        "tools\WinSW-x64.exe", "tools\migrate-aerosync-runtime-config.sql", "SHA256SUMS.txt")
+        "tools\WinSW-x64.exe", "tools\migrate-aerosync-runtime-config.sql",
+        "tools\migrate-atfm-revision-backup.sql", "SHA256SUMS.txt")
     foreach ($relative in $packageFiles) {
         $exists = Test-Path -LiteralPath (Join-Path $packageRoot $relative) -PathType Leaf
         Report $exists "Goi deploy" $relative
@@ -746,6 +755,10 @@ $packageRuntimeMigration = Join-Path $packageRoot "tools\migrate-aerosync-runtim
 if (-not (Test-Path -LiteralPath $packageRuntimeMigration -PathType Leaf)) {
     throw "Goi cap nhat thieu tools\migrate-aerosync-runtime-config.sql."
 }
+$packageRevisionBackupMigration = Join-Path $packageRoot "tools\migrate-atfm-revision-backup.sql"
+if (-not (Test-Path -LiteralPath $packageRevisionBackupMigration -PathType Leaf)) {
+    throw "Goi cap nhat thieu tools\migrate-atfm-revision-backup.sql."
+}
 Write-Step "Kiem tra tinh toan ven cua goi cap nhat"
 Test-PackageChecksums
 
@@ -767,7 +780,17 @@ try {
     Ensure-Environment
     Test-ServerPortAvailable
 
-    Invoke-RuntimeConfigMigration -EnvironmentFile (Join-Path $InstallRoot "config\.env")
+    $environmentFile = Join-Path $InstallRoot "config\.env"
+    Invoke-OracleMigration -EnvironmentFile $environmentFile `
+        -MigrationPath $packageRuntimeMigration -MigrationName "runtime config" `
+        -SuccessMarker "Validated runtime allowlist schema." `
+        -UsernameKey "SPRING_DATASOURCE_USERNAME" -PasswordKey "SPRING_DATASOURCE_PASSWORD" `
+        -UrlKey "SPRING_DATASOURCE_URL"
+    Invoke-OracleMigration -EnvironmentFile $environmentFile `
+        -MigrationPath $packageRevisionBackupMigration -MigrationName "ATFM revision backup" `
+        -SuccessMarker "ATFM revision backup tables are ready." `
+        -UsernameKey "APP_ATFM_DATASOURCE_USERNAME" -PasswordKey "APP_ATFM_DATASOURCE_PASSWORD" `
+        -UrlKey "APP_ATFM_DATASOURCE_URL"
 
     Write-Step "Dong AeroSync UI"
     Stop-AeroSyncUi
@@ -801,6 +824,8 @@ try {
         -Destination (Join-Path $InstallRoot "tools\WinSW-x64.exe") -Force
     Copy-Item -LiteralPath $packageRuntimeMigration `
         -Destination (Join-Path $InstallRoot "tools\migrate-aerosync-runtime-config.sql") -Force
+    Copy-Item -LiteralPath $packageRevisionBackupMigration `
+        -Destination (Join-Path $InstallRoot "tools\migrate-atfm-revision-backup.sql") -Force
     $packageVersion = Join-Path $packageRoot "VERSION"
     if (Test-Path -LiteralPath $packageVersion) {
         Copy-Item -LiteralPath $packageVersion -Destination (Join-Path $InstallRoot "VERSION") -Force

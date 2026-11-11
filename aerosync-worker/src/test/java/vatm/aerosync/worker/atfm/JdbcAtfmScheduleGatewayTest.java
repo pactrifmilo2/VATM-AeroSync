@@ -600,6 +600,10 @@ class JdbcAtfmScheduleGatewayTest {
                         LASTUSER VARCHAR2(50), PURPOSE_ID VARCHAR2(20), MAX_DATE DATE,
                         REMARK VARCHAR2(4000))
                     """);
+            connection.createStatement().execute(
+                    "CREATE TABLE T_PERMMASTER_NO_BACKUP AS SELECT * FROM T_PERMMASTER_NO WHERE 1 = 0");
+            connection.createStatement().execute(
+                    "CREATE TABLE T_PERMDETAIL_NO_BACKUP AS SELECT * FROM T_PERMDETAIL_NO WHERE 1 = 0");
             connection.createStatement().execute("""
                     INSERT INTO T_PERMMASTER_NO (ID, PERM_ID, PERMNBR_ID, REFERENCE)
                     VALUES (5001, 7001, 'LD 02821/CHK/2026', 'FULL WORD CONTENT WRONGLY STORED')

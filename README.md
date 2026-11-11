@@ -88,6 +88,7 @@ Khi nâng cấp database cũ, chạy thêm migration còn thiếu:
 ```sql
 @D:\path\to\VATM-AeroSync\scripts\migrate-phase4-oracle.sql
 @D:\path\to\VATM-AeroSync\scripts\migrate-phase5-oracle.sql
+@D:\path\to\VATM-AeroSync\scripts\migrate-atfm-revision-backup.sql
 ```
 
 Sau khi khởi tạo môi trường vận hành, dùng `SPRING_JPA_HIBERNATE_DDL_AUTO=validate`.

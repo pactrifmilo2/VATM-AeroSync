@@ -832,6 +832,9 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         if (missingFlights.isEmpty()) {
             return new AtfmWriteResult(masterId, permId, 0);
         }
+        if (permit.importRevision() && !permit.revisionCreatesNewPermit()) {
+            backupRevisionBaseline(connection, "SC", masterId, permId);
+        }
         try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
             for (ScheduleFlight flight : missingFlights) {
                 bindDetail(statement, permId, flight);
@@ -862,6 +865,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             return new AtfmWriteResult(masterId, permId, 0);
         }
 
+        backupRevisionBaseline(connection, "SC", masterId, permId);
         try (PreparedStatement statement = connection.prepareStatement(INSERT_DETAIL_SQL)) {
             for (ScheduleFlight flight : rows) {
                 bindDetail(statement, permId, flight);
@@ -1201,6 +1205,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 replacements.stream().anyMatch(f -> ExistingFlight.fromExpected(row.flight())
                         .sameBusinessRow(ExistingFlight.fromExpected(f))))) throw new AtfmReferenceDataException(
                 "PERMNO NEW row already exists outside the documented OLD set");
+        backupRevisionBaseline(connection, "NO", masterId, permId);
         try (PreparedStatement delete = connection.prepareStatement(
                 "DELETE FROM T_PERMDETAIL_NO WHERE PERM_ID = ? AND ID = ?")) {
             for (long id : deleteIds) {
@@ -1216,6 +1221,43 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
         }
         appendNoRevisionMaster(connection, masterId, permit);
         return new AtfmWriteResult(masterId, permId, replacements.size());
+    }
+
+    private void backupRevisionBaseline(Connection connection,
+                                        String storage,
+                                        long masterId,
+                                        long permId) throws SQLException {
+        String masterTable = storage.equals("NO") ? "T_PERMMASTER_NO" : "T_PERMMASTER_SC";
+        String detailTable = storage.equals("NO") ? "T_PERMDETAIL_NO" : "T_PERMDETAIL_SC";
+        String masterBackup = masterTable + "_BACKUP";
+        String detailBackup = detailTable + "_BACKUP";
+
+        try (PreparedStatement deleteDetails = connection.prepareStatement(
+                "DELETE FROM " + detailBackup + " WHERE PERM_ID = ?");
+             PreparedStatement deleteMaster = connection.prepareStatement(
+                     "DELETE FROM " + masterBackup + " WHERE PERM_ID = ?")) {
+            deleteDetails.setLong(1, permId);
+            deleteDetails.executeUpdate();
+            deleteMaster.setLong(1, permId);
+            deleteMaster.executeUpdate();
+        }
+
+        try (PreparedStatement copyMaster = connection.prepareStatement(
+                "INSERT INTO " + masterBackup + " SELECT * FROM " + masterTable
+                        + " WHERE ID = ? AND PERM_ID = ?");
+             PreparedStatement copyDetails = connection.prepareStatement(
+                     "INSERT INTO " + detailBackup + " SELECT * FROM " + detailTable
+                             + " WHERE PERM_ID = ?")) {
+            copyMaster.setLong(1, masterId);
+            copyMaster.setLong(2, permId);
+            if (copyMaster.executeUpdate() != 1) {
+                throw new SQLException("Could not snapshot the ATFM revision master");
+            }
+            copyDetails.setLong(1, permId);
+            if (copyDetails.executeUpdate() == 0) {
+                throw new SQLException("Could not snapshot ATFM revision details");
+            }
+        }
     }
 
     private boolean noRevisionAlreadyApplied(Connection connection, long masterId, SchedulePermit permit)

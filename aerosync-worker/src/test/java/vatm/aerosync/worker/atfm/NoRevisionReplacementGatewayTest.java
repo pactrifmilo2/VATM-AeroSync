@@ -27,6 +27,8 @@ class NoRevisionReplacementGatewayTest {
             sql.execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20))");
             sql.execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
             sql.execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER, MA VARCHAR2(4), SOHIEU VARCHAR2(3), SOHIEU2 VARCHAR2(20), TAITRONG NUMBER)");
+            sql.execute("CREATE TABLE M_AERO (AE_CODE VARCHAR2(4), AE_IATA VARCHAR2(3))");
+            sql.execute("INSERT INTO M_AERO (AE_CODE) VALUES ('VHHH'), ('LFPB'), ('LFLL')");
             sql.execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             sql.execute("INSERT INTO M_OPER VALUES ('TBJ')");
             sql.execute("INSERT INTO M_FLY_PURPOSE VALUES ('VIP')");
@@ -45,6 +47,8 @@ class NoRevisionReplacementGatewayTest {
                       ETD VARCHAR2(10), ETA VARCHAR2(10), VIA VARCHAR2(4000), STATUS VARCHAR2(20),
                       LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50), PURPOSE_ID VARCHAR2(20), MAX_DATE DATE, REMARK VARCHAR2(4000))
                     """);
+            sql.execute("CREATE TABLE T_PERMMASTER_NO_BACKUP AS SELECT * FROM T_PERMMASTER_NO WHERE 1 = 0");
+            sql.execute("CREATE TABLE T_PERMDETAIL_NO_BACKUP AS SELECT * FROM T_PERMDETAIL_NO WHERE 1 = 0");
             sql.execute("""
                     INSERT INTO T_PERMMASTER_NO VALUES (10,20,'O/F 06916/CHK/2026','TBJ',
                       'EM 24092026','BASE','BASE',CURRENT_TIMESTAMP,'ORIGINAL')
@@ -65,6 +69,20 @@ class NoRevisionReplacementGatewayTest {
         assertThat(after).doesNotContain(before.getFirst());
         assertThat(after).contains(before.get(1), before.get(2), before.get(3));
         assertThat(after).anySatisfy(row -> assertThat(row).contains("TBJ91", "27-SEP-2026", "LFLL", "2000", "0830+", "VIP", "321"));
+        try (var connection = connection();
+             var master = connection.createStatement().executeQuery(
+                     "SELECT PERMNBR_ID, REFERENCE FROM T_PERMMASTER_NO_BACKUP WHERE ID=10 AND PERM_ID=20");
+             var details = connection.createStatement().executeQuery(
+                     "SELECT COUNT(*) TOTAL, MAX(FLIGHTNBR) FLIGHTNBR, MAX(TO_AIRP) TO_AIRP "
+                             + "FROM T_PERMDETAIL_NO_BACKUP WHERE PERM_ID=20")) {
+            assertThat(master.next()).isTrue();
+            assertThat(master.getString("PERMNBR_ID")).isEqualTo("O/F 06916/CHK/2026");
+            assertThat(master.getString("REFERENCE")).isEqualTo("EM 24092026");
+            assertThat(details.next()).isTrue();
+            assertThat(details.getInt("TOTAL")).isEqualTo(3);
+            assertThat(details.getString("FLIGHTNBR")).isEqualTo("TBJ90");
+            assertThat(details.getString("TO_AIRP")).isEqualTo("LFPB");
+        }
         assertThat(gateway.update(permit(List.of(old()), List.of(revised()))).detailCount()).isZero();
         assertThat(rows()).containsExactlyElementsOf(after);
     }
@@ -94,6 +112,12 @@ class NoRevisionReplacementGatewayTest {
         var before = rows();
         assertThatThrownBy(() -> gateway.update(permit(List.of(old()), List.of(revised())))).isInstanceOf(IllegalStateException.class);
         assertThat(rows()).containsExactlyElementsOf(before);
+        try (var connection = connection();
+             var rows = connection.createStatement().executeQuery(
+                     "SELECT COUNT(*) FROM T_PERMDETAIL_NO_BACKUP WHERE PERM_ID=20")) {
+            rows.next();
+            assertThat(rows.getInt(1)).isZero();
+        }
         try (var connection = connection(); var row = connection.createStatement().executeQuery("SELECT PERMCONTENT1 FROM T_PERMMASTER_NO WHERE ID=10")) {
             row.next(); assertThat(row.getString(1)).isEqualTo("BASE");
         }

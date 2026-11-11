@@ -34,6 +34,8 @@ class MultiDayNonScheduledRevisionGatewayTest {
             sql.execute("CREATE TABLE M_OPER (OPER_ICAO VARCHAR2(20), OPER_NAME VARCHAR2(100))");
             sql.execute("CREATE TABLE M_FLY_PURPOSE (PURPOSE_CODE VARCHAR2(20))");
             sql.execute("CREATE TABLE M_CRAFT_TYPE (CRAFT_ID NUMBER, MA VARCHAR2(4), SOHIEU VARCHAR2(3), SOHIEU2 VARCHAR2(20), TAITRONG NUMBER)");
+            sql.execute("CREATE TABLE M_AERO (AE_CODE VARCHAR2(4), AE_IATA VARCHAR2(3))");
+            sql.execute("INSERT INTO M_AERO (AE_CODE) VALUES ('VVNB'), ('VVTS'), ('VVDN')");
             sql.execute("INSERT INTO M_FPAUTHOR VALUES ('CHK')");
             sql.execute("INSERT INTO M_OPER VALUES ('HVN', 'VIETNAM AIRLINES')");
             sql.execute("INSERT INTO M_FLY_PURPOSE VALUES ('CAR')");
@@ -61,6 +63,8 @@ class MultiDayNonScheduledRevisionGatewayTest {
                         LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50), BEGINDATE DATE,
                         ENDDATE DATE, REMARK VARCHAR2(4000))
                     """);
+            sql.execute("CREATE TABLE T_PERMMASTER_SC_BACKUP AS SELECT * FROM T_PERMMASTER_SC WHERE 1 = 0");
+            sql.execute("CREATE TABLE T_PERMDETAIL_SC_BACKUP AS SELECT * FROM T_PERMDETAIL_SC WHERE 1 = 0");
             sql.execute("""
                     INSERT INTO T_PERMMASTER_SC (
                         ID, PERM_ID, PERMNBR_ID, AUTHOR_ID, PERMTYPE, PERMNBR,
@@ -91,6 +95,16 @@ class MultiDayNonScheduledRevisionGatewayTest {
         assertThat(first.masterId()).isEqualTo(10L);
         assertThat(first.permId()).isEqualTo(20L);
         assertThat(first.detailCount()).isEqualTo(2);
+        try (Connection connection = connection();
+             var master = connection.createStatement().executeQuery(
+                     "SELECT COUNT(*) FROM T_PERMMASTER_SC_BACKUP WHERE ID=10 AND PERM_ID=20");
+             var details = connection.createStatement().executeQuery(
+                     "SELECT COUNT(*) FROM T_PERMDETAIL_SC_BACKUP WHERE PERM_ID=20")) {
+            assertThat(master.next()).isTrue();
+            assertThat(master.getInt(1)).isEqualTo(1);
+            assertThat(details.next()).isTrue();
+            assertThat(details.getInt(1)).isEqualTo(1);
+        }
         try (Connection connection = connection(); var rows = connection.createStatement().executeQuery("""
                 SELECT COUNT(*) TOTAL,
                        SUM(CASE WHEN REMARK LIKE 'HUY %' THEN 1 ELSE 0 END) OLD_ROWS,
@@ -134,6 +148,11 @@ class MultiDayNonScheduledRevisionGatewayTest {
             master.next();
             assertThat(master.getString("REFERENCE")).isEqualTo("BASE REF");
             assertThat(master.getString("PERMCONTENT1")).isEqualTo("BASE CONTENT");
+        }
+        try (Connection connection = connection(); var backup = connection.createStatement().executeQuery(
+                "SELECT COUNT(*) FROM T_PERMDETAIL_SC_BACKUP WHERE PERM_ID = 20")) {
+            backup.next();
+            assertThat(backup.getInt(1)).isZero();
         }
     }
 
