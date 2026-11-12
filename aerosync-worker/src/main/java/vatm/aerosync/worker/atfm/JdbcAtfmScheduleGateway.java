@@ -142,7 +142,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private static final String UPDATE_NO_REVISION_MASTER_SQL = """
             UPDATE T_PERMMASTER_NO
                SET REFERENCE = ?, PERMCONTENT = ?, PERMCONTENT1 = ?,
-                   LASTMODIFY = ?, LASTUSER = ?
+                   LASTMODIFY = ?, LASTUSER = ?, ISACCEPT = 0
              WHERE ID = ?
             """;
 
@@ -155,7 +155,13 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private static final String UPDATE_SC_REVISION_MASTER_SQL = """
             UPDATE T_PERMMASTER_SC
                SET REFERENCE = ?, PERMCONTENT = ?, PERMCONTENT1 = ?,
-                   LASTMODIFY = ?, LASTUSER = ?
+                   LASTMODIFY = ?, LASTUSER = ?, ISACCEPT = 0
+             WHERE ID = ?
+            """;
+
+    private static final String MARK_SC_REVISION_NOT_ACCEPTED_SQL = """
+            UPDATE T_PERMMASTER_SC
+               SET ISACCEPT = 0, LASTMODIFY = ?, LASTUSER = ?
              WHERE ID = ?
             """;
 
@@ -847,7 +853,21 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
                 }
             }
         }
+        if (permit.importRevision() && !permit.revisionCreatesNewPermit()) {
+            markScRevisionNotAccepted(connection, masterId);
+        }
         return new AtfmWriteResult(masterId, permId, missingFlights.size());
+    }
+
+    private void markScRevisionNotAccepted(Connection connection, long masterId) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(MARK_SC_REVISION_NOT_ACCEPTED_SQL)) {
+            statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+            statement.setString(2, "AEROSYNC");
+            statement.setLong(3, masterId);
+            if (statement.executeUpdate() != 1) {
+                throw new SQLException("SC revision acceptance update affected an unexpected row count");
+            }
+        }
     }
 
     private AtfmWriteResult appendMultiDayNoRevisionToSc(Connection connection,

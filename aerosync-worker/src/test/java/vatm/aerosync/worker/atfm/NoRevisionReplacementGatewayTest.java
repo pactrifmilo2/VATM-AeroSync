@@ -37,7 +37,7 @@ class NoRevisionReplacementGatewayTest {
                     CREATE TABLE T_PERMMASTER_NO (
                       ID NUMBER PRIMARY KEY, PERM_ID NUMBER, PERMNBR_ID VARCHAR2(100), OPER_ID VARCHAR2(20),
                       REFERENCE VARCHAR2(4000), PERMCONTENT VARCHAR2(4000), PERMCONTENT1 CLOB,
-                      LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50))
+                      LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50), ISACCEPT NUMBER DEFAULT 1)
                     """);
             sql.execute("""
                     CREATE TABLE T_PERMDETAIL_NO (
@@ -50,8 +50,11 @@ class NoRevisionReplacementGatewayTest {
             sql.execute("CREATE TABLE T_PERMMASTER_NO_BACKUP AS SELECT * FROM T_PERMMASTER_NO WHERE 1 = 0");
             sql.execute("CREATE TABLE T_PERMDETAIL_NO_BACKUP AS SELECT * FROM T_PERMDETAIL_NO WHERE 1 = 0");
             sql.execute("""
-                    INSERT INTO T_PERMMASTER_NO VALUES (10,20,'O/F 06916/CHK/2026','TBJ',
-                      'EM 24092026','BASE','BASE',CURRENT_TIMESTAMP,'ORIGINAL')
+                    INSERT INTO T_PERMMASTER_NO
+                      (ID, PERM_ID, PERMNBR_ID, OPER_ID, REFERENCE, PERMCONTENT,
+                       PERMCONTENT1, LASTMODIFY, LASTUSER, ISACCEPT)
+                    VALUES (10,20,'O/F 06916/CHK/2026','TBJ',
+                      'EM 24092026','BASE','BASE',CURRENT_TIMESTAMP,'ORIGINAL',1)
                     """);
         }
         insert(20, old());
@@ -71,13 +74,18 @@ class NoRevisionReplacementGatewayTest {
         assertThat(after).anySatisfy(row -> assertThat(row).contains("TBJ91", "27-SEP-2026", "LFLL", "2000", "0830+", "VIP", "321"));
         try (var connection = connection();
              var master = connection.createStatement().executeQuery(
-                     "SELECT PERMNBR_ID, REFERENCE FROM T_PERMMASTER_NO_BACKUP WHERE ID=10 AND PERM_ID=20");
+                     "SELECT ISACCEPT FROM T_PERMMASTER_NO WHERE ID=10 AND PERM_ID=20");
+             var backupMaster = connection.createStatement().executeQuery(
+                     "SELECT PERMNBR_ID, REFERENCE, ISACCEPT FROM T_PERMMASTER_NO_BACKUP WHERE ID=10 AND PERM_ID=20");
              var details = connection.createStatement().executeQuery(
                      "SELECT COUNT(*) TOTAL, MAX(FLIGHTNBR) FLIGHTNBR, MAX(TO_AIRP) TO_AIRP "
                              + "FROM T_PERMDETAIL_NO_BACKUP WHERE PERM_ID=20")) {
             assertThat(master.next()).isTrue();
-            assertThat(master.getString("PERMNBR_ID")).isEqualTo("O/F 06916/CHK/2026");
-            assertThat(master.getString("REFERENCE")).isEqualTo("EM 24092026");
+            assertThat(master.getInt("ISACCEPT")).isZero();
+            assertThat(backupMaster.next()).isTrue();
+            assertThat(backupMaster.getString("PERMNBR_ID")).isEqualTo("O/F 06916/CHK/2026");
+            assertThat(backupMaster.getString("REFERENCE")).isEqualTo("EM 24092026");
+            assertThat(backupMaster.getInt("ISACCEPT")).isOne();
             assertThat(details.next()).isTrue();
             assertThat(details.getInt("TOTAL")).isEqualTo(3);
             assertThat(details.getString("FLIGHTNBR")).isEqualTo("TBJ90");
@@ -118,8 +126,8 @@ class NoRevisionReplacementGatewayTest {
             rows.next();
             assertThat(rows.getInt(1)).isZero();
         }
-        try (var connection = connection(); var row = connection.createStatement().executeQuery("SELECT PERMCONTENT1 FROM T_PERMMASTER_NO WHERE ID=10")) {
-            row.next(); assertThat(row.getString(1)).isEqualTo("BASE");
+        try (var connection = connection(); var row = connection.createStatement().executeQuery("SELECT PERMCONTENT1, ISACCEPT FROM T_PERMMASTER_NO WHERE ID=10")) {
+            row.next(); assertThat(row.getString(1)).isEqualTo("BASE"); assertThat(row.getInt(2)).isOne();
         }
     }
 

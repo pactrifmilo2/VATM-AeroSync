@@ -49,7 +49,8 @@ class MultiDayNonScheduledRevisionGatewayTest {
                         REFERENCE VARCHAR2(4000), VALIDHOURS NUMBER,
                         LASTMODIFY TIMESTAMP, LASTUSER VARCHAR2(50), STATUS VARCHAR2(20),
                         PERMCONTENT VARCHAR2(4000), PERMCONTENT1 CLOB,
-                        BILLINGADDRESS VARCHAR2(4000), FLIGHTTYPE VARCHAR2(20))
+                        BILLINGADDRESS VARCHAR2(4000), FLIGHTTYPE VARCHAR2(20),
+                        ISACCEPT NUMBER DEFAULT 1)
                     """);
             sql.execute("""
                     CREATE TABLE T_PERMDETAIL_SC (
@@ -69,10 +70,10 @@ class MultiDayNonScheduledRevisionGatewayTest {
                     INSERT INTO T_PERMMASTER_SC (
                         ID, PERM_ID, PERMNBR_ID, AUTHOR_ID, PERMTYPE, PERMNBR,
                         VERSION, SEASON, PERMDATE, OPER_ID, REFERENCE, VALIDHOURS,
-                        PERMCONTENT, PERMCONTENT1, BILLINGADDRESS, FLIGHTTYPE)
+                        PERMCONTENT, PERMCONTENT1, BILLINGADDRESS, FLIGHTTYPE, ISACCEPT)
                     VALUES (10, 20, 'LD 02576/CHK/2026', 'CHK', 'LD', '2576',
                         'A', 'S', DATE '2026-08-12', 'HVN', 'BASE REF', 24,
-                        'BASE CONTENT', 'BASE CONTENT', 'VIETNAM AIRLINES', 'NO')
+                        'BASE CONTENT', 'BASE CONTENT', 'VIETNAM AIRLINES', 'NO', 1)
                     """);
             sql.execute("""
                     INSERT INTO T_PERMDETAIL_SC (
@@ -97,11 +98,12 @@ class MultiDayNonScheduledRevisionGatewayTest {
         assertThat(first.detailCount()).isEqualTo(2);
         try (Connection connection = connection();
              var master = connection.createStatement().executeQuery(
-                     "SELECT COUNT(*) FROM T_PERMMASTER_SC_BACKUP WHERE ID=10 AND PERM_ID=20");
+                     "SELECT COUNT(*), MAX(ISACCEPT) FROM T_PERMMASTER_SC_BACKUP WHERE ID=10 AND PERM_ID=20");
              var details = connection.createStatement().executeQuery(
                      "SELECT COUNT(*) FROM T_PERMDETAIL_SC_BACKUP WHERE PERM_ID=20")) {
             assertThat(master.next()).isTrue();
             assertThat(master.getInt(1)).isEqualTo(1);
+            assertThat(master.getInt(2)).isOne();
             assertThat(details.next()).isTrue();
             assertThat(details.getInt(1)).isEqualTo(1);
         }
@@ -120,13 +122,14 @@ class MultiDayNonScheduledRevisionGatewayTest {
             assertThat(rows.getLong("MAX_PERM")).isEqualTo(20L);
         }
         try (Connection connection = connection(); var master = connection.createStatement().executeQuery("""
-                SELECT REFERENCE, PERMCONTENT, PERMCONTENT1
+                SELECT REFERENCE, PERMCONTENT, PERMCONTENT1, ISACCEPT
                   FROM T_PERMMASTER_SC WHERE ID = 10
                 """)) {
             master.next();
             assertThat(master.getString("REFERENCE")).contains("BASE REF", "EM 21082026 R(2)");
             assertThat(master.getString("PERMCONTENT")).contains("BASE CONTENT", "REV2 CONTENT");
             assertThat(master.getString("PERMCONTENT1")).contains("BASE CONTENT", "REV2 CONTENT");
+            assertThat(master.getInt("ISACCEPT")).isZero();
         }
 
         assertThat(gateway.update(revision).detailCount()).isZero();
@@ -144,10 +147,11 @@ class MultiDayNonScheduledRevisionGatewayTest {
                 .isInstanceOf(IllegalStateException.class);
         assertThat(detailCount()).isOne();
         try (Connection connection = connection(); var master = connection.createStatement().executeQuery(
-                "SELECT REFERENCE, PERMCONTENT1 FROM T_PERMMASTER_SC WHERE ID = 10")) {
+                "SELECT REFERENCE, PERMCONTENT1, ISACCEPT FROM T_PERMMASTER_SC WHERE ID = 10")) {
             master.next();
             assertThat(master.getString("REFERENCE")).isEqualTo("BASE REF");
             assertThat(master.getString("PERMCONTENT1")).isEqualTo("BASE CONTENT");
+            assertThat(master.getInt("ISACCEPT")).isOne();
         }
         try (Connection connection = connection(); var backup = connection.createStatement().executeQuery(
                 "SELECT COUNT(*) FROM T_PERMDETAIL_SC_BACKUP WHERE PERM_ID = 20")) {
