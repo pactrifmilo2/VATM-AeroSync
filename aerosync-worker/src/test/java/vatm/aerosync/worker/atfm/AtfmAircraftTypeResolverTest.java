@@ -99,6 +99,38 @@ class AtfmAircraftTypeResolverTest {
     }
 
     @Test
+    void resolve_collapsesIdenticalDictionaryRowsAndUsesStableCraftId() throws Exception {
+        try (Connection connection = DriverManager.getConnection(
+                properties.getUrl(), properties.getUsername(), properties.getPassword())) {
+            connection.createStatement().execute("""
+                    INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG)
+                    VALUES (7001, 'B738', '738', 'Boeing 738 duplicate', 0)
+                    """);
+        }
+
+        assertThat(resolver.resolve(List.of("B738")).craftId()).isEqualTo(249L);
+    }
+
+    @Test
+    void resolve_prefersAValidIcaoRowWhenDuplicateIataHasMissingIcao() throws Exception {
+        try (Connection connection = DriverManager.getConnection(
+                properties.getUrl(), properties.getUsername(), properties.getPassword())) {
+            connection.createStatement().execute("""
+                    INSERT INTO M_CRAFT_TYPE (CRAFT_ID, MA, SOHIEU, SOHIEU2, TAITRONG)
+                    VALUES (7002, NULL, '738', 'Boeing 738 no ICAO', 0)
+                    """);
+        }
+
+        assertThat(resolver.resolve(List.of("738")).craftId()).isEqualTo(249L);
+    }
+
+    @Test
+    void resolve_keepsDistinctIcaoAmbiguityWhenNoPreferenceExists() {
+        assertThatThrownBy(() -> resolver.resolve(List.of("77W")))
+                .isInstanceOf(AtfmAircraftTypeResolver.AmbiguousAircraftTypeException.class);
+    }
+
+    @Test
     void resolve_usesApprovedPreferencesForObservedDuplicateRows() {
         assertThat(resolver.resolve(List.of("A32X")).craftId()).isEqualTo(6484L);
         assertThat(resolver.resolve(List.of("73Y")).craftId()).isEqualTo(6481L);

@@ -66,15 +66,17 @@ public class AircraftTypeResolutionStep {
                 if (permit.revision() && !flight.aircraftTablePresent()) {
                     addOrThrow(allowMissing, errors,
                             error(index + 1, "BR-REVISION-AIRCRAFT-BASELINE-NOT-FOUND",
-                                    "Original permit not found to obtain aircraft type", ""));
+                                    "Aircraft type is missing from revision and could not be resolved from original permit",
+                                    ""));
                     resolvedFlights.add(withFallbackAircraft(normalizedFlight, allowMissing));
                     continue;
                 }
                 addOrThrow(allowMissing, errors,
-                        error(index + 1,
-                                flight.aircraftTablePresent() ? "BR-AIRCRAFT-NOT-FOUND" : "BR-AIRCRAFT-MISSING",
+                        error(index + 1, flight.aircraftTablePresent()
+                                        ? "BR-AIRCRAFT-UNREADABLE"
+                                        : "BR-AIRCRAFT-MISSING",
                                 flight.aircraftTablePresent()
-                                        ? "Aircraft type not found in ATFM dictionary"
+                                        ? "Could not read aircraft type from permit file"
                                         : "Missing aircraft type in permit file",
                                 ""));
                 resolvedFlights.add(withFallbackAircraft(normalizedFlight, allowMissing));
@@ -103,8 +105,8 @@ public class AircraftTypeResolutionStep {
             } catch (AtfmAircraftTypeResolver.AmbiguousAircraftTypeException exception) {
                 addOrThrow(allowMissing, errors,
                         error(index + 1, "BR-AIRCRAFT-AMBIGUOUS",
-                                "Ambiguous aircraft type %s; matching craft IDs: %s".formatted(
-                                        sourceType, exception.getCraftIds()),
+                                "Aircraft code %s maps to different ATFM aircraft; matching craft IDs: %s"
+                                        .formatted(sourceType, exception.getCraftIds()),
                                 sourceType));
                 resolvedFlights.add(withFallbackAircraft(normalizedFlight, allowMissing));
             }

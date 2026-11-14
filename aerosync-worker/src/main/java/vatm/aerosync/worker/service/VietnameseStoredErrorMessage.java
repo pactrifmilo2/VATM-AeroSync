@@ -172,8 +172,18 @@ public final class VietnameseStoredErrorMessage {
             return detail + "; đã ghi loại dự phòng A000.";
         }
         if (lower.contains("br-revision-aircraft-baseline-not-found")
-                || lower.contains("original permit not found to obtain aircraft type")) {
-            return "Không tìm thấy phép gốc để lấy ra tàu bay.";
+                || lower.contains("could not be resolved from original permit")) {
+            return withRow(value,
+                    "Không đọc được loại tàu bay trong phép sửa đổi và không tìm thấy loại tàu bay để đối chiếu từ phép gốc; hệ thống đã ghi loại dự phòng A000.");
+        }
+        if (lower.contains("br-aircraft-unreadable")
+                || lower.contains("could not read aircraft type from permit file")) {
+            return withRow(value,
+                    "Không đọc được loại tàu bay trong file; hệ thống đã ghi loại tàu bay dự phòng A000.");
+        }
+        if (lower.contains("br-aircraft-ambiguous") || lower.contains("aircraft code")) {
+            return withRow(value,
+                    "Mã tàu bay đối chiếu ra nhiều loại khác nhau trong từ điển ATFM; hệ thống đã ghi loại tàu bay dự phòng A000.");
         }
         if (lower.contains("br-aircraft-missing")
                 || lower.contains("missing aircraft type in permit file")) {

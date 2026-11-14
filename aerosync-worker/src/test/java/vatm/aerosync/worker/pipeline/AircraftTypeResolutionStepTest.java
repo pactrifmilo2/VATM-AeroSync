@@ -71,6 +71,7 @@ class AircraftTypeResolutionStepTest {
                         (1712, 'GLF6', NULL, 'Gulfstream 6', 0),
                         (4102, 'GA6C', NULL, 'Gulfstream 6C', 0),
                         (4941, 'GA6C', NULL, 'Gulfstream 6C', 0),
+                        (6869, 'B747', NULL, 'Boeing 747', 0),
                         (9001, 'XAMB', 'AMB', 'Ambiguous', 0),
                         (9002, 'YAMB', 'AMB', 'Ambiguous', 0),
                         (6881, 'A000', NULL, 'Unknown aircraft', 0)
@@ -136,6 +137,64 @@ class AircraftTypeResolutionStepTest {
     }
 
     @Test
+    void resolve_reportsTheSourceRowWhenTypeIsNotInAtfmDictionary() {
+        ProcessingContext context = context("B799");
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        assertThat(context.getRowValidationErrors()).singleElement().satisfies(error -> {
+            assertThat(error.rowNumber()).isEqualTo(1);
+            assertThat(error.code()).isEqualTo("BR-AIRCRAFT-NOT-FOUND");
+            assertThat(error.message()).contains("B799", "ATFM dictionary");
+        });
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(6881L);
+    }
+
+    @Test
+    void resolve_reportsUnreadableAircraftAndUsesA000() {
+        ProcessingContext context = context(null);
+        SchedulePermit permit = context.getSchedulePermit();
+        ScheduleFlight source = permit.flights().getFirst();
+        ScheduleFlight unreadable = new ScheduleFlight(
+                source.purposeId(), source.craftId(), source.mtow(), source.flightNumber(),
+                source.registration(), source.serviceDays(), source.fromAirport(), source.toAirport(),
+                source.etd(), source.eta(), source.via(), source.beginDate(), source.endDate(),
+                source.remark(), null, true);
+        context.setSchedulePermit(permit.withFlights(List.of(unreadable)));
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(6881L);
+        assertThat(context.getRowValidationErrors()).singleElement().satisfies(error -> {
+            assertThat(error.rowNumber()).isEqualTo(1);
+            assertThat(error.code()).isEqualTo("BR-AIRCRAFT-UNREADABLE");
+            assertThat(error.message()).contains("Could not read aircraft type");
+        });
+    }
+
+    @Test
+    void resolve_revisionWithoutAircraftAndWithoutUsableBaselineUsesA000WithSpecificWarning() {
+        ProcessingContext context = context(null);
+        SchedulePermit permit = context.getSchedulePermit();
+        context.setSchedulePermit(new SchedulePermit(
+                "OF-4861/7/2026VN/REV1", permit.normalizedPermitId(), permit.permitNumber(),
+                permit.authorId(), permit.permitType(), permit.version(), permit.season(),
+                permit.permitDate(), permit.operatorId(), permit.reference(), permit.validHours(),
+                permit.billingAddress(), permit.flightType(), permit.iataAirportsAllowed(),
+                permit.emptyAirwaysAllowed(), permit.reviewOnly(), permit.rawContent(),
+                permit.flights(), permit.originalFlights()));
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        assertThat(context.getSchedulePermit().flights().getFirst().craftId()).isEqualTo(6881L);
+        assertThat(context.getRowValidationErrors()).singleElement().satisfies(error -> {
+            assertThat(error.rowNumber()).isEqualTo(1);
+            assertThat(error.code()).isEqualTo("BR-REVISION-AIRCRAFT-BASELINE-NOT-FOUND");
+            assertThat(error.message()).contains("could not be resolved from original permit");
+        });
+    }
+
+    @Test
     void resolveAllowingMissingPrefixesAdHocNumericAircraftTypes() {
         ProcessingContext context = context("321");
 
@@ -191,6 +250,17 @@ class AircraftTypeResolutionStepTest {
         assertThat(context.getRowValidationErrors())
                 .extracting("code")
                 .containsExactly("BR-AIRCRAFT-NOT-FOUND");
+    }
+
+    @Test
+    void resolve_stripsVariantSuffixWhenExactAircraftTypeIsNotInDictionary() {
+        ProcessingContext context = context("B747-300");
+
+        step.resolveAllowingMissingForNonSeasonal(context);
+
+        ScheduleFlight resolved = context.getSchedulePermit().flights().getFirst();
+        assertThat(resolved.craftId()).isEqualTo(6869L);
+        assertThat(context.getRowValidationErrors()).isEmpty();
     }
 
     @Test

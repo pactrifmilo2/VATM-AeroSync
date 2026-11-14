@@ -75,6 +75,19 @@ class VietnameseStoredErrorMessageTest {
                 "BR-ROUTE-DOCUMENT-UNREADABLE: Cannot read route from permit file"))
                 .isEqualTo("Kh\u00f4ng \u0111\u1ecdc \u0111\u01b0\u1ee3c \u0111\u01b0\u1eddng bay trong file");
     }
+
+    @Test
+    void translatesUnreadableAndMissingBaselineAircraftWithRowAndA000Fallback() {
+        assertThat(VietnameseStoredErrorMessage.translate(
+                "Schedule row 3: Could not read aircraft type from permit file"))
+                .contains("Dòng lịch bay 3", "Không đọc được", "A000");
+        assertThat(VietnameseStoredErrorMessage.translate(
+                "Schedule row 4: Aircraft type is missing from revision and could not be resolved from original permit"))
+                .contains("Dòng lịch bay 4", "phép gốc", "A000");
+        assertThat(VietnameseStoredErrorMessage.translate(
+                "Schedule row 5: Aircraft code B799 maps to different ATFM aircraft; matching craft IDs: [1, 2]"))
+                .contains("Dòng lịch bay 5", "nhiều loại", "A000");
+    }
     @Test
     void explainsAirportFallbackWithSourceAndPlaceholderCode() {
         assertThat(VietnameseStoredErrorMessage.translate(

@@ -72,17 +72,35 @@ public class AtfmAircraftTypeResolver {
                 continue;
             }
             if (matches.size() > 1) {
-                Long preferredCraftId = preferences.preferredCraftId(candidate);
-                if (preferredCraftId == null) {
-                    throw new AmbiguousAircraftTypeException(candidate, matches);
+                List<AircraftRecord> icaoMatches = matches.stream()
+                        .filter(match -> match.icao() != null
+                                && match.icao().matches("(?i)[A-Z0-9]{4}"))
+                        .toList();
+                List<AircraftRecord> preferredPool = icaoMatches.isEmpty() ? matches : icaoMatches;
+                List<AircraftRecord> distinctAircraft = preferredPool.stream()
+                        .collect(java.util.stream.Collectors.toMap(
+                                match -> new AircraftIdentity(match.icao(), match.iata()),
+                                match -> match,
+                                (first, ignored) -> first,
+                                LinkedHashMap::new))
+                        .values().stream().toList();
+                if (distinctAircraft.size() == 1) {
+                    AircraftRecord selected = preferredPool.stream()
+                            .min(java.util.Comparator.comparingLong(AircraftRecord::craftId))
+                            .orElseThrow();
+                    return resolved(selected, candidate);
                 }
-                AircraftRecord preferred = matches.stream()
-                        .filter(match -> match.craftId() == preferredCraftId)
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalStateException(
-                                "Preferred aircraft CRAFT_ID %d for %s is not present in M_CRAFT_TYPE"
-                                        .formatted(preferredCraftId, candidate)));
-                return resolved(preferred, candidate);
+                Long preferredCraftId = preferences.preferredCraftId(candidate);
+                if (preferredCraftId != null) {
+                    AircraftRecord preferred = preferredPool.stream()
+                            .filter(match -> match.craftId() == preferredCraftId)
+                            .findFirst()
+                            .orElseThrow(() -> new IllegalStateException(
+                                    "Preferred aircraft CRAFT_ID %d for %s is not present in M_CRAFT_TYPE"
+                                            .formatted(preferredCraftId, candidate)));
+                    return resolved(preferred, candidate);
+                }
+                throw new AmbiguousAircraftTypeException(candidate, matches);
             }
             return resolved(matches.getFirst(), candidate);
         }
@@ -218,6 +236,9 @@ public class AtfmAircraftTypeResolver {
             String icao,
             String iata
     ) {
+    }
+
+    private record AircraftIdentity(String icao, String iata) {
     }
 
     private record Snapshot(Map<String, List<AircraftRecord>> byCode, Instant expiresAt) {

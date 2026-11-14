@@ -14,11 +14,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 class AircraftTypeCatalog {
 
     private static final String RESOURCE = "permit-reference/aircraft-types.yaml";
+    private static final Pattern VARIANT_SUFFIX = Pattern.compile(
+            "(?i)^([A-Z]{1,2}\\d{3,4})-\\d{3,4}[A-Z]?");
 
     private final Map<String, String> aliases;
 
@@ -41,7 +45,7 @@ class AircraftTypeCatalog {
                 .split("\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
             String clean = token.trim();
             if (!clean.isBlank()) {
-                candidates.add(aliases.getOrDefault(canonical(clean), clean));
+                addCandidate(candidates, clean);
             }
         }
         return List.copyOf(candidates);
@@ -59,12 +63,38 @@ class AircraftTypeCatalog {
         for (String token : AircraftTypeNotation.normalize(value)
                 .split("\\s*(?:/|;|,|\\bOR\\b)\\s*")) {
             String clean = token.trim();
-            String known = aliases.get(canonical(clean));
-            if (known != null) {
-                candidates.add(known);
-            }
+            addKnownCandidate(candidates, clean);
         }
         return List.copyOf(candidates);
+    }
+
+    private void addCandidate(Set<String> candidates, String source) {
+        String exact = aliases.get(canonical(source));
+        if (exact != null) {
+            candidates.add(exact);
+            return;
+        }
+        String base = baseAircraftType(source);
+        String lookup = base == null ? source : base;
+        candidates.add(aliases.getOrDefault(canonical(lookup), lookup));
+    }
+
+    private void addKnownCandidate(Set<String> candidates, String source) {
+        String exact = aliases.get(canonical(source));
+        if (exact != null) {
+            candidates.add(exact);
+            return;
+        }
+        String base = baseAircraftType(source);
+        String known = base == null ? null : aliases.get(canonical(base));
+        if (known != null) {
+            candidates.add(known);
+        }
+    }
+
+    private String baseAircraftType(String value) {
+        Matcher matcher = VARIANT_SUFFIX.matcher(value.trim());
+        return matcher.matches() ? matcher.group(1).toUpperCase(Locale.ROOT) : null;
     }
 
     private Map<String, String> load() {
