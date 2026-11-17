@@ -40,6 +40,8 @@ public class DocxSchedulePermitParser {
     private static final Pattern SLASH_ROUTE_PATTERN = Pattern.compile(
             "^([A-Z]{3,4})\\s*/\\s*"
                     + "([A-Z]{3,4}(?:\\s*,\\s*[A-Z]{3,4})*)$");
+    private static final Pattern ROUTE_SEQUENCE_PATTERN = Pattern.compile(
+            "(?i)^([A-Z]{3,4}(?:\\s*[-\\u2013\\u2014]\\s*[A-Z]{3,4}){2,})$");
     private static final Pattern ICAO_LABEL_PATTERN = Pattern.compile(
             "(?iu)(?:ICAO\\s*(?:CODE)?|MA\\s*ICAO)(?:\\s*\\([^)]*\\))?"
                     + "[ \\t]*:[ \\t]*(?<value>[A-Z0-9]{3})(?![A-Z0-9])");
@@ -169,8 +171,21 @@ public class DocxSchedulePermitParser {
         } catch (FormatValidationException exception) {
             throw exception;
         } catch (IOException | RuntimeException exception) {
-            throw invalid(fileName, "Failed to parse Word permit: " + exception.getMessage());
+            throw invalid(fileName, parseFailureDetail(exception));
         }
+    }
+
+    private String parseFailureDetail(Exception exception) {
+        StackTraceElement frame = Arrays.stream(exception.getStackTrace())
+                .filter(element -> element.getClassName().startsWith("vatm.aerosync.worker.pipeline."))
+                .findFirst().orElse(null);
+        String detail = "Failed to parse Word permit (" + exception.getClass().getSimpleName() + "): "
+                + Objects.toString(exception.getMessage(), "no exception detail");
+        if (frame != null) {
+            detail += " at " + frame.getClassName() + "." + frame.getMethodName()
+                    + ":" + frame.getLineNumber();
+        }
+        return detail;
     }
 
     SchedulePermit parse(WordPermitDocument document, String fileName) {
@@ -1106,20 +1121,30 @@ public class DocxSchedulePermitParser {
                     }
                 }
                 List<String> airportCodes = List.copyOf(airportSet);
+                List<String> routeSequence = row.stream()
+                        .map(this::roundTripRouteSequence)
+                        .filter(sequence -> sequence.size() >= 2)
+                        .findFirst().orElse(List.of());
                 List<String> airwayCandidates = row.stream()
                         .map(this::clean)
                         .filter(value -> !GROUPED_ROUTE_PATTERN.matcher(
                                 value.toUpperCase(Locale.ROOT).trim()).matches())
                         .filter(this::looksLikeAirwaySequence)
                         .distinct().toList();
-                if (airportCodes.size() >= 2 && !airwayCandidates.isEmpty()) {
+                if ((routeSequence.size() >= 2 || airportCodes.size() >= 2)
+                        && !airwayCandidates.isEmpty()) {
                     routeLikeTable = true;
-                    if (airportCodes.size() == 2 && airwayCandidates.size() == 1) {
-                        String from = normalizeAirport(airportCodes.get(0), normalizeAirportsToIcao);
-                        String to = normalizeAirport(airportCodes.get(1), normalizeAirportsToIcao);
+                    if (airwayCandidates.size() == 1) {
                         String airway = normalizeAirways(airwayCandidates.getFirst());
-                        if (!from.equals(to) && !airway.isBlank()) {
-                            candidates.add(new RouteRow(from, to, airway));
+                        List<String> sequence = routeSequence.isEmpty() ? airportCodes : routeSequence;
+                        if (!airway.isBlank() && sequence.size() >= 2) {
+                            for (int index = 0; index < sequence.size() - 1; index++) {
+                                String from = normalizeAirport(sequence.get(index), normalizeAirportsToIcao);
+                                String to = normalizeAirport(sequence.get(index + 1), normalizeAirportsToIcao);
+                                if (!from.equals(to)) {
+                                    candidates.add(new RouteRow(from, to, airway));
+                                }
+                            }
                         } else {
                             ambiguousRouteRow = true;
                         }
@@ -1135,6 +1160,17 @@ public class DocxSchedulePermitParser {
                     "Headerless route table is ambiguous; airport/airway values could not be mapped uniquely");
         }
         return uniqueRoutes;
+    }
+
+    private List<String> roundTripRouteSequence(String cell) {
+        Matcher matcher = ROUTE_SEQUENCE_PATTERN.matcher(clean(cell).toUpperCase(Locale.ROOT));
+        if (!matcher.matches()) {
+            return List.of();
+        }
+        return Arrays.stream(matcher.group(1).split("\\s*[-\\u2013\\u2014]\\s*"))
+                .map(String::trim)
+                .filter(code -> code.matches("[A-Z]{3,4}"))
+                .toList();
     }
 
     private boolean rowLooksLikeRouteHeader(List<String> row) {
@@ -1174,11 +1210,12 @@ public class DocxSchedulePermitParser {
     }
 
     private boolean looksLikeAirwaySequence(String value) {
-        String tokenized = clean(value).toUpperCase(Locale.ROOT).trim();
+        String tokenized = clean(value).toUpperCase(Locale.ROOT).trim()
+                .replaceAll("(?iu)\\s+(?:OR|HOẶC)\\s+", " ");
         if (tokenized.length() < 2 || tokenized.length() > 120) {
             return false;
         }
-        String[] tokens = tokenized.split("\\s*[-/;\\n]\\s*");
+        String[] tokens = tokenized.split("[\\s,;/]+");
         if (tokens.length == 0 || tokens.length > 20) {
             return false;
         }
@@ -1290,7 +1327,7 @@ public class DocxSchedulePermitParser {
         Integer serviceIndex = columns.get("serviceDays");
         Integer effectiveIndex = columns.get("effectiveFrom");
         if (serviceIndex == null || effectiveIndex == null
-                || effectiveIndex >= row.size()) {
+                || effectiveIndex >= row.size() || serviceIndex >= row.size()) {
             return row;
         }
         String service = clean(row.get(serviceIndex));
@@ -2290,7 +2327,8 @@ public class DocxSchedulePermitParser {
     }
 
     private String normalizeAirways(String value) {
-        String raw = value == null ? "" : value.trim()
+        String raw = value == null ? "" : clean(value)
+                .replaceAll("(?iu)\\s+(?:OR|HOẶC)\\s+", ";")
                 .replaceAll("(?iu)(?:^|[;\\s]+)\\d+\\.\\s*", ";");
         List<List<String>> alternatives = Arrays.stream(raw.split("(?m)[;\\r\\n]+"))
                 .map(this::normalizeAirwayLine)
@@ -2397,9 +2435,13 @@ public class DocxSchedulePermitParser {
     private String normalizeAirwayLine(String value) {
         String normalized = clean(value).toUpperCase(Locale.ROOT)
                 .replaceAll("(?iu)\\s+OR\\s+", "/")
+                .replaceAll("(?iu)\\s+HOẶC\\s+", "/")
                 .replaceAll("\\s*,\\s*", "/")
                 .replaceAll("\\s*[-\\u2013\\u2014]\\s*", "/")
                 .replaceAll("/{2,}", "/");
+        if (normalized.matches("(?iu)\\s*(?:[A-Z]{1,2}\\d{1,4}[A-Z]?|DCT)(?:\\s+(?:[A-Z]{1,2}\\d{1,4}[A-Z]?|DCT))+\\s*")) {
+            normalized = normalized.trim().replaceAll("\\s+", "/");
+        }
         LinkedHashSet<String> uniqueAirways = new LinkedHashSet<>();
         Arrays.stream(normalized.split("/"))
                 .map(String::trim)
