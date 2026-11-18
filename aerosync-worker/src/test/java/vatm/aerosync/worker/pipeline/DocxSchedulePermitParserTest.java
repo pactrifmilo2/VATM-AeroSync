@@ -237,6 +237,48 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void everyProfileWithRouteDefinitionGetsInlineRoutePattern() {
+        List<DocxPermitFormatProfile> profiles = new DocxPermitProfileCatalog().profiles();
+
+        assertThat(profiles).isNotEmpty();
+        assertThat(profiles).filteredOn(profile -> profile.route() != null
+                        && profile.master() != null
+                        && "LD".equalsIgnoreCase(profile.master().permitType()))
+                .allSatisfy(profile -> assertThat(profile.route().inlineRules())
+                        .as(profile.id()).isNotEmpty());
+        DocxPermitFormatProfile overflight = profiles.stream()
+                .filter(profile -> profile.id().equals("caav-generic-overflight-issued"))
+                .findFirst().orElseThrow();
+        assertThat(overflight.route().inlineRules()).isNullOrEmpty();
+    }
+
+
+    @Test
+    void airlineSpecificSeasonalProfileInheritsDefaultInlineRouteRule() throws Exception {
+        Path file = tempDir.resolve("LD-22-RMY-inline-route.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("Hanoi, 18 November 2026");
+            document.createParagraph().createRun().setText("LD-22/A/W/2026VN");
+            document.createParagraph().createRun().setText("ICAO Code: RMY");
+            document.createParagraph().createRun().setText("RAYA AIRWAYS");
+            document.createParagraph().createRun().setText("Schedules (UTC)");
+            document.createParagraph().createRun().setText("Airways: XMN-HAN-XMN: Q1 W1");
+            scheduleTable(document, new String[][] {
+                    {"RMY101", "18NOV26", "18NOV26", "3", "XMN", "0100", "HAN", "0300", ""},
+                    {"RMY102", "18NOV26", "18NOV26", "3", "HAN", "0400", "XMN", "0600", ""}
+            });
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+        assertThat(permit.operatorId()).isEqualTo("RMY");
+        assertThat(permit.flights()).extracting(flight -> flight.via())
+                .containsExactly("Q1/W1", "Q1/W1");
+    }
+
+    @Test
     void vjcProfileReadsInlineMultiLegAirways() throws Exception {
         Path file = tempDir.resolve("LD-9900-VJC-inline-route.docx");
         try (XWPFDocument document = new XWPFDocument()) {
@@ -252,8 +294,15 @@ class DocxSchedulePermitParserTest {
             document.createParagraph().createRun().setText("5. Đường hàng không: SGN-HAN-SGN: Q1 W1");
             vjcScheduleTable(document, new String[][] {
                     {"VJ100", "24Nov26", "24Nov26", "2", "SGN", "0100", "HAN", "0300"},
-                    {"VJ101", "24Nov26", "24Nov26", "2", "HAN", "0400", "SGN", "0600"}
+                    {"VJ101", "24Nov26", "24Nov26", "2", "HAN", "0400", "SGN", "0600"},
+                    {"VJ102", "24Nov26", "24Nov26", "2", "DAD", "0700", "HAN", "0900"},
+                    {"VJ103", "24Nov26", "24Nov26", "2", "SGN", "1000", "DAD", "1200"}
             });
+            XWPFTable routeTable = document.createTable(2, 2);
+            routeTable.getRow(0).getCell(0).setText("Chặng bay");
+            routeTable.getRow(0).getCell(1).setText("Đường hàng không");
+            routeTable.getRow(1).getCell(0).setText("DAD-HAN");
+            routeTable.getRow(1).getCell(1).setText("W2");
 
             XWPFTable aircraft = document.createTable(2, 2);
             aircraft.getRow(0).getCell(0).setText("Loại tàu bay");
@@ -268,7 +317,9 @@ class DocxSchedulePermitParserTest {
         SchedulePermit permit = parser.parse(file, file.getFileName().toString());
         assertThat(permit.operatorId()).isEqualTo("VJC");
         assertThat(permit.flights()).extracting(flight -> flight.via())
-                .containsExactly("Q1/W1", "Q1/W1");
+                .containsExactly("Q1/W1", "Q1/W1", "W2");
+        assertThat(permit.flights()).extracting(flight -> flight.flightNumber())
+                .containsExactly("VJC100", "VJC101", "VJC102");
     }
 
     @Test

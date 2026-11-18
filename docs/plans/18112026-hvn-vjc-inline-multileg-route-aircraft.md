@@ -7,8 +7,8 @@
 ## Phạm vi
 
 - Sáu tài liệu được cung cấp: LD 4281, LD 4282, LD 4289, LD 4300, LD 4302 và LD 4301.
-- Các hồ sơ YAML của hãng và những thay đổi tối thiểu cần thiết cho bộ phân tích dùng chung để đọc chuỗi tuyến trực tiếp và quy tắc tàu bay theo tuyến.
-- Kiểm thử hồi quy bằng sáu tài liệu và dữ liệu tổng hợp cho tuyến nhiều chặng, chiều ngược, quy tắc theo tuyến và quy tắc dự phòng.
+- Các hồ sơ YAML HVN/VJC, các profile landing dùng chung/các hãng kế thừa chúng, cùng thay đổi tối thiểu cần thiết cho parser dùng chung để đọc route inline nhiều chặng.
+- Kiểm thử hồi quy bằng sáu tài liệu, fixture VJC, fixture một hãng kế thừa profile generic và coverage toàn bộ route profiles; kiểm tra tuyến nhiều chặng, chiều ngược, route table kết hợp inline và lọc sector.
 - Không phát lại email, không ghi vào Oracle/ATFM, không triển khai.
 
 ## Phát hiện ban đầu
@@ -19,7 +19,7 @@
 - **LD 4282 VJC:** Bảng lịch có các dòng tiêu đề tuyến xen kẽ các chuyến bay. Một bảng riêng ánh xạ chặng với airway; một bảng khác liệt kê các loại tàu bay áp dụng chung.
 - **LD 4281 VJC:** Phép sửa đổi có các bảng OLD/NEW và tiêu đề tuyến; không có bảng tàu bay riêng. Không áp dụng thông tin NEW cho OLD hoặc tự suy ra loại tàu bay mới.
 - **LD 4289 HVN:** Ghi chú của phép sửa đổi cho biết đường bay/loại tàu bay được kế thừa từ phép mùa LD-69/A/W/2026VN, đồng thời một số nhóm lịch nêu loại riêng. Cần giữ cơ chế baseline/revision hiện có; không biến ghi chú tham chiếu thành quy tắc tĩnh áp dụng cho mọi chuyến.
-- Parser hỗ trợ `staticAirways` trong YAML và bảng route. Hiện việc suy luận chuỗi `A-B-C` nằm trong nhánh xử lý bảng không có tiêu đề; các bảng tàu bay phụ hiện gộp các loại tàu bay thành danh sách chung, chưa biểu diễn được ánh xạ `tuyến → loại tàu bay`.
+- Parser hỗ trợ `staticAirways` trong YAML và bảng route. Ban đầu chỉ inline route được cấu hình ở một số profile HVN/VJC; các profile hãng khác kế thừa nhiều base CAAV khác nhau. Các bảng tàu bay phụ hiện gộp loại thành danh sách chung, chưa biểu diễn `tuyến → loại tàu bay`.
 
 ## Các giả định đề xuất
 
@@ -38,14 +38,14 @@
 
 ### 2. Cách biểu diễn mẫu trong YAML
 
-- [x] A - **Khuyến nghị:** Bổ sung khai báo có cấu trúc trong hồ sơ HVN cho chuỗi route/airway trực tiếp và quy tắc tàu bay theo tuyến; xử lý bằng logic dùng chung của parser. Ưu điểm: quy tắc định dạng thể hiện rõ trong YAML và có thể kiểm thử trên nhiều tài liệu. Nhược điểm: cần mở rộng schema hồ sơ và parser.
+- [x] A - **Khuyến nghị:** Bổ sung khai báo có cấu trúc trong YAML hãng cho quy tắc riêng; đồng thời cấp default inline-route pattern cho mọi landing profile (`master.permitType: LD`) có route definition nếu profile không khai báo override. Không tự áp dụng cho overflight. Xử lý bằng parser dùng chung. Ưu điểm: quy tắc định dạng thể hiện rõ trong YAML và có thể kiểm thử trên nhiều tài liệu. Nhược điểm: cần mở rộng schema hồ sơ và parser.
 - [ ] B - Viết riêng logic HVN trong Java, YAML chỉ dùng để nhận diện tài liệu. Ưu điểm: ít phải thay đổi schema YAML. Nhược điểm: quy tắc định dạng bị ẩn trong code, khó rà soát và mở rộng.
 - [ ] C - Khai báo thủ công từng tuyến quan sát được của từng phép bằng YAML `staticAirways`. Ưu điểm: không cần sửa parser. Nhược điểm: không áp dụng được cho phép mới trong tương lai và có nguy cơ không khớp lịch bay.
 - Phương án khác do người dùng nhập: ____________________
 
 ## Phạm vi triển khai mặc định
 
-1. Mở rộng định nghĩa hồ sơ cho quy tắc route trực tiếp và tàu bay theo tuyến; kiểm tra các nhóm bắt buộc trong regex khi tải hồ sơ.
+1. Mở rộng định nghĩa hồ sơ cho quy tắc route trực tiếp và tàu bay theo tuyến; kiểm tra các nhóm bắt buộc trong regex khi tải hồ sơ. Catalog cấp default pattern route inline cho mọi landing profile (`master.permitType: LD`) có route definition, trừ profile tự khai báo inlineRules; overflight không nhận default này.
 2. Tách chuỗi tuyến thành các chặng có hướng, chuẩn hóa airway bằng logic hiện có và so khớp riêng từng dòng lịch.
 3. Chỉ dùng “các đường bay khác” làm quy tắc dự phòng khi hồ sơ khai báo tường minh.
 4. Phân tích danh sách loại tàu bay như `321/320` và `787/350/321/320` bằng `AircraftTypeNotation`; tuyệt đối không suy ra tàu bay từ callsign, tên file hoặc thứ tự lịch.
@@ -57,4 +57,4 @@
 
 - Câu hỏi 1: A - ưu tiên loại tàu bay theo tuyến cụ thể, sau đó fallback “các đường bay khác”, rồi nguồn chung hiện có.
 - Câu hỏi 2: A - khai báo pattern có cấu trúc trong YAML hãng và xử lý bằng parser dùng chung.
-- Trạng thái: Các lựa chọn đã được xác nhận; parser, YAML và regression tests đã được cập nhật. Kết quả kiểm thử được ghi trong nhật ký thay đổi.
+- Trạng thái: Các lựa chọn đã được xác nhận; parser, YAML và regression tests đã được cập nhật. Mở rộng sau đó áp dụng default inline-route cho mọi landing profile có route definition. Kết quả kiểm thử được ghi trong nhật ký thay đổi.

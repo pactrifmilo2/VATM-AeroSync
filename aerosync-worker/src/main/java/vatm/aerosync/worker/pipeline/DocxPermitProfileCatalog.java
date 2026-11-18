@@ -2,6 +2,7 @@ package vatm.aerosync.worker.pipeline;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.springframework.core.io.Resource;
@@ -25,6 +26,9 @@ import java.util.regex.PatternSyntaxException;
 class DocxPermitProfileCatalog {
 
     private static final String PROFILE_PATTERN = "classpath*:permit-formats/*.yaml";
+    private static final String DEFAULT_INLINE_ROUTE_PATTERN =
+            "(?imu)(?<route>[A-Z]{3,4}(?:\\s*[-\\u2013\\u2014]\\s*[A-Z]{3,4})+)"
+                    + "\\s*:\\s*(?<airways>[^;\\r\\n]+)";
 
     private final List<DocxPermitFormatProfile> profiles;
 
@@ -56,9 +60,11 @@ class DocxPermitProfileCatalog {
             }
             Map<String, JsonNode> resolved = new HashMap<>();
             List<DocxPermitFormatProfile> loaded = sources.stream()
-                    .map(source -> mapper.convertValue(
-                            resolveProfile(source.id(), sourcesById, resolved, new HashSet<>()),
-                            DocxPermitFormatProfile.class))
+                    .map(source -> {
+                        JsonNode profile = resolveProfile(source.id(), sourcesById, resolved, new HashSet<>());
+                        return mapper.convertValue(withDefaultInlineRouteRule(profile, mapper),
+                                DocxPermitFormatProfile.class);
+                    })
                     .toList();
             Set<String> ids = new HashSet<>();
             for (DocxPermitFormatProfile profile : loaded) {
@@ -119,6 +125,27 @@ class DocxPermitProfileCatalog {
         resolving.remove(id);
         resolved.put(id, merged);
         return merged;
+    }
+
+    private JsonNode withDefaultInlineRouteRule(JsonNode profile, ObjectMapper mapper) {
+        JsonNode routeNode = profile.path("route");
+        String permitType = profile.path("master").path("permitType").asText("");
+        if (!"LD".equalsIgnoreCase(permitType)
+                || !routeNode.isObject()
+                || routeNode.has("inlineRules")) {
+            return profile;
+        }
+
+        ObjectNode copy = profile.deepCopy();
+        ObjectNode route = (ObjectNode) copy.get("route");
+        ArrayNode rules = mapper.createArrayNode();
+        ObjectNode rule = mapper.createObjectNode();
+        rule.put("pattern", DEFAULT_INLINE_ROUTE_PATTERN);
+        rule.put("routeGroup", "route");
+        rule.put("valueGroup", "airways");
+        rules.add(rule);
+        route.set("inlineRules", rules);
+        return copy;
     }
 
     private void deepMerge(ObjectNode target, JsonNode override) {

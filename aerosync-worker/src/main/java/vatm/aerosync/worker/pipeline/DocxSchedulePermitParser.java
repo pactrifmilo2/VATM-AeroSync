@@ -406,13 +406,13 @@ public class DocxSchedulePermitParser {
             routes = inferHeaderlessRoutes(newValueTables, scheduleAndOriginalTables, normalizeAirportsToIcao,
                     fileName);
         }
-        boolean filterScheduleByRouteTable = profile.route() != null
-                && profile.route().filterSchedule() && configuredInlineRoutes.isEmpty();
         if (!configuredInlineRoutes.isEmpty()) {
             List<RouteRow> combinedRoutes = new ArrayList<>(routes);
             combinedRoutes.addAll(configuredInlineRoutes);
             routes = combinedRoutes.stream().distinct().toList();
         }
+        boolean filterScheduleByRouteTable = profile.route() != null
+                && profile.route().filterSchedule() && !routes.isEmpty();
 
         List<RouteRow> oldRoutes = noReplacement ? revisionRoutes(profile.route(), revisionValueTables(document, true),
                 normalizeAirportsToIcao, fileName) : routes;
