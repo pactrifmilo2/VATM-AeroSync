@@ -198,6 +198,66 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void parsesHvnInlineRoutesAndAircraftByRouteFromSuppliedPermits() throws Exception {
+        SchedulePermit multiLeg = parseExternalSample(
+                "LD 4301 HVN9984 THUÊ CHUYEN HYD ẤN ĐỘ 23_27NOV.docx");
+        assertThat(multiLeg.flights()).filteredOn(flight -> flight.fromAirport().equals("SGN")
+                        && flight.toAirport().equals("HYD"))
+                .singleElement().satisfies(flight -> {
+                    assertThat(flight.via()).isEqualTo("R468");
+                    assertThat(flight.sourceAircraftType()).isEqualTo("321/320");
+                });
+        assertThat(multiLeg.flights()).filteredOn(flight -> flight.fromAirport().equals("HYD")
+                        && flight.toAirport().equals("SGN"))
+                .singleElement().satisfies(flight -> assertThat(flight.via()).isEqualTo("R468"));
+        assertThat(multiLeg.flights()).filteredOn(flight -> flight.fromAirport().equals("PQC")
+                        && flight.toAirport().equals("HYD"))
+                .singleElement().satisfies(flight -> assertThat(flight.via()).isEqualTo("R334"));
+        assertThat(multiLeg.flights()).filteredOn(flight -> flight.fromAirport().equals("HYD")
+                        && flight.toAirport().equals("PQC"))
+                .singleElement().satisfies(flight -> assertThat(flight.via()).isEqualTo("R334"));
+
+        SchedulePermit directional = parseExternalSample(
+                "LD 4302 HVN9983 THUE CHUYEN VNS ẤN ĐỘ.docx");
+        assertThat(directional.flights()).filteredOn(flight -> flight.fromAirport().equals("VVNB")
+                        && flight.toAirport().equals("VNS"))
+                .allSatisfy(flight -> assertThat(flight.via()).isEqualTo("W21/B214"));
+        assertThat(directional.flights()).filteredOn(flight -> flight.fromAirport().equals("VNS")
+                        && flight.toAirport().equals("VVNB"))
+                .allSatisfy(flight -> assertThat(flight.via()).isEqualTo("B214/W21"));
+
+        SchedulePermit routeAircraft = parseExternalSample("LD 4300 HVN.docx");
+        assertThat(routeAircraft.flights()).filteredOn(flight -> flight.fromAirport().equals("HAN")
+                        && flight.toAirport().equals("SGN"))
+                .allSatisfy(flight -> assertThat(flight.sourceAircraftType())
+                        .isEqualTo("787/350/321/320"));
+        assertThat(routeAircraft.flights()).filteredOn(flight -> flight.fromAirport().equals("SGN")
+                        && flight.toAirport().equals("DAD"))
+                .allSatisfy(flight -> assertThat(flight.sourceAircraftType()).isEqualTo("321/320"));
+    }
+
+    @Test
+    void allSixSuppliedVjcAndHvnPermitsRemainReadable() {
+        for (String fileName : List.of(
+                "LD 4281 VJC_RVS_QN_VJ1601_14NOV26.docx",
+                "LD 4282 VJC_NEW_ QN QT KHONG THUONG LE-CHO KHACH_VJ1138_14NOV-27NOV26.docx",
+                "LD 4289 HVN6054.docx",
+                "LD 4300 HVN.docx",
+                "LD 4302 HVN9983 THUE CHUYEN VNS ẤN ĐỘ.docx",
+                "LD 4301 HVN9984 THUÊ CHUYEN HYD ẤN ĐỘ 23_27NOV.docx")) {
+            SchedulePermit permit = parseExternalSample(fileName);
+            assertThat(permit.operatorId()).as(fileName).isIn("HVN", "VJC");
+            assertThat(permit.flights()).as(fileName).isNotEmpty();
+        }
+    }
+
+    private SchedulePermit parseExternalSample(String fileName) {
+        Path file = Path.of("..", fileName).toAbsolutePath().normalize();
+        Assumptions.assumeTrue(Files.isRegularFile(file), "External permit is not available: " + file);
+        return parser.parse(file, file.getFileName().toString());
+    }
+
+    @Test
     void parse_leavesAircraftBlankWhenDocumentHasNoAircraftValue() throws Exception {
         Path file = createGenericLandingPermitDocument("");
 
@@ -221,7 +281,7 @@ class DocxSchedulePermitParserTest {
             assertThat(flight.flightNumber()).isEqualTo("THY6242");
             assertThat(flight.fromAirport()).isEqualTo("CAI");
             assertThat(flight.toAirport()).isEqualTo("HAN");
-            assertThat(flight.via()).isEqualTo("B214 W21");
+            assertThat(flight.via()).isEqualTo("B214/W21");
             assertThat(flight.sourceAircraftType()).isEqualTo("77X/33X");
             assertThat(flight.aircraftTablePresent()).isTrue();
             assertThat(flight.purposeId()).isEqualTo("CAR");

@@ -31,19 +31,19 @@
 
 ### 1. Thứ tự ưu tiên áp dụng quy tắc tàu bay
 
-- [ ] A - **Khuyến nghị:** Ưu tiên tuyến cụ thể, tiếp theo là quy tắc dự phòng tường minh “các đường bay khác”, sau đó mới dùng danh sách chung của phép. Ưu điểm: giữ được ngoại lệ tuyến trong LD 4300. Nhược điểm: cần phân tích và so khớp dữ liệu theo tuyến.
+- [x] A - **Khuyến nghị:** Ưu tiên tuyến cụ thể, tiếp theo là quy tắc dự phòng tường minh “các đường bay khác”, sau đó mới dùng danh sách chung của phép. Ưu điểm: giữ được ngoại lệ tuyến trong LD 4300. Nhược điểm: cần phân tích và so khớp dữ liệu theo tuyến.
 - [ ] B - Chỉ dùng một danh sách loại tàu bay chung cho toàn phép. Ưu điểm: đơn giản hơn. Nhược điểm: mất phân biệt giữa HAN-SGN-HAN và các tuyến khác trong LD 4300.
 - [ ] C - Chỉ dùng quy tắc theo tuyến, không có dự phòng. Ưu điểm: tránh gán loại tàu bay quá rộng. Nhược điểm: các chặng không liệt kê sẽ thiếu loại tàu bay dù văn bản có nêu “các đường bay khác”.
 - Phương án khác do người dùng nhập: ____________________
 
 ### 2. Cách biểu diễn mẫu trong YAML
 
-- [ ] A - **Khuyến nghị:** Bổ sung khai báo có cấu trúc trong hồ sơ HVN cho chuỗi route/airway trực tiếp và quy tắc tàu bay theo tuyến; xử lý bằng logic dùng chung của parser. Ưu điểm: quy tắc định dạng thể hiện rõ trong YAML và có thể kiểm thử trên nhiều tài liệu. Nhược điểm: cần mở rộng schema hồ sơ và parser.
+- [x] A - **Khuyến nghị:** Bổ sung khai báo có cấu trúc trong hồ sơ HVN cho chuỗi route/airway trực tiếp và quy tắc tàu bay theo tuyến; xử lý bằng logic dùng chung của parser. Ưu điểm: quy tắc định dạng thể hiện rõ trong YAML và có thể kiểm thử trên nhiều tài liệu. Nhược điểm: cần mở rộng schema hồ sơ và parser.
 - [ ] B - Viết riêng logic HVN trong Java, YAML chỉ dùng để nhận diện tài liệu. Ưu điểm: ít phải thay đổi schema YAML. Nhược điểm: quy tắc định dạng bị ẩn trong code, khó rà soát và mở rộng.
 - [ ] C - Khai báo thủ công từng tuyến quan sát được của từng phép bằng YAML `staticAirways`. Ưu điểm: không cần sửa parser. Nhược điểm: không áp dụng được cho phép mới trong tương lai và có nguy cơ không khớp lịch bay.
 - Phương án khác do người dùng nhập: ____________________
 
-## Phạm vi triển khai mặc định nếu người dùng chọn phương án khuyến nghị
+## Phạm vi triển khai mặc định
 
 1. Mở rộng định nghĩa hồ sơ cho quy tắc route trực tiếp và tàu bay theo tuyến; kiểm tra các nhóm bắt buộc trong regex khi tải hồ sơ.
 2. Tách chuỗi tuyến thành các chặng có hướng, chuẩn hóa airway bằng logic hiện có và so khớp riêng từng dòng lịch.
@@ -53,6 +53,8 @@
 6. Chạy các kiểm thử worker trọng tâm và kiểm thử hồi quy tập hồ sơ; ghi kết quả thực tế vào nhật ký thay đổi.
 7. Chỉ dùng tài liệu làm dữ liệu kiểm thử chỉ đọc. Không import hoặc ghi vào ATFM thật.
 
-## Chờ xác nhận
+## Lựa chọn đã xác nhận
 
-Chưa sửa source, YAML hoặc test phụ thuộc vào các lựa chọn trên. Người dùng có thể đánh dấu phương án, ghi phương án khác hoặc gửi lựa chọn bằng tin nhắn. Cần ghi nhận lựa chọn trong phiếu trước khi bắt đầu triển khai.
+- Câu hỏi 1: A - ưu tiên loại tàu bay theo tuyến cụ thể, sau đó fallback “các đường bay khác”, rồi nguồn chung hiện có.
+- Câu hỏi 2: A - khai báo pattern có cấu trúc trong YAML hãng và xử lý bằng parser dùng chung.
+- Trạng thái: Các lựa chọn đã được xác nhận; parser, YAML và regression tests đã được cập nhật. Kết quả kiểm thử được ghi trong nhật ký thay đổi.

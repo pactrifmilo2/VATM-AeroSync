@@ -148,6 +148,10 @@ route:
   fallbackToFirst: false
   lastMatchingTable: false
   filterSchedule: true
+  inlineRules:
+  - pattern: '(?imu)(?<route>[A-Z]{3,4}(?:\s*[-\u2013\u2014]\s*[A-Z]{3,4})+)\s*:\s*(?<airways>[^;\r\n]+)'
+    routeGroup: route
+    valueGroup: airways
 aircraft:
   scheduleColumn: aircraftType
   auxiliaryColumns:
@@ -162,6 +166,15 @@ aircraft:
   - aircraftType
   - registrationMarks
   auxiliaryTypeColumn: aircraftType
+  inlineRules:
+  - pattern: '(?iu)(?:Loai\s+tau\s+bay\s*:\s*)?(?:Duong\s+bay\s+)?(?<route>[A-Z]{3,4}(?:\s*[-\u2013\u2014]\s*[A-Z]{3,4})+)\s*:\s*(?<types>(?:A\d{3}|B\d{3}|\d{2}[A-Z]|\d{3})(?:\s*[/,]\s*(?:A\d{3}|B\d{3}|\d{2}[A-Z]|\d{3}))*)'
+    routeGroup: route
+    valueGroup: types
+  - pattern: '(?iu)Duong\s+bay\s+khac\s*:\s*(?<types>(?:A\d{3}|B\d{3}|\d{2}[A-Z]|\d{3})(?:\s*[/,]\s*(?:A\d{3}|B\d{3}|\d{2}[A-Z]|\d{3}))*)'
+    valueGroup: types
+    fallback: true
+  - pattern: '(?iu)Loai\s+tau\s+bay\s*:\s*(?<types>(?:A\d{3}|B\d{3}|\d{2}[A-Z]|\d{3})(?:\s*[/,;]\s*(?:A\d{3}|B\d{3}|\d{2}[A-Z]|\d{3}))*)'
+    valueGroup: types
   remarkPrefix: ''
   defaultType: A320
   lastMatchingTable: false

@@ -138,7 +138,8 @@ class AirlineSpecificPermitProfileRegressionTest {
         assertThatThrownBy(() -> parser.parse(file, file.getFileName().toString()))
                 .isInstanceOf(FormatValidationException.class)
                 .hasMessageContaining("vjc-vietnamese-landing-issued")
-                .hasMessageContaining("missing required fields: eta")
+                .hasMessageContaining("WORD_FORMAT_MISMATCH")
+                .hasMessageContaining("eta =")
                 .hasMessageContaining("Giờ hạ cánh dự kiến")
                 .hasMessageContaining("Giờ dự kiến hạ cánh");
     }

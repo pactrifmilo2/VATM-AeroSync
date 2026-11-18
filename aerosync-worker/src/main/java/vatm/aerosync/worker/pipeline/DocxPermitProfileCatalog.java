@@ -225,6 +225,9 @@ class DocxPermitProfileCatalog {
                 }
             });
         }
+        if (profile.route() != null && profile.route().inlineRules() != null) {
+            profile.route().inlineRules().forEach(rule -> validateInlineRule(profile, rule, "route"));
+        }
         if (profile.aircraft() == null) {
             throw invalid(profile, "aircraft mapping is required");
         }
@@ -236,6 +239,9 @@ class DocxPermitProfileCatalog {
         if (!hasDefaultType && !hasScheduleType && !hasAuxiliaryType) {
             throw invalid(profile, "aircraft must define a source column or default type");
         }
+        if (profile.aircraft().inlineRules() != null) {
+            profile.aircraft().inlineRules().forEach(rule -> validateInlineRule(profile, rule, "aircraft"));
+        }
         if (hasScheduleType
                 && !profile.schedule().columns().containsKey(profile.aircraft().scheduleColumn())
                 && (profile.schedule().headerlessColumns() == null
@@ -243,6 +249,25 @@ class DocxPermitProfileCatalog {
                             .containsKey(profile.aircraft().scheduleColumn()))) {
             throw invalid(profile, "aircraft scheduleColumn must be declared by schedule columns");
         }
+    }
+
+    private void validateInlineRule(DocxPermitFormatProfile profile,
+                                    DocxPermitFormatProfile.InlineRule rule,
+                                    String description) {
+        if (rule == null || blank(rule.pattern()) || blank(rule.valueGroup())) {
+            throw invalid(profile, description + " inline rules require a pattern and valueGroup");
+        }
+        validatePattern(profile, rule.pattern(), description + " inline rule");
+        if (!hasNamedGroup(rule.pattern(), rule.valueGroup())) {
+            throw invalid(profile, description + " inline rule is missing named group " + rule.valueGroup());
+        }
+        if (!blank(rule.routeGroup()) && !hasNamedGroup(rule.pattern(), rule.routeGroup())) {
+            throw invalid(profile, description + " inline rule is missing named group " + rule.routeGroup());
+        }
+    }
+
+    private boolean hasNamedGroup(String regex, String group) {
+        return regex.contains("(?<" + group + ">");
     }
 
     private void validateDateField(DocxPermitFormatProfile profile,

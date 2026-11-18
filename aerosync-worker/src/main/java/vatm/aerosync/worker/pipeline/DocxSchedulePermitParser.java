@@ -243,7 +243,7 @@ public class DocxSchedulePermitParser {
                 t.purposeId(), true, t.lastMatchingTable(), t.inferIataPrefix());
         var r = p.route();
         var route = r == null ? null : new DocxPermitFormatProfile.RouteDefinition(r.columns(), r.requiredColumns(),
-                Map.of(), r.tableRequired(), r.allowEmpty(), false, true, false);
+                Map.of(), r.inlineRules(), r.tableRequired(), r.allowEmpty(), false, true, false);
         var adjusted = new DocxPermitFormatProfile(p.id(), p.priority(), p.detectionPatterns(), p.permit(),
                 p.permitDate(), p.operator(), p.billingAddress(), p.reference(), p.referenceColumn(), p.purpose(),
                 p.master(), schedule, route, p.aircraft(), p.validation());
@@ -398,10 +398,22 @@ public class DocxSchedulePermitParser {
         List<RouteRow> routes = noReplacement
                 ? revisionRoutes(profile.route(), newValueTables, normalizeAirportsToIcao, fileName)
                 : routeRows(profile.route(), newValueTables, normalizeAirportsToIcao, fileName);
-        if (profile.route() != null && routes.isEmpty()) {
+        String scopedValueContent = noReplacement
+                ? RevisionDocumentText.newValues(document.rawContent()) : document.rawContent();
+        List<RouteRow> configuredInlineRoutes = inlineRoutes(
+                profile.route(), scopedValueContent, normalizeAirportsToIcao, fileName);
+        if (profile.route() != null && routes.isEmpty() && configuredInlineRoutes.isEmpty()) {
             routes = inferHeaderlessRoutes(newValueTables, scheduleAndOriginalTables, normalizeAirportsToIcao,
                     fileName);
         }
+        boolean filterScheduleByRouteTable = profile.route() != null
+                && profile.route().filterSchedule() && configuredInlineRoutes.isEmpty();
+        if (!configuredInlineRoutes.isEmpty()) {
+            List<RouteRow> combinedRoutes = new ArrayList<>(routes);
+            combinedRoutes.addAll(configuredInlineRoutes);
+            routes = combinedRoutes.stream().distinct().toList();
+        }
+
         List<RouteRow> oldRoutes = noReplacement ? revisionRoutes(profile.route(), revisionValueTables(document, true),
                 normalizeAirportsToIcao, fileName) : routes;
         String purposeContent = noReplacement ? RevisionDocumentText.newValues(document.rawContent()) : document.rawContent();
@@ -437,6 +449,8 @@ public class DocxSchedulePermitParser {
             }
             aircraftTablePresent = inferred != null;
         }
+        InlineAircraftMappings inlineAircraftMappings = inlineAircraftMappings(
+                profile.aircraft(), scopedValueContent, normalizeAirportsToIcao, fileName);
         String auxiliaryAircraftTypes = parsedAuxiliaryAircraftTypes;
         boolean hasAuxiliaryAircraftTable = aircraftTablePresent;
         String selectedAuxiliaryRegistration = auxiliaryRegistration;
@@ -447,16 +461,18 @@ public class DocxSchedulePermitParser {
             flights.addAll(scheduleFlights(
                     profile, table, documentTableIndex(document, table), selectedRoutes,
                     auxiliaryAircraftTypes, selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
+                    inlineAircraftMappings,
                     purposeContent, resolvedOperatorId, iataPrefix, normalizeAirportsToIcao,
-                    false, fileName, noReplacement));
+                    filterScheduleByRouteTable, false, fileName, noReplacement));
         }
         List<ScheduleFlight> originalFlights = new ArrayList<>();
         for (List<List<String>> table : originalScheduleTables) {
             originalFlights.addAll(scheduleFlights(
                     profile, table, documentTableIndex(document, table), selectedOldRoutes,
                     auxiliaryAircraftTypes, selectedAuxiliaryRegistration, hasAuxiliaryAircraftTable,
+                    noReplacement ? InlineAircraftMappings.empty() : inlineAircraftMappings,
                     document.rawContent(), resolvedOperatorId, iataPrefix, normalizeAirportsToIcao,
-                    true, fileName, noReplacement));
+                    false, true, fileName, noReplacement));
         }
         if (flights.isEmpty() && !cancellationOnly) {
             throw invalid(fileName, "No schedule rows found for profile " + profile.id());
@@ -788,10 +804,12 @@ public class DocxSchedulePermitParser {
                                                  String auxiliaryAircraftTypes,
                                                  String auxiliaryRegistration,
                                                  boolean aircraftTablePresent,
+                                                 InlineAircraftMappings inlineAircraftMappings,
                                                  String rawContent,
                                                  String operatorId,
                                                  String iataPrefix,
                                                  boolean normalizeAirportsToIcao,
+                                                 boolean filterScheduleByRouteTable,
                                                  boolean allowMissingAircraft,
                                                  String fileName, boolean exactSchedule) {
         DocxPermitFormatProfile.ScheduleDefinition schedule = profile.schedule();
@@ -851,8 +869,7 @@ public class DocxSchedulePermitParser {
                     .filter(route -> route.matches(routeFrom, routeTo))
                     .findFirst()
                     .orElse(null);
-            if (profile.route() != null
-                    && profile.route().filterSchedule()
+            if (filterScheduleByRouteTable
                     && !routes.isEmpty()
                     && matchedRoute == null) {
                 continue;
@@ -864,6 +881,19 @@ public class DocxSchedulePermitParser {
                             ? routes.getFirst().airways()
                             : null)
                     : matchedRoute.airways();
+            String inlineAircraftType = inlineAircraftMappings.forRoute(from, to);
+            if (inlineAircraftType == null || inlineAircraftType.isBlank()) {
+                inlineAircraftType = inlineAircraftMappings.fallbackType();
+            }
+            if ((inlineAircraftType == null || inlineAircraftType.isBlank())
+                    && inlineAircraftMappings.globalType() != null
+                    && !inlineAircraftMappings.globalType().isBlank()) {
+                inlineAircraftType = inlineAircraftMappings.globalType();
+            }
+            if (inlineAircraftType != null && !inlineAircraftType.isBlank()) {
+                aircraftSource = new AircraftSource(inlineAircraftType, false);
+                aircraftType = inlineAircraftType;
+            }
             String[] effectiveDates = splitConcatenatedDateRange(
                     rowValues.getOrDefault("effectiveFrom", ""),
                     rowValues.getOrDefault("effectiveTo", ""));
@@ -1080,6 +1110,94 @@ public class DocxSchedulePermitParser {
             throw invalid(fileName, "Airways table is present but contains no valid route rows");
         }
         return routes;
+    }
+
+    private List<RouteRow> inlineRoutes(DocxPermitFormatProfile.RouteDefinition definition,
+                                        String rawContent,
+                                        boolean normalizeAirportsToIcao,
+                                        String fileName) {
+        if (definition == null || definition.inlineRules() == null) return List.of();
+        List<RouteRow> result = new ArrayList<>();
+        for (DocxPermitFormatProfile.InlineRule rule : definition.inlineRules()) {
+            Matcher matcher = Pattern.compile(rule.pattern()).matcher(RevisionDocumentText.folded(rawContent));
+            while (matcher.find()) {
+                List<String> airports = routeSequence(namedGroup(matcher, rule.routeGroup()));
+                String airways = normalizeAirways(namedGroup(matcher, rule.valueGroup()));
+                if (airports.size() < 2 || airways.isBlank()) {
+                    throw invalid(fileName, "Inline route rule did not produce a route and airway");
+                }
+                for (int index = 0; index < airports.size() - 1; index++) {
+                    result.add(new RouteRow(
+                            normalizeAirport(airports.get(index), normalizeAirportsToIcao),
+                            normalizeAirport(airports.get(index + 1), normalizeAirportsToIcao),
+                            airways));
+                }
+            }
+        }
+        return result.stream().distinct().toList();
+    }
+
+    private InlineAircraftMappings inlineAircraftMappings(
+            DocxPermitFormatProfile.AircraftDefinition definition,
+            String rawContent,
+            boolean normalizeAirportsToIcao,
+            String fileName) {
+        if (definition == null || definition.inlineRules() == null) return InlineAircraftMappings.empty();
+        Map<String, String> byRoute = new LinkedHashMap<>();
+        String fallback = null;
+        String global = null;
+        for (DocxPermitFormatProfile.InlineRule rule : definition.inlineRules()) {
+            Matcher matcher = Pattern.compile(rule.pattern()).matcher(RevisionDocumentText.folded(rawContent));
+            while (matcher.find()) {
+                String value = AircraftTypeNotation.normalize(namedGroup(matcher, rule.valueGroup()));
+                if (value == null || value.isBlank()) continue;
+                if (rule.routeGroup() != null && !rule.routeGroup().isBlank()) {
+                    List<String> airports = routeSequence(namedGroup(matcher, rule.routeGroup()));
+                    if (airports.size() < 2) {
+                        throw invalid(fileName, "Inline aircraft rule did not produce a valid route");
+                    }
+                    for (int index = 0; index < airports.size() - 1; index++) {
+                        String from = normalizeAirport(airports.get(index), normalizeAirportsToIcao);
+                        String to = normalizeAirport(airports.get(index + 1), normalizeAirportsToIcao);
+                        putUniqueAircraft(byRoute, from + "->" + to, value, fileName);
+                    }
+                } else if (rule.fallback()) {
+                    fallback = mergeAircraftValues(fallback, value);
+                } else {
+                    global = mergeAircraftValues(global, value);
+                }
+            }
+        }
+        return new InlineAircraftMappings(Map.copyOf(byRoute), fallback, global);
+    }
+
+    private void putUniqueAircraft(Map<String, String> values, String route, String aircraft, String fileName) {
+        String previous = values.putIfAbsent(route, aircraft);
+        if (previous != null && !previous.equals(aircraft)) {
+            throw invalid(fileName, "Conflicting aircraft types declared for route " + route);
+        }
+    }
+
+    private String mergeAircraftValues(String current, String addition) {
+        if (current == null || current.isBlank()) return addition;
+        return String.join("/", new LinkedHashSet<>(Arrays.asList((current + "/" + addition).split("/"))));
+    }
+
+    private String namedGroup(Matcher matcher, String group) {
+        if (group == null || group.isBlank()) return "";
+        try {
+            return Objects.requireNonNullElse(matcher.group(group), "").trim();
+        } catch (IllegalArgumentException exception) {
+            return "";
+        }
+    }
+
+    private List<String> routeSequence(String value) {
+        return Arrays.stream(Objects.requireNonNullElse(value, "").toUpperCase(Locale.ROOT)
+                        .split("\\s*[-\u2013\u2014]\\s*"))
+                .map(String::trim)
+                .filter(code -> code.matches("[A-Z]{3,4}"))
+                .toList();
     }
 
     private Matcher routeMatcher(String value) {
@@ -2538,6 +2656,16 @@ public class DocxSchedulePermitParser {
     }
 
     private record AircraftSource(String value, boolean defaulted) {
+    }
+
+    private record InlineAircraftMappings(Map<String, String> byRoute, String fallbackType, String globalType) {
+        static InlineAircraftMappings empty() {
+            return new InlineAircraftMappings(Map.of(), null, null);
+        }
+
+        String forRoute(String from, String to) {
+            return byRoute.get(from + "->" + to);
+        }
     }
 
     private record HeaderlessAircraft(String aircraftType, String registration) {

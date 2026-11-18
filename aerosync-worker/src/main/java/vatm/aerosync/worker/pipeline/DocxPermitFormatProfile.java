@@ -94,6 +94,7 @@ record DocxPermitFormatProfile(
             Map<String, List<String>> columns,
             List<String> requiredColumns,
             Map<String, String> staticAirways,
+            List<InlineRule> inlineRules,
             boolean tableRequired,
             boolean allowEmpty,
             boolean fallbackToFirst,
@@ -107,11 +108,15 @@ record DocxPermitFormatProfile(
             Map<String, List<String>> auxiliaryColumns,
             List<String> auxiliaryRequiredColumns,
             String auxiliaryTypeColumn,
+            List<InlineRule> inlineRules,
             String remarkPrefix,
             String defaultType,
             boolean lastMatchingTable,
             String registrationColumn
     ) {
+    }
+
+    record InlineRule(String pattern, String routeGroup, String valueGroup, boolean fallback) {
     }
 
     record ValidationRules(boolean allowIataAirports, boolean reviewOnly) {
