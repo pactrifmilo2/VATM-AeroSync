@@ -25,6 +25,10 @@ schedule:
   includeEta: true
   dateFormats: [dMMMyy, dMMMuuuu, d-MMM-yy, d-MMM-uuuu, d/M/uuuu, d MMM uu, d MMM uuuu]
 route:
+  inlineRules:
+  - pattern: '(?imu)(?<route>[A-Z]{3,4}(?:\s*[-\u2013\u2014]\s*[A-Z]{3,4})+)\s*:\s*(?<airways>[^;\r\n]+)'
+    routeGroup: route
+    valueGroup: airways
   tableRequired: false
   allowEmpty: true
   filterSchedule: false

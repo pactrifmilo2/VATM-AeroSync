@@ -9,3 +9,8 @@ detectionPatterns:
   - '(?iu)(?:\bREVISE#?\b|\bREVISION\b|\bREV(?:ISION)?\s*\d*\b|\bRVS\s*\d*\b|\bREVISED\s+(?:ITEM|SCHEDULE)\b|\bNEW\s+SCHEDULE\b|(?:/|-)\s*REV\d+\b)'
 operator:
   fixedValue: VJC
+route:
+  inlineRules:
+  - pattern: '(?imu)(?<route>[A-Z]{3,4}(?:\s*[-\u2013\u2014]\s*[A-Z]{3,4})+)\s*:\s*(?<airways>[^;\r\n]+)'
+    routeGroup: route
+    valueGroup: airways

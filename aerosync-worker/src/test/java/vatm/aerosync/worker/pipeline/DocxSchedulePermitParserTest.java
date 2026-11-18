@@ -237,6 +237,41 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void vjcProfileReadsInlineMultiLegAirways() throws Exception {
+        Path file = tempDir.resolve("LD-9900-VJC-inline-route.docx");
+        try (XWPFDocument document = new XWPFDocument()) {
+            document.createParagraph().createRun().setText("Hà Nội, ngày 18/11/2026");
+            document.createParagraph().createRun().setText("LD-9900/11/2026VN");
+
+            XWPFTable operator = document.createTable(3, 2);
+            operator.getRow(0).getCell(0).setText("Tên: Vietjet Air");
+            operator.getRow(1).getCell(0).setText("Mã IATA: VJ");
+            operator.getRow(1).getCell(1).setText("Mã ICAO: VJC");
+            operator.getRow(2).getCell(0).setText("Địa chỉ bưu điện: Hà Nội");
+
+            document.createParagraph().createRun().setText("5. Đường hàng không: SGN-HAN-SGN: Q1 W1");
+            vjcScheduleTable(document, new String[][] {
+                    {"VJ100", "24Nov26", "24Nov26", "2", "SGN", "0100", "HAN", "0300"},
+                    {"VJ101", "24Nov26", "24Nov26", "2", "HAN", "0400", "SGN", "0600"}
+            });
+
+            XWPFTable aircraft = document.createTable(2, 2);
+            aircraft.getRow(0).getCell(0).setText("Loại tàu bay");
+            aircraft.getRow(0).getCell(1).setText("Số đăng ký");
+            aircraft.getRow(1).getCell(0).setText("320");
+
+            try (OutputStream output = Files.newOutputStream(file)) {
+                document.write(output);
+            }
+        }
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+        assertThat(permit.operatorId()).isEqualTo("VJC");
+        assertThat(permit.flights()).extracting(flight -> flight.via())
+                .containsExactly("Q1/W1", "Q1/W1");
+    }
+
+    @Test
     void allSixSuppliedVjcAndHvnPermitsRemainReadable() {
         for (String fileName : List.of(
                 "LD 4281 VJC_RVS_QN_VJ1601_14NOV26.docx",

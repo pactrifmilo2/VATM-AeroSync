@@ -7,4 +7,8 @@ detectionPatterns:
   - '(?iu)ICAO\s*(?:CODE)?\s*:\s*[A-Z0-9]{3}\b'
   - '(?iu)(?:FL(?:IGH)?T\s*NUMBER|SỐ\s+HIỆU\s+CHUYẾN\s+BAY)'
   - '(?isu)^(?!.*(?:\bREV(?:ISION)?\s*\d+\b|\bRVS\s*\d+\b|/\s*REV\d+\b)).*$'
-
+route:
+  inlineRules:
+  - pattern: '(?imu)(?<route>[A-Z]{3,4}(?:\s*[-\u2013\u2014]\s*[A-Z]{3,4})+)\s*:\s*(?<airways>[^;\r\n]+)'
+    routeGroup: route
+    valueGroup: airways
