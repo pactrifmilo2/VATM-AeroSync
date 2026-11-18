@@ -1,58 +1,58 @@
-# Plan - 18112026 - HVN/VJC multi-leg routes and aircraft by route
+# Kế hoạch - 18112026 - Đọc đường bay nhiều chặng và tàu bay theo tuyến HVN/VJC
 
-## Objective
+## Mục tiêu
 
-Safely read airway routes and aircraft types from the six supplied HVN/VJC permit documents. Support inline text such as `SGN-HYD-SGN: R468` and aircraft rules scoped to a route, without pairing metadata to schedule rows by their order.
+Đọc an toàn đường hàng không và loại tàu bay trong sáu tài liệu phép bay HVN/VJC được cung cấp. Hỗ trợ nội dung viết trực tiếp như `SGN-HYD-SGN: R468` và quy tắc loại tàu bay áp dụng riêng cho từng tuyến, không ghép thông tin vào các dòng lịch bay chỉ dựa trên thứ tự xuất hiện.
 
-## Scope
+## Phạm vi
 
-- The supplied documents: LD 4281, LD 4282, LD 4289, LD 4300, LD 4302, and LD 4301.
-- Airline YAML profiles and only the shared parser changes needed for inline route sequences and aircraft-by-route rules.
-- Regression tests using the six files and synthetic coverage for multi-leg, reverse direction, route-specific rules, and fallback.
-- No email replay, no writes to Oracle/ATFM, no deployment.
+- Sáu tài liệu được cung cấp: LD 4281, LD 4282, LD 4289, LD 4300, LD 4302 và LD 4301.
+- Các hồ sơ YAML của hãng và những thay đổi tối thiểu cần thiết cho bộ phân tích dùng chung để đọc chuỗi tuyến trực tiếp và quy tắc tàu bay theo tuyến.
+- Kiểm thử hồi quy bằng sáu tài liệu và dữ liệu tổng hợp cho tuyến nhiều chặng, chiều ngược, quy tắc theo tuyến và quy tắc dự phòng.
+- Không phát lại email, không ghi vào Oracle/ATFM, không triển khai.
 
-## Initial findings
+## Phát hiện ban đầu
 
-- **LD 4301 HVN:** `SGN-HYD-SGN: R468; PQC-HYD-PQC: R334`. The schedule contains SGN->HYD, HYD->SGN, PQC->HYD, and HYD->PQC legs. Each round-trip sequence must expand to directed pairs and keep its airway association. Aircraft `321/320` is stated globally.
-- **LD 4302 HVN:** Inline directional routes are `HAN-VNS: W21 B214; VNS-HAN: B214 W21`. Preserve the direction-specific airway sequence during normalization.
-- **LD 4300 HVN:** Aircraft types are route-specific for `HAN-SGN-HAN: 787/350/321/320`; the stated fallback for other routes is `321/320`. The schedule has many other sectors, so rules must match sector pairs, not row order.
-- **LD 4282 VJC:** Schedule tables contain route-heading rows interleaved with flights. A separate table maps sector to airways, and a separate aircraft table lists global aircraft types.
-- **LD 4281 VJC:** The revision has OLD/NEW tables and route-heading rows; it has no dedicated aircraft table. Do not apply NEW metadata to OLD or infer a new aircraft type.
-- **LD 4289 HVN:** The revision notes inherit route/aircraft information from seasonal permit LD-69/A/W/2026VN, while some schedule sections specify types. Preserve existing baseline/revision behavior; do not turn a reference note into a static rule for every flight.
-- The parser supports YAML `staticAirways` and route tables. Current `A-B-C` inference is in the headerless-table path; aircraft auxiliary tables currently aggregate aircraft types globally and do not represent `sector -> types`.
+- **LD 4301 HVN:** `SGN-HYD-SGN: R468; PQC-HYD-PQC: R334`. Lịch có các chặng SGN→HYD, HYD→SGN, PQC→HYD và HYD→PQC. Cần tách mỗi chuỗi khứ hồi thành các cặp sân bay có hướng và giữ đúng airway tương ứng. Loại tàu bay `321/320` áp dụng chung theo nội dung phép.
+- **LD 4302 HVN:** Các tuyến có hướng được ghi trực tiếp: `HAN-VNS: W21 B214; VNS-HAN: B214 W21`. Cần giữ danh sách airway riêng theo từng chiều trong quá trình chuẩn hóa.
+- **LD 4300 HVN:** Loại tàu bay riêng cho tuyến `HAN-SGN-HAN: 787/350/321/320`; quy tắc dự phòng cho các đường bay khác là `321/320`. Lịch có nhiều tuyến khác, nên phải so khớp theo cặp sân bay, không theo thứ tự dòng.
+- **LD 4282 VJC:** Bảng lịch có các dòng tiêu đề tuyến xen kẽ các chuyến bay. Một bảng riêng ánh xạ chặng với airway; một bảng khác liệt kê các loại tàu bay áp dụng chung.
+- **LD 4281 VJC:** Phép sửa đổi có các bảng OLD/NEW và tiêu đề tuyến; không có bảng tàu bay riêng. Không áp dụng thông tin NEW cho OLD hoặc tự suy ra loại tàu bay mới.
+- **LD 4289 HVN:** Ghi chú của phép sửa đổi cho biết đường bay/loại tàu bay được kế thừa từ phép mùa LD-69/A/W/2026VN, đồng thời một số nhóm lịch nêu loại riêng. Cần giữ cơ chế baseline/revision hiện có; không biến ghi chú tham chiếu thành quy tắc tĩnh áp dụng cho mọi chuyến.
+- Parser hỗ trợ `staticAirways` trong YAML và bảng route. Hiện việc suy luận chuỗi `A-B-C` nằm trong nhánh xử lý bảng không có tiêu đề; các bảng tàu bay phụ hiện gộp các loại tàu bay thành danh sách chung, chưa biểu diễn được ánh xạ `tuyến → loại tàu bay`.
 
-## Proposed assumptions
+## Các giả định đề xuất
 
-- A route chain `A-B-C` means directed legs `A->B` and `B->C`; `A-B-A` covers both directions. An airway attached to the chain applies to each leg unless the document states a more specific sector rule.
-- A matching route-specific aircraft rule takes precedence over the explicit fallback `other routes`; the global aircraft list is used only when the profile declares it as a fallback. Do not infer pairing by schedule row order.
-- For revisions, use route/aircraft evidence from the correct NEW portion only. When NEW omits a field, use the existing baseline behavior; do not infer from OLD.
+- Chuỗi tuyến `A-B-C` biểu thị các chặng có hướng `A→B` và `B→C`; chuỗi `A-B-A` bao gồm cả hai chiều. Airway gắn với chuỗi áp dụng cho từng chặng, trừ khi tài liệu có khai báo riêng cụ thể hơn cho chặng đó.
+- Quy tắc tàu bay khớp chính xác với tuyến được ưu tiên hơn quy tắc dự phòng tường minh “các đường bay khác”. Danh sách tàu bay chung chỉ được dùng khi hồ sơ YAML khai báo nó là phương án dự phòng. Không ghép thông tin dựa trên thứ tự dòng lịch.
+- Với phép sửa đổi, chỉ sử dụng bằng chứng route/aircraft thuộc đúng phần NEW. Nếu NEW không nêu một trường thì dùng cơ chế kế thừa baseline hiện có; không suy diễn từ OLD.
 
-## Questions requiring user selection
+## Các câu hỏi cần người dùng lựa chọn
 
-### 1. Aircraft rule precedence
+### 1. Thứ tự ưu tiên áp dụng quy tắc tàu bay
 
-- [ ] A - **Recommended:** Route-specific first, then explicit `other routes` fallback, then global permit-wide list. Pros: preserves the LD 4300 exception. Cons: requires route-keyed parsing and matching.
-- [ ] B - Use only one global type list for the whole permit. Pros: simpler. Cons: loses the HAN-SGN-HAN distinction in LD 4300.
-- [ ] C - Use only route-specific rules and no fallback. Pros: avoids broad assignment. Cons: leaves unlisted sectors without aircraft despite an explicit `other routes` clause.
-- Other option from user: ____________________
+- [ ] A - **Khuyến nghị:** Ưu tiên tuyến cụ thể, tiếp theo là quy tắc dự phòng tường minh “các đường bay khác”, sau đó mới dùng danh sách chung của phép. Ưu điểm: giữ được ngoại lệ tuyến trong LD 4300. Nhược điểm: cần phân tích và so khớp dữ liệu theo tuyến.
+- [ ] B - Chỉ dùng một danh sách loại tàu bay chung cho toàn phép. Ưu điểm: đơn giản hơn. Nhược điểm: mất phân biệt giữa HAN-SGN-HAN và các tuyến khác trong LD 4300.
+- [ ] C - Chỉ dùng quy tắc theo tuyến, không có dự phòng. Ưu điểm: tránh gán loại tàu bay quá rộng. Nhược điểm: các chặng không liệt kê sẽ thiếu loại tàu bay dù văn bản có nêu “các đường bay khác”.
+- Phương án khác do người dùng nhập: ____________________
 
-### 2. YAML pattern representation
+### 2. Cách biểu diễn mẫu trong YAML
 
-- [ ] A - **Recommended:** Add structured pattern definitions to the HVN profile for inline airway route chains and aircraft-by-route clauses; process them in shared parser logic. Pros: format behavior is visible in YAML and testable across samples. Cons: requires profile schema and parser expansion.
-- [ ] B - Hard-code HVN-specific behavior in Java; YAML only detects the document. Pros: less YAML schema work. Cons: format rules become hidden in code and harder to extend.
-- [ ] C - Manually add each observed permit route as YAML `staticAirways`. Pros: no parser changes. Cons: does not generalize to future permits and risks mismatch with schedules.
-- Other option from user: ____________________
+- [ ] A - **Khuyến nghị:** Bổ sung khai báo có cấu trúc trong hồ sơ HVN cho chuỗi route/airway trực tiếp và quy tắc tàu bay theo tuyến; xử lý bằng logic dùng chung của parser. Ưu điểm: quy tắc định dạng thể hiện rõ trong YAML và có thể kiểm thử trên nhiều tài liệu. Nhược điểm: cần mở rộng schema hồ sơ và parser.
+- [ ] B - Viết riêng logic HVN trong Java, YAML chỉ dùng để nhận diện tài liệu. Ưu điểm: ít phải thay đổi schema YAML. Nhược điểm: quy tắc định dạng bị ẩn trong code, khó rà soát và mở rộng.
+- [ ] C - Khai báo thủ công từng tuyến quan sát được của từng phép bằng YAML `staticAirways`. Ưu điểm: không cần sửa parser. Nhược điểm: không áp dụng được cho phép mới trong tương lai và có nguy cơ không khớp lịch bay.
+- Phương án khác do người dùng nhập: ____________________
 
-## Default implementation scope if recommendations are selected
+## Phạm vi triển khai mặc định nếu người dùng chọn phương án khuyến nghị
 
-1. Extend profile definitions for inline route rules and aircraft-by-route rules; validate required regex capture groups at profile load time.
-2. Expand route chains into directed legs and normalize airway text using current behavior; match each schedule row independently.
-3. Support `other routes` only as an explicit profile fallback.
-4. Parse aircraft lists such as `321/320` and `787/350/321/320` using `AircraftTypeNotation`; never infer aircraft from callsign, filename, or schedule order.
-5. Add regression tests for all six DOCX files. Assert LD 4301 maps R468 to SGN<->HYD and R334 to PQC<->HYD; LD 4302 keeps directional airway lists; LD 4300 distinguishes HAN<->SGN from fallback; VJC keeps route-table and revision behavior.
-6. Run targeted worker tests and profile corpus regression; record actual results in the changelog.
-7. Use documents as read-only fixtures. Do not import or write to live ATFM.
+1. Mở rộng định nghĩa hồ sơ cho quy tắc route trực tiếp và tàu bay theo tuyến; kiểm tra các nhóm bắt buộc trong regex khi tải hồ sơ.
+2. Tách chuỗi tuyến thành các chặng có hướng, chuẩn hóa airway bằng logic hiện có và so khớp riêng từng dòng lịch.
+3. Chỉ dùng “các đường bay khác” làm quy tắc dự phòng khi hồ sơ khai báo tường minh.
+4. Phân tích danh sách loại tàu bay như `321/320` và `787/350/321/320` bằng `AircraftTypeNotation`; tuyệt đối không suy ra tàu bay từ callsign, tên file hoặc thứ tự lịch.
+5. Thêm kiểm thử hồi quy cho cả sáu DOCX. Xác nhận LD 4301 ánh xạ R468 cho SGN↔HYD và R334 cho PQC↔HYD; LD 4302 giữ đúng danh sách airway theo chiều; LD 4300 phân biệt HAN↔SGN với tuyến dự phòng; VJC giữ nguyên cách xử lý bảng route và revision.
+6. Chạy các kiểm thử worker trọng tâm và kiểm thử hồi quy tập hồ sơ; ghi kết quả thực tế vào nhật ký thay đổi.
+7. Chỉ dùng tài liệu làm dữ liệu kiểm thử chỉ đọc. Không import hoặc ghi vào ATFM thật.
 
-## Waiting for confirmation
+## Chờ xác nhận
 
-No source, YAML, or test files dependent on the choices above have been changed. User can mark choices, provide an alternative, or reply with selections. Record choices here before implementation.
+Chưa sửa source, YAML hoặc test phụ thuộc vào các lựa chọn trên. Người dùng có thể đánh dấu phương án, ghi phương án khác hoặc gửi lựa chọn bằng tin nhắn. Cần ghi nhận lựa chọn trong phiếu trước khi bắt đầu triển khai.
