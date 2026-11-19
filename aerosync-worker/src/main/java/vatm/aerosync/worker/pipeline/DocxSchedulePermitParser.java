@@ -1229,12 +1229,12 @@ public class DocxSchedulePermitParser {
                     Matcher sectorMatcher = GROUPED_ROUTE_PATTERN.matcher(cleanCell);
                     if (sectorMatcher.matches()) {
                         Arrays.stream(sectorMatcher.group(1).split("\\s*/\\s*"))
-                                .filter(this::looksLikeAirportCode)
+                                .filter(this::looksLikeRouteAirportCode)
                                 .forEach(airportSet::add);
                         Arrays.stream(sectorMatcher.group(2).split("\\s*/\\s*"))
-                                .filter(this::looksLikeAirportCode)
+                                .filter(this::looksLikeRouteAirportCode)
                                 .forEach(airportSet::add);
-                    } else if (looksLikeAirportCode(cleanCell)) {
+                    } else if (looksLikeRouteAirportCode(cleanCell)) {
                         airportSet.add(cleanCell);
                     }
                 }
@@ -1420,6 +1420,10 @@ public class DocxSchedulePermitParser {
     private boolean looksLikeAirportCode(String value) {
         String code = airportCodeCatalog.canonicalize(value);
         return airportCodeCatalog.isKnown(code) || code.matches("[A-Z]{4}");
+    }
+
+    private boolean looksLikeRouteAirportCode(String value) {
+        return airportCodeCatalog.canonicalize(value).matches("[A-Z]{3,4}");
     }
 
     private boolean looksLikeScheduleDataRow(List<String> row) {
