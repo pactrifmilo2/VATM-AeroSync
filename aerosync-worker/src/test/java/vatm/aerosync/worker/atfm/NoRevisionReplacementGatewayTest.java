@@ -81,7 +81,7 @@ class NoRevisionReplacementGatewayTest {
                      "SELECT COUNT(*) TOTAL, MAX(FLIGHTNBR) FLIGHTNBR, MAX(TO_AIRP) TO_AIRP "
                              + "FROM T_PERMDETAIL_NO_BACKUP WHERE PERM_ID=20")) {
             assertThat(master.next()).isTrue();
-            assertThat(master.getInt("ISACCEPT")).isZero();
+            assertThat(master.getInt("ISACCEPT")).isOne();
             assertThat(backupMaster.next()).isTrue();
             assertThat(backupMaster.getString("PERMNBR_ID")).isEqualTo("O/F 06916/CHK/2026");
             assertThat(backupMaster.getString("REFERENCE")).isEqualTo("EM 24092026");

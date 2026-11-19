@@ -129,7 +129,7 @@ class MultiDayNonScheduledRevisionGatewayTest {
             assertThat(master.getString("REFERENCE")).contains("BASE REF", "EM 21082026 R(2)");
             assertThat(master.getString("PERMCONTENT")).contains("BASE CONTENT", "REV2 CONTENT");
             assertThat(master.getString("PERMCONTENT1")).contains("BASE CONTENT", "REV2 CONTENT");
-            assertThat(master.getInt("ISACCEPT")).isZero();
+            assertThat(master.getInt("ISACCEPT")).isOne();
         }
 
         assertThat(gateway.update(revision).detailCount()).isZero();

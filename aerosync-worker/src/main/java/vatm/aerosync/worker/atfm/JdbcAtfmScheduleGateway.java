@@ -80,8 +80,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
               INSERT INTO T_PERMMASTER_SC (
                   PERMNBR_ID, AUTHOR_ID, PERMTYPE, PERMNBR, VERSION, SEASON,
                   PERMDATE, OPER_ID, REFERENCE, VALIDHOURS, LASTMODIFY, LASTUSER,
-                  STATUS, PERMCONTENT, PERMCONTENT1, BILLINGADDRESS, FLIGHTTYPE)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                  STATUS, PERMCONTENT, PERMCONTENT1, BILLINGADDRESS, FLIGHTTYPE, ISACCEPT)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
               RETURNING ID, PERM_ID INTO ?, ?;
             END;
             """;
@@ -142,7 +142,7 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private static final String UPDATE_NO_REVISION_MASTER_SQL = """
             UPDATE T_PERMMASTER_NO
                SET REFERENCE = ?, PERMCONTENT = ?, PERMCONTENT1 = ?,
-                   LASTMODIFY = ?, LASTUSER = ?, ISACCEPT = 0
+                   LASTMODIFY = ?, LASTUSER = ?
              WHERE ID = ?
             """;
 
@@ -155,13 +155,13 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
     private static final String UPDATE_SC_REVISION_MASTER_SQL = """
             UPDATE T_PERMMASTER_SC
                SET REFERENCE = ?, PERMCONTENT = ?, PERMCONTENT1 = ?,
-                   LASTMODIFY = ?, LASTUSER = ?, ISACCEPT = 0
+                   LASTMODIFY = ?, LASTUSER = ?
              WHERE ID = ?
             """;
 
-    private static final String MARK_SC_REVISION_NOT_ACCEPTED_SQL = """
+    private static final String TOUCH_SC_REVISION_MASTER_SQL = """
             UPDATE T_PERMMASTER_SC
-               SET ISACCEPT = 0, LASTMODIFY = ?, LASTUSER = ?
+               SET LASTMODIFY = ?, LASTUSER = ?
              WHERE ID = ?
             """;
 
@@ -170,8 +170,8 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
               INSERT INTO T_PERMMASTER_NO (
                   PERMNBR_ID, AUTHOR_ID, PERMTYPE, PERMNBR, PERMDATE, OPER_ID,
                   REFERENCE, VALIDHOURS, STATUS, LASTUSER, LASTMODIFY,
-                  BILLINGADDRESS, PERMCONTENT, PERMCONTENT1, ADDRESS1, VERSION, FLIGHTTYPE)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                  BILLINGADDRESS, PERMCONTENT, PERMCONTENT1, ADDRESS1, VERSION, FLIGHTTYPE, ISACCEPT)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)
               RETURNING ID, PERM_ID INTO ?, ?;
             END;
             """;
@@ -854,18 +854,18 @@ public class JdbcAtfmScheduleGateway implements AtfmScheduleGateway {
             }
         }
         if (permit.importRevision() && !permit.revisionCreatesNewPermit()) {
-            markScRevisionNotAccepted(connection, masterId);
+            touchScRevisionMaster(connection, masterId);
         }
         return new AtfmWriteResult(masterId, permId, missingFlights.size());
     }
 
-    private void markScRevisionNotAccepted(Connection connection, long masterId) throws SQLException {
-        try (PreparedStatement statement = connection.prepareStatement(MARK_SC_REVISION_NOT_ACCEPTED_SQL)) {
+    private void touchScRevisionMaster(Connection connection, long masterId) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement(TOUCH_SC_REVISION_MASTER_SQL)) {
             statement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
             statement.setString(2, "AEROSYNC");
             statement.setLong(3, masterId);
             if (statement.executeUpdate() != 1) {
-                throw new SQLException("SC revision acceptance update affected an unexpected row count");
+                throw new SQLException("SC revision master update affected an unexpected row count");
             }
         }
     }
