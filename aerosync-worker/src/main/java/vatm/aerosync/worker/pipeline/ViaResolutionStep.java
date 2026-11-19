@@ -150,8 +150,9 @@ public class ViaResolutionStep {
                     rowNumber,
                     field,
                     "BR-AIRPORT-FALLBACK",
-                    "Airport code not found in ATFM: " + sourceCode
-                            + "; fallback " + FALLBACK_AIRPORT + " applied",
+                    "Airport code not found in ATFM dictionary M_AERO: " + sourceCode
+                            + " (" + exception.getMessage() + "); fallback "
+                            + FALLBACK_AIRPORT + " applied",
                     sourceCode));
             return FALLBACK_AIRPORT;
         }

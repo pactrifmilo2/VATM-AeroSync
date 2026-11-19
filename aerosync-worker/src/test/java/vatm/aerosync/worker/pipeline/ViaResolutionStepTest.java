@@ -150,7 +150,26 @@ class ViaResolutionStepTest {
                 .extracting("code", "field", "value")
                 .contains(org.assertj.core.groups.Tuple.tuple(
                         "BR-AIRPORT-FALLBACK", "fromAirport", "XXX"));
+        assertThat(context.getRowValidationErrors().getFirst().rowNumber()).isEqualTo(1);
+        assertThat(context.getRowValidationErrors().getFirst().message())
+                .contains("ATFM dictionary M_AERO", "M_AERO.AE_IATA=XXX", "VVVV");
         new BusinessRuleValidatorStep().validate(context);
+    }
+
+    @Test
+    void resolve_mapsAirportMissingFromYamlWhenItExistsInAtfm() {
+        ProcessingContext context = context("HVN", false);
+        ScheduleFlight source = context.getSchedulePermit().flights().getFirst();
+        context.setSchedulePermit(context.getSchedulePermit().withFlights(List.of(
+                source.withResolvedRoute("KUL", "VCL", null))));
+
+        step.resolve(context);
+
+        ScheduleFlight flight = context.getSchedulePermit().flights().getFirst();
+        assertThat(flight.fromAirport()).isEqualTo("WMKK");
+        assertThat(flight.toAirport()).isEqualTo("VVCA");
+        assertThat(context.getRowValidationErrors()).extracting("code")
+                .doesNotContain("BR-AIRPORT-FALLBACK");
     }
 
     @Test
