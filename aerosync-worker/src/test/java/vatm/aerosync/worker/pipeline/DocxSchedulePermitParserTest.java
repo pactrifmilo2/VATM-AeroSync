@@ -323,6 +323,25 @@ class DocxSchedulePermitParserTest {
     }
 
     @Test
+    void configuredArchivedVjcIncomingPermitKeepsFlight5022() {
+        String configured = System.getProperty("permit.vjc.incoming.sample.path");
+        Assumptions.assumeTrue(configured != null && !configured.isBlank(),
+                "Set -Dpermit.vjc.incoming.sample.path to parse the archived VJC Incoming file");
+        Path file = Path.of(configured);
+        Assumptions.assumeTrue(Files.isRegularFile(file), "Configured VJC Incoming file does not exist");
+
+        SchedulePermit permit = parser.parse(file, file.getFileName().toString());
+
+        assertThat(permit.operatorId()).isEqualTo("VJC");
+        assertThat(permit.flights()).anySatisfy(flight -> {
+            assertThat(flight.flightNumber()).isEqualTo("VJC5022");
+            assertThat(flight.fromAirport()).isEqualTo("VVTS");
+            assertThat(flight.toAirport()).isEqualTo("DYG");
+            assertThat(flight.via()).isNotBlank();
+        });
+    }
+
+    @Test
     void allSixSuppliedVjcAndHvnPermitsRemainReadable() {
         for (String fileName : List.of(
                 "LD 4281 VJC_RVS_QN_VJ1601_14NOV26.docx",
