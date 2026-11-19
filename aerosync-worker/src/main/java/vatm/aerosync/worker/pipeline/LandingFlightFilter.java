@@ -7,7 +7,7 @@ final class LandingFlightFilter {
     private LandingFlightFilter() {}
 
     static SchedulePermit filter(SchedulePermit permit) {
-        if (!"LD".equalsIgnoreCase(permit.permitType()) || permit.seasonalPermit()
+        if (!"LD".equalsIgnoreCase(permit.permitType())
                 || permit.referencedSeasonNewPermit()) return permit;
         var domestic = permit.flights().stream().filter(flight ->
                 flight.fromAirport() != null && flight.toAirport() != null

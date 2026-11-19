@@ -54,10 +54,26 @@ class LandingFlightFilterTest {
 
 
     @Test
-    void seasonalLandingAndOverflightRemainUnfiltered() {
+    void seasonalLandingKeepsOnlyRoutesWithVietnamAirport() {
+        var seasonal = permit("LD-31/A/S/2026VN", "LD", List.of(
+                flight("BAV1", "VVTS", "VVNB"), flight("BAV2", "VVNB", "ZHEC"),
+                flight("BAV3", "RPLL", "VVTS"), flight("BAV4", "OERK", "RPLL")));
+        assertThat(LandingFlightFilter.filter(seasonal).flights())
+                .extracting(ScheduleFlight::flightNumber).containsExactly("BAV1", "BAV2", "BAV3");
+    }
+
+    @Test
+    void seasonalLandingWithOnlyForeignRoutesIsRejected() {
+        assertThatThrownBy(() -> LandingFlightFilter.filter(permit("LD-31/A/S/2026VN", "LD",
+                List.of(flight("BAV1", "OERK", "RPLL")))))
+                .isInstanceOf(BusinessRuleException.class)
+                .hasMessageContaining("no flight with a Viet Nam airport");
+    }
+
+    @Test
+    void overflightRemainsUnfiltered() {
         var foreign = List.of(flight("BAV1", "OERK", "RPLL"));
-        assertThat(LandingFlightFilter.filter(permit("LD-31/A/S/2026VN", "LD", foreign))
-                .flights()).hasSize(1);
+
         assertThat(LandingFlightFilter.filter(permit("OF-3454/09/2026VN", "O/F", foreign))
                 .flights()).hasSize(1);
     }
