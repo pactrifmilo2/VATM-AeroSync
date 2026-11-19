@@ -10,7 +10,9 @@ final class LandingFlightFilter {
         if (!"LD".equalsIgnoreCase(permit.permitType()) || permit.seasonalPermit()
                 || permit.referencedSeasonNewPermit()) return permit;
         var domestic = permit.flights().stream().filter(flight ->
-                flight.toAirport() != null && flight.toAirport().startsWith("VV"))
+                flight.fromAirport() != null && flight.toAirport() != null
+                        && (flight.fromAirport().startsWith("VV")
+                        || flight.toAirport().startsWith("VV")))
                 .toList();
         if (domestic.isEmpty()) {
             throw new BusinessRuleException("BR-LD-NO-VN-AIRPORT",

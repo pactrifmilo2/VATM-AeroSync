@@ -26,15 +26,32 @@ class LandingFlightFilterTest {
     void onlyAdHocLandingRoutesWithVietnamAirportAreWritten() {
         var source = permit("LD-3454/09/2026VN", "LD", List.of(
                 flight("BAV1", "OERK", "RPLL"), flight("BAV2", "VVTS", "RPLL"),
-                flight("BAV3", "RPLL", "VVTS"), flight("BAV4", "VVTS", "VVNB")));
+                flight("BAV3", "RPLL", "VVTS"), flight("BAV4", "VVTS", "VVNB"),
+                flight("BAV5", "VVNB", "ZHEC")));
         assertThat(LandingFlightFilter.filter(source).flights())
                 .extracting(ScheduleFlight::flightNumber)
-                .containsExactly("BAV2", "BAV3", "BAV4");
+                .containsExactly("BAV2", "BAV3", "BAV4", "BAV5");
         assertThatThrownBy(() -> LandingFlightFilter.filter(permit("LD-3455/09/2026VN",
                 "LD", List.of(flight("BAV1", "OERK", "RPLL")))))
                 .isInstanceOf(BusinessRuleException.class)
                 .hasMessageContaining("no flight with a Viet Nam airport");
     }
+
+    @Test
+    void ld4315KeepsBothVietnamInboundAndOutboundDetails() {
+        var source = permit("LD-4315/11/2026VN", "LD", List.of(
+                flight("O3167", "VHEH", "VIDP"),
+                flight("CSS168", "VIDP", "VVNB"),
+                flight("CSS168", "VVNB", "ZHEC"),
+                flight("O3167", "VHEH", "VIDP"),
+                flight("CSS168", "VIDP", "VVNB"),
+                flight("CSS168", "VVNB", "ZHEC")));
+
+        assertThat(LandingFlightFilter.filter(source).flights())
+                .extracting(ScheduleFlight::flightNumber)
+                .containsExactly("CSS168", "CSS168", "CSS168", "CSS168");
+    }
+
 
     @Test
     void seasonalLandingAndOverflightRemainUnfiltered() {
